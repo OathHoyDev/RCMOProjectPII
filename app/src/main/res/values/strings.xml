@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">RCMOApp</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_name">Fullname</string>
+    <string name="btn_login">เข้าสู่ระบบ</string>
+    <string name="btn_register">REGISTER</string>
+    <string name="btn_link_to_register">Not a member? Sign up now.</string>
+    <string name="btn_link_to_login">Already registred! Login Me.</string>
+    <string name="welcome">Welcome</string>
+    <string name="btn_logout">LOGOUT</string>
+    <string name="name">Fullname</string>
+
+
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="login">ลงชื่อเข้าใช้งาน</string>
+    <string name="forget_password">ลืมรหัสผ่าน</string>
+    <string name="register">สมัครใช้งาน</string>
+
+    <string name="plant">พืช</string>
+    <string name="livestock">ปศุสัตว์</string>
+    <string name="fishing">ประมง</string>
+
+    <string name="province">จังหวัด</string>
+    <string name="amphor">อำเภอ</string>
+    <string name="tumbon">ตำบล</string>
+
+    <string name="rice_button">ข้าว/พืชไร่</string>
+    <string name="jasmine_rice_button">ข้าวหอมมะลิ</string>
+    <string name="plant_group">กลุ่มพืช</string>
+    <string name="land_detail">ข้อมูลที่ดิน</string>
+    <string name="land_size">ขนาดแปลงที่ดิน</string>
+    <string name="land">ไร่</string>
+    <string name="action_settings">Settingsqweqweqwe</string>
+    <string name="title_activity_basic">BasicActivity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

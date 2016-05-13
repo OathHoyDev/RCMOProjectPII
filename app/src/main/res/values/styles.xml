@@ -1,0 +1,141 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+
+        <item name="colorPrimary">@color/colorRcmoBG</item>
+        <item name="colorPrimaryDark">@color/colorRcmoBG</item>
+        <item name="colorAccent">@color/colorRcmoBG</item>
+    </style>
+
+    <style name="RCMOAppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorRcmoBG</item>
+        <item name="colorPrimaryDark">@color/colorRcmoBG</item>
+        <item name="colorAccent">@color/colorRcmoBG</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="FullscreenTheme" parent="AppTheme">
+        <item name="android:actionBarStyle">@style/FullscreenActionBarStyle</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowBackground">@null</item>
+        <item name="metaButtonBarStyle">?android:attr/buttonBarStyle</item>
+        <item name="metaButtonBarButtonStyle">?android:attr/buttonBarButtonStyle</item>
+    </style>
+
+
+    <style name="FullscreenActionBarStyle" parent="Widget.AppCompat.ActionBar">
+        <item name="android:background">@color/black_overlay</item>
+    </style>
+
+
+    <!-- Font Style-->
+    <style name="RCMOStatusBarFont" parent="@android:style/TextAppearance.Medium">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorRcmoWhiteFont</item>
+        <item name="android:typeface">monospace</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:paddingTop">15sp</item>
+        <item name="android:paddingBottom">15sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="RCMOHeaderFont" parent="@android:style/TextAppearance.Medium">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorRcmoWhiteFont</item>
+        <item name="android:typeface">monospace</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:paddingTop">15sp</item>
+        <item name="android:paddingBottom">15sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="RCMOHeaderFont.Green">
+        <item name="android:textColor">@color/colorRcmoGreenFont</item>
+    </style>
+
+
+    <style name="RCMOSubHeaderFont" parent="@android:style/TextAppearance.Medium">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorRcmoWhiteFont</item>
+        <item name="android:textColorHint">@color/colorRcmoGreenFont</item>
+        <item name="android:typeface">monospace</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+    </style>
+
+    <style name="RCMOSubHeaderFont.Green">
+        <item name="android:textColor">@color/colorRcmoGreenFont</item>
+    </style>
+
+    <style name="RCMODetailFont" parent="@android:style/TextAppearance.Medium">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorRcmoWhiteFont</item>
+        <item name="android:typeface">monospace</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+    </style>
+
+    <style name="RCMODetailFont.Green">
+        <item name="android:textColor">@color/colorRcmoGreenFont</item>
+    </style>
+
+    <style name="RCMODetailFont.Gray">
+        <item name="android:textColor">@color/colorRcmoGrayFont</item>
+    </style>
+
+    <!--Input text -->
+    <style name="RCMOInputText">
+        <item name="android:background">@drawable/edit_border_text_view</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_weight">0.1</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:textColorHint">@color/colorRcmoGrayFont</item>
+        <item name="android:textColor">@color/colorRcmoGreenFont</item>
+    </style>
+
+
+    <!--Button -->
+    <style name="RCMOButton">
+        <item name="android:background">@drawable/button_view</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:textAppearance">@style/RCMOSubHeaderFont.Green</item>
+        <item name="android:layout_marginTop">10dp</item>
+
+    </style>
+
+    <style name="RCMOButton.orange">
+        <item name="android:background">@drawable/button_orange_view</item>
+        <item name="android:textAppearance">@style/RCMOSubHeaderFont</item>
+
+    </style>
+
+    <!--
+    android:id="@+id/button"
+
+    android:maxWidth="300dp"
+
+    android:background="@android:color/holo_orange_dark"
+    android:layout_marginTop="10dp" />
+    -->
+
+</resources>

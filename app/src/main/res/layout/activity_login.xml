@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorRcmoBG"
+    tools:context="th.co.rcmo.rcmoapp.LoginActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/bg_imageView"
+        android:layout_gravity="top"
+        android:background="@color/colorRcmoBG" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_gravity="top">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:id="@+id/logo_imageView"
+                android:src="@drawable/logo"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="3" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/calculate_cost_button"
+                android:layout_gravity="bottom|right"
+                android:layout_marginTop="-50dp"
+                android:onClick="actionToCalculateCostActivity"
+                android:background="@drawable/calculate_cost_icon" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:weightSum="1"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/RCMOHeaderFont"
+                android:text="@string/login"
+                android:id="@+id/login_textView"
+                android:layout_marginLeft="50dp"
+                android:layout_gravity="center_vertical" />
+
+            <EditText
+                android:id="@+id/username_text"
+                android:maxWidth="300dp"
+                android:minWidth="300dp"
+                style="@style/RCMOInputText"
+
+                 />
+
+            <EditText
+                android:inputType="textPassword"
+                android:id="@+id/password_text"
+                android:maxWidth="300dp"
+                android:minWidth="300dp"
+                style="@style/RCMOInputText"/>
+
+            <Button
+                android:text="@string/btn_login"
+                android:id="@+id/button"
+                android:maxWidth="300dp"
+                android:minWidth="300dp"
+                style="@style/RCMOButton.orange"
+                 />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/RCMODetailFont"
+                android:text="@string/forget_password"
+                android:id="@+id/forgetPass_textView"
+                android:layout_gravity="right"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="10dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/RCMOHeaderFont"
+                android:id="@+id/register_textView"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/register"
+                android:layout_marginTop="20dp" />
+
+            <ImageButton
+                android:layout_width="116dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageButton"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/morelink_icon"
+                android:layout_weight="0.29" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
