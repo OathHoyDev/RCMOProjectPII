@@ -18,7 +18,7 @@ public class LoginActivity extends Activity {
 
     public void actionToCalculateCostActivity(View view)
     {
-        Intent intent = new Intent(LoginActivity.this, ActionActivity.class);
+        Intent intent = new Intent(LoginActivity.this, CalculatePlantCostActivity.class);
         startActivity(intent);
     }
 }

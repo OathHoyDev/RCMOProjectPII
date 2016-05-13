@@ -16,7 +16,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".LoginActivity" />
-        <activity android:name=".CalculatePlantCostActivity" />
+        <activity
+            android:name=".CalculatePlantCostActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".testActivity"
+            android:label="@string/title_activity_test"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

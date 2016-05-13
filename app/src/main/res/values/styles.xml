@@ -1,15 +1,17 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme"  parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-
         <item name="colorPrimary">@color/colorRcmoBG</item>
         <item name="colorPrimaryDark">@color/colorRcmoBG</item>
         <item name="colorAccent">@color/colorRcmoBG</item>
     </style>
+        <!-- Customize your theme here. -->
 
-    <style name="RCMOAppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+
+
+    <style name="RCMOAppTheme" parent="android:Theme.Holo.NoActionBar">
         <item name="colorPrimary">@color/colorRcmoBG</item>
         <item name="colorPrimaryDark">@color/colorRcmoBG</item>
         <item name="colorAccent">@color/colorRcmoBG</item>
@@ -56,13 +58,17 @@
         <item name="android:textColor">@color/colorRcmoWhiteFont</item>
         <item name="android:typeface">monospace</item>
         <item name="android:textSize">17sp</item>
-        <item name="android:paddingTop">15sp</item>
-        <item name="android:paddingBottom">15sp</item>
+        <item name="android:paddingTop">15dp</item>
+        <item name="android:paddingBottom">15dp</item>
         <item name="android:textStyle">bold</item>
     </style>
 
     <style name="RCMOHeaderFont.Green">
         <item name="android:textColor">@color/colorRcmoGreenFont</item>
+    </style>
+
+    <style name="RCMOHeaderFont.appbar">
+        <item name="android:textSize">20sp</item>
     </style>
 
 
