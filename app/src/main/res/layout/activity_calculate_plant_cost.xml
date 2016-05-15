@@ -33,7 +33,6 @@
                     android:layout_height="45dp"
                     android:background="@color/colorTab"
                     android:baselineAligned="true">
-
                 </TabWidget>
 
                 <FrameLayout

@@ -2,9 +2,14 @@ package th.co.rcmo.rcmoapp;
 
 import android.app.Activity;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.Window;
+import android.widget.ImageView;
 import android.widget.TabHost;
+import android.widget.TextView;
 
 public class CalculatePlantCostActivity extends Activity {
 
@@ -17,6 +22,8 @@ public class CalculatePlantCostActivity extends Activity {
 
         TabHost host = (TabHost)findViewById(R.id.tabHost);
         host.setup();
+
+        /*
 
         //Tab 1
         TabHost.TabSpec spec = host.newTabSpec("Tab One");
@@ -36,5 +43,29 @@ public class CalculatePlantCostActivity extends Activity {
         spec.setIndicator("Tab Three");
         host.addTab(spec);
 
+*/
+
+
+        this.setNewTab(this, host, "tab1",1 , android.R.drawable.star_on, R.id.plantLayout);
+        this.setNewTab(this, host, "tab2", 2, android.R.drawable.star_on, R.id.livestockLayout);
+        this.setNewTab(this, host, "tab3", 3, android.R.drawable.star_on, R.id.fishingLayout);
+    }
+
+    private void setNewTab(Context context, TabHost tabHost, String tag, int title, int icon, int contentID ){
+        String a = "1231";
+        TabHost.TabSpec tabSpec = tabHost.newTabSpec(tag);
+        tabSpec.setIndicator(getTabIndicator(tabHost.getContext(), title, icon)); // new function to inject our own tab layout
+        tabSpec.setContent(contentID);
+        tabHost.addTab(tabSpec);
+    }
+
+    private View getTabIndicator(Context context, int title, int icon) {
+        View view = LayoutInflater.from(context).inflate(R.layout.tab_layout, null);
+       /* ImageView iv = (ImageView) view.findViewById(R.id.imageView);
+        iv.setImageResource(icon);
+        */
+        TextView tv = (TextView) view.findViewById(R.id.textView);
+        tv.setText("ทดสอบ");
+        return view;
     }
 }
