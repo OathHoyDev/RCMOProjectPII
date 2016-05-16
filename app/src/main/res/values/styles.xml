@@ -83,6 +83,16 @@
         <item name="android:paddingBottom">10dp</item>
     </style>
 
+    <style name="RCMOTabFont" parent="@android:style/TextAppearance.Medium">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorRcmoTabFont</item>
+        <item name="android:typeface">monospace</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+
     <style name="RCMOSubHeaderFont.Green">
         <item name="android:textColor">@color/colorRcmoGreenFont</item>
     </style>
@@ -109,9 +119,9 @@
     <style name="RCMOInputText">
         <item name="android:background">@drawable/edit_border_text_view</item>
         <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_height">38dp</item>
         <item name="android:layout_gravity">center_horizontal</item>
-        <item name="android:layout_weight">0.1</item>
+    <!--    <item name="android:layout_weight">0.1</item> -->
         <item name="android:layout_marginTop">10dp</item>
         <item name="android:textColorHint">@color/colorRcmoGrayFont</item>
         <item name="android:textColor">@color/colorRcmoGreenFont</item>
@@ -122,15 +132,19 @@
     <style name="RCMOButton">
         <item name="android:background">@drawable/button_view</item>
         <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">40dp</item>
-        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_height">38dp</item>
         <item name="android:textAppearance">@style/RCMOSubHeaderFont.Green</item>
-        <item name="android:layout_marginTop">10dp</item>
+
 
     </style>
 
     <style name="RCMOButton.orange">
         <item name="android:background">@drawable/button_orange_view</item>
+        <item name="android:textAppearance">@style/RCMOSubHeaderFont</item>
+    </style>
+
+    <style name="RCMOButton.green">
+        <item name="android:background">@drawable/button_green_view</item>
         <item name="android:textAppearance">@style/RCMOSubHeaderFont</item>
 
     </style>

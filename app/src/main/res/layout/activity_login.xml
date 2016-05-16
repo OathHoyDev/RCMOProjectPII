@@ -80,8 +80,9 @@
                 android:id="@+id/button"
                 android:maxWidth="300dp"
                 android:minWidth="300dp"
+                android:layout_marginTop="10dp"
                 style="@style/RCMOButton.orange"
-                 />
+                android:layout_gravity="center_horizontal" />
 
             <TextView
                 android:layout_width="wrap_content"

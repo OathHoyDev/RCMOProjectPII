@@ -2,7 +2,7 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
     <item>
         <shape android:shape="rectangle">
-            <solid android:color="#FFefefef" />
+            <solid android:color="@color/colorRcmoTabBG" />
         </shape>
     </item>
 
@@ -13,7 +13,7 @@
                 android:top="15dp"
                 android:right="10dp"
                 android:bottom="15dp" />
-            <stroke android:width="6dp" android:color="#FF00ccff" />
+            <stroke android:width="4dp" android:color="@color/colorRcmoUnderLineTabBG" />
             <solid android:color="#00000000" />
         </shape>
     </item>

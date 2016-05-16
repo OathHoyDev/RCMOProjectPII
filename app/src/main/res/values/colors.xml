@@ -2,16 +2,17 @@
 <resources>
 
     <color name="colorRcmoBG">#2ABB9C</color>
+    <color name="colorRcmoTabBG">#2EC9A7</color>
+    <color name="colorRcmoUnderLineTabBG">#2E9780</color>
     <color name="colorRcmoWhiteBG">#ffffff</color>
-
     <color name="black_overlay">#66000000</color>
-    <color name="colorTab">#39c8a7</color>
 
-    <color name="colorRcmoGreenFont">#2ABB9C</color>
+    <color name="colorRcmoTabFont">#2E9780</color>
+   <color name="colorRcmoGreenFont">#2ABB9C</color>
     <color name="colorRcmoGrayFont">#999999</color>
     <color name="colorRcmoWhiteFont">#ffffff</color>
 
-    <color name="colorRcmoGrayButtonBG">#dadada</color>
+    <color name="colorRcmoGrayButtonBG">#EBEBEB</color>
 
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#2ABB9C</color>

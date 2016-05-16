@@ -29,13 +29,19 @@
     <string name="rice_button">ข้าว/พืชไร่</string>
     <string name="jasmine_rice_button">ข้าวหอมมะลิ</string>
     <string name="plant_group">กลุ่มพืช</string>
+
+
+
+    <string name="livestock_button">กรุณาเลือกสินค้า</string>
+    <string name="livestock_group">กลุ่มปศุสัตว์</string>
+    <string name="livestock_unit">จำนวนที่เลียง</string>
+    <string name="livestock_unit_label">ตัว</string>
+
+
     <string name="land_detail">ข้อมูลที่ดิน</string>
     <string name="land_size">ขนาดแปลงที่ดิน</string>
     <string name="land">ไร่</string>
-    <string name="action_settings">Settingsqweqweqwe</string>
-    <string name="title_activity_basic">BasicActivity</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_test">testActivity</string>
+
+
 </resources>
