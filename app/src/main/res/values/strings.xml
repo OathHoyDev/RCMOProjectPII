@@ -12,15 +12,14 @@
     <string name="name">Fullname</string>
 
 
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <string name="user_hint">บัญชีผู้ใช้งาน</string>
+    <string name="pass_hint">รหัสผ่าน</string>
     <string name="login">ลงชื่อเข้าใช้งาน</string>
     <string name="forget_password">ลืมรหัสผ่าน</string>
     <string name="register">สมัครใช้งาน</string>
 
-    <string name="plant">พืช</string>
-    <string name="livestock">ปศุสัตว์</string>
-    <string name="fishing">ประมง</string>
+
 
     <string name="province">จังหวัด</string>
     <string name="amphor">อำเภอ</string>
@@ -30,17 +29,26 @@
     <string name="jasmine_rice_button">ข้าวหอมมะลิ</string>
     <string name="plant_group">กลุ่มพืช</string>
 
-
-
     <string name="livestock_button">กรุณาเลือกสินค้า</string>
     <string name="livestock_group">กลุ่มปศุสัตว์</string>
     <string name="livestock_unit">จำนวนที่เลียง</string>
     <string name="livestock_unit_label">ตัว</string>
 
 
+    <string name="fishing_button_label">เลือกสินค้า</string>
+    <string name="fishing_group">กลุ่มประมง</string>
+    <string name="fishing_fish_pond_type_label">ลักษณะการเลียง</string>
+    <string name="fishing_fish_pond_size_label">ขนาดบ่อเลียง</string>
+    <string name="fishing_fish_pond_label">บ่อ</string>
+    <string name="fishing_kra_chang_label">กระชัง</string>
+
     <string name="land_detail">ข้อมูลที่ดิน</string>
     <string name="land_size">ขนาดแปลงที่ดิน</string>
     <string name="land">ไร่</string>
+
+
+
+    <string name="edit_text_hint"><font size="10">My hint string</font></string>
 
 
 

@@ -97,6 +97,10 @@
         <item name="android:textColor">@color/colorRcmoGreenFont</item>
     </style>
 
+    <style name="RCMOSubHeaderFont.Gray">
+        <item name="android:textColor">@color/colorRcmoGrayFont</item>
+    </style>
+
     <style name="RCMODetailFont" parent="@android:style/TextAppearance.Medium">
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -118,7 +122,7 @@
     <!--Input text -->
     <style name="RCMOInputText">
         <item name="android:background">@drawable/edit_border_text_view</item>
-        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">38dp</item>
         <item name="android:layout_gravity">center_horizontal</item>
     <!--    <item name="android:layout_weight">0.1</item> -->
@@ -127,15 +131,15 @@
         <item name="android:textColor">@color/colorRcmoGreenFont</item>
     </style>
 
-
+    <style name="RCMOInputText.GrayFont">
+        <item name="android:textColor">@color/colorRcmoGrayFont</item>
+    </style>
     <!--Button -->
     <style name="RCMOButton">
         <item name="android:background">@drawable/button_view</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">38dp</item>
         <item name="android:textAppearance">@style/RCMOSubHeaderFont.Green</item>
-
-
     </style>
 
     <style name="RCMOButton.orange">
@@ -146,9 +150,17 @@
     <style name="RCMOButton.green">
         <item name="android:background">@drawable/button_green_view</item>
         <item name="android:textAppearance">@style/RCMOSubHeaderFont</item>
-
     </style>
 
+    <style name="RCMOButton.selected">
+    <item name="android:background">@drawable/button_selected_view</item>
+    <item name="android:textAppearance">@style/RCMOSubHeaderFont.Green</item>
+    </style>
+
+    <style name="RCMOButton.unselected">
+        <item name="android:background">@drawable/button_view</item>
+        <item name="android:textAppearance">@style/RCMOSubHeaderFont.Gray</item>
+    </style>
     <!--
     android:id="@+id/button"
 

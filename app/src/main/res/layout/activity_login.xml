@@ -61,19 +61,20 @@
                 android:layout_gravity="center_vertical" />
 
             <EditText
+                android:drawableLeft="@drawable/user_icon"
                 android:id="@+id/username_text"
-                android:maxWidth="300dp"
-                android:minWidth="300dp"
+                android:layout_width="300dp"
                 style="@style/RCMOInputText"
 
-                 />
+                android:hint="@string/user_hint" />
 
             <EditText
+                android:drawableLeft="@drawable/key_icon"
                 android:inputType="textPassword"
                 android:id="@+id/password_text"
-                android:maxWidth="300dp"
-                android:minWidth="300dp"
-                style="@style/RCMOInputText"/>
+                android:layout_width="300dp"
+                style="@style/RCMOInputText"
+                android:hint="@string/pass_hint" />
 
             <Button
                 android:text="@string/btn_login"
@@ -104,12 +105,11 @@
                 android:layout_marginTop="20dp" />
 
             <ImageButton
-                android:layout_width="116dp"
-                android:layout_height="wrap_content"
+                android:layout_width="96dp"
+                android:layout_height="67dp"
                 android:id="@+id/imageButton"
                 android:layout_gravity="center_horizontal"
-                android:background="@drawable/morelink_icon"
-                android:layout_weight="0.29" />
+                android:background="@drawable/more_link_icon" />
 
         </LinearLayout>
 

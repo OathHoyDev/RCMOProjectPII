@@ -25,6 +25,7 @@ public class CalculatePlantCostActivity extends Activity {
         TabHost host = (TabHost)findViewById(R.id.tabHost);
         host.setup();
 
+       // Button text = (Button) findViewById(R.id.plant_jasmine_button);
         /*
 
         //Tab 1
