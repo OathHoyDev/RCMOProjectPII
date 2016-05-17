@@ -19,7 +19,8 @@
         <activity
             android:name=".CalculatePlantCostActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".RegisterActivity"></activity>
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".MainProductListActivity"></activity>
     </application>
 
 </manifest>

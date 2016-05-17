@@ -31,7 +31,8 @@
             android:id="@+id/plant_rice_button"
             android:maxWidth="300dp"
             android:textAlignment="textStart"
-            style="@style/RCMOButton"/>
+            style="@style/RCMOButton"
+            android:onClick="actionToMainProductListActivity" />
 
         <Button
             android:drawableLeft="@drawable/plant_icon"

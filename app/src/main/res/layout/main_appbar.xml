@@ -23,7 +23,7 @@
             android:layout_centerInParent="true"
             android:id="@+id/mainAppBar_Title"
             android:textAppearance="@style/RCMOHeaderFont.appbar"
-            android:text="@string/land_detail"
+            android:text=""
             android:layout_gravity="bottom" />
 
 

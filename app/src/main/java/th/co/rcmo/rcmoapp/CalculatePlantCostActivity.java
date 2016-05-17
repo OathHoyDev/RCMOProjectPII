@@ -3,6 +3,7 @@ package th.co.rcmo.rcmoapp;
 import android.app.Activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,7 +20,8 @@ public class CalculatePlantCostActivity extends Activity {
         super.onCreate(savedInstanceState);
       // requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_calculate_plant_cost);
-
+        TextView appbarTitleLabel =  (TextView)findViewById(R.id.mainAppBar_Title);
+        appbarTitleLabel.setText(getResources().getString(R.string.land_size));
         findViewById(R.id.mainAppBar_Back).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,6 +76,14 @@ public class CalculatePlantCostActivity extends Activity {
         TextView tv = (TextView) view.findViewById(R.id.textView);
         tv.setText(title);
         return view;
+    }
+
+    public void actionToMainProductListActivity(View view)
+    {
+
+        Intent intent = new Intent(CalculatePlantCostActivity.this, MainProductListActivity.class);
+        startActivity(intent);
+
     }
   /*
     private void setNewTab(Context context, TabHost tabHost, String tag, int title, int icon, int contentID ){
