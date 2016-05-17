@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorRcmoWhiteBG">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include layout="@layout/main_appbar"/>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/colorRcmoBG"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/RCMOHeaderFont.LargeText"
+                android:text="@string/register_new"
+                android:id="@+id/textView2"
+                android:layout_gravity="center_horizontal"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/colorRcmoBG"
+            android:layout_weight="0.3">
+
+            <EditText
+                android:id="@+id/register_name_text"
+                android:layout_width="300dp"
+                style="@style/RCMOInputText"
+                android:hint="@string/register_name_hint"
+                android:paddingLeft="30dp"
+                />
+
+            <EditText
+                android:id="@+id/register_surname_text"
+                android:layout_width="300dp"
+                style="@style/RCMOInputText"
+                android:hint="@string/register_surname_hint"
+                android:paddingLeft="30dp"
+                android:layout_marginBottom="30dp"/>
+
+            <EditText
+                android:id="@+id/register_username_text"
+                android:layout_width="300dp"
+                style="@style/RCMOInputText"
+                android:hint="@string/register_username_hint"
+                android:paddingLeft="30dp" />
+
+            <EditText
+                android:id="@+id/register_email_text"
+                android:layout_width="300dp"
+                style="@style/RCMOInputText"
+                android:hint="@string/register_email_hint"
+                android:paddingLeft="30dp" />
+
+
+            <EditText
+                android:id="@+id/register_pass_text"
+                android:layout_width="300dp"
+                style="@style/RCMOInputText"
+                android:hint="@string/register_pass_hint"
+                android:paddingLeft="30dp" />
+
+            <EditText
+                android:id="@+id/register_confirm_pass_text"
+                android:layout_width="300dp"
+                style="@style/RCMOInputText"
+                android:hint="@string/register_Confirm_pass_hint"
+                android:paddingLeft="30dp"
+                android:layout_marginBottom="30dp"/>
+
+            <Button
+                android:text="@string/register_new"
+                android:id="@+id/button"
+                android:maxWidth="300dp"
+                android:minWidth="300dp"
+                android:layout_marginTop="10dp"
+                style="@style/RCMOButton.orange"
+                android:layout_gravity="center_horizontal" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

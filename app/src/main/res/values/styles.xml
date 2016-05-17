@@ -63,6 +63,11 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+
+    <style name="RCMOHeaderFont.LargeText">
+        <item name="android:textSize">30sp</item>
+    </style>
+
     <style name="RCMOHeaderFont.Green">
         <item name="android:textColor">@color/colorRcmoGreenFont</item>
     </style>

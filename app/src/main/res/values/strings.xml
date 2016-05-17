@@ -1,24 +1,21 @@
 <resources>
     <string name="app_name">RCMOApp</string>
-    <string name="hint_email">Email</string>
-    <string name="hint_password">Password</string>
-    <string name="hint_name">Fullname</string>
-    <string name="btn_login">เข้าสู่ระบบ</string>
-    <string name="btn_register">REGISTER</string>
-    <string name="btn_link_to_register">Not a member? Sign up now.</string>
-    <string name="btn_link_to_login">Already registred! Login Me.</string>
-    <string name="welcome">Welcome</string>
-    <string name="btn_logout">LOGOUT</string>
-    <string name="name">Fullname</string>
-
-
 
     <string name="user_hint">บัญชีผู้ใช้งาน</string>
     <string name="pass_hint">รหัสผ่าน</string>
     <string name="login">ลงชื่อเข้าใช้งาน</string>
     <string name="forget_password">ลืมรหัสผ่าน</string>
     <string name="register">สมัครใช้งาน</string>
+    <string name="login_button">เข้าสู่ระบบ</string>
 
+
+    <string name="register_new">ลงทะเบียน</string>
+    <string name="register_name_hint">ชื่อ</string>
+    <string name="register_surname_hint">นามสกุล</string>
+    <string name="register_username_hint">ชื่อบัญชี</string>
+    <string name="register_email_hint">อีเมลล์</string>
+    <string name="register_pass_hint">รหัสผ่าน</string>
+    <string name="register_Confirm_pass_hint">ยืนยันรหัสผ่าน</string>
 
 
     <string name="province">จังหวัด</string>
@@ -47,9 +44,7 @@
     <string name="land">ไร่</string>
 
 
-
     <string name="edit_text_hint"><font size="10">My hint string</font></string>
-
 
 
 </resources>

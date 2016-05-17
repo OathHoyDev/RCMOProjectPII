@@ -25,4 +25,13 @@ public class LoginActivity extends Activity {
 
 
     }
+
+    public void actionToRegisterActivity(View view)
+    {
+
+        Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+        startActivity(intent);
+
+
+    }
 }
