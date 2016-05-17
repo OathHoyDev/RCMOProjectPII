@@ -20,6 +20,12 @@ public class CalculatePlantCostActivity extends Activity {
       // requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_calculate_plant_cost);
 
+        findViewById(R.id.mainAppBar_Back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
 
         TabHost host = (TabHost)findViewById(R.id.tabHost);

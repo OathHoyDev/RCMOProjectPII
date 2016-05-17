@@ -16,6 +16,13 @@ public class RegisterActivity extends AppCompatActivity {
 
        TextView appbarTitleLabel =  (TextView)findViewById(R.id.mainAppBar_Title);
         appbarTitleLabel.setText("");
+
+        findViewById(R.id.mainAppBar_Back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
 

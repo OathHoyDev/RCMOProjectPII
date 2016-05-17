@@ -15,6 +15,7 @@ public class LoginActivity extends Activity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_login);
+
     }
 
     public void actionToCalculateCostActivity(View view)
@@ -22,6 +23,8 @@ public class LoginActivity extends Activity {
 
             Intent intent = new Intent(LoginActivity.this, CalculatePlantCostActivity.class);
             startActivity(intent);
+
+
 
 
     }
