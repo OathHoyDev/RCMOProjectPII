@@ -56,7 +56,7 @@ public class LivestockProductListActivity extends AppCompatActivity {
 
         PlantMainProductAdapter adapter = new PlantMainProductAdapter(getApplicationContext(), productList);
 
-        ListView listView = (ListView)findViewById(R.id.listView1);
+        ListView listView = (ListView)findViewById(R.id.product_list_view);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {

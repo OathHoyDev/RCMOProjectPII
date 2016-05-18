@@ -44,7 +44,8 @@
             android:maxWidth="300dp"
             android:textAlignment="textStart"
             style="@style/RCMOButton"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="10dp"
+            android:onClick="actionToPlantSubProductListActivity" />
 
         <TextView
             android:layout_width="match_parent"

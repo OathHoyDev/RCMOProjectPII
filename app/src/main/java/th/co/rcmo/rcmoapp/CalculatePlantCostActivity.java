@@ -70,6 +70,12 @@ public class CalculatePlantCostActivity extends Activity {
         Intent intent = new Intent(CalculatePlantCostActivity.this, LivestockProductListActivity.class);
         startActivity(intent);
     }
+
+    public void actionToPlantSubProductListActivity(View view)
+    {
+        Intent intent = new Intent(CalculatePlantCostActivity.this, PlantSubProductListActivity.class);
+        startActivity(intent);
+    }
   /*
     private void setNewTab(Context context, TabHost tabHost, String tag, int title, int icon, int contentID ){
         String a = "1231";

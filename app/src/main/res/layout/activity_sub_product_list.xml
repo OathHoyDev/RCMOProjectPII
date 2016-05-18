@@ -13,9 +13,23 @@
         android:layout_height="match_parent">
         <include layout="@layout/main_appbar"/>
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorRcmoGrayBG">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorRcmoGrayBG"
+            android:id="@+id/sub_product_header"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="10dp"
+            android:textAppearance="@style/RCMODetailFont.Gray"/>
+        </LinearLayout>
 
         <ListView
-            android:id="@+id/product_list_view"
+            android:id="@+id/sub_product_list_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -27,7 +41,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/colorRcmoGrayButtonBG"
-            android:id="@+id/textView3"
+            android:id="@+id/last_line"
             android:layout_gravity="center_horizontal" />
 
 

@@ -44,16 +44,17 @@ public class PlantSubProductAdapter extends BaseAdapter {
                 (LayoutInflater)mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         if(convertView == null) {
-            convertView = mInflater.inflate(R.layout.product_listview_row, parent, false);
+            convertView = mInflater.inflate(R.layout.sub_product_listview_row, parent, false);
         }
 
         mSubProductList.mRespBody productInfo = getItem(position);
 
-        TextView textView = (TextView)convertView.findViewById(R.id.product_name);
+        TextView textView = (TextView)convertView.findViewById(R.id.sub_product_name);
         textView.setText(productInfo.getProductSubName());
-
+/*
         ImageView imageView = (ImageView)convertView.findViewById(R.id.product_icon_img);
         imageView.setBackgroundResource(productInfo.getProductSubIconImg());
+        */
 
         return convertView;
     }

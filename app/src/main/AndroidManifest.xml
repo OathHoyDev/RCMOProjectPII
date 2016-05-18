@@ -22,7 +22,8 @@
         <activity android:name=".RegisterActivity" />
         <activity android:name=".PlantMainProductListActivity" />
         <activity android:name=".FishProductListActivity" />
-        <activity android:name=".LivestockProductListActivity"></activity>
+        <activity android:name=".LivestockProductListActivity" />
+        <activity android:name=".PlantSubProductListActivity"></activity>
     </application>
 
 </manifest>

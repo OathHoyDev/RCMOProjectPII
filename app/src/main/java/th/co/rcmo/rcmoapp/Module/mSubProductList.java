@@ -38,6 +38,10 @@ public class mSubProductList {
         int    productSubId,productSubIconImg;
         String productSubName;
 
+        public mRespBody(String productSubName) {
+            this.productSubName = productSubName;
+        }
+
         public int getProductSubId() {
             return productSubId;
         }

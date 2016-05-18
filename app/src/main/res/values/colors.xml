@@ -5,6 +5,7 @@
     <color name="colorRcmoTabBG">#2EC9A7</color>
     <color name="colorRcmoUnderLineTabBG">#2E9780</color>
     <color name="colorRcmoWhiteBG">#ffffff</color>
+    <color name="colorRcmoGrayBG">#EBEBEB</color>
     <color name="black_overlay">#66000000</color>
 
     <color name="colorRcmoTabFont">#2E9780</color>
