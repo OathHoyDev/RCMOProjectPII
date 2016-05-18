@@ -23,7 +23,10 @@
         <activity android:name=".PlantMainProductListActivity" />
         <activity android:name=".FishProductListActivity" />
         <activity android:name=".LivestockProductListActivity" />
-        <activity android:name=".PlantSubProductListActivity"></activity>
+        <activity android:name=".PlantSubProductListActivity" />
+        <activity android:name=".AmphoeListActivity" />
+        <activity android:name=".ProvinceListActivity" />
+        <activity android:name=".TumbonListActivity"></activity>
     </application>
 
 </manifest>
