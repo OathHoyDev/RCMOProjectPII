@@ -7,9 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.Window;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TextView;
 
@@ -81,7 +78,7 @@ public class CalculatePlantCostActivity extends Activity {
     public void actionToMainProductListActivity(View view)
     {
 
-        Intent intent = new Intent(CalculatePlantCostActivity.this, MainProductListActivity.class);
+        Intent intent = new Intent(CalculatePlantCostActivity.this, PlantMainProductListActivity.class);
         startActivity(intent);
 
     }

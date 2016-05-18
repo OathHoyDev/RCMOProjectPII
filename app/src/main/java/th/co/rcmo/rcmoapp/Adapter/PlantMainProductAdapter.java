@@ -16,11 +16,11 @@ import th.co.rcmo.rcmoapp.R;
 /**
  * Created by Taweesin on 5/17/2016.
  */
-public class MainPlantProductAdapter extends BaseAdapter {
+public class PlantMainProductAdapter extends BaseAdapter {
     Context mContext;
     List<mMainProductList.mRespBody> productLists;
 
-    public MainPlantProductAdapter( Context mContext , List<mMainProductList.mRespBody> productLists) {
+    public PlantMainProductAdapter(Context mContext , List<mMainProductList.mRespBody> productLists) {
         this.mContext = mContext;
         this.productLists = productLists;
     }

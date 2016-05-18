@@ -10,10 +10,10 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import th.co.rcmo.rcmoapp.Adapter.MainPlantProductAdapter;
+import th.co.rcmo.rcmoapp.Adapter.PlantMainProductAdapter;
 import th.co.rcmo.rcmoapp.Module.mMainProductList;
 
-public class MainProductListActivity extends AppCompatActivity {
+public class PlantMainProductListActivity extends AppCompatActivity {
     public static List<mMainProductList.mRespBody> productList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +48,7 @@ public class MainProductListActivity extends AppCompatActivity {
         productList.add(productInfo);
 
 
-        MainPlantProductAdapter adapter = new MainPlantProductAdapter(getApplicationContext(), productList);
+        PlantMainProductAdapter adapter = new PlantMainProductAdapter(getApplicationContext(), productList);
 
         ListView listView = (ListView)findViewById(R.id.listView1);
         listView.setAdapter(adapter);
