@@ -7,9 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import java.util.List;
-
 import th.co.rcmo.rcmoapp.Module.mMainProductList;
 import th.co.rcmo.rcmoapp.R;
 
@@ -53,10 +51,10 @@ public class PlantMainProductAdapter extends BaseAdapter {
 
         mMainProductList.mRespBody productInfo = getItem(position);
 
-        TextView textView = (TextView)convertView.findViewById(R.id.textView1);
+        TextView textView = (TextView)convertView.findViewById(R.id.product_name);
         textView.setText(productInfo.getProductName());
 
-        ImageView imageView = (ImageView)convertView.findViewById(R.id.imageView1);
+        ImageView imageView = (ImageView)convertView.findViewById(R.id.product_icon_img);
         imageView.setBackgroundResource(productInfo.getProductIconImg());
 
         return convertView;

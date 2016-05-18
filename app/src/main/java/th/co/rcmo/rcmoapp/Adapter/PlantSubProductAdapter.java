@@ -8,30 +8,29 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.List;
-
-import th.co.rcmo.rcmoapp.Module.mMainProductList;
+import th.co.rcmo.rcmoapp.Module.mSubProductList;
 import th.co.rcmo.rcmoapp.R;
 
 /**
  * Created by Taweesin on 5/18/2016.
  */
-public class FishProductAdapter  extends BaseAdapter {
+public class PlantSubProductAdapter extends BaseAdapter {
     Context mContext;
-    List<mMainProductList.mRespBody> productLists;
+    List<mSubProductList.mRespBody> subProductLists;
 
-    public FishProductAdapter(Context mContext, List<mMainProductList.mRespBody> productLists) {
+    public PlantSubProductAdapter(Context mContext, List<mSubProductList.mRespBody> subProductLists) {
         this.mContext = mContext;
-        this.productLists = productLists;
+        this.subProductLists = subProductLists;
     }
 
     @Override
     public int getCount() {
-        return productLists.size();
+        return subProductLists.size();
     }
 
     @Override
-    public mMainProductList.mRespBody getItem(int position) {
-        return productLists.get(position);
+    public mSubProductList.mRespBody getItem(int position) {
+        return subProductLists.get(position);
     }
 
     @Override
@@ -41,7 +40,6 @@ public class FishProductAdapter  extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-
         LayoutInflater mInflater =
                 (LayoutInflater)mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
@@ -49,13 +47,13 @@ public class FishProductAdapter  extends BaseAdapter {
             convertView = mInflater.inflate(R.layout.product_listview_row, parent, false);
         }
 
-        mMainProductList.mRespBody productInfo = getItem(position);
+        mSubProductList.mRespBody productInfo = getItem(position);
 
         TextView textView = (TextView)convertView.findViewById(R.id.product_name);
-        textView.setText(productInfo.getProductName());
+        textView.setText(productInfo.getProductSubName());
 
         ImageView imageView = (ImageView)convertView.findViewById(R.id.product_icon_img);
-        imageView.setBackgroundResource(productInfo.getProductIconImg());
+        imageView.setBackgroundResource(productInfo.getProductSubIconImg());
 
         return convertView;
     }

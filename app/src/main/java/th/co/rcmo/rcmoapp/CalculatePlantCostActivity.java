@@ -18,7 +18,9 @@ public class CalculatePlantCostActivity extends Activity {
       // requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_calculate_plant_cost);
         TextView appbarTitleLabel =  (TextView)findViewById(R.id.mainAppBar_Title);
-        appbarTitleLabel.setText(getResources().getString(R.string.land_size));
+        appbarTitleLabel.setText(R.string.land_size);
+
+
         findViewById(R.id.mainAppBar_Back).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -29,31 +31,7 @@ public class CalculatePlantCostActivity extends Activity {
 
         TabHost host = (TabHost)findViewById(R.id.tabHost);
         host.setup();
-
-       // Button text = (Button) findViewById(R.id.plant_jasmine_button);
-        /*
-
-        //Tab 1
-        TabHost.TabSpec spec = host.newTabSpec("Tab One");
-        spec.setContent(R.id.plantLayout);
-        spec.setIndicator("พืช");
-        host.addTab(spec);
-
-        //Tab 2
-        spec = host.newTabSpec("Tab Two");
-        spec.setContent(R.id.livestockLayout);
-        spec.setIndicator("Tab Two");
-        host.addTab(spec);
-
-        //Tab 3
-        spec = host.newTabSpec("Tab Three");
-        spec.setContent(R.id.fishingLayout);
-        spec.setIndicator("Tab Three");
-        host.addTab(spec);
-
-*/
-
-
+        
         this.setNewTab( host, "tab1","พืช",  R.id.plantLayout);
         this.setNewTab( host, "tab2","ปศุสัตว์", R.id.livestockLayout);
         this.setNewTab( host, "tab3","ประมง", R.id.fishingLayout);
@@ -75,12 +53,22 @@ public class CalculatePlantCostActivity extends Activity {
         return view;
     }
 
-    public void actionToMainProductListActivity(View view)
+    public void actionToPlantMainProductListActivity(View view)
     {
-
         Intent intent = new Intent(CalculatePlantCostActivity.this, PlantMainProductListActivity.class);
         startActivity(intent);
+    }
 
+    public void actionToFishProductListActivity(View view)
+    {
+        Intent intent = new Intent(CalculatePlantCostActivity.this, FishProductListActivity.class);
+        startActivity(intent);
+    }
+
+    public void actionToLivestockProductListActivity(View view)
+    {
+        Intent intent = new Intent(CalculatePlantCostActivity.this, LivestockProductListActivity.class);
+        startActivity(intent);
     }
   /*
     private void setNewTab(Context context, TabHost tabHost, String tag, int title, int icon, int contentID ){

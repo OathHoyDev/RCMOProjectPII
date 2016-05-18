@@ -46,5 +46,7 @@
 
     <string name="edit_text_hint"><font size="10">My hint string</font></string>
 
+    <string name="appbar_product_name_label">สินค้า</string>
+    <string name="appbar_cancel_label">cancel</string>
 
 </resources>

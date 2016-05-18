@@ -13,18 +13,21 @@ import java.util.List;
 import th.co.rcmo.rcmoapp.Adapter.PlantMainProductAdapter;
 import th.co.rcmo.rcmoapp.Module.mMainProductList;
 
-public class PlantMainProductListActivity extends AppCompatActivity {
+public class FishProductListActivity extends AppCompatActivity {
     public static List<mMainProductList.mRespBody> productList = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main_product_list);
 
         TextView appbarTitleLabel =  (TextView)findViewById(R.id.mainAppBar_Title);
-        appbarTitleLabel.setText("กลุ่มของพืช");
+        appbarTitleLabel.setText(R.string.appbar_product_name_label);
 
         TextView appbarBackLabel =  (TextView)findViewById(R.id.mainAppBar_Back);
         appbarBackLabel.setText(R.string.appbar_cancel_label);
+
 
         findViewById(R.id.mainAppBar_Back).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,20 +38,21 @@ public class PlantMainProductListActivity extends AppCompatActivity {
 
         productList = new ArrayList<>();
 
-        mMainProductList.mRespBody productInfo = new mMainProductList().new mRespBody(R.drawable.plant_icon,"ข้าว/พืชไร่");
+        mMainProductList.mRespBody productInfo = new mMainProductList().new mRespBody(R.drawable.fish_icon,"ปลาดุก");
         productList.add(productInfo);
 
-        productInfo = new mMainProductList().new mRespBody(R.drawable.small_plan_icon,"พืชไร่มีอายุ");
+        productInfo = new mMainProductList().new mRespBody(R.drawable.fish_icon,"ปลาทับทิม");
         productList.add(productInfo);
 
-        productInfo = new mMainProductList().new mRespBody(R.drawable.tree_icon,"ไม้ผล/ไม้ยืนต้น");
+        productInfo = new mMainProductList().new mRespBody(R.drawable.shrimp_icon,"กุ้งขาวแวนนาไม");
         productList.add(productInfo);
 
-        productInfo = new mMainProductList().new mRespBody(R.drawable.vegetable_icon,"พืชผัก");
+        productInfo = new mMainProductList().new mRespBody(R.drawable.fish_icon,"ปลานิล");
         productList.add(productInfo);
 
-        productInfo = new mMainProductList().new mRespBody(R.drawable.flower_icon,"ไม้ดอก/ไม้ประดับ");
+        productInfo = new mMainProductList().new mRespBody(R.drawable.fish_icon,"ปลาช่อน");
         productList.add(productInfo);
+
 
 
         PlantMainProductAdapter adapter = new PlantMainProductAdapter(getApplicationContext(), productList);

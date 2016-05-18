@@ -8,18 +8,17 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.List;
-
 import th.co.rcmo.rcmoapp.Module.mMainProductList;
 import th.co.rcmo.rcmoapp.R;
 
 /**
  * Created by Taweesin on 5/18/2016.
  */
-public class FishProductAdapter  extends BaseAdapter {
+public class LivestockProductAdapter extends BaseAdapter {
     Context mContext;
     List<mMainProductList.mRespBody> productLists;
 
-    public FishProductAdapter(Context mContext, List<mMainProductList.mRespBody> productLists) {
+    public LivestockProductAdapter(Context mContext, List<mMainProductList.mRespBody> productLists) {
         this.mContext = mContext;
         this.productLists = productLists;
     }
@@ -48,6 +47,7 @@ public class FishProductAdapter  extends BaseAdapter {
         if(convertView == null) {
             convertView = mInflater.inflate(R.layout.product_listview_row, parent, false);
         }
+
 
         mMainProductList.mRespBody productInfo = getItem(position);
 

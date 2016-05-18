@@ -20,7 +20,9 @@
             android:name=".CalculatePlantCostActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".PlantMainProductListActivity"></activity>
+        <activity android:name=".PlantMainProductListActivity" />
+        <activity android:name=".FishProductListActivity" />
+        <activity android:name=".LivestockProductListActivity"></activity>
     </application>
 
 </manifest>

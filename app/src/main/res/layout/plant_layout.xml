@@ -32,7 +32,7 @@
             android:maxWidth="300dp"
             android:textAlignment="textStart"
             style="@style/RCMOButton"
-            android:onClick="actionToMainProductListActivity" />
+            android:onClick="actionToPlantMainProductListActivity" />
 
         <Button
             android:drawableLeft="@drawable/plant_icon"

@@ -13,7 +13,7 @@ import java.util.List;
 import th.co.rcmo.rcmoapp.Adapter.PlantMainProductAdapter;
 import th.co.rcmo.rcmoapp.Module.mMainProductList;
 
-public class PlantMainProductListActivity extends AppCompatActivity {
+public class LivestockProductListActivity extends AppCompatActivity {
     public static List<mMainProductList.mRespBody> productList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +21,7 @@ public class PlantMainProductListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_product_list);
 
         TextView appbarTitleLabel =  (TextView)findViewById(R.id.mainAppBar_Title);
-        appbarTitleLabel.setText("กลุ่มของพืช");
+        appbarTitleLabel.setText(R.string.appbar_product_name_label);
 
         TextView appbarBackLabel =  (TextView)findViewById(R.id.mainAppBar_Back);
         appbarBackLabel.setText(R.string.appbar_cancel_label);
@@ -35,19 +35,22 @@ public class PlantMainProductListActivity extends AppCompatActivity {
 
         productList = new ArrayList<>();
 
-        mMainProductList.mRespBody productInfo = new mMainProductList().new mRespBody(R.drawable.plant_icon,"ข้าว/พืชไร่");
+        mMainProductList.mRespBody productInfo = new mMainProductList().new mRespBody(R.drawable.pig_icon,"สุกรขุน");
         productList.add(productInfo);
 
-        productInfo = new mMainProductList().new mRespBody(R.drawable.small_plan_icon,"พืชไร่มีอายุ");
+        productInfo = new mMainProductList().new mRespBody(R.drawable.chicken_icon,"ไก่เนื้อ");
         productList.add(productInfo);
 
-        productInfo = new mMainProductList().new mRespBody(R.drawable.tree_icon,"ไม้ผล/ไม้ยืนต้น");
+        productInfo = new mMainProductList().new mRespBody(R.drawable.chicken_icon,"ไก่ไข่สาว");
         productList.add(productInfo);
 
-        productInfo = new mMainProductList().new mRespBody(R.drawable.vegetable_icon,"พืชผัก");
+        productInfo = new mMainProductList().new mRespBody(R.drawable.chicken_icon,"ไก่ระยะใข่");
         productList.add(productInfo);
 
-        productInfo = new mMainProductList().new mRespBody(R.drawable.flower_icon,"ไม้ดอก/ไม้ประดับ");
+        productInfo = new mMainProductList().new mRespBody(R.drawable.milk_icon,"น้ำนมดิบ");
+        productList.add(productInfo);
+
+        productInfo = new mMainProductList().new mRespBody(R.drawable.cow_icon,"โคขุน");
         productList.add(productInfo);
 
 
