@@ -7,47 +7,71 @@ import java.util.List;
  * Created by Taweesin on 18/5/2559.
  */
 public class mTumbon {
-    List<mRespBody> RespBody;
-    mRespStatus RespStatus;
+    List<mRespBody> respBody;
+    mRespStatus respStatus;
 
-    public mRespStatus getRespStatus() {
-        return RespStatus;
+    public mTumbon(List<mRespBody> respBody, mRespStatus respStatus) {
+        this.respBody = respBody;
+        this.respStatus = respStatus;
     }
 
     public class mRespStatus{
-        int StatusID;
-        String StatusMsg;
+        int statusID;
+        String statusMsg;
 
         public int getStatusID() {
-            return StatusID;
+            return statusID;
+        }
+
+        public void setStatusID(int statusID) {
+            this.statusID = statusID;
         }
 
         public String getStatusMsg() {
-            return StatusMsg;
+            return statusMsg;
+        }
+
+        public void setStatusMsg(String statusMsg) {
+            this.statusMsg = statusMsg;
         }
     }
-    public List<mRespBody> getRespBody() {
-        return RespBody;
-    }
 
-    public static class mRespBody implements Serializable {
-        String TambonName;
-        int TambonID;
+
+    public  class mRespBody implements Serializable {
+        String tambonName;
+        int tambonID,amphoeImg;
 
         public String getTambonName() {
-            return TambonName;
-        }
-
-        public int getTambonID() {
-            return TambonID;
+            return tambonName;
         }
 
         public void setTambonName(String tambonName) {
-            TambonName = tambonName;
+            this.tambonName = tambonName;
+        }
+
+        public int getTambonID() {
+            return tambonID;
         }
 
         public void setTambonID(int tambonID) {
-            TambonID = tambonID;
+            this.tambonID = tambonID;
+        }
+
+        public int getAmphoeImg() {
+            return amphoeImg;
+        }
+
+        public void setAmphoeImg(int amphoeImg) {
+            this.amphoeImg = amphoeImg;
+        }
+
+        @Override
+        public String toString() {
+            return "mRespBody{" +
+                    "tambonName='" + tambonName + '\'' +
+                    ", tambonID=" + tambonID +
+                    ", amphoeImg=" + amphoeImg +
+                    '}';
         }
     }
 

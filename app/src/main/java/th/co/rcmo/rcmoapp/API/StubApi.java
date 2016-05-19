@@ -3,6 +3,7 @@ package th.co.rcmo.rcmoapp.API;
 import java.util.ArrayList;
 import java.util.List;
 
+import th.co.rcmo.rcmoapp.Module.mAmphoe;
 import th.co.rcmo.rcmoapp.Module.mProvince;
 import th.co.rcmo.rcmoapp.R;
 
@@ -51,5 +52,55 @@ public class StubApi {
 
 
         return provicnceList;
+    }
+
+
+
+
+    public static  List<mAmphoe.mRespBody> getAmphoeList(List<mAmphoe.mRespBody> amphoeList){
+        amphoeList = new ArrayList<>();
+        mAmphoe amphoe = new  mAmphoe();
+
+        mAmphoe.mRespBody amphoeInfo = amphoe.new mRespBody(R.drawable.star_unselected_icon,1,"ปัว");
+        amphoeList.add(amphoeInfo);
+
+        amphoeInfo = amphoe.new mRespBody(R.drawable.star_unselected_icon,2,"ท่าวังผา");
+        amphoeList.add(amphoeInfo);
+
+        amphoeInfo = amphoe.new mRespBody(R.drawable.star_unselected_icon,3,"เชียงกลาง");
+        amphoeList.add(amphoeInfo);
+
+        amphoeInfo = amphoe.new mRespBody(R.drawable.star_unselected_icon,4,"สองแคว");
+        amphoeList.add(amphoeInfo);
+
+        amphoeInfo = amphoe.new mRespBody(R.drawable.star_unselected_icon,5,"นาน้อย");
+        amphoeList.add(amphoeInfo);
+
+        amphoeInfo = amphoe.new mRespBody(R.drawable.star_unselected_icon,6,"นาหมื่น");
+        amphoeList.add(amphoeInfo);
+
+        amphoeInfo = amphoe.new mRespBody(R.drawable.star_unselected_icon,7,"ทุ่งช้าง");
+        amphoeList.add(amphoeInfo);
+
+        amphoeInfo = amphoe.new mRespBody(R.drawable.star_unselected_icon,8,"เมือง");
+        amphoeList.add(amphoeInfo);
+
+        return amphoeList;
+    }
+
+    public static  List<mAmphoe.mRespBody> getFavoriteAmphoeList(List<mAmphoe.mRespBody> amphoeList){
+        amphoeList = new ArrayList<>();
+        mAmphoe amphoe = new  mAmphoe();
+
+        mAmphoe.mRespBody amphoeInfo = amphoe.new mRespBody(R.drawable.star_selected_icon,1,"ปัว");
+        amphoeList.add(amphoeInfo);
+
+        amphoeInfo = amphoe.new mRespBody(R.drawable.star_selected_icon,2,"ท่าวังผา");
+        amphoeList.add(amphoeInfo);
+
+        amphoeInfo = amphoe.new mRespBody(R.drawable.star_selected_icon,3,"เชียงกลาง");
+        amphoeList.add(amphoeInfo);
+
+        return amphoeList;
     }
 }

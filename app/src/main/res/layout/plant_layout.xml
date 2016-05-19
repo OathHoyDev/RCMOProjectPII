@@ -160,7 +160,7 @@
                     android:hint="@string/select_amphoe_label"
                     android:textColorHint="@color/colorRcmoGreenFont"
                     style="@style/RCMOButton"
-                    />
+                    android:onClick="actionToAmphoeListActivity" />
             </LinearLayout>
 
             <LinearLayout
@@ -192,7 +192,7 @@
                     android:id="@+id/plant_tumbon_spriner"
                     android:maxWidth="300dp"
                     android:textAlignment="textStart"
-                    android:hint="@string/select_amphoe_label"
+                    android:hint="@string/select_tumbon_label"
                     android:textColorHint="@color/colorRcmoGreenFont"
                     style="@style/RCMOButton"
                     />

@@ -82,6 +82,12 @@ public class CalculatePlantCostActivity extends Activity {
         Intent intent = new Intent(CalculatePlantCostActivity.this, ProvinceListActivity.class);
         startActivity(intent);
     }
+
+    public void actionToAmphoeListActivity(View view)
+    {
+        Intent intent = new Intent(CalculatePlantCostActivity.this, AmphoeListActivity.class);
+        startActivity(intent);
+    }
   /*
     private void setNewTab(Context context, TabHost tabHost, String tag, int title, int icon, int contentID ){
         String a = "1231";

@@ -7,47 +7,72 @@ import java.util.List;
  * Created by Taweesin on 18/5/2559.
  */
 public class mAmphoe {
-    List<mRespBody> RespBody;
-    mRespStatus RespStatus;
+    List<mRespBody> respBody;
+    mRespStatus respStatus;
+
+    public List<mRespBody> getRespBody() {
+        return respBody;
+    }
 
     public mRespStatus getRespStatus() {
-        return RespStatus;
+        return respStatus;
     }
 
     public class mRespStatus{
-        int StatusID;
-        String StatusMsg;
+        int statusID;
+        String statusMsg;
 
         public int getStatusID() {
-            return StatusID;
+            return statusID;
         }
 
         public String getStatusMsg() {
-            return StatusMsg;
+            return statusMsg;
         }
-    }
-    public List<mRespBody> getRespBody() {
-        return RespBody;
+
     }
 
-    public static class mRespBody implements Serializable {
-        String AmphoeName;
-        int AmphoeID;
+    public class mRespBody implements Serializable {
+        String amphoeName;
+        int amphoeID , amphoeImg;
+
+        public mRespBody(int amphoeImg,int amphoeID,String amphoeName ) {
+            this.amphoeName = amphoeName;
+            this.amphoeID = amphoeID;
+            this.amphoeImg = amphoeImg;
+        }
 
         public String getAmphoeName() {
-            return AmphoeName;
-        }
-
-        public int getAmphoeID() {
-            return AmphoeID;
+            return amphoeName;
         }
 
         public void setAmphoeName(String amphoeName) {
-            AmphoeName = amphoeName;
+            this.amphoeName = amphoeName;
+        }
+
+        public int getAmphoeID() {
+            return amphoeID;
         }
 
         public void setAmphoeID(int amphoeID) {
-            AmphoeID = amphoeID;
+            this.amphoeID = amphoeID;
+        }
+
+        public int getAmphoeImg() {
+            return amphoeImg;
+        }
+
+        public void setAmphoeImg(int amphoeImg) {
+            this.amphoeImg = amphoeImg;
+        }
+
+        @Override
+        public String toString() {
+            return "mRespBody{" +
+                    "amphoeName='" + amphoeName + '\'' +
+                    ", amphoeID=" + amphoeID +
+                    ", amphoeImg=" + amphoeImg +
+                    '}';
         }
     }
 
