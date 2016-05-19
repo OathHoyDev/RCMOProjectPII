@@ -35,8 +35,12 @@ public class mSubProductList {
     }
 
     public class mRespBody {
-        int    productSubId;
-        String productSubName, productSubIconImg;
+        int    productSubId,productSubIconImg;
+        String productSubName;
+
+        public mRespBody(String productSubName) {
+            this.productSubName = productSubName;
+        }
 
         public int getProductSubId() {
             return productSubId;
@@ -54,11 +58,11 @@ public class mSubProductList {
             this.productSubName = productSubName;
         }
 
-        public String getProductSubIconImg() {
+        public int getProductSubIconImg() {
             return productSubIconImg;
         }
 
-        public void setProductSubIconImg(String productSubIconImg) {
+        public void setProductSubIconImg(int productSubIconImg) {
             this.productSubIconImg = productSubIconImg;
         }
 

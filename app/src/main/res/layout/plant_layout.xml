@@ -32,7 +32,7 @@
             android:maxWidth="300dp"
             android:textAlignment="textStart"
             style="@style/RCMOButton"
-            android:onClick="actionToMainProductListActivity" />
+            android:onClick="actionToPlantMainProductListActivity" />
 
         <Button
             android:drawableLeft="@drawable/plant_icon"
@@ -44,7 +44,8 @@
             android:maxWidth="300dp"
             android:textAlignment="textStart"
             style="@style/RCMOButton"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="10dp"
+            android:onClick="actionToPlantSubProductListActivity" />
 
         <TextView
             android:layout_width="match_parent"
@@ -98,7 +99,7 @@
             android:id="@+id/plant_province_label"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp" />
-
+<!--
         <Spinner
             android:layout_width="match_parent"
             android:layout_height="38dp"
@@ -106,7 +107,20 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
             android:textDirection="firstStrong"
-            android:background="@drawable/grey_text_view"/>
+            android:background="@drawable/grey_text_view"
+            android:nestedScrollingEnabled="false" />
+           -->
+    <Button
+        android:drawableRight="@drawable/navigate_down_icon"
+        android:drawablePadding="10dp"
+        android:layout_width="match_parent"
+        android:id="@+id/plant_province_spinner"
+        android:maxWidth="300dp"
+        android:textAlignment="textStart"
+        android:hint="@string/select_province_label"
+        android:textColorHint="@color/colorRcmoGreenFont"
+        style="@style/RCMOButton"
+        android:onClick="actionToProvinceListActivity" />
 
         <LinearLayout
             android:orientation="horizontal"
@@ -128,13 +142,25 @@
                     android:text="@string/amphor"
                     android:id="@+id/plant_aumphor_label"
                     android:layout_marginTop="10dp" />
-
+<!--
                 <Spinner
                     android:layout_width="match_parent"
                     android:layout_height="38dp"
                     android:id="@+id/plant_aumpor_spinner"
                     android:layout_marginTop="5dp"
                     android:background="@drawable/grey_text_view" />
+                    -->
+                <Button
+                    android:drawableRight="@drawable/navigate_down_icon"
+                    android:drawablePadding="10dp"
+                    android:layout_width="match_parent"
+                    android:id="@+id/plant_aumpor_spinner"
+                    android:maxWidth="300dp"
+                    android:textAlignment="textStart"
+                    android:hint="@string/select_amphoe_label"
+                    android:textColorHint="@color/colorRcmoGreenFont"
+                    style="@style/RCMOButton"
+                    />
             </LinearLayout>
 
             <LinearLayout
@@ -151,13 +177,25 @@
                     android:text="@string/tumbon"
                     android:id="@+id/plant_tumbon_label"
                     android:layout_marginTop="10sp" />
-
+<!--
                 <Spinner
                     android:layout_width="match_parent"
                     android:layout_height="38sp"
                     android:id="@+id/plant_tumbon_spriner"
                     android:layout_marginTop="5dp"
                     android:background="@drawable/grey_text_view" />
+                    -->
+                <Button
+                    android:drawableRight="@drawable/navigate_down_icon"
+                    android:drawablePadding="10dp"
+                    android:layout_width="match_parent"
+                    android:id="@+id/plant_tumbon_spriner"
+                    android:maxWidth="300dp"
+                    android:textAlignment="textStart"
+                    android:hint="@string/select_amphoe_label"
+                    android:textColorHint="@color/colorRcmoGreenFont"
+                    style="@style/RCMOButton"
+                    />
             </LinearLayout>
 
         </LinearLayout>

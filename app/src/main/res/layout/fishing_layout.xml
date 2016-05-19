@@ -31,7 +31,8 @@
         android:id="@+id/fishing_button"
         android:maxWidth="300dp"
         android:textAlignment="textStart"
-        style="@style/RCMOButton"/>
+        style="@style/RCMOButton"
+        android:onClick="actionToFishProductListActivity" />
 
     <TextView
         android:layout_width="match_parent"

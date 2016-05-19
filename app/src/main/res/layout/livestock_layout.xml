@@ -31,7 +31,8 @@
             android:id="@+id/livestock_rice_button"
             android:maxWidth="300dp"
             android:textAlignment="textStart"
-            style="@style/RCMOButton"/>
+            style="@style/RCMOButton"
+            android:onClick="actionToLivestockProductListActivity" />
 
     <TextView
             android:layout_width="match_parent"
