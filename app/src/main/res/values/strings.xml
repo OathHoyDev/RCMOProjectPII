@@ -57,5 +57,46 @@
     <string name="search_amphoe_hint">ค้นหาอำเภอ</string>
     <string name="search_tumbon_hint">ค้นหาตำบล</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_product_detail">ProductDetailActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+
+
+    <!-- standard Layout -->
+
+    <string name="interest_rate">อัตราดอกเบี้ยร้อยละ/ปี</string>
+    <string name="depreciation_equipment">ค่าเสื่อมอุปกรณ์</string>
+    <string name="opportunity_cost">ค่าเสียโอกาสอุปกรณ์</string>
+    <string name="standard_cost">ต้นทุนมาตรฐานของ สศก.</string>
+
+    <string name="plant_area">พื้นที่เพาะปลูก</string>
+
+    <string name="baht">บาท</string>
+    <string name="baht_sq_mts">บาท/ไร่</string>
+
+    <string name="calculate_again">คำนวนใหม่</string>
+    <string name="default_value">ค่าเริ่มต้น</string>
+
+    <!-- cost Layout  -->
+    <string name="land_label">ที่ดิน</string>
+    <string name="cost">ค่าใช้จ่าย</string>
+    <string name="land_cost">ค่าเตรียมที่ดิน</string>
+    <string name="plant_cost">ค่าปลูก+เตรียมพันธุ์</string>
+    <string name="maintenance_cost">ค่าดูแลรักษา</string>
+    <string name="harvest_cost">ค่าเก็บเกี่ยว</string>
+    <string name="labor_cost">ค่าแรงงาน</string>
+
+    <!-- other cost Layout -->
+    <string name="other_cost">ค่าใช้จ่ายอื่นๆ</string>
+    <string name="seed_cost">ค่าพันธุ์</string>
+    <string name="fertilizer_cost">ค่าปุ๋ย</string>
+    <string name="weedkiller_cost">ค่ายาปราบศัตรูพืชและวัชพืช</string>
+    <string name="other_material_cost">ค่าวัสดุอื่นๆ น้ำมันเชื้อเพลิง และค่าซ่อมแซมอุปกรณ์</string>
+
+    <!-- other cost Layout -->
+    <string name="opportunity_investment_cost">เสียโอกาสเงินลงทุน</string>
+
 
 </resources>
