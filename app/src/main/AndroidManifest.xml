@@ -27,6 +27,11 @@
         <activity android:name=".AmphoeListActivity" />
         <activity android:name=".ProvinceListActivity" />
         <activity android:name=".TumbonListActivity"></activity>
+        <activity android:name=".MainProductListActivity" />
+        <activity
+            android:name=".ProductDetailActivity"
+            android:label="@string/title_activity_product_detail"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>
