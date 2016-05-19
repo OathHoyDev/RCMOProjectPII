@@ -1,0 +1,482 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="th.co.rcmo.rcmoapp.ProductDetailCalculateCostFragment">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="bottom|center_horizontal">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:foregroundGravity="center_horizontal"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp">
+
+            <ImageButton
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/imageButton2"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="15dp"
+                android:layout_weight="1" />
+
+            <ImageButton
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/imageButton3"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="15dp"
+                android:layout_weight="1" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:background="@android:color/white">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:id="@+id/cost_layout"
+                android:paddingBottom="10dp">
+
+                <TextView
+                    style="@style/RCMODetailFont.Gray"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/cost"
+                    android:id="@+id/textView16"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentStart="true"
+                    android:background="@color/material_grey_300"
+                    android:paddingLeft="10dp"
+                    android:gravity="bottom" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp" >
+
+                    <TextView
+                        style="@style/RCMODetailFont.Gray"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/land_cost"
+                        android:id="@+id/textView27"
+                        android:gravity="left|center_vertical"
+                        android:layout_weight="1"
+                        android:paddingLeft="15dp" />
+
+                    <EditText
+                        style="1"
+                        android:layout_width="120dp"
+                        android:layout_height="match_parent"
+                        android:id="@+id/editText10"
+                        android:background="@drawable/black_border_text_view"
+                        android:textAppearance="@style/RCMODetailFont.Green" />
+
+                    <TextView
+                        style="@style/RCMODetailFont.Gray"
+                        android:layout_width="70dp"
+                        android:layout_height="match_parent"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/baht"
+                        android:id="@+id/textView28"
+                        android:gravity="center_vertical|right" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp" >
+
+                    <TextView
+                        style="@style/RCMODetailFont.Gray"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/plant_cost"
+                        android:id="@+id/textView25_1"
+                        android:gravity="left|center_vertical"
+                        android:layout_weight="1"
+                        android:paddingLeft="15dp" />
+
+                    <EditText
+                        style="1"
+                        android:layout_width="120dp"
+                        android:layout_height="match_parent"
+                        android:id="@+id/editText9_1"
+                        android:background="@drawable/edit_border_text_view"
+                        android:textAppearance="@style/RCMODetailFont.Green" />
+
+                    <TextView
+                        style="@style/RCMODetailFont.Gray"
+                        android:layout_width="70dp"
+                        android:layout_height="match_parent"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/baht"
+                        android:id="@+id/textView26_1"
+                        android:gravity="center_vertical|right" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp" >
+
+                    <TextView
+                        style="@style/RCMODetailFont.Gray"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/maintenance_cost"
+                        android:id="@+id/textView18"
+                        android:gravity="left|center_vertical"
+                        android:layout_weight="1"
+                        android:paddingLeft="15dp" />
+
+                    <EditText
+                        style="1"
+                        android:layout_width="120dp"
+                        android:layout_height="match_parent"
+                        android:id="@+id/editText6_1"
+                        android:background="@drawable/edit_border_text_view"
+                        android:textAppearance="@style/RCMODetailFont.Green" />
+
+                    <TextView
+                        style="@style/RCMODetailFont.Gray"
+                        android:layout_width="70dp"
+                        android:layout_height="match_parent"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/baht"
+                        android:id="@+id/textView19_1"
+                        android:gravity="center_vertical|right" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp" >
+
+                    <TextView
+                        style="@style/RCMODetailFont.Gray"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/harvest_cost"
+                        android:id="@+id/textView23_1"
+                        android:gravity="left|center_vertical"
+                        android:layout_weight="1"
+                        android:paddingLeft="15dp" />
+
+                    <EditText
+                        style="1"
+                        android:layout_width="120dp"
+                        android:layout_height="match_parent"
+                        android:id="@+id/editText8"
+                        android:background="@drawable/edit_border_text_view"
+                        android:textAppearance="@style/RCMODetailFont.Green" />
+
+                    <TextView
+                        style="@style/RCMODetailFont.Gray"
+                        android:layout_width="70dp"
+                        android:layout_height="match_parent"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/baht"
+                        android:id="@+id/textView241"
+                        android:gravity="center_vertical|right" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp" >
+
+                    <TextView
+                        style="@style/RCMODetailFont.Gray"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/labor_cost"
+                        android:id="@+id/textView211"
+                        android:gravity="left|center_vertical"
+                        android:layout_weight="1"
+                        android:paddingLeft="15dp" />
+
+                    <EditText
+                        style="1"
+                        android:layout_width="120dp"
+                        android:layout_height="match_parent"
+                        android:id="@+id/editText71"
+                        android:background="@drawable/edit_border_text_view"
+                        android:textAppearance="@style/RCMODetailFont.Green" />
+
+                    <TextView
+                        style="@style/RCMODetailFont.Gray"
+                        android:layout_width="70dp"
+                        android:layout_height="match_parent"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/baht"
+                        android:id="@+id/textView221"
+                        android:gravity="center_vertical|right" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:id="@+id/othercost_layout"
+                android:paddingBottom="10dp">
+
+                <TextView
+                    style="@style/RCMODetailFont.Gray"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/other_cost"
+                    android:id="@+id/textView16_2"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentStart="true"
+                    android:background="@color/material_grey_300"
+                    android:paddingLeft="10dp"
+                    android:gravity="bottom" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp" >
+
+                    <TextView
+                        style="@style/RCMODetailFont.Gray"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/land_cost"
+                        android:id="@+id/textView27_2"
+                        android:gravity="left|center_vertical"
+                        android:layout_weight="1"
+                        android:paddingLeft="15dp" />
+
+                    <EditText
+                        style="1"
+                        android:layout_width="120dp"
+                        android:layout_height="match_parent"
+                        android:id="@+id/editText10_2"
+                        android:background="@drawable/edit_border_text_view"
+                        android:textAppearance="@style/RCMODetailFont.Green" />
+
+                    <TextView
+                        style="@style/RCMODetailFont.Gray"
+                        android:layout_width="70dp"
+                        android:layout_height="match_parent"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/baht"
+                        android:id="@+id/textView28_2"
+                        android:gravity="center_vertical|right" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp" >
+
+                    <TextView
+                        style="@style/RCMODetailFont.Gray"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/plant_cost"
+                        android:id="@+id/textView25"
+                        android:gravity="left|center_vertical"
+                        android:layout_weight="1"
+                        android:paddingLeft="15dp" />
+
+                    <EditText
+                        style="1"
+                        android:layout_width="120dp"
+                        android:layout_height="match_parent"
+                        android:id="@+id/editText9"
+                        android:background="@drawable/edit_border_text_view"
+                        android:textAppearance="@style/RCMODetailFont.Green" />
+
+                    <TextView
+                        style="@style/RCMODetailFont.Gray"
+                        android:layout_width="70dp"
+                        android:layout_height="match_parent"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/baht"
+                        android:id="@+id/textView26"
+                        android:gravity="center_vertical|right" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp" >
+
+                    <TextView
+                        style="@style/RCMODetailFont.Gray"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/maintenance_cost"
+                        android:id="@+id/textView181"
+                        android:gravity="left|center_vertical"
+                        android:layout_weight="1"
+                        android:paddingLeft="15dp" />
+
+                    <EditText
+                        style="1"
+                        android:layout_width="120dp"
+                        android:layout_height="match_parent"
+                        android:id="@+id/editText6"
+                        android:background="@drawable/edit_border_text_view"
+                        android:textAppearance="@style/RCMODetailFont.Green" />
+
+                    <TextView
+                        style="@style/RCMODetailFont.Gray"
+                        android:layout_width="70dp"
+                        android:layout_height="match_parent"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/baht"
+                        android:id="@+id/textView19"
+                        android:gravity="center_vertical|right" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp" >
+
+                    <TextView
+                        style="@style/RCMODetailFont.Gray"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/harvest_cost"
+                        android:id="@+id/textView23"
+                        android:gravity="left|center_vertical"
+                        android:layout_weight="1"
+                        android:paddingLeft="15dp" />
+
+                    <EditText
+                        style="1"
+                        android:layout_width="120dp"
+                        android:layout_height="match_parent"
+                        android:id="@+id/editText81"
+                        android:background="@drawable/edit_border_text_view"
+                        android:textAppearance="@style/RCMODetailFont.Green" />
+
+                    <TextView
+                        style="@style/RCMODetailFont.Gray"
+                        android:layout_width="70dp"
+                        android:layout_height="match_parent"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/baht"
+                        android:id="@+id/textView24"
+                        android:gravity="center_vertical|right" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp" >
+
+                    <TextView
+                        style="@style/RCMODetailFont.Gray"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/labor_cost"
+                        android:id="@+id/textView21"
+                        android:gravity="left|center_vertical"
+                        android:layout_weight="1"
+                        android:paddingLeft="15dp" />
+
+                    <EditText
+                        style="1"
+                        android:layout_width="120dp"
+                        android:layout_height="match_parent"
+                        android:id="@+id/editText7"
+                        android:background="@drawable/edit_border_text_view"
+                        android:textAppearance="@style/RCMODetailFont.Green" />
+
+                    <TextView
+                        style="@style/RCMODetailFont.Gray"
+                        android:layout_width="70dp"
+                        android:layout_height="match_parent"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/baht"
+                        android:id="@+id/textView22"
+                        android:gravity="center_vertical|right" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</FrameLayout>
