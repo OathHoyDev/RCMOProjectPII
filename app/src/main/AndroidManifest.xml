@@ -8,7 +8,9 @@
         android:label="RCMO"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SplashActivity">
+        <activity
+            android:name=".SplashActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,12 +28,17 @@
         <activity android:name=".PlantSubProductListActivity" />
         <activity android:name=".AmphoeListActivity" />
         <activity android:name=".ProvinceListActivity" />
-        <activity android:name=".TumbonListActivity"></activity>
-        <activity android:name=".MainProductListActivity" />
+        <activity android:name=".TumbonListActivity" />
+        <!-- <activity android:name=".MainProductListActivity" /> -->
+        <!--
+         android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
+         android:theme="@android:style/Theme.DeviceDefault.Light.NoActionBar"
+        -->
         <activity
             android:name=".ProductDetailActivity"
             android:label="@string/title_activity_product_detail"
             android:theme="@style/AppTheme" />
+        <activity android:name=".ChangePasswordActivity"></activity>
     </application>
 
 </manifest>

@@ -12,11 +12,14 @@ public class SplashActivity extends Activity {
     Handler handler;
     Runnable runnable;
     Long delay_time;
-    Long time = 3000L;
+    Long time = 5000L;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
+     //   getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
+      //  getActionBar().hide();
+
         setContentView(R.layout.activity_splash);
         handler = new Handler();
 

@@ -1,120 +1,205 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:pixlui="http://schemas.android.com/apk/com.neopixl.pixlui"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorRcmoBG"
+    android:background="@drawable/bg_total"
     tools:context="th.co.rcmo.rcmoapp.LoginActivity">
 
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/bg_imageView"
-        android:layout_gravity="top"
-        android:background="@color/colorRcmoBG" />
-
     <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_vertical">
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="45dp"
+            android:paddingTop="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:gravity="left|center"
+
+                >
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:id="@+id/goToOtherAppButton"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/btn_goto_other_app"/>
+
+            </LinearLayout>
+
+            <com.neopixl.pixlui.components.textview.TextView
+                pixlui:typeface="Quark-Bold.otf"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1."
+                android:layout_gravity="bottom"
+                android:gravity="center"
+                android:text="เปลี่ยนรหัสผ่าน"
+                android:layout_centerInParent="true"
+                android:id="@+id/titleLable"
+                android:textColor="@color/colorRcmoWhiteFont"
+                android:textSize="25sp" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:gravity="right|center">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:id="@+id/account2"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/btn_howto"
+                    />
+            </LinearLayout>
+
+
+
+        </LinearLayout>   <!-- Action Bar Layout -->
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:layout_gravity="top">
+            android:layout_height="600dp"
+            android:layout_weight="1.7"
+            android:gravity="center|bottom">
 
             <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:id="@+id/logo_imageView"
-                android:src="@drawable/logo"
-                android:layout_gravity="center_horizontal"
-                android:layout_weight="3" />
-
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/calculate_cost_button"
-                android:layout_gravity="bottom|right"
-                android:layout_marginTop="-50dp"
-                android:onClick="actionToCalculateCostActivity"
-                android:background="@drawable/calculate_cost_icon" />
-        </LinearLayout>
+                android:id="@+id/logoLogin"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:src="@drawable/logo_openeyes"
+                android:adjustViewBounds="true"/>
+        </LinearLayout>   <!-- Main Login ImageLayout -->
 
         <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:weightSum="1"
-            android:layout_weight="1">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="@style/RCMOHeaderFont"
-                android:text="@string/login"
-                android:id="@+id/login_textView"
-                android:layout_marginLeft="50dp"
-                android:layout_gravity="center_vertical" />
-
-            <EditText
-                android:drawableLeft="@drawable/user_icon"
-                android:id="@+id/username_text"
+            <LinearLayout
                 android:layout_width="300dp"
-                style="@style/RCMOInputText"
+                android:layout_height="250dp"
+                android:layout_margin="10dp"
+                android:orientation="vertical"
+                android:gravity="top"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:background="@drawable/frame_cut_conner_tran"
+                android:layout_gravity="center_horizontal">
 
-                android:hint="@string/user_hint" />
+                <ImageView
+                android:layout_width="240dp"
+                android:layout_height="36dp"
+                android:id="@+id/imageView8"
+                android:src="@drawable/btn_cal"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:adjustViewBounds="true"
+                android:layout_gravity="center_horizontal" /> <!--Calculate button-->
 
-            <EditText
-                android:drawableLeft="@drawable/key_icon"
-                android:inputType="textPassword"
-                android:id="@+id/password_text"
-                android:layout_width="300dp"
-                style="@style/RCMOInputText"
-                android:hint="@string/pass_hint" />
-
-            <Button
-                android:text="@string/login_button"
-                android:id="@+id/button"
-                android:maxWidth="300dp"
-                android:minWidth="300dp"
-                android:layout_marginTop="10dp"
-                style="@style/RCMOButton.orange"
-                android:layout_gravity="center_horizontal" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="@style/RCMODetailFont"
-                android:text="@string/forget_password"
-                android:id="@+id/forgetPass_textView"
-                android:layout_gravity="right"
-                android:layout_marginRight="50dp"
-                android:layout_marginTop="10dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="@style/RCMOHeaderFont"
-                android:id="@+id/register_textView"
+                <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="240dp"
+                android:layout_height="35dp"
                 android:layout_gravity="center_horizontal"
-                android:text="@string/register"
-                android:layout_marginTop="20dp"
-                android:onClick="actionToRegisterActivity" />
+                android:background="@drawable/input_username"
+                >
+                <com.neopixl.pixlui.components.edittext.EditText
+                    pixlui:typeface="Quark-Light.otf"
+                    android:layout_width="fill_parent"
+                    android:layout_height="30dp"
+                    android:padding="5dp"
+                    android:layout_margin="5dp"
+                    android:hint="บัญชีผู้ใช้"
+                    android:gravity="center_horizontal"
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:textColor="@color/colorRcmoGrayFont"
+                    android:background="@color/colorRcmoWhiteBG"
+                    android:id="@+id/text_search"
+                    android:textSize="17sp" />
 
-            <ImageButton
-                android:layout_width="96dp"
-                android:layout_height="67dp"
-                android:id="@+id/imageButton"
+
+
+            </LinearLayout> <!--Input Login Username-->
+
+                <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="240dp"
+                android:layout_height="35dp"
                 android:layout_gravity="center_horizontal"
-                android:background="@drawable/more_link_icon" />
+                android:background="@drawable/input_password"
+                android:layout_marginTop="2dp">
 
-        </LinearLayout>
+                <com.neopixl.pixlui.components.edittext.EditText
+                    pixlui:typeface="Quark-Light.otf"
+                    android:layout_width="fill_parent"
+                    android:layout_height="30dp"
+                    android:padding="5dp"
+                    android:layout_margin="5dp"
+                    android:hint="รหัสผ่าน"
+                    android:gravity="center_horizontal"
+                    android:imeOptions="actionDone"
+                    android:inputType="textPassword"
+                    android:textColor="@color/colorRcmoGrayFont"
+                    android:background="@color/colorRcmoWhiteBG"
+                    android:id="@+id/text_search2"
+                    android:textSize="17sp" />
+            </LinearLayout> <!--Input Login Password-->
 
+                <ImageView
+                android:layout_width="240dp"
+                android:layout_height="40dp"
+                android:id="@+id/imageView7"
+                android:src="@drawable/btn_login"
+                android:layout_marginTop="0dp"
+                android:layout_gravity="center_horizontal" />  <!-- Login Button -->
+
+                <LinearLayout
+                    android:layout_marginTop="15dp"
+                    android:orientation="horizontal"
+                    android:layout_width="240dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center_horizontal">
+
+                    <ImageView
+                        android:layout_width="80dp"
+                        android:layout_height="40dp"
+                        android:adjustViewBounds="true"
+                        android:id="@+id/imageView5"
+                        android:src="@drawable/text_register"
+                        android:layout_marginRight="10dp"
+                        android:layout_gravity="center_horizontal" />
+
+                    <ImageView
+                        android:layout_width="75dp"
+                        android:layout_height="40dp"
+                        android:adjustViewBounds="true"
+                        android:id="@+id/imageView19"
+                        android:src="@drawable/text_forgot"
+                        android:layout_marginLeft="10dp"
+                        android:layout_gravity="center_horizontal"
+                        android:onClick="actionToChangePasswordActivity" />
+
+                </LinearLayout>
+
+            </LinearLayout>  <!--  tran box Layout -->
+
+        </LinearLayout>   <!-- Input Login ImageLayout -->
     </LinearLayout>
-
 </RelativeLayout>

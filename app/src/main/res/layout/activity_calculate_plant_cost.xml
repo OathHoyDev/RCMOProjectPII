@@ -75,7 +75,8 @@
                 android:layout_width="150dp"
 
                 style="@style/RCMOButton.orange"
-                android:layout_marginLeft="10dp" />
+                android:layout_marginLeft="10dp"
+                android:onClick="actionToProductDetailActivity" />
         </LinearLayout>
 
 

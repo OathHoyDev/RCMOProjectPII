@@ -1,16 +1,22 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
+    <style name="AppTheme" parent="Theme.Design.Light.NoActionBar">
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="colorPrimaryDark">@color/colorRcmoWhiteBG</item>
+        <!-- Base application theme.
+        <item name="android:windowLightStatusBar">true</item> require 23
         <item name="colorPrimary">@color/colorRcmoBG</item>
         <item name="colorPrimaryDark">@color/colorRcmoBG</item>
         <item name="colorAccent">@color/colorRcmoBG</item>
+        -->
+
     </style>
     <!-- Customize your theme here. -->
 
 
     <style name="RCMOAppTheme" parent="android:Theme.Holo.NoActionBar">
+        <!-- -->
         <item name="colorPrimary">@color/colorRcmoBG</item>
         <item name="colorPrimaryDark">@color/colorRcmoBG</item>
         <item name="colorAccent">@color/colorRcmoBG</item>
