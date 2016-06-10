@@ -8,6 +8,7 @@ import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -134,7 +135,7 @@ public class LoginActivity extends Activity {
 
             @Override
             public void callbackError(int code, String errorMsg) {
-
+                Log.d("Erroo",errorMsg);
             }
         }).API_Request(true, RequestServices.ws_chkLogin +
                 "?UserLogin=" + username + "&UserPwd=" + password +
