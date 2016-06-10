@@ -1,25 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!--deprecate List-->
-    <color name="colorRcmoBG">#2ABB9C</color>
-    <color name="colorRcmoTabBG">#2EC9A7</color>
-    <color name="colorRcmoUnderLineTabBG">#2E9780</color>
-    <color name="colorRcmoLightGrayBG">#F5F5F5</color>
-    <color name="colorRcmoGrayBG">#EBEBEB</color>
-    <color name="colorRcmoDarkGrayBG">#999999</color>
-    <color name="black_overlay">#66000000</color>
-    <color name="colorRcmoTabFont">#2E9780</color>
-    <color name="colorRcmoGreenFont">#2ABB9C</color>
-    <color name="colorRcmoGrayFont">#999999</color>
-    <color name="colorRcmoHintGrayFont">#EBEBEB</color>
-    <color name="colorRcmoWhiteFont">#ffffff</color>
-    <color name="colorRcmoGrayButtonBG">#EBEBEB</color>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#2ABB9C</color>
-    <color name="colorAccent">#FF4081</color>
-
-
 <!-- text  -->
     <color name="RcmoNormalDarkText">#414042</color>
     <color name="RcmoSubDetailText">#939598</color>

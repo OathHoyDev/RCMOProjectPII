@@ -18,7 +18,7 @@
         android:gravity="center|top"
         android:padding="12dp"
         android:id="@+id/titleLable"
-        android:textColor="@color/colorRcmoWhiteFont"
+        android:textColor="@color/RcmoNormalLightText"
         android:textSize="@dimen/textsize_xxxlarge" />
 
 
@@ -31,7 +31,7 @@
         android:id="@+id/backBtn"
         android:layout_marginTop="15dp"
         android:layout_marginLeft="10dp"
-        android:textColor="@color/colorRcmoWhiteFont"
+        android:textColor="@color/RcmoNormalLightText"
         android:textSize="@dimen/textsize_xxlarge" />
 
 

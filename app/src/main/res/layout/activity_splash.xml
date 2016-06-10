@@ -34,7 +34,7 @@
             android:gravity="center"
             android:text="สำนักงานเศรฐกิจการเกษตร"
             android:id="@+id/back"
-            android:textColor="@color/colorRcmoWhiteFont"
+            android:textColor="@color/RcmoNormalLightText"
             android:textSize="25sp"
             android:layout_weight="1" />
     </LinearLayout>

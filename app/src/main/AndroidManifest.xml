@@ -36,30 +36,18 @@
             android:name=".RegisterActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".CalculatePlantCostActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".LoginActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".PlantMainProductListActivity" />
-        <activity android:name=".FishProductListActivity" />
-        <activity android:name=".LivestockProductListActivity" />
-        <activity android:name=".PlantSubProductListActivity" />
-        <activity android:name=".AmphoeListActivity" />
-        <activity android:name=".ProvinceListActivity" />
-        <activity android:name=".TumbonListActivity" />
-        <!-- <activity android:name=".MainProductListActivity" /> -->
-        <!--
-         android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
-         android:theme="@android:style/Theme.DeviceDefault.Light.NoActionBar"
-        -->
-        <activity
-            android:name=".ProductDetailActivity"
-            android:label="@string/title_activity_product_detail"
-            android:theme="@style/AppTheme" />
+
         <activity android:name=".ChangePasswordActivity" />
         <activity android:name=".EditUserActivity" />
         <activity android:name=".WebActivity"></activity>
     </application>
+
+    <!-- <activity android:name=".MainProductListActivity" /> -->
+    <!--
+     android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
+     android:theme="@android:style/Theme.DeviceDefault.Light.NoActionBar"
+    -->
 
 </manifest>
