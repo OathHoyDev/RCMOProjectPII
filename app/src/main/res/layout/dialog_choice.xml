@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:pixlui="http://schemas.android.com/apk/com.neopixl.pixlui"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/orange_cut_conner">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        android:orientation="vertical">
+    <com.neopixl.pixlui.components.textview.TextView
+        pixlui:typeface="Quark-Bold.otf"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/RcmoNormalLightText"
+        android:layout_marginLeft="5dp"
+        android:textSize="23sp"
+        android:id="@+id/title"
+        android:padding="5dp"
+        android:text="title"/>
+    <com.neopixl.pixlui.components.textview.TextView
+
+        pixlui:typeface="Quark-Light.otf"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:id="@+id/message"
+        android:textColor="@color/RcmoNormalLightText"
+        android:layout_marginLeft="5dp"
+        android:textSize="20sp"
+        android:text="description"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/RcmoWhiteBG"></LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+        <com.neopixl.pixlui.components.textview.TextView
+            pixlui:typeface="Quark-Bold.otf"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:id="@+id/cancel"
+            android:textColor="@color/RcmoNormalLightText"
+            android:textSize="23sp"
+            android:padding="6dp"
+            android:text="ยกเลิก"/>
+
+
+        <LinearLayout
+            android:layout_width="0.5dp"
+            android:layout_height="fill_parent"
+            android:id="@+id/line"
+            android:orientation="vertical"
+            android:background="@color/RcmoWhiteBG"></LinearLayout>
+
+        <com.neopixl.pixlui.components.textview.TextView
+
+            pixlui:typeface="Quark-Bold.otf"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="6dp"
+            android:id="@+id/ok"
+            android:textColor="@color/RcmoNormalLightText"
+            android:textSize="23sp"
+            android:text="ตกลง"/>
+
+    </LinearLayout>
+
+</LinearLayout>

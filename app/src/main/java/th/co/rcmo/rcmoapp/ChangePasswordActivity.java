@@ -22,5 +22,6 @@ public class ChangePasswordActivity extends Activity {
                 finish();
             }
         });
+
     }
 }

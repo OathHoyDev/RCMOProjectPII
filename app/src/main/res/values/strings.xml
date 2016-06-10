@@ -99,4 +99,12 @@
     <string name="opportunity_investment_cost">เสียโอกาสเงินลงทุน</string>
 
 
+    <!--New -->
+
+    <string name="register_text_btn"><u>สมัครใช้งาน</u></string>
+    <string name="forgot_pass_text_btn"><u>ลืมรหัสผ่าน</u></string>
+
+    <string name="change_pass_text_btn"><u>เปลียนรหัสผ่าน</u></string>
+    <string name="logout_text_btn"><u>ออกจากระบบ</u></string>
+
 </resources>

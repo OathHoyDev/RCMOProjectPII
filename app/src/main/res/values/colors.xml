@@ -1,30 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!--deprecate List-->
     <color name="colorRcmoBG">#2ABB9C</color>
     <color name="colorRcmoTabBG">#2EC9A7</color>
     <color name="colorRcmoUnderLineTabBG">#2E9780</color>
-    <color name="colorRcmoWhiteBG">#ffffff</color>
     <color name="colorRcmoLightGrayBG">#F5F5F5</color>
     <color name="colorRcmoGrayBG">#EBEBEB</color>
     <color name="colorRcmoDarkGrayBG">#999999</color>
     <color name="black_overlay">#66000000</color>
-
     <color name="colorRcmoTabFont">#2E9780</color>
     <color name="colorRcmoGreenFont">#2ABB9C</color>
     <color name="colorRcmoGrayFont">#999999</color>
     <color name="colorRcmoHintGrayFont">#EBEBEB</color>
     <color name="colorRcmoWhiteFont">#ffffff</color>
-
     <color name="colorRcmoGrayButtonBG">#EBEBEB</color>
-
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#2ABB9C</color>
     <color name="colorAccent">#FF4081</color>
 
 
+<!-- text  -->
+    <color name="RcmoNormalDarkText">#414042</color>
+    <color name="RcmoSubDetailText">#939598</color>
+    <color name="RcmoHintText">#939598</color>
+    <color name="RcmoInputTextBG">#f1f2f2</color>
+
+    <color name="RcmoNormalLightText">#ffffff</color>
+
+    <color name="RcmoSelectedAnimalText">#fde0df</color>
+    <color name="RcmoUnSelectedAnimalText">#8d3848</color>
+
+    <color name="RcmoSelectedFishText">#a7dbf1</color>
+    <color name="RcmoUnSelectedFishText">#004e7d</color>
+
+    <color name="RcmoSelectedPlantText">#d3e5be</color>
+    <color name="RcmoUnSelectedPlantText">#295a3f</color>
 
 
+<!--BG -->
+    <color name="RcmoWhiteBG">#ffffff</color>
+    <color name="RcmoLightTranBG">#22FFFFFF</color>
+    <color name="RcmoGrayBG">#6d6e71</color>
+    <color name="RcmoOrangeBG">#f9a131</color>
+    <color name="RcmoProfitBG">#60c3ac</color>
 
 
 </resources>

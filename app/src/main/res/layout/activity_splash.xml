@@ -7,8 +7,6 @@
     android:background="@drawable/bg_blue"
     tools:context="th.co.rcmo.rcmoapp.SplashActivity">
 
-
-
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
