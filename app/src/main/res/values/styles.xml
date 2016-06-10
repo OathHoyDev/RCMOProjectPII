@@ -2,7 +2,7 @@
 
     <style name="AppTheme" parent="Theme.Design.Light.NoActionBar">
     <!--  <item name="android:windowLightStatusBar">true</item> -->
-     <item name="colorPrimaryDark">@color/RcmoWhiteBG</item>
+     <item name="colorPrimaryDark">@color/RcmoBlackBG</item>
  </style>
 
 

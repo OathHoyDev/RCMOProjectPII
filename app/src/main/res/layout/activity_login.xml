@@ -165,7 +165,6 @@
                             android:textColor="@color/RcmoWhiteBG"
                             android:gravity="center"
                             android:padding="5dp"
-                            android:onClick="actionToRegisterActivity"
                             android:textSize="@dimen/textsize_normal"
                             android:id="@+id/textLinkRegister"/>
 
@@ -182,9 +181,8 @@
                             android:textColor="@color/RcmoWhiteBG"
                             android:gravity="center"
                             android:padding="5dp"
-                            android:onClick="actionToChangePasswordActivity"
                             android:textSize="@dimen/textsize_normal"
-                            android:id="@+id/textLinkChangePass"/>
+                            android:id="@+id/textLinkForgetPass"/>
 
                     </LinearLayout>
                 </LinearLayout>

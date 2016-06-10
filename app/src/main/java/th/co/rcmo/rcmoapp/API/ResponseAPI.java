@@ -9,6 +9,7 @@ import com.androidquery.callback.AjaxStatus;
 import com.google.gson.Gson;
 
 import th.co.rcmo.rcmoapp.Module.mLogin;
+import th.co.rcmo.rcmoapp.Module.mRegister;
 import th.co.rcmo.rcmoapp.Module.mStatus;
 import th.co.rcmo.rcmoapp.View.Dialog;
 
@@ -53,6 +54,8 @@ public class ResponseAPI {
                                     Object object = null;
                                     if(url_ws.contains(RequestServices.ws_chkLogin)){
                                         object = new Gson().fromJson(html, mLogin.class);
+                                    } else if (url_ws.contains(RequestServices.ws_saveRegister)) {
+                                        object = new Gson().fromJson(html, mRegister.class);
                                     }
                                     onCallbackAPIListener.callbackSuccess(object);
                                 } else {

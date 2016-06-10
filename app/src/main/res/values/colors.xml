@@ -42,8 +42,10 @@
     <color name="RcmoWhiteBG">#ffffff</color>
     <color name="RcmoLightTranBG">#22FFFFFF</color>
     <color name="RcmoGrayBG">#6d6e71</color>
+    <color name="RcmoBlackBG">#000000</color>
     <color name="RcmoOrangeBG">#f9a131</color>
     <color name="RcmoProfitBG">#60c3ac</color>
+    <color name="RcmoTranWhiteDABG">#E6FFFFFF</color>
 
 
 </resources>

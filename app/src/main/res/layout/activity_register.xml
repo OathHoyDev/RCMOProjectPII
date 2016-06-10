@@ -175,7 +175,7 @@
                         android:padding="5dp"
                         android:inputType="textPassword"
                         android:textSize="@dimen/textsize_normal"
-                        android:id="@+id/input_password"/>
+                        android:id="@+id/inputConfirmPassword"/>
 
                     <com.neopixl.pixlui.components.textview.TextView
                         pixlui:typeface="Quark-Bold.otf"
@@ -192,7 +192,7 @@
                         android:textSize="@dimen/textsize_normal"
                         android:clickable="true"
                         android:focusable="true"
-                        android:id="@+id/btn_register"/>
+                        android:id="@+id/btnRegister"/>
 
 
                 </LinearLayout>

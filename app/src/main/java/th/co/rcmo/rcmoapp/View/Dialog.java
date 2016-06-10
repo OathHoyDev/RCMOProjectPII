@@ -40,8 +40,8 @@ public class Dialog {
         TextView detail = (TextView)dialog.findViewById(R.id.message);
         TextView btn_ok = (TextView)dialog.findViewById(R.id.ok);
 
-        dialog.findViewById(R.id.cancel).setVisibility(View.GONE);
-        dialog.findViewById(R.id.line).setVisibility(View.GONE);
+       // dialog.findViewById(R.id.cancel).setVisibility(View.GONE);
+        //dialog.findViewById(R.id.line).setVisibility(View.GONE);
         if(t.length()==0) title.setVisibility(View.GONE);
         else title.setText(t);
         detail.setText(msg);
@@ -70,7 +70,7 @@ public class Dialog {
 
         TextView title =(TextView) dialog.findViewById(R.id.title);
         TextView detail = (TextView)dialog.findViewById(R.id.message);
-        TextView btn_cancel = (TextView)dialog.findViewById(R.id.cancel);
+      //  TextView btn_cancel = (TextView)dialog.findViewById(R.id.cancel);
         TextView btn_ok = (TextView)dialog.findViewById(R.id.ok);
 
         if(t.length()==0) title.setVisibility(View.GONE);
@@ -86,6 +86,7 @@ public class Dialog {
             }
         });
 
+        /*
         btn_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -94,6 +95,7 @@ public class Dialog {
                 dialog.cancel();
             }
         });
+        */
         dialog.show();
 
     }
