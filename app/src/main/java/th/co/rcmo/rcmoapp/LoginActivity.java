@@ -50,6 +50,9 @@ public class LoginActivity extends Activity {
                 imageSwitcher.postDelayed(this, 1000);
             }
         }, 1000);
+
+
+
     }
 
     private void setAction() {

@@ -12,7 +12,10 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
-        android:padding="10dp">
+        android:padding="10dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:id="@+id/layoutPlotRow" >
 
 
         <RelativeLayout

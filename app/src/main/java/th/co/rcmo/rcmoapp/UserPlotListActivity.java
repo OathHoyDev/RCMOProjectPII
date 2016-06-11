@@ -67,6 +67,28 @@ public class UserPlotListActivity extends Activity {
             }
 
             Holder h = new Holder();
+
+            final TextView btnd =  (TextView) convertView.findViewById(R.id.btnDeleete);
+            final TextView btnc    = (TextView) convertView.findViewById(R.id.btnCopy);
+            btnc.setVisibility(View.GONE);
+            btnd.setVisibility(View.GONE);
+
+              convertView.findViewById(R.id.layoutPlotRow).setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    Log.d("Is Onpress", "Show Button");
+
+                    if(btnc.getVisibility() == View.GONE || btnd.getVisibility() == View.GONE) {
+                        btnc.setVisibility(View.VISIBLE);
+                        btnd.setVisibility(View.VISIBLE);
+                    }else{
+                        btnc.setVisibility(View.GONE);
+                        btnd.setVisibility(View.GONE);
+                    }
+
+                    return true;
+                }
+            });
 /*
             h.btn_detail = (ImageView) convertView.findViewById(R.id.btn_detail);
             h.name = (TextView) convertView.findViewById(R.id.name);
@@ -102,7 +124,7 @@ public class UserPlotListActivity extends Activity {
 
 
     class Holder{
-        TextView labelAddress,labelUnitCount,labelUnit,labelProductName,labelProfit,labelDate,btnProfit,btnDeleete;
+        TextView labelAddress,labelUnitCount,labelUnit,labelProductName,labelProfit,labelDate,btnProfit,btnDeleete,btnCopy;
         ImageView imgProduct;
 
 
