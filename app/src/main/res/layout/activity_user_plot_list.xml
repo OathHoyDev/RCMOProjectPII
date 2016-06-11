@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:pixlui="http://schemas.android.com/apk/com.neopixl.pixlui"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_blue">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+    <com.neopixl.pixlui.components.textview.TextView
+        pixlui:typeface="Quark-Bold.otf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ข้อมูลผู้ใช้งาน"
+        android:layout_alignParentTop="true"
+        android:gravity="center|top"
+        android:padding="12dp"
+        android:id="@+id/titleLable"
+        android:textColor="@color/RcmoNormalLightText"
+        android:textSize="@dimen/textsize_xxxlarge" />
+
+
+    <com.neopixl.pixlui.components.textview.TextView
+        pixlui:typeface="Quark-Bold.otf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="&lt; กลับ"
+        android:layout_alignParentLeft="true"
+        android:id="@+id/backBtn"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/RcmoNormalLightText"
+        android:textSize="@dimen/textsize_xxlarge" />
+
+
+    <ImageView
+        android:layout_width="@dimen/size_howto"
+        android:layout_height="@dimen/size_howto"
+        android:src="@drawable/btn_howto"
+        android:layout_alignParentRight="true"
+        android:layout_margin="10dp"/>
+</RelativeLayout>
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/listviewPlotUser"></ListView>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|bottom"
+            android:background="@color/RcmoDarkTranBG"
+            android:gravity="center">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|bottom"
+                android:background="@drawable/action_black_tran_cut_conner"
+                android:layout_marginRight="40dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_marginLeft="40dp"
+                android:id="@+id/btnSave"
+                android:layout_margin="20dp"
+                android:gravity="center">
+
+
+
+                <com.neopixl.pixlui.components.textview.TextView
+                    pixlui:typeface="Quark-Bold.otf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="+ เพิ่มข้อมูล"
+                    android:layout_margin="5dp"
+                    android:textColor="@color/RcmoWhiteBG"
+                    android:gravity="center"
+                    android:textSize="@dimen/textsize_xxxlarge"
+                    android:id="@+id/labelSave" />
+            </LinearLayout>
+            <!--
+            <com.neopixl.pixlui.components.textview.TextView
+                pixlui:typeface="Quark-Bold.otf"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:layout_margin="@dimen/margin_xxxlarge"
+                android:text="+ บันทึก"
+                android:textColor="@color/RcmoWhiteBG"
+                android:background="@drawable/action_gray_cut_conner"
+                android:gravity="center"
+                android:padding="5dp"
+                android:textSize="@dimen/textsize_xxxlarge"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_marginRight="40dp"
+                android:layout_marginLeft="40dp"
+                android:layout_gravity="bottom|center_horizontal"
+                android:id="@+id/btn_register" />
+                -->
+
+        </LinearLayout>
+
+
+
+    </FrameLayout>
+
+
+</LinearLayout>

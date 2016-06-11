@@ -8,7 +8,7 @@
     <dimen name="textsize_small">15sp</dimen>
     <dimen name="textsize_normal">16sp</dimen>
     <dimen name="textsize_large">17sp</dimen>
-    <dimen name="textsize_xlarge">19sp</dimen>
+    <dimen name="textsize_xlarge">18sp</dimen>
     <dimen name="textsize_xxlarge">20sp</dimen>
     <dimen name="textsize_xxxlarge">23sp</dimen>
 
@@ -20,9 +20,11 @@
     <dimen name="margin_xxxlarge">18dp</dimen>
     <dimen name="margin_xxxxlarge">20dp</dimen>
 
-    <dimen name="radius">10dp</dimen>
-
+    <dimen name="radius">5dp</dimen>
+    <dimen name="radius_medium">10dp</dimen>
     <dimen name="radius_large">20dp</dimen>
 
     <dimen name="size_howto">30dp</dimen>
+
+    <dimen name="size_pin">20dp</dimen>
 </resources>

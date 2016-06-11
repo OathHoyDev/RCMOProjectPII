@@ -22,11 +22,51 @@
 <!--BG -->
     <color name="RcmoWhiteBG">#ffffff</color>
     <color name="RcmoLightTranBG">#22FFFFFF</color>
+    <color name="RcmoDarkTranBG">#4D939598</color>
+
+
+    <color name="RcmoLightGrayBG">#f1f2f2</color>
     <color name="RcmoGrayBG">#6d6e71</color>
+    <color name="RcmoDarkGrayBG">#58585a</color>
+
     <color name="RcmoBlackBG">#000000</color>
     <color name="RcmoOrangeBG">#f9a131</color>
     <color name="RcmoProfitBG">#60c3ac</color>
     <color name="RcmoTranWhiteDABG">#E6FFFFFF</color>
 
+
+
+    <color name="RcmoAnimalDarkBG">#d5444f</color>
+    <color name="RcmoAnimalBG">#d5444f</color>
+
+    <color name="RcmoPlantDarkBG">#2c613c</color>
+    <color name="RcmoPlantBG">#4cb748</color>
+
+    <color name="RcmoFishDarkBG">#006fb8</color>
+    <color name="RcmoFishBG">#00b4ed</color>
+
+    <!-- tran code %
+100% — FF
+95% — F2
+90% — E6
+85% — D9
+80% — CC
+75% — BF
+70% — B3
+65% — A6
+60% — 99
+55% — 8C
+50% — 80
+45% — 73
+40% — 66
+35% — 59
+30% — 4D
+25% — 40
+20% — 33
+15% — 26
+10% — 1A
+5%  — 0D
+0% —  00
+    -->
 
 </resources>

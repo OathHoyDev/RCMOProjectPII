@@ -64,9 +64,10 @@ public class LoginActivity extends Activity {
         findViewById(R.id.textLinkForgetPass).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //startActivity(new Intent(LoginActivity.this, ChangePasswordActivity.class));
-                startActivity(new Intent(LoginActivity.this, WebActivity.class)
+                startActivity(new Intent(LoginActivity.this, UserPlotListActivity.class));
+              /*  startActivity(new Intent(LoginActivity.this, WebActivity.class)
                         .putExtra("link", "http://www.google.co.th/"));
+                        */
             }
         });
 
