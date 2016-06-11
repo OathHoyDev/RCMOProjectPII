@@ -16,6 +16,7 @@ import java.util.List;
 import th.co.rcmo.rcmoapp.API.RequestServices;
 import th.co.rcmo.rcmoapp.API.ResponseAPI;
 import th.co.rcmo.rcmoapp.Module.mLogin;
+import th.co.rcmo.rcmoapp.Module.mUserPlotList;
 import th.co.rcmo.rcmoapp.Util.ServiceInstance;
 import th.co.rcmo.rcmoapp.View.Dialog;
 
@@ -125,10 +126,12 @@ public class LoginActivity extends Activity {
                     editor.apply();
 
 //                    {"RespStatus":{"StatusID":2,"StatusMsg":"ไม่พบข้อมูล"},"RespBody":[]}
-
-                    startActivity(new Intent(LoginActivity.this, EditUserActivity.class)
+/*
+                    startActivity(new Intent(LoginActivity.this, UserPlotListActivity.class)
                           .putExtra("userId", loginBodyLists.get(0).getUserID()));
                     finish();
+                    */
+                    API_GetUserPlot(loginBodyLists.get(0).getUserID());
                 }
 
             }
@@ -143,5 +146,46 @@ public class LoginActivity extends Activity {
 
     }
 
+
+    private void API_GetUserPlot(final String userId) {
+
+
+        new ResponseAPI(this, new ResponseAPI.OnCallbackAPIListener() {
+            @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
+            @Override
+            public void callbackSuccess(Object obj) {
+
+                mUserPlotList mPlotList = (mUserPlotList) obj;
+                List<mUserPlotList.mRespBody> userPlotBodyLists = mPlotList.getRespBody();
+
+                if (userPlotBodyLists.size() != 0) {
+                    userPlotBodyLists.get(0).toString();
+                     /*
+                    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(LoginActivity.this);
+                    SharedPreferences.Editor editor = preferences.edit();
+
+                    /*store into file variableE
+                    editor.putString("sp_user_name", username).apply();
+                    editor.putString("sp_user_id", loginBodyLists.get(0).getUserID()).apply();
+                    editor.apply();
+                  */
+
+                    UserPlotListActivity.userPlotRespBodyList  = userPlotBodyLists;
+                    startActivity(new Intent(LoginActivity.this, UserPlotListActivity.class)
+                            .putExtra("userId", userId));
+                    finish();
+                }
+
+            }
+
+            @Override
+            public void callbackError(int code, String errorMsg) {
+                Log.d("Erroo",errorMsg);
+            }
+        }).API_Request(true, RequestServices.ws_getPlotList +
+                "?UserID=" + userId + "&PlotID="+
+                "&ImeiCode=" + ServiceInstance.GetDeviceID(LoginActivity.this));
+
+    }
 
 }

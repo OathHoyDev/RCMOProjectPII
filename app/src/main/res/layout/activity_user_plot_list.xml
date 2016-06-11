@@ -23,17 +23,13 @@
         android:textSize="@dimen/textsize_xxxlarge" />
 
 
-    <com.neopixl.pixlui.components.textview.TextView
-        pixlui:typeface="Quark-Bold.otf"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="&lt; กลับ"
-        android:layout_alignParentLeft="true"
-        android:id="@+id/backBtn"
-        android:layout_marginTop="15dp"
-        android:layout_marginLeft="10dp"
-        android:textColor="@color/RcmoNormalLightText"
-        android:textSize="@dimen/textsize_xxlarge" />
+        <ImageView
+            android:layout_width="@dimen/size_howto"
+            android:layout_height="@dimen/size_howto"
+            android:src="@drawable/ic_profile"
+            android:layout_alignParentLeft="true"
+            android:id="@+id/btnProfile"
+            android:layout_margin="10dp"/>
 
 
     <ImageView
@@ -41,6 +37,7 @@
         android:layout_height="@dimen/size_howto"
         android:src="@drawable/btn_howto"
         android:layout_alignParentRight="true"
+        android:id="@+id/btnQuestion"
         android:layout_margin="10dp"/>
 </RelativeLayout>
 
@@ -72,7 +69,7 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:layout_marginLeft="40dp"
-                android:id="@+id/btnSave"
+                android:id="@+id/btnAdd"
                 android:layout_margin="20dp"
                 android:gravity="center">
 
