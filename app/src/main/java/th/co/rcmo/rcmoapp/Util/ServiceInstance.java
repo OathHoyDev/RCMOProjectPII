@@ -140,7 +140,7 @@ public class ServiceInstance {
                 try {
                     SimpleDateFormat format_year = new SimpleDateFormat("yyyy");
                     year = Integer.valueOf(format_year.format(dateLogin.getTime()));
-                    Log.i("Instance", "GetFormatBirthday : " + dateLogin + "//" + dateLogin.getDate() + "//" + dateLogin.getYear()+"//"+year);
+                  //  Log.i("Instance", "formatStrDate : " + dateLogin + "//" + dateLogin.getDate() + "//" + dateLogin.getYear()+"//"+year);
                 } catch (Exception e) {
                     year = dateLogin.getYear();
                 }

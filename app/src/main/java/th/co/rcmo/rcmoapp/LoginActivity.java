@@ -65,6 +65,7 @@ public class LoginActivity extends Activity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+                finish();
             }
         });
 
@@ -74,6 +75,14 @@ public class LoginActivity extends Activity {
            //     startActivity(new Intent(LoginActivity.this, UserPlotListActivity.class));
                 startActivity(new Intent(LoginActivity.this, WebActivity.class)
                         .putExtra("link", "http://www.google.co.th/"));
+
+            }
+        });
+
+        findViewById(R.id.btn_cal).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this, StepOneActivity.class));
 
             }
         });

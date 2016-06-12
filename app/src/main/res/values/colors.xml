@@ -37,13 +37,18 @@
 
 
     <color name="RcmoAnimalDarkBG">#d5444f</color>
-    <color name="RcmoAnimalBG">#d5444f</color>
+    <color name="RcmoAnimalBG">#f4838e</color>
 
     <color name="RcmoPlantDarkBG">#2c613c</color>
     <color name="RcmoPlantBG">#4cb748</color>
 
     <color name="RcmoFishDarkBG">#006fb8</color>
     <color name="RcmoFishBG">#00b4ed</color>
+
+    <color name="RcmoStepTabTranBG">#4DFFFFFF</color>
+    <color name="RcmoLineTabBG">#97dbf8</color>
+
+
 
     <!-- tran code %
 100% — FF

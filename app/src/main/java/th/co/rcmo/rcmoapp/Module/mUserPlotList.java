@@ -41,7 +41,7 @@ public class mUserPlotList {
     }
     public static class mRespBody{
         int PlotID,PrdGrpID,PlantGrpID,PrdID,SeqNo;
-        String PrdValue ,PlotLocation,PlotSize,AnimalNumberValue,AnimalPriceValue,AnimalWeightValue,FisheryNumberValue,DateUpdated ;
+        String PrdValue ,PlotLocation,PlotSize,AnimalNumberValue,AnimalPriceValue,AnimalWeightValue,FisheryNumberValue,DateUpdated,CalResult ;
 
         public int getPlotID() {
             return PlotID;
@@ -95,6 +95,8 @@ public class mUserPlotList {
             return DateUpdated;
         }
 
+        public String getCalResult() {return CalResult;}
+
         @Override
         public String toString() {
             return "mRespBody{" +
@@ -111,6 +113,7 @@ public class mUserPlotList {
                     ", AnimalWeightValue='" + AnimalWeightValue + '\'' +
                     ", FisheryNumberValue='" + FisheryNumberValue + '\'' +
                     ", DateUpdated='" + DateUpdated + '\'' +
+                    ", CalResult='" + CalResult + '\'' +
                     '}';
         }
     }

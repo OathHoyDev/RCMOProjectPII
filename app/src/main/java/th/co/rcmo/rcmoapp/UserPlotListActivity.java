@@ -4,8 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,9 +12,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
-
 import com.neopixl.pixlui.components.textview.TextView;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -122,41 +118,48 @@ public class UserPlotListActivity extends Activity {
             mUserPlotList.mRespBody  respBody =  getItem(position);
             Holder h = new Holder();
 
+            /**
+             * Get Layout Obj
+             */
             h.imgProduct = (ImageView) convertView.findViewById(R.id.imgProduct);
             h.labelProductName =  (TextView) convertView.findViewById(R.id.labelProductName);
             h.labelAddress     =  (TextView) convertView.findViewById(R.id.labelAddress);
             h.labelPlotSize    =  (TextView) convertView.findViewById(R.id.labelPlotSize);
             h.labelDate        =  (TextView) convertView.findViewById(R.id.labelDate);
             h.btnProfit        =  (TextView) convertView.findViewById(R.id.btnProfit);
+            h.labelProfit      =  (TextView) convertView.findViewById(R.id.labelProfit);
 
 
-            h.imgProduct.setImageResource( getResources().getIdentifier(ServiceInstance.productPicMap.get(respBody.getPrdID()), "drawable", getPackageName()) );
-            h.labelProductName.setText(respBody.getPrdValue());
-
-           // h.labelProductName.setTextColor( getResources().getIdentifier(ServiceInstance.productBGMap.get(respBody.getPrdGrpID()), "color", getPackageName()));
-            //R.drawable.green_cut_conner;
-
-
-
+            /**
+             * Set UI Display value
+             */
            if(respBody.getPrdGrpID() == 2){
                h.labelProductName.setTextColor(Color.parseColor("#d5444f"));
-               h.btnProfit.setBackgroundResource(R.drawable.green_cut_conner);
-               h.btnProfit.setText("กำไร");
            }else if (respBody.getPrdGrpID() == 3){
                h.labelProductName.setTextColor (Color.parseColor("#00b4ed"));
-               h.btnProfit.setBackgroundResource(R.drawable.green_cut_conner);
-               h.btnProfit.setText("กำไร");
            }else{
                h.labelProductName.setTextColor (Color.parseColor("#4cb748"));
-               h.btnProfit.setBackgroundResource(R.drawable.orange_cut_conner);
-               h.btnProfit.setText("ขาดทุน");
+           }
+
+
+            String calResult = respBody.getCalResult();
+
+            if(calResult!= null
+                    &&  calResult.length()>0
+                    &&  "-".equals(calResult.substring(0,1))){
+                h.btnProfit.setBackgroundResource(R.drawable.orange_cut_conner);
+                h.btnProfit.setText("ขาดทุน");
+            }else{
+                h.btnProfit.setBackgroundResource(R.drawable.green_cut_conner);
+                h.btnProfit.setText("กำไร");
             }
 
-
+            h.labelProfit.setText(calResult);
             h.labelAddress.setText(respBody.getPlotLocation());
             h.labelPlotSize.setText(respBody.getPlotSize());
             h.labelDate.setText(ServiceInstance.formatStrDate(respBody.getDateUpdated()));
-
+            h.imgProduct.setImageResource( getResources().getIdentifier(ServiceInstance.productPicMap.get(respBody.getPrdID()), "drawable", getPackageName()) );
+            h.labelProductName.setText(respBody.getPrdValue());
 
 
             //On Press Action
@@ -181,6 +184,9 @@ public class UserPlotListActivity extends Activity {
                 }
             });
 
+
+
+
             //On Click Delete Action
             convertView.findViewById(R.id.btnDeleete).setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -204,7 +210,19 @@ public class UserPlotListActivity extends Activity {
 
 
 
-/*
+            return convertView;
+        }
+    }
+
+
+    class Holder{
+        TextView labelAddress,labelPlotSize,labelProductName,labelProfit,labelDate,btnProfit;
+        ImageView imgProduct;
+
+
+    }
+
+    /*
 
 "RespStatus":{"StatusID":0,"StatusMsg":"Success"},
 "RespBody":[{"PlotID":"1",
@@ -221,43 +239,6 @@ public class UserPlotListActivity extends Activity {
 			 "DateUpdated":"14/5/2559 14:09:11","SeqNo":"1"}
 
 
-            h.btn_detail = (ImageView) convertView.findViewById(R.id.btn_detail);
-            h.name = (TextView) convertView.findViewById(R.id.name);
-            h.nametype = (TextView) convertView.findViewById(R.id.nametype);
-            h.date = (TextView) convertView.findViewById(R.id.date);
-            h.icon_alert = (ImageView) convertView.findViewById(R.id.icon_alert);
-            h.layout_options = (FrameLayout) convertView.findViewById(R.id.layout_options);
+          */
 
-            h.nametype.setText(getItem(position).getEmployerName());
-            h.name.setText(getItem(position).getJobPosition());
-
-            String[] announceArr = getItem(position).getAnnounceUpdate().split(" ");
-            Log.i("", "announceArr : " + announceArr.length + "//" + getItem(position).getAnnounceUpdate());
-
-            h.date.setText(getItem(position).getAnnounceUpdate());
-
-            h.date.setVisibility(View.VISIBLE);
-            h.icon_alert.setVisibility(View.INVISIBLE);
-
-            h.btn_detail.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    startActivity(new Intent(ResultSearchActivity.this,ProfileJobActivity.class)
-                            .putExtra("JobAnnounceID",getItem(position).getJobAnnounceID()));
-                    finish();
-                }
-            });
-            */
-
-            return convertView;
-        }
-    }
-
-
-    class Holder{
-        TextView labelAddress,labelPlotSize,labelProductName,labelProfit,labelDate,btnProfit;
-        ImageView imgProduct;
-
-
-    }
 }

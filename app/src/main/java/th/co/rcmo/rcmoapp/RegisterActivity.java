@@ -1,6 +1,7 @@
 package th.co.rcmo.rcmoapp;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -16,7 +17,7 @@ import th.co.rcmo.rcmoapp.API.ResponseAPI;
 import th.co.rcmo.rcmoapp.Module.mRegister;
 import th.co.rcmo.rcmoapp.Util.ServiceInstance;
 
-public class RegisterActivity extends AppCompatActivity {
+public class RegisterActivity extends Activity {
     EditText inputName, inputSirName,inputUsername,inputEmail,inputPassword,inputConfirmPassword;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

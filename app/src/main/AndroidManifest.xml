@@ -47,6 +47,9 @@
         <activity android:name=".EditUserActivity" />
         <activity android:name=".WebActivity" />
         <activity android:name=".UserPlotListActivity" />
+        <activity android:name=".StepOneActivity" />
+        <activity android:name=".StepTwoActivity" />
+        <activity android:name=".StepThreeActivity"></activity>
     </application>
 
 </manifest>
