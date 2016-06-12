@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -126,21 +127,31 @@ public class UserPlotListActivity extends Activity {
             h.labelAddress     =  (TextView) convertView.findViewById(R.id.labelAddress);
             h.labelPlotSize    =  (TextView) convertView.findViewById(R.id.labelPlotSize);
             h.labelDate        =  (TextView) convertView.findViewById(R.id.labelDate);
+            h.btnProfit        =  (TextView) convertView.findViewById(R.id.btnProfit);
 
 
             h.imgProduct.setImageResource( getResources().getIdentifier(ServiceInstance.productPicMap.get(respBody.getPrdID()), "drawable", getPackageName()) );
             h.labelProductName.setText(respBody.getPrdValue());
 
            // h.labelProductName.setTextColor( getResources().getIdentifier(ServiceInstance.productBGMap.get(respBody.getPrdGrpID()), "color", getPackageName()));
+            //R.drawable.green_cut_conner;
+
 
 
            if(respBody.getPrdGrpID() == 2){
                h.labelProductName.setTextColor(Color.parseColor("#d5444f"));
+               h.btnProfit.setBackgroundResource(R.drawable.green_cut_conner);
+               h.btnProfit.setText("กำไร");
            }else if (respBody.getPrdGrpID() == 3){
                h.labelProductName.setTextColor (Color.parseColor("#00b4ed"));
+               h.btnProfit.setBackgroundResource(R.drawable.green_cut_conner);
+               h.btnProfit.setText("กำไร");
            }else{
                h.labelProductName.setTextColor (Color.parseColor("#4cb748"));
+               h.btnProfit.setBackgroundResource(R.drawable.orange_cut_conner);
+               h.btnProfit.setText("ขาดทุน");
             }
+
 
             h.labelAddress.setText(respBody.getPlotLocation());
             h.labelPlotSize.setText(respBody.getPlotSize());

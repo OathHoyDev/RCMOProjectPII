@@ -18,6 +18,10 @@ import java.util.Map;
  */
 public class ServiceInstance {
     public static final int version = Build.VERSION.SDK_INT;
+    public static final String PREF_NAME = "RCMO";
+    public static final String sp_userId    = "sp_user_name";
+    public static final String sp_userName  = "sp_user_id";
+
     public static final Map<Integer, String> productBGMap = new HashMap<>();
     static {
         // key = prod group id

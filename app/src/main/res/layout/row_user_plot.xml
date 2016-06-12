@@ -19,7 +19,6 @@
 
 
         <RelativeLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
            >
@@ -31,48 +30,58 @@
                 android:layout_margin="5dp"
 
                 android:id="@+id/pinImg" />
-
-            <com.neopixl.pixlui.components.textview.TextView
-                pixlui:typeface="Quark-Bold.otf"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:text="ต.ห้วยนอก อ.ห้วยนอก จ.สระบุรี"
-                android:textColor="@color/RcmoNormalDarkText"
-                android:padding="4dp"
-                android:textSize="@dimen/textsize_xsmall"
-                android:id="@+id/labelAddress"
-                android:layout_centerVertical="true"
-                android:layout_toEndOf="@+id/pinImg" />
+                android:layout_toEndOf="@+id/pinImg"
+                android:layout_centerInParent="true"
+               >
 
-<!--
+                <!--
 
+                            <com.neopixl.pixlui.components.textview.TextView
+                                pixlui:typeface="Quark-Bold.otf"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textStyle="bold"
+                                android:text="17"
+                                android:textColor="@color/RcmoNormalDarkText"
+                                android:padding="4dp"
+                                android:textSize="@dimen/textsize_xsmall"
+                                android:id="@+id/labelUnitCount"
+                                android:layout_centerVertical="true"
+                                android:layout_toStartOf="@+id/labelUnit" />
+                -->
+                <com.neopixl.pixlui.components.textview.TextView
+                    pixlui:typeface="Quark-Bold.otf"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textStyle="bold"
+                    android:text="ต.ห้วยนอก อ.ห้วยนอก จ.สระบุรี"
+
+                    android:textColor="@color/RcmoNormalDarkText"
+                    android:padding="4dp"
+                    android:textSize="@dimen/textsize_xsmall"
+                    android:id="@+id/labelAddress"
+
+                    />
             <com.neopixl.pixlui.components.textview.TextView
                 pixlui:typeface="Quark-Bold.otf"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:text="17"
-                android:textColor="@color/RcmoNormalDarkText"
-                android:padding="4dp"
-                android:textSize="@dimen/textsize_xsmall"
-                android:id="@+id/labelUnitCount"
-                android:layout_centerVertical="true"
-                android:layout_toStartOf="@+id/labelUnit" />
--->
-
-            <com.neopixl.pixlui.components.textview.TextView
-                pixlui:typeface="Quark-Bold.otf"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:text="17 ไร่"
+                android:layout_weight="3"
                 android:textColor="@color/RcmoNormalDarkText"
                 android:padding="4dp"
                 android:textSize="@dimen/textsize_xsmall"
                 android:id="@+id/labelPlotSize"
-                android:layout_centerVertical="true"
-                android:layout_alignParentEnd="true" />
+              android:gravity="right"/>
+
+
+            </LinearLayout>
         </RelativeLayout>
 
         <LinearLayout
@@ -127,12 +136,12 @@
 
                     <com.neopixl.pixlui.components.textview.TextView
                         pixlui:typeface="Quark-Bold.otf"
-                        android:layout_width="wrap_content"
+                        android:layout_width="50dp"
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
                         android:text="ขาดทุน"
                         android:textColor="@color/RcmoWhiteBG"
-                        android:background="@drawable/action_orange_cut_conner"
+                        android:background="@drawable/orange_cut_conner"
                         android:gravity="center"
                         android:padding="5dp"
                         android:textSize="@dimen/textsize_xsmall"

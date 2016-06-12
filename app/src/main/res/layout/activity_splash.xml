@@ -31,11 +31,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:padding="4dp"
             android:gravity="center"
             android:text="สำนักงานเศรฐกิจการเกษตร"
             android:id="@+id/back"
             android:textColor="@color/RcmoNormalLightText"
-            android:textSize="25sp"
+            android:textSize="@dimen/textsize_xxxlarge"
             android:layout_weight="1" />
     </LinearLayout>
 

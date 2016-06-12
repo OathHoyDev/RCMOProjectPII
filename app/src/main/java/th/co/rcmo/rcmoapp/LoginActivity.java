@@ -2,6 +2,7 @@ package th.co.rcmo.rcmoapp;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -39,6 +40,8 @@ public class LoginActivity extends Activity {
 
 
     private void setUI() {
+        SharedPreferences sp = getSharedPreferences(ServiceInstance.PREF_NAME, Context.MODE_PRIVATE);
+        inputUsername.setText(sp.getString(ServiceInstance.sp_userName,""));
 
         final ImageView imageSwitcher = (ImageView)findViewById(R.id.logoLogin);
         imageSwitcher.postDelayed(new Runnable() {
@@ -68,10 +71,10 @@ public class LoginActivity extends Activity {
         findViewById(R.id.textLinkForgetPass).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this, UserPlotListActivity.class));
-              /*  startActivity(new Intent(LoginActivity.this, WebActivity.class)
+           //     startActivity(new Intent(LoginActivity.this, UserPlotListActivity.class));
+                startActivity(new Intent(LoginActivity.this, WebActivity.class)
                         .putExtra("link", "http://www.google.co.th/"));
-                        */
+
             }
         });
 
@@ -81,6 +84,7 @@ public class LoginActivity extends Activity {
         findViewById(R.id.btnLogin).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
 
                 if (inputUsername.length() > 0) {
 
@@ -117,13 +121,13 @@ public class LoginActivity extends Activity {
                 List<mLogin.mRespBody> loginBodyLists = login.getRespBody();
 
                 if (loginBodyLists.size() != 0) {
-                    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(LoginActivity.this);
+                    SharedPreferences preferences = getSharedPreferences(ServiceInstance.PREF_NAME, Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = preferences.edit();
 
                     //store into file variableE
-                    editor.putString("sp_user_name", username).apply();
-                    editor.putString("sp_user_id", loginBodyLists.get(0).getUserID()).apply();
-                    editor.apply();
+                    editor.putString(ServiceInstance.sp_userName, username);
+                    editor.putString(ServiceInstance.sp_userId, loginBodyLists.get(0).getUserID());
+                    editor.commit();
 
 //                    {"RespStatus":{"StatusID":2,"StatusMsg":"ไม่พบข้อมูล"},"RespBody":[]}
 /*

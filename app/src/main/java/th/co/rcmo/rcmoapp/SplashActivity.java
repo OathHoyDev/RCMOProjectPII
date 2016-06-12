@@ -1,10 +1,23 @@
 package th.co.rcmo.rcmoapp;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
+import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Window;
+
+import java.util.List;
+
+import th.co.rcmo.rcmoapp.API.RequestServices;
+import th.co.rcmo.rcmoapp.API.ResponseAPI;
+import th.co.rcmo.rcmoapp.Module.mUserPlotList;
+import th.co.rcmo.rcmoapp.Util.ServiceInstance;
 
 public class SplashActivity extends Activity {
 
@@ -12,7 +25,7 @@ public class SplashActivity extends Activity {
     Handler handler;
     Runnable runnable;
     Long delay_time;
-    Long time = 5000L;
+    Long time = 3000L;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,9 +38,20 @@ public class SplashActivity extends Activity {
 
         runnable = new Runnable() {
             public void run() {
-                Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
-                startActivity(intent);
-                finish();
+                SharedPreferences sp = getSharedPreferences(ServiceInstance.PREF_NAME, Context.MODE_PRIVATE);
+                String userId = sp.getString(ServiceInstance.sp_userId, "0");
+
+                Log.d("Splash","UserId : "+userId);
+
+                if(userId.equals("0")){
+                    Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                    finish();
+                }else{
+                    API_GetUserPlot(userId);
+                }
+
+
             }
         };
     }
@@ -43,5 +67,37 @@ public class SplashActivity extends Activity {
         super.onStop();
         handler.removeCallbacks(runnable);
         time = delay_time - (System.currentTimeMillis() - time);
+    }
+
+    private void API_GetUserPlot(final String userId) {
+
+
+        new ResponseAPI(this, new ResponseAPI.OnCallbackAPIListener() {
+            @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
+            @Override
+            public void callbackSuccess(Object obj) {
+
+                mUserPlotList mPlotList = (mUserPlotList) obj;
+                List<mUserPlotList.mRespBody> userPlotBodyLists = mPlotList.getRespBody();
+
+                if (userPlotBodyLists.size() != 0) {
+                    userPlotBodyLists.get(0).toString();
+
+                    UserPlotListActivity.userPlotRespBodyList  = userPlotBodyLists;
+                    startActivity(new Intent(SplashActivity.this, UserPlotListActivity.class)
+                            .putExtra("userId", userId));
+                    finish();
+                }
+
+            }
+
+            @Override
+            public void callbackError(int code, String errorMsg) {
+                Log.d("Erroo",errorMsg);
+            }
+        }).API_Request(true, RequestServices.ws_getPlotList +
+                "?UserID=" + userId + "&PlotID="+
+                "&ImeiCode=" + ServiceInstance.GetDeviceID(SplashActivity.this));
+
     }
 }
