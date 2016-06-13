@@ -48,7 +48,7 @@ public class UserPlotListActivity extends Activity {
         findViewById(R.id.btnAdd).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(UserPlotListActivity.this, UserPlotListActivity.class));
+                startActivity(new Intent(UserPlotListActivity.this, StepOneActivity.class));
               /*  startActivity(new Intent(LoginActivity.this, WebActivity.class)
                         .putExtra("link", "http://www.google.co.th/"));
                         */

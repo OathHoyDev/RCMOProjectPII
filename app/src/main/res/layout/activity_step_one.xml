@@ -106,26 +106,24 @@
         android:layout_width="match_parent"
         android:layout_marginTop="30dp"
         android:layout_height="@dimen/iccircle_parent_height"
-        android:layout_gravity="center_horizontal">
+        android:layout_marginLeft="20dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="left">
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
 
 
             <LinearLayout
-                android:orientation="vertical"
+                android:orientation="horizontal"
                 android:layout_height="match_parent"
-                android:layout_width="match_parent"
-                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_gravity="left"
                 android:gravity="center">
 
                 <LinearLayout
                     android:id="@+id/ic_bg_g1"
                     android:orientation="vertical"
-                    android:layout_height="@dimen/iccircle_bg_height"
-                    android:layout_width="@dimen/iccircle_bg_height"
+                    android:layout_height="100dp"
+                    android:layout_width="100dp"
                     android:gravity="center"
                     android:background="@drawable/action_plant_ic_gr_circle"
                     android:clickable="true"
@@ -141,8 +139,9 @@
 
                 <LinearLayout
                     android:orientation="vertical"
-                    android:layout_height="@dimen/iccircle_layout_text_height"
+                    android:layout_height="40dp"
                     android:layout_width="wrap_content"
+                    android:layout_marginLeft="10dp"
                     android:gravity="center">
 
                     <com.neopixl.pixlui.components.textview.TextView
@@ -153,12 +152,12 @@
                         android:gravity="center"
                         android:id="@+id/ic_label_g1"
                         android:textColor="@color/RcmoNormalLightText"
-                        android:textSize="@dimen/iccircle_label_text_size" />
+                        android:textSize="22sp" />
                 </LinearLayout>
 
             </LinearLayout>
 
-        </LinearLayout>
+
 
     </LinearLayout>
 
@@ -166,26 +165,24 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="@dimen/iccircle_parent_height"
+        android:layout_marginLeft="80dp"
         android:layout_gravity="center_horizontal">
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+
 
 
             <LinearLayout
-                android:orientation="vertical"
+                android:orientation="horizontal"
                 android:layout_height="match_parent"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center">
 
                 <LinearLayout
                     android:id="@+id/ic_bg_g2"
                     android:orientation="vertical"
-                    android:layout_height="@dimen/iccircle_bg_height"
-                    android:layout_width="@dimen/iccircle_bg_height"
+                    android:layout_height="100dp"
+                    android:layout_width="100dp"
                     android:gravity="center"
                     android:background="@drawable/action_animal_ic_gr_circle"
                     android:clickable="true"
@@ -201,8 +198,9 @@
 
                 <LinearLayout
                     android:orientation="vertical"
-                    android:layout_height="@dimen/iccircle_layout_text_height"
+                    android:layout_height="40dp"
                     android:layout_width="wrap_content"
+                    android:layout_marginLeft="10dp"
                     android:gravity="center">
 
                     <com.neopixl.pixlui.components.textview.TextView
@@ -213,12 +211,12 @@
                         android:gravity="center"
                         android:id="@+id/ic_label_g2"
                         android:textColor="@color/RcmoNormalLightText"
-                        android:textSize="@dimen/iccircle_label_text_size" />
+                        android:textSize="22sp" />
                 </LinearLayout>
 
             </LinearLayout>
 
-        </LinearLayout>
+
 
     </LinearLayout>
 
@@ -226,26 +224,23 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="@dimen/iccircle_parent_height"
-        android:layout_gravity="center_horizontal">
+        android:layout_marginLeft="30dp"
+        android:layout_gravity="left">
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
 
 
             <LinearLayout
-                android:orientation="vertical"
+                android:orientation="horizontal"
                 android:layout_height="match_parent"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center">
 
                 <LinearLayout
                     android:id="@+id/ic_bg_g3"
                     android:orientation="vertical"
-                    android:layout_height="@dimen/iccircle_bg_height"
-                    android:layout_width="@dimen/iccircle_bg_height"
+                    android:layout_height="100dp"
+                    android:layout_width="100dp"
                     android:gravity="center"
                     android:background="@drawable/action_fish_ic_gr_circle"
                     android:clickable="true"
@@ -261,8 +256,9 @@
 
                 <LinearLayout
                     android:orientation="vertical"
-                    android:layout_height="@dimen/iccircle_layout_text_height"
+                    android:layout_height="40dp"
                     android:layout_width="wrap_content"
+                    android:layout_marginLeft="10dp"
                     android:gravity="center">
 
                     <com.neopixl.pixlui.components.textview.TextView
@@ -273,12 +269,12 @@
                         android:gravity="center"
                         android:id="@+id/ic_label_47"
                         android:textColor="@color/RcmoNormalLightText"
-                        android:textSize="@dimen/iccircle_label_text_size" />
+                        android:textSize="22sp" />
                 </LinearLayout>
 
             </LinearLayout>
 
-        </LinearLayout>
+
 
     </LinearLayout>
 

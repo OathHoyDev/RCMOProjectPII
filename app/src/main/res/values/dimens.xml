@@ -31,12 +31,12 @@
     <dimen name="iccircle_bg_height">90dp</dimen>
     <dimen name="iccircle_margin_text_top">10dp</dimen>
     <dimen name="iccircle_margin_row_top">5dp</dimen>
-    <dimen name="iccircle_label_text_size">20dp</dimen>
+    <dimen name="iccircle_label_text_size">18sp</dimen>
     <dimen name="iccircle_img_width">50dp</dimen>
     <dimen name="iccircle_img_height">50dp</dimen>
     <dimen name="iccircle_bg_width">90dp</dimen>
-    <dimen name="iccircle_parent_height">130dp</dimen>
-    <dimen name="iccircle_layout_text_height">40dp</dimen>
+    <dimen name="iccircle_parent_height">120dp</dimen>
+    <dimen name="iccircle_layout_text_height">30dp</dimen>
 
 
 </resources>
