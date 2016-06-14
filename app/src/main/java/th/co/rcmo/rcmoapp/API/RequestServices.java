@@ -10,4 +10,7 @@ public class RequestServices {
     public static String ws_chkLogin = url+"chkLogin";
     public static String ws_saveRegister = url+"saveRegister";
     public static String ws_getPlotList = url+"getPlotList";
+    public static String ws_getProduct = url+"getProduct";
+    public static String ws_getRiceProduct = url+"getRiceProduct";
+    public static String ws_getPlantGroup = url+"getPlantGroup";
 }

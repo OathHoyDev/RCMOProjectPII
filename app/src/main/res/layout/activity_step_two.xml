@@ -99,10 +99,20 @@
 
     </LinearLayout>
 
-    <include layout="@layout/plant_step_two"/>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_margin="20dp"
+        android:layout_height="match_parent">
+    <GridView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/prodGridView"
+        android:numColumns="3"
+        android:layout_gravity="center_vertical"
+        android:gravity="center"/>
 
-
-
+    </LinearLayout>
 
 
 </LinearLayout>

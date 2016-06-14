@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:pixlui="http://schemas.android.com/apk/com.neopixl.pixlui"
+    android:orientation="vertical" android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center">
+
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_height="@dimen/iccircle_bg_height"
+                    android:layout_width="@dimen/iccircle_bg_height"
+                    android:gravity="center"
+                    android:background="@drawable/action_plant_ic_circle"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:id="@+id/gridDrawBg">
+
+                    <ImageView
+                        android:id="@+id/prodImg"
+                        android:layout_height="@dimen/iccircle_img_height"
+                        android:layout_width="@dimen/iccircle_img_width"
+                        android:src="@drawable/p1_1"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_height="@dimen/iccircle_layout_text_height"
+                    android:layout_width="wrap_content"
+                    android:gravity="center">
+
+                    <com.neopixl.pixlui.components.textview.TextView
+                        pixlui:typeface="Quark-Bold.otf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="ข้าวนาปี"
+                        android:gravity="center"
+                        android:id="@+id/productLabel"
+                        android:textColor="@color/RcmoNormalLightText"
+                        android:textSize="@dimen/iccircle_label_text_size" />
+                </LinearLayout>
+         </LinearLayout>

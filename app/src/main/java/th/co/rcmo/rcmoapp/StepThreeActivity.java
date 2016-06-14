@@ -8,6 +8,6 @@ public class StepThreeActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_step_three);
+        setContentView(R.layout.activity_step_three_v2);
     }
 }

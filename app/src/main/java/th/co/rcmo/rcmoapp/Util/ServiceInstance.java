@@ -22,6 +22,10 @@ public class ServiceInstance {
     public static final String sp_userId    = "sp_user_name";
     public static final String sp_userName  = "sp_user_id";
 
+    public static final String INTENT_GROUP_ID_             = "GROUP_ID";
+    public static final String INTENT_SUB_GROUP_ID         = "SUB_GROUP_ID";
+    public static final String INTENT_SUB_OF_SUB_GROUP_ID  = "SUB_OF_SUB_GROUP_ID";
+
     public static final Map<Integer, String> productBGMap = new HashMap<>();
     static {
         // key = prod group id
@@ -94,6 +98,78 @@ public class ServiceInstance {
         productPicMap.put(47,"ic_f_4");
         productPicMap.put(48,"ic_m_4"); //not found img
         productPicMap.put(49,"ic_m_3");
+    }
+
+    public static final Map<Integer, String> productIMGMap = new HashMap<>();
+    static {
+        // key = prod Id
+        //plant 1
+        productIMGMap.put(1, "p1_1");
+        productIMGMap.put(2, "p1_1");
+        productIMGMap.put(3, "p1_1");
+        productIMGMap.put(4, "p1_1");
+        productIMGMap.put(5, "p1_1");
+        productIMGMap.put(6, "p1_1");
+        productIMGMap.put(7, "p1_1");
+        productIMGMap.put(8, "p1_2");
+        productIMGMap.put(9, "p1_3");
+        productIMGMap.put(10,"p1_4");
+        productIMGMap.put(11,"p1_5");
+        productIMGMap.put(12,"p1_6");
+        productIMGMap.put(13,"p1_7");
+        productIMGMap.put(14,"p1_8");
+
+        //plan2
+        productIMGMap.put(15,"p2_1");
+        productIMGMap.put(16,"p2_2");
+        productIMGMap.put(17,"p2_3");
+        productIMGMap.put(18,"p2_4");
+        productIMGMap.put(19,"p2_4");
+        productIMGMap.put(20,"p2_9");
+        productIMGMap.put(21,"p2_8");
+        productIMGMap.put(22,"p2_7");
+        productIMGMap.put(23,"p2_6");
+        productIMGMap.put(24,"p2_5");
+        productIMGMap.put(25,"p2_10");
+        productIMGMap.put(26,"p2_11");
+        productIMGMap.put(27,"p2_12");
+        productIMGMap.put(28,"p2_13");
+        productIMGMap.put(29,"p2_14");
+        productIMGMap.put(30,"p2_15");
+        productIMGMap.put(31,"p2_16");
+        productIMGMap.put(32,"p2_16");
+        productIMGMap.put(33,"p2_18");
+
+        //plan3
+        productIMGMap.put(34,"p3_1");
+        productIMGMap.put(35,"p3_2");
+        productIMGMap.put(36,"p3_3");
+        productIMGMap.put(37,"p3_4");
+
+        //plan4
+        productIMGMap.put(38,"p4_1");
+
+        //animal
+
+        productIMGMap.put(39,"m1");
+        productIMGMap.put(40,"m2");
+        productIMGMap.put(41,"m3");
+        productIMGMap.put(42,"m4");
+        productIMGMap.put(43,"m5");
+        productIMGMap.put(44,"m6");
+
+        //fish
+        productIMGMap.put(45,"f1");
+        productIMGMap.put(46,"f2");
+        productIMGMap.put(47,"f4");
+        productIMGMap.put(48,"f4"); //not found img
+        productIMGMap.put(49,"f3");
+
+
+        productIMGMap.put(1001,"p1_1");
+        productIMGMap.put(1002,"p2");
+        productIMGMap.put(1003,"p3");
+        productIMGMap.put(1004,"p4");
     }
 
 

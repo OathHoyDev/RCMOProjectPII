@@ -9,7 +9,10 @@ import com.androidquery.callback.AjaxStatus;
 import com.google.gson.Gson;
 
 import th.co.rcmo.rcmoapp.Module.mLogin;
+import th.co.rcmo.rcmoapp.Module.mPlantGroup;
+import th.co.rcmo.rcmoapp.Module.mProduct;
 import th.co.rcmo.rcmoapp.Module.mRegister;
+import th.co.rcmo.rcmoapp.Module.mRiceProduct;
 import th.co.rcmo.rcmoapp.Module.mStatus;
 import th.co.rcmo.rcmoapp.Module.mUserPlotList;
 import th.co.rcmo.rcmoapp.View.Dialog;
@@ -59,6 +62,12 @@ public class ResponseAPI {
                                         object = new Gson().fromJson(html, mRegister.class);
                                     }else if (url_ws.contains(RequestServices.ws_getPlotList)) {
                                         object = new Gson().fromJson(html, mUserPlotList.class);
+                                    }else if (url_ws.contains(RequestServices.ws_getProduct)) {
+                                        object = new Gson().fromJson(html, mProduct.class);
+                                    }else if (url_ws.contains(RequestServices.ws_getRiceProduct)) {
+                                        object = new Gson().fromJson(html, mRiceProduct.class);
+                                    }else if (url_ws.contains(RequestServices.ws_getPlantGroup)) {
+                                        object = new Gson().fromJson(html, mPlantGroup.class);
                                     }
                                     onCallbackAPIListener.callbackSuccess(object);
                                 } else {
