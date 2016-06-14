@@ -3,6 +3,7 @@
     xmlns:pixlui="http://schemas.android.com/apk/com.neopixl.pixlui"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:id="@+id/layoutStepTwo"
     android:background="@drawable/bg_plant">
 
 
@@ -104,6 +105,18 @@
         android:layout_width="match_parent"
         android:layout_margin="20dp"
         android:layout_height="match_parent">
+        <com.neopixl.pixlui.components.textview.TextView
+            pixlui:typeface="Quark-Bold.otf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:layout_alignParentLeft="true"
+            android:id="@+id/prodHierarchy"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/RcmoNormalLightText"
+            android:textSize="@dimen/iccircle_label_text_size" />
     <GridView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

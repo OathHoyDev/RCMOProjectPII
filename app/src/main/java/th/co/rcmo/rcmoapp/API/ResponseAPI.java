@@ -8,6 +8,7 @@ import com.androidquery.callback.AjaxCallback;
 import com.androidquery.callback.AjaxStatus;
 import com.google.gson.Gson;
 
+import th.co.rcmo.rcmoapp.Module.mGetRegister;
 import th.co.rcmo.rcmoapp.Module.mLogin;
 import th.co.rcmo.rcmoapp.Module.mPlantGroup;
 import th.co.rcmo.rcmoapp.Module.mProduct;
@@ -68,6 +69,8 @@ public class ResponseAPI {
                                         object = new Gson().fromJson(html, mRiceProduct.class);
                                     }else if (url_ws.contains(RequestServices.ws_getPlantGroup)) {
                                         object = new Gson().fromJson(html, mPlantGroup.class);
+                                    }else if (url_ws.contains(RequestServices.ws_getRegister)) {
+                                        object = new Gson().fromJson(html, mGetRegister.class);
                                     }
                                     onCallbackAPIListener.callbackSuccess(object);
                                 } else {

@@ -13,4 +13,5 @@ public class RequestServices {
     public static String ws_getProduct = url+"getProduct";
     public static String ws_getRiceProduct = url+"getRiceProduct";
     public static String ws_getPlantGroup = url+"getPlantGroup";
+    public static String ws_getRegister = url+"getRegister";
 }

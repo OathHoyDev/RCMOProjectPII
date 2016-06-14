@@ -22,7 +22,8 @@ public class ServiceInstance {
     public static final String sp_userId    = "sp_user_name";
     public static final String sp_userName  = "sp_user_id";
 
-    public static final String INTENT_GROUP_ID_             = "GROUP_ID";
+    public static final String INTENT_GROUP_ID             = "GROUP_ID";
+    public static final String INTENT_PROD_HIERARCHY       = "PROD_HIERARCHY";
     public static final String INTENT_SUB_GROUP_ID         = "SUB_GROUP_ID";
     public static final String INTENT_SUB_OF_SUB_GROUP_ID  = "SUB_OF_SUB_GROUP_ID";
 

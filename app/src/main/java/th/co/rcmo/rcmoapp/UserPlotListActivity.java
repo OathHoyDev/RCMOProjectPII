@@ -1,9 +1,13 @@
 package th.co.rcmo.rcmoapp;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,6 +20,10 @@ import com.neopixl.pixlui.components.textview.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import th.co.rcmo.rcmoapp.API.RequestServices;
+import th.co.rcmo.rcmoapp.API.ResponseAPI;
+import th.co.rcmo.rcmoapp.Module.mGetRegister;
+import th.co.rcmo.rcmoapp.Module.mLogin;
 import th.co.rcmo.rcmoapp.Module.mUserPlotList;
 import th.co.rcmo.rcmoapp.Util.ServiceInstance;
 import th.co.rcmo.rcmoapp.View.Dialog;
@@ -57,12 +65,11 @@ public class UserPlotListActivity extends Activity {
 
         //User profile
         findViewById(R.id.btnProfile).setOnClickListener(new View.OnClickListener() {
+            SharedPreferences sp = getSharedPreferences(ServiceInstance.PREF_NAME, Context.MODE_PRIVATE);
+            String userId = sp.getString(ServiceInstance.sp_userId, "0");
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(UserPlotListActivity.this, EditUserActivity.class));
-              /*  startActivity(new Intent(LoginActivity.this, WebActivity.class)
-                        .putExtra("link", "http://www.google.co.th/"));
-                        */
+                API_GetRegister(Integer.valueOf(userId));
             }
         });
 
@@ -222,6 +229,35 @@ public class UserPlotListActivity extends Activity {
 
     }
 
+    private void API_GetRegister(final int userId) {
+          //1.UserID (บังคับใส่)
+
+        new ResponseAPI(this, new ResponseAPI.OnCallbackAPIListener() {
+            @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
+            @Override
+            public void callbackSuccess(Object obj) {
+
+                mGetRegister registerInfo = (mGetRegister) obj;
+
+                List<mGetRegister.mRespBody> loginBodyLists = registerInfo.getRespBody();
+
+                if (loginBodyLists.size() != 0) {
+
+                    EditUserActivity.userInfoRespBody = loginBodyLists.get(0);
+                    startActivity(new Intent(UserPlotListActivity.this, EditUserActivity.class));
+
+                }
+
+            }
+
+            @Override
+            public void callbackError(int code, String errorMsg) {
+                Log.d("Error",errorMsg);
+            }
+        }).API_Request(true, RequestServices.ws_getRegister+
+                "?UserID=" + userId );
+
+    }
     /*
 
 "RespStatus":{"StatusID":0,"StatusMsg":"Success"},

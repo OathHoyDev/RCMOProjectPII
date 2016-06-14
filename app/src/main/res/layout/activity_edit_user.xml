@@ -113,6 +113,7 @@
                             android:inputType="text"
                             android:imeOptions="actionNext"
                             android:textSize="@dimen/textsize_normal"
+                            android:textCursorDrawable="@drawable/text_cursor"
                             android:id="@+id/inputName"/>
 
 
@@ -155,6 +156,7 @@
                             android:inputType="text"
                             android:imeOptions="actionNext"
                             android:textSize="@dimen/textsize_normal"
+                            android:textCursorDrawable="@drawable/text_cursor"
                             android:id="@+id/inputSirName"/>
 
 
@@ -197,6 +199,7 @@
                             android:inputType="text"
                             android:imeOptions="actionDone"
                             android:textSize="@dimen/textsize_normal"
+                            android:textCursorDrawable="@drawable/text_cursor"
                             android:id="@+id/inputUsername"/>
 
 
@@ -222,7 +225,7 @@
                             android:textSize="@dimen/textsize_normal"
                             android:id="@+id/labelEmail"/>
 
-                        <com.neopixl.pixlui.components.edittext.EditText
+                        <com.neopixl.pixlui.components.textview.TextView
                             pixlui:typeface="Quark-Light.otf"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -236,7 +239,7 @@
                             android:gravity="left"
                             android:padding="5dp"
                             android:layout_weight="1"
-                            android:inputType="text"
+
 
                             android:textSize="@dimen/textsize_normal"
                             android:id="@+id/inputEmail"/>
@@ -260,7 +263,7 @@
                         android:focusable="true"
                         android:layout_marginRight="40dp"
                         android:layout_marginLeft="40dp"
-                        android:id="@+id/btn_register"/>
+                        android:id="@+id/btnSave"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"

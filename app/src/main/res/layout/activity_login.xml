@@ -110,6 +110,7 @@
                         android:padding="5dp"
                         android:inputType="text"
                         android:textSize="@dimen/textsize_normal"
+                        android:textCursorDrawable="@drawable/text_cursor"
                         android:id="@+id/inputUsername"/>
 
                     <com.neopixl.pixlui.components.edittext.EditText
@@ -128,6 +129,7 @@
                         android:padding="5dp"
                         android:inputType="textPassword"
                         android:textSize="@dimen/textsize_normal"
+                        android:textCursorDrawable="@drawable/text_cursor"
                         android:id="@+id/inputPassword"/>
 
                     <com.neopixl.pixlui.components.textview.TextView

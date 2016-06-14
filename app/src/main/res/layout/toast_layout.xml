@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:pixlui="http://schemas.android.com/apk/com.neopixl.pixlui"
+    android:id="@+id/toast_layout_root"
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:padding="8dp"
+    android:background="@color/RcmoToastTranBG"
+    >
+    <com.neopixl.pixlui.components.textview.TextView
+        pixlui:typeface="Quark-Bold.otf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="กลุ่มพืช"
+        android:gravity="center"
+        android:id="@+id/toast_label"
+        android:textColor="@color/RcmoNormalLightText"
+        android:textSize="17sp" />
+</LinearLayout>

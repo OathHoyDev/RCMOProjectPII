@@ -48,7 +48,7 @@
     <color name="RcmoStepTabTranBG">#4DFFFFFF</color>
     <color name="RcmoLineTabBG">#97dbf8</color>
 
-
+    <color name="RcmoToastTranBG">#99000000</color>
 
     <!-- tran code %
 100% — FF

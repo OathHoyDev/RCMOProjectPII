@@ -28,19 +28,47 @@ public class StepTwoActivity extends Activity {
     public static List<mProduct.mRespBody> productInfoLists =  new ArrayList<>();
     public static List<mPlantGroup.mRespBody> plantGroupLists =  new ArrayList<>();
     public static List<mRiceProduct.mRespBody> riceProductGroupLists =  new ArrayList<>();
-
+    int groupId =0;
+    String prodHierarchyStr = "";
     GridView  productGridView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_step_two);
 
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            groupId = bundle.getInt(ServiceInstance.INTENT_GROUP_ID);
+            prodHierarchyStr = bundle.getString(ServiceInstance.INTENT_PROD_HIERARCHY);
+            if(prodHierarchyStr == null){prodHierarchyStr="";}
+        }
+
+  Log.d("Test","------------------>"+prodHierarchyStr);
         setUI();
         setAction();
 
     }
 
     private void setUI() {
+        LinearLayout mainLayout  =     (LinearLayout)findViewById(R.id.layoutStepTwo);
+        TextView titleText       =      (TextView)findViewById(R.id.titleLable);
+        TextView prodHierarchy   =      (TextView)findViewById(R.id.prodHierarchy);
+
+        if(groupId == 1){
+            prodHierarchy.setText(prodHierarchyStr);
+            titleText.setText("ชนิดพืช");
+            prodHierarchy.setText(prodHierarchyStr);
+            mainLayout.setBackgroundResource(R.drawable.bg_plant);
+        }else if(groupId == 2){
+            prodHierarchy.setText("");
+            titleText.setText("ชนิดปศุสัตว์");
+            mainLayout.setBackgroundResource(R.drawable.bg_meat);
+        }else if(groupId == 3){
+            prodHierarchy.setText("");
+            titleText.setText("ชนิดประมง");
+            mainLayout.setBackgroundResource(R.drawable.bg_fish);
+        }
+
         productGridView = (GridView) findViewById(R.id.prodGridView);
 
         if(productInfoLists!=null && productInfoLists.size()>0){
@@ -116,6 +144,7 @@ public class StepTwoActivity extends Activity {
 
             final int pid =  productBodyResp.getPrdID();
             final int productGroupId = productBodyResp.getPrdGrpID();
+            final String productName = productBodyResp.getPrdName();
 
             Log.d("TEST"," : pid ->> "+pid);
             Log.d("TEST"," : productGroupId ->> "+productGroupId);
@@ -146,7 +175,7 @@ public class StepTwoActivity extends Activity {
                     @Override
                     public void onClick(View v) {
                         if(productGroupId == 1 && (pid==1||pid==2)) {
-                            API_GetRiceProduct(pid,0);
+                            API_GetRiceProduct(pid,0,prodHierarchyStr+"< "+productName);
                         }else{
                             startActivity(new Intent(StepTwoActivity.this, StepThreeActivity.class));
 
@@ -196,6 +225,8 @@ public class StepTwoActivity extends Activity {
 
             mPlantGroup.mRespBody productBodyResp = getItem(position);
            final int plantGroupId =   productBodyResp.getPlantGrpID();
+            final String prodName =   productBodyResp.getPlantGrpName();
+
 
 
 
@@ -216,10 +247,13 @@ public class StepTwoActivity extends Activity {
                 h.prodBg.setBackgroundResource(R.drawable.action_plant_ic_circle);
 
             convertView.findViewById(R.id.gridDrawBg).setOnClickListener(new View.OnClickListener() {
+
+
+
                 @Override
                 public void onClick(View v) {
 
-                   API_GetProduct(1,plantGroupId);
+                   API_GetProduct(1,plantGroupId,"< "+prodName+" ");
                 }
             });
 
@@ -286,7 +320,7 @@ public class StepTwoActivity extends Activity {
                 public void onClick(View v) {
 
                     startActivity(new Intent(StepTwoActivity.this, StepThreeActivity.class)
-                            .putExtra(ServiceInstance.INTENT_GROUP_ID_,pid));
+                            .putExtra(ServiceInstance.INTENT_GROUP_ID,pid));
                 }
             });
 
@@ -306,10 +340,11 @@ public class StepTwoActivity extends Activity {
 
 
 
-    private void API_GetRiceProduct(final int subId,final int subOfSubId) {
+    private void API_GetRiceProduct(final int subId,final int subOfSubId,final String hierarchyStr) {
         Log.d("TAG", "-->API_GetRiceProduct");
         Log.d("TAG", "subId-->"+subId);
         Log.d("TAG", "SubsubId-->"+subOfSubId);
+        Log.d("TAG", "hierarchyStr-->"+hierarchyStr);
 
          /*
           1.RiceTypeID (ไม่บังคับใส่)
@@ -324,11 +359,12 @@ public class StepTwoActivity extends Activity {
 
                 mRiceProduct mProdist = (mRiceProduct) obj;
                 List<mRiceProduct.mRespBody> productLists = mProdist.getRespBody();
-
                 if (productLists.size() != 0) {
                     productLists.get(0).toString();
                     StepTwoActivity.riceProductGroupLists = productLists;
-                    startActivity(new Intent(StepTwoActivity.this, StepTwoActivity.class));
+                    startActivity(new Intent(StepTwoActivity.this, StepTwoActivity.class)
+                            .putExtra(ServiceInstance.INTENT_GROUP_ID,1)
+                            .putExtra(ServiceInstance.INTENT_PROD_HIERARCHY,hierarchyStr));
                 }
             }
             @Override
@@ -340,11 +376,12 @@ public class StepTwoActivity extends Activity {
 
     }
 
-//Animal && Fish
-    private void API_GetProduct(final int prdGrpID,int plantGrpID) {
+
+    private void API_GetProduct(final int prdGrpID, int plantGrpID, final String hierarchyStr) {
         Log.d("TAG", "-->API_GetProduct");
         Log.d("TAG", "prdGrpID-->"+prdGrpID);
         Log.d("TAG", "plantGrpID-->"+plantGrpID);
+        Log.d("TAG", "hierarchyStr-->"+hierarchyStr);
 
          /*
         1.PrdGrpID (ไม่บังคับใส่)
@@ -371,7 +408,9 @@ public class StepTwoActivity extends Activity {
                 if (productLists.size() != 0) {
                     productLists.get(0).toString();
                     StepTwoActivity.productInfoLists = productLists;
-                    startActivity(new Intent(StepTwoActivity.this, StepTwoActivity.class));
+                    startActivity(new Intent(StepTwoActivity.this, StepTwoActivity.class)
+                            .putExtra(ServiceInstance.INTENT_GROUP_ID,prdGrpID)
+                            .putExtra(ServiceInstance.INTENT_PROD_HIERARCHY,hierarchyStr));
                 }
             }
             @Override
@@ -385,38 +424,4 @@ public class StepTwoActivity extends Activity {
     }
 
 
-    /**
-     *
-     */
-
-        /*
-        if(groupId == 1) {
-            subGroupId = getIntent().getExtras().getInt("SUB_GROUP_ID");
-
-            if(subGroupId == 1) {
-                subOfSubGroupId = getIntent().getExtras().getInt("SUB_OF_SUB_GROUP_ID");
-
-                if(subOfSubGroupId == 1){
-
-                }else if(subOfSubGroupId == 2){
-
-                }
-
-
-            }else if(subGroupId == 2){
-                API_GetProduct(1,2);
-            }else if(subGroupId == 3){
-                API_GetProduct(1,3);
-            }else if(subGroupId == 4){
-                API_GetProduct(1,4);
-            }else{
-                API_GetProduct(1,0);
-            }
-        }else if(groupId == 2){
-            API_GetProduct(2,0);
-        }else if(groupId == 3){
-            API_GetProduct(3,0);
-
-        }
-*/
 }
