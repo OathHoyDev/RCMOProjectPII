@@ -3,8 +3,8 @@
     xmlns:pixlui="http://schemas.android.com/apk/com.neopixl.pixlui"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/mainLayoutStepThree"
-    android:background="@drawable/bg_total">
+    android:id="@+id/mainLayoutFishStepThree"
+    android:background="@drawable/bg_fish">
 
 
 
@@ -118,15 +118,15 @@
             android:layout_marginRight="40dp"
             android:layout_marginBottom="40dp"
             android:paddingTop="10dp"
-            android:paddingBottom="30dp"
-           >
+            android:paddingBottom="10dp"
+            >
 
 
             <LinearLayout
                 android:orientation="vertical"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
-                android:layout_weight="2"
+
                 android:layout_height="match_parent"
                 android:gravity="center">
                 <com.neopixl.pixlui.components.textview.TextView
@@ -134,10 +134,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
-                    android:text="สุกรขุน"
+                    android:text="ปลาดุก"
                     android:textColor="@color/RcmoNormalDarkText"
                     android:paddingLeft="15dp"
-                    android:textSize="@dimen/textsize_xxxxxlarge"
+                    android:textSize="@dimen/textsize_xxxlarge"
                     android:id="@+id/labelProduct">
                 </com.neopixl.pixlui.components.textview.TextView>
 
@@ -146,7 +146,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
-                    android:text="กล่มปศุสัตว์"
+                    android:text="กลุ่มประมง"
                     android:textColor="@color/RcmoSubDetailText"
                     android:paddingLeft="15dp"
                     android:layout_marginTop="@dimen/margin_normal"
@@ -159,23 +159,24 @@
 
             <LinearLayout
                 android:orientation="vertical"
-                android:layout_weight="1"
+
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center|top"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginRight="20dp"
+                android:layout_gravity="top"
                 >
                 <com.neopixl.pixlui.components.textview.TextView
                     pixlui:typeface="Quark-Bold.otf"
                     android:layout_width="match_parent"
-                    android:layout_height="25dp"
+                    android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:textStyle="bold"
-                    android:text="จำนวนเมื่อเริ่มเลี้ยง"
+                    android:text="ขนาดแปลงที่ดิน"
                     android:textColor="@color/RcmoNormalDarkText"
-                    android:textSize="@dimen/textsize_xlarge"
+                    android:textSize="@dimen/textsize_large"
                     android:id="@+id/labelnumberOfstart">
                 </com.neopixl.pixlui.components.textview.TextView>
 
@@ -185,8 +186,8 @@
                     android:layout_height="wrap_content"
                     android:paddingLeft="15dp"
                     android:textStyle="bold"
-                    android:layout_marginTop="@dimen/margin_large"
-                    android:hint="ตัว"
+                    android:layout_marginTop="@dimen/margin_normal"
+                    android:hint="เนื้อที่ต่อ 1 กระชัง(ตารางเมตร)"
                     android:textColor="@color/RcmoNormalDarkText"
                     android:textColorHint="@color/RcmoHintText"
                     android:imeOptions="actionNext"
@@ -195,7 +196,7 @@
                     android:padding="5dp"
                     android:inputType="text"
                     android:textCursorDrawable="@drawable/text_cursor"
-                    android:textSize="@dimen/textsize_xlarge"
+                    android:textSize="@dimen/textsize_large"
                     android:id="@+id/inputNumberOfstart"/>
 
                 <com.neopixl.pixlui.components.textview.TextView
@@ -203,11 +204,43 @@
                     android:layout_width="match_parent"
                     android:layout_height="25dp"
                     android:gravity="center_vertical"
-                    android:layout_marginTop="@dimen/margin_large"
+                    android:layout_marginTop="@dimen/margin_normal"
                     android:textStyle="bold"
-                    android:text="น้ำหนักเฉลี่ยเมื่อเลียง ต่อ 1 ตัว"
+                    android:text="จำนวนกระชังที่เลี้ยงในรุ่นนี้"
                     android:textColor="@color/RcmoNormalDarkText"
-                    android:textSize="@dimen/textsize_xlarge"
+                    android:textSize="@dimen/textsize_large"
+                    android:id="@+id/labelPricePerUnit1">
+                </com.neopixl.pixlui.components.textview.TextView>
+
+                <com.neopixl.pixlui.components.edittext.EditText
+                    pixlui:typeface="Quark-Bold.otf"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="15dp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="@dimen/margin_normal"
+                    android:hint="กระชัง"
+                    android:textColor="@color/RcmoNormalDarkText"
+                    android:textColorHint="@color/RcmoHintText"
+                    android:imeOptions="actionNext"
+                    android:background="@color/RcmoLightGrayBG"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:inputType="text"
+                    android:textCursorDrawable="@drawable/text_cursor"
+                    android:textSize="@dimen/textsize_large"
+                    android:id="@+id/inputPricePerUnit1"/>
+
+                <com.neopixl.pixlui.components.textview.TextView
+                    pixlui:typeface="Quark-Bold.otf"
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="@dimen/margin_normal"
+                    android:textStyle="bold"
+                    android:text="จำนวนกระชังที่เลี้ยงในรุ่นนี้"
+                    android:textColor="@color/RcmoNormalDarkText"
+                    android:textSize="@dimen/textsize_large"
                     android:id="@+id/labelPricePerUnit">
                 </com.neopixl.pixlui.components.textview.TextView>
 
@@ -217,8 +250,8 @@
                     android:layout_height="wrap_content"
                     android:paddingLeft="15dp"
                     android:textStyle="bold"
-                    android:layout_marginTop="@dimen/margin_large"
-                    android:hint="บาท"
+                    android:layout_marginTop="@dimen/margin_normal"
+                    android:hint="กระชัง"
                     android:textColor="@color/RcmoNormalDarkText"
                     android:textColorHint="@color/RcmoHintText"
                     android:imeOptions="actionNext"
@@ -234,11 +267,11 @@
                     pixlui:typeface="Quark-Bold.otf"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_large"
+                    android:layout_marginTop="@dimen/margin_normal"
                     android:textStyle="bold"
                     android:text="ตำแหน่งแปลงทีดิน"
                     android:textColor="@color/RcmoNormalDarkText"
-                    android:textSize="@dimen/textsize_xlarge"
+                    android:textSize="@dimen/textsize_large"
                     android:id="@+id/labelLocation">
                 </com.neopixl.pixlui.components.textview.TextView>
                 <com.neopixl.pixlui.components.textview.TextView
@@ -249,7 +282,7 @@
                     android:layout_height="wrap_content"
                     android:paddingLeft="15dp"
                     android:textStyle="bold"
-                    android:layout_marginTop="@dimen/margin_large"
+                    android:layout_marginTop="@dimen/margin_normal"
                     android:hint="จังหวัด"
                     android:textColor="@color/RcmoNormalDarkText"
                     android:textColorHint="@color/RcmoHintText"
@@ -259,7 +292,7 @@
                     android:padding="5dp"
                     android:inputType="text"
                     android:textCursorDrawable="@drawable/text_cursor"
-                    android:textSize="@dimen/textsize_xlarge"
+                    android:textSize="@dimen/textsize_large"
                     android:id="@+id/inputprovice"/>
 
                 <LinearLayout
@@ -277,7 +310,7 @@
                         android:layout_height="wrap_content"
                         android:paddingLeft="15dp"
                         android:textStyle="bold"
-                        android:layout_marginTop="@dimen/margin_xnormal"
+                        android:layout_marginTop="@dimen/margin_normal"
                         android:hint="อำเภอ"
                         android:textColor="@color/RcmoNormalDarkText"
                         android:textColorHint="@color/RcmoHintText"
@@ -285,11 +318,11 @@
                         android:background="@color/RcmoLightGrayBG"
                         android:gravity="center"
                         android:padding="5dp"
-                        android:layout_marginRight="3dp"
+                        android:layout_marginRight="1dp"
                         android:inputType="text"
                         android:textCursorDrawable="@drawable/text_cursor"
-                        android:textSize="@dimen/textsize_xlarge"
-                        android:editable="false"
+                        android:textSize="@dimen/textsize_large"
+
                         android:id="@+id/inputAmphoe"/>
 
                     <com.neopixl.pixlui.components.textview.TextView
@@ -297,11 +330,11 @@
                         pixlui:typeface="Quark-Bold.otf"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="3dp"
+                        android:layout_marginLeft="1dp"
                         android:paddingLeft="15dp"
                         android:layout_weight="1"
                         android:textStyle="bold"
-                        android:layout_marginTop="@dimen/margin_xnormal"
+                        android:layout_marginTop="@dimen/margin_normal"
                         android:hint="ตำบล"
                         android:textColor="@color/RcmoNormalDarkText"
                         android:textColorHint="@color/RcmoHintText"
@@ -317,21 +350,24 @@
 
 
             </LinearLayout>
+
+
+
             <LinearLayout
                 android:orientation="vertical"
-                android:layout_weight="2.2"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:gravity="center"
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
-               >
+                >
 
                 <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="5dp"
+
                     >
 
 
@@ -341,6 +377,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:paddingLeft="15dp"
+
                         android:textStyle="bold"
                         android:layout_marginTop="10dp"
                         android:text="บันทึก"
@@ -377,20 +414,20 @@
 
 
                 </LinearLayout>
-                </LinearLayout>
+            </LinearLayout>
 
 
-</LinearLayout>
+        </LinearLayout>
 
 
 
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_height="110dp"
-            android:layout_width="110dp"
+            android:layout_height="90dp"
+            android:layout_width="90dp"
             android:gravity="center"
-            android:background="@drawable/action_animal_ic_gr_circle"
+            android:background="@drawable/action_fish_ic_gr_circle"
             android:clickable="true"
             android:focusable="true"
             android:layout_marginLeft="20dp"
@@ -399,9 +436,9 @@
 
             <ImageView
                 android:id="@+id/prodImg"
-                android:layout_height="70dp"
-                android:layout_width="70dp"
-                android:src="@drawable/m1"
+                android:layout_height="50dp"
+                android:layout_width="50dp"
+                android:src="@drawable/f1"
                 />
         </LinearLayout>
     </RelativeLayout>

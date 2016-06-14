@@ -43,7 +43,7 @@ public class StepTwoActivity extends Activity {
             if(prodHierarchyStr == null){prodHierarchyStr="";}
         }
 
-  Log.d("Test","------------------>"+prodHierarchyStr);
+
         setUI();
         setAction();
 
@@ -177,7 +177,8 @@ public class StepTwoActivity extends Activity {
                         if(productGroupId == 1 && (pid==1||pid==2)) {
                             API_GetRiceProduct(pid,0,prodHierarchyStr+"< "+productName);
                         }else{
-                            startActivity(new Intent(StepTwoActivity.this, StepThreeActivity.class));
+                            startActivity(new Intent(StepTwoActivity.this, StepThreeActivity.class)
+                                    .putExtra(ServiceInstance.INTENT_GROUP_ID,productGroupId));
 
                         }
                     }
@@ -320,7 +321,7 @@ public class StepTwoActivity extends Activity {
                 public void onClick(View v) {
 
                     startActivity(new Intent(StepTwoActivity.this, StepThreeActivity.class)
-                            .putExtra(ServiceInstance.INTENT_GROUP_ID,pid));
+                            .putExtra(ServiceInstance.INTENT_GROUP_ID,1));
                 }
             });
 

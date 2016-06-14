@@ -11,14 +11,17 @@
     <dimen name="textsize_xlarge">18sp</dimen>
     <dimen name="textsize_xxlarge">20sp</dimen>
     <dimen name="textsize_xxxlarge">23sp</dimen>
+    <dimen name="textsize_xxxxxlarge">25dp</dimen>
 
 
     <dimen name="margin_normal">3dp</dimen>
+    <dimen name="margin_xnormal">6dp</dimen>
     <dimen name="margin_large">9dp</dimen>
     <dimen name="margin_xlarge">12dp</dimen>
     <dimen name="margin_xxlarge">15dp</dimen>
     <dimen name="margin_xxxlarge">18dp</dimen>
     <dimen name="margin_xxxxlarge">20dp</dimen>
+
 
     <dimen name="radius">5dp</dimen>
     <dimen name="radius_medium">10dp</dimen>
