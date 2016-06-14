@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,9 +34,6 @@ public class EditUserActivity extends Activity {
         setUI();
         setAction();
 
-
-
-
     }
 
 
@@ -56,6 +52,7 @@ public class EditUserActivity extends Activity {
     }
     private void setAction() {
 
+
         findViewById(R.id.backBtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,10 +64,14 @@ public class EditUserActivity extends Activity {
         findViewById(R.id.textLinkChangePass).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(EditUserActivity.this, ChangePasswordActivity.class));
-              /*  startActivity(new Intent(LoginActivity.this, WebActivity.class)
-                        .putExtra("link", "http://www.google.co.th/"));
-                        */
+
+                startActivity(new Intent(EditUserActivity.this, ChangePasswordActivity.class)
+                     .putExtra("fname",userInfoRespBody.getUserFirstName())
+                     .putExtra("lname",userInfoRespBody.getUserLastName())
+                      .putExtra("email",userInfoRespBody.getUserLastName())
+                );
+
+
             }
         });
 
@@ -111,6 +112,8 @@ public class EditUserActivity extends Activity {
                 SharedPreferences.Editor editor = sp.edit();
                 editor.putString(ServiceInstance.sp_userId, "0");
                 editor.commit();
+
+                toastDisplayCustom_API("ออกจากระบบสำเร็จ");
 
                 Intent  i= new Intent(EditUserActivity.this, LoginActivity.class);
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -171,36 +174,15 @@ public class EditUserActivity extends Activity {
 
                 if (mRegisterBodyLists.size() != 0) {
 
-                    LayoutInflater inflater = getLayoutInflater();
-                    View layout = inflater.inflate(R.layout.toast_layout,
-                            (ViewGroup) findViewById(R.id.toast_layout_root));
-
-                    TextView text = (TextView) layout.findViewById(R.id.toast_label);
-                    text.setText("ปรับปรุงข้อมูลผู้ใช้งานสำเร็จ");
-
-                    Toast toast = new Toast(getApplicationContext());
-                    toast.setGravity(Gravity.CENTER, 0, 0);
-                    toast.setDuration(Toast.LENGTH_LONG);
-                    toast.setView(layout);
-                    toast.show();
+                    toastDisplayCustom_API("ปรับปรุงข้อมูลผู้ใช้งานสำเร็จ");
                 }
 
             }
 
             @Override
             public void callbackError(int code, String errorMsg) {
-                LayoutInflater inflater = getLayoutInflater();
-                View layout = inflater.inflate(R.layout.toast_layout,
-                        (ViewGroup) findViewById(R.id.toast_layout_root));
 
-                TextView text = (TextView) layout.findViewById(R.id.toast_label);
-                text.setText("ไม่สามารถปรับปรุงข้อมูลผู้ใชได้้");
-
-                Toast toast = new Toast(getApplicationContext());
-                toast.setGravity(Gravity.CENTER, 0, 0);
-                toast.setDuration(Toast.LENGTH_LONG);
-                toast.setView(layout);
-                toast.show();
+                toastDisplayCustom_API("ไม่สามารถปรับปรุงข้อมูลผู้ใช้ได้");
             }
         }).API_Request(true, RequestServices.ws_saveRegister +
                 "?SaveFlag=" + 2 +
@@ -214,4 +196,18 @@ public class EditUserActivity extends Activity {
         );
     }
 
+    private  void toastDisplayCustom_API(String msg){
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.toast_layout,
+                (ViewGroup) findViewById(R.id.toast_layout_root));
+        Toast toast = new Toast(getApplicationContext());
+        toast.setGravity(Gravity.BOTTOM, 0, 0);
+        toast.setDuration(Toast.LENGTH_LONG);
+        toast.setView(layout);
+
+        TextView text = (TextView) layout.findViewById(R.id.toast_label);
+        text.setText(msg);
+
+        toast.show();
+    }
 }

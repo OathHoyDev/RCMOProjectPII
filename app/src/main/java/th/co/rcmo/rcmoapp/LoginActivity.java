@@ -138,12 +138,7 @@ public class LoginActivity extends Activity {
                     editor.putString(ServiceInstance.sp_userId, loginBodyLists.get(0).getUserID());
                     editor.commit();
 
-//                    {"RespStatus":{"StatusID":2,"StatusMsg":"ไม่พบข้อมูล"},"RespBody":[]}
-/*
-                    startActivity(new Intent(LoginActivity.this, UserPlotListActivity.class)
-                          .putExtra("userId", loginBodyLists.get(0).getUserID()));
-                    finish();
-                    */
+
                     API_GetUserPlot(loginBodyLists.get(0).getUserID());
                 }
 
@@ -151,7 +146,7 @@ public class LoginActivity extends Activity {
 
             @Override
             public void callbackError(int code, String errorMsg) {
-                Log.d("Erroo",errorMsg);
+                Log.d("Error",errorMsg);
             }
         }).API_Request(true, RequestServices.ws_chkLogin +
                 "?UserLogin=" + username + "&UserPwd=" + ServiceInstance.md5(password) +

@@ -19,8 +19,9 @@ import java.util.Map;
 public class ServiceInstance {
     public static final int version = Build.VERSION.SDK_INT;
     public static final String PREF_NAME = "RCMO";
-    public static final String sp_userId    = "sp_user_name";
-    public static final String sp_userName  = "sp_user_id";
+    public static final String sp_userId    = "sp_user_id";
+    public static final String sp_userName  = "sp_user_name";
+
 
     public static final String INTENT_GROUP_ID             = "GROUP_ID";
     public static final String INTENT_PROD_HIERARCHY       = "PROD_HIERARCHY";
@@ -36,7 +37,7 @@ public class ServiceInstance {
     }
 
     public static final Map<Integer, String> productPicMap = new HashMap<>();
-        static {
+    static {
         // key = prod Id
         //plant 1
         productPicMap.put(1, "ic_p_1_1");
@@ -217,7 +218,7 @@ public class ServiceInstance {
                 try {
                     SimpleDateFormat format_year = new SimpleDateFormat("yyyy");
                     year = Integer.valueOf(format_year.format(dateLogin.getTime()));
-                  //  Log.i("Instance", "formatStrDate : " + dateLogin + "//" + dateLogin.getDate() + "//" + dateLogin.getYear()+"//"+year);
+                    //  Log.i("Instance", "formatStrDate : " + dateLogin + "//" + dateLogin.getDate() + "//" + dateLogin.getYear()+"//"+year);
                 } catch (Exception e) {
                     year = dateLogin.getYear();
                 }

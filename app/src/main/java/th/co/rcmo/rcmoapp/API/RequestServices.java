@@ -14,4 +14,7 @@ public class RequestServices {
     public static String ws_getRiceProduct = url+"getRiceProduct";
     public static String ws_getPlantGroup = url+"getPlantGroup";
     public static String ws_getRegister = url+"getRegister";
+    public static String ws_savePlotDetail = url+"savePlotDetail";
+    public static String ws_deletePlot = url+"deletePlot";
+    public static String ws_updateUserPlotSeq = url+"updateUserPlotSeq";
 }

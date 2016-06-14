@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import com.neopixl.pixlui.components.textview.TextView;
 import java.util.ArrayList;
@@ -22,8 +23,10 @@ import java.util.List;
 
 import th.co.rcmo.rcmoapp.API.RequestServices;
 import th.co.rcmo.rcmoapp.API.ResponseAPI;
+import th.co.rcmo.rcmoapp.Module.mDeletePlot;
 import th.co.rcmo.rcmoapp.Module.mGetRegister;
 import th.co.rcmo.rcmoapp.Module.mLogin;
+import th.co.rcmo.rcmoapp.Module.mSavePlotDetail;
 import th.co.rcmo.rcmoapp.Module.mUserPlotList;
 import th.co.rcmo.rcmoapp.Util.ServiceInstance;
 import th.co.rcmo.rcmoapp.View.Dialog;
@@ -122,6 +125,8 @@ public class UserPlotListActivity extends Activity {
             }
 
 
+
+
             mUserPlotList.mRespBody  respBody =  getItem(position);
             Holder h = new Holder();
 
@@ -192,16 +197,14 @@ public class UserPlotListActivity extends Activity {
             });
 
 
-
-
             //On Click Delete Action
             convertView.findViewById(R.id.btnDeleete).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Log.d("On remove", "remove position : "+position);
+                    API_DeletePlot(userPlotList.get(position).getPlotID());
                     removeItem(position);
                     notifyDataSetChanged();
-
                 }
             });
 
@@ -211,11 +214,32 @@ public class UserPlotListActivity extends Activity {
                 public void onClick(View v) {
                     Log.d("On Copy", " position : "+position);
 
+                    mUserPlotList.mRespBody copySource =  userPlotList.get(position);
+                    mUserPlotList.mRespBody copyDestination = new mUserPlotList.mRespBody();
+                    try {
+                         copyDestination =(mUserPlotList.mRespBody) copySource.clone();
+                    }catch (Exception e){
+                        Log.d("Error",e.getMessage());
+                    }
+
+
+                    userPlotList.add(position+1,copyDestination);
+                    notifyDataSetChanged();
+                    String listSeq = "";
+                    for(int i =(position+1) ; i< userPlotList.size();i++){
+                           Log.d("Seq" ,"Seq     ----------->"+userPlotList.get(i).getSeqNo());
+
+                        listSeq+=","+userPlotList.get(i).getSeqNo();
+                        if(i+1 == userPlotList.size() ){
+                            listSeq+=userPlotList.get(i).getSeqNo();
+                        }
+                        Log.d("TEST","SeqList : "+listSeq);
+
+                        //insert and update
+                    }
 
                 }
             });
-
-
 
             return convertView;
         }
@@ -258,6 +282,119 @@ public class UserPlotListActivity extends Activity {
                 "?UserID=" + userId );
 
     }
+
+    private void API_DeletePlot(final int plotID) {
+/**
+  1.PlotID (บังคับใส่)
+ 2.ImeiCode
+ */
+        new ResponseAPI(this, new ResponseAPI.OnCallbackAPIListener() {
+            @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
+            @Override
+            public void callbackSuccess(Object obj) {
+
+                mDeletePlot registerInfo = (mDeletePlot) obj;
+
+                List<mDeletePlot.mRespBody> loginBodyLists = registerInfo.getRespBody();
+
+                if (loginBodyLists.size() != 0) {
+
+                }
+            }
+            @Override
+            public void callbackError(int code, String errorMsg) {
+                Log.d("Error",errorMsg);
+            }
+        }).API_Request(true, RequestServices.ws_deletePlot+
+                "?PlotID=" + plotID+
+                "&ImeiCode="+ServiceInstance.GetDeviceID(UserPlotListActivity.this));
+
+    }
+
+    private void API_updateUserPlotSeq( int userID,int seqNo) {
+/**
+ 1.UserID
+ 2.SeqPlotID List ,
+ */
+        new ResponseAPI(this, new ResponseAPI.OnCallbackAPIListener() {
+            @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
+            @Override
+            public void callbackSuccess(Object obj) {
+
+                mDeletePlot registerInfo = (mDeletePlot) obj;
+
+                List<mDeletePlot.mRespBody> loginBodyLists = registerInfo.getRespBody();
+
+                if (loginBodyLists.size() != 0) {
+
+                }
+            }
+            @Override
+            public void callbackError(int code, String errorMsg) {
+                Log.d("Error",errorMsg);
+            }
+        }).API_Request(true, RequestServices.ws_updateUserPlotSeq+
+                "?UserID=" + userID+
+                "&SeqPlotID="+seqNo);
+
+    }
+
+
+    private void API_SavePlotDetail(mUserPlotList.mRespBody userPlotInfo) {
+
+        new ResponseAPI(this, new ResponseAPI.OnCallbackAPIListener() {
+            @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
+            @Override
+            public void callbackSuccess(Object obj) {
+
+                mSavePlotDetail savePlotDetailInfo = (mSavePlotDetail) obj;
+
+                List<mSavePlotDetail.mRespBody> savePlotDetailBodyLists = savePlotDetailInfo.getRespBody();
+
+                if (savePlotDetailBodyLists.size() != 0) {
+
+                   // EditUserActivity.userInfoRespBody = loginBodyLists.get(0);
+                    //startActivity(new Intent(UserPlotListActivity.this, EditUserActivity.class));
+                }
+
+            }
+            @Override
+            public void callbackError(int code, String errorMsg) {
+                Log.d("Error", errorMsg);
+            }
+        }).API_Request(true, RequestServices.ws_savePlotDetail +
+
+                "?SaveFlag=" + 1 +
+                "&UserID=" +
+                "&PlotID=" +
+                "&PrdID=" + userPlotInfo.getPrdID() +
+                "&PrdGrpID=" + userPlotInfo.getPrdGrpID() +
+                "&PlotRai=" +
+                "&PondRai=" +
+                "&PondNgan=" +
+                "&PondWa=" +
+                "&PondMeter=" +
+                "&CoopMeter=" +
+                "&CoopNumber=" +
+                "&TamCode=" +
+                "&AmpCode=" +
+                "&ProvCode=" +
+                "&AnimalNumber=" + userPlotInfo.getAnimalNumberValue() +
+                "&AnimalWeight=" + userPlotInfo.getAnimalWeightValue() +
+                "&AnimalPrice=" + userPlotInfo.getAnimalPriceValue() +
+                "&FisheryType=" +
+                "&FisheryNumType=" +
+                "&FisheryNumber=" + userPlotInfo.getFisheryNumberValue() +
+                "&FisheryWeight=" +
+                "&ImeiCode=" +
+                "&VarName=" +
+                "&VarValue=" +
+                "&CalResult=" + userPlotInfo.getCalResult()
+        );
+    }
+
+
+
     /*
 
 "RespStatus":{"StatusID":0,"StatusMsg":"Success"},

@@ -8,13 +8,16 @@ import com.androidquery.callback.AjaxCallback;
 import com.androidquery.callback.AjaxStatus;
 import com.google.gson.Gson;
 
+import th.co.rcmo.rcmoapp.Module.mDeletePlot;
 import th.co.rcmo.rcmoapp.Module.mGetRegister;
 import th.co.rcmo.rcmoapp.Module.mLogin;
 import th.co.rcmo.rcmoapp.Module.mPlantGroup;
 import th.co.rcmo.rcmoapp.Module.mProduct;
 import th.co.rcmo.rcmoapp.Module.mRegister;
 import th.co.rcmo.rcmoapp.Module.mRiceProduct;
+import th.co.rcmo.rcmoapp.Module.mSavePlotDetail;
 import th.co.rcmo.rcmoapp.Module.mStatus;
+import th.co.rcmo.rcmoapp.Module.mUpdateUserPlotSeq;
 import th.co.rcmo.rcmoapp.Module.mUserPlotList;
 import th.co.rcmo.rcmoapp.View.Dialog;
 
@@ -71,6 +74,12 @@ public class ResponseAPI {
                                         object = new Gson().fromJson(html, mPlantGroup.class);
                                     }else if (url_ws.contains(RequestServices.ws_getRegister)) {
                                         object = new Gson().fromJson(html, mGetRegister.class);
+                                    }else if (url_ws.contains(RequestServices.ws_savePlotDetail)) {
+                                        object = new Gson().fromJson(html, mSavePlotDetail.class);
+                                    }else if (url_ws.contains(RequestServices.ws_deletePlot)) {
+                                        object = new Gson().fromJson(html, mDeletePlot.class);
+                                    }else if (url_ws.contains(RequestServices.ws_updateUserPlotSeq)) {
+                                        object = new Gson().fromJson(html, mUpdateUserPlotSeq.class);
                                     }
                                     onCallbackAPIListener.callbackSuccess(object);
                                 } else {

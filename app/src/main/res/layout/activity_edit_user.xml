@@ -300,7 +300,6 @@
                             android:textColor="@color/RcmoWhiteBG"
                             android:gravity="center"
                             android:padding="5dp"
-                            android:onClick="actionToChangePasswordActivity"
                             android:textSize="@dimen/textsize_normal"
                             android:id="@+id/textLinkLogout"/>
 
