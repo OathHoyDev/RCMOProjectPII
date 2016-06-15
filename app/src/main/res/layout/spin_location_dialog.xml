@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:pixlui="http://schemas.android.com/apk/com.neopixl.pixlui"
+android:orientation="vertical" android:layout_width="wrap_content"
+android:layout_gravity="center|top"
+android:layout_height="wrap_content"
+
+android:background="@drawable/dialog_bg">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:orientation="vertical">
+    <ListView
+        android:layout_width="250dp"
+        android:layout_height="230dp"
+        android:layout_weight="1"
+        android:divider="@color/RcmoHintText"
+        android:dividerHeight="1dp"
+        android:id="@+id/listLocation">
+
+    </ListView>
+
+    <com.neopixl.pixlui.components.textview.TextView
+
+        pixlui:typeface="Quark-Bold.otf"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:background="@drawable/action_gray_cut_conner"
+        android:padding="6dp"
+        android:layout_margin="10dp"
+        android:id="@+id/btnCancel"
+        android:textColor="@color/RcmoNormalLightText"
+        android:textSize="16sp"
+        android:text="ยกเลิก"/>
+
+</LinearLayout>
+
+
+
+
+
+
+</LinearLayout>

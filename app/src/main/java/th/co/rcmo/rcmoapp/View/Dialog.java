@@ -68,6 +68,8 @@ public class Dialog {
         dialog.setContentView(R.layout.dialog_choice);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 
+
+
         TextView title =(TextView) dialog.findViewById(R.id.title);
         TextView detail = (TextView)dialog.findViewById(R.id.message);
       //  TextView btn_cancel = (TextView)dialog.findViewById(R.id.cancel);

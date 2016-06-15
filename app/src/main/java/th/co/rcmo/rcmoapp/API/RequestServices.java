@@ -17,4 +17,7 @@ public class RequestServices {
     public static String ws_savePlotDetail = url+"savePlotDetail";
     public static String ws_deletePlot = url+"deletePlot";
     public static String ws_updateUserPlotSeq = url+"updateUserPlotSeq";
+    public static String ws_getProvince = url+"getProvince";
+    public static String ws_getAmphoe = url+"getAmphoe";
+    public static String ws_getTambon = url+"getTambon";
 }

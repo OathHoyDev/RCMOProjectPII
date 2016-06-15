@@ -8,15 +8,18 @@ import com.androidquery.callback.AjaxCallback;
 import com.androidquery.callback.AjaxStatus;
 import com.google.gson.Gson;
 
+import th.co.rcmo.rcmoapp.Module.mAmphoe;
 import th.co.rcmo.rcmoapp.Module.mDeletePlot;
 import th.co.rcmo.rcmoapp.Module.mGetRegister;
 import th.co.rcmo.rcmoapp.Module.mLogin;
 import th.co.rcmo.rcmoapp.Module.mPlantGroup;
 import th.co.rcmo.rcmoapp.Module.mProduct;
+import th.co.rcmo.rcmoapp.Module.mProvince;
 import th.co.rcmo.rcmoapp.Module.mRegister;
 import th.co.rcmo.rcmoapp.Module.mRiceProduct;
 import th.co.rcmo.rcmoapp.Module.mSavePlotDetail;
 import th.co.rcmo.rcmoapp.Module.mStatus;
+import th.co.rcmo.rcmoapp.Module.mTumbon;
 import th.co.rcmo.rcmoapp.Module.mUpdateUserPlotSeq;
 import th.co.rcmo.rcmoapp.Module.mUserPlotList;
 import th.co.rcmo.rcmoapp.View.Dialog;
@@ -80,6 +83,12 @@ public class ResponseAPI {
                                         object = new Gson().fromJson(html, mDeletePlot.class);
                                     }else if (url_ws.contains(RequestServices.ws_updateUserPlotSeq)) {
                                         object = new Gson().fromJson(html, mUpdateUserPlotSeq.class);
+                                    }else if (url_ws.contains(RequestServices.ws_getProvince)) {
+                                        object = new Gson().fromJson(html, mProvince.class);
+                                    }else if (url_ws.contains(RequestServices.ws_getAmphoe)) {
+                                        object = new Gson().fromJson(html, mAmphoe.class);
+                                    }else if (url_ws.contains(RequestServices.ws_getTambon)) {
+                                        object = new Gson().fromJson(html, mTumbon.class);
                                     }
                                     onCallbackAPIListener.callbackSuccess(object);
                                 } else {

@@ -115,7 +115,6 @@
             android:layout_marginLeft="40dp"
             android:layout_marginTop="40dp"
             android:layout_marginRight="40dp"
-            android:layout_marginBottom="40dp"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             >
@@ -125,7 +124,7 @@
                 android:orientation="vertical"
                 android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:gravity="center">
                 <com.neopixl.pixlui.components.textview.TextView
                     pixlui:typeface="Quark-Bold.otf"
@@ -137,7 +136,7 @@
                     android:textColor="@color/RcmoNormalDarkText"
                     android:paddingLeft="15dp"
                     android:textSize="@dimen/textsize_xxlarge"
-                    android:id="@+id/labelProduct">
+                    android:id="@+id/labelProductName">
                 </com.neopixl.pixlui.components.textview.TextView>
 
                 <com.neopixl.pixlui.components.textview.TextView
@@ -149,8 +148,8 @@
                     android:textColor="@color/RcmoSubDetailText"
                     android:paddingLeft="15dp"
                     android:layout_marginTop="@dimen/margin_normal"
-                    android:textSize="@dimen/textsize_normal"
-                    android:id="@+id/labelProductGroup">
+                    android:textSize="@dimen/textsize_small"
+                    android:id="@+id/labelProductHierarchy">
                 </com.neopixl.pixlui.components.textview.TextView>
             </LinearLayout>
 
@@ -229,6 +228,7 @@
                     android:padding="5dp"
                     android:inputType="text"
                     android:textCursorDrawable="@drawable/text_cursor"
+                    android:clickable="true"
                     android:textSize="@dimen/textsize_large"
                     android:id="@+id/inputprovice"/>
 
@@ -349,10 +349,10 @@
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_height="90dp"
-            android:layout_width="90dp"
+            android:layout_height="@dimen/iccircle_bg_height"
+            android:layout_width="@dimen/iccircle_bg_width"
             android:gravity="center"
-            android:background="@drawable/action_plant_ic_gr_circle"
+            android:background="@drawable/action_plant_ic_circle"
             android:clickable="true"
             android:focusable="true"
             android:layout_marginLeft="20dp"
@@ -361,8 +361,8 @@
 
             <ImageView
                 android:id="@+id/prodImg"
-                android:layout_height="50dp"
-                android:layout_width="50dp"
+                android:layout_height="@dimen/iccircle_img_height"
+                android:layout_width="@dimen/iccircle_img_width"
                 android:src="@drawable/p1_2"
                 />
         </LinearLayout>

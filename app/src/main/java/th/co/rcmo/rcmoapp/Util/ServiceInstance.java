@@ -232,4 +232,22 @@ public class ServiceInstance {
             }
         } else return "";
     }
+
+    public static String genProdHierarchy(String prefix,String hierarchy){
+        try {
+            String newHierarchy = prefix;
+            if (hierarchy != null) {
+                String[] sp = hierarchy.split("<");
+                for (int i = 0; i < sp.length; i++) {
+                    if(!("".equals(sp[i].trim()))) {
+                        newHierarchy = newHierarchy + " > " + sp[i].trim();
+                    }
+                }
+            }
+            return newHierarchy;
+        }catch (Exception e){
+            return prefix;
+        }
+
+     }
 }

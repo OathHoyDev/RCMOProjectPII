@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 import th.co.rcmo.rcmoapp.API.RequestServices;
 import th.co.rcmo.rcmoapp.API.ResponseAPI;
+import th.co.rcmo.rcmoapp.Model.ProductModel;
 import th.co.rcmo.rcmoapp.Module.mPlantGroup;
 import th.co.rcmo.rcmoapp.Module.mProduct;
 import th.co.rcmo.rcmoapp.Module.mRiceProduct;
@@ -31,8 +32,11 @@ public class StepTwoActivity extends Activity {
     int groupId =0;
     String prodHierarchyStr = "";
     GridView  productGridView;
+    int gplantGroupId = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        gplantGroupId = 0;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_step_two);
 
@@ -41,8 +45,8 @@ public class StepTwoActivity extends Activity {
             groupId = bundle.getInt(ServiceInstance.INTENT_GROUP_ID);
             prodHierarchyStr = bundle.getString(ServiceInstance.INTENT_PROD_HIERARCHY);
             if(prodHierarchyStr == null){prodHierarchyStr="";}
-        }
 
+        }
 
         setUI();
         setAction();
@@ -55,15 +59,18 @@ public class StepTwoActivity extends Activity {
         TextView prodHierarchy   =      (TextView)findViewById(R.id.prodHierarchy);
 
         if(groupId == 1){
-            prodHierarchy.setText(prodHierarchyStr);
+
+            //prodHierarchy.setText(prodHierarchyStr);
             titleText.setText("ชนิดพืช");
             prodHierarchy.setText(prodHierarchyStr);
             mainLayout.setBackgroundResource(R.drawable.bg_plant);
         }else if(groupId == 2){
+
             prodHierarchy.setText("");
             titleText.setText("ชนิดปศุสัตว์");
             mainLayout.setBackgroundResource(R.drawable.bg_meat);
         }else if(groupId == 3){
+
             prodHierarchy.setText("");
             titleText.setText("ชนิดประมง");
             mainLayout.setBackgroundResource(R.drawable.bg_fish);
@@ -140,7 +147,7 @@ public class StepTwoActivity extends Activity {
             }
 
 
-            mProduct.mRespBody productBodyResp = getItem(position);
+           final mProduct.mRespBody productBodyResp = getItem(position);
 
             final int pid =  productBodyResp.getPrdID();
             final int productGroupId = productBodyResp.getPrdGrpID();
@@ -175,10 +182,18 @@ public class StepTwoActivity extends Activity {
                     @Override
                     public void onClick(View v) {
                         if(productGroupId == 1 && (pid==1||pid==2)) {
+
                             API_GetRiceProduct(pid,0,prodHierarchyStr+"< "+productName);
                         }else{
-                            startActivity(new Intent(StepTwoActivity.this, StepThreeActivity.class)
-                                    .putExtra(ServiceInstance.INTENT_GROUP_ID,productGroupId));
+                            //int prdID, String prdName, int prdGrpID, int plantGrpID, int riceTypeID,String plantHierarchy
+                            StepThreeActivity.productionInfo =new ProductModel( productBodyResp.getPrdID()
+                                                                           ,productBodyResp.getPrdName()
+                                                                           ,productBodyResp.getPrdGrpID()
+                                                                           ,gplantGroupId
+                                                                           ,0
+                                                                           ,prodHierarchyStr);
+
+                            startActivity(new Intent(StepTwoActivity.this, StepThreeActivity.class));
 
                         }
                     }
@@ -227,7 +242,7 @@ public class StepTwoActivity extends Activity {
             mPlantGroup.mRespBody productBodyResp = getItem(position);
            final int plantGroupId =   productBodyResp.getPlantGrpID();
             final String prodName =   productBodyResp.getPlantGrpName();
-
+            gplantGroupId = plantGroupId;
 
 
 
@@ -297,7 +312,7 @@ public class StepTwoActivity extends Activity {
             }
 
 
-            mRiceProduct.mRespBody productBodyResp = getItem(position);
+           final mRiceProduct.mRespBody productBodyResp = getItem(position);
            final int pid = productBodyResp.getPrdID();
             Holder h = new Holder();
             h.prodImg      = (ImageView) convertView.findViewById(R.id.prodImg);
@@ -315,13 +330,17 @@ public class StepTwoActivity extends Activity {
 
             h.prodBg.setBackgroundResource(R.drawable.action_plant_ic_circle);
 
-
+//int prdID, String prdName, int prdGrpID, int plantGrpID, int riceTypeID,String plantHierarchy
             convertView.findViewById(R.id.gridDrawBg).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
-                    startActivity(new Intent(StepTwoActivity.this, StepThreeActivity.class)
-                            .putExtra(ServiceInstance.INTENT_GROUP_ID,1));
+                    StepThreeActivity.productionInfo =new ProductModel( productBodyResp.getPrdID()
+                                                                       ,productBodyResp.getPrdName()
+                                                                       ,1
+                                                                       ,gplantGroupId
+                                                                       ,productBodyResp.getRiceTypeID()
+                                                                       ,prodHierarchyStr);
+                    startActivity(new Intent(StepTwoActivity.this, StepThreeActivity.class));
                 }
             });
 
@@ -361,6 +380,7 @@ public class StepTwoActivity extends Activity {
                 mRiceProduct mProdist = (mRiceProduct) obj;
                 List<mRiceProduct.mRespBody> productLists = mProdist.getRespBody();
                 if (productLists.size() != 0) {
+
                     productLists.get(0).toString();
                     StepTwoActivity.riceProductGroupLists = productLists;
                     startActivity(new Intent(StepTwoActivity.this, StepTwoActivity.class)
@@ -407,6 +427,7 @@ public class StepTwoActivity extends Activity {
                 List<mProduct.mRespBody> productLists = mProdist.getRespBody();
 
                 if (productLists.size() != 0) {
+
                     productLists.get(0).toString();
                     StepTwoActivity.productInfoLists = productLists;
                     startActivity(new Intent(StepTwoActivity.this, StepTwoActivity.class)
