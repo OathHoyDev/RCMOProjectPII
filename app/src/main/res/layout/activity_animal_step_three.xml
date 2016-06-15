@@ -137,7 +137,7 @@
                     android:textColor="@color/RcmoNormalDarkText"
                     android:paddingLeft="15dp"
                     android:textSize="@dimen/textsize_xxxlarge"
-                    android:id="@+id/labelProduct">
+                    android:id="@+id/labelProductName">
                 </com.neopixl.pixlui.components.textview.TextView>
 
                 <com.neopixl.pixlui.components.textview.TextView
@@ -149,7 +149,7 @@
                     android:textColor="@color/RcmoSubDetailText"
                     android:paddingLeft="15dp"
                     android:textSize="@dimen/textsize_small"
-                    android:id="@+id/labelProductGroup">
+                    android:id="@+id/labelProductHierarchy">
                 </com.neopixl.pixlui.components.textview.TextView>
             </LinearLayout>
 
@@ -191,7 +191,7 @@
                     android:background="@color/RcmoLightGrayBG"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:inputType="text"
+                    android:inputType="number"
                     android:textCursorDrawable="@drawable/text_cursor"
                     android:textSize="@dimen/textsize_large"
                     android:id="@+id/inputNumberOfstart"/>
@@ -219,11 +219,11 @@
                     android:hint="บาท"
                     android:textColor="@color/RcmoNormalDarkText"
                     android:textColorHint="@color/RcmoHintText"
-                    android:imeOptions="actionNext"
+                    android:imeOptions="actionDone"
                     android:background="@color/RcmoLightGrayBG"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:inputType="text"
+                    android:inputType="numberDecimal"
                     android:textCursorDrawable="@drawable/text_cursor"
                     android:textSize="@dimen/textsize_xlarge"
                     android:id="@+id/inputPricePerUnit"/>

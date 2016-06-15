@@ -20,4 +20,5 @@ public class RequestServices {
     public static String ws_getProvince = url+"getProvince";
     public static String ws_getAmphoe = url+"getAmphoe";
     public static String ws_getTambon = url+"getTambon";
+    public static String ws_copyPlot = url+"copyPlot";
 }

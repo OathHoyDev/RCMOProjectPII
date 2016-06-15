@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
-import android.preference.PreferenceManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -19,7 +18,7 @@ import th.co.rcmo.rcmoapp.API.ResponseAPI;
 import th.co.rcmo.rcmoapp.Module.mLogin;
 import th.co.rcmo.rcmoapp.Module.mUserPlotList;
 import th.co.rcmo.rcmoapp.Util.ServiceInstance;
-import th.co.rcmo.rcmoapp.View.Dialog;
+import th.co.rcmo.rcmoapp.View.DialogChoice;
 
 public class LoginActivity extends Activity {
     EditText inputUsername, inputPassword;
@@ -100,11 +99,11 @@ public class LoginActivity extends Activity {
                         if (inputPassword.length() != 0) {
                            Login();
                         } else {
-                            new Dialog(LoginActivity.this).ShowOneChoice("", "กรุณากรอกรหัสผ่าน");
+                            new DialogChoice(LoginActivity.this).ShowOneChoice("", "กรุณากรอกรหัสผ่าน");
                         }
 
                 } else {
-                    new Dialog(LoginActivity.this).ShowOneChoice("", "กรุณากรอกรหัสผู้ใช้งานให้ถูกต้อง");
+                    new DialogChoice(LoginActivity.this).ShowOneChoice("", "กรุณากรอกรหัสผู้ใช้งานให้ถูกต้อง");
                 }
             }
         });

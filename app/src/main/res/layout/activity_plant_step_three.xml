@@ -190,11 +190,11 @@
                     android:hint="ไร่"
                     android:textColor="@color/RcmoNormalDarkText"
                     android:textColorHint="@color/RcmoHintText"
-                    android:imeOptions="actionNext"
+                    android:imeOptions="actionDone"
                     android:background="@color/RcmoLightGrayBG"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:inputType="text"
+                    android:inputType="numberDecimal"
                     android:textCursorDrawable="@drawable/text_cursor"
                     android:textSize="@dimen/textsize_large"
                     android:id="@+id/inputPricePerUnit"/>

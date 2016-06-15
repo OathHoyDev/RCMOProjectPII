@@ -10,30 +10,32 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Toast;
+
 import com.neopixl.pixlui.components.textview.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
 import th.co.rcmo.rcmoapp.API.RequestServices;
 import th.co.rcmo.rcmoapp.API.ResponseAPI;
+import th.co.rcmo.rcmoapp.Module.mCopyPlot;
 import th.co.rcmo.rcmoapp.Module.mDeletePlot;
 import th.co.rcmo.rcmoapp.Module.mGetRegister;
-import th.co.rcmo.rcmoapp.Module.mLogin;
 import th.co.rcmo.rcmoapp.Module.mSavePlotDetail;
+import th.co.rcmo.rcmoapp.Module.mUpdateUserPlotSeq;
 import th.co.rcmo.rcmoapp.Module.mUserPlotList;
 import th.co.rcmo.rcmoapp.Util.ServiceInstance;
-import th.co.rcmo.rcmoapp.View.Dialog;
 
 public class UserPlotListActivity extends Activity {
     ListView  userPlotListView;
-
+    String TAG = "UserPlotListActivity_TAG";
     public static List<mUserPlotList.mRespBody> userPlotRespBodyList = new ArrayList<>();
     Resources resources;
     @Override
@@ -65,6 +67,8 @@ public class UserPlotListActivity extends Activity {
                         */
             }
         });
+
+
 
         //User profile
         findViewById(R.id.btnProfile).setOnClickListener(new View.OnClickListener() {
@@ -209,6 +213,8 @@ public class UserPlotListActivity extends Activity {
             });
 
             //On Click Coppy Action
+            SharedPreferences sp = getSharedPreferences(ServiceInstance.PREF_NAME, Context.MODE_PRIVATE);
+            final String userId = sp.getString(ServiceInstance.sp_userId, "0");
             convertView.findViewById(R.id.btnCopy).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -227,16 +233,24 @@ public class UserPlotListActivity extends Activity {
                     notifyDataSetChanged();
                     String listSeq = "";
                     for(int i =(position+1) ; i< userPlotList.size();i++){
-                           Log.d("Seq" ,"Seq     ----------->"+userPlotList.get(i).getSeqNo());
+
 
                         listSeq+=","+userPlotList.get(i).getSeqNo();
                         if(i+1 == userPlotList.size() ){
                             listSeq+=userPlotList.get(i).getSeqNo();
                         }
-                        Log.d("TEST","SeqList : "+listSeq);
+
 
                         //insert and update
                     }
+
+                    if(listSeq!=null && listSeq.length()>0) {
+                        listSeq = listSeq.substring(1, listSeq.length());
+                    }
+                    API_CopyPlot( userId , String.valueOf(copySource.getPlotID()),listSeq);
+                    Log.d(TAG,"API_CopyPlot Complete" );
+
+
 
                 }
             });
@@ -311,7 +325,7 @@ public class UserPlotListActivity extends Activity {
 
     }
 
-    private void API_updateUserPlotSeq( int userID,int seqNo) {
+    private void API_updateUserPlotSeq( String userID,String seqNo) {
 /**
  1.UserID
  2.SeqPlotID List ,
@@ -321,13 +335,10 @@ public class UserPlotListActivity extends Activity {
             @Override
             public void callbackSuccess(Object obj) {
 
-                mDeletePlot registerInfo = (mDeletePlot) obj;
+                mUpdateUserPlotSeq updateUserPlot = (mUpdateUserPlotSeq) obj;
 
-                List<mDeletePlot.mRespBody> loginBodyLists = registerInfo.getRespBody();
+                List<mUpdateUserPlotSeq.mRespBody> updPlotSeqBodyLists = updateUserPlot.getRespBody();
 
-                if (loginBodyLists.size() != 0) {
-
-                }
             }
             @Override
             public void callbackError(int code, String errorMsg) {
@@ -340,61 +351,54 @@ public class UserPlotListActivity extends Activity {
     }
 
 
-    private void API_SavePlotDetail(mUserPlotList.mRespBody userPlotInfo) {
+    private void API_CopyPlot(final String userId, final String plotId,final  String listSeq ) {
 
+        /**
+         * 1.UserID
+         2.PlotID
+         */
         new ResponseAPI(this, new ResponseAPI.OnCallbackAPIListener() {
             @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
             @Override
             public void callbackSuccess(Object obj) {
 
-                mSavePlotDetail savePlotDetailInfo = (mSavePlotDetail) obj;
+                mCopyPlot copyPlot = (mCopyPlot) obj;
+                List<mCopyPlot.mRespBody> copyPlotBodyLists = copyPlot.getRespBody();
 
-                List<mSavePlotDetail.mRespBody> savePlotDetailBodyLists = savePlotDetailInfo.getRespBody();
+                if (copyPlotBodyLists.size() != 0) {
+                    toastMsg("คัดลอกข้อมูลสำเร็จ");
 
-                if (savePlotDetailBodyLists.size() != 0) {
-
-                   // EditUserActivity.userInfoRespBody = loginBodyLists.get(0);
-                    //startActivity(new Intent(UserPlotListActivity.this, EditUserActivity.class));
+                    API_updateUserPlotSeq(userId,listSeq);
+                    Log.d(TAG,"API_updateUserPlotSeq Complete" );
                 }
 
             }
+
             @Override
             public void callbackError(int code, String errorMsg) {
                 Log.d("Error", errorMsg);
             }
-        }).API_Request(true, RequestServices.ws_savePlotDetail +
-
-                "?SaveFlag=" + 1 +
-                "&UserID=" +
-                "&PlotID=" +
-                "&PrdID=" + userPlotInfo.getPrdID() +
-                "&PrdGrpID=" + userPlotInfo.getPrdGrpID() +
-                "&PlotRai=" +
-                "&PondRai=" +
-                "&PondNgan=" +
-                "&PondWa=" +
-                "&PondMeter=" +
-                "&CoopMeter=" +
-                "&CoopNumber=" +
-                "&TamCode=" +
-                "&AmpCode=" +
-                "&ProvCode=" +
-                "&AnimalNumber=" + userPlotInfo.getAnimalNumberValue() +
-                "&AnimalWeight=" + userPlotInfo.getAnimalWeightValue() +
-                "&AnimalPrice=" + userPlotInfo.getAnimalPriceValue() +
-                "&FisheryType=" +
-                "&FisheryNumType=" +
-                "&FisheryNumber=" + userPlotInfo.getFisheryNumberValue() +
-                "&FisheryWeight=" +
-                "&ImeiCode=" +
-                "&VarName=" +
-                "&VarValue=" +
-                "&CalResult=" + userPlotInfo.getCalResult()
+        }).API_Request(true, RequestServices.ws_copyPlot +
+                "?UserID=" + userId +
+                "&PlotID=" + plotId
         );
     }
 
 
+    private void toastMsg(String msg) {
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.toast_layout,
+                (ViewGroup) findViewById(R.id.toast_layout_root));
+        Toast toast = new Toast(getApplicationContext());
+        toast.setGravity(Gravity.BOTTOM, 0, 50);
+        toast.setDuration(Toast.LENGTH_LONG);
+        toast.setView(layout);
 
+        TextView text = (TextView) layout.findViewById(R.id.toast_label);
+        text.setText(msg);
+
+        toast.show();
+    }
     /*
 
 "RespStatus":{"StatusID":0,"StatusMsg":"Success"},

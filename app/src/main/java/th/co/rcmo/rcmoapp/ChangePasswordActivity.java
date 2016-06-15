@@ -19,7 +19,7 @@ import th.co.rcmo.rcmoapp.API.ResponseAPI;
 import th.co.rcmo.rcmoapp.Module.mLogin;
 import th.co.rcmo.rcmoapp.Module.mRegister;
 import th.co.rcmo.rcmoapp.Util.ServiceInstance;
-import th.co.rcmo.rcmoapp.View.Dialog;
+import th.co.rcmo.rcmoapp.View.DialogChoice;
 
 public class ChangePasswordActivity extends Activity {
     String name,sirname,email;
@@ -72,7 +72,7 @@ public class ChangePasswordActivity extends Activity {
 
 
                 if(!confirmPassword.equals(newPassword)){
-                    new Dialog(ChangePasswordActivity.this).ShowOneChoice("", "ยืนยันรหัสผ่านใหม่ไม่ถูกต้อง");
+                    new DialogChoice(ChangePasswordActivity.this).ShowOneChoice("", "ยืนยันรหัสผ่านใหม่ไม่ถูกต้อง");
                 }else{
                     API_CheckOldPassword(userId,username,oldPassword,newPassword,name,sirname,email);
                 }
@@ -169,7 +169,7 @@ public class ChangePasswordActivity extends Activity {
 
             @Override
             public void callbackError(int code, String errorMsg) {
-                new Dialog(ChangePasswordActivity.this).ShowOneChoice("", "รหัสผ่านเดิมไม่ถูกต้อง");
+                new DialogChoice(ChangePasswordActivity.this).ShowOneChoice("", "รหัสผ่านเดิมไม่ถูกต้อง");
             }
         }).API_Request(false, RequestServices.ws_chkLogin +
                 "?UserLogin=" + username + "&UserPwd=" + ServiceInstance.md5(password) +

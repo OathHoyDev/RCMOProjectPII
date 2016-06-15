@@ -9,7 +9,7 @@ import android.widget.TextView;
 import th.co.rcmo.rcmoapp.R;
 
 
-public class Dialog {
+public class DialogChoice {
 
     public static int OK =0;
     public static int CANCEL =1;
@@ -19,12 +19,12 @@ public class Dialog {
     public interface  OnSelectChoiceListener{
         void OnSelect(int choice);
     }
-    public Dialog(Context c, OnSelectChoiceListener onSelectChoiceListener){
+    public DialogChoice(Context c, OnSelectChoiceListener onSelectChoiceListener){
         this.context =c;
         this.onSelectChoiceListener =onSelectChoiceListener;
     }
 
-    public Dialog(Context c){
+    public DialogChoice(Context c){
         this.context =c;
     }
 
@@ -65,14 +65,12 @@ public class Dialog {
 
         final android.app.Dialog dialog = new android.app.Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.dialog_choice);
+        dialog.setContentView(R.layout.dialog_two_choice);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-
-
 
         TextView title =(TextView) dialog.findViewById(R.id.title);
         TextView detail = (TextView)dialog.findViewById(R.id.message);
-      //  TextView btn_cancel = (TextView)dialog.findViewById(R.id.cancel);
+        TextView btn_cancel = (TextView)dialog.findViewById(R.id.cancel);
         TextView btn_ok = (TextView)dialog.findViewById(R.id.ok);
 
         if(t.length()==0) title.setVisibility(View.GONE);
@@ -88,6 +86,18 @@ public class Dialog {
             }
         });
 
+        btn_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(onSelectChoiceListener!=null)
+                    onSelectChoiceListener.OnSelect(CANCEL);
+                dialog.cancel();
+            }
+        });
+        dialog.show();
+
+    }
+
         /*
         btn_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,7 +108,7 @@ public class Dialog {
             }
         });
         */
-        dialog.show();
+     //   dialog.show();
 
     }
 //    public void ShowOneChoice(String title, String message){
@@ -147,4 +157,5 @@ public class Dialog {
 //        AlertDialog alertDialog = alertDialogBuilder.create();
 //        alertDialog.show();
 //    }
-}
+
+//}
