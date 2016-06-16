@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -32,6 +33,7 @@ import th.co.rcmo.rcmoapp.Module.mSavePlotDetail;
 import th.co.rcmo.rcmoapp.Module.mUpdateUserPlotSeq;
 import th.co.rcmo.rcmoapp.Module.mUserPlotList;
 import th.co.rcmo.rcmoapp.Util.ServiceInstance;
+import th.co.rcmo.rcmoapp.View.DialogChoice;
 
 public class UserPlotListActivity extends Activity {
     ListView  userPlotListView;
@@ -137,24 +139,28 @@ public class UserPlotListActivity extends Activity {
             /**
              * Get Layout Obj
              */
-            h.imgProduct = (ImageView) convertView.findViewById(R.id.imgProduct);
+           // h.imgProduct = (ImageView) convertView.findViewById(R.id.imgProduct);
             h.labelProductName =  (TextView) convertView.findViewById(R.id.labelProductName);
             h.labelAddress     =  (TextView) convertView.findViewById(R.id.labelAddress);
             h.labelPlotSize    =  (TextView) convertView.findViewById(R.id.labelPlotSize);
             h.labelDate        =  (TextView) convertView.findViewById(R.id.labelDate);
             h.btnProfit        =  (TextView) convertView.findViewById(R.id.btnProfit);
             h.labelProfit      =  (TextView) convertView.findViewById(R.id.labelProfit);
-
+            h.prodImg          = (ImageView) convertView.findViewById(R.id.prodImg);
+            h.prodBg           =  (LinearLayout)convertView.findViewById(R.id.gridDrawBg);
 
             /**
              * Set UI Display value
              */
            if(respBody.getPrdGrpID() == 2){
                h.labelProductName.setTextColor(Color.parseColor("#d5444f"));
+               h.prodBg.setBackgroundResource(R.drawable.animal_ic_circle_bg);
            }else if (respBody.getPrdGrpID() == 3){
                h.labelProductName.setTextColor (Color.parseColor("#00b4ed"));
+               h.prodBg.setBackgroundResource(R.drawable.fish_ic_circle_bg);
            }else{
                h.labelProductName.setTextColor (Color.parseColor("#4cb748"));
+               h.prodBg.setBackgroundResource(R.drawable.plant_ic_circle_bg);
            }
 
 
@@ -174,7 +180,16 @@ public class UserPlotListActivity extends Activity {
             h.labelAddress.setText(respBody.getPlotLocation());
             h.labelPlotSize.setText(respBody.getPlotSize());
             h.labelDate.setText(ServiceInstance.formatStrDate(respBody.getDateUpdated()));
-            h.imgProduct.setImageResource( getResources().getIdentifier(ServiceInstance.productPicMap.get(respBody.getPrdID()), "drawable", getPackageName()) );
+
+
+            //h.imgProduct.setImageResource( getResources().getIdentifier(ServiceInstance.productPicMap.get(respBody.getPrdID()), "drawable", getPackageName()) );
+            String imgName = ServiceInstance.productIMGMap.get(respBody.getPrdID());
+            if(imgName!=null) {
+                h.prodImg.setImageResource(getResources().getIdentifier(imgName, "drawable", getPackageName()));
+            }
+
+
+
             h.labelProductName.setText(respBody.getPrdValue());
 
 
@@ -206,9 +221,23 @@ public class UserPlotListActivity extends Activity {
                 @Override
                 public void onClick(View v) {
                     Log.d("On remove", "remove position : "+position);
-                    API_DeletePlot(userPlotList.get(position).getPlotID());
-                    removeItem(position);
-                    notifyDataSetChanged();
+
+
+
+                    new DialogChoice(UserPlotListActivity.this, new DialogChoice.OnSelectChoiceListener() {
+                        @Override
+                        public void OnSelect(int choice) {
+
+                            if (choice == DialogChoice.OK) {
+                                API_DeletePlot(userPlotList.get(position).getPlotID());
+                                removeItem(position);
+                                notifyDataSetChanged();
+                            }
+                        }
+                    }).ShowTwoChoice("", "ยืนยันการลบข้อมูล");
+
+
+
                 }
             });
 
@@ -228,26 +257,11 @@ public class UserPlotListActivity extends Activity {
                         Log.d("Error",e.getMessage());
                     }
 
-
-                    userPlotList.add(position+1,copyDestination);
+                    int addPosition = position+1;
+                    userPlotList.add(addPosition,copyDestination);
                     notifyDataSetChanged();
-                    String listSeq = "";
-                    for(int i =(position+1) ; i< userPlotList.size();i++){
 
-
-                        listSeq+=","+userPlotList.get(i).getSeqNo();
-                        if(i+1 == userPlotList.size() ){
-                            listSeq+=userPlotList.get(i).getSeqNo();
-                        }
-
-
-                        //insert and update
-                    }
-
-                    if(listSeq!=null && listSeq.length()>0) {
-                        listSeq = listSeq.substring(1, listSeq.length());
-                    }
-                    API_CopyPlot( userId , String.valueOf(copySource.getPlotID()),listSeq);
+                    API_CopyPlot( userId , String.valueOf(copySource.getPlotID()),addPosition,userPlotList);
                     Log.d(TAG,"API_CopyPlot Complete" );
 
 
@@ -262,7 +276,8 @@ public class UserPlotListActivity extends Activity {
 
     class Holder{
         TextView labelAddress,labelPlotSize,labelProductName,labelProfit,labelDate,btnProfit;
-        ImageView imgProduct;
+        ImageView imgProduct,prodImg;
+        LinearLayout prodBg;
 
 
     }
@@ -311,9 +326,7 @@ public class UserPlotListActivity extends Activity {
 
                 List<mDeletePlot.mRespBody> loginBodyLists = registerInfo.getRespBody();
 
-                if (loginBodyLists.size() != 0) {
 
-                }
             }
             @Override
             public void callbackError(int code, String errorMsg) {
@@ -335,9 +348,13 @@ public class UserPlotListActivity extends Activity {
             @Override
             public void callbackSuccess(Object obj) {
 
-                mUpdateUserPlotSeq updateUserPlot = (mUpdateUserPlotSeq) obj;
+                mUpdateUserPlotSeq updateUserPlotseq = (mUpdateUserPlotSeq) obj;
 
-                List<mUpdateUserPlotSeq.mRespBody> updPlotSeqBodyLists = updateUserPlot.getRespBody();
+                List<mUpdateUserPlotSeq.mRespBody> updPlotSeqBodyLists = updateUserPlotseq.getRespBody();
+            //    if (updPlotSeqBodyLists.size() != 0) {
+                    Log.d(TAG,"API_updateUserPlotSeq Complete ");
+                    toastMsg("คัดลอกข้อมูลสำเร็จ");
+              //  }
 
             }
             @Override
@@ -351,7 +368,7 @@ public class UserPlotListActivity extends Activity {
     }
 
 
-    private void API_CopyPlot(final String userId, final String plotId,final  String listSeq ) {
+    private void API_CopyPlot(final String userId, final String plotId,final int addposition,final List<mUserPlotList.mRespBody> userPlotList ) {
 
         /**
          * 1.UserID
@@ -366,10 +383,21 @@ public class UserPlotListActivity extends Activity {
                 List<mCopyPlot.mRespBody> copyPlotBodyLists = copyPlot.getRespBody();
 
                 if (copyPlotBodyLists.size() != 0) {
-                    toastMsg("คัดลอกข้อมูลสำเร็จ");
+                    userPlotList.get(addposition).setPlotID(copyPlotBodyLists.get(0).getPlotID());
+
+
+                    String listSeq = "";
+                    for(int i =0 ; i< userPlotList.size();i++){
+                        listSeq+=","+userPlotList.get(i).getPlotID();
+
+                    }
+                    if(listSeq!=null && listSeq.length()>0) {
+                        listSeq = listSeq.substring(1, listSeq.length());
+                    }
 
                     API_updateUserPlotSeq(userId,listSeq);
-                    Log.d(TAG,"API_updateUserPlotSeq Complete" );
+
+
                 }
 
             }
@@ -390,7 +418,7 @@ public class UserPlotListActivity extends Activity {
         View layout = inflater.inflate(R.layout.toast_layout,
                 (ViewGroup) findViewById(R.id.toast_layout_root));
         Toast toast = new Toast(getApplicationContext());
-        toast.setGravity(Gravity.BOTTOM, 0, 50);
+        toast.setGravity(Gravity.CENTER, 0, 0);
         toast.setDuration(Toast.LENGTH_LONG);
         toast.setView(layout);
 

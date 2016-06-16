@@ -36,7 +36,7 @@ public class ServiceInstance {
         productBGMap.put(2, "RcmoAnimalBG");
         productBGMap.put(3, "RcmoFishBG");
     }
-
+/*
     public static final Map<Integer, String> productPicMap = new HashMap<>();
     static {
         // key = prod Id
@@ -102,7 +102,7 @@ public class ServiceInstance {
         productPicMap.put(48,"ic_m_4"); //not found img
         productPicMap.put(49,"ic_m_3");
     }
-
+*/
     public static final Map<Integer, String> productIMGMap = new HashMap<>();
     static {
         // key = prod Id
@@ -139,9 +139,9 @@ public class ServiceInstance {
         productIMGMap.put(28,"p2_13");
         productIMGMap.put(29,"p2_14");
         productIMGMap.put(30,"p2_15");
-        productIMGMap.put(31,"p2_16");
+        productIMGMap.put(31,"p2_18");
         productIMGMap.put(32,"p2_16");
-        productIMGMap.put(33,"p2_18");
+        productIMGMap.put(33,"p2_17");
 
         //plan3
         productIMGMap.put(34,"p3_1");

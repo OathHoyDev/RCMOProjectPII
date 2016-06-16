@@ -177,7 +177,7 @@
                     android:text="ขนาดแปลงที่ดิน"
                     android:textColor="@color/RcmoNormalDarkText"
                     android:textSize="@dimen/textsize_large"
-                    android:id="@+id/labelPricePerUnit">
+                    android:id="@+id/labelLandUnit">
                 </com.neopixl.pixlui.components.textview.TextView>
 
                 <com.neopixl.pixlui.components.edittext.EditText
@@ -197,7 +197,7 @@
                     android:inputType="numberDecimal"
                     android:textCursorDrawable="@drawable/text_cursor"
                     android:textSize="@dimen/textsize_large"
-                    android:id="@+id/inputPricePerUnit"/>
+                    android:id="@+id/inputRai"/>
 
                 <com.neopixl.pixlui.components.textview.TextView
                     pixlui:typeface="Quark-Bold.otf"

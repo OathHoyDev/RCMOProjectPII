@@ -28,6 +28,7 @@ import th.co.rcmo.rcmoapp.Adapter.DialogAmphoeAdapter;
 import th.co.rcmo.rcmoapp.Adapter.DialogProvinceAdapter;
 import th.co.rcmo.rcmoapp.Adapter.DialogTumbonAdapter;
 import th.co.rcmo.rcmoapp.Model.ProductModel;
+import th.co.rcmo.rcmoapp.Model.UserPlotModel;
 import th.co.rcmo.rcmoapp.Module.mAmphoe;
 import th.co.rcmo.rcmoapp.Module.mProvince;
 import th.co.rcmo.rcmoapp.Module.mSavePlotDetail;
@@ -41,6 +42,7 @@ public class StepThreeActivity extends Activity {
      mAmphoe.mRespBody    selectedAmphoe    = null;
      mTumbon.mRespBody    selectedTumbon   = null;
     public static ProductModel productionInfo = null;
+    UserPlotModel userPlotModel = new UserPlotModel();
     String TAG = "StepThreeActivity_TAG";
 
 
@@ -49,6 +51,14 @@ public class StepThreeActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        SharedPreferences sp = getSharedPreferences(ServiceInstance.PREF_NAME, Context.MODE_PRIVATE);
+        final String userId = sp.getString(ServiceInstance.sp_userId, "0");
+
+        userPlotModel.setPrdGrpID(String.valueOf(productionInfo.getPrdGrpID()));
+        userPlotModel.setPrdID(String.valueOf(productionInfo.getPrdID()));
+        userPlotModel.setPrdGrpID( String.valueOf(productionInfo.getPrdGrpID()));
+        userPlotModel.setUserID(userId);
+
         setUI();
         setAction();
 
@@ -56,7 +66,7 @@ public class StepThreeActivity extends Activity {
 
 
     private void setUI() {
-        int groupId = productionInfo.getPrdGrpID();
+        int groupId = Integer.valueOf(userPlotModel.getPrdGrpID());
 
         if(groupId == 1){
             setContentView(R.layout.activity_plant_step_three);
@@ -130,21 +140,9 @@ public class StepThreeActivity extends Activity {
 
     }
 
-    class Holder{
 
-        ImageView prodImg;
-        LinearLayout prodBg;
-        com.neopixl.pixlui.components.textview.TextView labelProductName,labelProductHierarchy;
-
-
-    }
 
     private void setAction() {
-        SharedPreferences sp = getSharedPreferences(ServiceInstance.PREF_NAME, Context.MODE_PRIVATE);
-        final String userId = sp.getString(ServiceInstance.sp_userId, "0");
-        final String plotId = sp.getString(ServiceInstance.sp_plot_Id, "9999");
-
-        final int groupId = productionInfo.getPrdGrpID();
 
         findViewById(R.id.backBtn).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -158,7 +156,8 @@ public class StepThreeActivity extends Activity {
             @Override
             public void onClick(View view) {
                 boolean isValidate = false;
-                if (groupId == 1) {
+
+                if ("1".equals(userPlotModel.getPrdGrpID())) {
                     isValidate = isValidPlantInputData();
                 }else{
                     isValidate = true;
@@ -169,8 +168,9 @@ public class StepThreeActivity extends Activity {
                     new DialogChoice(StepThreeActivity.this, new DialogChoice.OnSelectChoiceListener() {
                         @Override
                         public void OnSelect(int choice) {
+
                             if (choice == DialogChoice.OK) {
-                                upsertUserPlot(userId,String.valueOf(productionInfo.getPrdID()),String.valueOf(productionInfo.getPrdGrpID()),plotId);
+                                upsertUserPlot(preparePlantDataForInsert(userPlotModel));
 
                             }
                         }
@@ -449,12 +449,33 @@ private void API_getProvince() {
     }
 
 
-    private void upsertUserPlot(final String userId
-            , final String prdId
-            , final String prdGrpId
-            , final String plotId){
+    private void upsertUserPlot(UserPlotModel userPlotInfol){
 
-        API_GetUserPlot(userId,prdId,prdGrpId,plotId);
+       // API_GetUserPlot(userId,prdId,prdGrpId,plotId);
+
+        if("".equals(userPlotInfol.getPlotID())){
+            Log.d(TAG, "Go to save plot Module ");
+            API_SavePlotDetail("1", userPlotInfol);
+        }else{
+
+            Log.d(TAG, "Go to update plot Module ");
+            API_SavePlotDetail("2", userPlotInfol);
+
+        }
+
+    }
+
+
+    private UserPlotModel preparePlantDataForInsert(UserPlotModel userPlotInfo){
+
+        userPlotModel.setTamCode(selectedTumbon.getTamCode());
+        userPlotModel.setAmpCode(selectedAmphoe.getAmpCode());
+        userPlotModel.setProvCode(selectedprovince.getProvCode());
+        userPlotModel.setPlotRai(((EditText)findViewById(R.id.inputRai)).getText().toString());
+
+
+        return userPlotInfo;
+
     }
 
 
@@ -476,9 +497,6 @@ private void API_getProvince() {
                 if (userPlotBodyLists.size() != 0) {
                     userPlotBodyLists.get(0).toString();
 
-                    Log.d(TAG, "Go to update plot Module ");
-                    API_SavePlotDetail("2", userId,String.valueOf(userPlotBodyLists.get(0).getPlotID()),prdId,prdGrpId);
-
 
                 }
 
@@ -486,8 +504,7 @@ private void API_getProvince() {
 
             @Override
             public void callbackError(int code, String errorMsg) {
-                Log.d(TAG, "Go to save plot Module ");
-                API_SavePlotDetail("1", userId, "",prdId,prdGrpId);
+
             }
         }).API_Request(false, RequestServices.ws_getPlotList +
                 "?UserID=" + userId +
@@ -497,7 +514,7 @@ private void API_getProvince() {
 
     }
 
-    private void API_SavePlotDetail(String saveFlag,String userId,String plotId,String prdId, String  prdGrup) {
+    private void API_SavePlotDetail(String saveFlag, final UserPlotModel userPlotInfo) {
         /**
          * 1.SaveFlag (บังคับ)
          2.UserID (บังคับ)
@@ -540,6 +557,10 @@ private void API_getProvince() {
 
                 Log.d(TAG,"---- >Size"+savePlotDetailBodyLists.size());
                 if (savePlotDetailBodyLists.size() != 0) {
+
+                    String plotId =  String.valueOf(savePlotDetailBodyLists.get(0).getPlotID());
+                    Log.d(TAG,"Response plotId : "+plotId);
+                    userPlotInfo.setPlotID(plotId);
                     toastMsg("คัดลอกข้อมูลสำเร็จ");
                 }
             }
@@ -551,31 +572,31 @@ private void API_getProvince() {
         }).API_Request(true, RequestServices.ws_savePlotDetail +
 
                 "?SaveFlag=" + saveFlag +
-                "&UserID=" +userId+
-                "&PlotID=" +plotId+
-                "&PrdID=" + prdId +
-                "&PrdGrpID=" + prdGrup +
-                "&PlotRai=" +
-                "&PondRai=" +
-                "&PondNgan=" +
-                "&PondWa=" +
-                "&PondMeter=" +
-                "&CoopMeter=" +
-                "&CoopNumber=" +
-                "&TamCode=" +
-                "&AmpCode=" +
-                "&ProvCode=" +
-                "&AnimalNumber=" +
-                "&AnimalWeight=" +
-                "&AnimalPrice=" +
-                "&FisheryType=" +
-                "&FisheryNumType=" +
-                "&FisheryNumber=" +
-                "&FisheryWeight=" +
-                "&ImeiCode=" +
-                "&VarName=" +
-                "&VarValue=" +
-                "&CalResult="
+                "&UserID=" +userPlotInfo.getUserID()+
+                "&PlotID=" +userPlotInfo.getPlotID()+
+                "&PrdID=" + userPlotInfo.getPrdID() +
+                "&PrdGrpID=" + userPlotInfo.getPrdGrpID() +
+                "&PlotRai=" +userPlotInfo.getPlotRai() +
+                "&PondRai=" +userPlotInfo.getPondRai()+
+                "&PondNgan=" +userPlotInfo.getPondNgan()+
+                "&PondWa=" +userPlotInfo.getPondWa()+
+                "&PondMeter=" +userPlotInfo.getPondMeter()+
+                "&CoopMeter=" +userPlotInfo.getCoopMeter()+
+                "&CoopNumber=" +userPlotInfo.getCoopNumber()+
+                "&TamCode=" +userPlotInfo.getTamCode()+
+                "&AmpCode=" +userPlotInfo.getAmpCode()+
+                "&ProvCode=" +userPlotInfo.getProvCode()+
+                "&AnimalNumber=" +userPlotInfo.getAnimalNumber()+
+                "&AnimalWeight=" +userPlotInfo.getAnimalWeight()+
+                "&AnimalPrice=" +userPlotInfo.getAnimalPrice()+
+                "&FisheryType=" +userPlotInfo.getFisheryType()+
+                "&FisheryNumType=" +userPlotInfo.getFisheryNumType()+
+                "&FisheryNumber=" +userPlotInfo.getFisheryNumber()+
+                "&FisheryWeight=" +userPlotInfo.getFisheryWeight()+
+                "&ImeiCode=" +ServiceInstance.GetDeviceID(StepThreeActivity.this)+
+                "&VarName=" +userPlotInfo.getVarName()+
+                "&VarValue=" +userPlotInfo.getVarValue()+
+                "&CalResult="+userPlotInfo.getCalResult()
         );
     }
     private void toastMsg(String msg) {
@@ -596,9 +617,9 @@ private void API_getProvince() {
 
     private boolean isValidPlantInputData (){
         boolean isValid = false;
-        EditText inputPricePerUnit = (EditText) findViewById(R.id.inputPricePerUnit);
+        EditText inputRai = (EditText) findViewById(R.id.inputRai);
 
-        if(inputPricePerUnit.getText() == null || inputPricePerUnit.getText().toString().equals("")){
+        if(inputRai.getText() == null || inputRai.getText().toString().equals("")){
             new DialogChoice(StepThreeActivity.this).ShowOneChoice("", "กรุณากรอกขนาดแปลงที่ดิน");
         }else if(selectedprovince == null || selectedAmphoe == null || selectedTumbon == null){
             new DialogChoice(StepThreeActivity.this).ShowOneChoice("", "กรุณากรอกตำแหน่งแปลงทีดิน");
@@ -607,6 +628,14 @@ private void API_getProvince() {
         }
 
         return isValid;
+
+    }
+
+    class Holder{
+
+        ImageView prodImg;
+        LinearLayout prodBg;
+        com.neopixl.pixlui.components.textview.TextView labelProductName,labelProductHierarchy;
 
     }
 }
