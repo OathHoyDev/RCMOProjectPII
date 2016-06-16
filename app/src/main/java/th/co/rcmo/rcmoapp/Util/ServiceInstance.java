@@ -17,6 +17,8 @@ import java.util.Map;
  * Created by Taweesin on 5/17/2016.
  */
 public class ServiceInstance {
+
+    public static final String forgotPassURL = "http://111.223.34.154/RCMO/forgot_password.aspx";
     public static final int version = Build.VERSION.SDK_INT;
     public static final String PREF_NAME = "RCMO";
     public static final String sp_userId    = "sp_user_id";

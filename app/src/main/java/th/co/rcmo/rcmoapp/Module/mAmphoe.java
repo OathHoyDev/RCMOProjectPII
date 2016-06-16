@@ -33,6 +33,18 @@ public class mAmphoe {
         String AmpNameTH;
         String ProvCode;
 
+        public void setAmpCode(String ampCode) {
+            AmpCode = ampCode;
+        }
+
+        public void setAmpNameTH(String ampNameTH) {
+            AmpNameTH = ampNameTH;
+        }
+
+        public void setProvCode(String provCode) {
+            ProvCode = provCode;
+        }
+
         public String getAmpCode() {
             return AmpCode;
         }

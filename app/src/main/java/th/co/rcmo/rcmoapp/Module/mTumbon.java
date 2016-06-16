@@ -36,6 +36,30 @@ public class mTumbon {
         String Latitude;
         String Longitude;
 
+        public void setTamCode(String tamCode) {
+            TamCode = tamCode;
+        }
+
+        public void setLongitude(String longitude) {
+            Longitude = longitude;
+        }
+
+        public void setLatitude(String latitude) {
+            Latitude = latitude;
+        }
+
+        public void setProvCode(String provCode) {
+            ProvCode = provCode;
+        }
+
+        public void setAmpCode(String ampCode) {
+            AmpCode = ampCode;
+        }
+
+        public void setTamNameTH(String tamNameTH) {
+            TamNameTH = tamNameTH;
+        }
+
         public String getTamCode() {
             return TamCode;
         }

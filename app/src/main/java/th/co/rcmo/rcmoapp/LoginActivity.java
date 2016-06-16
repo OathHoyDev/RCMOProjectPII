@@ -73,7 +73,7 @@ public class LoginActivity extends Activity {
             public void onClick(View v) {
            //     startActivity(new Intent(LoginActivity.this, UserPlotListActivity.class));
                 startActivity(new Intent(LoginActivity.this, WebActivity.class)
-                        .putExtra("link", "http://www.google.co.th/"));
+                        .putExtra("link", ServiceInstance.forgotPassURL));
 
             }
         });

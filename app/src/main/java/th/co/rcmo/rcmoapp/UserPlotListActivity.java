@@ -11,6 +11,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,17 +20,14 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
-
 import com.neopixl.pixlui.components.textview.TextView;
 import java.util.ArrayList;
 import java.util.List;
-
 import th.co.rcmo.rcmoapp.API.RequestServices;
 import th.co.rcmo.rcmoapp.API.ResponseAPI;
 import th.co.rcmo.rcmoapp.Module.mCopyPlot;
 import th.co.rcmo.rcmoapp.Module.mDeletePlot;
 import th.co.rcmo.rcmoapp.Module.mGetRegister;
-import th.co.rcmo.rcmoapp.Module.mSavePlotDetail;
 import th.co.rcmo.rcmoapp.Module.mUpdateUserPlotSeq;
 import th.co.rcmo.rcmoapp.Module.mUserPlotList;
 import th.co.rcmo.rcmoapp.Util.ServiceInstance;
@@ -49,6 +47,24 @@ public class UserPlotListActivity extends Activity {
         setAction();
     }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode == KeyEvent.KEYCODE_BACK){
+            new DialogChoice(UserPlotListActivity.this, new DialogChoice.OnSelectChoiceListener() {
+                @Override
+                public void OnSelect(int choice) {
+                    if(choice == DialogChoice.OK){
+                        Intent intent = new Intent(Intent.ACTION_MAIN);
+                        intent.addCategory(Intent.CATEGORY_HOME);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                        finish();
+                    }
+                }
+            }).ShowTwoChoice("","คุณต้องการออกจากแอพลิเคชั่นหรือไม่?");
+        }
+        return false;
+    }
 
 
     private void setUI() {
@@ -95,7 +111,6 @@ public class UserPlotListActivity extends Activity {
 
 
     }
-
 
 
     class UserPlotAdapter extends BaseAdapter {
@@ -273,14 +288,7 @@ public class UserPlotListActivity extends Activity {
         }
     }
 
-
-    class Holder{
-        TextView labelAddress,labelPlotSize,labelProductName,labelProfit,labelDate,btnProfit;
-        ImageView imgProduct,prodImg;
-        LinearLayout prodBg;
-
-
-    }
+/*============================== API ================================*/
 
     private void API_GetRegister(final int userId) {
           //1.UserID (บังคับใส่)
@@ -367,7 +375,6 @@ public class UserPlotListActivity extends Activity {
 
     }
 
-
     private void API_CopyPlot(final String userId, final String plotId,final int addposition,final List<mUserPlotList.mRespBody> userPlotList ) {
 
         /**
@@ -412,7 +419,6 @@ public class UserPlotListActivity extends Activity {
         );
     }
 
-
     private void toastMsg(String msg) {
         LayoutInflater inflater = getLayoutInflater();
         View layout = inflater.inflate(R.layout.toast_layout,
@@ -427,23 +433,13 @@ public class UserPlotListActivity extends Activity {
 
         toast.show();
     }
-    /*
 
-"RespStatus":{"StatusID":0,"StatusMsg":"Success"},
-"RespBody":[{"PlotID":"1",
-             "PrdGrpID":"1",
-			 "PlantGrpID":"1",
-			 "PrdID":"3",
-			 "PrdValue":"ข้าวหอมมะลิ(ข้าวนาปี)","
-			 PlotLocation":"ต.กง อ.กงไกรลาศ จ.จ.สุโขทัย",
-			 "PlotSize":"250.00 ไร่","
-			 AnimalNumberValue":"",
-			 "AnimalPriceValue":"",
-			 "AnimalWeightValue":"","
-			 FisheryNumberValue":"",
-			 "DateUpdated":"14/5/2559 14:09:11","SeqNo":"1"}
+    class Holder{
+        TextView labelAddress,labelPlotSize,labelProductName,labelProfit,labelDate,btnProfit;
+        ImageView imgProduct,prodImg;
+        LinearLayout prodBg;
 
 
-          */
+    }
 
 }

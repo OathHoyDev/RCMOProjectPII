@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 public class WebActivity extends Activity {
 
@@ -19,6 +20,5 @@ public class WebActivity extends Activity {
         webView.loadUrl(getIntent().getStringExtra("link"));
 
         setContentView(webView);
-        finish();
     }
 }

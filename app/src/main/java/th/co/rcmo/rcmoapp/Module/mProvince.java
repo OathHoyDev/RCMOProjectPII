@@ -40,5 +40,13 @@ public class mProvince {
         public String getProvNameTH() {
             return ProvNameTH;
         }
+
+        public void setProvCode(String provCode) {
+            ProvCode = provCode;
+        }
+
+        public void setProvNameTH(String provNameTH) {
+            ProvNameTH = provNameTH;
+        }
     }
 }

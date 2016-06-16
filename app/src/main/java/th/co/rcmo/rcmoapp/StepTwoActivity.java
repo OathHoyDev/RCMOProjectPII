@@ -205,7 +205,6 @@ public class StepTwoActivity extends Activity {
         }
     }
 
-
     class PlantProductUIAdapter extends BaseAdapter {
         List<mPlantGroup.mRespBody> productList;
 
@@ -277,8 +276,6 @@ public class StepTwoActivity extends Activity {
         }
     }
 
-
-
     class RiceProductUIAdapter extends BaseAdapter {
         List<mRiceProduct.mRespBody> productList;
 
@@ -348,7 +345,6 @@ public class StepTwoActivity extends Activity {
         }
     }
 
-
     class Holder{
         TextView productLabel;
         ImageView prodImg;
@@ -358,7 +354,7 @@ public class StepTwoActivity extends Activity {
     }
 
 
-
+/*====================== API ============================*/
 
     private void API_GetRiceProduct(final int subId,final int subOfSubId,final String hierarchyStr) {
         Log.d("TAG", "-->API_GetRiceProduct");
@@ -396,7 +392,6 @@ public class StepTwoActivity extends Activity {
                 "?RiceTypeID=" + subId+"&PrdID=" );
 
     }
-
 
     private void API_GetProduct(final int prdGrpID, int plantGrpID, final String hierarchyStr) {
         Log.d("TAG", "-->API_GetProduct");
