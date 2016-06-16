@@ -140,29 +140,40 @@ public class UserPlotListActivity extends Activity {
 
         @Override
         public View getView(final int position, View convertView, ViewGroup parent) {
+
+            ViewHolder h = new ViewHolder();
+
             if(convertView==null){
                 LayoutInflater inflater = UserPlotListActivity.this.getLayoutInflater();
                 convertView = inflater.inflate(R.layout.row_user_plot, parent, false);
+                h.labelProductName =  (TextView) convertView.findViewById(R.id.labelProductName);
+                h.labelAddress     =  (TextView) convertView.findViewById(R.id.labelAddress);
+                h.labelPlotSize    =  (TextView) convertView.findViewById(R.id.labelPlotSize);
+                h.labelDate        =  (TextView) convertView.findViewById(R.id.labelDate);
+                h.btnProfit        =  (TextView) convertView.findViewById(R.id.btnProfit);
+                h.labelProfit      =  (TextView) convertView.findViewById(R.id.labelProfit);
+                h.prodImg          =  (ImageView) convertView.findViewById(R.id.prodImg);
+                h.prodBg           =  (LinearLayout)convertView.findViewById(R.id.gridDrawBg);
+                h.btnDelete       =  (TextView) convertView.findViewById(R.id.btnDeleete);
+                h.btnCopy          =  (TextView) convertView.findViewById(R.id.btnCopy);
+                h.layoutPlotRow    =  (LinearLayout) convertView.findViewById(R.id.layoutPlotRow);
+                convertView.setTag(h);
+            }else{
+                h = (ViewHolder) convertView.getTag();
             }
 
 
 
 
             mUserPlotList.mRespBody  respBody =  getItem(position);
-            Holder h = new Holder();
+
+
 
             /**
              * Get Layout Obj
              */
            // h.imgProduct = (ImageView) convertView.findViewById(R.id.imgProduct);
-            h.labelProductName =  (TextView) convertView.findViewById(R.id.labelProductName);
-            h.labelAddress     =  (TextView) convertView.findViewById(R.id.labelAddress);
-            h.labelPlotSize    =  (TextView) convertView.findViewById(R.id.labelPlotSize);
-            h.labelDate        =  (TextView) convertView.findViewById(R.id.labelDate);
-            h.btnProfit        =  (TextView) convertView.findViewById(R.id.btnProfit);
-            h.labelProfit      =  (TextView) convertView.findViewById(R.id.labelProfit);
-            h.prodImg          = (ImageView) convertView.findViewById(R.id.prodImg);
-            h.prodBg           =  (LinearLayout)convertView.findViewById(R.id.gridDrawBg);
+
 
             /**
              * Set UI Display value
@@ -209,11 +220,15 @@ public class UserPlotListActivity extends Activity {
 
 
             //On Press Action
-            final TextView btnd =  (TextView) convertView.findViewById(R.id.btnDeleete);
-            final TextView btnc    = (TextView) convertView.findViewById(R.id.btnCopy);
+          //  final TextView btnd =  (TextView) convertView.findViewById(R.id.btnDeleete);
+           // final TextView btnc    = (TextView) convertView.findViewById(R.id.btnCopy);
+            final  TextView btnd =  h.btnDelete;
+            final  TextView btnc = h.btnCopy;
             btnc.setVisibility(View.GONE);
             btnd.setVisibility(View.GONE);
-              convertView.findViewById(R.id.layoutPlotRow).setOnLongClickListener(new View.OnLongClickListener() {
+
+
+              h.layoutPlotRow.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
                     Log.d("Is Onpress", "Show Button");
@@ -232,7 +247,7 @@ public class UserPlotListActivity extends Activity {
 
 
             //On Click Delete Action
-            convertView.findViewById(R.id.btnDeleete).setOnClickListener(new View.OnClickListener() {
+            h.btnDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Log.d("On remove", "remove position : "+position);
@@ -259,7 +274,7 @@ public class UserPlotListActivity extends Activity {
             //On Click Coppy Action
             SharedPreferences sp = getSharedPreferences(ServiceInstance.PREF_NAME, Context.MODE_PRIVATE);
             final String userId = sp.getString(ServiceInstance.sp_userId, "0");
-            convertView.findViewById(R.id.btnCopy).setOnClickListener(new View.OnClickListener() {
+            h.btnCopy.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Log.d("On Copy", " position : "+position);
@@ -288,6 +303,13 @@ public class UserPlotListActivity extends Activity {
         }
     }
 
+    static class ViewHolder {
+        private  TextView labelAddress,labelPlotSize,labelProductName,labelProfit,labelDate,btnProfit,btnDelete,btnCopy;
+        private  ImageView imgProduct,prodImg;
+        private  LinearLayout prodBg,layoutPlotRow ;
+
+
+    }
 /*============================== API ================================*/
 
     private void API_GetRegister(final int userId) {
@@ -434,12 +456,8 @@ public class UserPlotListActivity extends Activity {
         toast.show();
     }
 
-    class Holder{
-        TextView labelAddress,labelPlotSize,labelProductName,labelProfit,labelDate,btnProfit;
-        ImageView imgProduct,prodImg;
-        LinearLayout prodBg;
 
 
-    }
+
 
 }

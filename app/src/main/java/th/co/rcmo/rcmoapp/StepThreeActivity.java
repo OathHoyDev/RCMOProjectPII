@@ -44,7 +44,7 @@ public class StepThreeActivity extends Activity {
     public static ProductModel productionInfo = null;
     UserPlotModel userPlotModel = new UserPlotModel();
     String TAG = "StepThreeActivity_TAG";
-
+    boolean kcSelected = true;
 
 
     @Override
@@ -171,6 +171,26 @@ public class StepThreeActivity extends Activity {
             }
 
             h.prodBg.setBackgroundResource(R.drawable.fish_ic_circle_bg);
+
+            if(userPlotModel.getPrdID().equals("49")){
+
+              //   h.fishKcLayout  = (LinearLayout) findViewById(R.id.fishKcLayout);
+                 //h.fishVaLayout  = (LinearLayout) findViewById(R.id.fishVaLayout);
+
+                //h.fishBoLayout.setVisibility(View.GONE);
+                //h.fishKcLayout.setVisibility(View.GONE);
+
+
+            }else {
+
+                h.fishBoLayout  = (LinearLayout) findViewById(R.id.bo_layout);
+               // h.fishKcLayout  = (LinearLayout) findViewById(R.id.fishKcLayout);
+                h.fishVaLayout  = (LinearLayout) findViewById(R.id.fishVaLayout);
+
+                h.fishBoLayout.setVisibility(View.GONE);
+
+            }
+
         }else{
             startActivity(new Intent(StepThreeActivity.this, LoginActivity.class));
             finish();
@@ -232,13 +252,6 @@ public class StepThreeActivity extends Activity {
             }
         });
 
-        findViewById(R.id.inputprovice).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                API_getProvince();
-
-            }
-        });
 
         findViewById(R.id.inputprovice).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -266,6 +279,49 @@ public class StepThreeActivity extends Activity {
 
             }
         });
+
+        if("3".equals(userPlotModel.getPrdGrpID())){
+
+            if(!userPlotModel.getPrdID().equals("49")){
+
+
+                findViewById(R.id.imgKcChoice).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                      //  if (!kcSelected) {
+                        findViewById(R.id.bo_layout).setVisibility(View.GONE);
+                            findViewById(R.id.kc_layout).setVisibility(View.VISIBLE);
+
+
+                            ((ImageView)findViewById(R.id.imgKcChoice)).setImageResource(R.drawable.radio_select);
+                            ((ImageView)findViewById(R.id.imgBoChoice)).setImageResource(R.drawable.radio_not_select);
+                            kcSelected = true;
+                        //}
+                    }
+                });
+
+
+                findViewById(R.id.imgBoChoice).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Log.d(TAG,"kcSelected __>"+  kcSelected);
+                       // if (kcSelected) {
+                            findViewById(R.id.kc_layout).setVisibility(View.GONE);
+                            findViewById(R.id.bo_layout).setVisibility(View.VISIBLE);
+
+                            ((ImageView)findViewById(R.id.imgKcChoice)).setImageResource(R.drawable.radio_not_select);
+                            ((ImageView)findViewById(R.id.imgBoChoice)).setImageResource(R.drawable.radio_select);
+                            kcSelected = false;
+                      //  }
+                    }
+                });
+
+
+            }
+
+
+        }
+
     }
 
 
@@ -556,7 +612,7 @@ public class StepThreeActivity extends Activity {
                     String plotId =  String.valueOf(savePlotDetailBodyLists.get(0).getPlotID());
                     Log.d(TAG,"Response plotId : "+plotId);
                     userPlotInfo.setPlotID(plotId);
-                    toastMsg("คัดลอกข้อมูลสำเร็จ");
+                    toastMsg("บันทึกข้อมูลสำเร็จ");
                 }
             }
 
@@ -764,8 +820,8 @@ public class StepThreeActivity extends Activity {
 
     class Holder{
 
-        ImageView prodImg;
-        LinearLayout prodBg;
+        ImageView prodImg ;
+        LinearLayout prodBg,fishBoLayout,fishKcLayout,fishVaLayout;
         com.neopixl.pixlui.components.textview.TextView labelProductName,labelProductHierarchy,labelNumberOfStart
                 ,labelPricePerUnit,labelWeightPerUnit;
        com.neopixl.pixlui.components.edittext.EditText inputPricePerUnit ,inputWeightPerUnit,inputNumberOfStart;
