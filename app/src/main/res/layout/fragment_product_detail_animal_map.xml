@@ -1,0 +1,94 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ProductDetailAnimalMapFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/map"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"/>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/btnMapStyle"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="150dp"
+            android:background="@drawable/btn_sate"/>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:id="@+id/btnCenterMarker"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/btn_my_pin"
+            android:layout_below="@+id/btnMapStyle"
+            android:layout_alignStart="@+id/btnMapStyle"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            android:clickable="true"
+            android:layout_alignEnd="@+id/btnMapStyle" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/RcmoAnimalTranBG"
+            android:layout_alignParentEnd="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="เหมาะสมปานกลาง"
+                android:id="@+id/textView"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:id="@+id/imageView2"
+                android:layout_below="@+id/textView"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/ic_3star"
+                android:scaleType="fitCenter"
+                android:layout_marginTop="5dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Medium Text"
+                android:id="@+id/lbAddress"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="10dp" />
+        </RelativeLayout>
+
+        <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/fadeLayout"
+            android:background="@color/black_overlay">
+        </FrameLayout>
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:id="@+id/btnSuggession"
+            android:layout_alignTop="@+id/btnMapStyle"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/btn_suggestion"
+            android:layout_marginRight="30dp" />
+
+    </RelativeLayout>
+
+</FrameLayout>

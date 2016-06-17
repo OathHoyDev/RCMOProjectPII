@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:pixlui="http://schemas.android.com/apk/com.neopixl.pixlui"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/transFrame"></FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/RcmoOrangeBG"
+        android:layout_margin="20dp"
+        android:id="@+id/borderFrame"></FrameLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/RcmoWhiteBG"
+        android:layout_margin="30dp"
+        android:id="@+id/suggess_layout">
+
+        <com.neopixl.pixlui.components.textview.TextView
+            pixlui:typeface="Quark-Bold.otf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="พื้นที่เหมาะสมสำหรับ...."
+            android:id="@+id/txRecommend"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:textColor="@android:color/black"
+            android:layout_marginLeft="15dp"
+            android:layout_alignParentLeft="true" />
+
+        <com.neopixl.pixlui.components.textview.TextView
+            pixlui:typeface="Quark-Bold.otf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="สัตว์ที่ควรเลี้ยงคือ"
+            android:id="@+id/textView2"
+            android:layout_below="@+id/txRecommend"
+            android:layout_alignStart="@+id/txRecommend"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/RcmoGrayBG" />
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView5"
+        android:src="@drawable/ic_triangle_arrow"
+        android:layout_alignParentEnd="false"
+        android:layout_alignRight="@+id/suggess_layout"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="30dp" />
+
+</RelativeLayout>

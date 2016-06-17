@@ -38,6 +38,7 @@
 
     <color name="RcmoAnimalDarkBG">#d5444f</color>
     <color name="RcmoAnimalBG">#f4838e</color>
+    <color name="RcmoAnimalTranBG">#e6f4838e</color>
 
     <color name="RcmoPlantDarkBG">#2c613c</color>
     <color name="RcmoPlantBG">#4cb748</color>
@@ -48,6 +49,7 @@
     <color name="RcmoStepTabTranBG">#4DFFFFFF</color>
     <color name="RcmoLineTabBG">#97dbf8</color>
 
+    <color name="black_overlay">#96000000</color>
     <color name="RcmoToastTranBG">#99000000</color>
     <color name="RcmoDialogTranBG">#e6ffffff</color>
 
