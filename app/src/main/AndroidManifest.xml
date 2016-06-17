@@ -52,13 +52,6 @@
         <activity
             android:name=".LoginActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".ChangePasswordActivity" />
-        <activity android:name=".EditUserActivity" />
-        <activity android:name=".WebActivity" />
-        <activity android:name=".UserPlotListActivity" />
-        <activity android:name=".StepOneActivity" />
-        <activity android:name=".StepTwoActivity" />
-        <activity android:name=".StepThreeActivity" />
         <activity
             android:name=".ProductDetailAnimalActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
