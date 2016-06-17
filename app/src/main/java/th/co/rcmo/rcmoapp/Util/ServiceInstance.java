@@ -17,10 +17,26 @@ import java.util.Map;
  * Created by Taweesin on 5/17/2016.
  */
 public class ServiceInstance {
+
+    public static final String forgotPassURL = "http://111.223.34.154/RCMO/forgot_password.aspx";
+    public static final String FISHERY_TYPE_KC = "2";
+    public static final String FISHERY_TYPE_BO = "1";
+
+    public static final String FISHERY_NUM_TYPE_TUA = "1";
+    public static final String FISHERY_NUM_TYPE_KK  = "2";
+
+
     public static final int version = Build.VERSION.SDK_INT;
     public static final String PREF_NAME = "RCMO";
-    public static final String sp_userId    = "sp_user_name";
-    public static final String sp_userName  = "sp_user_id";
+    public static final String sp_userId    = "sp_user_id";
+    public static final String sp_userName  = "sp_user_name";
+    public static final String sp_plot_Id = "sp_plot_id";
+
+
+    public static final String INTENT_GROUP_ID             = "GROUP_ID";
+    public static final String INTENT_PROD_HIERARCHY       = "PROD_HIERARCHY";
+    public static final String INTENT_SUB_GROUP_ID         = "SUB_GROUP_ID";
+    public static final String INTENT_SUB_OF_SUB_GROUP_ID  = "SUB_OF_SUB_GROUP_ID";
 
     public static final Map<Integer, String> productBGMap = new HashMap<>();
     static {
@@ -29,9 +45,9 @@ public class ServiceInstance {
         productBGMap.put(2, "RcmoAnimalBG");
         productBGMap.put(3, "RcmoFishBG");
     }
-
+/*
     public static final Map<Integer, String> productPicMap = new HashMap<>();
-        static {
+    static {
         // key = prod Id
         //plant 1
         productPicMap.put(1, "ic_p_1_1");
@@ -95,6 +111,78 @@ public class ServiceInstance {
         productPicMap.put(48,"ic_m_4"); //not found img
         productPicMap.put(49,"ic_m_3");
     }
+*/
+    public static final Map<Integer, String> productIMGMap = new HashMap<>();
+    static {
+        // key = prod Id
+        //plant 1
+        productIMGMap.put(1, "p1_1");
+        productIMGMap.put(2, "p1_1");
+        productIMGMap.put(3, "p1_1");
+        productIMGMap.put(4, "p1_1");
+        productIMGMap.put(5, "p1_1");
+        productIMGMap.put(6, "p1_1");
+        productIMGMap.put(7, "p1_1");
+        productIMGMap.put(8, "p1_2");
+        productIMGMap.put(9, "p1_3");
+        productIMGMap.put(10,"p1_4");
+        productIMGMap.put(11,"p1_5");
+        productIMGMap.put(12,"p1_6");
+        productIMGMap.put(13,"p1_7");
+        productIMGMap.put(14,"p1_8");
+
+        //plan2
+        productIMGMap.put(15,"p2_1");
+        productIMGMap.put(16,"p2_2");
+        productIMGMap.put(17,"p2_3");
+        productIMGMap.put(18,"p2_4");
+        productIMGMap.put(19,"p2_4");
+        productIMGMap.put(20,"p2_9");
+        productIMGMap.put(21,"p2_8");
+        productIMGMap.put(22,"p2_7");
+        productIMGMap.put(23,"p2_6");
+        productIMGMap.put(24,"p2_5");
+        productIMGMap.put(25,"p2_10");
+        productIMGMap.put(26,"p2_11");
+        productIMGMap.put(27,"p2_12");
+        productIMGMap.put(28,"p2_13");
+        productIMGMap.put(29,"p2_14");
+        productIMGMap.put(30,"p2_15");
+        productIMGMap.put(31,"p2_18");
+        productIMGMap.put(32,"p2_16");
+        productIMGMap.put(33,"p2_17");
+
+        //plan3
+        productIMGMap.put(34,"p3_1");
+        productIMGMap.put(35,"p3_2");
+        productIMGMap.put(36,"p3_3");
+        productIMGMap.put(37,"p3_4");
+
+        //plan4
+        productIMGMap.put(38,"p4_1");
+
+        //animal
+
+        productIMGMap.put(39,"m1");
+        productIMGMap.put(40,"m2");
+        productIMGMap.put(41,"m3");
+        productIMGMap.put(42,"m4");
+        productIMGMap.put(43,"m5");
+        productIMGMap.put(44,"m6");
+
+        //fish
+        productIMGMap.put(45,"f1");
+        productIMGMap.put(46,"f2");
+        productIMGMap.put(47,"f4");
+        productIMGMap.put(48,"f4"); //not found img
+        productIMGMap.put(49,"f3");
+
+
+        productIMGMap.put(1001,"p1_1");
+        productIMGMap.put(1002,"p2");
+        productIMGMap.put(1003,"p3");
+        productIMGMap.put(1004,"p4");
+    }
 
 
 
@@ -140,7 +228,7 @@ public class ServiceInstance {
                 try {
                     SimpleDateFormat format_year = new SimpleDateFormat("yyyy");
                     year = Integer.valueOf(format_year.format(dateLogin.getTime()));
-                  //  Log.i("Instance", "formatStrDate : " + dateLogin + "//" + dateLogin.getDate() + "//" + dateLogin.getYear()+"//"+year);
+                    //  Log.i("Instance", "formatStrDate : " + dateLogin + "//" + dateLogin.getDate() + "//" + dateLogin.getYear()+"//"+year);
                 } catch (Exception e) {
                     year = dateLogin.getYear();
                 }
@@ -154,4 +242,22 @@ public class ServiceInstance {
             }
         } else return "";
     }
+
+    public static String genProdHierarchy(String prefix,String hierarchy){
+        try {
+            String newHierarchy = prefix;
+            if (hierarchy != null) {
+                String[] sp = hierarchy.split("<");
+                for (int i = 0; i < sp.length; i++) {
+                    if(!("".equals(sp[i].trim()))) {
+                        newHierarchy = newHierarchy + " > " + sp[i].trim();
+                    }
+                }
+            }
+            return newHierarchy;
+        }catch (Exception e){
+            return prefix;
+        }
+
+     }
 }

@@ -101,264 +101,343 @@
 
    </LinearLayout>
 
-    <LinearLayout
-        android:orientation="vertical"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_marginTop="30dp"
-        android:layout_height="@dimen/iccircle_parent_height"
-        android:layout_marginLeft="20dp"
-        android:layout_gravity="center_horizontal"
-        android:gravity="left">
+        android:layout_height="match_parent">
+        <ImageView
+            android:layout_width="200dp"
+            android:adjustViewBounds="true"
+            android:layout_height="300dp"
+            android:id="@+id/imageView2"
+            android:background="@drawable/circle"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="60dp" />
 
-
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_height="wrap_content"
+            android:layout_width="200dp"
+            android:layout_gravity="left"
+            android:gravity="left|center"
+            android:layout_marginStart="30dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="25dp"
+            android:id="@+id/linearLayout">
 
             <LinearLayout
-                android:orientation="horizontal"
-                android:layout_height="match_parent"
+                android:id="@+id/ic_bg_g1"
+                android:orientation="vertical"
+                android:layout_height="100dp"
+                android:layout_width="100dp"
+                android:gravity="center"
+                android:background="@drawable/action_plant_ic_gr_circle"
+                android:clickable="true"
+                android:focusable="true">
+
+                <ImageView
+                    android:id="@+id/ic_im_g1"
+                    android:layout_height="@dimen/iccircle_img_height"
+                    android:layout_width="@dimen/iccircle_img_width"
+                    android:src="@drawable/p1_1"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_height="40dp"
                 android:layout_width="wrap_content"
-                android:layout_gravity="left"
+                android:layout_marginLeft="10dp"
                 android:gravity="center">
 
-                <LinearLayout
-                    android:id="@+id/ic_bg_g1"
-                    android:orientation="vertical"
-                    android:layout_height="100dp"
-                    android:layout_width="100dp"
+                <com.neopixl.pixlui.components.textview.TextView
+                    pixlui:typeface="Quark-Bold.otf"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="กลุ่มพืช"
                     android:gravity="center"
-                    android:background="@drawable/action_plant_ic_gr_circle"
-                    android:clickable="true"
-                    android:focusable="true">
-
-                    <ImageView
-                        android:id="@+id/ic_im_g1"
-                        android:layout_height="@dimen/iccircle_img_height"
-                        android:layout_width="@dimen/iccircle_img_width"
-                        android:src="@drawable/p1_1"
-                        />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_height="40dp"
-                    android:layout_width="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:gravity="center">
-
-                    <com.neopixl.pixlui.components.textview.TextView
-                        pixlui:typeface="Quark-Bold.otf"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="กลุ่มพืช"
-                        android:gravity="center"
-                        android:id="@+id/ic_label_g1"
-                        android:textColor="@color/RcmoNormalLightText"
-                        android:textSize="22sp" />
-                </LinearLayout>
-
+                    android:id="@+id/ic_label_g1"
+                    android:textColor="@color/RcmoNormalLightText"
+                    android:textSize="22sp" />
             </LinearLayout>
 
 
+        </LinearLayout>
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/iccircle_parent_height"
-        android:layout_marginLeft="80dp"
-        android:layout_gravity="center_horizontal">
-
-
-
-
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_height="wrap_content"
+            android:layout_width="200dp"
+            android:layout_gravity="left"
+            android:gravity="left|center"
+            android:layout_below="@+id/linearLayout"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="32dp">
             <LinearLayout
-                android:orientation="horizontal"
-                android:layout_height="match_parent"
-                android:layout_width="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center">
+                android:id="@+id/ic_bg_g2"
+                android:orientation="vertical"
+                android:layout_height="100dp"
+                android:layout_width="100dp"
+                android:gravity="center"
+                android:background="@drawable/action_animal_ic_gr_circle"
+                android:clickable="true"
+                android:focusable="true">
 
-                <LinearLayout
-                    android:id="@+id/ic_bg_g2"
-                    android:orientation="vertical"
-                    android:layout_height="100dp"
-                    android:layout_width="100dp"
-                    android:gravity="center"
-                    android:background="@drawable/action_animal_ic_gr_circle"
-                    android:clickable="true"
-                    android:focusable="true">
-
-                    <ImageView
-                        android:id="@+id/ic_im_g2"
-                        android:layout_height="@dimen/iccircle_img_height"
-                        android:layout_width="@dimen/iccircle_img_width"
-                        android:src="@drawable/m1"
-                        />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_height="40dp"
-                    android:layout_width="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:gravity="center">
-
-                    <com.neopixl.pixlui.components.textview.TextView
-                        pixlui:typeface="Quark-Bold.otf"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="กลุ่มสัตว์"
-                        android:gravity="center"
-                        android:id="@+id/ic_label_g2"
-                        android:textColor="@color/RcmoNormalLightText"
-                        android:textSize="22sp" />
-                </LinearLayout>
-
+                <ImageView
+                    android:id="@+id/ic_im_g2"
+                    android:layout_height="@dimen/iccircle_img_height"
+                    android:layout_width="@dimen/iccircle_img_width"
+                    android:src="@drawable/m10"
+                    />
             </LinearLayout>
 
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/iccircle_parent_height"
-        android:layout_marginLeft="30dp"
-        android:layout_gravity="left">
-
-
-
             <LinearLayout
-                android:orientation="horizontal"
-                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_height="40dp"
                 android:layout_width="wrap_content"
-                android:layout_weight="1"
+                android:layout_marginLeft="10dp"
                 android:gravity="center">
 
-                <LinearLayout
-                    android:id="@+id/ic_bg_g3"
-                    android:orientation="vertical"
-                    android:layout_height="100dp"
-                    android:layout_width="100dp"
+                <com.neopixl.pixlui.components.textview.TextView
+                    pixlui:typeface="Quark-Bold.otf"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="กลุ่มสัตว์"
                     android:gravity="center"
-                    android:background="@drawable/action_fish_ic_gr_circle"
-                    android:clickable="true"
-                    android:focusable="true">
-
-                    <ImageView
-                        android:id="@+id/ic_im_g3"
-                        android:layout_height="@dimen/iccircle_img_height"
-                        android:layout_width="@dimen/iccircle_img_width"
-                        android:src="@drawable/f1"
-                        />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_height="40dp"
-                    android:layout_width="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:gravity="center">
-
-                    <com.neopixl.pixlui.components.textview.TextView
-                        pixlui:typeface="Quark-Bold.otf"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="กลุ่มประมง"
-                        android:gravity="center"
-                        android:id="@+id/ic_label_47"
-                        android:textColor="@color/RcmoNormalLightText"
-                        android:textSize="22sp" />
-                </LinearLayout>
-
+                    android:id="@+id/ic_label_g2"
+                    android:textColor="@color/RcmoNormalLightText"
+                    android:textSize="22sp" />
             </LinearLayout>
 
+        </LinearLayout>
 
 
-    </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_height="wrap_content"
+            android:layout_width="200dp"
+            android:layout_gravity="left"
+            android:gravity="left|center"
+            android:layout_below="@+id/linearLayout"
+            android:layout_alignStart="@+id/linearLayout"
+            android:layout_marginTop="164dp">
 
+            <LinearLayout
+                android:id="@+id/ic_bg_g3"
+                android:orientation="vertical"
+                android:layout_height="100dp"
+                android:layout_width="100dp"
+                android:gravity="center"
+                android:background="@drawable/action_fish_ic_gr_circle"
+                android:clickable="true"
+                android:focusable="true">
 
+                <ImageView
+                    android:id="@+id/ic_im_g3"
+                    android:layout_height="@dimen/iccircle_img_height"
+                    android:layout_width="@dimen/iccircle_img_width"
+                    android:src="@drawable/f4"
+                    />
+            </LinearLayout>
 
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_height="40dp"
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:gravity="center">
+
+                <com.neopixl.pixlui.components.textview.TextView
+                    pixlui:typeface="Quark-Bold.otf"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="กลุ่มประมง"
+                    android:gravity="center"
+                    android:id="@+id/ic_label_47"
+                    android:textColor="@color/RcmoNormalLightText"
+                    android:textSize="22sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </RelativeLayout>
 
 </LinearLayout>
-
-   <!--
-   <RelativeLayout
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       >
-       <com.neopixl.pixlui.components.textview.TextView
-           pixlui:typeface="Quark-Bold.otf"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:text="ข้อมูลผู้ใช้งาน"
-           android:layout_alignParentTop="true"
-           android:gravity="center|top"
-           android:padding="12dp"
-           android:id="@+id/titleLable"
-           android:textColor="@color/RcmoNormalLightText"
-           android:textSize="@dimen/textsize_xxxlarge" />
+    <!--
+        <LinearLayout
+         android:orientation="vertical"
+         android:layout_width="match_parent"
+         android:layout_marginTop="30dp"
+         android:layout_height="@dimen/iccircle_parent_height"
+         android:layout_marginLeft="20dp"
+         android:layout_gravity="center_horizontal"
+         android:gravity="left">
 
 
-       <ImageView
-           android:layout_width="@dimen/size_howto"
-           android:layout_height="@dimen/size_howto"
-           android:src="@drawable/ic_profile"
-           android:layout_alignParentLeft="true"
-           android:id="@+id/btnProfile"
-           android:layout_margin="10dp"/>
+
+             <LinearLayout
+                 android:orientation="horizontal"
+                 android:layout_height="match_parent"
+                 android:layout_width="wrap_content"
+                 android:layout_gravity="left"
+                 android:gravity="center">
+
+                 <LinearLayout
+                     android:id="@+id/ic_bg_g1"
+                     android:orientation="vertical"
+                     android:layout_height="100dp"
+                     android:layout_width="100dp"
+                     android:gravity="center"
+                     android:background="@drawable/action_plant_ic_gr_circle"
+                     android:clickable="true"
+                     android:focusable="true">
+
+                     <ImageView
+                         android:id="@+id/ic_im_g1"
+                         android:layout_height="@dimen/iccircle_img_height"
+                         android:layout_width="@dimen/iccircle_img_width"
+                         android:src="@drawable/p1_1"
+                         />
+                 </LinearLayout>
+
+                 <LinearLayout
+                     android:orientation="vertical"
+                     android:layout_height="40dp"
+                     android:layout_width="wrap_content"
+                     android:layout_marginLeft="10dp"
+                     android:gravity="center">
+
+                     <com.neopixl.pixlui.components.textview.TextView
+                         pixlui:typeface="Quark-Bold.otf"
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:text="กลุ่มพืช"
+                         android:gravity="center"
+                         android:id="@+id/ic_label_g1"
+                         android:textColor="@color/RcmoNormalLightText"
+                         android:textSize="22sp" />
+                 </LinearLayout>
+
+             </LinearLayout>
 
 
-       <ImageView
-           android:layout_width="@dimen/size_howto"
-           android:layout_height="@dimen/size_howto"
-           android:src="@drawable/btn_howto"
-           android:layout_alignParentRight="true"
-           android:id="@+id/btnQuestion"
-           android:layout_margin="10dp"/>
 
+     </LinearLayout>
 
-   </RelativeLayout>
-
-
-   <LinearLayout
-       android:orientation="vertical"
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       >
-       <RelativeLayout
-           android:orientation="horizontal"
-           android:layout_width="match_parent"
-           android:layout_height="60dp"
-           android:layout_marginLeft="20dp"
-           android:layout_marginRight="20dp"
-
-           >
-
-
-           <ImageView
-
-               android:layout_width="80dp"
-               android:layout_height="wrap_content"
-               android:id="@+id/stepOneAc"
-               android:adjustViewBounds="true"
-               android:src="@drawable/step1_ac"
-               android:layout_centerVertical="true"
-               android:layout_alignParentStart="true" />
-
-
-       </RelativeLayout>
-
-   </LinearLayout>
+     <LinearLayout
+         android:orientation="vertical"
+         android:layout_width="match_parent"
+         android:layout_height="@dimen/iccircle_parent_height"
+         android:layout_marginLeft="80dp"
+         android:layout_gravity="center_horizontal">
 
 
 
 
-   <include layout="@layout/plant_step_two"/>
+             <LinearLayout
+                 android:orientation="horizontal"
+                 android:layout_height="match_parent"
+                 android:layout_width="wrap_content"
+                 android:layout_weight="1"
+                 android:gravity="center">
+
+                 <LinearLayout
+                     android:id="@+id/ic_bg_g2"
+                     android:orientation="vertical"
+                     android:layout_height="100dp"
+                     android:layout_width="100dp"
+                     android:gravity="center"
+                     android:background="@drawable/action_animal_ic_gr_circle"
+                     android:clickable="true"
+                     android:focusable="true">
+
+                     <ImageView
+                         android:id="@+id/ic_im_g2"
+                         android:layout_height="@dimen/iccircle_img_height"
+                         android:layout_width="@dimen/iccircle_img_width"
+                         android:src="@drawable/m1"
+                         />
+                 </LinearLayout>
+
+                 <LinearLayout
+                     android:orientation="vertical"
+                     android:layout_height="40dp"
+                     android:layout_width="wrap_content"
+                     android:layout_marginLeft="10dp"
+                     android:gravity="center">
+
+                     <com.neopixl.pixlui.components.textview.TextView
+                         pixlui:typeface="Quark-Bold.otf"
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:text="กลุ่มสัตว์"
+                         android:gravity="center"
+                         android:id="@+id/ic_label_g2"
+                         android:textColor="@color/RcmoNormalLightText"
+                         android:textSize="22sp" />
+                 </LinearLayout>
+
+             </LinearLayout>
 
 
 
+     </LinearLayout>
 
-</LinearLayout>
--->
+     <LinearLayout
+         android:orientation="vertical"
+         android:layout_width="match_parent"
+         android:layout_height="@dimen/iccircle_parent_height"
+         android:layout_marginLeft="30dp"
+         android:layout_gravity="left">
+
+
+
+             <LinearLayout
+                 android:orientation="horizontal"
+                 android:layout_height="match_parent"
+                 android:layout_width="wrap_content"
+                 android:layout_weight="1"
+                 android:gravity="center">
+
+                 <LinearLayout
+                     android:id="@+id/ic_bg_g3"
+                     android:orientation="vertical"
+                     android:layout_height="100dp"
+                     android:layout_width="100dp"
+                     android:gravity="center"
+                     android:background="@drawable/action_fish_ic_gr_circle"
+                     android:clickable="true"
+                     android:focusable="true">
+
+                     <ImageView
+                         android:id="@+id/ic_im_g3"
+                         android:layout_height="@dimen/iccircle_img_height"
+                         android:layout_width="@dimen/iccircle_img_width"
+                         android:src="@drawable/f1"
+                         />
+                 </LinearLayout>
+
+                 <LinearLayout
+                     android:orientation="vertical"
+                     android:layout_height="40dp"
+                     android:layout_width="wrap_content"
+                     android:layout_marginLeft="10dp"
+                     android:gravity="center">
+
+                     <com.neopixl.pixlui.components.textview.TextView
+                         pixlui:typeface="Quark-Bold.otf"
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:text="กลุ่มประมง"
+                         android:gravity="center"
+                         android:id="@+id/ic_label_47"
+                         android:textColor="@color/RcmoNormalLightText"
+                         android:textSize="22sp" />
+                 </LinearLayout>
+
+             </LinearLayout>
+
+
+
+     </LinearLayout>
+ -->

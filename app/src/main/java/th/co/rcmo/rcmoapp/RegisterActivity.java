@@ -61,7 +61,7 @@ public class RegisterActivity extends Activity {
 
     private void register() {
 
-        API_Login (   inputName.getText().toString()
+        API_Register (   inputName.getText().toString()
                     , inputSirName.getText().toString()
                     , inputUsername.getText().toString()
                     , inputEmail.getText().toString()
@@ -69,7 +69,7 @@ public class RegisterActivity extends Activity {
     }
 
 
-    private void API_Login(     final String inputName
+    private void API_Register(  final String inputName
                                ,final String inputSirName
                                ,final String inputUsername
                                ,final String inputEmail

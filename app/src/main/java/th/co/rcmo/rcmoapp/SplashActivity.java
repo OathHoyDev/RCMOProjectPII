@@ -22,20 +22,38 @@ import th.co.rcmo.rcmoapp.Util.ServiceInstance;
 public class SplashActivity extends Activity {
 
 
-    Handler handler;
-    Runnable runnable;
-    Long delay_time;
-    Long time = 3000L;
+    //Handler handler;
+    //Runnable runnable;
+    //Long delay_time;
+    //Long time = 3000L;
+    private final int SPLASH_DISPLAY_LENGTH = 1000;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-     //   getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
-      //  getActionBar().hide();
+        //requestWindowFeature(Window.FEATURE_NO_TITLE);
+        SharedPreferences sp = getSharedPreferences(ServiceInstance.PREF_NAME, Context.MODE_PRIVATE);
+        final  String userId = sp.getString(ServiceInstance.sp_userId, "0");
 
         setContentView(R.layout.activity_splash);
-        handler = new Handler();
+        Log.d("Splash","UserId : "+userId);
+        /* New Handler to start the Menu-Activity
+         * and close this Splash-Screen after some seconds.*/
+            new Handler().postDelayed(new Runnable(){
+                @Override
+                public void run() {
 
+                    if(userId.equals("0")){
+                        Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }else{
+                        API_GetUserPlot(userId);
+                    }
+                }
+            }, SPLASH_DISPLAY_LENGTH);
+
+       /*
+        handler = new Handler();
         runnable = new Runnable() {
             public void run() {
                 SharedPreferences sp = getSharedPreferences(ServiceInstance.PREF_NAME, Context.MODE_PRIVATE);
@@ -54,8 +72,10 @@ public class SplashActivity extends Activity {
 
             }
         };
+        */
     }
 
+    /*
     public void onResume() {
         super.onResume();
         delay_time = time;
@@ -68,6 +88,7 @@ public class SplashActivity extends Activity {
         handler.removeCallbacks(runnable);
         time = delay_time - (System.currentTimeMillis() - time);
     }
+    */
 
     private void API_GetUserPlot(final String userId) {
 

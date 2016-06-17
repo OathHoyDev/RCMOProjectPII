@@ -10,4 +10,15 @@ public class RequestServices {
     public static String ws_chkLogin = url+"chkLogin";
     public static String ws_saveRegister = url+"saveRegister";
     public static String ws_getPlotList = url+"getPlotList";
+    public static String ws_getProduct = url+"getProduct";
+    public static String ws_getRiceProduct = url+"getRiceProduct";
+    public static String ws_getPlantGroup = url+"getPlantGroup";
+    public static String ws_getRegister = url+"getRegister";
+    public static String ws_savePlotDetail = url+"savePlotDetail";
+    public static String ws_deletePlot = url+"deletePlot";
+    public static String ws_updateUserPlotSeq = url+"updateUserPlotSeq";
+    public static String ws_getProvince = url+"getProvince";
+    public static String ws_getAmphoe = url+"getAmphoe";
+    public static String ws_getTambon = url+"getTambon";
+    public static String ws_copyPlot = url+"copyPlot";
 }

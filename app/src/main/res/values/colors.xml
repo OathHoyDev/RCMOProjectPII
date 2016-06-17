@@ -32,7 +32,7 @@
     <color name="RcmoBlackBG">#000000</color>
     <color name="RcmoOrangeBG">#f9a131</color>
     <color name="RcmoProfitBG">#60c3ac</color>
-    <color name="RcmoTranWhiteDABG">#E6FFFFFF</color>
+    <color name="RcmoTranWhiteDABG">#FFFFFF</color>
 
 
 
@@ -47,6 +47,14 @@
 
     <color name="RcmoStepTabTranBG">#4DFFFFFF</color>
     <color name="RcmoLineTabBG">#97dbf8</color>
+
+    <color name="RcmoToastTranBG">#99000000</color>
+    <color name="RcmoDialogTranBG">#e6ffffff</color>
+
+    <color name="RcmoError">#d5444f</color>
+
+    #d5444f
+
 
 
 

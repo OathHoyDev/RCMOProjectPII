@@ -84,6 +84,7 @@
                         android:gravity="center"
                         android:padding="5dp"
                         android:inputType="text"
+                        android:textCursorDrawable="@drawable/text_cursor"
                         android:textSize="@dimen/textsize_normal"
                         android:id="@+id/inputName"/>
 
@@ -103,6 +104,7 @@
                         android:padding="5dp"
                         android:inputType="text"
                         android:textSize="@dimen/textsize_normal"
+                        android:textCursorDrawable="@drawable/text_cursor"
                         android:id="@+id/inputSirName"/>
 
                     <com.neopixl.pixlui.components.edittext.EditText
@@ -121,6 +123,7 @@
                         android:padding="5dp"
                         android:inputType="text"
                         android:textSize="@dimen/textsize_normal"
+                        android:textCursorDrawable="@drawable/text_cursor"
                         android:id="@+id/inputUsername"/>
 
                     <com.neopixl.pixlui.components.edittext.EditText
@@ -139,6 +142,7 @@
                         android:padding="5dp"
                         android:inputType="text"
                         android:textSize="@dimen/textsize_normal"
+                        android:textCursorDrawable="@drawable/text_cursor"
                         android:id="@+id/inputEmail"/>
 
                     <com.neopixl.pixlui.components.edittext.EditText
@@ -157,6 +161,7 @@
                         android:imeOptions="actionNext"
                         android:inputType="textPassword"
                         android:textSize="@dimen/textsize_normal"
+                        android:textCursorDrawable="@drawable/text_cursor"
                         android:id="@+id/inputPassword"/>
 
                     <com.neopixl.pixlui.components.edittext.EditText
@@ -175,6 +180,7 @@
                         android:padding="5dp"
                         android:inputType="textPassword"
                         android:textSize="@dimen/textsize_normal"
+                        android:textCursorDrawable="@drawable/text_cursor"
                         android:id="@+id/inputConfirmPassword"/>
 
                     <com.neopixl.pixlui.components.textview.TextView

@@ -95,7 +95,7 @@
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
+<!--
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -103,7 +103,24 @@
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:id="@+id/imgProduct" />
+-->
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_height="@dimen/iccircle_bg_height"
+                android:layout_width="@dimen/iccircle_bg_height"
+                android:gravity="center"
+                android:background="@drawable/action_plant_ic_circle"
+                android:clickable="true"
+                android:focusable="true"
+                android:id="@+id/gridDrawBg">
 
+                <ImageView
+                    android:id="@+id/prodImg"
+                    android:layout_height="@dimen/iccircle_img_height"
+                    android:layout_width="@dimen/iccircle_img_width"
+                    android:src="@drawable/p1_1"
+                    />
+            </LinearLayout>
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"

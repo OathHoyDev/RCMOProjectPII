@@ -78,6 +78,27 @@
             android:value="@integer/google_play_services_version" />
 
 
+        <activity
+            android:name=".ChangePasswordActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".EditUserActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".WebActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".UserPlotListActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".StepOneActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".StepTwoActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".StepThreeActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

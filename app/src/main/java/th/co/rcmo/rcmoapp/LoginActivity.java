@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
-import android.preference.PreferenceManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -19,7 +18,7 @@ import th.co.rcmo.rcmoapp.API.ResponseAPI;
 import th.co.rcmo.rcmoapp.Module.mLogin;
 import th.co.rcmo.rcmoapp.Module.mUserPlotList;
 import th.co.rcmo.rcmoapp.Util.ServiceInstance;
-import th.co.rcmo.rcmoapp.View.Dialog;
+import th.co.rcmo.rcmoapp.View.DialogChoice;
 
 public class LoginActivity extends Activity {
     EditText inputUsername, inputPassword;
@@ -74,7 +73,7 @@ public class LoginActivity extends Activity {
             public void onClick(View v) {
            //     startActivity(new Intent(LoginActivity.this, UserPlotListActivity.class));
                 startActivity(new Intent(LoginActivity.this, WebActivity.class)
-                        .putExtra("link", "http://www.google.co.th/"));
+                        .putExtra("link", ServiceInstance.forgotPassURL));
 
             }
         });
@@ -100,11 +99,11 @@ public class LoginActivity extends Activity {
                         if (inputPassword.length() != 0) {
                            Login();
                         } else {
-                            new Dialog(LoginActivity.this).ShowOneChoice("", "กรุณากรอกรหัสผ่าน");
+                            new DialogChoice(LoginActivity.this).ShowOneChoice("", "กรุณากรอกรหัสผ่าน");
                         }
 
                 } else {
-                    new Dialog(LoginActivity.this).ShowOneChoice("", "กรุณากรอกรหัสผู้ใช้งานให้ถูกต้อง");
+                    new DialogChoice(LoginActivity.this).ShowOneChoice("", "กรุณากรอกรหัสผู้ใช้งานให้ถูกต้อง");
                 }
             }
         });
@@ -138,12 +137,7 @@ public class LoginActivity extends Activity {
                     editor.putString(ServiceInstance.sp_userId, loginBodyLists.get(0).getUserID());
                     editor.commit();
 
-//                    {"RespStatus":{"StatusID":2,"StatusMsg":"ไม่พบข้อมูล"},"RespBody":[]}
-/*
-                    startActivity(new Intent(LoginActivity.this, UserPlotListActivity.class)
-                          .putExtra("userId", loginBodyLists.get(0).getUserID()));
-                    finish();
-                    */
+
                     API_GetUserPlot(loginBodyLists.get(0).getUserID());
                 }
 
@@ -151,7 +145,7 @@ public class LoginActivity extends Activity {
 
             @Override
             public void callbackError(int code, String errorMsg) {
-                Log.d("Erroo",errorMsg);
+                Log.d("Error",errorMsg);
             }
         }).API_Request(true, RequestServices.ws_chkLogin +
                 "?UserLogin=" + username + "&UserPwd=" + ServiceInstance.md5(password) +
