@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -44,7 +45,9 @@ public class StepThreeActivity extends Activity {
     public static ProductModel productionInfo = null;
     UserPlotModel userPlotModel = new UserPlotModel();
     String TAG = "StepThreeActivity_TAG";
-    boolean kcSelected = true;
+    boolean kcSelected =true , tuaSelected = true;
+    String userId ="" ;
+    String plotId ="";
 
 
     @Override
@@ -52,7 +55,7 @@ public class StepThreeActivity extends Activity {
         super.onCreate(savedInstanceState);
 
         SharedPreferences sp = getSharedPreferences(ServiceInstance.PREF_NAME, Context.MODE_PRIVATE);
-        final String userId = sp.getString(ServiceInstance.sp_userId, "0");
+        userId = sp.getString(ServiceInstance.sp_userId, "0");
 
         userPlotModel.setPrdGrpID(String.valueOf(productionInfo.getPrdGrpID()));
         userPlotModel.setPrdID(String.valueOf(productionInfo.getPrdID()));
@@ -67,7 +70,7 @@ public class StepThreeActivity extends Activity {
 
     private void setUI() {
         int groupId = Integer.valueOf(userPlotModel.getPrdGrpID());
-
+       this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         if(groupId == 1){
             setContentView(R.layout.activity_plant_step_three);
 
@@ -174,20 +177,21 @@ public class StepThreeActivity extends Activity {
 
             if(userPlotModel.getPrdID().equals("49")){
 
-              //   h.fishKcLayout  = (LinearLayout) findViewById(R.id.fishKcLayout);
-                 //h.fishVaLayout  = (LinearLayout) findViewById(R.id.fishVaLayout);
+                h.fishKcLayout  = (LinearLayout) findViewById(R.id.kc_layout);
+                h.fishBoLayout  = (LinearLayout) findViewById(R.id.bo_layout);
 
-                //h.fishBoLayout.setVisibility(View.GONE);
-                //h.fishKcLayout.setVisibility(View.GONE);
-
+                h.fishKcLayout.setVisibility(View.GONE);
+                h.fishBoLayout.setVisibility(View.GONE);
+                findViewById(R.id.layout_imgBoChoice).setVisibility(View.GONE);
+                findViewById(R.id.layout_imgKcChoice).setVisibility(View.GONE);
 
             }else {
 
                 h.fishBoLayout  = (LinearLayout) findViewById(R.id.bo_layout);
-               // h.fishKcLayout  = (LinearLayout) findViewById(R.id.fishKcLayout);
-                h.fishVaLayout  = (LinearLayout) findViewById(R.id.fishVaLayout);
+                h.fishVaLayout  = (LinearLayout) findViewById(R.id.va_layout);
 
                 h.fishBoLayout.setVisibility(View.GONE);
+                h.fishVaLayout.setVisibility(View.GONE);
 
             }
 
@@ -213,26 +217,34 @@ public class StepThreeActivity extends Activity {
             @Override
             public void onClick(View view) {
                 boolean isValidate = false;
+                Log.d(TAG,"Product group Id :"+userPlotModel.getPrdGrpID());
 
+                userPlotModel  = new UserPlotModel();
+                userPlotModel.setPrdGrpID(String.valueOf(productionInfo.getPrdGrpID()));
+                userPlotModel.setPrdID(String.valueOf(productionInfo.getPrdID()));
+                userPlotModel.setPrdGrpID( String.valueOf(productionInfo.getPrdGrpID()));
+                userPlotModel.setUserID(userId);
+                userPlotModel.setPlotID(plotId);
 
                 if ("1".equals(userPlotModel.getPrdGrpID())) {
 
                     isValidate = isValidPlantInputData();
-                    preparePlantDataForInsert(userPlotModel);
+                    preparePlantDataForInsert();
 
                 }else if("2".equals(userPlotModel.getPrdGrpID())){
 
                     isValidate = isValidAnimalInputData();
-                    prepareAnimalDataForInsert(userPlotModel);
+                    prepareAnimalDataForInsert();
 
                 }else if("3".equals(userPlotModel.getPrdGrpID())){
 
-                    isValidFishInputData ();
-                    prepareFishDataForInsert(userPlotModel);
+                    isValidate = isValidFishInputData ();
+                    prepareFishDataForInsert();
 
                 }else{
                     isValidate = false;
                 }
+
 
 
                 if (isValidate) {
@@ -241,7 +253,7 @@ public class StepThreeActivity extends Activity {
                         public void OnSelect(int choice) {
 
                             if (choice == DialogChoice.OK) {
-                                upsertUserPlot(userPlotModel);
+                                upsertUserPlot();
 
                             }
                         }
@@ -282,43 +294,78 @@ public class StepThreeActivity extends Activity {
 
         if("3".equals(userPlotModel.getPrdGrpID())){
 
-            if(!userPlotModel.getPrdID().equals("49")){
+            if(!userPlotModel.getPrdID().equals("49")) {
 
 
-                findViewById(R.id.imgKcChoice).setOnClickListener(new View.OnClickListener() {
+                findViewById(R.id.layout_imgKcChoice).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                      //  if (!kcSelected) {
-                        findViewById(R.id.bo_layout).setVisibility(View.GONE);
+                        if (!kcSelected) {
+                            findViewById(R.id.bo_layout).setVisibility(View.GONE);
                             findViewById(R.id.kc_layout).setVisibility(View.VISIBLE);
 
 
-                            ((ImageView)findViewById(R.id.imgKcChoice)).setImageResource(R.drawable.radio_select);
-                            ((ImageView)findViewById(R.id.imgBoChoice)).setImageResource(R.drawable.radio_not_select);
+                            ((ImageView) findViewById(R.id.imgKcChoice)).setImageResource(R.drawable.radio_select);
+                            ((ImageView) findViewById(R.id.imgBoChoice)).setImageResource(R.drawable.radio_not_select);
                             kcSelected = true;
-                        //}
+                        }
                     }
                 });
 
 
-                findViewById(R.id.imgBoChoice).setOnClickListener(new View.OnClickListener() {
+                findViewById(R.id.layout_imgBoChoice).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Log.d(TAG,"kcSelected __>"+  kcSelected);
-                       // if (kcSelected) {
+                        Log.d(TAG, "kcSelected __>" + kcSelected);
+                        if (kcSelected) {
                             findViewById(R.id.kc_layout).setVisibility(View.GONE);
                             findViewById(R.id.bo_layout).setVisibility(View.VISIBLE);
 
-                            ((ImageView)findViewById(R.id.imgKcChoice)).setImageResource(R.drawable.radio_not_select);
-                            ((ImageView)findViewById(R.id.imgBoChoice)).setImageResource(R.drawable.radio_select);
+                            ((ImageView) findViewById(R.id.imgKcChoice)).setImageResource(R.drawable.radio_not_select);
+                            ((ImageView) findViewById(R.id.imgBoChoice)).setImageResource(R.drawable.radio_select);
                             kcSelected = false;
-                      //  }
+                        }
                     }
                 });
 
 
-            }
 
+                    findViewById(R.id.layout_boimgTuaChoice).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Log.d(TAG, "bo_tuaSelected __>" +tuaSelected);
+                            if (!tuaSelected) {
+
+                                ((ImageView) findViewById(R.id.bo_imgTuaSelected)).setImageResource(R.drawable.radio_select);
+                                ((ImageView) findViewById(R.id.bo_imgkkSelected)).setImageResource(R.drawable.radio_not_select);
+                                ((TextView)findViewById(R.id.bo_inputNuberOfUnit)).setHint("ตัว");
+                                tuaSelected = true;
+                            }
+                        }
+                    });
+
+
+                    findViewById(R.id.layout_boimgKkChoice).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Log.d(TAG, "bo_tuaSelected __>" +tuaSelected);
+                            if (tuaSelected) {
+
+                                ((TextView)findViewById(R.id.bo_inputNuberOfUnit)).setHint("กิโลกลัม");
+                                ((ImageView) findViewById(R.id.bo_imgkkSelected)).setImageResource(R.drawable.radio_select);
+                                ((ImageView) findViewById(R.id.bo_imgTuaSelected)).setImageResource(R.drawable.radio_not_select);
+
+                                tuaSelected = false;
+                            }
+                        }
+                    });
+
+            }else {
+
+
+
+
+            }
 
         }
 
@@ -565,7 +612,7 @@ public class StepThreeActivity extends Activity {
 
     }
 
-    private void API_SavePlotDetail(String saveFlag, final UserPlotModel userPlotInfo) {
+    private void API_SavePlotDetail(String saveFlag, UserPlotModel userPlotInfo) {
         /**
          * 1.SaveFlag (บังคับ)
          2.UserID (บังคับ)
@@ -609,9 +656,10 @@ public class StepThreeActivity extends Activity {
                 Log.d(TAG,"---- >Size"+savePlotDetailBodyLists.size());
                 if (savePlotDetailBodyLists.size() != 0) {
 
-                    String plotId =  String.valueOf(savePlotDetailBodyLists.get(0).getPlotID());
+                    plotId =  String.valueOf(savePlotDetailBodyLists.get(0).getPlotID());
+                    if(plotId==null){plotId="";}
                     Log.d(TAG,"Response plotId : "+plotId);
-                    userPlotInfo.setPlotID(plotId);
+
                     toastMsg("บันทึกข้อมูลสำเร็จ");
                 }
             }
@@ -651,17 +699,17 @@ public class StepThreeActivity extends Activity {
         );
     }
 
-    private void upsertUserPlot(UserPlotModel userPlotInfol){
+    private void upsertUserPlot(){
 
         // API_GetUserPlot(userId,prdId,prdGrpId,plotId);
 
-        if("".equals(userPlotInfol.getPlotID())){
+        if("".equals(userPlotModel.getPlotID())){
             Log.d(TAG, "Go to save plot Module ");
-            API_SavePlotDetail("1", userPlotInfol);
+            API_SavePlotDetail("1", userPlotModel);
         }else{
 
             Log.d(TAG, "Go to update plot Module ");
-            API_SavePlotDetail("2", userPlotInfol);
+            API_SavePlotDetail("2", userPlotModel);
 
         }
 
@@ -755,24 +803,88 @@ public class StepThreeActivity extends Activity {
 
     }
 
-    private boolean isValidFishInputData () {
+    private boolean isValidFishInputData() {
         boolean isValid = false;
+
+        if (userPlotModel.getPrdID().equals("49")) {
+
+            EditText va_inputRai       = (EditText) findViewById(R.id.va_inputRai);
+            EditText va_inputNgan      = (EditText) findViewById(R.id.va_inputNgan);
+            EditText va_inputSqWa      = (EditText) findViewById(R.id.va_inputSqWa);
+            EditText va_inputNuberOfva = (EditText) findViewById(R.id.va_inputNuberOfva);
+
+            if (       (va_inputRai.getText() == null || va_inputRai.getText().toString().equals(""))
+                  &&   (va_inputNgan.getText() == null || va_inputNgan.getText().toString().equals(""))
+                  &&   (va_inputSqWa.getText() == null || va_inputSqWa.getText().toString().equals(""))
+                    )  {
+
+                new DialogChoice(StepThreeActivity.this).ShowOneChoice("", "กรุณากรอก ขนาดแปลงที่ดิน");
+
+            } else if (va_inputNuberOfva.getText() == null || va_inputNuberOfva.getText().toString().equals("")) {
+                new DialogChoice(StepThreeActivity.this).ShowOneChoice("", "กรุณากรอก จำนวนลูกกุ้งที่ปล่อย");
+            }  else {
+                isValid = true;
+            }
+
+        } else {
+            // kc is a : kachang(กระชัง) in thai
+            // bo is a : (บ่อ) in thai
+            // va is a : แวนนาโม(กุ้ง)
+            if (kcSelected) {
+                EditText kc_inputSqMPerKC = (EditText) findViewById(R.id.kc_inputSqMPerKC);
+                EditText kc_inputNumberOfKC = (EditText) findViewById(R.id.kc_inputNuberOfKC);
+                EditText kc_inputFishPerKC = (EditText) findViewById(R.id.kc_inputFishPerKC);
+
+                if (kc_inputSqMPerKC.getText() == null || kc_inputSqMPerKC.getText().toString().equals("")) {
+                    new DialogChoice(StepThreeActivity.this).ShowOneChoice("", "กรุณากรอก ขนาดแปลงที่ดิน");
+                } else if (kc_inputNumberOfKC.getText() == null || kc_inputNumberOfKC.getText().toString().equals("")) {
+                    new DialogChoice(StepThreeActivity.this).ShowOneChoice("", "กรุณากรอก จำนวนกระชังที่เลี้ยงในรุ่นนี้");
+                } else if (kc_inputFishPerKC.getText() == null || kc_inputFishPerKC.getText().toString().equals("")) {
+                    new DialogChoice(StepThreeActivity.this).ShowOneChoice("", "กรุณากรอก จำนวนลูกปลาที่ปล่อย ต่อ 1 กระชัง");
+                } else {
+                    isValid = true;
+                }
+            } else {
+
+                EditText bo_inputRai       = (EditText) findViewById(R.id.bo_inputRai);
+                EditText bo_inputNgan      = (EditText) findViewById(R.id.bo_inputNgan);
+                EditText bo_inputSqWa      = (EditText) findViewById(R.id.bo_inputSqWa);
+                EditText bo_inputSqMeter     = (EditText) findViewById(R.id.bo_inputSqMeter);
+
+                EditText bo_inputNuberOfUnit = (EditText) findViewById(R.id.bo_inputNuberOfUnit);
+
+                if (       (bo_inputRai.getText() == null || bo_inputRai.getText().toString().equals(""))
+                        &&   (bo_inputNgan.getText() == null || bo_inputNgan.getText().toString().equals(""))
+                        &&   (bo_inputSqWa.getText() == null || bo_inputSqWa.getText().toString().equals(""))
+                        &&   (bo_inputSqMeter.getText() == null || bo_inputSqMeter.getText().toString().equals(""))
+                        )  {
+
+                    new DialogChoice(StepThreeActivity.this).ShowOneChoice("", "กรุณากรอก ขนาดแปลงที่ดิน");
+
+                } else if (bo_inputNuberOfUnit.getText() == null || bo_inputNuberOfUnit.getText().toString().equals("")) {
+                    new DialogChoice(StepThreeActivity.this).ShowOneChoice("", "กรุณากรอก จำนวนลูกปลาที่ปล่อย");
+                }  else {
+                    isValid = true;
+                }
+            }
+
+        }
 
         return isValid;
 
     }
 
-    private UserPlotModel preparePlantDataForInsert(UserPlotModel userPlotInfo){
+    private void preparePlantDataForInsert(){
 
         if(selectedTumbon!=null)   { userPlotModel.setTamCode(selectedTumbon.getTamCode());}
         if(selectedAmphoe!=null)   { userPlotModel.setAmpCode(selectedAmphoe.getAmpCode());}
         if(selectedprovince!=null) {userPlotModel.setProvCode(selectedprovince.getProvCode());}
 
         userPlotModel.setPlotRai(((EditText)findViewById(R.id.inputRai)).getText().toString());
-        return userPlotInfo;
+
     }
 
-    private UserPlotModel prepareAnimalDataForInsert(UserPlotModel userPlotInfo){
+    private void prepareAnimalDataForInsert(){
 
         if(selectedTumbon!=null)   { userPlotModel.setTamCode(selectedTumbon.getTamCode());}
         if(selectedAmphoe!=null)   { userPlotModel.setAmpCode(selectedAmphoe.getAmpCode());}
@@ -797,25 +909,75 @@ public class StepThreeActivity extends Activity {
             userPlotModel.setAnimalWeight(((EditText)findViewById(R.id.inputWeightPerUnit)).getText().toString());
         }
 
-
-        return userPlotInfo;
     }
 
-    private UserPlotModel prepareFishDataForInsert(UserPlotModel userPlotInfo){
-
-        if(   userPlotModel.getPrdID().equals("39")
-                || userPlotModel.getPrdID().equals("40")
-                || userPlotModel.getPrdID().equals("41")
-                || userPlotModel.getPrdID().equals("42")){
-
-            if(selectedTumbon!=null)   { userPlotModel.setTamCode(selectedTumbon.getTamCode());}
-            if(selectedAmphoe!=null)   { userPlotModel.setAmpCode(selectedAmphoe.getAmpCode());}
-            if(selectedprovince!=null) {userPlotModel.setProvCode(selectedprovince.getProvCode());}
-
-        }
+    private void prepareFishDataForInsert(){
+        if(selectedTumbon!=null)   { userPlotModel.setTamCode(selectedTumbon.getTamCode());}
+        if(selectedAmphoe!=null)   { userPlotModel.setAmpCode(selectedAmphoe.getAmpCode());}
+        if(selectedprovince!=null) {userPlotModel.setProvCode(selectedprovince.getProvCode());}
 
 
-        return userPlotInfo;
+        if (userPlotModel.getPrdID().equals("49")) {
+
+            EditText va_inputRai       = (EditText) findViewById(R.id.va_inputRai);
+            EditText va_inputNgan      = (EditText) findViewById(R.id.va_inputNgan);
+            EditText va_inputSqWa      = (EditText) findViewById(R.id.va_inputSqWa);
+            EditText va_inputNuberOfva = (EditText) findViewById(R.id.va_inputNuberOfva);
+
+
+            this.userPlotModel.setPondRai(va_inputRai.getText().toString());
+            this.userPlotModel.setPondNgan(va_inputNgan.getText().toString());
+            this.userPlotModel.setPondWa(va_inputSqWa.getText().toString());
+
+            this.userPlotModel.setFisheryNumber(va_inputNuberOfva.getText().toString());
+            this.userPlotModel.setFisheryNumType(ServiceInstance.FISHERY_NUM_TYPE_TUA);
+
+
+
+        } else {
+            // kc is a : kachang(กระชัง) in thai
+            // bo is a : (บ่อ) in thai
+            // va is a : แวนนาโม(กุ้ง)
+            if (kcSelected) {
+                EditText kc_inputSqMPerKC = (EditText) findViewById(R.id.kc_inputSqMPerKC);
+                EditText kc_inputNumberOfKC = (EditText) findViewById(R.id.kc_inputNuberOfKC);
+                EditText kc_inputFishPerKC = (EditText) findViewById(R.id.kc_inputFishPerKC);
+
+                Log.d(TAG,"CoopMeter : "+kc_inputSqMPerKC.getText().toString());
+                this.userPlotModel.setCoopMeter(kc_inputSqMPerKC.getText().toString());
+                this.userPlotModel.setCoopNumber(kc_inputNumberOfKC.getText().toString());
+                this.userPlotModel.setFisheryNumber(kc_inputFishPerKC.getText().toString());
+
+                this.userPlotModel.setFisheryNumType(ServiceInstance.FISHERY_NUM_TYPE_TUA);
+                this.userPlotModel.setFisheryType(ServiceInstance.FISHERY_TYPE_KC);
+
+
+            } else {
+
+                EditText bo_inputRai       = (EditText) findViewById(R.id.bo_inputRai);
+                EditText bo_inputNgan      = (EditText) findViewById(R.id.bo_inputNgan);
+                EditText bo_inputSqWa      = (EditText) findViewById(R.id.bo_inputSqWa);
+                EditText bo_inputSqMeter     = (EditText) findViewById(R.id.bo_inputSqMeter);
+
+                EditText bo_inputNuberOfUnit = (EditText) findViewById(R.id.bo_inputNuberOfUnit);
+
+                this.userPlotModel.setPondRai  ( bo_inputRai  .getText().toString());
+                this.userPlotModel.setPondNgan ( bo_inputNgan .getText().toString());
+                this.userPlotModel.setPondWa   ( bo_inputSqWa .getText().toString());
+                this.userPlotModel.setPondMeter( bo_inputSqMeter.getText().toString());
+
+                if(tuaSelected) {
+                    this.userPlotModel.setFisheryNumType(ServiceInstance.FISHERY_NUM_TYPE_TUA);
+                    this.userPlotModel.setFisheryNumber(bo_inputNuberOfUnit.getText().toString());
+                }else{
+                    this.userPlotModel.setFisheryNumType(ServiceInstance.FISHERY_NUM_TYPE_KK);
+                    this.userPlotModel.setFisheryWeight(bo_inputNuberOfUnit.getText().toString());
+                }
+                this.userPlotModel.setFisheryType(ServiceInstance.FISHERY_TYPE_BO);
+
+                }
+            }
+
     }
 
     class Holder{

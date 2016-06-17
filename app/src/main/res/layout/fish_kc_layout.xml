@@ -67,7 +67,8 @@
             <RelativeLayout
                 android:id="@+id/landLayout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="30dp"
+                android:gravity="center"
                 android:orientation="horizontal">
 
                 <com.neopixl.pixlui.components.textview.TextView
@@ -113,6 +114,7 @@
                     android:id="@+id/imgKcChoice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
                     android:layout_alignBottom="@+id/labelKachangFlag"
                     android:layout_marginRight="5dp"
                     android:layout_toStartOf="@+id/labelKachangFlag"
@@ -122,7 +124,8 @@
                     android:id="@+id/imgBoChoice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignBottom="@+id/labelBoFlag"
+                    android:adjustViewBounds="true"
+                    android:layout_alignBottom="@+id/labelKachangFlag"
                     android:layout_marginRight="5dp"
                     android:layout_toStartOf="@+id/labelBoFlag"
                     android:src="@drawable/radio_not_select" />
@@ -218,7 +221,11 @@
                     android:textStyle="bold"
                     pixlui:typeface="Quark-Bold.otf" />
 
-            </LinearLayout>   <!-- kcccccccccccccccccccccccccccccccccccccccccccc -->
+
+
+
+
+            </LinearLayout>   <!-- kc Layout -->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -329,8 +336,8 @@
                 <RelativeLayout
 
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="@dimen/margin_large"
+                    android:layout_height="30dp"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <com.neopixl.pixlui.components.textview.TextView
@@ -409,8 +416,127 @@
                     android:textSize="@dimen/textsize_large"
                     android:textStyle="bold"
                     pixlui:typeface="Quark-Bold.otf" />
-            </LinearLayout>   <!---Boooooooooooooooooo-->
+            </LinearLayout>   <!---Bo Layout-->
 
+            <LinearLayout
+                android:id="@+id/va_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <com.neopixl.pixlui.components.edittext.EditText
+                        android:id="@+id/va_inputRai"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_normal"
+                        android:layout_marginRight="1dp"
+                        android:layout_weight="1"
+                        android:background="@color/RcmoLightGrayBG"
+                        android:gravity="center"
+                        android:hint="ไร่"
+                        android:imeOptions="actionNext"
+                        android:inputType="numberDecimal"
+                        android:padding="5dp"
+                        android:textColor="@color/RcmoNormalDarkText"
+                        android:textColorHint="@color/RcmoHintText"
+                        android:textCursorDrawable="@drawable/text_cursor"
+                        android:textSize="@dimen/textsize_large"
+                        android:textStyle="bold"
+                        pixlui:typeface="Quark-Bold.otf" />
+
+                    <com.neopixl.pixlui.components.edittext.EditText
+                        android:id="@+id/va_inputNgan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_normal"
+                        android:layout_marginLeft="1dp"
+                        android:layout_weight="1"
+                        android:background="@color/RcmoLightGrayBG"
+                        android:gravity="center"
+                        android:hint="งาน"
+                        android:imeOptions="actionNext"
+                        android:inputType="numberDecimal"
+                        android:padding="5dp"
+                        android:textColor="@color/RcmoNormalDarkText"
+                        android:textColorHint="@color/RcmoHintText"
+                        android:textCursorDrawable="@drawable/text_cursor"
+                        android:textSize="@dimen/textsize_large"
+                        android:textStyle="bold"
+                        pixlui:typeface="Quark-Bold.otf" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <com.neopixl.pixlui.components.edittext.EditText
+                        android:id="@+id/va_inputSqWa"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_normal"
+                        android:layout_marginRight="1dp"
+                        android:layout_weight="1"
+                        android:background="@color/RcmoLightGrayBG"
+                        android:gravity="center"
+                        android:hint="ตารางวา"
+                        android:imeOptions="actionNext"
+                        android:inputType="numberDecimal"
+                        android:padding="5dp"
+                        android:textColor="@color/RcmoNormalDarkText"
+                        android:textColorHint="@color/RcmoHintText"
+                        android:textCursorDrawable="@drawable/text_cursor"
+                        android:textSize="@dimen/textsize_large"
+                        android:textStyle="bold"
+                        pixlui:typeface="Quark-Bold.otf" />
+
+                </LinearLayout>
+
+                <RelativeLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/margin_large"
+                    android:orientation="horizontal">
+
+                    <com.neopixl.pixlui.components.textview.TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:text="จำนวนลูกกุ้งที่ปล่อย"
+                        android:textColor="@color/RcmoNormalDarkText"
+                        android:textSize="@dimen/textsize_large"
+                        android:textStyle="bold"
+                        pixlui:typeface="Quark-Bold.otf"></com.neopixl.pixlui.components.textview.TextView>
+
+
+
+                </RelativeLayout>
+
+                <com.neopixl.pixlui.components.edittext.EditText
+                    android:id="@+id/va_inputNuberOfKC"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_normal"
+                    android:background="@color/RcmoLightGrayBG"
+                    android:gravity="center"
+                    android:hint="ตัว"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:padding="5dp"
+                    android:paddingLeft="15dp"
+                    android:textColor="@color/RcmoNormalDarkText"
+                    android:textColorHint="@color/RcmoHintText"
+                    android:textCursorDrawable="@drawable/text_cursor"
+                    android:textSize="@dimen/textsize_large"
+                    android:textStyle="bold"
+                    pixlui:typeface="Quark-Bold.otf" />
+
+            </LinearLayout>  <!-- va Layout -->
 
 
 

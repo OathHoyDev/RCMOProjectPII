@@ -51,6 +51,10 @@
     <color name="RcmoToastTranBG">#99000000</color>
     <color name="RcmoDialogTranBG">#e6ffffff</color>
 
+    <color name="RcmoError">#d5444f</color>
+
+    #d5444f
+
 
 
 

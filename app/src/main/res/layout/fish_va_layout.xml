@@ -158,27 +158,7 @@
                     android:textStyle="bold"
                     pixlui:typeface="Quark-Bold.otf" />
 
-                com.neopixl.pixlui.components.edittext.EditText
-                    android:id="@+id/inputSqMeter"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_normal"
-                    android:layout_marginLeft="1dp"
-                    android:layout_weight="1"
-                    android:background="@color/RcmoLightGrayBG"
-                    android:gravity="center"
-                    android:hint="ตารางเมตร"
-                    android:imeOptions="actionNext"
-                    android:inputType="numberDecimal"
-                    android:padding="5dp"
-                    android:textColor="@color/RcmoNormalDarkText"
-                    android:textColorHint="@color/RcmoHintText"
-                    android:textCursorDrawable="@drawable/text_cursor"
-                    android:textSize="@dimen/textsize_large"
-                    android:textStyle="bold"
-                    pixlui:typeface="Quark-Bold.otf" />
             </LinearLayout>
-
 
             <RelativeLayout
 
@@ -219,6 +199,17 @@
                 android:textSize="@dimen/textsize_large"
                 android:textStyle="bold"
                 pixlui:typeface="Quark-Bold.otf" />
+
+
+
+
+
+
+
+
+
+
+
 
             <com.neopixl.pixlui.components.textview.TextView
                 android:id="@+id/labelLocation"
