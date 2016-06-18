@@ -2,9 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:pixlui="http://schemas.android.com/apk/com.neopixl.pixlui"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:id="@+id/mainLayoutPlantStepThree"
-    android:background="@drawable/bg_plant">
+    >
 
 
 
@@ -53,7 +53,7 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/RcmoStepTabTranBG"
         >
         <RelativeLayout
@@ -363,7 +363,7 @@
                 android:id="@+id/prodImg"
                 android:layout_height="@dimen/iccircle_img_height"
                 android:layout_width="@dimen/iccircle_img_width"
-                android:src="@drawable/p1_2"
+
                 />
         </LinearLayout>
     </RelativeLayout>

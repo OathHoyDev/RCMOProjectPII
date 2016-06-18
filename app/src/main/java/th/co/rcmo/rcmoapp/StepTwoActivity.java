@@ -3,6 +3,7 @@ package th.co.rcmo.rcmoapp;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,6 +23,7 @@ import th.co.rcmo.rcmoapp.Model.ProductModel;
 import th.co.rcmo.rcmoapp.Module.mPlantGroup;
 import th.co.rcmo.rcmoapp.Module.mProduct;
 import th.co.rcmo.rcmoapp.Module.mRiceProduct;
+import th.co.rcmo.rcmoapp.Util.BitMapHelper;
 import th.co.rcmo.rcmoapp.Util.ServiceInstance;
 
 
@@ -63,18 +65,24 @@ public class StepTwoActivity extends Activity {
             //prodHierarchy.setText(prodHierarchyStr);
             titleText.setText("ชนิดพืช");
             prodHierarchy.setText(prodHierarchyStr);
-            mainLayout.setBackgroundResource(R.drawable.bg_plant);
+            //mainLayout.setBackgroundResource(R.drawable.bg_plant);
+            mainLayout.setBackground(new BitmapDrawable(BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.bg_plant, R.dimen.bg_img_width, R.dimen.bg_img_height)));
         }else if(groupId == 2){
 
             prodHierarchy.setText("");
             titleText.setText("ชนิดปศุสัตว์");
-            mainLayout.setBackgroundResource(R.drawable.bg_meat);
+           // mainLayout.setBackgroundResource(R.drawable.bg_meat);
+            mainLayout.setBackground(new BitmapDrawable(BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.bg_meat, R.dimen.bg_img_width, R.dimen.bg_img_height)));
         }else if(groupId == 3){
 
             prodHierarchy.setText("");
             titleText.setText("ชนิดประมง");
-            mainLayout.setBackgroundResource(R.drawable.bg_fish);
+          //  mainLayout.setBackgroundResource(R.drawable.bg_fish);
+            mainLayout.setBackground(new BitmapDrawable(BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.bg_fish, R.dimen.bg_img_width, R.dimen.bg_img_height)));
         }
+        ((ImageView) findViewById(R.id.step1_ac)).setImageBitmap(BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.step1_ac, 400, 400));
+        ((ImageView)findViewById(R.id.step2)).setImageBitmap(BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.step2_ac, R.dimen.img_3step_width, R.dimen.img_3step_height));
+        ((ImageView) findViewById(R.id.step3)).setImageBitmap (BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.step3, R.dimen.img_3step_width, R.dimen.img_3step_height));
 
         productGridView = (GridView) findViewById(R.id.prodGridView);
 
@@ -167,6 +175,7 @@ public class StepTwoActivity extends Activity {
 
             if(imgName!=null) {
                 h.prodImg.setImageResource(getResources().getIdentifier(imgName, "drawable", getPackageName()));
+
             }
             if(productGroupId == 1){
                 h.prodBg.setBackgroundResource(R.drawable.action_plant_ic_circle);

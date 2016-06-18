@@ -4,8 +4,10 @@
     xmlns:pixlui="http://schemas.android.com/apk/com.neopixl.pixlui"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_total"
+    android:id="@+id/mainLoginLayout"
+
     tools:context="th.co.rcmo.rcmoapp.LoginActivity">
+
 
 
     <com.neopixl.pixlui.components.textview.TextView
@@ -58,7 +60,7 @@
                 android:padding="10dp"
                 android:id="@+id/logoLogin"
                 android:layout_marginTop="25dp"
-                android:src="@drawable/logo_openeyes"/>
+               />
 
 
             <LinearLayout
@@ -202,5 +204,4 @@
 
 
     </LinearLayout>
-
 </RelativeLayout>

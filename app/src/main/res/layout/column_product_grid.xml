@@ -20,7 +20,7 @@
                         android:id="@+id/prodImg"
                         android:layout_height="@dimen/iccircle_img_height"
                         android:layout_width="@dimen/iccircle_img_width"
-                        android:src="@drawable/p1_1"
+
                         />
                 </LinearLayout>
 

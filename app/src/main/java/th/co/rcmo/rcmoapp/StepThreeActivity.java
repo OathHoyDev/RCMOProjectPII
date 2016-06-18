@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -35,6 +36,7 @@ import th.co.rcmo.rcmoapp.Module.mAmphoe;
 import th.co.rcmo.rcmoapp.Module.mProvince;
 import th.co.rcmo.rcmoapp.Module.mSavePlotDetail;
 import th.co.rcmo.rcmoapp.Module.mTumbon;
+import th.co.rcmo.rcmoapp.Util.BitMapHelper;
 import th.co.rcmo.rcmoapp.Util.ServiceInstance;
 import th.co.rcmo.rcmoapp.View.DialogChoice;
 
@@ -73,7 +75,7 @@ public class StepThreeActivity extends Activity {
        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         if(groupId == 1){
             setContentView(R.layout.activity_plant_step_three);
-
+            findViewById(R.id.mainLayoutPlantStepThree).setBackground(new BitmapDrawable(BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.bg_plant, 400, 400)));
             //Get Object
             Holder h = new Holder();
             h.prodImg      = (ImageView) findViewById(R.id.prodImg);
@@ -95,6 +97,7 @@ public class StepThreeActivity extends Activity {
 
         }else if(groupId == 2){
             setContentView(R.layout.activity_animal_step_three);
+            findViewById(R.id.mainLayoutAnimalStepThree).setBackground(new BitmapDrawable(BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.bg_meat, 400, 400)));
 
             Holder h = new Holder();
             h.prodImg      = (ImageView) findViewById(R.id.prodImg);
@@ -156,7 +159,7 @@ public class StepThreeActivity extends Activity {
 
         }else if(groupId==3){
             setContentView(R.layout.activity_fish_step_three);
-
+            findViewById(R.id.mainLayoutFishStepThree).setBackground(new BitmapDrawable(BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.bg_fish, 400, 400)));
             Holder h = new Holder();
             h.prodImg      = (ImageView) findViewById(R.id.prodImg);
             h.prodBg      =  (LinearLayout)findViewById(R.id.gridDrawBg);

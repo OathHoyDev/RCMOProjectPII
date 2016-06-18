@@ -30,6 +30,7 @@ import th.co.rcmo.rcmoapp.Module.mDeletePlot;
 import th.co.rcmo.rcmoapp.Module.mGetRegister;
 import th.co.rcmo.rcmoapp.Module.mUpdateUserPlotSeq;
 import th.co.rcmo.rcmoapp.Module.mUserPlotList;
+import th.co.rcmo.rcmoapp.Util.BitMapHelper;
 import th.co.rcmo.rcmoapp.Util.ServiceInstance;
 import th.co.rcmo.rcmoapp.View.DialogChoice;
 
@@ -157,6 +158,7 @@ public class UserPlotListActivity extends Activity {
                 h.btnDelete       =  (TextView) convertView.findViewById(R.id.btnDeleete);
                 h.btnCopy          =  (TextView) convertView.findViewById(R.id.btnCopy);
                 h.layoutPlotRow    =  (LinearLayout) convertView.findViewById(R.id.layoutPlotRow);
+                h.pinImg           = (ImageView)convertView.findViewById(R.id.pinImg);
                 convertView.setTag(h);
             }else{
                 h = (ViewHolder) convertView.getTag();
@@ -208,10 +210,13 @@ public class UserPlotListActivity extends Activity {
             h.labelDate.setText(ServiceInstance.formatStrDate(respBody.getDateUpdated()));
 
 
-            //h.imgProduct.setImageResource( getResources().getIdentifier(ServiceInstance.productPicMap.get(respBody.getPrdID()), "drawable", getPackageName()) );
+
             String imgName = ServiceInstance.productIMGMap.get(respBody.getPrdID());
+            h.pinImg.setImageBitmap(BitMapHelper.decodeSampledBitmapFromResource( getResources(), R.drawable.pin, 20,20));
             if(imgName!=null) {
-                h.prodImg.setImageResource(getResources().getIdentifier(imgName, "drawable", getPackageName()));
+              //  h.prodImg.setImageResource(getResources().getIdentifier(imgName, "drawable", getPackageName()));
+
+                h.prodImg.setImageBitmap(BitMapHelper.decodeSampledBitmapFromResource(getResources(),getResources().getIdentifier(imgName, "drawable", getPackageName()), R.dimen.iccircle_img_width, R.dimen.iccircle_img_height));
             }
 
 
@@ -305,7 +310,7 @@ public class UserPlotListActivity extends Activity {
 
     static class ViewHolder {
         private  TextView labelAddress,labelPlotSize,labelProductName,labelProfit,labelDate,btnProfit,btnDelete,btnCopy;
-        private  ImageView imgProduct,prodImg;
+        private  ImageView imgProduct,prodImg,pinImg;
         private  LinearLayout prodBg,layoutPlotRow ;
 
 
