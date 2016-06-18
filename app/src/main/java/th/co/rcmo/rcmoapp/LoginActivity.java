@@ -31,7 +31,7 @@ public class LoginActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         //findViewById(R.id.mainLoginLayout).setBackgroundResource(R.drawable.bg_blue);
-        findViewById(R.id.mainLoginLayout).setBackground(new BitmapDrawable(BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.bg_total, 400, 400)));
+       findViewById(R.id.mainLoginLayout).setBackground(new BitmapDrawable(BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.bg_total, 300, 400)));
         inputUsername = (EditText) findViewById(R.id.inputUsername);
         inputPassword = (EditText) findViewById(R.id.inputPassword);
 

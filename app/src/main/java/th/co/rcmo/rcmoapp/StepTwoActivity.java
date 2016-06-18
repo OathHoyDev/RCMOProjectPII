@@ -66,23 +66,23 @@ public class StepTwoActivity extends Activity {
             titleText.setText("ชนิดพืช");
             prodHierarchy.setText(prodHierarchyStr);
             //mainLayout.setBackgroundResource(R.drawable.bg_plant);
-            mainLayout.setBackground(new BitmapDrawable(BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.bg_plant, R.dimen.bg_img_width, R.dimen.bg_img_height)));
+            mainLayout.setBackground(new BitmapDrawable(BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.bg_plant, 300, 400)));
         }else if(groupId == 2){
 
             prodHierarchy.setText("");
             titleText.setText("ชนิดปศุสัตว์");
-           // mainLayout.setBackgroundResource(R.drawable.bg_meat);
-            mainLayout.setBackground(new BitmapDrawable(BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.bg_meat, R.dimen.bg_img_width, R.dimen.bg_img_height)));
+            //mainLayout.setBackgroundResource(R.drawable.bg_meat);
+            mainLayout.setBackground(new BitmapDrawable(BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.bg_meat, 300, 400)));
         }else if(groupId == 3){
 
             prodHierarchy.setText("");
             titleText.setText("ชนิดประมง");
-          //  mainLayout.setBackgroundResource(R.drawable.bg_fish);
-            mainLayout.setBackground(new BitmapDrawable(BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.bg_fish, R.dimen.bg_img_width, R.dimen.bg_img_height)));
+           //mainLayout.setBackgroundResource(R.drawable.bg_fish);
+            mainLayout.setBackground(new BitmapDrawable(BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.bg_fish, 300, 400)));
         }
-        ((ImageView) findViewById(R.id.step1_ac)).setImageBitmap(BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.step1_ac, 400, 400));
-        ((ImageView)findViewById(R.id.step2)).setImageBitmap(BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.step2_ac, R.dimen.img_3step_width, R.dimen.img_3step_height));
-        ((ImageView) findViewById(R.id.step3)).setImageBitmap (BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.step3, R.dimen.img_3step_width, R.dimen.img_3step_height));
+       // ((ImageView) findViewById(R.id.step1_ac)).setImageBitmap(BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.step1_ac, 400, 400));
+       // ((ImageView)findViewById(R.id.step2)).setImageBitmap(BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.step2_ac, R.dimen.img_3step_width, R.dimen.img_3step_height));
+        //((ImageView) findViewById(R.id.step3)).setImageBitmap (BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.step3, R.dimen.img_3step_width, R.dimen.img_3step_height));
 
         productGridView = (GridView) findViewById(R.id.prodGridView);
 

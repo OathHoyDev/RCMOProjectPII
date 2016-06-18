@@ -75,7 +75,7 @@ public class StepThreeActivity extends Activity {
        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         if(groupId == 1){
             setContentView(R.layout.activity_plant_step_three);
-            findViewById(R.id.mainLayoutPlantStepThree).setBackground(new BitmapDrawable(BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.bg_plant, 400, 400)));
+            findViewById(R.id.mainLayoutPlantStepThree).setBackground(new BitmapDrawable(BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.bg_plant, 300, 400)));
             //Get Object
             Holder h = new Holder();
             h.prodImg      = (ImageView) findViewById(R.id.prodImg);
@@ -97,7 +97,7 @@ public class StepThreeActivity extends Activity {
 
         }else if(groupId == 2){
             setContentView(R.layout.activity_animal_step_three);
-            findViewById(R.id.mainLayoutAnimalStepThree).setBackground(new BitmapDrawable(BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.bg_meat, 400, 400)));
+            findViewById(R.id.mainLayoutAnimalStepThree).setBackground(new BitmapDrawable(BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.bg_meat, 300, 400)));
 
             Holder h = new Holder();
             h.prodImg      = (ImageView) findViewById(R.id.prodImg);
@@ -159,7 +159,7 @@ public class StepThreeActivity extends Activity {
 
         }else if(groupId==3){
             setContentView(R.layout.activity_fish_step_three);
-            findViewById(R.id.mainLayoutFishStepThree).setBackground(new BitmapDrawable(BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.bg_fish, 400, 400)));
+            findViewById(R.id.mainLayoutFishStepThree).setBackground(new BitmapDrawable(BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.bg_fish, 300, 400)));
             Holder h = new Holder();
             h.prodImg      = (ImageView) findViewById(R.id.prodImg);
             h.prodBg      =  (LinearLayout)findViewById(R.id.gridDrawBg);

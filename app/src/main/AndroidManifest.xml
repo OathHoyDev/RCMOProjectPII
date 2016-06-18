@@ -52,11 +52,13 @@
         <activity
             android:name=".LoginActivity"
             android:screenOrientation="portrait" />
+        <!--
         <activity
             android:name=".ProductDetailAnimalActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_product_detail"
             android:theme="@style/Theme.AppCompat.NoActionBar"/>
+            -->
 
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"

@@ -4,6 +4,7 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/mainStepOneLayout"
+
    >
 
 
@@ -77,14 +78,14 @@
                android:layout_width="80dp"
                android:layout_height="wrap_content"
                android:id="@+id/step1_ac"
-
+               android:src="@drawable/step1_ac"
                android:layout_centerVertical="true"
                android:layout_alignParentStart="true" />
            <ImageView
                android:layout_width="80dp"
                android:layout_height="wrap_content"
                android:id="@+id/step2"
-
+               android:src="@drawable/step2"
                android:layout_centerVertical="true"
                android:layout_centerHorizontal="true" />
 
@@ -92,7 +93,7 @@
                android:layout_width="80dp"
                android:layout_height="wrap_content"
                android:id="@+id/step3"
-
+               android:src="@drawable/step3"
                android:layout_centerVertical="true"
                android:layout_alignParentEnd="true" />
 

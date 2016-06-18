@@ -23,6 +23,7 @@ public class StepOneActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_step_one);
 
         setUI();
@@ -31,14 +32,14 @@ public class StepOneActivity extends Activity {
     }
 
     private  void setUI(){
-        findViewById(R.id.mainStepOneLayout).setBackground(new BitmapDrawable(BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.bg_total, 400, 400)));
+        findViewById(R.id.mainStepOneLayout).setBackground(new BitmapDrawable(BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.bg_total, 300, 400)));
         ((ImageView) findViewById(R.id.plantImg)).setImageBitmap(BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.p1_1, R.dimen.iccircle_img_width, R.dimen.iccircle_bg_height));
         ((ImageView)findViewById(R.id.animalImg)).setImageBitmap(BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.m10, R.dimen.iccircle_img_width, R.dimen.iccircle_bg_height));
         ((ImageView) findViewById(R.id.fishImg)).setImageBitmap (BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.f4, R.dimen.iccircle_img_width, R.dimen.iccircle_bg_height));
 
-        ((ImageView) findViewById(R.id.step1_ac)).setImageBitmap(BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.step1_ac, R.dimen.img_3step_width, R.dimen.img_3step_height));
-        ((ImageView)findViewById(R.id.step2)).setImageBitmap(BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.step2, R.dimen.img_3step_width, R.dimen.img_3step_height));
-        ((ImageView) findViewById(R.id.step3)).setImageBitmap (BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.step3, R.dimen.img_3step_width, R.dimen.img_3step_height));
+       // ((ImageView) findViewById(R.id.step1_ac)).setImageBitmap(BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.step1_ac, R.dimen.img_3step_width, R.dimen.img_3step_height));
+        //((ImageView)findViewById(R.id.step2)).setImageBitmap(BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.step2, R.dimen.img_3step_width, R.dimen.img_3step_height));
+        //((ImageView) findViewById(R.id.step3)).setImageBitmap (BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.step3, R.dimen.img_3step_width, R.dimen.img_3step_height));
 
     }
 
