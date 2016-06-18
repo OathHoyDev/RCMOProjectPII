@@ -176,7 +176,7 @@
                     android:textStyle="bold"
                     android:text="ขนาดแปลงที่ดิน"
                     android:textColor="@color/RcmoNormalDarkText"
-                    android:textSize="@dimen/textsize_large"
+                    android:textSize="@dimen/textsize_normal"
                     android:id="@+id/labelLandUnit">
                 </com.neopixl.pixlui.components.textview.TextView>
 
@@ -207,7 +207,7 @@
                     android:textStyle="bold"
                     android:text="ตำแหน่งแปลงทีดิน"
                     android:textColor="@color/RcmoNormalDarkText"
-                    android:textSize="@dimen/textsize_large"
+                    android:textSize="@dimen/textsize_normal"
                     android:id="@+id/labelLocation">
                 </com.neopixl.pixlui.components.textview.TextView>
                 <com.neopixl.pixlui.components.textview.TextView
@@ -229,7 +229,7 @@
                     android:inputType="text"
                     android:textCursorDrawable="@drawable/text_cursor"
                     android:clickable="true"
-                    android:textSize="@dimen/textsize_large"
+                    android:textSize="@dimen/textsize_normal"
                     android:id="@+id/inputprovice"/>
 
                 <LinearLayout
@@ -258,7 +258,7 @@
                         android:layout_marginRight="1dp"
                         android:inputType="text"
                         android:textCursorDrawable="@drawable/text_cursor"
-                        android:textSize="@dimen/textsize_large"
+                        android:textSize="@dimen/textsize_normal"
                         android:id="@+id/inputAmphoe"/>
 
                     <com.neopixl.pixlui.components.textview.TextView
@@ -280,7 +280,7 @@
                         android:padding="5dp"
                         android:inputType="text"
                         android:textCursorDrawable="@drawable/text_cursor"
-                        android:textSize="@dimen/textsize_large"
+                        android:textSize="@dimen/textsize_normal"
                         android:id="@+id/inputTumbon"/>
                 </LinearLayout>
 
@@ -310,13 +310,13 @@
                         android:layout_weight="1"
                         android:paddingLeft="15dp"
                         android:textStyle="bold"
-                        android:layout_marginTop="5dp"
+
                         android:text="บันทึก"
                         android:textColor="@color/RcmoWhiteBG"
                         android:background="@drawable/action_gray_cut_left_conner"
                         android:gravity="center"
                         android:padding="5dp"
-                        android:textSize="@dimen/textsize_xlarge"
+                        android:textSize="@dimen/textsize_large"
                         android:clickable="true"
                         android:focusable="true"
                         android:id="@+id/btnSave"/>
@@ -329,13 +329,12 @@
                         android:layout_weight="1"
                         android:paddingLeft="15dp"
                         android:textStyle="bold"
-                        android:layout_marginTop="5dp"
                         android:text="คำนวณ"
                         android:textColor="@color/RcmoWhiteBG"
                         android:background="@drawable/action_orange_cut_right_conner"
                         android:gravity="center"
                         android:padding="5dp"
-                        android:textSize="@dimen/textsize_xlarge"
+                        android:textSize="@dimen/textsize_large"
                         android:clickable="true"
                         android:focusable="true"
                         android:id="@+id/btnCal"/>

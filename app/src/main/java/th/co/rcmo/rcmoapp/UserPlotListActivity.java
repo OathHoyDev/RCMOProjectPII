@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 import th.co.rcmo.rcmoapp.API.RequestServices;
 import th.co.rcmo.rcmoapp.API.ResponseAPI;
+import th.co.rcmo.rcmoapp.Model.UserModel;
 import th.co.rcmo.rcmoapp.Module.mCopyPlot;
 import th.co.rcmo.rcmoapp.Module.mDeletePlot;
 import th.co.rcmo.rcmoapp.Module.mGetRegister;
@@ -330,8 +331,14 @@ public class UserPlotListActivity extends Activity {
                 List<mGetRegister.mRespBody> loginBodyLists = registerInfo.getRespBody();
 
                 if (loginBodyLists.size() != 0) {
+                    UserModel user = new UserModel();
+                    user.userEmail      = loginBodyLists.get(0).getUserEmail();
+                    user.userFirstName  = loginBodyLists.get(0).getUserFirstName();
+                    user.userLastName   = loginBodyLists.get(0).getUserLastName();
+                    user.userLogin      = loginBodyLists.get(0).getUserLogin();
+                    user.userID         = String.valueOf(loginBodyLists.get(0).getUserID());
 
-                    EditUserActivity.userInfoRespBody = loginBodyLists.get(0);
+                   EditUserActivity.userInfo = user;
                     startActivity(new Intent(UserPlotListActivity.this, EditUserActivity.class));
 
                 }

@@ -2,6 +2,7 @@ package th.co.rcmo.rcmoapp;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -14,6 +15,7 @@ import com.neopixl.pixlui.components.edittext.EditText;
 import java.util.List;
 import th.co.rcmo.rcmoapp.API.RequestServices;
 import th.co.rcmo.rcmoapp.API.ResponseAPI;
+import th.co.rcmo.rcmoapp.Model.UserModel;
 import th.co.rcmo.rcmoapp.Module.mRegister;
 import th.co.rcmo.rcmoapp.Util.ServiceInstance;
 
@@ -88,22 +90,29 @@ public class RegisterActivity extends Activity {
 
                 if (mRegisterBodyLists.size() != 0) {
 
-                    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(RegisterActivity.this);
-                    SharedPreferences.Editor editor = preferences.edit();
+                    SharedPreferences sp = getSharedPreferences(ServiceInstance.PREF_NAME, Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sp .edit();
 
                     //store into file variableE
-                    editor.putString("sp_inputName"   , inputName).apply();
-                    editor.putString("sp_inputSirName", inputSirName).apply();
-                    editor.putString("sp_inputSirName", inputUsername).apply();
-                    editor.putString("sp_inputSirName", inputEmail).apply();
-                    editor.putString("sp_inputSirName", inputPassword).apply();
-                    editor.putString("sp_userId" , mRegisterBodyLists.get(0).getUserID()).apply();
-                    editor.apply();
+                    editor.putString(ServiceInstance.sp_userId   , mRegisterBodyLists.get(0).getUserID());
+                    editor.putString(ServiceInstance.sp_userName, inputUsername);
+                   // editor.putString("sp_inputSirName", inputUsername).apply();
+                    //editor.putString("sp_inputEmail", inputEmail).apply();
+                   // editor.putString("sp_inputSirName", inputPassword).apply();
+                    //editor.putString("sp_userId" , mRegisterBodyLists.get(0).getUserID()).apply();
+                    editor.commit();
 
 //                    {"RespStatus":{"StatusID":2,"StatusMsg":"ไม่พบข้อมูล"},"RespBody":[]}
+                    UserModel user = new UserModel();
+                    user.userEmail      = inputEmail;
+                    user.userFirstName  = inputName;
+                    user.userLastName   = inputSirName;
+                    user.userLogin      = inputUsername;
+                    user.userID         = String.valueOf(mRegisterBodyLists.get(0).getUserID());
 
+                    EditUserActivity.userInfo = user;
                     startActivity(new Intent(RegisterActivity.this, EditUserActivity.class)
-                            .putExtra("userId", mRegisterBodyLists.get(0).getUserID()));
+                    );
                     finish();
                 }
 
@@ -117,7 +126,7 @@ public class RegisterActivity extends Activity {
                                "?SaveFlag="       + 1 +
                                "&UserID="         +
                                "&UserLogin="      + inputUsername +
-                               "&UserPwd="        + ServiceInstance.md5(inputUsername) +
+                               "&UserPwd="        + ServiceInstance.md5(inputPassword) +
                                "&UserFirstName="  + inputName +
                                "&UserLastName="   + inputSirName +
                                "&UserEmail="      + inputEmail +

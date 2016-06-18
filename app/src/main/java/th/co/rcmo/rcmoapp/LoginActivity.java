@@ -13,6 +13,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import com.neopixl.pixlui.components.edittext.EditText;
+
+import java.util.ArrayList;
 import java.util.List;
 import th.co.rcmo.rcmoapp.API.RequestServices;
 import th.co.rcmo.rcmoapp.API.ResponseAPI;
@@ -190,9 +192,14 @@ public class LoginActivity extends Activity {
 
             @Override
             public void callbackError(int code, String errorMsg) {
-                Log.d("Erroo",errorMsg);
+                List<mUserPlotList.mRespBody>  userPlotList = new ArrayList<mUserPlotList.mRespBody>();
+                UserPlotListActivity.userPlotRespBodyList  = userPlotList;
+                startActivity(new Intent(LoginActivity.this, UserPlotListActivity.class)
+                        .putExtra("userId", userId));
+                finish();
+
             }
-        }).API_Request(true, RequestServices.ws_getPlotList +
+        }).API_Request(false, RequestServices.ws_getPlotList +
                 "?UserID=" + userId + "&PlotID="+
                 "&ImeiCode=" + ServiceInstance.GetDeviceID(LoginActivity.this));
 

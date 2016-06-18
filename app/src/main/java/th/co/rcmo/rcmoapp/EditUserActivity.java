@@ -17,6 +17,7 @@ import com.neopixl.pixlui.components.textview.TextView;
 import java.util.List;
 import th.co.rcmo.rcmoapp.API.RequestServices;
 import th.co.rcmo.rcmoapp.API.ResponseAPI;
+import th.co.rcmo.rcmoapp.Model.UserModel;
 import th.co.rcmo.rcmoapp.Module.mGetRegister;
 import th.co.rcmo.rcmoapp.Module.mRegister;
 import th.co.rcmo.rcmoapp.Util.ServiceInstance;
@@ -25,7 +26,7 @@ public class EditUserActivity extends Activity {
 
     EditText inputName,inputSirName,inputUsername;
     TextView inputEmail;
-    public static mGetRegister.mRespBody  userInfoRespBody = new mGetRegister.mRespBody();
+    public static UserModel userInfo = new UserModel();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,10 +45,10 @@ public class EditUserActivity extends Activity {
          inputUsername =  (EditText)findViewById(R.id.inputUsername);
          inputEmail    =  (TextView)findViewById(R.id.inputEmail);
 
-        inputName.setText(userInfoRespBody.getUserFirstName());
-        inputSirName.setText(userInfoRespBody.getUserLastName());
-        inputUsername.setText(userInfoRespBody.getUserLogin());
-        inputEmail.setText(userInfoRespBody.getUserEmail());
+        inputName.setText(userInfo.userFirstName);
+        inputSirName.setText(userInfo.userLastName);
+        inputUsername.setText(userInfo.userLogin);
+        inputEmail.setText(userInfo.userEmail);
 
     }
     private void setAction() {
@@ -66,9 +67,9 @@ public class EditUserActivity extends Activity {
             public void onClick(View v) {
 
                 startActivity(new Intent(EditUserActivity.this, ChangePasswordActivity.class)
-                     .putExtra("fname",userInfoRespBody.getUserFirstName())
-                     .putExtra("lname",userInfoRespBody.getUserLastName())
-                      .putExtra("email",userInfoRespBody.getUserLastName())
+                     .putExtra("fname",userInfo.userFirstName)
+                     .putExtra("lname",userInfo.userLastName)
+                      .putExtra("email",userInfo.userEmail)
                 );
 
 

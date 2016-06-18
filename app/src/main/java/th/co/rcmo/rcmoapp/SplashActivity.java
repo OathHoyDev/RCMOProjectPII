@@ -114,9 +114,13 @@ public class SplashActivity extends Activity {
 
             @Override
             public void callbackError(int code, String errorMsg) {
+
                 Log.d("Erroo",errorMsg);
+                Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+                startActivity(intent);
+                finish();
             }
-        }).API_Request(true, RequestServices.ws_getPlotList +
+        }).API_Request(false, RequestServices.ws_getPlotList +
                 "?UserID=" + userId + "&PlotID="+
                 "&ImeiCode=" + ServiceInstance.GetDeviceID(SplashActivity.this));
 
