@@ -220,51 +220,57 @@ public class StepThreeActivity extends Activity {
         findViewById(R.id.btnSave).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                boolean isValidate = false;
-                Log.d(TAG,"Product group Id :"+userPlotModel.getPrdGrpID());
 
-                userPlotModel  = new UserPlotModel();
-                userPlotModel.setPrdGrpID(String.valueOf(productionInfo.getPrdGrpID()));
-                userPlotModel.setPrdID(String.valueOf(productionInfo.getPrdID()));
-                userPlotModel.setPrdGrpID( String.valueOf(productionInfo.getPrdGrpID()));
-                userPlotModel.setUserID(userId);
-                userPlotModel.setPlotID(plotId);
+                if (userPlotModel.getUserID() == null || userPlotModel.getUserID().equals("0")) {
+                    new DialogChoice(StepThreeActivity.this)
+                            .ShowOneChoice("ไม่สามารถบันทึกข้อมูล", "- กรุณา Login ก่อนทำการบันทึกข้อมูล");
 
-                if ("1".equals(userPlotModel.getPrdGrpID())) {
+                } else {
+                    boolean isValidate = false;
+                    Log.d(TAG, "Product group Id :" + userPlotModel.getPrdGrpID());
 
-                    isValidate = isValidPlantInputData();
-                    preparePlantDataForInsert();
+                    userPlotModel = new UserPlotModel();
+                    userPlotModel.setPrdGrpID(String.valueOf(productionInfo.getPrdGrpID()));
+                    userPlotModel.setPrdID(String.valueOf(productionInfo.getPrdID()));
+                    userPlotModel.setPrdGrpID(String.valueOf(productionInfo.getPrdGrpID()));
+                    userPlotModel.setUserID(userId);
+                    userPlotModel.setPlotID(plotId);
 
-                }else if("2".equals(userPlotModel.getPrdGrpID())){
+                    if ("1".equals(userPlotModel.getPrdGrpID())) {
 
-                    isValidate = isValidAnimalInputData();
-                    prepareAnimalDataForInsert();
+                        isValidate = isValidPlantInputData();
+                        preparePlantDataForInsert();
 
-                }else if("3".equals(userPlotModel.getPrdGrpID())){
+                    } else if ("2".equals(userPlotModel.getPrdGrpID())) {
 
-                    isValidate = isValidFishInputData ();
-                    prepareFishDataForInsert();
+                        isValidate = isValidAnimalInputData();
+                        prepareAnimalDataForInsert();
 
-                }else{
-                    isValidate = false;
-                }
+                    } else if ("3".equals(userPlotModel.getPrdGrpID())) {
+
+                        isValidate = isValidFishInputData();
+                        prepareFishDataForInsert();
+
+                    } else {
+                        isValidate = false;
+                    }
 
 
+                    if (isValidate) {
+                        new DialogChoice(StepThreeActivity.this, new DialogChoice.OnSelectChoiceListener() {
+                            @Override
+                            public void OnSelect(int choice) {
 
-                if (isValidate) {
-                    new DialogChoice(StepThreeActivity.this, new DialogChoice.OnSelectChoiceListener() {
-                        @Override
-                        public void OnSelect(int choice) {
+                                if (choice == DialogChoice.OK) {
+                                    upsertUserPlot();
 
-                            if (choice == DialogChoice.OK) {
-                                upsertUserPlot();
-
+                                }
                             }
-                        }
-                    }).ShowTwoChoice("\"" + ((TextView) findViewById(R.id.labelProductName)).getText().toString() + "\"", "คุนต้องการบันทึกข้อมูล");
+                        }).ShowTwoChoice("\"" + ((TextView) findViewById(R.id.labelProductName)).getText().toString() + "\"", "คุนต้องการบันทึกข้อมูล");
+                    }
+
+
                 }
-
-
             }
         });
 
@@ -706,11 +712,7 @@ public class StepThreeActivity extends Activity {
     private void upsertUserPlot(){
 
         // API_GetUserPlot(userId,prdId,prdGrpId,plotId);
-        if (userPlotModel.getUserID() == null || userPlotModel.getUserID().equals("0")) {
-            new DialogChoice(StepThreeActivity.this)
-                    .ShowOneChoice("ไม่สามารถบันทึกข้อมูล", "- กรุณา Login ก่อนทำการบันทึกข้อมูล");
 
-        } else {
             if ("".equals(userPlotModel.getPlotID())) {
                 Log.d(TAG, "Go to save plot Module ");
                 API_SavePlotDetail("1", userPlotModel);
@@ -720,7 +722,7 @@ public class StepThreeActivity extends Activity {
                 API_SavePlotDetail("2", userPlotModel);
 
             }
-        }
+
 
 
     }
