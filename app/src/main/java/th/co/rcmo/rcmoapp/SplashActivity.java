@@ -115,8 +115,7 @@ public class SplashActivity extends Activity {
             @Override
             public void callbackError(int code, String errorMsg) {
 
-                Log.d("Erroo",errorMsg);
-                Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+                Intent intent = new Intent(SplashActivity.this, UserPlotListActivity.class);
                 startActivity(intent);
                 finish();
             }

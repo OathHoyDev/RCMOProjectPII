@@ -6,4 +6,5 @@
         android:radius="@dimen/radius" />
 
     <solid android:color="@color/RcmoProfitBG"/>
+
 </shape>

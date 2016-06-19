@@ -1,7 +1,9 @@
 package th.co.rcmo.rcmoapp.View;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Handler;
 import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
@@ -26,6 +28,33 @@ public class DialogChoice {
 
     public DialogChoice(Context c){
         this.context =c;
+    }
+
+
+    public android.app.Dialog Show(String t,String msg){
+        final android.app.Dialog dialog = new android.app.Dialog(context);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_choice);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+//        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.R.color.transparent));
+
+        TextView title =(TextView) dialog.findViewById(R.id.title);
+        TextView detail = (TextView)dialog.findViewById(R.id.message);
+        TextView btn_ok = (TextView)dialog.findViewById(R.id.ok);
+
+        // dialog.findViewById(R.id.cancel).setVisibility(View.GONE);
+        //dialog.findViewById(R.id.line).setVisibility(View.GONE);
+        if(t.length()==0) title.setVisibility(View.GONE);
+        else title.setText(t);
+        if(msg.length()==0) detail.setVisibility(View.GONE);
+        else detail.setText(msg);
+
+        btn_ok.setVisibility(View.GONE);
+
+        dialog.show();
+
+
+        return  dialog;
     }
 
 

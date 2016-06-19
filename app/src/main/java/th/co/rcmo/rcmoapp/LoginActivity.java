@@ -2,12 +2,14 @@ package th.co.rcmo.rcmoapp;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -69,7 +71,7 @@ public class LoginActivity extends Activity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
-                finish();
+               // finish();
             }
         });
 
@@ -97,19 +99,29 @@ public class LoginActivity extends Activity {
         findViewById(R.id.btnLogin).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                findViewById(R.id.inputUsername).setBackgroundResource(R.drawable.white_cut_top_conner_valid);
+                findViewById(R.id.inputPassword).setBackgroundResource(R.drawable.white_cut_conner_valid);
 
 
-                if (inputUsername.length() > 0) {
+                if (inputUsername.length() > 0 && inputPassword.length()>0) {
 
                         if (inputPassword.length() != 0) {
                            Login();
-                        } else {
-                            new DialogChoice(LoginActivity.this).ShowOneChoice("", "กรุณากรอกรหัสผ่าน");
                         }
 
                 } else {
-                    new DialogChoice(LoginActivity.this).ShowOneChoice("", "กรุณากรอกรหัสผู้ใช้งานให้ถูกต้อง");
-                }
+                    String errorMsg = "กรุณากรอกข้อมูล \n";
+                    if(!(inputUsername.length() > 0)) {
+                        errorMsg = "- บัญชีผู้ใช้ \n";
+                        findViewById(R.id.inputUsername).setBackgroundResource(R.drawable.white_cut_top_conner_invalid);
+                    }
+
+                    if (!(inputPassword.length() > 0)){
+                        errorMsg += "- รหัสผ่าน ";
+                        findViewById(R.id.inputPassword).setBackgroundResource(R.drawable.white_cut_conner_invalid);
+                    }
+                    new DialogChoice(LoginActivity.this)
+                            .ShowOneChoice("", errorMsg);                }
             }
         });
 
@@ -142,7 +154,6 @@ public class LoginActivity extends Activity {
                     editor.putString(ServiceInstance.sp_userId, loginBodyLists.get(0).getUserID());
                     editor.commit();
 
-
                     API_GetUserPlot(loginBodyLists.get(0).getUserID());
                 }
 
@@ -150,9 +161,10 @@ public class LoginActivity extends Activity {
 
             @Override
             public void callbackError(int code, String errorMsg) {
-                Log.d("Error",errorMsg);
+                new DialogChoice(LoginActivity.this).ShowOneChoice("","ไม่พบบัญชีผู้ใช้งาน หรือ รหัสผ่านไม่ถูกต้อง");
+
             }
-        }).API_Request(true, RequestServices.ws_chkLogin +
+        }).API_Request(false, RequestServices.ws_chkLogin +
                 "?UserLogin=" + username + "&UserPwd=" + ServiceInstance.md5(password) +
                 "&ImeiCode=" + ServiceInstance.GetDeviceID(LoginActivity.this));
 
@@ -168,7 +180,7 @@ public class LoginActivity extends Activity {
             public void callbackSuccess(Object obj) {
 
                 mUserPlotList mPlotList = (mUserPlotList) obj;
-                List<mUserPlotList.mRespBody> userPlotBodyLists = mPlotList.getRespBody();
+               final List<mUserPlotList.mRespBody> userPlotBodyLists = mPlotList.getRespBody();
 
                 if (userPlotBodyLists.size() != 0) {
                     userPlotBodyLists.get(0).toString();
@@ -181,11 +193,21 @@ public class LoginActivity extends Activity {
                     editor.putString("sp_user_id", loginBodyLists.get(0).getUserID()).apply();
                     editor.apply();
                   */
+                    final android.app.Dialog dialog =   new DialogChoice(LoginActivity.this).Show("เข้าสู่ระบบสำเร็จ","");
+                    final Handler handler  = new Handler();
+                    final Runnable runnable = new Runnable() {
+                        @Override
+                        public void run() {
+                            dialog.dismiss();
+                            UserPlotListActivity.userPlotRespBodyList  = userPlotBodyLists;
+                            startActivity(new Intent(LoginActivity.this, UserPlotListActivity.class)
+                                    .putExtra("userId", userId));
+                            finish();
+                        }
+                    };
+                    handler.postDelayed(runnable, 2000);
 
-                    UserPlotListActivity.userPlotRespBodyList  = userPlotBodyLists;
-                    startActivity(new Intent(LoginActivity.this, UserPlotListActivity.class)
-                            .putExtra("userId", userId));
-                    finish();
+
                 }
 
             }
@@ -194,6 +216,8 @@ public class LoginActivity extends Activity {
             public void callbackError(int code, String errorMsg) {
                 List<mUserPlotList.mRespBody>  userPlotList = new ArrayList<mUserPlotList.mRespBody>();
                 UserPlotListActivity.userPlotRespBodyList  = userPlotList;
+
+
                 startActivity(new Intent(LoginActivity.this, UserPlotListActivity.class)
                         .putExtra("userId", userId));
                 finish();

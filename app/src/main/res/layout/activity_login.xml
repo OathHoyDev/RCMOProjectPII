@@ -126,7 +126,7 @@
                         android:textColor="@color/RcmoNormalDarkText"
                         android:textColorHint="@color/RcmoHintText"
                         android:imeOptions="actionDone"
-                        android:background="@color/RcmoWhiteBG"
+                        android:background="@drawable/white_cut_conner_valid"
                         android:gravity="center"
                         android:padding="5dp"
                         android:inputType="textPassword"

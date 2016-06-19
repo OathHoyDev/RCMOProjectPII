@@ -8,5 +8,8 @@
         android:topRightRadius="@dimen/radius_medium"/>
 
     <solid android:color="@color/RcmoWhiteBG"/>
+    <stroke
+        android:color="@color/RcmoError"
+        android:width="2dp"/>
 
 </shape>

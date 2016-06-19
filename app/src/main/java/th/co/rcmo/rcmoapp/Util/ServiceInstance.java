@@ -18,7 +18,8 @@ import java.util.Map;
  */
 public class ServiceInstance {
 
-    public static final String forgotPassURL = "http://111.223.34.154/RCMO/forgot_password.aspx";
+    //public static final String forgotPassURL = "http://111.223.34.154/RCMO/forgot_password.aspx";
+    public static final String forgotPassURL = "https://www.google.co.th/";
     public static final String FISHERY_TYPE_KC = "2";
     public static final String FISHERY_TYPE_BO = "1";
 
