@@ -6,7 +6,9 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,6 +26,8 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 import java.util.List;
 import th.co.rcmo.rcmoapp.API.RequestServices;
 import th.co.rcmo.rcmoapp.API.ResponseAPI;
@@ -37,6 +41,7 @@ import th.co.rcmo.rcmoapp.Module.mAmphoe;
 import th.co.rcmo.rcmoapp.Module.mProvince;
 import th.co.rcmo.rcmoapp.Module.mSavePlotDetail;
 import th.co.rcmo.rcmoapp.Module.mTumbon;
+import th.co.rcmo.rcmoapp.Module.mUserPlotList;
 import th.co.rcmo.rcmoapp.Util.BitMapHelper;
 import th.co.rcmo.rcmoapp.Util.ServiceInstance;
 import th.co.rcmo.rcmoapp.View.DialogChoice;
@@ -56,6 +61,7 @@ public class StepThreeActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
 
         SharedPreferences sp = getSharedPreferences(ServiceInstance.PREF_NAME, Context.MODE_PRIVATE);
         userId = sp.getString(ServiceInstance.sp_userId, "0");
@@ -212,7 +218,7 @@ public class StepThreeActivity extends Activity {
         findViewById(R.id.backBtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                API_GetUserPlot(userPlotModel.getUserID());
             }
         });
 
@@ -361,7 +367,7 @@ public class StepThreeActivity extends Activity {
                             Log.d(TAG, "bo_tuaSelected __>" +tuaSelected);
                             if (tuaSelected) {
 
-                                ((TextView)findViewById(R.id.bo_inputNuberOfUnit)).setHint("กิโลกลัม");
+                                ((TextView)findViewById(R.id.bo_inputNuberOfUnit)).setHint("กิโลกรัม");
                                 ((ImageView) findViewById(R.id.bo_imgkkSelected)).setImageResource(R.drawable.radio_select);
                                 ((ImageView) findViewById(R.id.bo_imgTuaSelected)).setImageResource(R.drawable.radio_not_select);
 
@@ -385,6 +391,7 @@ public class StepThreeActivity extends Activity {
     private void popUpProvinceListDialog(final List<mProvince.mRespBody> provinceRespList) {
         final Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         View view = getLayoutInflater().inflate(R.layout.spin_location_dialog, null);
 
         view.findViewById(R.id.btnCancel).setOnClickListener(new View.OnClickListener() {
@@ -435,6 +442,7 @@ public class StepThreeActivity extends Activity {
     private void popUpAmphoeListDialog(final List<mAmphoe.mRespBody> amphoeRespList) {
         final Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         View view = getLayoutInflater().inflate(R.layout.spin_location_dialog, null);
 
         view.findViewById(R.id.btnCancel).setOnClickListener(new View.OnClickListener() {
@@ -481,6 +489,7 @@ public class StepThreeActivity extends Activity {
     private void popUpTumbonListDialog(final List<mTumbon.mRespBody> tunbonRespList) {
         final Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         View view = getLayoutInflater().inflate(R.layout.spin_location_dialog, null);
 
         view.findViewById(R.id.btnCancel).setOnClickListener(new View.OnClickListener() {
@@ -707,6 +716,45 @@ public class StepThreeActivity extends Activity {
                 "&VarValue=" +userPlotInfo.getVarValue()+
                 "&CalResult="+userPlotInfo.getCalResult()
         );
+    }
+
+    private void API_GetUserPlot(final String userId) {
+
+
+        new ResponseAPI(this, new ResponseAPI.OnCallbackAPIListener() {
+            @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
+            @Override
+            public void callbackSuccess(Object obj) {
+
+                mUserPlotList mPlotList = (mUserPlotList) obj;
+                final List<mUserPlotList.mRespBody> userPlotBodyLists = mPlotList.getRespBody();
+
+                if (userPlotBodyLists.size() != 0) {
+                    userPlotBodyLists.get(0).toString();
+
+                    UserPlotListActivity.userPlotRespBodyList = userPlotBodyLists;
+                    startActivity(new Intent(StepThreeActivity.this, UserPlotListActivity.class)
+                            .putExtra("userId", userId));
+                    finish();
+
+                }
+            }
+
+            @Override
+            public void callbackError(int code, String errorMsg) {
+                List<mUserPlotList.mRespBody> userPlotList = new ArrayList<mUserPlotList.mRespBody>();
+                UserPlotListActivity.userPlotRespBodyList = userPlotList;
+
+
+                startActivity(new Intent(StepThreeActivity.this, UserPlotListActivity.class)
+                        .putExtra("userId", userId));
+                finish();
+
+            }
+        }).API_Request(false, RequestServices.ws_getPlotList +
+                "?UserID=" + userId + "&PlotID=" +
+                "&ImeiCode=" + ServiceInstance.GetDeviceID(StepThreeActivity.this));
+
     }
 
     private void upsertUserPlot(){

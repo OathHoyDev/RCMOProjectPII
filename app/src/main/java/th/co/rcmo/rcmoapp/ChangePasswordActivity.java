@@ -80,6 +80,7 @@ public class ChangePasswordActivity extends Activity {
 
                     if(!(Holder.inputConfirmPassword.getText().toString()).equals(Holder.inputPassword.getText().toString())){
                         Holder.inputConfirmPassword.setBackgroundResource(R.drawable.white_cut_conner_invalid);
+                        Holder.inputConfirmPassword.requestFocus();
                         new DialogChoice(ChangePasswordActivity.this).ShowOneChoice("ยืนยันรหัสผ่านใหม่ไม่ถูกต้อง","");
                     }else{
                         SharedPreferences sp = getSharedPreferences(ServiceInstance.PREF_NAME, Context.MODE_PRIVATE);
@@ -92,21 +93,36 @@ public class ChangePasswordActivity extends Activity {
                     }
 
                 }else{
-
+                    boolean isFocus = false;
                     String errorMsg = "";
                     if(!( Holder.inputOldPassword.length() > 0)) {
                         errorMsg += "- รหัสผ่านเก่า \n";
                         Holder.inputOldPassword.setBackgroundResource(R.drawable.white_cut_conner_invalid);
+
+                        if(!isFocus) {
+                            Holder.inputOldPassword.requestFocus();
+                            isFocus = true;
+                        }
                     }
 
                     if (!( Holder.inputPassword.length() > 0)){
                         errorMsg += "- รหัสผ่านใหม่ \n";
                         Holder.inputPassword.setBackgroundResource(R.drawable.white_cut_conner_invalid);
+
+                        if(!isFocus) {
+                            Holder.inputPassword.requestFocus();
+                            isFocus = true;
+                        }
                     }
 
                     if (!( Holder.inputConfirmPassword.length() > 0)){
                         errorMsg += "- ยืนยันรหัสผ่านใหม่ ";
                         Holder.inputConfirmPassword.setBackgroundResource(R.drawable.white_cut_conner_invalid);
+
+                        if(!isFocus) {
+                            Holder.inputConfirmPassword.requestFocus();
+                            isFocus = true;
+                        }
                     }
                     new DialogChoice(ChangePasswordActivity.this)
                             .ShowOneChoice("กรุณากรอกข้อมูล", errorMsg);

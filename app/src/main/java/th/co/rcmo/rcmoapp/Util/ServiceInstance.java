@@ -1,6 +1,7 @@
 package th.co.rcmo.rcmoapp.Util;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.os.Build;
 import android.provider.Settings;
 import android.util.Log;
@@ -18,8 +19,8 @@ import java.util.Map;
  */
 public class ServiceInstance {
 
-    //public static final String forgotPassURL = "http://111.223.34.154/RCMO/forgot_password.aspx";
-    public static final String forgotPassURL = "https://www.google.co.th/";
+    public static final String forgotPassURL = "http://111.223.34.154/RCMO/forgot_password.aspx";
+    //public static final String forgotPassURL = "https://www.google.co.th/";
     public static final String FISHERY_TYPE_KC = "2";
     public static final String FISHERY_TYPE_BO = "1";
 
@@ -45,6 +46,12 @@ public class ServiceInstance {
         productBGMap.put(1, "RcmoPlantBG");
         productBGMap.put(2, "RcmoAnimalBG");
         productBGMap.put(3, "RcmoFishBG");
+    }
+
+    public static boolean isTablet(Context context) {
+        return (context.getResources().getConfiguration().screenLayout
+                & Configuration.SCREENLAYOUT_SIZE_MASK)
+                >= Configuration.SCREENLAYOUT_SIZE_LARGE;
     }
 /*
     public static final Map<Integer, String> productPicMap = new HashMap<>();

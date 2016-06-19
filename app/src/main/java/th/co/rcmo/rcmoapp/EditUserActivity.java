@@ -100,15 +100,25 @@ public class EditUserActivity extends Activity {
                             , Holder.inputEmail.getText().toString());
 
                 }else{
+                    boolean isFocus = false;
                     String errorMsg = "";
                     if(!( Holder.inputName.length() > 0)) {
                         errorMsg += "- ชื่อ \n";
                         Holder.inputName.setBackgroundResource(R.drawable.white_cut_conner_invalid);
+
+                        if(!isFocus) {
+                            Holder.inputName.requestFocus();
+                            isFocus = true;
+                        }
                     }
 
                     if (!( Holder.inputSirName.length() > 0)){
                         errorMsg += "- นามสกุล ";
                         Holder.inputSirName.setBackgroundResource(R.drawable.white_cut_conner_invalid);
+                        if(!isFocus) {
+                            Holder.inputSirName.requestFocus();
+                            isFocus = true;
+                        }
                     }
                     new DialogChoice(EditUserActivity.this)
                             .ShowOneChoice("กรุณากรอกข้อมูล", errorMsg);

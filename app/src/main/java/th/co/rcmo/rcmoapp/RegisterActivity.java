@@ -86,6 +86,7 @@ public class RegisterActivity extends Activity {
 
             if (!(Holder.inputPassword.getText().toString()).equals(Holder.inputConfirmPassword.getText().toString())) {
                 Holder.inputConfirmPassword.setBackgroundResource(R.drawable.white_cut_conner_invalid);
+                Holder.inputConfirmPassword.requestFocus();
                 new DialogChoice(RegisterActivity.this)
                         .ShowOneChoice("ยืนยันรหัสผ่านไม่ถูกต้อง", "");
 
@@ -101,31 +102,51 @@ public class RegisterActivity extends Activity {
             }
 
         } else {
-
+            boolean isFocus = false;
             String errorMsg = "";
             if (!(Holder.inputName.length() > 0)) {
                 errorMsg += "- ชื่อ \n";
                 Holder.inputName.setBackgroundResource(R.drawable.white_cut_conner_invalid);
+                if(!isFocus) {
+                    Holder.inputName.requestFocus();
+                    isFocus =true;
+                }
             }
 
             if (!(Holder.inputSirName.length() > 0)) {
                 errorMsg += "- นามสกุล \n";
                 Holder.inputSirName.setBackgroundResource(R.drawable.white_cut_conner_invalid);
+                if(!isFocus) {
+                    Holder.inputSirName.requestFocus();
+                    isFocus =true;
+                }
             }
 
             if (!(Holder.inputUsername.length() > 0)) {
                 errorMsg += "- ชื่อบัญชี \n";
                 Holder.inputUsername.setBackgroundResource(R.drawable.white_cut_conner_invalid);
+                if(!isFocus) {
+                    Holder.inputUsername.requestFocus();
+                    isFocus =true;
+                }
             }
 
             if (!(Holder.inputPassword.length() > 0)) {
                 errorMsg += "- รหัสผ่าน \n";
                 Holder.inputPassword.setBackgroundResource(R.drawable.white_cut_conner_invalid);
+                if(!isFocus) {
+                    Holder.inputPassword.requestFocus();
+                    isFocus =true;
+                }
             }
 
             if (!(Holder.inputConfirmPassword.length() > 0)) {
                 errorMsg += "- รหัสผ่านอีกครั้ง ";
                 Holder.inputConfirmPassword.setBackgroundResource(R.drawable.white_cut_conner_invalid);
+                if(!isFocus) {
+                    Holder.inputConfirmPassword.requestFocus();
+                    isFocus =true;
+                }
             }
             new DialogChoice(RegisterActivity.this)
                     .ShowOneChoice("กรุณากรอกข้อมูล", errorMsg);

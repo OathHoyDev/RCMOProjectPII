@@ -101,7 +101,7 @@ public class LoginActivity extends Activity {
             public void onClick(View v) {
                 findViewById(R.id.inputUsername).setBackgroundResource(R.drawable.white_cut_top_conner_valid);
                 findViewById(R.id.inputPassword).setBackgroundResource(R.drawable.white_cut_conner_valid);
-
+                boolean isFocus = false;
 
                 if (inputUsername.length() > 0 && inputPassword.length()>0) {
 
@@ -113,12 +113,23 @@ public class LoginActivity extends Activity {
                     String errorMsg = "";
                     if(!(inputUsername.length() > 0)) {
                         errorMsg = "- บัญชีผู้ใช้ \n";
-                        findViewById(R.id.inputUsername).setBackgroundResource(R.drawable.white_cut_top_conner_invalid);
+                        EditText inputUsername =  (EditText)findViewById(R.id.inputUsername);
+                        inputUsername.setBackgroundResource(R.drawable.white_cut_top_conner_invalid);
+                        if(!isFocus) {
+                            inputUsername.requestFocus();
+                            isFocus = true;
+                        }
                     }
 
                     if (!(inputPassword.length() > 0)){
                         errorMsg += "- รหัสผ่าน ";
-                        findViewById(R.id.inputPassword).setBackgroundResource(R.drawable.white_cut_conner_invalid);
+                        EditText  inputPassword =  (EditText) findViewById(R.id.inputPassword);
+                        inputPassword.setBackgroundResource(R.drawable.white_cut_conner_invalid);
+                        if(!isFocus) {
+                            inputPassword.requestFocus();
+                            isFocus = true;
+                        }
+
                     }
                     new DialogChoice(LoginActivity.this)
                             .ShowOneChoice("กรุณากรอกข้อมูล", errorMsg);                }

@@ -160,15 +160,27 @@ public class UserPlotListActivity extends Activity {
                 h.btnCopy          =  (TextView) convertView.findViewById(R.id.btnCopy);
                 h.layoutPlotRow    =  (LinearLayout) convertView.findViewById(R.id.layoutPlotRow);
                 h.pinImg           = (ImageView)convertView.findViewById(R.id.pinImg);
+                h.params           = (LinearLayout.LayoutParams)h.layoutPlotRow.getLayoutParams();
                 convertView.setTag(h);
             }else{
                 h = (ViewHolder) convertView.getTag();
             }
 
+          //  Log.d(TAG,"Position : "+position);
+            //Log.d(TAG,"Count : "+getCount());
 
 
+            if ((position+1) == getCount()){
+                h.params.setMargins(10, 10, 10, 225); //substitute parameters for left, top, right, bottom
+                h.layoutPlotRow.setLayoutParams(h.params);
+            }else{
+                h.params.setMargins(10, 10, 10, 10); //substitute parameters for left, top, right, bottom
+                h.layoutPlotRow.setLayoutParams(h.params);
+            }
 
             mUserPlotList.mRespBody  respBody =  getItem(position);
+
+
 
 
 
@@ -313,6 +325,7 @@ public class UserPlotListActivity extends Activity {
         private  TextView labelAddress,labelPlotSize,labelProductName,labelProfit,labelDate,btnProfit,btnDelete,btnCopy;
         private  ImageView imgProduct,prodImg,pinImg;
         private  LinearLayout prodBg,layoutPlotRow ;
+        private  LinearLayout.LayoutParams params;
 
 
     }

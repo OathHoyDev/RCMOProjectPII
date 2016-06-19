@@ -24,7 +24,12 @@ public class StepOneActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_step_one);
+if(ServiceInstance.isTablet(StepOneActivity.this)){
+    setContentView(R.layout.activity_step_one_tablet);
+}else{
+    setContentView(R.layout.activity_step_one);
+}
+
 
         setUI();
         setAction();
