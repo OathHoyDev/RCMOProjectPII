@@ -135,7 +135,7 @@ public class EditUserActivity extends Activity {
             public void onClick(View v) {
                 SharedPreferences sp = getSharedPreferences(ServiceInstance.PREF_NAME, Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sp.edit();
-                editor.putString(ServiceInstance.sp_userId, "0");
+                editor.clear();
                 editor.commit();
 
                 toastDisplayCustom_API("ออกจากระบบสำเร็จ");
