@@ -733,10 +733,11 @@ public class StepThreeActivity extends Activity {
                     userPlotBodyLists.get(0).toString();
 
                     UserPlotListActivity.userPlotRespBodyList = userPlotBodyLists;
-                    startActivity(new Intent(StepThreeActivity.this, UserPlotListActivity.class)
-                            .putExtra("userId", userId));
-                    finish();
 
+                    Intent intent = new Intent(StepThreeActivity.this, UserPlotListActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                    finish();
                 }
             }
 
