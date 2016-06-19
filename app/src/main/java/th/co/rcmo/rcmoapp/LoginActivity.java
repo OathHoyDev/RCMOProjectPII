@@ -110,7 +110,7 @@ public class LoginActivity extends Activity {
                         }
 
                 } else {
-                    String errorMsg = "กรุณากรอกข้อมูล \n";
+                    String errorMsg = "";
                     if(!(inputUsername.length() > 0)) {
                         errorMsg = "- บัญชีผู้ใช้ \n";
                         findViewById(R.id.inputUsername).setBackgroundResource(R.drawable.white_cut_top_conner_invalid);
@@ -121,7 +121,7 @@ public class LoginActivity extends Activity {
                         findViewById(R.id.inputPassword).setBackgroundResource(R.drawable.white_cut_conner_invalid);
                     }
                     new DialogChoice(LoginActivity.this)
-                            .ShowOneChoice("", errorMsg);                }
+                            .ShowOneChoice("กรุณากรอกข้อมูล", errorMsg);                }
             }
         });
 
@@ -161,7 +161,7 @@ public class LoginActivity extends Activity {
 
             @Override
             public void callbackError(int code, String errorMsg) {
-                new DialogChoice(LoginActivity.this).ShowOneChoice("","ไม่พบบัญชีผู้ใช้งาน หรือ รหัสผ่านไม่ถูกต้อง");
+                new DialogChoice(LoginActivity.this).ShowOneChoice("ไม่พบบัญชีผู้ใช้งาน หรือ รหัสผ่านไม่ถูกต้อง","");
 
             }
         }).API_Request(false, RequestServices.ws_chkLogin +

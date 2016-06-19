@@ -89,7 +89,7 @@ public class RegisterActivity extends Activity {
             if (!Holder.inputPassword.getText().toString().equals( Holder.inputConfirmPassword.getText().toString())) {
 
                 new DialogChoice(RegisterActivity.this)
-                        .ShowOneChoice("","ยืนยันรหัสผ่านไม่ถูกต้อง");
+                        .ShowOneChoice("ยืนยันรหัสผ่านไม่ถูกต้อง","");
                 Holder.inputConfirmPassword.setBackgroundResource(R.drawable.white_cut_conner_invalid);
             }else{
 
@@ -104,7 +104,7 @@ public class RegisterActivity extends Activity {
 
         } else {
 
-            String errorMsg = "กรุณากรอกข้อมูล  \n";
+            String errorMsg = "";
             if(!( Holder.inputName.length() > 0)) {
                 errorMsg += "- ชื่อ \n";
                 findViewById(R.id.inputName).setBackgroundResource(R.drawable.white_cut_conner_invalid);
@@ -130,7 +130,7 @@ public class RegisterActivity extends Activity {
                 findViewById(R.id.inputConfirmPassword).setBackgroundResource(R.drawable.white_cut_conner_invalid);
             }
             new DialogChoice(RegisterActivity.this)
-                    .ShowOneChoice("", errorMsg);
+                    .ShowOneChoice("กรุณากรอกข้อมูล", errorMsg);
         }
 
 
@@ -199,7 +199,7 @@ public class RegisterActivity extends Activity {
 
             @Override
             public void callbackError(int code, String errorMsg) {
-              new DialogChoice(RegisterActivity.this).ShowOneChoice("",errorMsg);
+              new DialogChoice(RegisterActivity.this).ShowOneChoice(errorMsg,"");
                 Holder.inputName.setBackgroundResource(R.drawable.white_cut_conner_invalid);
             }
         }).API_Request(false, RequestServices.ws_saveRegister +

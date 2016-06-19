@@ -4,7 +4,7 @@
     xmlns:pixlui="http://schemas.android.com/apk/com.neopixl.pixlui"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_total"
+   android:id="@+id/mainEditUserLayout"
     tools:context="th.co.rcmo.rcmoapp.EditUserActivity">
 
 
@@ -182,7 +182,7 @@
                             android:textSize="@dimen/textsize_normal"
                             android:id="@+id/labelUsername"/>
 
-                        <com.neopixl.pixlui.components.edittext.EditText
+                        <com.neopixl.pixlui.components.textview.TextView
                             pixlui:typeface="Quark-Light.otf"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -190,14 +190,13 @@
                             android:textStyle="bold"
                             android:layout_marginTop="@dimen/margin_large"
                             android:hint="ชื่อบัญชี"
-                            android:textColor="@color/RcmoNormalDarkText"
+                            android:textColor="@color/RcmoNormalLightText"
                             android:textColorHint="@color/RcmoHintText"
-                            android:background="@color/RcmoWhiteBG"
+                            android:background="@color/RcmoLightTranBG"
                             android:gravity="left"
                             android:padding="5dp"
                             android:layout_weight="1"
-                            android:inputType="text"
-                            android:imeOptions="actionDone"
+                            android:imeOptions="actionNext"
                             android:textSize="@dimen/textsize_normal"
                             android:textCursorDrawable="@drawable/text_cursor"
                             android:id="@+id/inputUsername"/>
@@ -225,7 +224,7 @@
                             android:textSize="@dimen/textsize_normal"
                             android:id="@+id/labelEmail"/>
 
-                        <com.neopixl.pixlui.components.textview.TextView
+                        <com.neopixl.pixlui.components.edittext.EditText
                             pixlui:typeface="Quark-Light.otf"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -233,11 +232,13 @@
                             android:textStyle="bold"
                             android:layout_marginTop="@dimen/margin_normal"
                             android:hint="อีเมล์"
-                            android:textColor="@color/RcmoNormalLightText"
+                            android:imeOptions="actionDone"
+                            android:textColor="@color/RcmoNormalDarkText"
                             android:textColorHint="@color/RcmoHintText"
-                            android:background="@color/RcmoLightTranBG"
+                            android:background="@drawable/white_cut_conner_valid"
                             android:gravity="left"
                             android:padding="5dp"
+                            android:inputType="textEmailAddress"
                             android:layout_weight="1"
 
 
