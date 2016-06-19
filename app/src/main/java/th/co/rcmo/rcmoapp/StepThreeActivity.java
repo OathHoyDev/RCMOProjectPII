@@ -31,6 +31,7 @@ import th.co.rcmo.rcmoapp.Adapter.DialogAmphoeAdapter;
 import th.co.rcmo.rcmoapp.Adapter.DialogProvinceAdapter;
 import th.co.rcmo.rcmoapp.Adapter.DialogTumbonAdapter;
 import th.co.rcmo.rcmoapp.Model.ProductModel;
+import th.co.rcmo.rcmoapp.Model.UserModel;
 import th.co.rcmo.rcmoapp.Model.UserPlotModel;
 import th.co.rcmo.rcmoapp.Module.mAmphoe;
 import th.co.rcmo.rcmoapp.Module.mProvince;
@@ -705,16 +706,22 @@ public class StepThreeActivity extends Activity {
     private void upsertUserPlot(){
 
         // API_GetUserPlot(userId,prdId,prdGrpId,plotId);
+        if (userPlotModel.getUserID() == null || userPlotModel.getUserID().equals("0")) {
+            new DialogChoice(StepThreeActivity.this)
+                    .ShowOneChoice("ไม่สามารถบันทึกข้อมูล", "- กรุณา Login ก่อนทำการบันทึกข้อมูล");
 
-        if("".equals(userPlotModel.getPlotID())){
-            Log.d(TAG, "Go to save plot Module ");
-            API_SavePlotDetail("1", userPlotModel);
-        }else{
+        } else {
+            if ("".equals(userPlotModel.getPlotID())) {
+                Log.d(TAG, "Go to save plot Module ");
+                API_SavePlotDetail("1", userPlotModel);
+            } else {
 
-            Log.d(TAG, "Go to update plot Module ");
-            API_SavePlotDetail("2", userPlotModel);
+                Log.d(TAG, "Go to update plot Module ");
+                API_SavePlotDetail("2", userPlotModel);
 
+            }
         }
+
 
     }
 
