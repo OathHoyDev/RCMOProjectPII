@@ -103,12 +103,12 @@ public class EditUserActivity extends Activity {
                     String errorMsg = "";
                     if(!( Holder.inputName.length() > 0)) {
                         errorMsg += "- ชื่อ \n";
-                        findViewById(R.id.inputName).setBackgroundResource(R.drawable.white_cut_conner_invalid);
+                        Holder.inputName.setBackgroundResource(R.drawable.white_cut_conner_invalid);
                     }
 
                     if (!( Holder.inputSirName.length() > 0)){
                         errorMsg += "- นามสกุล ";
-                        findViewById(R.id.inputSirName).setBackgroundResource(R.drawable.white_cut_conner_invalid);
+                        Holder.inputSirName.setBackgroundResource(R.drawable.white_cut_conner_invalid);
                     }
                     new DialogChoice(EditUserActivity.this)
                             .ShowOneChoice("กรุณากรอกข้อมูล", errorMsg);

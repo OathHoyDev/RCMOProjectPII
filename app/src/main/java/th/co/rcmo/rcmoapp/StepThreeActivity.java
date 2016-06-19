@@ -740,7 +740,7 @@ public class StepThreeActivity extends Activity {
         EditText inputRai = (EditText) findViewById(R.id.inputRai);
 
         if(inputRai.getText() == null || inputRai.getText().toString().equals("")){
-            new DialogChoice(StepThreeActivity.this).ShowOneChoice("", "กรุณากรอกขนาดแปลงที่ดิน");
+            new DialogChoice(StepThreeActivity.this).ShowOneChoice("กรุณากรอกข้อมูล", "- ขนาดแปลงที่ดิน");
         }else{
             isValid = true;
         }
@@ -757,7 +757,7 @@ public class StepThreeActivity extends Activity {
     }
 
     private boolean isValidAnimalInputData () {
-        boolean isValid = false;
+        boolean isValid = true;
 
 
         if(   userPlotModel.getPrdID().equals("39")
@@ -768,21 +768,28 @@ public class StepThreeActivity extends Activity {
             EditText inputNumberOfStart = (EditText) findViewById(R.id.inputNumberOfStart);
             EditText inputPricePerUnit = (EditText) findViewById(R.id.inputPricePerUnit);
 
+            String errorMsg = "";
             if (inputNumberOfStart.getText() == null || inputNumberOfStart.getText().toString().equals("")) {
-                new DialogChoice(StepThreeActivity.this).ShowOneChoice("", "กรุณากรอก จำนวนเมื่อเริ่มเลี้ยง");
-            } else if (inputPricePerUnit.getText() == null || inputPricePerUnit.getText().toString().equals("")){
-                new DialogChoice(StepThreeActivity.this).ShowOneChoice("", "กรุณากรอก ราคาเมื่อเริ่มเลียง");
-            } else{
-                isValid = true;
+                errorMsg+= "- จำนวนเมื่อเริ่มเลี้ยง \n";
+                isValid = false;
+            }
+
+            if (inputPricePerUnit.getText() == null || inputPricePerUnit.getText().toString().equals("")){
+                errorMsg+= "- ราคาเมื่อเริ่มเลียง ";
+                isValid = false;
+            }
+
+
+            if(!isValid){
+                new DialogChoice(StepThreeActivity.this).ShowOneChoice("กรุณากรอกข้อมูล", errorMsg);
             }
 
         }else if( userPlotModel.getPrdID().equals("43")){
             EditText inputNumberOfStart = (EditText) findViewById(R.id.inputNumberOfStart);
 
             if (inputNumberOfStart.getText() == null || inputNumberOfStart.getText().toString().equals("")) {
-                new DialogChoice(StepThreeActivity.this).ShowOneChoice("", "กรุณากรอก จำนวนแม่โครีดนม");
-            } else{
-                isValid = true;
+                new DialogChoice(StepThreeActivity.this).ShowOneChoice("กรุณากรอกข้อมูล", "- จำนวนแม่โครีดนม");
+                isValid = false;
             }
 
 
@@ -790,12 +797,19 @@ public class StepThreeActivity extends Activity {
             EditText inputNumberOfStart = (EditText) findViewById(R.id.inputNumberOfStart);
             EditText inputWeightPerUnit = (EditText) findViewById(R.id.inputWeightPerUnit);
 
+            String errorMsg = "";
             if (inputNumberOfStart.getText() == null || inputNumberOfStart.getText().toString().equals("")) {
-                new DialogChoice(StepThreeActivity.this).ShowOneChoice("", "กรุณากรอก จำนวนเมื่อเริ่มเลี้ยง");
-            } else if (inputWeightPerUnit.getText() == null || inputWeightPerUnit.getText().toString().equals("")){
-                new DialogChoice(StepThreeActivity.this).ShowOneChoice("", "กรุณากรอก น้ำหนักเฉลี่ยเมื่อเลียง");
-            } else{
-                isValid = true;
+                errorMsg+= "- จำนวนเมื่อเริ่มเลี้ยง \n";
+                isValid = false;
+            }
+
+            if (inputWeightPerUnit.getText() == null || inputWeightPerUnit.getText().toString().equals("")){
+                errorMsg+= "- น้ำหนักเฉลี่ยเมื่อเลียง ";
+                isValid = false;
+            }
+
+            if(!isValid){
+                new DialogChoice(StepThreeActivity.this).ShowOneChoice("กรุณากรอกข้อมูล", errorMsg);
             }
 
         }else{
@@ -807,7 +821,7 @@ public class StepThreeActivity extends Activity {
     }
 
     private boolean isValidFishInputData() {
-        boolean isValid = false;
+        boolean isValid = true;
 
         if (userPlotModel.getPrdID().equals("49")) {
 
@@ -815,38 +829,53 @@ public class StepThreeActivity extends Activity {
             EditText va_inputNgan      = (EditText) findViewById(R.id.va_inputNgan);
             EditText va_inputSqWa      = (EditText) findViewById(R.id.va_inputSqWa);
             EditText va_inputNuberOfva = (EditText) findViewById(R.id.va_inputNuberOfva);
-
+            String errorMsg = "";
             if (       (va_inputRai.getText() == null || va_inputRai.getText().toString().equals(""))
                   &&   (va_inputNgan.getText() == null || va_inputNgan.getText().toString().equals(""))
                   &&   (va_inputSqWa.getText() == null || va_inputSqWa.getText().toString().equals(""))
                     )  {
+                errorMsg+= "- ขนาดแปลงที่ดิน \n";
+                isValid = false;
+            }
 
-                new DialogChoice(StepThreeActivity.this).ShowOneChoice("", "กรุณากรอก ขนาดแปลงที่ดิน");
+            if (va_inputNuberOfva.getText() == null || va_inputNuberOfva.getText().toString().equals("")) {
+                errorMsg+= "- จำนวนลูกกุ้งที่ปล่อย ";
+                isValid = false;
+            }
 
-            } else if (va_inputNuberOfva.getText() == null || va_inputNuberOfva.getText().toString().equals("")) {
-                new DialogChoice(StepThreeActivity.this).ShowOneChoice("", "กรุณากรอก จำนวนลูกกุ้งที่ปล่อย");
-            }  else {
-                isValid = true;
+            if(!isValid){
+                new DialogChoice(StepThreeActivity.this).ShowOneChoice("กรุณากรอกข้อมูล", errorMsg);
             }
 
         } else {
             // kc is a : kachang(กระชัง) in thai
             // bo is a : (บ่อ) in thai
             // va is a : แวนนาโม(กุ้ง)
+            String errorMsg = "";
             if (kcSelected) {
                 EditText kc_inputSqMPerKC = (EditText) findViewById(R.id.kc_inputSqMPerKC);
                 EditText kc_inputNumberOfKC = (EditText) findViewById(R.id.kc_inputNuberOfKC);
                 EditText kc_inputFishPerKC = (EditText) findViewById(R.id.kc_inputFishPerKC);
 
                 if (kc_inputSqMPerKC.getText() == null || kc_inputSqMPerKC.getText().toString().equals("")) {
-                    new DialogChoice(StepThreeActivity.this).ShowOneChoice("", "กรุณากรอก ขนาดแปลงที่ดิน");
-                } else if (kc_inputNumberOfKC.getText() == null || kc_inputNumberOfKC.getText().toString().equals("")) {
-                    new DialogChoice(StepThreeActivity.this).ShowOneChoice("", "กรุณากรอก จำนวนกระชังที่เลี้ยงในรุ่นนี้");
-                } else if (kc_inputFishPerKC.getText() == null || kc_inputFishPerKC.getText().toString().equals("")) {
-                    new DialogChoice(StepThreeActivity.this).ShowOneChoice("", "กรุณากรอก จำนวนลูกปลาที่ปล่อย ต่อ 1 กระชัง");
-                } else {
-                    isValid = true;
+
+                    errorMsg+= "- ขนาดแปลงที่ดิน \n";
+                    isValid = false;
                 }
+                if (kc_inputNumberOfKC.getText() == null || kc_inputNumberOfKC.getText().toString().equals("")) {
+                    errorMsg+= "- จำนวนกระชังที่เลี้ยงในรุ่นนี้ \n";
+                    isValid = false;
+                }
+                if (kc_inputFishPerKC.getText() == null || kc_inputFishPerKC.getText().toString().equals("")) {
+                    errorMsg+= "- จำนวนลูกปลาที่ปล่อย ต่อ 1 กระชัง";
+                    isValid = false;
+                }
+
+                if(!isValid){
+                    new DialogChoice(StepThreeActivity.this).ShowOneChoice("กรุณากรอกข้อมูล", errorMsg);
+                }
+
+
             } else {
 
                 EditText bo_inputRai       = (EditText) findViewById(R.id.bo_inputRai);
@@ -862,13 +891,18 @@ public class StepThreeActivity extends Activity {
                         &&   (bo_inputSqMeter.getText() == null || bo_inputSqMeter.getText().toString().equals(""))
                         )  {
 
-                    new DialogChoice(StepThreeActivity.this).ShowOneChoice("", "กรุณากรอก ขนาดแปลงที่ดิน");
-
-                } else if (bo_inputNuberOfUnit.getText() == null || bo_inputNuberOfUnit.getText().toString().equals("")) {
-                    new DialogChoice(StepThreeActivity.this).ShowOneChoice("", "กรุณากรอก จำนวนลูกปลาที่ปล่อย");
-                }  else {
-                    isValid = true;
+                    errorMsg+= "- ขนาดแปลงที่ดิน \n";
+                    isValid = false;
                 }
+                if (bo_inputNuberOfUnit.getText() == null || bo_inputNuberOfUnit.getText().toString().equals("")) {
+                    errorMsg+= "- จำนวนลูกปลาที่ปล่อย ";
+                    isValid = false;
+                }
+
+                if(!isValid){
+                    new DialogChoice(StepThreeActivity.this).ShowOneChoice("กรุณากรอกข้อมูล", errorMsg);
+                }
+
             }
 
         }

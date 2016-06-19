@@ -9,6 +9,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import com.neopixl.pixlui.components.edittext.EditText;
 import java.util.List;
@@ -86,11 +87,11 @@ public class RegisterActivity extends Activity {
                 &&  Holder.inputPassword.length()>0
                 &&  Holder.inputConfirmPassword.length()>0) {
 
-            if (!Holder.inputPassword.getText().toString().equals( Holder.inputConfirmPassword.getText().toString())) {
-
+            if (!(Holder.inputPassword.getText().toString()).equals( Holder.inputConfirmPassword.getText().toString())) {
+                Holder.inputConfirmPassword.setBackgroundResource(R.drawable.white_cut_conner_invalid);
                 new DialogChoice(RegisterActivity.this)
                         .ShowOneChoice("ยืนยันรหัสผ่านไม่ถูกต้อง","");
-                Holder.inputConfirmPassword.setBackgroundResource(R.drawable.white_cut_conner_invalid);
+
             }else{
 
 
@@ -107,27 +108,27 @@ public class RegisterActivity extends Activity {
             String errorMsg = "";
             if(!( Holder.inputName.length() > 0)) {
                 errorMsg += "- ชื่อ \n";
-                findViewById(R.id.inputName).setBackgroundResource(R.drawable.white_cut_conner_invalid);
+                Holder.inputName.setBackgroundResource(R.drawable.white_cut_conner_invalid);
             }
 
             if (!( Holder.inputSirName.length() > 0)){
                 errorMsg += "- นามสกุล \n";
-                findViewById(R.id.inputSirName).setBackgroundResource(R.drawable.white_cut_conner_invalid);
+                Holder.inputSirName.setBackgroundResource(R.drawable.white_cut_conner_invalid);
             }
 
             if (!( Holder.inputUsername.length() > 0)){
                 errorMsg += "- ชื่อบัญชี \n";
-                findViewById(R.id.inputUsername).setBackgroundResource(R.drawable.white_cut_conner_invalid);
+                Holder.inputUsername.setBackgroundResource(R.drawable.white_cut_conner_invalid);
             }
 
             if (!( Holder.inputPassword.length() > 0)){
                 errorMsg += "- รหัสผ่าน \n";
-                findViewById(R.id.inputPassword).setBackgroundResource(R.drawable.white_cut_conner_invalid);
+                Holder.inputPassword.setBackgroundResource(R.drawable.white_cut_conner_invalid);
             }
 
             if (!( Holder.inputConfirmPassword.length() > 0)){
                 errorMsg += "- รหัสผ่านอีกครั้ง ";
-                findViewById(R.id.inputConfirmPassword).setBackgroundResource(R.drawable.white_cut_conner_invalid);
+                Holder.inputConfirmPassword.setBackgroundResource(R.drawable.white_cut_conner_invalid);
             }
             new DialogChoice(RegisterActivity.this)
                     .ShowOneChoice("กรุณากรอกข้อมูล", errorMsg);
