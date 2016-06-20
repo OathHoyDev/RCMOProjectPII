@@ -174,7 +174,7 @@
             android:layout_gravity="left"
             android:gravity="left|center"
             android:layout_below="@+id/linearLayout"
-            android:layout_marginStart="0dp"
+            android:layout_marginStart="120dp"
             android:layout_marginTop="32dp">
             <LinearLayout
                 android:id="@+id/ic_bg_g2"
@@ -185,7 +185,7 @@
                 android:background="@drawable/action_animal_ic_gr_circle"
                 android:clickable="true"
                 android:focusable="true"
-                android:layout_marginStart="120dp">
+                >
 
                 <ImageView
                     android:id="@+id/animalImg"
@@ -219,11 +219,11 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_height="wrap_content"
-            android:layout_width="match_parent"
+            android:layout_width="200dp"
             android:layout_gravity="left"
             android:gravity="left|center"
             android:layout_below="@+id/linearLayout"
-            android:layout_marginStart="0dp"
+            android:layout_alignStart="@+id/linearLayout"
             android:layout_marginTop="164dp">
 
             <LinearLayout
@@ -233,7 +233,6 @@
                 android:layout_width="100dp"
                 android:gravity="center"
                 android:background="@drawable/action_fish_ic_gr_circle"
-                android:layout_marginLeft="30dp"
                 android:clickable="true"
                 android:focusable="true">
 

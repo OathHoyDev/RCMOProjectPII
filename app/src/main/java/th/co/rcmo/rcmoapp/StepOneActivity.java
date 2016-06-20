@@ -8,7 +8,12 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+
+import com.neopixl.pixlui.components.textview.TextView;
 
 import java.util.List;
 import th.co.rcmo.rcmoapp.API.RequestServices;
@@ -41,6 +46,33 @@ if(ServiceInstance.isTablet(StepOneActivity.this)){
         ((ImageView) findViewById(R.id.plantImg)).setImageBitmap(BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.p1_1, R.dimen.iccircle_img_width, R.dimen.iccircle_bg_height));
         ((ImageView)findViewById(R.id.animalImg)).setImageBitmap(BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.m10, R.dimen.iccircle_img_width, R.dimen.iccircle_bg_height));
         ((ImageView) findViewById(R.id.fishImg)).setImageBitmap (BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.f4, R.dimen.iccircle_img_width, R.dimen.iccircle_bg_height));
+
+        LinearLayout plant =  (LinearLayout)findViewById(R.id.ic_bg_g1);
+        LinearLayout meat =  (LinearLayout)findViewById(R.id.ic_bg_g2);
+        LinearLayout fish =  (LinearLayout)findViewById(R.id.ic_bg_g3);
+
+        TextView plantLabel  = (TextView)findViewById(R.id.ic_label_g1);
+        TextView meatLabel  = (TextView)findViewById(R.id.ic_label_g2);
+        TextView fishLabel   = (TextView)findViewById(R.id.ic_label_47);
+
+        Animation circle
+                = AnimationUtils.loadAnimation(this, R.anim.circle);
+        Animation clockwise
+                = AnimationUtils.loadAnimation(this, R.anim.clockwise);
+        Animation fade
+                = AnimationUtils.loadAnimation(this, R.anim.fade);
+
+        meat.startAnimation(circle);
+        plant.startAnimation(clockwise);
+        fish.startAnimation(clockwise);
+
+        plantLabel.startAnimation(fade);
+        meatLabel.startAnimation(fade);
+        fishLabel.startAnimation(fade);
+
+
+
+
 
        // ((ImageView) findViewById(R.id.step1_ac)).setImageBitmap(BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.step1_ac, R.dimen.img_3step_width, R.dimen.img_3step_height));
         //((ImageView)findViewById(R.id.step2)).setImageBitmap(BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.step2, R.dimen.img_3step_width, R.dimen.img_3step_height));
