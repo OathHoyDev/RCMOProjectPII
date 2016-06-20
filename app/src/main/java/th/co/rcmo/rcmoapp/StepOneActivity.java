@@ -61,10 +61,12 @@ if(ServiceInstance.isTablet(StepOneActivity.this)){
                 = AnimationUtils.loadAnimation(this, R.anim.clockwise);
         Animation fade
                 = AnimationUtils.loadAnimation(this, R.anim.fade);
+        Animation moveIn
+                = AnimationUtils.loadAnimation(this, R.anim.move_in);
 
-        meat.startAnimation(circle);
-        plant.startAnimation(clockwise);
-        fish.startAnimation(clockwise);
+        meat.startAnimation(moveIn);
+        plant.startAnimation(moveIn);
+        fish.startAnimation(moveIn);
 
         plantLabel.startAnimation(fade);
         meatLabel.startAnimation(fade);
