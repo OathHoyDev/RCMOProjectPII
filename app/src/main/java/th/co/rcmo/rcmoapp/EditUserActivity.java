@@ -89,7 +89,8 @@ public class EditUserActivity extends Activity {
 
                 if ( Holder.inputName.length() > 0
                         &&  Holder.inputSirName.length()>0
-                        &&  Holder.inputUsername.length()>0 ){
+                        &&  Holder.inputUsername.length()>0
+                        && Holder.inputEmail.length()>0){
 
                     SharedPreferences sp = getSharedPreferences(ServiceInstance.PREF_NAME, Context.MODE_PRIVATE);
                     String userId = sp.getString(ServiceInstance.sp_userId, "0");
@@ -113,10 +114,19 @@ public class EditUserActivity extends Activity {
                     }
 
                     if (!( Holder.inputSirName.length() > 0)){
-                        errorMsg += "- นามสกุล ";
+                        errorMsg += "- นามสกุล \n";
                         Holder.inputSirName.setBackgroundResource(R.drawable.white_cut_conner_invalid);
                         if(!isFocus) {
                             Holder.inputSirName.requestFocus();
+                            isFocus = true;
+                        }
+                    }
+
+                    if (!( Holder.inputEmail.length() > 0)){
+                        errorMsg += "- อีเมล์ ";
+                        Holder.inputEmail.setBackgroundResource(R.drawable.white_cut_conner_invalid);
+                        if(!isFocus) {
+                            Holder.inputEmail.requestFocus();
                             isFocus = true;
                         }
                     }
@@ -217,6 +227,10 @@ public class EditUserActivity extends Activity {
             @Override
             public void callbackError(int code, String errorMsg) {
 
+                if(code == 4){
+                    Holder.inputEmail.setBackgroundResource(R.drawable.white_cut_conner_invalid);
+                    Holder.inputEmail.requestFocus();
+                }
                 new DialogChoice(EditUserActivity.this).ShowOneChoice(errorMsg,"");
             }
         }).API_Request(false, RequestServices.ws_saveRegister +

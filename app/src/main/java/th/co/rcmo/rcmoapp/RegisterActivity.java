@@ -81,6 +81,7 @@ public class RegisterActivity extends Activity {
         if (Holder.inputName.length() > 0
                 && Holder.inputSirName.length() > 0
                 && Holder.inputUsername.length() > 0
+                && Holder.inputEmail.length() > 0
                 && Holder.inputPassword.length() > 0
                 && Holder.inputConfirmPassword.length() > 0) {
 
@@ -127,6 +128,15 @@ public class RegisterActivity extends Activity {
                 Holder.inputUsername.setBackgroundResource(R.drawable.white_cut_conner_invalid);
                 if(!isFocus) {
                     Holder.inputUsername.requestFocus();
+                    isFocus =true;
+                }
+            }
+
+            if (!(Holder.inputEmail.length() > 0)) {
+                errorMsg += "- อีเมล์ \n";
+                Holder.inputEmail.setBackgroundResource(R.drawable.white_cut_conner_invalid);
+                if(!isFocus) {
+                    Holder.inputEmail.requestFocus();
                     isFocus =true;
                 }
             }
@@ -204,7 +214,14 @@ public class RegisterActivity extends Activity {
             @Override
             public void callbackError(int code, String errorMsg) {
                 new DialogChoice(RegisterActivity.this).ShowOneChoice(errorMsg, "");
-                Holder.inputName.setBackgroundResource(R.drawable.white_cut_conner_invalid);
+                if(code==4){
+                    Holder.inputEmail.setBackgroundResource(R.drawable.white_cut_conner_invalid);
+                    Holder.inputEmail.requestFocus();
+                }else{
+                    Holder.inputUsername.setBackgroundResource(R.drawable.white_cut_conner_invalid);
+                    Holder.inputUsername.requestFocus();
+                }
+                ;
             }
         }).API_Request(false, RequestServices.ws_saveRegister +
                 "?SaveFlag=" + 1 +

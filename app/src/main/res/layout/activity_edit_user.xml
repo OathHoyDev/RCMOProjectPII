@@ -235,6 +235,7 @@
                             android:imeOptions="actionDone"
                             android:textColor="@color/RcmoNormalDarkText"
                             android:textColorHint="@color/RcmoHintText"
+                            android:textCursorDrawable="@drawable/text_cursor"
                             android:background="@drawable/white_cut_conner_valid"
                             android:gravity="left"
                             android:padding="5dp"

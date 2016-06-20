@@ -218,7 +218,12 @@ public class StepThreeActivity extends Activity {
         findViewById(R.id.backBtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                API_GetUserPlot(userPlotModel.getUserID());
+
+                if(userPlotModel.getUserID().equals("0")){
+                    finish();
+                }else{
+                    API_GetUserPlot(userPlotModel.getUserID());
+                }
             }
         });
 
@@ -1026,6 +1031,7 @@ public class StepThreeActivity extends Activity {
 
             this.userPlotModel.setFisheryNumber(va_inputNuberOfva.getText().toString());
             this.userPlotModel.setFisheryNumType(ServiceInstance.FISHERY_NUM_TYPE_TUA);
+            this.userPlotModel.setFisheryType(ServiceInstance.FISHERY_TYPE_BO);
 
 
 

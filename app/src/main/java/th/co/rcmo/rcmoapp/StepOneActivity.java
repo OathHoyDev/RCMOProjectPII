@@ -50,9 +50,9 @@ if(ServiceInstance.isTablet(StepOneActivity.this)){
         ((ImageView)findViewById(R.id.animalImg)).setImageBitmap(BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.m10, R.dimen.iccircle_img_width, R.dimen.iccircle_bg_height));
         ((ImageView) findViewById(R.id.fishImg)).setImageBitmap (BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.f4, R.dimen.iccircle_img_width, R.dimen.iccircle_bg_height));
 
-        final LinearLayout plant =  (LinearLayout)findViewById(R.id.ic_bg_g1);
-        final android.widget.RelativeLayout animal =  ( android.widget.RelativeLayout)findViewById(R.id.grAnimalBg);
-        final LinearLayout fish =  (LinearLayout)findViewById(R.id.ic_bg_g3);
+        final android.widget.RelativeLayout plant  =  (android.widget.RelativeLayout)findViewById(R.id.grPlantBg);
+        final android.widget.RelativeLayout animal =  (android.widget.RelativeLayout)findViewById(R.id.grAnimalBg);
+        final android.widget.RelativeLayout fish   =  (android.widget.RelativeLayout)findViewById(R.id.grFishBg);
 
         final ImageView lineCircle = (ImageView)findViewById(R.id.lineCircle);
 
@@ -72,14 +72,7 @@ if(ServiceInstance.isTablet(StepOneActivity.this)){
         final  Animation moveInPlant
                 = AnimationUtils.loadAnimation(this, R.anim.move_in);
 
-/*
-        plant.setVisibility(View.INVISIBLE);
-        meat.setVisibility(View.INVISIBLE);
-        fish.setVisibility(View.INVISIBLE);
-        plantLabel.setVisibility(View.INVISIBLE);
-        meatLabel.setVisibility(View.INVISIBLE);
-        fishLabel.setVisibility(View.INVISIBLE);
-        */
+
         lineCircle.setVisibility(View.INVISIBLE);
         Animation.AnimationListener animation1Listener = new Animation.AnimationListener() {
 
@@ -100,23 +93,6 @@ if(ServiceInstance.isTablet(StepOneActivity.this)){
                 lineCircle.setVisibility(View.VISIBLE);
                 lineCircle.startAnimation(moveInCircle);
 
-               /*
-                plant.setVisibility(View.VISIBLE);
-                meat.setVisibility(View.VISIBLE);
-                fish.setVisibility(View.VISIBLE);
-
-                plantLabel.setVisibility(View.VISIBLE);
-                meatLabel.setVisibility(View.VISIBLE);
-                fishLabel.setVisibility(View.VISIBLE);
-
-                plant.startAnimation(moveIn2);
-                meat.startAnimation(moveIn3);
-                fish.startAnimation(moveIn2);
-                plantLabel.startAnimation(fade);
-                meatLabel.startAnimation(fade);
-                fishLabel.startAnimation(fade);
-                */
-
             }
         };
 
@@ -130,20 +106,6 @@ if(ServiceInstance.isTablet(StepOneActivity.this)){
         plantLabel.startAnimation(fade);
         animalLabel.startAnimation(fade);
         fishLabel.startAnimation(fade);
-        /*
-        moveIn.setAnimationListener(animation1Listener);
-        lineCircle.startAnimation(moveIn);
-        */
-
-
-
-
-
-
-
-       // ((ImageView) findViewById(R.id.step1_ac)).setImageBitmap(BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.step1_ac, R.dimen.img_3step_width, R.dimen.img_3step_height));
-        //((ImageView)findViewById(R.id.step2)).setImageBitmap(BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.step2, R.dimen.img_3step_width, R.dimen.img_3step_height));
-        //((ImageView) findViewById(R.id.step3)).setImageBitmap (BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.step3, R.dimen.img_3step_width, R.dimen.img_3step_height));
 
     }
 
@@ -158,15 +120,16 @@ if(ServiceInstance.isTablet(StepOneActivity.this)){
         findViewById(R.id.ic_bg_g1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                API_GetPlantGroup(1);
+                final ImageView img =  ((ImageView) findViewById(R.id.bringPlantImage));
+                API_GoToStepTwoActivity(img,1);
             }
         });
 
         findViewById(R.id.ic_bg_g2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final ImageView img =  ((ImageView) findViewById(R.id.bringImageView));
-                bringImg(img);
+                final ImageView img =  ((ImageView) findViewById(R.id.bringAnimalImage));
+                API_GoToStepTwoActivity(img,2);
 
             }
         });
@@ -174,7 +137,8 @@ if(ServiceInstance.isTablet(StepOneActivity.this)){
         findViewById(R.id.ic_bg_g3).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                API_GetProduct(3,0);
+                final ImageView img =  ((ImageView) findViewById(R.id.bringFishImage));
+                API_GoToStepTwoActivity(img,3);
             }
         });
     }
@@ -254,7 +218,7 @@ if(ServiceInstance.isTablet(StepOneActivity.this)){
     }
 
 
-    public void bringImg(final ImageView img) {
+    public void API_GoToStepTwoActivity(final ImageView img,final int groupId) {
 
       //  img.setImageBitmap (BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.bring1, 90, 90));
 
@@ -284,7 +248,11 @@ if(ServiceInstance.isTablet(StepOneActivity.this)){
                                             public void afterDelay() {
 
                                                 img.setImageBitmap (BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.bring1, 90, 90));
-                                                API_GetProduct(2,0);
+                                                if(groupId == 1){
+                                                    API_GetPlantGroup(1);
+                                                }else{
+                                                    API_GetProduct(groupId,0);
+                                                }
                                             }
                                         });
                                     }
