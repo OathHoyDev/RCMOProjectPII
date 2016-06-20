@@ -110,7 +110,7 @@
             android:layout_width="200dp"
             android:adjustViewBounds="true"
             android:layout_height="300dp"
-            android:id="@+id/imageView2"
+            android:id="@+id/lineCircle"
             android:background="@drawable/circle"
             android:layout_alignParentTop="true"
             android:layout_alignParentStart="true"
@@ -119,10 +119,10 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_height="wrap_content"
-            android:layout_width="200dp"
+            android:layout_width="match_parent"
             android:layout_gravity="left"
             android:gravity="left|center"
-            android:layout_marginStart="30dp"
+
             android:layout_alignParentTop="true"
             android:layout_alignParentStart="true"
             android:layout_marginTop="25dp"
@@ -134,6 +134,7 @@
                 android:layout_height="100dp"
                 android:layout_width="100dp"
                 android:gravity="center"
+                android:layout_marginStart="30dp"
                 android:background="@drawable/action_plant_ic_gr_circle"
                 android:clickable="true"
                 android:focusable="true">
@@ -170,12 +171,26 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_height="wrap_content"
-            android:layout_width="400dp"
+            android:layout_width="match_parent"
             android:layout_gravity="left"
             android:gravity="left|center"
             android:layout_below="@+id/linearLayout"
             android:layout_marginStart="0dp"
-            android:layout_marginTop="32dp">
+            android:layout_marginTop="19dp">
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="110dp"
+                android:id="@+id/grAnimalBg"
+                android:gravity="center">
+
+            <ImageView
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:id="@+id/bringImageView"
+                android:scaleType="centerInside"
+
+                />
             <LinearLayout
                 android:id="@+id/ic_bg_g2"
                 android:orientation="vertical"
@@ -185,7 +200,9 @@
                 android:background="@drawable/action_animal_ic_gr_circle"
                 android:clickable="true"
                 android:focusable="true"
-                android:layout_marginStart="120dp">
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+               >
 
                 <ImageView
                     android:id="@+id/animalImg"
@@ -194,12 +211,11 @@
 
                     />
             </LinearLayout>
-
+</RelativeLayout>
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_height="40dp"
                 android:layout_width="wrap_content"
-                android:layout_marginLeft="10dp"
                 android:gravity="center">
 
                 <com.neopixl.pixlui.components.textview.TextView

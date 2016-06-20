@@ -13,6 +13,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.neopixl.pixlui.components.relativelayout.RelativeLayout;
 import com.neopixl.pixlui.components.textview.TextView;
 
 import java.util.List;
@@ -22,6 +23,7 @@ import th.co.rcmo.rcmoapp.Module.mPlantGroup;
 import th.co.rcmo.rcmoapp.Module.mProduct;
 import th.co.rcmo.rcmoapp.Util.BitMapHelper;
 import th.co.rcmo.rcmoapp.Util.ServiceInstance;
+import th.co.rcmo.rcmoapp.Util.Util;
 
 public class StepOneActivity extends Activity {
 
@@ -30,6 +32,7 @@ public class StepOneActivity extends Activity {
         super.onCreate(savedInstanceState);
 
 if(ServiceInstance.isTablet(StepOneActivity.this)){
+    Log.d("TEST","-->TabLet");
     setContentView(R.layout.activity_step_one_tablet);
 }else{
     setContentView(R.layout.activity_step_one);
@@ -47,30 +50,92 @@ if(ServiceInstance.isTablet(StepOneActivity.this)){
         ((ImageView)findViewById(R.id.animalImg)).setImageBitmap(BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.m10, R.dimen.iccircle_img_width, R.dimen.iccircle_bg_height));
         ((ImageView) findViewById(R.id.fishImg)).setImageBitmap (BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.f4, R.dimen.iccircle_img_width, R.dimen.iccircle_bg_height));
 
-        LinearLayout plant =  (LinearLayout)findViewById(R.id.ic_bg_g1);
-        LinearLayout meat =  (LinearLayout)findViewById(R.id.ic_bg_g2);
-        LinearLayout fish =  (LinearLayout)findViewById(R.id.ic_bg_g3);
+        final LinearLayout plant =  (LinearLayout)findViewById(R.id.ic_bg_g1);
+        final android.widget.RelativeLayout animal =  ( android.widget.RelativeLayout)findViewById(R.id.grAnimalBg);
+        final LinearLayout fish =  (LinearLayout)findViewById(R.id.ic_bg_g3);
 
-        TextView plantLabel  = (TextView)findViewById(R.id.ic_label_g1);
-        TextView meatLabel  = (TextView)findViewById(R.id.ic_label_g2);
-        TextView fishLabel   = (TextView)findViewById(R.id.ic_label_47);
+        final ImageView lineCircle = (ImageView)findViewById(R.id.lineCircle);
 
-        Animation circle
-                = AnimationUtils.loadAnimation(this, R.anim.circle);
-        Animation clockwise
-                = AnimationUtils.loadAnimation(this, R.anim.clockwise);
-        Animation fade
+        final TextView plantLabel  = (TextView)findViewById(R.id.ic_label_g1);
+        final TextView animalLabel  = (TextView)findViewById(R.id.ic_label_g2);
+        final TextView fishLabel   = (TextView)findViewById(R.id.ic_label_47);
+
+
+        final Animation fade
                 = AnimationUtils.loadAnimation(this, R.anim.fade);
-        Animation moveIn
+        final  Animation mainMoveIn
+                = AnimationUtils.loadAnimation(this, R.anim.move_in);
+        final  Animation moveInCircle
+                = AnimationUtils.loadAnimation(this, R.anim.move_in);
+        final  Animation moveInAnimal
+                = AnimationUtils.loadAnimation(this, R.anim.move_in2);
+        final  Animation moveInPlant
                 = AnimationUtils.loadAnimation(this, R.anim.move_in);
 
-        meat.startAnimation(moveIn);
-        plant.startAnimation(moveIn);
-        fish.startAnimation(moveIn);
+/*
+        plant.setVisibility(View.INVISIBLE);
+        meat.setVisibility(View.INVISIBLE);
+        fish.setVisibility(View.INVISIBLE);
+        plantLabel.setVisibility(View.INVISIBLE);
+        meatLabel.setVisibility(View.INVISIBLE);
+        fishLabel.setVisibility(View.INVISIBLE);
+        */
+        lineCircle.setVisibility(View.INVISIBLE);
+        Animation.AnimationListener animation1Listener = new Animation.AnimationListener() {
+
+            @Override
+            public void onAnimationStart(Animation animation) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                lineCircle.setVisibility(View.VISIBLE);
+                lineCircle.startAnimation(moveInCircle);
+
+               /*
+                plant.setVisibility(View.VISIBLE);
+                meat.setVisibility(View.VISIBLE);
+                fish.setVisibility(View.VISIBLE);
+
+                plantLabel.setVisibility(View.VISIBLE);
+                meatLabel.setVisibility(View.VISIBLE);
+                fishLabel.setVisibility(View.VISIBLE);
+
+                plant.startAnimation(moveIn2);
+                meat.startAnimation(moveIn3);
+                fish.startAnimation(moveIn2);
+                plantLabel.startAnimation(fade);
+                meatLabel.startAnimation(fade);
+                fishLabel.startAnimation(fade);
+                */
+
+            }
+        };
+
+
+        plant.startAnimation(moveInPlant);
+        animal.startAnimation(moveInAnimal);
+
+        mainMoveIn.setAnimationListener(animation1Listener);
+        fish.startAnimation(mainMoveIn);
 
         plantLabel.startAnimation(fade);
-        meatLabel.startAnimation(fade);
+        animalLabel.startAnimation(fade);
         fishLabel.startAnimation(fade);
+        /*
+        moveIn.setAnimationListener(animation1Listener);
+        lineCircle.startAnimation(moveIn);
+        */
+
+
 
 
 
@@ -100,7 +165,9 @@ if(ServiceInstance.isTablet(StepOneActivity.this)){
         findViewById(R.id.ic_bg_g2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                API_GetProduct(2,0);
+                final ImageView img =  ((ImageView) findViewById(R.id.bringImageView));
+                bringImg(img);
+
             }
         });
 
@@ -184,5 +251,49 @@ if(ServiceInstance.isTablet(StepOneActivity.this)){
                 "?PrdGrpID=" + prdGrpIDStr + "&PlantGrpID="+plantGrpIDStr+
                 "&PrdID=" );
 
+    }
+
+
+    public void bringImg(final ImageView img) {
+
+      //  img.setImageBitmap (BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.bring1, 90, 90));
+
+        final int ms = 200; // Delay in seconds
+
+        Util.delay(ms, new Util.DelayCallback() {
+            @Override
+            public void afterDelay() {
+                img.setImageBitmap (BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.bring1, 90, 90));
+                Util.delay(ms, new Util.DelayCallback() {
+                    @Override
+                    public void afterDelay() {
+                        img.setImageBitmap (BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.bring2, 100, 100));
+
+                        Util.delay(ms, new Util.DelayCallback() {
+                            @Override
+                            public void afterDelay() {
+                                img.setImageBitmap (BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.bring3, 120, 120));
+
+                                Util.delay(ms, new Util.DelayCallback() {
+                                    @Override
+                                    public void afterDelay() {
+
+                                        img.setImageBitmap (BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.bring2, 100, 100));
+                                        Util.delay(ms, new Util.DelayCallback() {
+                                            @Override
+                                            public void afterDelay() {
+
+                                                img.setImageBitmap (BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.bring1, 90, 90));
+                                                API_GetProduct(2,0);
+                                            }
+                                        });
+                                    }
+                                });
+                            }
+                        });
+                    }
+                });
+            }
+        });
     }
 }
