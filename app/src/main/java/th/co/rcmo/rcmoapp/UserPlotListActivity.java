@@ -9,6 +9,7 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -18,9 +19,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.Toast;
-
 import com.mobeta.android.dslv.DragSortController;
 import com.mobeta.android.dslv.DragSortListView;
 import com.neopixl.pixlui.components.textview.TextView;
@@ -28,7 +27,6 @@ import java.util.ArrayList;
 import java.util.List;
 import th.co.rcmo.rcmoapp.API.RequestServices;
 import th.co.rcmo.rcmoapp.API.ResponseAPI;
-import th.co.rcmo.rcmoapp.Adapter.DialogProvinceAdapter;
 import th.co.rcmo.rcmoapp.Model.UserModel;
 import th.co.rcmo.rcmoapp.Module.mCopyPlot;
 import th.co.rcmo.rcmoapp.Module.mDeletePlot;
@@ -90,6 +88,9 @@ public class UserPlotListActivity extends Activity {
         controller.setRemoveEnabled(false);
         controller.setSortEnabled(true);
         controller.setDragInitMode(2);
+       // controller.setBackgroundColor(R.color.RcmoLightTranBG);
+         controller.setBackgroundColor(ContextCompat.getColor(UserPlotListActivity.this, R.color.RcmoDarkTranBG));
+         //controller.setBackgroundColor(getResources().getColor(R.color.RcmoDarkTranBG));
         //controller.setRemoveMode(removeMode);
         //controller.setClickRemoveId(R.id.);
 

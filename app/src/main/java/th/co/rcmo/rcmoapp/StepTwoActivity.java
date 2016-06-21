@@ -125,12 +125,13 @@ public class StepTwoActivity extends Activity {
     class ProductUIAdapter extends BaseAdapter {
         List<mProduct.mRespBody> productList;
 
-        ProductUIAdapter(List<mProduct.mRespBody> productInfoLists){
-            this.productList =productInfoLists;
+        ProductUIAdapter(List<mProduct.mRespBody> productInfoLists) {
+            this.productList = productInfoLists;
         }
+
         @Override
         public int getCount() {
-            return  this.productList.size();
+            return this.productList.size();
         }
 
         @Override
@@ -149,65 +150,66 @@ public class StepTwoActivity extends Activity {
 
         @Override
         public View getView(final int position, View convertView, ViewGroup parent) {
-            if(convertView==null){
+            Holder h = new Holder();
+            if (convertView == null) {
                 LayoutInflater inflater = StepTwoActivity.this.getLayoutInflater();
                 convertView = inflater.inflate(R.layout.column_product_grid, parent, false);
+
+                h.prodImg = (ImageView) convertView.findViewById(R.id.prodImg);
+                h.productLabel = (TextView) convertView.findViewById(R.id.productLabel);
+                h.prodBg = (LinearLayout) convertView.findViewById(R.id.gridDrawBg);
+
+                convertView.setTag(h);
+            } else {
+                h = (Holder) convertView.getTag();
             }
 
 
-           final mProduct.mRespBody productBodyResp = getItem(position);
+            final mProduct.mRespBody productBodyResp = getItem(position);
 
-            final int pid =  productBodyResp.getPrdID();
+            final int pid = productBodyResp.getPrdID();
             final int productGroupId = productBodyResp.getPrdGrpID();
             final String productName = productBodyResp.getPrdName();
 
-            Log.d("TEST"," : pid ->> "+pid);
-            Log.d("TEST"," : productGroupId ->> "+productGroupId);
-
-            Holder h = new Holder();
-            h.prodImg      = (ImageView) convertView.findViewById(R.id.prodImg);
-            h.productLabel = (TextView) convertView.findViewById(R.id.productLabel);
-            h.prodBg      =  (LinearLayout)convertView.findViewById(R.id.gridDrawBg);
 
             h.productLabel.setText(productBodyResp.getPrdName());
 
             String imgName = ServiceInstance.productIMGMap.get(productBodyResp.getPrdID());
 
-            if(imgName!=null) {
-                h.prodImg.setImageResource(getResources().getIdentifier(imgName, "drawable", getPackageName()));
+            if (imgName != null) {
+                // h.prodImg.setImageResource(getResources().getIdentifier(imgName, "drawable", getPackageName()));
+                h.prodImg.setImageBitmap(BitMapHelper.decodeSampledBitmapFromResource(getResources(), getResources().getIdentifier(imgName, "drawable", getPackageName()), R.dimen.iccircle_img_width, R.dimen.iccircle_img_height));
 
             }
-            if(productGroupId == 1){
+            if (productGroupId == 1) {
                 h.prodBg.setBackgroundResource(R.drawable.action_plant_ic_circle);
-            }else if(productGroupId == 2){
+            } else if (productGroupId == 2) {
                 h.prodBg.setBackgroundResource(R.drawable.action_animal_ic_circle);
-            }else {
+            } else {
                 h.prodBg.setBackgroundResource(R.drawable.action_fish_ic_circle);
             }
 
 
+            convertView.findViewById(R.id.gridDrawBg).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (productGroupId == 1 && (pid == 1 || pid == 2)) {
 
-                convertView.findViewById(R.id.gridDrawBg).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if(productGroupId == 1 && (pid==1||pid==2)) {
+                        API_GetRiceProduct(pid, 0, prodHierarchyStr + "< " + productName);
+                    } else {
+                        //int prdID, String prdName, int prdGrpID, int plantGrpID, int riceTypeID,String plantHierarchy
+                        StepThreeActivity.productionInfo = new ProductModel(productBodyResp.getPrdID()
+                                , productBodyResp.getPrdName()
+                                , productBodyResp.getPrdGrpID()
+                                , gplantGroupId
+                                , 0
+                                , prodHierarchyStr);
 
-                            API_GetRiceProduct(pid,0,prodHierarchyStr+"< "+productName);
-                        }else{
-                            //int prdID, String prdName, int prdGrpID, int plantGrpID, int riceTypeID,String plantHierarchy
-                            StepThreeActivity.productionInfo =new ProductModel( productBodyResp.getPrdID()
-                                                                           ,productBodyResp.getPrdName()
-                                                                           ,productBodyResp.getPrdGrpID()
-                                                                           ,gplantGroupId
-                                                                           ,0
-                                                                           ,prodHierarchyStr);
+                        startActivity(new Intent(StepTwoActivity.this, StepThreeActivity.class));
 
-                            startActivity(new Intent(StepTwoActivity.this, StepThreeActivity.class));
-
-                        }
                     }
-                });
-
+                }
+            });
 
 
             return convertView;
@@ -217,12 +219,13 @@ public class StepTwoActivity extends Activity {
     class PlantProductUIAdapter extends BaseAdapter {
         List<mPlantGroup.mRespBody> productList;
 
-        PlantProductUIAdapter(List<mPlantGroup.mRespBody> productInfoLists){
-            this.productList =productInfoLists;
+        PlantProductUIAdapter(List<mPlantGroup.mRespBody> productInfoLists) {
+            this.productList = productInfoLists;
         }
+
         @Override
         public int getCount() {
-            return  this.productList.size();
+            return this.productList.size();
         }
 
         @Override
@@ -241,43 +244,44 @@ public class StepTwoActivity extends Activity {
 
         @Override
         public View getView(final int position, View convertView, ViewGroup parent) {
-            if(convertView==null){
+            Holder h = new Holder();
+            if (convertView == null) {
                 LayoutInflater inflater = StepTwoActivity.this.getLayoutInflater();
                 convertView = inflater.inflate(R.layout.column_product_grid, parent, false);
+                h.prodImg = (ImageView) convertView.findViewById(R.id.prodImg);
+                h.productLabel = (TextView) convertView.findViewById(R.id.productLabel);
+                h.prodBg = (LinearLayout) convertView.findViewById(R.id.gridDrawBg);
+                convertView.setTag(h);
+            } else {
+                h = (Holder) convertView.getTag();
             }
 
 
             mPlantGroup.mRespBody productBodyResp = getItem(position);
-           final int plantGroupId =   productBodyResp.getPlantGrpID();
-            final String prodName =   productBodyResp.getPlantGrpName();
+            final int plantGroupId = productBodyResp.getPlantGrpID();
+            final String prodName = productBodyResp.getPlantGrpName();
             gplantGroupId = plantGroupId;
 
 
-
-            Holder h = new Holder();
-            h.prodImg      = (ImageView) convertView.findViewById(R.id.prodImg);
-            h.productLabel = (TextView) convertView.findViewById(R.id.productLabel);
-            h.prodBg      =  (LinearLayout)convertView.findViewById(R.id.gridDrawBg);
-
             h.productLabel.setText(productBodyResp.getPlantGrpName());
 
-            String imgName = ServiceInstance.productIMGMap.get(productBodyResp.getPlantGrpID()+1000);
+            String imgName = ServiceInstance.productIMGMap.get(productBodyResp.getPlantGrpID() + 1000);
 
-            if(imgName!=null) {
-                h.prodImg.setImageResource(getResources().getIdentifier(imgName, "drawable", getPackageName()));
+            if (imgName != null) {
+                // h.prodImg.setImageResource(getResources().getIdentifier(imgName, "drawable", getPackageName()));
+                h.prodImg.setImageBitmap(BitMapHelper.decodeSampledBitmapFromResource(getResources(), getResources().getIdentifier(imgName, "drawable", getPackageName()), R.dimen.iccircle_img_width, R.dimen.iccircle_img_height));
             }
 
 
-                h.prodBg.setBackgroundResource(R.drawable.action_plant_ic_circle);
+            h.prodBg.setBackgroundResource(R.drawable.action_plant_ic_circle);
 
             convertView.findViewById(R.id.gridDrawBg).setOnClickListener(new View.OnClickListener() {
-
 
 
                 @Override
                 public void onClick(View v) {
 
-                   API_GetProduct(1,plantGroupId,"< "+prodName+" ");
+                    API_GetProduct(1, plantGroupId, "< " + prodName + " ");
                 }
             });
 
@@ -312,25 +316,31 @@ public class StepTwoActivity extends Activity {
 
         @Override
         public View getView(final int position, View convertView, ViewGroup parent) {
+            Holder h = new Holder();
             if(convertView==null){
                 LayoutInflater inflater = StepTwoActivity.this.getLayoutInflater();
                 convertView = inflater.inflate(R.layout.column_product_grid, parent, false);
+
+                h.prodImg      = (ImageView) convertView.findViewById(R.id.prodImg);
+                h.productLabel = (TextView) convertView.findViewById(R.id.productLabel);
+                h.prodBg      =  (LinearLayout)convertView.findViewById(R.id.gridDrawBg);
+                convertView.setTag(h);
+            }else{
+                h = (Holder) convertView.getTag();
             }
 
 
            final mRiceProduct.mRespBody productBodyResp = getItem(position);
            final int pid = productBodyResp.getPrdID();
-            Holder h = new Holder();
-            h.prodImg      = (ImageView) convertView.findViewById(R.id.prodImg);
-            h.productLabel = (TextView) convertView.findViewById(R.id.productLabel);
-            h.prodBg      =  (LinearLayout)convertView.findViewById(R.id.gridDrawBg);
+
 
             h.productLabel.setText(productBodyResp.getPrdName());
 
             String imgName = ServiceInstance.productIMGMap.get(productBodyResp.getPrdID());
 
             if(imgName!=null) {
-                h.prodImg.setImageResource(getResources().getIdentifier(imgName, "drawable", getPackageName()));
+                //h.prodImg.setImageResource(getResources().getIdentifier(imgName, "drawable", getPackageName()));
+                h.prodImg.setImageBitmap(BitMapHelper.decodeSampledBitmapFromResource(getResources(),getResources().getIdentifier(imgName, "drawable", getPackageName()), R.dimen.iccircle_img_width, R.dimen.iccircle_img_height));
             }
 
 
@@ -354,10 +364,10 @@ public class StepTwoActivity extends Activity {
         }
     }
 
-    class Holder{
-        TextView productLabel;
-        ImageView prodImg;
-        LinearLayout prodBg;
+    static class  Holder{
+        private TextView productLabel;
+        private ImageView prodImg;
+        private LinearLayout prodBg;
 
 
     }

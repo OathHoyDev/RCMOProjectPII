@@ -56,6 +56,7 @@ public class StepThreeActivity extends Activity {
     boolean kcSelected =true , tuaSelected = true;
     String userId ="" ;
     String plotId ="";
+    boolean saved = false;
 
 
     @Override
@@ -70,6 +71,7 @@ public class StepThreeActivity extends Activity {
         userPlotModel.setPrdID(String.valueOf(productionInfo.getPrdID()));
         userPlotModel.setPrdGrpID( String.valueOf(productionInfo.getPrdGrpID()));
         userPlotModel.setUserID(userId);
+        saved  = false;
 
         setUI();
         setAction();
@@ -219,10 +221,11 @@ public class StepThreeActivity extends Activity {
             @Override
             public void onClick(View v) {
 
-                if(userPlotModel.getUserID().equals("0")){
-                    finish();
-                }else{
+                if(!(userPlotModel.getUserID().equals("0")) && saved ){
                     API_GetUserPlot(userPlotModel.getUserID());
+                }else{
+                    finish();
+
                 }
             }
         });
@@ -683,9 +686,10 @@ public class StepThreeActivity extends Activity {
                     plotId =  String.valueOf(savePlotDetailBodyLists.get(0).getPlotID());
                     if(plotId==null){plotId="";}
                     Log.d(TAG,"Response plotId : "+plotId);
-
+                    saved = true;
                     toastMsg("บันทึกข้อมูลสำเร็จ");
                 }
+
             }
 
             @Override

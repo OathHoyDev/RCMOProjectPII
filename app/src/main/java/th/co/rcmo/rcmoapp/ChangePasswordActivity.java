@@ -185,7 +185,7 @@ public class ChangePasswordActivity extends Activity {
                 "&UserPwd=" +ServiceInstance.md5(password)+
                 "&UserFirstName="+fname+
                 "&UserLastName="+lname+
-                "&UserEmail=" +
+                "&UserEmail=" +email+
                 "&ImeiCode=" + ServiceInstance.GetDeviceID(ChangePasswordActivity.this)
         );
     }
