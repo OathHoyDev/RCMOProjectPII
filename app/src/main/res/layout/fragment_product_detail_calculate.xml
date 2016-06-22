@@ -225,15 +225,15 @@
                         android:layout_width="130dp"
                         android:layout_height="130dp"
                         android:id="@+id/imageView8"
-                        android:background="@drawable/plant_ic_gr_circle_bg"
+                        android:background="@drawable/fish_ic_gr_circle_bg"
                         android:layout_centerInParent="true" />
 
                     <ImageView
                         android:layout_width="70dp"
                         android:layout_height="70dp"
-                        android:id="@+id/imageView9"
+                        android:id="@+id/productIcon"
                         android:layout_centerInParent="true"
-                        android:src="@drawable/p1_2" />
+                        android:src="@drawable/f1" />
                 </RelativeLayout>
 
             </RelativeLayout>
@@ -260,7 +260,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/imageView3"
-                    android:src="@drawable/bottom_green"
+                    android:src="@drawable/bottom_blue"
                     android:scaleType="fitEnd"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentLeft="true" />
@@ -269,7 +269,7 @@
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/btnCalculate"
-                    android:src="@drawable/btn_green_cal"
+                    android:src="@drawable/btn_blue_cal"
                     android:scaleType="fitEnd"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentRight="true"

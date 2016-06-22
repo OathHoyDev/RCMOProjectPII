@@ -239,10 +239,11 @@ public class StepThreeActivity extends Activity {
                 userPlotModel.setPrdID(String.valueOf(productionInfo.getPrdID()));
                 userPlotModel.setPrdGrpID(String.valueOf(productionInfo.getPrdGrpID()));
                 userPlotModel.setUserID(userId);
-                userPlotModel.setPlotID(plotId);
+                userPlotModel.setPlotID("7");
 
                 if ("1".equals(userPlotModel.getPrdGrpID())) {
                     preparePlantDataForInsert();
+
                 } else if ("2".equals(userPlotModel.getPrdGrpID())) {
                     prepareAnimalDataForInsert();
                 } else if ("3".equals(userPlotModel.getPrdGrpID())) {

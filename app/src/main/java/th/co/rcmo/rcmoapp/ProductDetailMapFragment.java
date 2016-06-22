@@ -69,6 +69,7 @@ public class ProductDetailMapFragment extends Fragment implements View.OnClickLi
     private String tamCode;
     private String ampCode;
     private String provCode;
+    private String plodID;
     double latitude;
     double longitude;
 
@@ -96,14 +97,14 @@ public class ProductDetailMapFragment extends Fragment implements View.OnClickLi
 
         initialLayout(savedInstanceState);
 
-        API_getPlotDetail(getArguments().getString("prodID"));
+        API_getPlotDetail(plodID);
 
         return v;
     }
 
     private void getArgumentFromActivity(){
 
-
+        plodID = getArguments().getString("plodID");
         suitFlag = getArguments().getString("suitFlag");
         tamCode = getArguments().getString("tamCode");
         ampCode = getArguments().getString("ampCode");
@@ -198,7 +199,7 @@ public class ProductDetailMapFragment extends Fragment implements View.OnClickLi
 
     }
 
-    private void API_getPlotDetail(String prodID) {
+    private void API_getPlotDetail(String plodID) {
         /**
          1.TamCode (ไม่บังคับใส่)
          2.AmpCode (บังคับใส่)
@@ -228,7 +229,7 @@ public class ProductDetailMapFragment extends Fragment implements View.OnClickLi
                 Log.d("Error", errorMsg);
             }
         }).API_Request(true, RequestServices.ws_getPlotDetail +
-                "?PlotID=" + prodID +
+                "?PlotID=" + plodID +
                 "&ImeiCode=" + ServiceInstance.GetDeviceID(context));
 
     }

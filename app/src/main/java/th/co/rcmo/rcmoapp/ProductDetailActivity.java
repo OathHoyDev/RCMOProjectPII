@@ -27,34 +27,35 @@ public class ProductDetailActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
-    private ProductDetailModel productDetailModel;
     public static UserPlotModel userPlotModel;
     private String productType;
     private Bundle bundle;
 
-    public ProductDetailModel getProductDetailModel() {
-        return productDetailModel;
-    }
-
-    public void setProductDetailModel(ProductDetailModel productDetailModel) {
-        this.productDetailModel = productDetailModel;
-    }
+//    public ProductDetailModel getProductDetailModel() {
+//        return productDetailModel;
+//    }
+//
+//    public void setProductDetailModel(ProductDetailModel productDetailModel) {
+//        this.productDetailModel = productDetailModel;
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_detail);
 
+//        userPlotModel = new UserPlotModel();
+
         // For Test
-        testDataMethod();
+        //testDataMethod();
 
         bundle = new Bundle();
-        bundle.putString("productType", productDetailModel.productType);
-        bundle.putString("prodID", productDetailModel.prodID);
-        bundle.putString("suitFlag" , productDetailModel.suitFlag);
-        bundle.putString("tamCode" , productDetailModel.tamCode);
-        bundle.putString("ampCode" , productDetailModel.ampCode);
-        bundle.putString("provCode" , productDetailModel.provCode);
+        bundle.putString("productType", userPlotModel.getPrdGrpID());
+        bundle.putString("plodID", userPlotModel.getPlotID());
+        bundle.putString("suitFlag" , "1");
+        bundle.putString("tamCode" , userPlotModel.getTamCode());
+        bundle.putString("ampCode" , userPlotModel.getAmpCode());
+        bundle.putString("provCode" , userPlotModel.getProvCode());
         bundle.putString("lat" , "14.200792");
         bundle.putString("lon" , "100.509152");
 
@@ -66,16 +67,10 @@ public class ProductDetailActivity extends AppCompatActivity {
 
     private void testDataMethod(){
 
-        productDetailModel = new ProductDetailModel();
-
-        productDetailModel.prodID = "41";
-        productDetailModel.productType = "1";
-        productDetailModel.suitFlag = "2";
-        productDetailModel.tamCode = "";
-        productDetailModel.ampCode = "";
-        productDetailModel.provCode = "";
-
-
+        userPlotModel.setPlotID("7");
+        userPlotModel.setTamCode("2");
+        userPlotModel.setAmpCode("2");
+        userPlotModel.setProvCode("14");
     }
 
     private void initialTab(){
@@ -83,7 +78,7 @@ public class ProductDetailActivity extends AppCompatActivity {
 
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        switch (productDetailModel.productType){
+        switch (userPlotModel.getPrdGrpID()){
             case CalculateConstant.PRODUCT_TYPE_PLANT:
                 toolbar.setBackgroundResource(R.color.RcmoPlantBG);
                 break;
@@ -180,7 +175,7 @@ public class ProductDetailActivity extends AppCompatActivity {
             ImageView tabImage = (ImageView) v.findViewById(R.id.tabImage);
             //tabImage.setBackgroundResource(R.drawable.bg_tab_green_dark);
 
-            switch (productDetailModel.productType){
+            switch (userPlotModel.getPrdGrpID()){
                 case CalculateConstant.PRODUCT_TYPE_PLANT:
                     tabImage.setBackgroundResource(R.drawable.bg_tab_green_dark);
                     break;

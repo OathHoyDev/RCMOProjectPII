@@ -20,7 +20,7 @@
             android:paddingLeft="?android:attr/expandableListPreferredItemPaddingLeft"
             android:textSize="17dp"
             android:textColor="@color/RcmoWhiteBG"
-            android:background="@drawable/bar_title_green"
+            android:background="@drawable/bar_title_blue"
             android:text="Header"
             android:gravity="center_vertical" />
     </RelativeLayout>

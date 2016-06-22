@@ -36,6 +36,8 @@ public class ProductDetailStandardFragment extends Fragment implements View.OnCl
     String[] stdValue = null;
     String[] stdUnit = null ;
 
+    private String plodID;
+
     View v;
 
     public ProductDetailStandardFragment() {
@@ -51,7 +53,7 @@ public class ProductDetailStandardFragment extends Fragment implements View.OnCl
                 false);
         context = v.getContext();
 
-        productType = getArguments().getString("productType");
+        getArgumentFromActivity();
 
         Log.i("productType", "productType : " + productType);
 
@@ -59,9 +61,15 @@ public class ProductDetailStandardFragment extends Fragment implements View.OnCl
 
         setAction();
 
-        API_getPlotDetail("7");
+        API_getPlotDetail(plodID);
 
         return v;
+    }
+
+    private void getArgumentFromActivity(){
+
+        productType = getArguments().getString("productType");
+        plodID = getArguments().getString("plodID");
     }
 
     public void initialLayoutType(){
@@ -91,7 +99,7 @@ public class ProductDetailStandardFragment extends Fragment implements View.OnCl
 
     }
 
-    private void API_getPlotDetail(String prodID) {
+    private void API_getPlotDetail(String plodID) {
         /**
          1.TamCode (ไม่บังคับใส่)
          2.AmpCode (บังคับใส่)
@@ -119,7 +127,7 @@ public class ProductDetailStandardFragment extends Fragment implements View.OnCl
                 Log.d("Error", errorMsg);
             }
         }).API_Request(true, RequestServices.ws_getPlotDetail +
-                "?PlotID=" + prodID +
+                "?PlotID=" + plodID +
                 "&ImeiCode=" + ServiceInstance.GetDeviceID(context));
 
     }
@@ -344,7 +352,7 @@ public class ProductDetailStandardFragment extends Fragment implements View.OnCl
             @Override
             public void onClick(View v) {
                 Log.d("setAction", "onClick: btnRecalculate");
-                API_getPlotDetail("7");
+                API_getPlotDetail(plodID);
             }
         });
     }
@@ -352,7 +360,7 @@ public class ProductDetailStandardFragment extends Fragment implements View.OnCl
 
     public void onClick(View v){
         if(v.getId() == R.id.btnRecalculate){
-            API_getPlotDetail("7");
+            API_getPlotDetail(plodID);
         }
     }
 
