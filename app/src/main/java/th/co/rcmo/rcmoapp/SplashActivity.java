@@ -2,10 +2,14 @@ package th.co.rcmo.rcmoapp;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Bundle;
@@ -18,6 +22,7 @@ import th.co.rcmo.rcmoapp.API.RequestServices;
 import th.co.rcmo.rcmoapp.API.ResponseAPI;
 import th.co.rcmo.rcmoapp.Module.mUserPlotList;
 import th.co.rcmo.rcmoapp.Util.ServiceInstance;
+import th.co.rcmo.rcmoapp.View.DialogChoice;
 
 public class SplashActivity extends Activity {
 
@@ -26,6 +31,7 @@ public class SplashActivity extends Activity {
     //Runnable runnable;
     //Long delay_time;
     //Long time = 3000L;
+    boolean IsConnected;
     private final int SPLASH_DISPLAY_LENGTH = 1000;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -35,22 +41,23 @@ public class SplashActivity extends Activity {
         final  String userId = sp.getString(ServiceInstance.sp_userId, "0");
 
         setContentView(R.layout.activity_splash);
-        Log.d("Splash","UserId : "+userId);
+        Log.d("Splash", "UserId : " + userId);
         /* New Handler to start the Menu-Activity
          * and close this Splash-Screen after some seconds.*/
-            new Handler().postDelayed(new Runnable(){
-                @Override
-                public void run() {
-
-                    if(userId.equals("0")){
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (IsConnected) {
+                    if (userId.equals("0")) {
                         Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
                         startActivity(intent);
                         finish();
-                    }else{
+                    } else {
                         API_GetUserPlot(userId);
                     }
                 }
-            }, SPLASH_DISPLAY_LENGTH);
+            }
+        }, SPLASH_DISPLAY_LENGTH);
 
        /*
         handler = new Handler();
@@ -123,5 +130,32 @@ public class SplashActivity extends Activity {
                 "?UserID=" + userId + "&PlotID="+
                 "&ImeiCode=" + ServiceInstance.GetDeviceID(SplashActivity.this));
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        IsConnected = CheckInternet();
+        if(!IsConnected){
+
+            new DialogChoice(SplashActivity.this, new DialogChoice.OnSelectChoiceListener() {
+                @Override
+                public void OnSelect(int choice) {
+                    startActivity(new Intent(WifiManager.ACTION_PICK_WIFI_NETWORK));
+                }
+            }).ShowOneChoice("","กรุณาเชื่อมต่ออินเตอร์เนต");
+        }
+    }
+
+
+
+
+    private boolean CheckInternet() {
+
+        ConnectivityManager connectivityManager = (ConnectivityManager)
+                getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager
+                .getActiveNetworkInfo();
+        return activeNetworkInfo != null;
     }
 }
