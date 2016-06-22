@@ -214,7 +214,7 @@ public class ProductDetailCalculateFragment extends Fragment implements  View.On
         listView.setLayoutParams(params);
         listView.requestLayout();
 
-        int allLayoutHeight = (int)((120 + 130 + 30 + 100)*density);
+        int allLayoutHeight = (int)((120 + 120 + 100)*density);
 
         ViewGroup.LayoutParams resultFadeViewLayoutParams = resultFadeView.getLayoutParams();
         resultFadeViewLayoutParams.height = totalHeight + allLayoutHeight;

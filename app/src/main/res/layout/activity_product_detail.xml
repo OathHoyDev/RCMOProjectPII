@@ -2,30 +2,68 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:pixlui="http://schemas.android.com/apk/com.neopixl.pixlui"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ProductDetailActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/headerLayout">
+
+        <com.neopixl.pixlui.components.textview.TextView
+            pixlui:typeface="Quark-Bold.otf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ชนิดพืช"
+            android:layout_alignParentTop="true"
+            android:gravity="center|top"
+            android:padding="12dp"
+            android:id="@+id/titleLable"
+            android:textColor="@color/RcmoNormalLightText"
+            android:textSize="@dimen/textsize_xxxlarge" />
+
+
+        <com.neopixl.pixlui.components.textview.TextView
+            pixlui:typeface="Quark-Bold.otf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="&lt; กลับ"
+            android:layout_alignParentLeft="true"
+            android:id="@+id/backBtn"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/RcmoNormalLightText"
+            android:textSize="@dimen/textsize_xxlarge" />
+
+
+        <ImageView
+            android:layout_width="@dimen/size_howto"
+            android:layout_height="@dimen/size_howto"
+            android:src="@drawable/btn_howto"
+            android:layout_alignParentRight="true"
+            android:id="@+id/btnQuestion"
+            android:layout_margin="10dp"/>
+
+
+    </RelativeLayout>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewpager"
         android:elevation="1dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"  />
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_below="@+id/headerLayout" />
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         android:background="@android:color/transparent"
-        app:elevation="1dp">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:layout_scrollFlags="scroll|enterAlways"
-            app:elevation="1dp"/>
+        app:elevation="1dp"
+        android:layout_below="@+id/headerLayout">
 
         <android.support.design.widget.TabLayout
             style="@style/animalTabLayout"

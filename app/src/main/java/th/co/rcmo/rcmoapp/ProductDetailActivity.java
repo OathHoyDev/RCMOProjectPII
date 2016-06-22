@@ -1,6 +1,9 @@
 package th.co.rcmo.rcmoapp;
 
+import android.annotation.TargetApi;
 import android.content.Context;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -12,15 +15,23 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import th.co.rcmo.rcmoapp.API.RequestServices;
+import th.co.rcmo.rcmoapp.API.ResponseAPI;
 import th.co.rcmo.rcmoapp.Model.ProductDetailModel;
 import th.co.rcmo.rcmoapp.Model.UserPlotModel;
+import th.co.rcmo.rcmoapp.Module.mGetPlotDetail;
+import th.co.rcmo.rcmoapp.Module.mProduct;
 import th.co.rcmo.rcmoapp.Util.CalculateConstant;
+import th.co.rcmo.rcmoapp.Util.ServiceInstance;
 
 public class ProductDetailActivity extends AppCompatActivity {
 
@@ -30,6 +41,7 @@ public class ProductDetailActivity extends AppCompatActivity {
     public static UserPlotModel userPlotModel;
     private String productType;
     private Bundle bundle;
+    Context context;
 
 //    public ProductDetailModel getProductDetailModel() {
 //        return productDetailModel;
@@ -42,13 +54,39 @@ public class ProductDetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_product_detail);
+        context = getBaseContext();
 
 //        userPlotModel = new UserPlotModel();
 
         // For Test
         //testDataMethod();
 
+        setAction();
+
+        setUI();
+
+
+
+
+    }
+
+    private void setAction(){
+
+        findViewById(R.id.backBtn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                finish();
+            }
+        });
+
+    }
+
+
+
+    private void createBundleForFragment(){
         bundle = new Bundle();
         bundle.putString("productType", userPlotModel.getPrdGrpID());
         bundle.putString("plodID", userPlotModel.getPlotID());
@@ -58,9 +96,13 @@ public class ProductDetailActivity extends AppCompatActivity {
         bundle.putString("provCode" , userPlotModel.getProvCode());
         bundle.putString("lat" , "14.200792");
         bundle.putString("lon" , "100.509152");
+    }
 
-        initialTab();
+    private void setUI(){
 
+        if (userPlotModel.getUserID() != null || !"".equalsIgnoreCase(userPlotModel.getUserID())) {
+            API_getPlotDetail(userPlotModel.getPlotID());
+        }
 
 
     }
@@ -75,25 +117,28 @@ public class ProductDetailActivity extends AppCompatActivity {
 
     private void initialTab(){
 
+        Window window = getWindow();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window.setStatusBarColor(Color.BLACK);
+        }
 
-
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        RelativeLayout headerLayout = (RelativeLayout) findViewById(R.id.headerLayout);
         switch (userPlotModel.getPrdGrpID()){
             case CalculateConstant.PRODUCT_TYPE_PLANT:
-                toolbar.setBackgroundResource(R.color.RcmoPlantBG);
+                headerLayout.setBackgroundResource(R.color.RcmoPlantBG);
                 break;
             case CalculateConstant.PRODUCT_TYPE_ANIMAL:
-                toolbar.setBackgroundResource(R.color.RcmoAnimalBG);
+                headerLayout.setBackgroundResource(R.color.RcmoAnimalBG);
                 break;
             case CalculateConstant.PRODUCT_TYPE_FISH:
-                toolbar.setBackgroundResource(R.color.RcmoFishBG);
+                headerLayout.setBackgroundResource(R.color.RcmoFishBG);
                 break;
         }
 
-        setSupportActionBar(toolbar);
+        //setSupportActionBar(toolbar);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
 
 
@@ -222,4 +267,77 @@ public class ProductDetailActivity extends AppCompatActivity {
 
         }
     }
+
+    private void API_getPlotDetail(String plodID) {
+        /**
+         1.TamCode (ไม่บังคับใส่)
+         2.AmpCode (บังคับใส่)
+         3.ProvCode (บังคับใส่)
+         */
+        new ResponseAPI(context, new ResponseAPI.OnCallbackAPIListener() {
+            @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
+            @Override
+            public void callbackSuccess(Object obj) {
+
+                mGetPlotDetail mPlotDetail = (mGetPlotDetail) obj;
+                List<mGetPlotDetail.mRespBody> mPlotDetailBodyLists = mPlotDetail.getRespBody();
+
+                if (mPlotDetailBodyLists.size() != 0) {
+
+                    userPlotModel.setTamCode(mPlotDetailBodyLists.get(0).getTamCode());
+                    userPlotModel.setAmpCode(mPlotDetailBodyLists.get(0).getAmpCode());
+                    userPlotModel.setProvCode(mPlotDetailBodyLists.get(0).getProvCode());
+
+                    API_getProduct(mPlotDetailBodyLists.get(0).getPrdID() , mPlotDetailBodyLists.get(0).getPrdGrpID() , mPlotDetailBodyLists.get(0).getPlantGrpID());
+
+                    createBundleForFragment();
+
+                    initialTab();
+                }
+
+
+            }
+
+            @Override
+            public void callbackError(int code, String errorMsg) {
+                Log.d("Error", errorMsg);
+            }
+        }).API_Request(true, RequestServices.ws_getPlotDetail +
+                "?PlotID=" + plodID +
+                "&ImeiCode=" + ServiceInstance.GetDeviceID(context));
+
+    }
+
+    private void API_getProduct(String prdID , String prdGrpID , String plantGrpID) {
+
+        new ResponseAPI(context, new ResponseAPI.OnCallbackAPIListener() {
+            @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
+            @Override
+            public void callbackSuccess(Object obj) {
+
+                mProduct mProduct = (mProduct) obj;
+                List<mProduct.mRespBody> mProductBodyLists = mProduct.getRespBody();
+
+                if (mProductBodyLists.size() != 0) {
+
+                    RelativeLayout headerLayout  =     (RelativeLayout)findViewById(R.id.headerLayout);
+                    com.neopixl.pixlui.components.textview.TextView titleText = (com.neopixl.pixlui.components.textview.TextView)headerLayout.findViewById(R.id.titleLable);
+                    titleText.setText(mProductBodyLists.get(0).getPrdName());
+
+                }
+
+
+            }
+
+            @Override
+            public void callbackError(int code, String errorMsg) {
+                Log.d("Error", errorMsg);
+            }
+        }).API_Request(true, RequestServices.ws_getProduct +
+                "?PrdID=" + prdID +
+                "&PrdGrpID=" + prdGrpID +
+                "&PlantGrpID=" + plantGrpID);
+
+    }
+
 }
