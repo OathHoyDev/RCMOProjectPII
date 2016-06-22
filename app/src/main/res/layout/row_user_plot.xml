@@ -13,8 +13,6 @@
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
         android:padding="10dp"
-        android:clickable="true"
-        android:focusable="true"
         android:id="@+id/layoutPlotRow" >
 
 
@@ -27,7 +25,7 @@
                 android:layout_width="@dimen/size_pin"
                 android:layout_height="@dimen/size_pin"
                 android:src="@drawable/pin"
-                android:layout_margin="5dp"
+                android:layout_margin="2dp"
 
                 android:id="@+id/pinImg" />
             <LinearLayout
@@ -67,22 +65,43 @@
                     android:id="@+id/labelAddress"
 
                     />
+
+
+
+            </LinearLayout>
+        </RelativeLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
             <com.neopixl.pixlui.components.textview.TextView
                 pixlui:typeface="Quark-Bold.otf"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
+                android:layout_weight="1"
+                android:text="3 มิถุนายน 2559"
+                android:textColor="@color/RcmoSubDetailText"
+                android:padding="4dp"
+                android:textSize="@dimen/textsize_xsmall"
+                android:id="@+id/labelDate"
+                android:gravity="left" />
+            <com.neopixl.pixlui.components.textview.TextView
+                pixlui:typeface="Quark-Bold.otf"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
                 android:text="17 ไร่"
-                android:layout_weight="3"
+                android:layout_weight="1"
                 android:textColor="@color/RcmoNormalDarkText"
                 android:padding="4dp"
                 android:textSize="@dimen/textsize_xsmall"
                 android:id="@+id/labelPlotSize"
-              android:gravity="right"/>
+                android:gravity="right"/>
+        </LinearLayout>
 
 
-            </LinearLayout>
-        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -94,7 +113,8 @@
             android:orientation="horizontal"
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:id="@+id/editableLayout">
 <!--
             <ImageView
                 android:layout_width="wrap_content"
@@ -153,7 +173,7 @@
 
                     <com.neopixl.pixlui.components.textview.TextView
                         pixlui:typeface="Quark-Bold.otf"
-                        android:layout_width="50dp"
+                        android:layout_width="60dp"
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
                         android:text="ขาดทุน"
@@ -197,17 +217,7 @@
 
     </LinearLayout>
 
-        <com.neopixl.pixlui.components.textview.TextView
-            pixlui:typeface="Quark-Bold.otf"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:text="วันศุกร์ ที่ 3 มิถุนายน 2559"
-            android:textColor="@color/RcmoSubDetailText"
-            android:padding="4dp"
-            android:textSize="@dimen/textsize_xsmall"
-            android:id="@+id/labelDate"
-            android:gravity="right" />
+
 
         <LinearLayout
             android:orientation="horizontal"

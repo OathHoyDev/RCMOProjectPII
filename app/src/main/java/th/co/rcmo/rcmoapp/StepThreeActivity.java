@@ -6,6 +6,9 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,6 +26,8 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 import java.util.List;
 import th.co.rcmo.rcmoapp.API.RequestServices;
 import th.co.rcmo.rcmoapp.API.ResponseAPI;
@@ -30,11 +35,14 @@ import th.co.rcmo.rcmoapp.Adapter.DialogAmphoeAdapter;
 import th.co.rcmo.rcmoapp.Adapter.DialogProvinceAdapter;
 import th.co.rcmo.rcmoapp.Adapter.DialogTumbonAdapter;
 import th.co.rcmo.rcmoapp.Model.ProductModel;
+import th.co.rcmo.rcmoapp.Model.UserModel;
 import th.co.rcmo.rcmoapp.Model.UserPlotModel;
 import th.co.rcmo.rcmoapp.Module.mAmphoe;
 import th.co.rcmo.rcmoapp.Module.mProvince;
 import th.co.rcmo.rcmoapp.Module.mSavePlotDetail;
 import th.co.rcmo.rcmoapp.Module.mTumbon;
+import th.co.rcmo.rcmoapp.Module.mUserPlotList;
+import th.co.rcmo.rcmoapp.Util.BitMapHelper;
 import th.co.rcmo.rcmoapp.Util.ServiceInstance;
 import th.co.rcmo.rcmoapp.View.DialogChoice;
 
@@ -48,11 +56,13 @@ public class StepThreeActivity extends Activity {
     boolean kcSelected =true , tuaSelected = true;
     String userId ="" ;
     String plotId ="";
+    boolean saved = false;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
 
         SharedPreferences sp = getSharedPreferences(ServiceInstance.PREF_NAME, Context.MODE_PRIVATE);
         userId = sp.getString(ServiceInstance.sp_userId, "0");
@@ -61,6 +71,7 @@ public class StepThreeActivity extends Activity {
         userPlotModel.setPrdID(String.valueOf(productionInfo.getPrdID()));
         userPlotModel.setPrdGrpID( String.valueOf(productionInfo.getPrdGrpID()));
         userPlotModel.setUserID(userId);
+        saved  = false;
 
         setUI();
         setAction();
@@ -73,7 +84,7 @@ public class StepThreeActivity extends Activity {
        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         if(groupId == 1){
             setContentView(R.layout.activity_plant_step_three);
-
+            findViewById(R.id.mainLayoutPlantStepThree).setBackground(new BitmapDrawable(BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.bg_plant, 300, 400)));
             //Get Object
             Holder h = new Holder();
             h.prodImg      = (ImageView) findViewById(R.id.prodImg);
@@ -95,6 +106,7 @@ public class StepThreeActivity extends Activity {
 
         }else if(groupId == 2){
             setContentView(R.layout.activity_animal_step_three);
+            findViewById(R.id.mainLayoutAnimalStepThree).setBackground(new BitmapDrawable(BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.bg_meat, 300, 400)));
 
             Holder h = new Holder();
             h.prodImg      = (ImageView) findViewById(R.id.prodImg);
@@ -156,7 +168,7 @@ public class StepThreeActivity extends Activity {
 
         }else if(groupId==3){
             setContentView(R.layout.activity_fish_step_three);
-
+            findViewById(R.id.mainLayoutFishStepThree).setBackground(new BitmapDrawable(BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.bg_fish, 300, 400)));
             Holder h = new Holder();
             h.prodImg      = (ImageView) findViewById(R.id.prodImg);
             h.prodBg      =  (LinearLayout)findViewById(R.id.gridDrawBg);
@@ -208,7 +220,13 @@ public class StepThreeActivity extends Activity {
         findViewById(R.id.backBtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+
+                if(!(userPlotModel.getUserID().equals("0")) && saved ){
+                    API_GetUserPlot(userPlotModel.getUserID());
+                }else{
+                    finish();
+
+                }
             }
         });
 
@@ -216,51 +234,57 @@ public class StepThreeActivity extends Activity {
         findViewById(R.id.btnSave).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                boolean isValidate = false;
-                Log.d(TAG,"Product group Id :"+userPlotModel.getPrdGrpID());
 
-                userPlotModel  = new UserPlotModel();
-                userPlotModel.setPrdGrpID(String.valueOf(productionInfo.getPrdGrpID()));
-                userPlotModel.setPrdID(String.valueOf(productionInfo.getPrdID()));
-                userPlotModel.setPrdGrpID( String.valueOf(productionInfo.getPrdGrpID()));
-                userPlotModel.setUserID(userId);
-                userPlotModel.setPlotID(plotId);
+                if (userPlotModel.getUserID() == null || userPlotModel.getUserID().equals("0")) {
+                    new DialogChoice(StepThreeActivity.this)
+                            .ShowOneChoice("ไม่สามารถบันทึกข้อมูล", "- กรุณา Login ก่อนทำการบันทึกข้อมูล");
 
-                if ("1".equals(userPlotModel.getPrdGrpID())) {
+                } else {
+                    boolean isValidate = false;
+                    Log.d(TAG, "Product group Id :" + userPlotModel.getPrdGrpID());
 
-                    isValidate = isValidPlantInputData();
-                    preparePlantDataForInsert();
+                    userPlotModel = new UserPlotModel();
+                    userPlotModel.setPrdGrpID(String.valueOf(productionInfo.getPrdGrpID()));
+                    userPlotModel.setPrdID(String.valueOf(productionInfo.getPrdID()));
+                    userPlotModel.setPrdGrpID(String.valueOf(productionInfo.getPrdGrpID()));
+                    userPlotModel.setUserID(userId);
+                    userPlotModel.setPlotID(plotId);
 
-                }else if("2".equals(userPlotModel.getPrdGrpID())){
+                    if ("1".equals(userPlotModel.getPrdGrpID())) {
 
-                    isValidate = isValidAnimalInputData();
-                    prepareAnimalDataForInsert();
+                        isValidate = isValidPlantInputData();
+                        preparePlantDataForInsert();
 
-                }else if("3".equals(userPlotModel.getPrdGrpID())){
+                    } else if ("2".equals(userPlotModel.getPrdGrpID())) {
 
-                    isValidate = isValidFishInputData ();
-                    prepareFishDataForInsert();
+                        isValidate = isValidAnimalInputData();
+                        prepareAnimalDataForInsert();
 
-                }else{
-                    isValidate = false;
-                }
+                    } else if ("3".equals(userPlotModel.getPrdGrpID())) {
+
+                        isValidate = isValidFishInputData();
+                        prepareFishDataForInsert();
+
+                    } else {
+                        isValidate = false;
+                    }
 
 
+                    if (isValidate) {
+                        new DialogChoice(StepThreeActivity.this, new DialogChoice.OnSelectChoiceListener() {
+                            @Override
+                            public void OnSelect(int choice) {
 
-                if (isValidate) {
-                    new DialogChoice(StepThreeActivity.this, new DialogChoice.OnSelectChoiceListener() {
-                        @Override
-                        public void OnSelect(int choice) {
+                                if (choice == DialogChoice.OK) {
+                                    upsertUserPlot();
 
-                            if (choice == DialogChoice.OK) {
-                                upsertUserPlot();
-
+                                }
                             }
-                        }
-                    }).ShowTwoChoice("\"" + ((TextView) findViewById(R.id.labelProductName)).getText().toString() + "\"", "คุนต้องการบันทึกข้อมูล");
+                        }).ShowTwoChoice("\"" + ((TextView) findViewById(R.id.labelProductName)).getText().toString() + "\"", "คุนต้องการบันทึกข้อมูล");
+                    }
+
+
                 }
-
-
             }
         });
 
@@ -351,7 +375,7 @@ public class StepThreeActivity extends Activity {
                             Log.d(TAG, "bo_tuaSelected __>" +tuaSelected);
                             if (tuaSelected) {
 
-                                ((TextView)findViewById(R.id.bo_inputNuberOfUnit)).setHint("กิโลกลัม");
+                                ((TextView)findViewById(R.id.bo_inputNuberOfUnit)).setHint("กิโลกรัม");
                                 ((ImageView) findViewById(R.id.bo_imgkkSelected)).setImageResource(R.drawable.radio_select);
                                 ((ImageView) findViewById(R.id.bo_imgTuaSelected)).setImageResource(R.drawable.radio_not_select);
 
@@ -375,6 +399,7 @@ public class StepThreeActivity extends Activity {
     private void popUpProvinceListDialog(final List<mProvince.mRespBody> provinceRespList) {
         final Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         View view = getLayoutInflater().inflate(R.layout.spin_location_dialog, null);
 
         view.findViewById(R.id.btnCancel).setOnClickListener(new View.OnClickListener() {
@@ -425,6 +450,7 @@ public class StepThreeActivity extends Activity {
     private void popUpAmphoeListDialog(final List<mAmphoe.mRespBody> amphoeRespList) {
         final Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         View view = getLayoutInflater().inflate(R.layout.spin_location_dialog, null);
 
         view.findViewById(R.id.btnCancel).setOnClickListener(new View.OnClickListener() {
@@ -471,6 +497,7 @@ public class StepThreeActivity extends Activity {
     private void popUpTumbonListDialog(final List<mTumbon.mRespBody> tunbonRespList) {
         final Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         View view = getLayoutInflater().inflate(R.layout.spin_location_dialog, null);
 
         view.findViewById(R.id.btnCancel).setOnClickListener(new View.OnClickListener() {
@@ -659,9 +686,10 @@ public class StepThreeActivity extends Activity {
                     plotId =  String.valueOf(savePlotDetailBodyLists.get(0).getPlotID());
                     if(plotId==null){plotId="";}
                     Log.d(TAG,"Response plotId : "+plotId);
-
+                    saved = true;
                     toastMsg("บันทึกข้อมูลสำเร็จ");
                 }
+
             }
 
             @Override
@@ -699,19 +727,61 @@ public class StepThreeActivity extends Activity {
         );
     }
 
+    private void API_GetUserPlot(final String userId) {
+
+
+        new ResponseAPI(this, new ResponseAPI.OnCallbackAPIListener() {
+            @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
+            @Override
+            public void callbackSuccess(Object obj) {
+
+                mUserPlotList mPlotList = (mUserPlotList) obj;
+                final List<mUserPlotList.mRespBody> userPlotBodyLists = mPlotList.getRespBody();
+
+                if (userPlotBodyLists.size() != 0) {
+                    userPlotBodyLists.get(0).toString();
+
+                    UserPlotListActivity.userPlotRespBodyList = userPlotBodyLists;
+
+                    Intent intent = new Intent(StepThreeActivity.this, UserPlotListActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                    finish();
+                }
+            }
+
+            @Override
+            public void callbackError(int code, String errorMsg) {
+                List<mUserPlotList.mRespBody> userPlotList = new ArrayList<mUserPlotList.mRespBody>();
+                UserPlotListActivity.userPlotRespBodyList = userPlotList;
+
+
+                startActivity(new Intent(StepThreeActivity.this, UserPlotListActivity.class)
+                        .putExtra("userId", userId));
+                finish();
+
+            }
+        }).API_Request(false, RequestServices.ws_getPlotList +
+                "?UserID=" + userId + "&PlotID=" +
+                "&ImeiCode=" + ServiceInstance.GetDeviceID(StepThreeActivity.this));
+
+    }
+
     private void upsertUserPlot(){
 
         // API_GetUserPlot(userId,prdId,prdGrpId,plotId);
 
-        if("".equals(userPlotModel.getPlotID())){
-            Log.d(TAG, "Go to save plot Module ");
-            API_SavePlotDetail("1", userPlotModel);
-        }else{
+            if ("".equals(userPlotModel.getPlotID())) {
+                Log.d(TAG, "Go to save plot Module ");
+                API_SavePlotDetail("1", userPlotModel);
+            } else {
 
-            Log.d(TAG, "Go to update plot Module ");
-            API_SavePlotDetail("2", userPlotModel);
+                Log.d(TAG, "Go to update plot Module ");
+                API_SavePlotDetail("2", userPlotModel);
 
-        }
+            }
+
+
 
     }
 
@@ -737,7 +807,7 @@ public class StepThreeActivity extends Activity {
         EditText inputRai = (EditText) findViewById(R.id.inputRai);
 
         if(inputRai.getText() == null || inputRai.getText().toString().equals("")){
-            new DialogChoice(StepThreeActivity.this).ShowOneChoice("", "กรุณากรอกขนาดแปลงที่ดิน");
+            new DialogChoice(StepThreeActivity.this).ShowOneChoice("กรุณากรอกข้อมูล", "- ขนาดแปลงที่ดิน");
         }else{
             isValid = true;
         }
@@ -754,7 +824,7 @@ public class StepThreeActivity extends Activity {
     }
 
     private boolean isValidAnimalInputData () {
-        boolean isValid = false;
+        boolean isValid = true;
 
 
         if(   userPlotModel.getPrdID().equals("39")
@@ -765,21 +835,28 @@ public class StepThreeActivity extends Activity {
             EditText inputNumberOfStart = (EditText) findViewById(R.id.inputNumberOfStart);
             EditText inputPricePerUnit = (EditText) findViewById(R.id.inputPricePerUnit);
 
+            String errorMsg = "";
             if (inputNumberOfStart.getText() == null || inputNumberOfStart.getText().toString().equals("")) {
-                new DialogChoice(StepThreeActivity.this).ShowOneChoice("", "กรุณากรอก จำนวนเมื่อเริ่มเลี้ยง");
-            } else if (inputPricePerUnit.getText() == null || inputPricePerUnit.getText().toString().equals("")){
-                new DialogChoice(StepThreeActivity.this).ShowOneChoice("", "กรุณากรอก ราคาเมื่อเริ่มเลียง");
-            } else{
-                isValid = true;
+                errorMsg+= "- จำนวนเมื่อเริ่มเลี้ยง \n";
+                isValid = false;
+            }
+
+            if (inputPricePerUnit.getText() == null || inputPricePerUnit.getText().toString().equals("")){
+                errorMsg+= "- ราคาเมื่อเริ่มเลียง ";
+                isValid = false;
+            }
+
+
+            if(!isValid){
+                new DialogChoice(StepThreeActivity.this).ShowOneChoice("กรุณากรอกข้อมูล", errorMsg);
             }
 
         }else if( userPlotModel.getPrdID().equals("43")){
             EditText inputNumberOfStart = (EditText) findViewById(R.id.inputNumberOfStart);
 
             if (inputNumberOfStart.getText() == null || inputNumberOfStart.getText().toString().equals("")) {
-                new DialogChoice(StepThreeActivity.this).ShowOneChoice("", "กรุณากรอก จำนวนแม่โครีดนม");
-            } else{
-                isValid = true;
+                new DialogChoice(StepThreeActivity.this).ShowOneChoice("กรุณากรอกข้อมูล", "- จำนวนแม่โครีดนม");
+                isValid = false;
             }
 
 
@@ -787,12 +864,19 @@ public class StepThreeActivity extends Activity {
             EditText inputNumberOfStart = (EditText) findViewById(R.id.inputNumberOfStart);
             EditText inputWeightPerUnit = (EditText) findViewById(R.id.inputWeightPerUnit);
 
+            String errorMsg = "";
             if (inputNumberOfStart.getText() == null || inputNumberOfStart.getText().toString().equals("")) {
-                new DialogChoice(StepThreeActivity.this).ShowOneChoice("", "กรุณากรอก จำนวนเมื่อเริ่มเลี้ยง");
-            } else if (inputWeightPerUnit.getText() == null || inputWeightPerUnit.getText().toString().equals("")){
-                new DialogChoice(StepThreeActivity.this).ShowOneChoice("", "กรุณากรอก น้ำหนักเฉลี่ยเมื่อเลียง");
-            } else{
-                isValid = true;
+                errorMsg+= "- จำนวนเมื่อเริ่มเลี้ยง \n";
+                isValid = false;
+            }
+
+            if (inputWeightPerUnit.getText() == null || inputWeightPerUnit.getText().toString().equals("")){
+                errorMsg+= "- น้ำหนักเฉลี่ยเมื่อเลียง ";
+                isValid = false;
+            }
+
+            if(!isValid){
+                new DialogChoice(StepThreeActivity.this).ShowOneChoice("กรุณากรอกข้อมูล", errorMsg);
             }
 
         }else{
@@ -804,7 +888,7 @@ public class StepThreeActivity extends Activity {
     }
 
     private boolean isValidFishInputData() {
-        boolean isValid = false;
+        boolean isValid = true;
 
         if (userPlotModel.getPrdID().equals("49")) {
 
@@ -812,38 +896,53 @@ public class StepThreeActivity extends Activity {
             EditText va_inputNgan      = (EditText) findViewById(R.id.va_inputNgan);
             EditText va_inputSqWa      = (EditText) findViewById(R.id.va_inputSqWa);
             EditText va_inputNuberOfva = (EditText) findViewById(R.id.va_inputNuberOfva);
-
+            String errorMsg = "";
             if (       (va_inputRai.getText() == null || va_inputRai.getText().toString().equals(""))
                   &&   (va_inputNgan.getText() == null || va_inputNgan.getText().toString().equals(""))
                   &&   (va_inputSqWa.getText() == null || va_inputSqWa.getText().toString().equals(""))
                     )  {
+                errorMsg+= "- ขนาดแปลงที่ดิน \n";
+                isValid = false;
+            }
 
-                new DialogChoice(StepThreeActivity.this).ShowOneChoice("", "กรุณากรอก ขนาดแปลงที่ดิน");
+            if (va_inputNuberOfva.getText() == null || va_inputNuberOfva.getText().toString().equals("")) {
+                errorMsg+= "- จำนวนลูกกุ้งที่ปล่อย ";
+                isValid = false;
+            }
 
-            } else if (va_inputNuberOfva.getText() == null || va_inputNuberOfva.getText().toString().equals("")) {
-                new DialogChoice(StepThreeActivity.this).ShowOneChoice("", "กรุณากรอก จำนวนลูกกุ้งที่ปล่อย");
-            }  else {
-                isValid = true;
+            if(!isValid){
+                new DialogChoice(StepThreeActivity.this).ShowOneChoice("กรุณากรอกข้อมูล", errorMsg);
             }
 
         } else {
             // kc is a : kachang(กระชัง) in thai
             // bo is a : (บ่อ) in thai
             // va is a : แวนนาโม(กุ้ง)
+            String errorMsg = "";
             if (kcSelected) {
                 EditText kc_inputSqMPerKC = (EditText) findViewById(R.id.kc_inputSqMPerKC);
                 EditText kc_inputNumberOfKC = (EditText) findViewById(R.id.kc_inputNuberOfKC);
                 EditText kc_inputFishPerKC = (EditText) findViewById(R.id.kc_inputFishPerKC);
 
                 if (kc_inputSqMPerKC.getText() == null || kc_inputSqMPerKC.getText().toString().equals("")) {
-                    new DialogChoice(StepThreeActivity.this).ShowOneChoice("", "กรุณากรอก ขนาดแปลงที่ดิน");
-                } else if (kc_inputNumberOfKC.getText() == null || kc_inputNumberOfKC.getText().toString().equals("")) {
-                    new DialogChoice(StepThreeActivity.this).ShowOneChoice("", "กรุณากรอก จำนวนกระชังที่เลี้ยงในรุ่นนี้");
-                } else if (kc_inputFishPerKC.getText() == null || kc_inputFishPerKC.getText().toString().equals("")) {
-                    new DialogChoice(StepThreeActivity.this).ShowOneChoice("", "กรุณากรอก จำนวนลูกปลาที่ปล่อย ต่อ 1 กระชัง");
-                } else {
-                    isValid = true;
+
+                    errorMsg+= "- ขนาดแปลงที่ดิน \n";
+                    isValid = false;
                 }
+                if (kc_inputNumberOfKC.getText() == null || kc_inputNumberOfKC.getText().toString().equals("")) {
+                    errorMsg+= "- จำนวนกระชังที่เลี้ยงในรุ่นนี้ \n";
+                    isValid = false;
+                }
+                if (kc_inputFishPerKC.getText() == null || kc_inputFishPerKC.getText().toString().equals("")) {
+                    errorMsg+= "- จำนวนลูกปลาที่ปล่อย ต่อ 1 กระชัง";
+                    isValid = false;
+                }
+
+                if(!isValid){
+                    new DialogChoice(StepThreeActivity.this).ShowOneChoice("กรุณากรอกข้อมูล", errorMsg);
+                }
+
+
             } else {
 
                 EditText bo_inputRai       = (EditText) findViewById(R.id.bo_inputRai);
@@ -859,13 +958,18 @@ public class StepThreeActivity extends Activity {
                         &&   (bo_inputSqMeter.getText() == null || bo_inputSqMeter.getText().toString().equals(""))
                         )  {
 
-                    new DialogChoice(StepThreeActivity.this).ShowOneChoice("", "กรุณากรอก ขนาดแปลงที่ดิน");
-
-                } else if (bo_inputNuberOfUnit.getText() == null || bo_inputNuberOfUnit.getText().toString().equals("")) {
-                    new DialogChoice(StepThreeActivity.this).ShowOneChoice("", "กรุณากรอก จำนวนลูกปลาที่ปล่อย");
-                }  else {
-                    isValid = true;
+                    errorMsg+= "- ขนาดแปลงที่ดิน \n";
+                    isValid = false;
                 }
+                if (bo_inputNuberOfUnit.getText() == null || bo_inputNuberOfUnit.getText().toString().equals("")) {
+                    errorMsg+= "- จำนวนลูกปลาที่ปล่อย ";
+                    isValid = false;
+                }
+
+                if(!isValid){
+                    new DialogChoice(StepThreeActivity.this).ShowOneChoice("กรุณากรอกข้อมูล", errorMsg);
+                }
+
             }
 
         }
@@ -931,6 +1035,7 @@ public class StepThreeActivity extends Activity {
 
             this.userPlotModel.setFisheryNumber(va_inputNuberOfva.getText().toString());
             this.userPlotModel.setFisheryNumType(ServiceInstance.FISHERY_NUM_TYPE_TUA);
+            this.userPlotModel.setFisheryType(ServiceInstance.FISHERY_TYPE_BO);
 
 
 

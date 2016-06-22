@@ -61,6 +61,8 @@ public class ResponseAPI {
 
                         Log.i(RequestServices.TAG, "API_Request url : " +url_ws);
                         Log.i(RequestServices.TAG, "API_Request Response : " +html);
+                        if(html!= null) {
+
                         mStatus _status = new Gson().fromJson(html, mStatus.class);
                         if(_status !=null){
                             Log.i(RequestServices.TAG, "API_Request status : " + _status.getRespStatus().toString());
@@ -112,6 +114,8 @@ public class ResponseAPI {
                             }else {
                                 new DialogChoice(c).ShowOneChoice("","กรุณาเชื่อมต่ออินเตอร์เน็ต");
                             }
+                        }else{
+                            new DialogChoice(c).ShowOneChoice("", "การเชื่อมต่อ Server ผิดพลาด");
                         }
 
                     }

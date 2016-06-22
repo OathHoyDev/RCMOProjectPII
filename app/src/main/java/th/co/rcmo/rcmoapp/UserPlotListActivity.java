@@ -9,6 +9,7 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -18,31 +19,37 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.Toast;
+import com.mobeta.android.dslv.DragSortController;
+import com.mobeta.android.dslv.DragSortListView;
 import com.neopixl.pixlui.components.textview.TextView;
 import java.util.ArrayList;
 import java.util.List;
 import th.co.rcmo.rcmoapp.API.RequestServices;
 import th.co.rcmo.rcmoapp.API.ResponseAPI;
+import th.co.rcmo.rcmoapp.Model.UserModel;
 import th.co.rcmo.rcmoapp.Module.mCopyPlot;
 import th.co.rcmo.rcmoapp.Module.mDeletePlot;
 import th.co.rcmo.rcmoapp.Module.mGetRegister;
 import th.co.rcmo.rcmoapp.Module.mUpdateUserPlotSeq;
 import th.co.rcmo.rcmoapp.Module.mUserPlotList;
+import th.co.rcmo.rcmoapp.Util.BitMapHelper;
 import th.co.rcmo.rcmoapp.Util.ServiceInstance;
 import th.co.rcmo.rcmoapp.View.DialogChoice;
 
 public class UserPlotListActivity extends Activity {
-    ListView  userPlotListView;
+    DragSortListView  userPlotListView;
     String TAG = "UserPlotListActivity_TAG";
+    UserPlotAdapter adapter = null;
     public static List<mUserPlotList.mRespBody> userPlotRespBodyList = new ArrayList<>();
     Resources resources;
+    String userId = "0";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_plot_list);
-
+        SharedPreferences sp = getSharedPreferences(ServiceInstance.PREF_NAME, Context.MODE_PRIVATE);
+        userId = sp.getString(ServiceInstance.sp_userId, "0");
         setUI();
         setAction();
     }
@@ -69,8 +76,27 @@ public class UserPlotListActivity extends Activity {
 
     private void setUI() {
 
-        userPlotListView = (ListView) findViewById(R.id.listviewPlotUser);
-        userPlotListView.setAdapter(new UserPlotAdapter(userPlotRespBodyList));
+        userPlotListView = (DragSortListView) findViewById(R.id.listviewPlotDragUser);
+
+        adapter = new UserPlotAdapter(userPlotRespBodyList);
+        userPlotListView.setAdapter(adapter);
+        userPlotListView.setDropListener(adapter.onDrop);
+        userPlotListView.setRemoveListener(adapter.onRemove);
+
+        DragSortController controller = new DragSortController(userPlotListView);
+        controller.setDragHandleId(R.id.layoutPlotRow);
+        controller.setRemoveEnabled(false);
+        controller.setSortEnabled(true);
+        controller.setDragInitMode(2);
+       // controller.setBackgroundColor(R.color.RcmoLightTranBG);
+         controller.setBackgroundColor(ContextCompat.getColor(UserPlotListActivity.this, R.color.RcmoDarkTranBG));
+         //controller.setBackgroundColor(getResources().getColor(R.color.RcmoDarkTranBG));
+        //controller.setRemoveMode(removeMode);
+        //controller.setClickRemoveId(R.id.);
+
+        userPlotListView.setFloatViewManager(controller);
+        userPlotListView.setOnTouchListener(controller);
+        userPlotListView.setDragEnabled(true);
     }
 
     private void setAction() {
@@ -138,6 +164,58 @@ public class UserPlotListActivity extends Activity {
             userPlotList.remove(position);
         }
 
+        public DragSortListView.DropListener onDrop = new DragSortListView.DropListener()
+        {
+            @Override
+            public void drop(int from, int to)
+            {
+                if (from != to)
+                {
+                    Log.d(TAG,"from"+from);
+                    Log.d(TAG,"to"+to);
+                    mUserPlotList.mRespBody item = adapter.getItem(from);
+                    remove(item);
+                    insert(item, to);
+                }
+            }
+        };
+        public DragSortListView.RemoveListener onRemove = new DragSortListView.RemoveListener()
+        {
+            @Override
+            public void remove(int which)
+            {
+              //  userPlotList.remove(getItem(which));
+            }
+        };
+
+        public void remove(mUserPlotList.mRespBody obj) {
+
+            if (userPlotList != null) {
+                userPlotList.remove(obj);
+            }
+            notifyDataSetChanged();
+        }
+
+        public void insert(mUserPlotList.mRespBody obj, int index) {
+
+            if (userPlotList != null) {
+                userPlotList.add(index, obj);
+
+                String listSeq = "";
+                for(int i =0 ; i< userPlotList.size();i++){
+                    listSeq+=","+userPlotList.get(i).getPlotID();
+
+                }
+                if(listSeq!=null && listSeq.length()>0) {
+                    listSeq = listSeq.substring(1, listSeq.length());
+                }
+                Log.d(TAG,"Seq : "+listSeq);
+                API_updateUserPlotSeq(userId,listSeq,1);
+            }
+
+            notifyDataSetChanged();
+        }
+
         @Override
         public View getView(final int position, View convertView, ViewGroup parent) {
 
@@ -146,6 +224,8 @@ public class UserPlotListActivity extends Activity {
             if(convertView==null){
                 LayoutInflater inflater = UserPlotListActivity.this.getLayoutInflater();
                 convertView = inflater.inflate(R.layout.row_user_plot, parent, false);
+                SharedPreferences sp = getSharedPreferences(ServiceInstance.PREF_NAME, Context.MODE_PRIVATE);
+                h.userId           =   sp.getString(ServiceInstance.sp_userId, "0");
                 h.labelProductName =  (TextView) convertView.findViewById(R.id.labelProductName);
                 h.labelAddress     =  (TextView) convertView.findViewById(R.id.labelAddress);
                 h.labelPlotSize    =  (TextView) convertView.findViewById(R.id.labelPlotSize);
@@ -157,15 +237,29 @@ public class UserPlotListActivity extends Activity {
                 h.btnDelete       =  (TextView) convertView.findViewById(R.id.btnDeleete);
                 h.btnCopy          =  (TextView) convertView.findViewById(R.id.btnCopy);
                 h.layoutPlotRow    =  (LinearLayout) convertView.findViewById(R.id.layoutPlotRow);
+                h.pinImg           = (ImageView)convertView.findViewById(R.id.pinImg);
+                h.params           = (LinearLayout.LayoutParams)h.layoutPlotRow.getLayoutParams();
+                h.editableLayout   =(LinearLayout)convertView.findViewById(R.id.editableLayout);
                 convertView.setTag(h);
             }else{
                 h = (ViewHolder) convertView.getTag();
             }
 
+          //  Log.d(TAG,"Position : "+position);
+            //Log.d(TAG,"Count : "+getCount());
 
 
+            if ((position+1) == getCount()){
+                h.params.setMargins(10, 10, 10, 225); //substitute parameters for left, top, right, bottom
+                h.layoutPlotRow.setLayoutParams(h.params);
+            }else{
+                h.params.setMargins(10, 10, 10, 10); //substitute parameters for left, top, right, bottom
+                h.layoutPlotRow.setLayoutParams(h.params);
+            }
 
             mUserPlotList.mRespBody  respBody =  getItem(position);
+
+
 
 
 
@@ -208,10 +302,13 @@ public class UserPlotListActivity extends Activity {
             h.labelDate.setText(ServiceInstance.formatStrDate(respBody.getDateUpdated()));
 
 
-            //h.imgProduct.setImageResource( getResources().getIdentifier(ServiceInstance.productPicMap.get(respBody.getPrdID()), "drawable", getPackageName()) );
+
             String imgName = ServiceInstance.productIMGMap.get(respBody.getPrdID());
+            h.pinImg.setImageBitmap(BitMapHelper.decodeSampledBitmapFromResource( getResources(), R.drawable.pin, 20,20));
             if(imgName!=null) {
-                h.prodImg.setImageResource(getResources().getIdentifier(imgName, "drawable", getPackageName()));
+              //  h.prodImg.setImageResource(getResources().getIdentifier(imgName, "drawable", getPackageName()));
+
+                h.prodImg.setImageBitmap(BitMapHelper.decodeSampledBitmapFromResource(getResources(),getResources().getIdentifier(imgName, "drawable", getPackageName()), R.dimen.iccircle_img_width, R.dimen.iccircle_img_height));
             }
 
 
@@ -228,7 +325,7 @@ public class UserPlotListActivity extends Activity {
             btnd.setVisibility(View.GONE);
 
 
-              h.layoutPlotRow.setOnLongClickListener(new View.OnLongClickListener() {
+              h.editableLayout.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
                     Log.d("Is Onpress", "Show Button");
@@ -272,8 +369,7 @@ public class UserPlotListActivity extends Activity {
             });
 
             //On Click Coppy Action
-            SharedPreferences sp = getSharedPreferences(ServiceInstance.PREF_NAME, Context.MODE_PRIVATE);
-            final String userId = sp.getString(ServiceInstance.sp_userId, "0");
+
             h.btnCopy.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -305,8 +401,10 @@ public class UserPlotListActivity extends Activity {
 
     static class ViewHolder {
         private  TextView labelAddress,labelPlotSize,labelProductName,labelProfit,labelDate,btnProfit,btnDelete,btnCopy;
-        private  ImageView imgProduct,prodImg;
-        private  LinearLayout prodBg,layoutPlotRow ;
+        private  ImageView imgProduct,prodImg,pinImg;
+        private  LinearLayout prodBg,layoutPlotRow,editableLayout ;
+        private  LinearLayout.LayoutParams params;
+        private  String userId;
 
 
     }
@@ -325,8 +423,14 @@ public class UserPlotListActivity extends Activity {
                 List<mGetRegister.mRespBody> loginBodyLists = registerInfo.getRespBody();
 
                 if (loginBodyLists.size() != 0) {
+                    UserModel user = new UserModel();
+                    user.userEmail      = loginBodyLists.get(0).getUserEmail();
+                    user.userFirstName  = loginBodyLists.get(0).getUserFirstName();
+                    user.userLastName   = loginBodyLists.get(0).getUserLastName();
+                    user.userLogin      = loginBodyLists.get(0).getUserLogin();
+                    user.userID         = String.valueOf(loginBodyLists.get(0).getUserID());
 
-                    EditUserActivity.userInfoRespBody = loginBodyLists.get(0);
+                   EditUserActivity.userInfo = user;
                     startActivity(new Intent(UserPlotListActivity.this, EditUserActivity.class));
 
                 }
@@ -368,7 +472,7 @@ public class UserPlotListActivity extends Activity {
 
     }
 
-    private void API_updateUserPlotSeq( String userID,String seqNo) {
+    private void API_updateUserPlotSeq(String userID, String seqNo, final int apiFlag) {
 /**
  1.UserID
  2.SeqPlotID List ,
@@ -382,8 +486,12 @@ public class UserPlotListActivity extends Activity {
 
                 List<mUpdateUserPlotSeq.mRespBody> updPlotSeqBodyLists = updateUserPlotseq.getRespBody();
             //    if (updPlotSeqBodyLists.size() != 0) {
-                    Log.d(TAG,"API_updateUserPlotSeq Complete ");
-                    toastMsg("คัดลอกข้อมูลสำเร็จ");
+                    if(apiFlag == 1) {
+                      //  toastMsg("คัดลอกข้อมูลสำเร็จ");
+                    }else{
+                        Log.d(TAG, "API_updateUserPlotSeq Complete ");
+                        toastMsg("คัดลอกข้อมูลสำเร็จ");
+                    }
               //  }
 
             }
@@ -424,7 +532,7 @@ public class UserPlotListActivity extends Activity {
                         listSeq = listSeq.substring(1, listSeq.length());
                     }
 
-                    API_updateUserPlotSeq(userId,listSeq);
+                    API_updateUserPlotSeq(userId,listSeq,0);
 
 
                 }

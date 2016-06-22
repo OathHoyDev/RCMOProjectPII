@@ -8,8 +8,8 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="20dp"
-        android:paddingBottom="20dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="5dp"
         android:paddingRight="10dp"
         android:paddingLeft="10dp"
         android:orientation="vertical">
@@ -20,16 +20,16 @@
         android:gravity="center"
         android:textColor="@color/RcmoNormalDarkText"
         android:layout_marginLeft="5dp"
-        android:textSize="23sp"
+        android:textSize="17sp"
         android:id="@+id/title"
         android:padding="5dp"
         android:text="title"/>
     <com.neopixl.pixlui.components.textview.TextView
-
+        android:paddingLeft="10dp"
         pixlui:typeface="Quark-Light.otf"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:gravity="left"
         android:id="@+id/message"
         android:textColor="@color/RcmoNormalDarkText"
         android:layout_marginLeft="5dp"

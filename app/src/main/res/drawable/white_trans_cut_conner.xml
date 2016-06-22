@@ -8,4 +8,5 @@
         android:topRightRadius="@dimen/radius_large"/>
 
     <solid android:color="@color/RcmoLightTranBG"/>
+
 </shape>

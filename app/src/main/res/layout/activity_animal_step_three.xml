@@ -2,9 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:pixlui="http://schemas.android.com/apk/com.neopixl.pixlui"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:id="@+id/mainLayoutAnimalStepThree"
-    android:background="@drawable/bg_meat">
+   >
 
 
 
@@ -53,7 +53,7 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/RcmoStepTabTranBG"
         >
         <RelativeLayout
@@ -173,7 +173,7 @@
                     android:textStyle="bold"
                     android:text="จำนวนเมื่อเริ่มเลี้ยง"
                     android:textColor="@color/RcmoNormalDarkText"
-                    android:textSize="@dimen/textsize_large"
+                    android:textSize="@dimen/textsize_normal"
                     android:id="@+id/labelnumberOfStart">
                 </com.neopixl.pixlui.components.textview.TextView>
 
@@ -193,7 +193,7 @@
                     android:padding="5dp"
                     android:inputType="number"
                     android:textCursorDrawable="@drawable/text_cursor"
-                    android:textSize="@dimen/textsize_large"
+                    android:textSize="@dimen/textsize_normal"
                     android:id="@+id/inputNumberOfStart"/>
 
                 <com.neopixl.pixlui.components.textview.TextView
@@ -203,9 +203,9 @@
                     android:gravity="center_vertical"
                     android:layout_marginTop="@dimen/margin_normal"
                     android:textStyle="bold"
-                    android:text="ราคาเมื่อเริ่มเลียง ต่อ 1 ตัว"
+                    android:text="ราคาเมื่อเริ่มเลี้ยง ต่อ 1 ตัว"
                     android:textColor="@color/RcmoNormalDarkText"
-                    android:textSize="@dimen/textsize_large"
+                    android:textSize="@dimen/textsize_normal"
                     android:id="@+id/labelPricePerUnit">
                 </com.neopixl.pixlui.components.textview.TextView>
 
@@ -225,7 +225,7 @@
                     android:padding="5dp"
                     android:inputType="numberDecimal"
                     android:textCursorDrawable="@drawable/text_cursor"
-                    android:textSize="@dimen/textsize_xlarge"
+                    android:textSize="@dimen/textsize_normal"
                     android:id="@+id/inputPricePerUnit"/>
 
                 <com.neopixl.pixlui.components.textview.TextView
@@ -235,9 +235,9 @@
                     android:gravity="center_vertical"
                     android:layout_marginTop="@dimen/margin_normal"
                     android:textStyle="bold"
-                    android:text="น้ำหนักเฉลี่ยเมื่อเลียง ต่อ 1 ตัว"
+                    android:text="น้ำหนักเฉลี่ยเมื่อเลี้ยง ต่อ 1 ตัว"
                     android:textColor="@color/RcmoNormalDarkText"
-                    android:textSize="@dimen/textsize_large"
+                    android:textSize="@dimen/textsize_normal"
                     android:id="@+id/labelWeightPerUnit">
                 </com.neopixl.pixlui.components.textview.TextView>
 
@@ -257,7 +257,7 @@
                     android:padding="5dp"
                     android:inputType="numberDecimal"
                     android:textCursorDrawable="@drawable/text_cursor"
-                    android:textSize="@dimen/textsize_xlarge"
+                    android:textSize="@dimen/textsize_normal"
                     android:id="@+id/inputWeightPerUnit"/>
 
                 <com.neopixl.pixlui.components.textview.TextView
@@ -268,7 +268,7 @@
                     android:textStyle="bold"
                     android:text="ตำแหน่งแปลงทีดิน"
                     android:textColor="@color/RcmoNormalDarkText"
-                    android:textSize="@dimen/textsize_large"
+                    android:textSize="@dimen/textsize_normal"
                     android:id="@+id/labelLocation">
                 </com.neopixl.pixlui.components.textview.TextView>
                 <com.neopixl.pixlui.components.textview.TextView
@@ -289,7 +289,7 @@
                     android:padding="5dp"
                     android:inputType="text"
                     android:textCursorDrawable="@drawable/text_cursor"
-                    android:textSize="@dimen/textsize_large"
+                    android:textSize="@dimen/textsize_normal"
                     android:id="@+id/inputprovice"/>
 
                 <LinearLayout
@@ -318,7 +318,7 @@
                         android:layout_marginRight="1dp"
                         android:inputType="text"
                         android:textCursorDrawable="@drawable/text_cursor"
-                        android:textSize="@dimen/textsize_large"
+                        android:textSize="@dimen/textsize_normal"
                         android:id="@+id/inputAmphoe"/>
 
                     <com.neopixl.pixlui.components.textview.TextView
@@ -340,7 +340,7 @@
                         android:padding="5dp"
                         android:inputType="text"
                         android:textCursorDrawable="@drawable/text_cursor"
-                        android:textSize="@dimen/textsize_large"
+                        android:textSize="@dimen/textsize_normal"
                         android:id="@+id/inputTumbon"/>
                 </LinearLayout>
 
@@ -359,7 +359,7 @@
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="10dp"
                     >
 
 
@@ -370,13 +370,13 @@
                         android:layout_weight="1"
                         android:paddingLeft="15dp"
                         android:textStyle="bold"
-                        android:layout_marginTop="10dp"
+
                         android:text="บันทึก"
                         android:textColor="@color/RcmoWhiteBG"
                         android:background="@drawable/action_gray_cut_left_conner"
                         android:gravity="center"
                         android:padding="5dp"
-                        android:textSize="@dimen/textsize_xlarge"
+                        android:textSize="@dimen/textsize_large"
                         android:clickable="true"
                         android:focusable="true"
                         android:id="@+id/btnSave"/>
@@ -389,13 +389,13 @@
                         android:layout_weight="1"
                         android:paddingLeft="15dp"
                         android:textStyle="bold"
-                        android:layout_marginTop="10dp"
+
                         android:text="คำนวณ"
                         android:textColor="@color/RcmoWhiteBG"
                         android:background="@drawable/action_orange_cut_right_conner"
                         android:gravity="center"
                         android:padding="5dp"
-                        android:textSize="@dimen/textsize_xlarge"
+                        android:textSize="@dimen/textsize_large"
                         android:clickable="true"
                         android:focusable="true"
                         android:id="@+id/btnCal"/>

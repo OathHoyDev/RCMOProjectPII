@@ -4,8 +4,10 @@
     xmlns:pixlui="http://schemas.android.com/apk/com.neopixl.pixlui"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_total"
+    android:id="@+id/mainLoginLayout"
+
     tools:context="th.co.rcmo.rcmoapp.LoginActivity">
+
 
 
     <com.neopixl.pixlui.components.textview.TextView
@@ -58,7 +60,7 @@
                 android:padding="10dp"
                 android:id="@+id/logoLogin"
                 android:layout_marginTop="25dp"
-                android:src="@drawable/logo_openeyes"/>
+               />
 
 
             <LinearLayout
@@ -76,6 +78,16 @@
                     android:background="@drawable/white_trans_cut_conner"
                     android:padding="20dp">
 
+                    <com.neopixl.pixlui.components.textview.TextView
+                        pixlui:typeface="Quark-Bold.otf"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="dev v. 0.06"
+                        android:textColor="@color/RcmoWhiteBG"
+                        android:gravity="center"
+                        android:textSize="@dimen/textsize_xxsmall"
+                        android:id="@+id/AppVersion"/>
 
                     <com.neopixl.pixlui.components.textview.TextView
                         pixlui:typeface="Quark-Bold.otf"
@@ -124,7 +136,7 @@
                         android:textColor="@color/RcmoNormalDarkText"
                         android:textColorHint="@color/RcmoHintText"
                         android:imeOptions="actionDone"
-                        android:background="@color/RcmoWhiteBG"
+                        android:background="@drawable/white_cut_conner_valid"
                         android:gravity="center"
                         android:padding="5dp"
                         android:inputType="textPassword"
@@ -202,5 +214,4 @@
 
 
     </LinearLayout>
-
 </RelativeLayout>

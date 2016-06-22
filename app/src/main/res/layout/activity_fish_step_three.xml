@@ -2,9 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:pixlui="http://schemas.android.com/apk/com.neopixl.pixlui"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/mainLayoutFishStepThree"
-    android:background="@drawable/bg_fish">
+    android:layout_height="match_parent"
+    android:id="@+id/mainLayoutFishStepThree">
 
 
 
@@ -56,7 +55,7 @@
          <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/RcmoStepTabTranBG"
         >
         <RelativeLayout
@@ -187,7 +186,7 @@
                         android:text="ขนาดแปลงที่ดิน"
                         android:layout_gravity="center"
                         android:textColor="@color/RcmoNormalDarkText"
-                        android:textSize="@dimen/textsize_large"
+                        android:textSize="@dimen/textsize_normal"
                         android:textStyle="bold"
                         pixlui:typeface="Quark-Bold.otf"></com.neopixl.pixlui.components.textview.TextView>
 
@@ -282,7 +281,7 @@
                         android:textColor="@color/RcmoNormalDarkText"
                         android:textColorHint="@color/RcmoHintText"
                         android:textCursorDrawable="@drawable/text_cursor"
-                        android:textSize="@dimen/textsize_large"
+                        android:textSize="@dimen/textsize_normal"
                         android:textStyle="bold"
                         pixlui:typeface="Quark-Bold.otf" />
 
@@ -295,7 +294,7 @@
 
                         android:text="จำนวนกระชังที่เลี้ยงในรุ่นนี้"
                         android:textColor="@color/RcmoNormalDarkText"
-                        android:textSize="@dimen/textsize_large"
+                        android:textSize="@dimen/textsize_normal"
                         android:textStyle="bold"
                         pixlui:typeface="Quark-Bold.otf"></com.neopixl.pixlui.components.textview.TextView>
 
@@ -314,7 +313,7 @@
                         android:textColor="@color/RcmoNormalDarkText"
                         android:textColorHint="@color/RcmoHintText"
                         android:textCursorDrawable="@drawable/text_cursor"
-                        android:textSize="@dimen/textsize_large"
+                        android:textSize="@dimen/textsize_normal"
                         android:textStyle="bold"
                         pixlui:typeface="Quark-Bold.otf" />
 
@@ -326,7 +325,7 @@
                         android:gravity="center_vertical"
                         android:text="จำนวนลูกปลาที่ปล่อย ต่อ 1 กระชัง"
                         android:textColor="@color/RcmoNormalDarkText"
-                        android:textSize="@dimen/textsize_large"
+                        android:textSize="@dimen/textsize_normal"
                         android:textStyle="bold"
                         pixlui:typeface="Quark-Bold.otf"/>
 
@@ -346,7 +345,7 @@
                         android:textColor="@color/RcmoNormalDarkText"
                         android:textColorHint="@color/RcmoHintText"
                         android:textCursorDrawable="@drawable/text_cursor"
-                        android:textSize="@dimen/textsize_large"
+                        android:textSize="@dimen/textsize_normal"
                         android:textStyle="bold"
                         pixlui:typeface="Quark-Bold.otf" />
 
@@ -389,7 +388,7 @@
                                 android:textColor="@color/RcmoNormalDarkText"
                                 android:textColorHint="@color/RcmoHintText"
                                 android:textCursorDrawable="@drawable/text_cursor"
-                                android:textSize="@dimen/textsize_large"
+                                android:textSize="@dimen/textsize_normal"
                                 android:textStyle="bold"
                                 pixlui:typeface="Quark-Bold.otf" />
 
@@ -409,7 +408,7 @@
                                 android:textColor="@color/RcmoNormalDarkText"
                                 android:textColorHint="@color/RcmoHintText"
                                 android:textCursorDrawable="@drawable/text_cursor"
-                                android:textSize="@dimen/textsize_large"
+                                android:textSize="@dimen/textsize_normal"
                                 android:textStyle="bold"
                                 pixlui:typeface="Quark-Bold.otf" />
                         </LinearLayout>
@@ -435,7 +434,7 @@
                                 android:textColor="@color/RcmoNormalDarkText"
                                 android:textColorHint="@color/RcmoHintText"
                                 android:textCursorDrawable="@drawable/text_cursor"
-                                android:textSize="@dimen/textsize_large"
+                                android:textSize="@dimen/textsize_normal"
                                 android:textStyle="bold"
                                 pixlui:typeface="Quark-Bold.otf" />
 
@@ -455,7 +454,7 @@
                                 android:textColor="@color/RcmoNormalDarkText"
                                 android:textColorHint="@color/RcmoHintText"
                                 android:textCursorDrawable="@drawable/text_cursor"
-                                android:textSize="@dimen/textsize_large"
+                                android:textSize="@dimen/textsize_normal"
                                 android:textStyle="bold"
                                 pixlui:typeface="Quark-Bold.otf" />
                         </LinearLayout>
@@ -481,7 +480,7 @@
                             android:text="จำนวนลูกปลาที่ปล่อย"
                             android:layout_gravity="center"
                             android:textColor="@color/RcmoNormalDarkText"
-                            android:textSize="@dimen/textsize_large"
+                            android:textSize="@dimen/textsize_normal"
                             android:textStyle="bold"
                             pixlui:typeface="Quark-Bold.otf"></com.neopixl.pixlui.components.textview.TextView>
 
@@ -509,7 +508,7 @@
                                 android:layout_marginRight="2dp"
                                 android:text="ตัว"
                                 android:textColor="@color/RcmoNormalDarkText"
-                                android:textSize="@dimen/textsize_large"
+                                android:textSize="@dimen/textsize_normal"
                                 android:textStyle="bold"
                                 pixlui:typeface="Quark-Bold.otf"/>
 
@@ -545,7 +544,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="กิโลกรัม"
                                 android:textColor="@color/RcmoNormalDarkText"
-                                android:textSize="@dimen/textsize_large"
+                                android:textSize="@dimen/textsize_normal"
                                 android:textStyle="bold"
                                 pixlui:typeface="Quark-Bold.otf"/>
 
@@ -569,7 +568,7 @@
                         android:textColor="@color/RcmoNormalDarkText"
                         android:textColorHint="@color/RcmoHintText"
                         android:textCursorDrawable="@drawable/text_cursor"
-                        android:textSize="@dimen/textsize_large"
+                        android:textSize="@dimen/textsize_normal"
                         android:textStyle="bold"
                         pixlui:typeface="Quark-Bold.otf" />
                 </LinearLayout>   <!---Bo Layout-->
@@ -600,7 +599,7 @@
                             android:textColor="@color/RcmoNormalDarkText"
                             android:textColorHint="@color/RcmoHintText"
                             android:textCursorDrawable="@drawable/text_cursor"
-                            android:textSize="@dimen/textsize_large"
+                            android:textSize="@dimen/textsize_normal"
                             android:textStyle="bold"
                             pixlui:typeface="Quark-Bold.otf" />
 
@@ -620,7 +619,7 @@
                             android:textColor="@color/RcmoNormalDarkText"
                             android:textColorHint="@color/RcmoHintText"
                             android:textCursorDrawable="@drawable/text_cursor"
-                            android:textSize="@dimen/textsize_large"
+                            android:textSize="@dimen/textsize_normal"
                             android:textStyle="bold"
                             pixlui:typeface="Quark-Bold.otf" />
                     </LinearLayout>
@@ -646,7 +645,7 @@
                             android:textColor="@color/RcmoNormalDarkText"
                             android:textColorHint="@color/RcmoHintText"
                             android:textCursorDrawable="@drawable/text_cursor"
-                            android:textSize="@dimen/textsize_large"
+                            android:textSize="@dimen/textsize_normal"
                             android:textStyle="bold"
                             pixlui:typeface="Quark-Bold.otf" />
 
@@ -814,17 +813,14 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="7dp"
                     android:orientation="horizontal"
 
                     >
-
-
                     <com.neopixl.pixlui.components.textview.TextView
                         android:id="@+id/btnSave"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
                         android:layout_weight="1"
 
                         android:background="@drawable/action_gray_cut_left_conner"
@@ -835,7 +831,7 @@
                         android:paddingLeft="15dp"
                         android:text="บันทึก"
                         android:textColor="@color/RcmoWhiteBG"
-                        android:textSize="@dimen/textsize_xlarge"
+                        android:textSize="@dimen/textsize_large"
                         android:textStyle="bold"
                         pixlui:typeface="Quark-Bold.otf" />
 
@@ -844,7 +840,6 @@
                         android:id="@+id/btnCal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
                         android:layout_weight="1"
                         android:background="@drawable/action_orange_cut_right_conner"
                         android:clickable="true"
@@ -854,7 +849,7 @@
                         android:paddingLeft="15dp"
                         android:text="คำนวณ"
                         android:textColor="@color/RcmoWhiteBG"
-                        android:textSize="@dimen/textsize_xlarge"
+                        android:textSize="@dimen/textsize_large"
                         android:textStyle="bold"
                         pixlui:typeface="Quark-Bold.otf" />
 
@@ -882,7 +877,7 @@
                 android:id="@+id/prodImg"
                 android:layout_height="50dp"
                 android:layout_width="50dp"
-                android:src="@drawable/f1"
+
                 />
         </LinearLayout>
 

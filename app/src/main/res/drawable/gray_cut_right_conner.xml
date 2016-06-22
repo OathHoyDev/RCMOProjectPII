@@ -8,4 +8,5 @@
         android:topRightRadius="@dimen/radius"/>
 
     <solid android:color="@color/RcmoGrayBG"/>
+
 </shape>

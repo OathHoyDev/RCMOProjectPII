@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -17,20 +18,22 @@ import com.neopixl.pixlui.components.textview.TextView;
 import java.util.List;
 import th.co.rcmo.rcmoapp.API.RequestServices;
 import th.co.rcmo.rcmoapp.API.ResponseAPI;
+import th.co.rcmo.rcmoapp.Model.UserModel;
 import th.co.rcmo.rcmoapp.Module.mGetRegister;
 import th.co.rcmo.rcmoapp.Module.mRegister;
+import th.co.rcmo.rcmoapp.Util.BitMapHelper;
 import th.co.rcmo.rcmoapp.Util.ServiceInstance;
+import th.co.rcmo.rcmoapp.View.DialogChoice;
 
 public class EditUserActivity extends Activity {
 
-    EditText inputName,inputSirName,inputUsername;
-    TextView inputEmail;
-    public static mGetRegister.mRespBody  userInfoRespBody = new mGetRegister.mRespBody();
+
+    public static UserModel userInfo = new UserModel();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_user);
-
+        findViewById(R.id.mainEditUserLayout).setBackground(new BitmapDrawable(BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.bg_total, 300, 400)));
         setUI();
         setAction();
 
@@ -39,15 +42,15 @@ public class EditUserActivity extends Activity {
 
     private void setUI() {
 
-         inputName     =  (EditText)findViewById(R.id.inputName);
-         inputSirName  =  (EditText)findViewById(R.id.inputSirName);
-         inputUsername =  (EditText)findViewById(R.id.inputUsername);
-         inputEmail    =  (TextView)findViewById(R.id.inputEmail);
+        Holder.inputName      = (EditText) findViewById(R.id.inputName);
+        Holder.inputSirName   = (EditText) findViewById(R.id.inputSirName);
+        Holder.inputUsername  = (TextView) findViewById(R.id.inputUsername);
+        Holder.inputEmail     = (EditText) findViewById(R.id.inputEmail);
 
-        inputName.setText(userInfoRespBody.getUserFirstName());
-        inputSirName.setText(userInfoRespBody.getUserLastName());
-        inputUsername.setText(userInfoRespBody.getUserLogin());
-        inputEmail.setText(userInfoRespBody.getUserEmail());
+        Holder.inputName.setText(userInfo.userFirstName);
+        Holder.inputSirName.setText(userInfo.userLastName);
+        Holder.inputUsername.setText(userInfo.userLogin);
+        Holder.inputEmail.setText(userInfo.userEmail);
 
     }
     private void setAction() {
@@ -66,9 +69,9 @@ public class EditUserActivity extends Activity {
             public void onClick(View v) {
 
                 startActivity(new Intent(EditUserActivity.this, ChangePasswordActivity.class)
-                     .putExtra("fname",userInfoRespBody.getUserFirstName())
-                     .putExtra("lname",userInfoRespBody.getUserLastName())
-                      .putExtra("email",userInfoRespBody.getUserLastName())
+                     .putExtra("fname",userInfo.userFirstName)
+                     .putExtra("lname",userInfo.userLastName)
+                      .putExtra("email",userInfo.userEmail)
                 );
 
 
@@ -78,19 +81,61 @@ public class EditUserActivity extends Activity {
         findViewById(R.id.btnSave).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                inputName     =  (EditText)findViewById(R.id.inputName);
-                inputSirName  =  (EditText)findViewById(R.id.inputSirName);
-                inputUsername =  (EditText)findViewById(R.id.inputUsername);
-                inputEmail    =  (TextView)findViewById(R.id.inputEmail);
 
-                SharedPreferences sp = getSharedPreferences(ServiceInstance.PREF_NAME, Context.MODE_PRIVATE);
-                String userId = sp.getString(ServiceInstance.sp_userId, "0");
+                Holder.inputName.setBackgroundResource(R.drawable.white_cut_conner_valid);
+                Holder.inputSirName.setBackgroundResource(R.drawable.white_cut_conner_valid);
+               // Holder.inputUsername.setBackgroundResource(R.drawable.white_cut_conner_valid);
+                Holder.inputEmail.setBackgroundResource(R.drawable.white_cut_conner_valid);
 
-                API_EditUser(  userId
-                             , inputUsername.getText().toString()
-                             , inputName.getText().toString()
-                             , inputSirName.getText().toString()
-                             , inputEmail.getText().toString());
+                if ( Holder.inputName.length() > 0
+                        &&  Holder.inputSirName.length()>0
+                        &&  Holder.inputUsername.length()>0
+                        && Holder.inputEmail.length()>0){
+
+                    SharedPreferences sp = getSharedPreferences(ServiceInstance.PREF_NAME, Context.MODE_PRIVATE);
+                    String userId = sp.getString(ServiceInstance.sp_userId, "0");
+                    API_EditUser(  userId
+                            , Holder.inputUsername.getText().toString()
+                            , Holder.inputName.getText().toString()
+                            , Holder.inputSirName.getText().toString()
+                            , Holder.inputEmail.getText().toString());
+
+                }else{
+                    boolean isFocus = false;
+                    String errorMsg = "";
+                    if(!( Holder.inputName.length() > 0)) {
+                        errorMsg += "- ชื่อ \n";
+                        Holder.inputName.setBackgroundResource(R.drawable.white_cut_conner_invalid);
+
+                        if(!isFocus) {
+                            Holder.inputName.requestFocus();
+                            isFocus = true;
+                        }
+                    }
+
+                    if (!( Holder.inputSirName.length() > 0)){
+                        errorMsg += "- นามสกุล \n";
+                        Holder.inputSirName.setBackgroundResource(R.drawable.white_cut_conner_invalid);
+                        if(!isFocus) {
+                            Holder.inputSirName.requestFocus();
+                            isFocus = true;
+                        }
+                    }
+
+                    if (!( Holder.inputEmail.length() > 0)){
+                        errorMsg += "- อีเมล์ ";
+                        Holder.inputEmail.setBackgroundResource(R.drawable.white_cut_conner_invalid);
+                        if(!isFocus) {
+                            Holder.inputEmail.requestFocus();
+                            isFocus = true;
+                        }
+                    }
+                    new DialogChoice(EditUserActivity.this)
+                            .ShowOneChoice("กรุณากรอกข้อมูล", errorMsg);
+
+
+                }
+
                 /*
                 Context context = getApplicationContext();
                 CharSequence text = "ปรับปรุงข้อมูลผู้ใช้งานสำเร็จ";
@@ -110,7 +155,7 @@ public class EditUserActivity extends Activity {
             public void onClick(View v) {
                 SharedPreferences sp = getSharedPreferences(ServiceInstance.PREF_NAME, Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sp.edit();
-                editor.putString(ServiceInstance.sp_userId, "0");
+                editor.clear();
                 editor.commit();
 
                 toastDisplayCustom_API("ออกจากระบบสำเร็จ");
@@ -182,12 +227,16 @@ public class EditUserActivity extends Activity {
             @Override
             public void callbackError(int code, String errorMsg) {
 
-                toastDisplayCustom_API("ไม่สามารถปรับปรุงข้อมูลผู้ใช้ได้");
+                if(code == 4){
+                    Holder.inputEmail.setBackgroundResource(R.drawable.white_cut_conner_invalid);
+                    Holder.inputEmail.requestFocus();
+                }
+                new DialogChoice(EditUserActivity.this).ShowOneChoice(errorMsg,"");
             }
-        }).API_Request(true, RequestServices.ws_saveRegister +
+        }).API_Request(false, RequestServices.ws_saveRegister +
                 "?SaveFlag=" + 2 +
                 "&UserID=" + userId +
-                "&UserLogin=" + username +
+                "&UserLogin=" +
                 "&UserPwd=" +
                 "&UserFirstName=" + name +
                 "&UserLastName=" + sirName +
@@ -209,5 +258,10 @@ public class EditUserActivity extends Activity {
         text.setText(msg);
 
         toast.show();
+    }
+
+    private static class  Holder {
+        static  EditText  inputName,inputSirName,inputEmail;
+        static  TextView inputUsername;
     }
 }
