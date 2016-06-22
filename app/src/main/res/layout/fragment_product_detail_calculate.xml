@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="fill_parent"
     android:background="@color/RcmoWhiteBG"
-    android:paddingTop="50dp"
     tools:context=".ProductDetailCalculateFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -27,7 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
-            android:paddingTop="80dp">
+            android:paddingTop="60dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -247,7 +246,8 @@
                 android:layout_marginRight="10dp"
                 android:layout_below="@+id/headerLayout"
                 android:layout_alignParentBottom="false"
-                android:footerDividersEnabled="false" />
+                android:footerDividersEnabled="false"
+                android:backgroundTint="@android:color/transparent" />
 
             <RelativeLayout
                 android:layout_width="match_parent"

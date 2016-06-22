@@ -2,6 +2,7 @@ package th.co.rcmo.rcmoapp;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -14,6 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -27,6 +29,7 @@ import th.co.rcmo.rcmoapp.API.ResponseAPI;
 import th.co.rcmo.rcmoapp.Model.ProductDetailModel;
 import th.co.rcmo.rcmoapp.Model.UserPlotModel;
 import th.co.rcmo.rcmoapp.Module.mGetPlotDetail;
+import th.co.rcmo.rcmoapp.Module.mProduct;
 import th.co.rcmo.rcmoapp.Util.CalculateConstant;
 import th.co.rcmo.rcmoapp.Util.ServiceInstance;
 
@@ -63,8 +66,8 @@ public class ProductDetailActivity extends AppCompatActivity {
         setAction();
 
         setUI();
-        createBundleForFragment();
-        initialTab();
+
+
 
 
     }
@@ -97,10 +100,6 @@ public class ProductDetailActivity extends AppCompatActivity {
 
     private void setUI(){
 
-        RelativeLayout headerLayout  =     (RelativeLayout)findViewById(R.id.headerLayout);
-        com.neopixl.pixlui.components.textview.TextView titleText = (com.neopixl.pixlui.components.textview.TextView)headerLayout.findViewById(R.id.titleLable);
-        titleText.setText("xxxxx");
-
         if (userPlotModel.getUserID() != null || !"".equalsIgnoreCase(userPlotModel.getUserID())) {
             API_getPlotDetail(userPlotModel.getPlotID());
         }
@@ -118,7 +117,10 @@ public class ProductDetailActivity extends AppCompatActivity {
 
     private void initialTab(){
 
-
+        Window window = getWindow();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window.setStatusBarColor(Color.BLACK);
+        }
 
         RelativeLayout headerLayout = (RelativeLayout) findViewById(R.id.headerLayout);
         switch (userPlotModel.getPrdGrpID()){
@@ -286,7 +288,11 @@ public class ProductDetailActivity extends AppCompatActivity {
                     userPlotModel.setAmpCode(mPlotDetailBodyLists.get(0).getAmpCode());
                     userPlotModel.setProvCode(mPlotDetailBodyLists.get(0).getProvCode());
 
+                    API_getProduct(mPlotDetailBodyLists.get(0).getPrdID() , mPlotDetailBodyLists.get(0).getPrdGrpID() , mPlotDetailBodyLists.get(0).getPlantGrpID());
 
+                    createBundleForFragment();
+
+                    initialTab();
                 }
 
 
@@ -299,6 +305,38 @@ public class ProductDetailActivity extends AppCompatActivity {
         }).API_Request(true, RequestServices.ws_getPlotDetail +
                 "?PlotID=" + plodID +
                 "&ImeiCode=" + ServiceInstance.GetDeviceID(context));
+
+    }
+
+    private void API_getProduct(String prdID , String prdGrpID , String plantGrpID) {
+
+        new ResponseAPI(context, new ResponseAPI.OnCallbackAPIListener() {
+            @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
+            @Override
+            public void callbackSuccess(Object obj) {
+
+                mProduct mProduct = (mProduct) obj;
+                List<mProduct.mRespBody> mProductBodyLists = mProduct.getRespBody();
+
+                if (mProductBodyLists.size() != 0) {
+
+                    RelativeLayout headerLayout  =     (RelativeLayout)findViewById(R.id.headerLayout);
+                    com.neopixl.pixlui.components.textview.TextView titleText = (com.neopixl.pixlui.components.textview.TextView)headerLayout.findViewById(R.id.titleLable);
+                    titleText.setText(mProductBodyLists.get(0).getPrdName());
+
+                }
+
+
+            }
+
+            @Override
+            public void callbackError(int code, String errorMsg) {
+                Log.d("Error", errorMsg);
+            }
+        }).API_Request(true, RequestServices.ws_getProduct +
+                "?PrdID=" + prdID +
+                "&PrdGrpID=" + prdGrpID +
+                "&PlantGrpID=" + plantGrpID);
 
     }
 

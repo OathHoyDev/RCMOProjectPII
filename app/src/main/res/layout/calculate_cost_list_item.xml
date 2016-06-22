@@ -3,7 +3,7 @@
     xmlns:pixlui="http://schemas.android.com/apk/com.neopixl.pixlui"
     android:minHeight="60dp"
     android:layout_width="match_parent"
-    android:layout_height="60dp"
+    android:layout_height="50dp"
     android:orientation="horizontal"
     android:background="@color/RcmoLightGrayBG">
 
@@ -12,20 +12,20 @@
         android:id="@+id/txCostName"
         android:layout_width="150dp"
         android:layout_height="fill_parent"
-        android:textSize="17dp"
         android:layout_weight="5"
         android:layout_marginLeft="10dp"
         android:layout_alignParentLeft="true"
         android:textColor="@color/RcmoBlackBG"
         android:text="T1"
         android:gravity="left|center_vertical"
-        android:layout_centerVertical="true" />
+        android:layout_centerVertical="true"
+        android:textAppearance="?android:attr/textAppearanceSmall"/>
 
     <com.neopixl.pixlui.components.edittext.EditText
         pixlui:typeface="Quark-Bold.otf"
         android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_height="40dp"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="T2"
         android:id="@+id/txCostValue"
         android:layout_weight="2"
@@ -35,13 +35,15 @@
         android:textColor="@color/RcmoBlackBG"
         android:paddingRight="10dp"
         android:layout_gravity="center_vertical"
-        android:gravity="center_vertical|right" />
+        android:gravity="center_vertical|right"
+        android:paddingTop="0dp"
+        android:paddingBottom="0dp" />
 
     <com.neopixl.pixlui.components.textview.TextView
         pixlui:typeface="Quark-Bold.otf"
         android:layout_width="80dp"
         android:layout_height="fill_parent"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="T3"
         android:id="@+id/txCostUnit"
         android:layout_weight="1"
