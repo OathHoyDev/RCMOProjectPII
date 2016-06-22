@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import th.co.rcmo.rcmoapp.Model.ProductDetailModel;
+import th.co.rcmo.rcmoapp.Model.UserPlotModel;
 import th.co.rcmo.rcmoapp.Util.CalculateConstant;
 
 public class ProductDetailActivity extends AppCompatActivity {
@@ -27,6 +28,7 @@ public class ProductDetailActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private ProductDetailModel productDetailModel;
+    public static UserPlotModel userPlotModel;
     private String productType;
     private Bundle bundle;
 

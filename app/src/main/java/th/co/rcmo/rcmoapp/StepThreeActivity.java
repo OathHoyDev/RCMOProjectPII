@@ -34,6 +34,7 @@ import th.co.rcmo.rcmoapp.API.ResponseAPI;
 import th.co.rcmo.rcmoapp.Adapter.DialogAmphoeAdapter;
 import th.co.rcmo.rcmoapp.Adapter.DialogProvinceAdapter;
 import th.co.rcmo.rcmoapp.Adapter.DialogTumbonAdapter;
+import th.co.rcmo.rcmoapp.Model.ProductDetailModel;
 import th.co.rcmo.rcmoapp.Model.ProductModel;
 import th.co.rcmo.rcmoapp.Model.UserModel;
 import th.co.rcmo.rcmoapp.Model.UserPlotModel;
@@ -228,6 +229,31 @@ public class StepThreeActivity extends Activity {
 
                 }
             }
+        });
+
+        findViewById(R.id.btnCal).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                userPlotModel = new UserPlotModel();
+                userPlotModel.setPrdGrpID(String.valueOf(productionInfo.getPrdGrpID()));
+                userPlotModel.setPrdID(String.valueOf(productionInfo.getPrdID()));
+                userPlotModel.setPrdGrpID(String.valueOf(productionInfo.getPrdGrpID()));
+                userPlotModel.setUserID(userId);
+                userPlotModel.setPlotID(plotId);
+
+                if ("1".equals(userPlotModel.getPrdGrpID())) {
+                    preparePlantDataForInsert();
+                } else if ("2".equals(userPlotModel.getPrdGrpID())) {
+                    prepareAnimalDataForInsert();
+                } else if ("3".equals(userPlotModel.getPrdGrpID())) {
+                    prepareFishDataForInsert();
+                }
+
+                ProductDetailActivity.userPlotModel = userPlotModel;
+                startActivity(new Intent(StepThreeActivity.this, ProductDetailActivity.class));
+            }
+
+
         });
 
 
