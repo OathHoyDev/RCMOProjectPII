@@ -4,8 +4,11 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Handler;
+import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import th.co.rcmo.rcmoapp.R;
@@ -69,7 +72,7 @@ public class DialogChoice {
         TextView detail = (TextView)dialog.findViewById(R.id.message);
         TextView btn_ok = (TextView)dialog.findViewById(R.id.ok);
 
-       // dialog.findViewById(R.id.cancel).setVisibility(View.GONE);
+        // dialog.findViewById(R.id.cancel).setVisibility(View.GONE);
         //dialog.findViewById(R.id.line).setVisibility(View.GONE);
         if(t.length()==0) title.setVisibility(View.GONE);
         else title.setText(t);
@@ -124,6 +127,58 @@ public class DialogChoice {
             }
         });
         dialog.show();
+
+    }
+
+
+    public void ShowAppLink(){
+        final android.app.Dialog dialog = new android.app.Dialog(context);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_app_link);
+
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+        WindowManager.LayoutParams wmlp = dialog.getWindow().getAttributes();
+
+        wmlp.gravity = Gravity.TOP | Gravity.LEFT;
+
+        ImageView dialogGotoOtherApp = (ImageView)dialog.findViewById(R.id.dialogGotoOtherApp);
+        dialogGotoOtherApp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(onSelectChoiceListener!=null)
+                    onSelectChoiceListener.OnSelect(OK);
+                dialog.dismiss();
+            }
+        });
+       // wmlp.x = 100;   //x position
+        //wmlp.y = 100;   //y position
+
+//        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.R.color.transparent));
+
+        /*
+        TextView title =(TextView) dialog.findViewById(R.id.title);
+        TextView detail = (TextView)dialog.findViewById(R.id.message);
+        TextView btn_ok = (TextView)dialog.findViewById(R.id.ok);
+
+        // dialog.findViewById(R.id.cancel).setVisibility(View.GONE);
+        //dialog.findViewById(R.id.line).setVisibility(View.GONE);
+        if(t.length()==0) title.setVisibility(View.GONE);
+        else title.setText(t);
+        detail.setText(msg);
+
+        btn_ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(onSelectChoiceListener!=null)
+                    onSelectChoiceListener.OnSelect(OK);
+                dialog.dismiss();
+            }
+        });
+
+*/
+        dialog.show();
+
 
     }
 

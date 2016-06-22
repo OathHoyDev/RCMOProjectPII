@@ -27,6 +27,7 @@
         android:layout_height="@dimen/size_howto"
         android:src="@drawable/btn_goto_other_app"
         android:layout_alignParentLeft="true"
+        android:id="@+id/imgGotoOtherApp"
         android:layout_margin="10dp"/>
 
     <ImageView
