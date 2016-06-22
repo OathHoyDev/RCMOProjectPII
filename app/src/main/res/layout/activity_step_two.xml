@@ -113,6 +113,7 @@
             android:layout_alignParentLeft="true"
             android:id="@+id/prodHierarchy"
             android:layout_marginTop="5dp"
+            android:clickable="true"
             android:layout_marginBottom="5dp"
             android:layout_marginLeft="10dp"
             android:textColor="@color/RcmoNormalLightText"

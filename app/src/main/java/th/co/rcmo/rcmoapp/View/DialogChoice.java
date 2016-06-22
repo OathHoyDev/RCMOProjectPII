@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import th.co.rcmo.rcmoapp.R;
+import th.co.rcmo.rcmoapp.Util.ServiceInstance;
+import th.co.rcmo.rcmoapp.Util.Util;
 
 
 public class DialogChoice {
@@ -143,11 +145,29 @@ public class DialogChoice {
         wmlp.gravity = Gravity.TOP | Gravity.LEFT;
 
         ImageView dialogGotoOtherApp = (ImageView)dialog.findViewById(R.id.dialogGotoOtherApp);
+        ImageView imgOicApp = (ImageView)dialog.findViewById(R.id.imgOicApp);
+        ImageView imgEconApp = (ImageView)dialog.findViewById(R.id.imgEconApp);
+
+
         dialogGotoOtherApp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(onSelectChoiceListener!=null)
                     onSelectChoiceListener.OnSelect(OK);
+                dialog.dismiss();
+            }
+        });
+        imgOicApp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Util.onLunchAnotherApp(context, ServiceInstance.OIC_PACKAGE_NAME);
+                dialog.dismiss();
+            }
+        });
+        imgEconApp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Util.onLunchAnotherApp(context, ServiceInstance.ECON_PACKAGE_NAME);
                 dialog.dismiss();
             }
         });

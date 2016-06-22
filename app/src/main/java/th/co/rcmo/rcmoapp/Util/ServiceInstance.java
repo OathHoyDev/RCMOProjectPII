@@ -20,6 +20,8 @@ import java.util.Map;
 public class ServiceInstance {
 
     public static final String forgotPassURL = "http://111.223.34.154/RCMO/forgot_password.aspx";
+    public static final String OIC_PACKAGE_NAME  = "jp.naver.line.android";
+    public static final String ECON_PACKAGE_NAME = "com.facebook.katana";
     //public static final String forgotPassURL = "https://www.google.co.th/";
     public static final String FISHERY_TYPE_KC = "2";
     public static final String FISHERY_TYPE_BO = "1";
