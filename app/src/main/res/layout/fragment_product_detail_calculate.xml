@@ -1,0 +1,367 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:pixlui="http://schemas.android.com/apk/com.neopixl.pixlui"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/RcmoWhiteBG"
+    android:paddingTop="50dp"
+    tools:context=".ProductDetailCalculateFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <ScrollView
+        android:id="@+id/activity_expandable_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/RcmoWhiteBG"
+        android:orientation="vertical"
+        android:id="@+id/rootLayoutView">
+
+        <RelativeLayout
+            android:id="@+id/activity_expandable_list_view_relative_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:paddingTop="80dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:id="@+id/headerLayout">
+
+                <ImageView
+                    android:layout_width="fill_parent"
+                    android:layout_height="100dp"
+                    android:id="@+id/imageIcon"
+                    android:background="@drawable/light_gray_cut_conner"
+                    android:layout_marginLeft="50dp"
+                    android:layout_centerVertical="true" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/ImageProductLayout"
+                    android:layout_marginLeft="10dp">
+
+                    <com.neopixl.pixlui.components.textview.TextView
+                        pixlui:typeface="Quark-Bold.otf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="เนื้อที่"
+                        android:id="@+id/textView"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentStart="true"
+                        android:textColor="@color/RcmoGrayBG"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center_vertical" />
+
+                    <com.neopixl.pixlui.components.textview.TextView
+                        pixlui:typeface="Quark-Bold.otf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="xx"
+                        android:id="@+id/lbFishpondSizeRai"
+                        android:layout_below="@+id/textView"
+                        android:layout_alignParentEnd="false"
+                        android:layout_alignParentLeft="true"
+                        android:textColor="@color/RcmoFishBG" />
+
+                    <com.neopixl.pixlui.components.textview.TextView
+                        pixlui:typeface="Quark-Bold.otf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="ไร่"
+                        android:id="@+id/textView2"
+                        android:textColor="@color/RcmoGrayBG"
+                        android:layout_alignTop="@+id/lbFishpondSizeRai"
+                        android:layout_toEndOf="@+id/lbFishpondSizeRai"
+                        android:layout_marginLeft="5dp" />
+
+                    <com.neopixl.pixlui.components.textview.TextView
+                        pixlui:typeface="Quark-Bold.otf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="xx"
+                        android:id="@+id/lbFishpondSizeNgan"
+                        android:textColor="@color/RcmoFishBG"
+                        android:layout_alignTop="@+id/textView2"
+                        android:layout_toEndOf="@+id/textView2"
+                        android:layout_marginLeft="5dp" />
+
+                    <com.neopixl.pixlui.components.textview.TextView
+                        pixlui:typeface="Quark-Bold.otf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="งาน"
+                        android:id="@+id/textView3"
+                        android:textColor="@color/RcmoGrayBG"
+                        android:layout_marginLeft="5dp"
+                        android:layout_alignTop="@+id/lbFishpondSizeNgan"
+                        android:layout_toEndOf="@+id/lbFishpondSizeNgan" />
+
+                    <com.neopixl.pixlui.components.textview.TextView
+                        pixlui:typeface="Quark-Bold.otf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="xx"
+                        android:id="@+id/lbFishpondSizeSqrWah"
+                        android:textColor="@color/RcmoFishBG"
+                        android:layout_marginLeft="5dp"
+                        android:layout_alignTop="@+id/textView3"
+                        android:layout_toEndOf="@+id/textView3" />
+
+                    <com.neopixl.pixlui.components.textview.TextView
+                        pixlui:typeface="Quark-Bold.otf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="ตร.วา"
+                        android:id="@+id/textView4"
+                        android:textColor="@color/RcmoGrayBG"
+                        android:layout_marginLeft="5dp"
+                        android:layout_alignTop="@+id/lbFishpondSizeSqrWah"
+                        android:layout_toEndOf="@+id/lbFishpondSizeSqrWah" />
+
+                    <com.neopixl.pixlui.components.textview.TextView
+                        pixlui:typeface="Quark-Bold.otf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="xx"
+                        android:id="@+id/lbFishpondSizeSqrMeters"
+                        android:textColor="@color/RcmoFishBG"
+                        android:layout_marginLeft="5dp"
+                        android:layout_alignTop="@+id/textView4"
+                        android:layout_toEndOf="@+id/textView4" />
+
+                    <com.neopixl.pixlui.components.textview.TextView
+                        pixlui:typeface="Quark-Bold.otf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="ตร.ม."
+                        android:id="@+id/textView6"
+                        android:textColor="@color/RcmoGrayBG"
+                        android:layout_marginLeft="5dp"
+                        android:layout_alignTop="@+id/lbFishpondSizeSqrMeters"
+                        android:layout_toEndOf="@+id/lbFishpondSizeSqrMeters" />
+
+                    <com.neopixl.pixlui.components.textview.TextView
+                        pixlui:typeface="Quark-Bold.otf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="ปล่อยลูกปลา"
+                        android:id="@+id/textView5"
+                        android:textColor="@color/RcmoGrayBG"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginBottom="10dp"
+                        android:layout_alignParentBottom="true" />
+
+                    <com.neopixl.pixlui.components.textview.TextView
+                        pixlui:typeface="Quark-Bold.otf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="xx"
+                        android:id="@+id/lbAmountFish"
+                        android:textColor="@color/RcmoFishBG"
+                        android:layout_marginLeft="5dp"
+                        android:layout_alignTop="@+id/textView5"
+                        android:layout_toEndOf="@+id/textView5"
+                        android:layout_toRightOf="@+id/textView5" />
+
+                    <com.neopixl.pixlui.components.textview.TextView
+                        pixlui:typeface="Quark-Bold.otf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="ตัว"
+                        android:id="@+id/textView8"
+                        android:textColor="@color/RcmoGrayBG"
+                        android:layout_marginLeft="5dp"
+                        android:layout_alignTop="@+id/lbAmountFish"
+                        android:layout_toEndOf="@+id/lbAmountFish"
+                        android:layout_toRightOf="@+id/lbAmountFish" />
+
+                    <com.neopixl.pixlui.components.button.Button
+                        pixlui:typeface="Quark-Bold.otf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="* กดเพื่อแก้ไข"
+                        android:id="@+id/btnEditLandSize"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:textColor="@color/RcmoGrayBG"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:background="@android:color/transparent"
+                        android:layout_marginRight="10dp"
+                        android:layout_alignTop="@+id/textView8"
+                        android:layout_alignBottom="@+id/textView8" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="130dp"
+                    android:layout_height="130dp"
+                    android:id="@+id/ImageProductLayout">
+
+                    <ImageView
+                        android:layout_width="130dp"
+                        android:layout_height="130dp"
+                        android:id="@+id/imageView8"
+                        android:background="@drawable/plant_ic_gr_circle_bg"
+                        android:layout_centerInParent="true" />
+
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:id="@+id/imageView9"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/p1_2" />
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <ExpandableListView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/expandableListView"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_below="@+id/headerLayout"
+                android:layout_alignParentBottom="false"
+                android:footerDividersEnabled="false" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_alignParentBottom="true"
+                android:id="@+id/footerLayout"
+                android:layout_below="@+id/expandableListView">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageView3"
+                    android:src="@drawable/bottom_green"
+                    android:scaleType="fitEnd"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true" />
+
+                <ImageButton
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btnCalculate"
+                    android:src="@drawable/btn_green_cal"
+                    android:scaleType="fitEnd"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:background="@android:color/transparent"/>
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+
+    </ScrollView>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/resultFadeLayout"
+        android:layout_alignParentBottom="true">
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true">
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="@color/RcmoDarkTranBG" />
+
+            <com.neopixl.pixlui.components.imageview.ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/imageView4"
+                android:background="@color/black_overlay" />
+
+            <com.neopixl.pixlui.components.imageview.ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:id="@+id/calResultProfitLossImage"
+                android:layout_centerHorizontal="true"
+                android:layout_above="@+id/txResultString"
+                android:layout_marginBottom="10dp" />
+
+            <com.neopixl.pixlui.components.textview.TextView
+                pixlui:typeface="Quark-Bold.otf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Medium Text"
+                android:id="@+id/txResultString"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/RcmoWhiteBG"
+                android:textSize="30dp"
+                android:layout_above="@+id/txResult"
+                android:layout_marginBottom="10dp" />
+
+            <com.neopixl.pixlui.components.textview.TextView
+                pixlui:typeface="Quark-Bold.otf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Medium Text"
+                android:id="@+id/txResult"
+                android:textColor="@color/RcmoWhiteBG"
+                android:textSize="50dp"
+                android:layout_above="@+id/txResultValue"
+                android:layout_marginBottom="20dp"
+                android:layout_alignParentBottom="false"
+                android:layout_centerHorizontal="true" />
+
+            <com.neopixl.pixlui.components.textview.TextView
+                pixlui:typeface="Quark-Bold.otf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Medium Text"
+                android:id="@+id/txResultValue"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/RcmoWhiteBG"
+                android:textSize="20dp"
+                android:layout_alignParentBottom="true"
+                android:paddingBottom="200dp" />
+
+            <ImageButton
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/btnShowReport"
+                android:layout_alignParentStart="false"
+                android:background="@android:color/transparent" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

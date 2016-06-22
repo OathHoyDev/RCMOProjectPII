@@ -4,13 +4,11 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Window;
 
 import java.util.List;
 
@@ -44,6 +42,7 @@ public class SplashActivity extends Activity {
 
                     if(userId.equals("0")){
                         Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+                        //Intent intent = new Intent(SplashActivity.this, ProductDetailActivity.class);
                         startActivity(intent);
                         finish();
                     }else{

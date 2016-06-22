@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:pixlui="http://schemas.android.com/apk/com.neopixl.pixlui"
     android:id="@+id/tabLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,15 +10,17 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imageView4"
-        android:background="@drawable/bg_tab_pink"/>
+        android:id="@+id/tabImage"
+        android:background="@drawable/bg_tab_pink_dark"/>
 
-    <TextView
+    <com.neopixl.pixlui.components.textview.TextView
+        pixlui:typeface="Quark-Bold.otf"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Medium Text"
         android:id="@+id/txTab"
+        android:textColor="@color/RcmoBlackBG"
         android:layout_centerInParent="true" />
 
 </RelativeLayout>

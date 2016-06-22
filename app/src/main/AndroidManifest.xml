@@ -53,7 +53,7 @@
             android:name=".LoginActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ProductDetailAnimalActivity"
+            android:name=".ProductDetailActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_product_detail"
             android:theme="@style/Theme.AppCompat.NoActionBar"/>

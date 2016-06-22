@@ -21,4 +21,7 @@ public class RequestServices {
     public static String ws_getAmphoe = url+"getAmphoe";
     public static String ws_getTambon = url+"getTambon";
     public static String ws_copyPlot = url+"copyPlot";
+    public static String ws_getPlotDetail = url+"getPlotDetail";
+    public static String ws_getVariable = url+"getVariable";
+    public static String ws_getPlotSuit = url+"getPlotSuit";
 }

@@ -11,7 +11,10 @@ import com.google.gson.Gson;
 import th.co.rcmo.rcmoapp.Module.mAmphoe;
 import th.co.rcmo.rcmoapp.Module.mCopyPlot;
 import th.co.rcmo.rcmoapp.Module.mDeletePlot;
+import th.co.rcmo.rcmoapp.Module.mGetPlotDetail;
+import th.co.rcmo.rcmoapp.Module.mGetPlotSuit;
 import th.co.rcmo.rcmoapp.Module.mGetRegister;
+import th.co.rcmo.rcmoapp.Module.mGetVariable;
 import th.co.rcmo.rcmoapp.Module.mLogin;
 import th.co.rcmo.rcmoapp.Module.mPlantGroup;
 import th.co.rcmo.rcmoapp.Module.mProduct;
@@ -92,6 +95,12 @@ public class ResponseAPI {
                                         object = new Gson().fromJson(html, mTumbon.class);
                                     }else if (url_ws.contains(RequestServices.ws_copyPlot)) {
                                         object = new Gson().fromJson(html, mCopyPlot.class);
+                                    }else if (url_ws.contains(RequestServices.ws_getPlotDetail)) {
+                                        object = new Gson().fromJson(html, mGetPlotDetail.class);
+                                    }else if (url_ws.contains(RequestServices.ws_getVariable)) {
+                                        object = new Gson().fromJson(html, mGetVariable.class);
+                                    }else if (url_ws.contains(RequestServices.ws_getPlotSuit)) {
+                                        object = new Gson().fromJson(html, mGetPlotSuit.class);
                                     }
                                     onCallbackAPIListener.callbackSuccess(object);
                                 } else {

@@ -39,6 +39,7 @@ public class mUserPlotList   {
     public List<mRespBody> getRespBody() {
         return RespBody;
     }
+
     public static class mRespBody implements Cloneable{
         int PlotID,PrdGrpID,PlantGrpID,PrdID,SeqNo;
         String PrdValue ,PlotLocation,PlotSize,AnimalNumberValue,AnimalPriceValue,AnimalWeightValue,FisheryNumberValue,DateUpdated,CalResult ;

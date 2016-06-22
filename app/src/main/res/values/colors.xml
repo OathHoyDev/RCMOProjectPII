@@ -22,7 +22,7 @@
 <!--BG -->
     <color name="RcmoWhiteBG">#ffffff</color>
     <color name="RcmoLightTranBG">#22FFFFFF</color>
-    <color name="RcmoDarkTranBG">#4D939598</color>
+    <color name="RcmoDarkTranBG">#4d939598</color>
 
 
     <color name="RcmoLightGrayBG">#f1f2f2</color>
@@ -42,9 +42,11 @@
 
     <color name="RcmoPlantDarkBG">#2c613c</color>
     <color name="RcmoPlantBG">#4cb748</color>
+    <color name="RcmoPlantTranBG">#e64cb748</color>
 
     <color name="RcmoFishDarkBG">#006fb8</color>
     <color name="RcmoFishBG">#00b4ed</color>
+    <color name="RcmoFishTranBG">#e600b4ed</color>
 
     <color name="RcmoStepTabTranBG">#4DFFFFFF</color>
     <color name="RcmoLineTabBG">#97dbf8</color>
