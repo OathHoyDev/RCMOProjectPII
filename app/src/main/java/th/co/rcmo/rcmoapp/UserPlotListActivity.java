@@ -28,6 +28,7 @@ import java.util.List;
 import th.co.rcmo.rcmoapp.API.RequestServices;
 import th.co.rcmo.rcmoapp.API.ResponseAPI;
 import th.co.rcmo.rcmoapp.Model.UserModel;
+import th.co.rcmo.rcmoapp.Model.UserPlotModel;
 import th.co.rcmo.rcmoapp.Module.mCopyPlot;
 import th.co.rcmo.rcmoapp.Module.mDeletePlot;
 import th.co.rcmo.rcmoapp.Module.mGetRegister;
@@ -257,7 +258,7 @@ public class UserPlotListActivity extends Activity {
                 h.layoutPlotRow.setLayoutParams(h.params);
             }
 
-            mUserPlotList.mRespBody  respBody =  getItem(position);
+           final mUserPlotList.mRespBody  respBody =  getItem(position);
 
 
 
@@ -339,6 +340,16 @@ public class UserPlotListActivity extends Activity {
                     }
 
                     return true;
+                }
+            });
+
+            // on calculate
+            h.editableLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.d("On Calculate"," position : "+position);
+                    ProductDetailActivity.userPlotModel =  prepareDataForCalculate(respBody);
+                    startActivity(new Intent(UserPlotListActivity.this, ProductDetailActivity.class));
                 }
             });
 
@@ -565,6 +576,17 @@ public class UserPlotListActivity extends Activity {
     }
 
 
+    private UserPlotModel prepareDataForCalculate(mUserPlotList.mRespBody resp){
+        UserPlotModel plotModel = new UserPlotModel();
+
+        plotModel.setPlotID(String.valueOf(resp.getPlotID()));
+        plotModel.setPrdGrpID(String.valueOf(resp.getPrdGrpID()));
+        plotModel.setPrdID(String.valueOf(resp.getPrdGrpID()));
+        plotModel.setUserID(userId);
+
+
+        return plotModel;
+    }
 
 
 
