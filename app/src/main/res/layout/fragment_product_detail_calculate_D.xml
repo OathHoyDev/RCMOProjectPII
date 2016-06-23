@@ -53,63 +53,14 @@
                     <com.neopixl.pixlui.components.textview.TextView
                         pixlui:typeface="Quark-Bold.otf"
                         android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="เนื้อที่"
-                        android:id="@+id/textView"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentStart="true"
-                        android:textColor="@color/RcmoGrayBG"
-                        android:layout_marginTop="10dp"
-                        android:gravity="center_vertical" />
-
-                    <com.neopixl.pixlui.components.textview.TextView
-                        pixlui:typeface="Quark-Bold.otf"
-                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="xx"
-                        android:id="@+id/lbFishpondSizeRai"
-                        android:layout_below="@+id/textView"
+                        android:text="เมื่อเริ่มเลี้ยงมี"
+                        android:id="@+id/start"
                         android:layout_alignParentEnd="false"
                         android:layout_alignParentLeft="true"
-                        android:textColor="@color/RcmoFishBG" />
-
-                    <com.neopixl.pixlui.components.textview.TextView
-                        pixlui:typeface="Quark-Bold.otf"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="ไร่"
-                        android:id="@+id/textView2"
                         android:textColor="@color/RcmoGrayBG"
-                        android:layout_alignTop="@+id/lbFishpondSizeRai"
-                        android:layout_toEndOf="@+id/lbFishpondSizeRai"
-                        android:layout_marginLeft="5dp" />
-
-                    <com.neopixl.pixlui.components.textview.TextView
-                        pixlui:typeface="Quark-Bold.otf"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="xx"
-                        android:id="@+id/lbFishpondSizeNgan"
-                        android:textColor="@color/RcmoFishBG"
-                        android:layout_alignTop="@+id/textView2"
-                        android:layout_toEndOf="@+id/textView2"
-                        android:layout_marginLeft="5dp" />
-
-                    <com.neopixl.pixlui.components.textview.TextView
-                        pixlui:typeface="Quark-Bold.otf"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="งาน"
-                        android:id="@+id/startPrice"
-                        android:textColor="@color/RcmoGrayBG"
-                        android:layout_marginLeft="5dp"
-                        android:layout_alignTop="@+id/lbFishpondSizeNgan"
-                        android:layout_toEndOf="@+id/lbFishpondSizeNgan" />
+                        android:layout_marginTop="20dp" />
 
                     <com.neopixl.pixlui.components.textview.TextView
                         pixlui:typeface="Quark-Bold.otf"
@@ -118,22 +69,36 @@
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:text="xx"
                         android:id="@+id/txStartUnit"
-                        android:textColor="@color/RcmoFishBG"
+                        android:textColor="@color/RcmoAnimalBG"
                         android:layout_marginLeft="5dp"
-                        android:layout_alignTop="@+id/startPrice"
-                        android:layout_toEndOf="@+id/startPrice" />
+                        android:layout_toEndOf="@+id/startPrice"
+                        android:layout_toRightOf="@+id/start"
+                        android:layout_alignTop="@+id/start" />
 
                     <com.neopixl.pixlui.components.textview.TextView
                         pixlui:typeface="Quark-Bold.otf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="ตร.วา"
+                        android:text="ตัว"
                         android:id="@+id/textView4"
                         android:textColor="@color/RcmoGrayBG"
                         android:layout_marginLeft="5dp"
                         android:layout_alignTop="@+id/txStartUnit"
-                        android:layout_toEndOf="@+id/txStartUnit" />
+                        android:layout_toEndOf="@+id/txStartUnit"
+                        android:layout_toRightOf="@+id/txStartUnit" />
+
+                    <com.neopixl.pixlui.components.textview.TextView
+                        pixlui:typeface="Quark-Bold.otf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="ราคาเมื่อเริ่มเลี้ยง"
+                        android:id="@+id/startPrice"
+                        android:textColor="@color/RcmoGrayBG"
+                        android:layout_below="@+id/start"
+                        android:layout_toEndOf="@+id/lbFishpondSizeRai"
+                        android:layout_alignParentLeft="true" />
 
                     <com.neopixl.pixlui.components.textview.TextView
                         pixlui:typeface="Quark-Bold.otf"
@@ -142,60 +107,23 @@
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:text="xx"
                         android:id="@+id/txStartPrice"
-                        android:textColor="@color/RcmoFishBG"
-                        android:layout_marginLeft="5dp"
-                        android:layout_alignTop="@+id/textView4"
-                        android:layout_toEndOf="@+id/textView4" />
+                        android:textColor="@color/RcmoAnimalBG"
+                        android:layout_alignTop="@+id/startPrice"
+                        android:layout_toEndOf="@+id/textView4"
+                        android:layout_alignParentLeft="false"
+                        android:layout_toRightOf="@+id/startPrice" />
 
                     <com.neopixl.pixlui.components.textview.TextView
                         pixlui:typeface="Quark-Bold.otf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="ตร.ม."
+                        android:text="บาท / ตัว"
                         android:id="@+id/textView6"
                         android:textColor="@color/RcmoGrayBG"
                         android:layout_marginLeft="5dp"
                         android:layout_alignTop="@+id/txStartPrice"
                         android:layout_toEndOf="@+id/txStartPrice" />
-
-                    <com.neopixl.pixlui.components.textview.TextView
-                        pixlui:typeface="Quark-Bold.otf"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="ปล่อยลูกปลา"
-                        android:id="@+id/textView5"
-                        android:textColor="@color/RcmoGrayBG"
-                        android:layout_alignParentStart="true"
-                        android:layout_marginBottom="10dp"
-                        android:layout_alignParentBottom="true" />
-
-                    <com.neopixl.pixlui.components.textview.TextView
-                        pixlui:typeface="Quark-Bold.otf"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="xx"
-                        android:id="@+id/lbAmountFish"
-                        android:textColor="@color/RcmoFishBG"
-                        android:layout_marginLeft="5dp"
-                        android:layout_alignTop="@+id/textView5"
-                        android:layout_toEndOf="@+id/textView5"
-                        android:layout_toRightOf="@+id/textView5" />
-
-                    <com.neopixl.pixlui.components.textview.TextView
-                        pixlui:typeface="Quark-Bold.otf"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="ตัว"
-                        android:id="@+id/textView8"
-                        android:textColor="@color/RcmoGrayBG"
-                        android:layout_marginLeft="5dp"
-                        android:layout_alignTop="@+id/lbAmountFish"
-                        android:layout_toEndOf="@+id/lbAmountFish"
-                        android:layout_toRightOf="@+id/lbAmountFish" />
 
                     <com.neopixl.pixlui.components.button.Button
                         pixlui:typeface="Quark-Bold.otf"
@@ -209,9 +137,7 @@
                         android:textColor="@color/RcmoGrayBG"
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:background="@android:color/transparent"
-                        android:layout_marginRight="10dp"
-                        android:layout_alignTop="@+id/textView8"
-                        android:layout_alignBottom="@+id/textView8" />
+                        android:layout_marginRight="10dp" />
 
                 </RelativeLayout>
 
@@ -224,7 +150,7 @@
                         android:layout_width="130dp"
                         android:layout_height="130dp"
                         android:id="@+id/productIconBG"
-                        android:background="@drawable/fish_ic_gr_circle_bg"
+                        android:background="@drawable/animal_ic_gr_circle_bg"
                         android:layout_centerInParent="true" />
 
                     <ImageView
@@ -266,18 +192,21 @@
                         android:layout_height="30dp"
                         android:id="@+id/btnOption"
                         android:layout_marginLeft="30dp"
-                        android:layout_centerVertical="true" />
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/radio_cal_pink" />
 
                     <com.neopixl.pixlui.components.textview.TextView
                         pixlui:typeface="Quark-Bold.otf"
                         android:layout_width="fill_parent"
                         android:layout_height="30dp"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="Medium Text"
+                        android:text="คำนวนรวม 'ค่าเสื่อมและค่าเสียโอกาส'"
                         android:id="@+id/optionText"
                         android:layout_centerVertical="true"
                         android:layout_toRightOf="@+id/btnOption"
-                        android:layout_marginLeft="10dp" />
+                        android:layout_marginLeft="10dp"
+                        android:textColor="@color/RcmoAnimalBG"
+                        android:gravity="center_vertical" />
                 </RelativeLayout>
 
                 <ImageView

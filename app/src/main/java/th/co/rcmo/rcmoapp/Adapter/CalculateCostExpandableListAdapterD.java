@@ -24,7 +24,7 @@ import th.co.rcmo.rcmoapp.R;
 /**
  * Created by SilVeriSm on 6/18/2016 AD.
  */
-public class CalculateCostExpandableListAdapter extends BaseExpandableListAdapter {
+public class CalculateCostExpandableListAdapterD extends BaseExpandableListAdapter {
 
     String TAG = "CalculateCostExpandableListAdapter";
 
@@ -36,7 +36,7 @@ public class CalculateCostExpandableListAdapter extends BaseExpandableListAdapte
 
 
 
-    public CalculateCostExpandableListAdapter(Context context, Object dataObj , String formulaType){
+    public CalculateCostExpandableListAdapterD(Context context, Object dataObj , String formulaType){
 //        List<String> listDataHeader,
 //
 //                                              HashMap<String, List<String[]>> listChildData) {
@@ -161,6 +161,7 @@ public class CalculateCostExpandableListAdapter extends BaseExpandableListAdapte
 
         TextView lblListHeader = (TextView) convertView
                 .findViewById(R.id.lblListHeader);
+        lblListHeader.setTypeface(null, Typeface.BOLD);
         lblListHeader.setText(headerTitle);
 
         return convertView;

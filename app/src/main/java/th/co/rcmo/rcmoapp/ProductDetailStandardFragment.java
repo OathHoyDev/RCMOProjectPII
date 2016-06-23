@@ -164,7 +164,7 @@ public class ProductDetailStandardFragment extends Fragment implements View.OnCl
             }
         }).API_Request(true, RequestServices.ws_getVariable +
                 "?PrdID=" + prdID +
-                "&FisheryType=" + fisheryType);
+                "&FisheryType=1");
 
     }
 

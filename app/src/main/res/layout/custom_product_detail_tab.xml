@@ -13,4 +13,5 @@
         android:id="@+id/tabImage"
         android:background="@drawable/bg_tab_pink_dark"/>
 
+
 </RelativeLayout>

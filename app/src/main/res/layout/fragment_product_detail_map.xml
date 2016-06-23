@@ -20,7 +20,7 @@
             android:layout_height="50dp"
             android:id="@+id/btnMapStyle"
             android:layout_marginLeft="30dp"
-            android:layout_marginTop="150dp"
+            android:layout_marginTop="100dp"
             android:background="@drawable/btn_sate"/>
 
         <ImageButton
