@@ -88,6 +88,8 @@ public class ProductDetailActivity extends AppCompatActivity {
 
     private void createBundleForFragment(){
         bundle = new Bundle();
+        bundle.putString("fisheryType" , userPlotModel.getFisheryType());
+        bundle.putString("prdID" , userPlotModel.getPrdID());
         bundle.putString("productType", userPlotModel.getPrdGrpID());
         bundle.putString("plodID", userPlotModel.getPlotID());
         bundle.putString("suitFlag" , "1");
@@ -100,20 +102,26 @@ public class ProductDetailActivity extends AppCompatActivity {
 
     private void setUI(){
 
-        if (userPlotModel.getUserID() != null || !"".equalsIgnoreCase(userPlotModel.getUserID())) {
+        if (userPlotModel.getUserID() != null && !"".equalsIgnoreCase(userPlotModel.getUserID())) {
             API_getPlotDetail(userPlotModel.getPlotID());
+        }else{
+            API_getProduct(userPlotModel.getPrdID() , userPlotModel.getPrdGrpID() , "0");
+
+            createBundleForFragment();
+
+            initialTab();
         }
 
 
     }
 
-    private void testDataMethod(){
-
-        userPlotModel.setPlotID("7");
-        userPlotModel.setTamCode("2");
-        userPlotModel.setAmpCode("2");
-        userPlotModel.setProvCode("14");
-    }
+//    private void testDataMethod(){
+//
+//        userPlotModel.setPlotID("7");
+//        userPlotModel.setTamCode("2");
+//        userPlotModel.setAmpCode("2");
+//        userPlotModel.setProvCode("14");
+//    }
 
     private void initialTab(){
 
@@ -201,6 +209,8 @@ public class ProductDetailActivity extends AppCompatActivity {
                 }
         );
 
+        tabLayout.getTabAt(0).getCustomView().setSelected(true);
+
     }
 
     class ViewPagerAdapter extends FragmentPagerAdapter {
@@ -216,35 +226,48 @@ public class ProductDetailActivity extends AppCompatActivity {
         public View getTabView(int position) {
             // Given you have a custom layout in `res/layout/custom_tab.xml` with a TextView and ImageView
             View v = LayoutInflater.from(context).inflate(R.layout.custom_product_detail_tab, null);
-            TextView txTab = (TextView) v.findViewById(R.id.txTab);
             ImageView tabImage = (ImageView) v.findViewById(R.id.tabImage);
             //tabImage.setBackgroundResource(R.drawable.bg_tab_green_dark);
 
             switch (userPlotModel.getPrdGrpID()){
                 case CalculateConstant.PRODUCT_TYPE_PLANT:
-                    tabImage.setBackgroundResource(R.drawable.bg_tab_green_dark);
+                    switch (position){
+                        case 0:
+                            tabImage.setBackgroundResource(R.drawable.action_tab_plant_standard);
+                            break;
+                        case 1:
+                            tabImage.setBackgroundResource(R.drawable.action_tab_plant_calculate);
+                            break;
+                        case 2:
+                            tabImage.setBackgroundResource(R.drawable.action_tab_plant_map);
+                            break;
+                    }
                     break;
                 case CalculateConstant.PRODUCT_TYPE_ANIMAL:
-                    tabImage.setBackgroundResource(R.drawable.bg_tab_pink_dark);
+                    switch (position){
+                        case 0:
+                            tabImage.setBackgroundResource(R.drawable.action_tab_animal_standard);
+                            break;
+                        case 1:
+                            tabImage.setBackgroundResource(R.drawable.action_tab_animal_calculate);
+                            break;
+                        case 2:
+                            tabImage.setBackgroundResource(R.drawable.action_tab_animal_map);
+                            break;
+                    }
                     break;
                 case CalculateConstant.PRODUCT_TYPE_FISH:
-                    tabImage.setBackgroundResource(R.drawable.bg_tab_blue_dark);
-                    break;
-            }
-
-
-            switch (position) {
-
-                case 0:
-                    txTab.setText("ค่ามาตรฐาน");
-                    break;
-                case 1:
-                    txTab.setText("คำนวนต้นทุน");
-                    break;
-                case 2:
-                    txTab.setText("แผนที่");
-                    break;
-                default:
+                    switch (position){
+                        case 0:
+                            tabImage.setBackgroundResource(R.drawable.action_tab_fish_standard);
+                            break;
+                        case 1:
+                            tabImage.setBackgroundResource(R.drawable.action_tab_fish_calculate);
+                            break;
+                        case 2:
+                            tabImage.setBackgroundResource(R.drawable.action_tab_fish_map);
+                            break;
+                    }
                     break;
             }
 

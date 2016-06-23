@@ -37,6 +37,8 @@ public class ProductDetailStandardFragment extends Fragment implements View.OnCl
     String[] stdUnit = null ;
 
     private String plodID;
+    private String prdID;
+    private String fisheryType;
 
     View v;
 
@@ -61,7 +63,7 @@ public class ProductDetailStandardFragment extends Fragment implements View.OnCl
 
         setAction();
 
-        API_getPlotDetail(plodID);
+        API_getVariable(prdID , fisheryType);
 
         return v;
     }
@@ -70,6 +72,11 @@ public class ProductDetailStandardFragment extends Fragment implements View.OnCl
 
         productType = getArguments().getString("productType");
         plodID = getArguments().getString("plodID");
+        prdID = getArguments().getString("prdID");
+        fisheryType = getArguments().getString("fisheryType");
+        if(fisheryType == ""){
+            fisheryType = "0";
+        }
     }
 
     public void initialLayoutType(){

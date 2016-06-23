@@ -13,14 +13,4 @@
         android:id="@+id/tabImage"
         android:background="@drawable/bg_tab_pink_dark"/>
 
-    <com.neopixl.pixlui.components.textview.TextView
-        pixlui:typeface="Quark-Bold.otf"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
-        android:id="@+id/txTab"
-        android:textColor="@color/RcmoBlackBG"
-        android:layout_centerInParent="true" />
-
 </RelativeLayout>
