@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Formula J id -->
+    <item name="formula_j_fishpondSizeRai" type="id"/>
+    <item name="formula_j_fishpondSizeNgan" type="id"/>
+    <item name="formula_j_fishpondSizeSqrWah" type="id"/>
+    <item name="formula_j_fishpondSizeSqrMeters" type="id"/>
+    <item name="formula_j_fishpondSize" type="id"/>
+
+    <item name="formula_j_amountFish" type="id"/>
+    <item name="formula_j_amountFishWeight" type="id"/>
+    <item name="formula_j_costFish" type="id"/>
+    <item name="formula_j_costFishSpecies" type="id"/>
+    <item name="formula_j_costFishWeight" type="id"/>
+    <item name="formula_j_costFood" type="id"/>
+
+    <item name="formula_j_costLabor" type="id"/>
+    <item name="formula_j_costFeed" type="id"/>
+    <item name="formula_j_costFishing" type="id"/>
+
+    <item name="formula_j_costMedicine" type="id"/>
+    <item name="formula_j_costChemical" type="id"/>
+    <item name="formula_j_costFuel" type="id"/>
+    <item name="formula_j_costElectricGas" type="id"/>
+    <item name="formula_j_costDredgeUpMud" type="id"/>
+    <item name="formula_j_costRepairEquip" type="id"/>
+    <item name="formula_j_costOther" type="id"/>
+    <item name="formula_j_costLandLease" type="id"/>
+
+    <item name="formula_j_feedTime" type="id"/>
+    <item name="formula_j_opportInvestment" type="id"/>
+
+    <item name="formula_j_sellFish" type="id"/>
+    <item name="formula_j_sellFishAvg" type="id"/>
+    <item name="formula_j_sellPrice" type="id"/>
+    <item name="formula_j_sizeAvg" type="id"/>
+    <item name="formula_j_sellSummary" type="id"/>
+
+    <item name="formula_j_fishSize1Weight" type="id"/>
+    <item name="formula_j_fishSize1SumWeight" type="id"/>
+    <item name="formula_j_fishSize1Sell" type="id"/>
+    <item name="formula_j_fishSize1SumSell" type="id"/>
+
+    <item name="formula_j_fishSize2Weight" type="id"/>
+    <item name="formula_j_fishSize2SumWeight" type="id"/>
+    <item name="formula_j_fishSize2Sell" type="id"/>
+    <item name="formula_j_fishSize2SumSell" type="id"/>
+
+    <item name="formula_j_fishSize3Weight" type="id"/>
+    <item name="formula_j_fishSize3SumWeight" type="id"/>
+    <item name="formula_j_fishSize3Sell" type="id"/>
+    <item name="formula_j_fishSize3SumSell" type="id"/>
+
+    <item name="formula_j_fishSize4Weight" type="id"/>
+    <item name="formula_j_fishSize4SumWeight" type="id"/>
+    <item name="formula_j_fishSize4Sell" type="id"/>
+    <item name="formula_j_fishSize4SumSell" type="id"/>
+
+    <item name="formula_j_fishSellSumWeight" type="id"/>
+    <item name="formula_j_fishSellSizeAvg" type="id"/>
+    <item name="formula_j_fishSellAvg" type="id"/>
+    <item name="formula_j_fishSellSum" type="id"/>
+
+
+    <item name="formula_j_costMixAll" type="id"/>
+    <item name="formula_j_costMixPerLand" type="id"/>
+    <item name="formula_j_costMixPerWeight" type="id"/>
+    <item name="formula_j_calMixProfitLost" type="id"/>
+    <item name="formula_j_calMixProfitLostPerWeight" type="id"/>
+
+    <item name="formula_j_costBySizeAll" type="id"/>
+    <item name="formula_j_costBySizePerLand" type="id"/>
+    <item name="formula_j_costBySizePerWeight" type="id"/>
+    <item name="formula_j_calBySizeProfitLost" type="id"/>
+    <item name="formula_j_calBySizeProfitLostPerWeight" type="id"/>
+
+    <item name="formula_j_stdDepreEquip" type="id"/>
+    <item name="formula_j_stdOpportEquip" type="id"/>
+
+
+</resources>

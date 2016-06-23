@@ -21,10 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import th.co.rcmo.rcmoapp.Adapter.CalculateCostExpandableListAdapter;
-import th.co.rcmo.rcmoapp.Model.calculate.AbstractFormulaModel;
 import th.co.rcmo.rcmoapp.Model.calculate.FormulaJModel;
-import th.co.rcmo.rcmoapp.Model.calculate.FormularModelFactory;
-import th.co.rcmo.rcmoapp.Util.BitMapHelper;
 import th.co.rcmo.rcmoapp.Util.CalculateConstant;
 import th.co.rcmo.rcmoapp.Util.ServiceInstance;
 
@@ -138,6 +135,7 @@ public class ProductDetailCalculateFragment extends Fragment implements  View.On
     }
 
     private void initialProductIcon(){
+
         android.widget.ImageView productIconBG = (android.widget.ImageView)view.findViewById(R.id.productIconBG);
         android.widget.ImageView productIcon = (android.widget.ImageView)view.findViewById(R.id.productIcon);
 
