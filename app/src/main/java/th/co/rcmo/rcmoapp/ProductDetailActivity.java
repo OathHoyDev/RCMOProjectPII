@@ -16,10 +16,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +35,7 @@ import th.co.rcmo.rcmoapp.Module.mGetPlotDetail;
 import th.co.rcmo.rcmoapp.Module.mProduct;
 import th.co.rcmo.rcmoapp.Util.CalculateConstant;
 import th.co.rcmo.rcmoapp.Util.ServiceInstance;
+import th.co.rcmo.rcmoapp.View.DialogChoice;
 
 public class ProductDetailActivity extends AppCompatActivity {
 
@@ -175,17 +179,27 @@ public class ProductDetailActivity extends AppCompatActivity {
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);
 
-        tabLayout.addTab(tabLayout.newTab().setText("aaa"));
-        tabLayout.addTab(tabLayout.newTab().setText("bbb"));
-        tabLayout.addTab(tabLayout.newTab().setText("ccc"));
+        tabLayout.addTab(tabLayout.newTab());
+        tabLayout.addTab(tabLayout.newTab());
+        tabLayout.addTab(tabLayout.newTab());
 
-        //tabLayout.setBackgroundResource(android.R.color.transparent);
+
+        /*
+         tabLayout.addTab(tabLayout.newTab().setCustomView(adapter.getTabView(0)));
+        tabLayout.addTab(tabLayout.newTab().setCustomView(adapter.getTabView(1)));
+        tabLayout.addTab(tabLayout.newTab().setCustomView(adapter.getTabView(2)));
+
+         */
+
+     //   tabLayout.setBackgroundResource(android.R.color.transparent);
         tabLayout.setupWithViewPager(viewPager);
 
         for (int i = 0; i < tabLayout.getTabCount(); i++) {
             TabLayout.Tab tab = tabLayout.getTabAt(i);
             tab.setCustomView(adapter.getTabView(i));
         }
+
+        //tabLayout.setBackgroundResource(R.drawable.action_tab_plant);
 
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
@@ -230,49 +244,66 @@ public class ProductDetailActivity extends AppCompatActivity {
             this.context = context;
         }
 
-        public View getTabView(int position) {
+        public View getTabView(final int position) {
             // Given you have a custom layout in `res/layout/custom_tab.xml` with a TextView and ImageView
             View v = LayoutInflater.from(context).inflate(R.layout.custom_product_detail_tab, null);
-            ImageView tabImage = (ImageView) v.findViewById(R.id.tabImage);
+            TextView tabImage = (TextView) v.findViewById(R.id.tabImage);
+            FrameLayout tabLayout = (FrameLayout) v.findViewById(R.id.tabLayout);
             //tabImage.setBackgroundResource(R.drawable.bg_tab_green_dark);
 
             switch (userPlotModel.getPrdGrpID()){
                 case CalculateConstant.PRODUCT_TYPE_PLANT:
+                    tabLayout.setBackgroundResource(R.drawable.action_tab_plant);
+
                     switch (position){
+
                         case 0:
-                            tabImage.setBackgroundResource(R.drawable.action_tab_plant_standard);
+
+                            tabImage.setText("ค่ามาตรฐาน");
+                            //tabImage.setBackgroundResource(R.drawable.action_tab_plant_standard);
                             break;
                         case 1:
-                            tabImage.setBackgroundResource(R.drawable.action_tab_plant_calculate);
+                            tabImage.setText("คำนวนต้นทุน");
+                            //tabImage.setBackgroundResource(R.drawable.action_tab_plant_calculate);
                             break;
                         case 2:
-                            tabImage.setBackgroundResource(R.drawable.action_tab_plant_map);
+                            tabImage.setText("แผนที่");
+                           // tabImage.setBackgroundResource(R.drawable.action_tab_plant_map);
                             break;
                     }
                     break;
                 case CalculateConstant.PRODUCT_TYPE_ANIMAL:
+                    tabLayout.setBackgroundResource(R.drawable.action_tab_animal);
                     switch (position){
+
                         case 0:
-                            tabImage.setBackgroundResource(R.drawable.action_tab_animal_standard);
+                            tabImage.setText("ค่ามาตรฐาน");
+                           // tabImage.setBackgroundResource(R.drawable.action_tab_animal_standard);
                             break;
                         case 1:
-                            tabImage.setBackgroundResource(R.drawable.action_tab_animal_calculate);
+                            tabImage.setText("คำนวนต้นทุน");
+                           // tabImage.setBackgroundResource(R.drawable.action_tab_animal_calculate);
                             break;
                         case 2:
-                            tabImage.setBackgroundResource(R.drawable.action_tab_animal_map);
+                            tabImage.setText("แผนที่");
+                          //  tabImage.setBackgroundResource(R.drawable.action_tab_animal_map);
                             break;
                     }
                     break;
                 case CalculateConstant.PRODUCT_TYPE_FISH:
+                    tabLayout.setBackgroundResource(R.drawable.action_tab_fish);
                     switch (position){
                         case 0:
-                            tabImage.setBackgroundResource(R.drawable.action_tab_fish_standard);
+                            tabImage.setText("ค่ามาตรฐาน");
+                          //  tabImage.setBackgroundResource(R.drawable.action_tab_fish_standard);
                             break;
                         case 1:
-                            tabImage.setBackgroundResource(R.drawable.action_tab_fish_calculate);
+                            tabImage.setText("คำนวนต้นทุน");
+                          //  tabImage.setBackgroundResource(R.drawable.action_tab_fish_calculate);
                             break;
                         case 2:
-                            tabImage.setBackgroundResource(R.drawable.action_tab_fish_map);
+                            tabImage.setText("แผนที่");
+                          //  tabImage.setBackgroundResource(R.drawable.action_tab_fish_map);
                             break;
                     }
                     break;

@@ -27,6 +27,8 @@
     <dimen name="radius_medium">10dp</dimen>
     <dimen name="radius_large">20dp</dimen>
 
+    <dimen name="radius_tab">20dp</dimen>
+
     <dimen name="size_howto">30dp</dimen>
 
     <dimen name="size_pin">20dp</dimen>
