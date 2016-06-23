@@ -110,8 +110,7 @@
                         android:textColor="@color/RcmoAnimalBG"
                         android:layout_alignTop="@+id/startPrice"
                         android:layout_toEndOf="@+id/textView4"
-                        android:layout_alignParentLeft="false"
-                        android:layout_toRightOf="@+id/startPrice" />
+                        android:layout_alignParentLeft="false" />
 
                     <com.neopixl.pixlui.components.textview.TextView
                         pixlui:typeface="Quark-Bold.otf"
@@ -213,20 +212,26 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/imageView3"
-                    android:src="@drawable/bottom_blue"
+                    android:src="@drawable/bottom_pink"
                     android:scaleType="fitEnd"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentLeft="true" />
 
-                <ImageButton
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
+                <com.neopixl.pixlui.components.button.Button
+                    pixlui:typeface="Quark-Bold.otf"
+                    android:layout_width="130dp"
+                    android:layout_height="60dp"
                     android:id="@+id/btnCalculate"
-                    android:src="@drawable/btn_blue_cal"
                     android:scaleType="fitEnd"
+                    android:textStyle="bold"
+                    android:text="คำนวน"
+                    android:textSize="@dimen/textsize_xlarge"
+                    android:gravity="bottom|center"
+                    android:paddingBottom="10dp"
+                    android:textColor="@color/RcmoWhiteBG"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentRight="true"
-                    android:background="@android:color/transparent"/>
+                    android:background="@drawable/circle_animal_cut_top"/>
 
             </RelativeLayout>
 
