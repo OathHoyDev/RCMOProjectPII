@@ -12,6 +12,9 @@ import java.util.List;
  */
 public class FormulaJModel extends AbstractFormulaModel {
 
+    public List<String> listDataHeader;
+    public HashMap<String, List<String[]>> listDataChild;
+
     // Standard Variable
     public double stdDepreEquip = 6.27;
     public double stdOpportEquip = 5.09;

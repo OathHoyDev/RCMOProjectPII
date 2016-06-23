@@ -18,6 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import th.co.rcmo.rcmoapp.Model.calculate.AbstractFormulaModel;
+import th.co.rcmo.rcmoapp.Model.calculate.FormulaDModel;
 import th.co.rcmo.rcmoapp.Model.calculate.FormulaJModel;
 import th.co.rcmo.rcmoapp.R;
 
@@ -32,7 +33,7 @@ public class CalculateCostExpandableListAdapter extends BaseExpandableListAdapte
     private List<String> _listDataHeader; // header titles
     // child data in format of header title, child title
     private HashMap<String, List<String[]>> _listDataChild;
-    AbstractFormulaModel model;
+    FormulaJModel model;
 
 
 
@@ -40,7 +41,7 @@ public class CalculateCostExpandableListAdapter extends BaseExpandableListAdapte
 //        List<String> listDataHeader,
 //
 //                                              HashMap<String, List<String[]>> listChildData) {
-        model = (FormulaJModel)dataObj;
+       model = (FormulaJModel)dataObj;
 
         this._context = context;
         this._listDataHeader = model.listDataHeader;

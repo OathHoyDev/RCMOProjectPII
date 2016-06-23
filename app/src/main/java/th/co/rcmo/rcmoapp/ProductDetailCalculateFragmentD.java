@@ -2,6 +2,7 @@ package th.co.rcmo.rcmoapp;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -14,6 +15,7 @@ import android.widget.ExpandableListView;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 
+import com.neopixl.pixlui.components.button.Button;
 import com.neopixl.pixlui.components.imageview.ImageView;
 import com.neopixl.pixlui.components.textview.TextView;
 
@@ -21,6 +23,8 @@ import java.util.HashMap;
 import java.util.List;
 
 import th.co.rcmo.rcmoapp.Adapter.CalculateCostExpandableListAdapter;
+import th.co.rcmo.rcmoapp.Adapter.CalculateCostExpandableListAdapterD;
+import th.co.rcmo.rcmoapp.Model.UserPlotModel;
 import th.co.rcmo.rcmoapp.Model.calculate.FormulaDModel;
 import th.co.rcmo.rcmoapp.Model.calculate.FormulaJModel;
 import th.co.rcmo.rcmoapp.Util.ServiceInstance;
@@ -34,12 +38,14 @@ public class ProductDetailCalculateFragmentD extends Fragment implements  View.O
     String TAG = "ProductDetailCalculateFragment";
 
     ExpandableListView expandableListView;
-    CalculateCostExpandableListAdapter calculateCostExpandableListAdapter;
+    CalculateCostExpandableListAdapterD calculateCostExpandableListAdapter;
 
     List<String> listDataHeader;
     HashMap<String, List<String[]>> listDataChild;
 
     private List<String> groupList;
+
+    static UserPlotModel userPlotModel;
 
     private Context context;
     View view;
@@ -53,6 +59,8 @@ public class ProductDetailCalculateFragmentD extends Fragment implements  View.O
     RelativeLayout resultFadeView;
     RelativeLayout rootViewLayout;
 
+    boolean isCalIncludeOption = false;
+
     public ProductDetailCalculateFragmentD() {
         // Required empty public constructor
     }
@@ -63,6 +71,8 @@ public class ProductDetailCalculateFragmentD extends Fragment implements  View.O
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         //return inflater.inflate(R.layout.fragment_product_detail_map, container, false);
+
+        userPlotModel = ((ProductDetailActivity)this.getActivity()).userPlotModel;
 
         view = inflater.inflate(R.layout.fragment_product_detail_calculate_d, container,
                 false);
@@ -87,15 +97,19 @@ public class ProductDetailCalculateFragmentD extends Fragment implements  View.O
         formulaModel.prepareListData();
 
         TextView txStartPrice = (TextView) view.findViewById(R.id.txStartPrice);
-        txStartPrice.setText(String.valueOf(formulaModel.getValueFromAttributeName(formulaModel , "fishpondSizeRai")));
+        txStartPrice.setText(String.valueOf(formulaModel.getValueFromAttributeName(formulaModel , "RermLeang")));
 
         TextView txStartUnit = (TextView) view.findViewById(R.id.txStartUnit);
-        txStartUnit.setText(String.valueOf(formulaModel.getValueFromAttributeName(formulaModel , "fishpondSizeNgan")));
+        txStartUnit.setText(String.valueOf(formulaModel.getValueFromAttributeName(formulaModel , "RakaReamLeang")));
 
-        calculateCostExpandableListAdapter = new CalculateCostExpandableListAdapter(context, formulaModel, "J");
+        calculateCostExpandableListAdapter = new CalculateCostExpandableListAdapterD(context, formulaModel);
 
         // setting list adapter
         expandableListView.setAdapter(calculateCostExpandableListAdapter);
+
+//        for (int i=0 ; i<calculateCostExpandableListAdapter.getGroupCount(); i++) {
+//            expandableListView.expandGroup(i);
+//        }
 
         setListViewHeight(expandableListView, formulaModel.listDataHeader.size()-1 , true);
 
@@ -109,7 +123,7 @@ public class ProductDetailCalculateFragmentD extends Fragment implements  View.O
             }
         });
 
-        ImageButton btnCalculate = (ImageButton) view.findViewById(R.id.btnCalculate);
+        Button btnCalculate = (Button) view.findViewById(R.id.btnCalculate);
         btnCalculate.setOnClickListener(this);
 
         ImageButton btnShowReport = (ImageButton) view.findViewById(R.id.btnShowReport);
@@ -132,7 +146,6 @@ public class ProductDetailCalculateFragmentD extends Fragment implements  View.O
 
     private void initialProductIcon(){
 
-        android.widget.ImageView productIconBG = (android.widget.ImageView)view.findViewById(R.id.productIconBG);
         android.widget.ImageView productIcon = (android.widget.ImageView)view.findViewById(R.id.productIcon);
 
         String imgName = ServiceInstance.productIMGMap.get(Integer.parseInt(prdID));
@@ -140,6 +153,17 @@ public class ProductDetailCalculateFragmentD extends Fragment implements  View.O
         int imgIDInt = getResources().getIdentifier(imgName, "drawable", context.getPackageName());
 
         productIcon.setImageResource(imgIDInt);
+
+        if (isCalIncludeOption){
+            ImageButton btnOption = (ImageButton)view.findViewById(R.id.btnOption);
+
+            if(isCalIncludeOption){
+                btnOption.setImageResource(R.drawable.radio_cal_pink_check);
+            }else{
+                btnOption.setImageResource(R.drawable.radio_cal_pink);
+            }
+
+        }
 
     }
 
@@ -245,7 +269,9 @@ public class ProductDetailCalculateFragmentD extends Fragment implements  View.O
 
     public void onClick(View v) {
         if(v.getId() == R.id.btnCalculate){
+
             formulaModel = (FormulaDModel) calculateCostExpandableListAdapter.getDataObj();
+
             formulaModel.calculate();
 
             ImageView calResultProfitLossImage = (ImageView) resultFadeView.findViewById(R.id.calResultProfitLossImage);
@@ -253,26 +279,37 @@ public class ProductDetailCalculateFragmentD extends Fragment implements  View.O
             TextView txResult = (TextView) resultFadeView.findViewById(R.id.txResult);
             TextView txResultValue = (TextView) resultFadeView.findViewById(R.id.txResultValue);
 
-            if ((double)formulaModel.getValueFromAttributeName(formulaModel , "calMixProfitLost") > 0){
+            if ((double)formulaModel.getValueFromAttributeName(formulaModel , "calProfitLoss") > 0){
                 calResultProfitLossImage.setImageResource(R.drawable.ic_profit);
 
                 txResultString.setText("ยินดีด้วย");
                 txResult.setText("คุณได้กำไร");
-                txResultValue.setText("จำนวน " + String.format("%,.2f", formulaModel.getValueFromAttributeName(formulaModel , "calMixProfitLost")) + " บาท");
+                txResultValue.setText("จำนวน " + String.format("%,.2f", formulaModel.getValueFromAttributeName(formulaModel , "calProfitLoss")) + " บาท");
             }else{
                 calResultProfitLossImage.setImageResource(R.drawable.ic_losecost);
 
                 txResultString.setText("เสียใจด้วย");
                 txResult.setText("คุณได้ขาดทุน");
-                txResultValue.setText("จำนวน " + String.format("%,.2f", formulaModel.getValueFromAttributeName(formulaModel , "calMixProfitLost")) + " บาท");
+                txResultValue.setText("จำนวน " + String.format("%,.2f", formulaModel.getValueFromAttributeName(formulaModel , "calProfitLoss")) + " บาท");
             }
 
             resultFadeView.setVisibility(View.VISIBLE);
 
 
+        }else if(v.getId() == R.id.btnOption) {
+            ImageButton btnOption = (ImageButton)view.findViewById(R.id.btnOption);
+            if(isCalIncludeOption){
+                btnOption.setImageResource(R.drawable.radio_cal_pink);
+                isCalIncludeOption = false;
+            }else{
+                btnOption.setImageResource(R.drawable.radio_cal_pink_check);
+                isCalIncludeOption = true;
+            }
         }else if(v.getId() == R.id.btnShowReport){
-            Log.d("btnShowReport", "onClick: btnShowReport");
-            resultFadeView.setVisibility(View.GONE);
+            CalculateResultActivity.resultModel = formulaModel;
+            CalculateResultActivity.userPlotModel = userPlotModel;
+
+            startActivity(new Intent(context, CalculateResultActivity.class));
         }
 
     }

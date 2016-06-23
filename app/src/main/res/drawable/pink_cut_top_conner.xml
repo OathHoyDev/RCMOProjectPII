@@ -5,7 +5,7 @@
     <corners android:bottomLeftRadius="0dp"
         android:bottomRightRadius="0dp"
         android:topLeftRadius="50dp"
-        android:topRightRadius="50dp" />
+        android:topRightRadius="50dp"/>
 
-    <solid android:color="@color/RcmoPlantBG"/>
+    <solid android:color="@color/RcmoAnimalBG"/>
 </shape>

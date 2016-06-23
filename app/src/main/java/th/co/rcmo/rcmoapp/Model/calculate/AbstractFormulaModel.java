@@ -20,8 +20,6 @@ import th.co.rcmo.rcmoapp.Util.ServiceInstance;
  */
 public abstract class AbstractFormulaModel {
 
-    public List<String> listDataHeader;
-    public HashMap<String, List<String[]>> listDataChild;
 
     public abstract void calculate();
     public abstract void prepareListData();

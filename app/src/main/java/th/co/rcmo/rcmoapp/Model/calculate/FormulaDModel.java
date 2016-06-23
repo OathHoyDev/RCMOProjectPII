@@ -10,6 +10,11 @@ import java.util.List;
  */
 public class FormulaDModel extends AbstractFormulaModel {
 
+    public List<String> listDataHeader;
+    public HashMap<String, List<String[]>> listDataChild;
+
+    boolean isCalIncludeOption = false;
+
     //Standard
     public double KaSermRongRaun = 0.7;
     public double KaSiaOkardRongRaun = 0.58;
@@ -131,12 +136,16 @@ public class FormulaDModel extends AbstractFormulaModel {
         double costKaSermRongRaun = KaSermRongRaun * RermLeang;
         double costKaSiaOkardRongRaun = KaSiaOkardRongRaun * RermLeang;
 
-        calCost = KaSiaOkardLongtoon + costKaChoaTDin + costKaSermRongRaun + costKaSiaOkardRongRaun + tmpCost;
+        calCost = KaSiaOkardLongtoon + costKaChoaTDin + tmpCost;
+
+        if (isCalIncludeOption){
+            calCost += costKaSermRongRaun + costKaSiaOkardRongRaun;
+        }
+
         calCostPerUnit = calCost/JumNounTuaTKai;
         calCostPerKg = calCost/NamNakTKai;
         calProfitLossPerKg = RakaTKai-calCostPerUnit;
         calProfitLoss = calProfitLossPerKg*NamNakTKai;
-
     }
 
     public void prepareListData() {

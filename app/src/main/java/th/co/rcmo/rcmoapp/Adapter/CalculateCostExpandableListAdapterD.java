@@ -18,6 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import th.co.rcmo.rcmoapp.Model.calculate.AbstractFormulaModel;
+import th.co.rcmo.rcmoapp.Model.calculate.FormulaDModel;
 import th.co.rcmo.rcmoapp.Model.calculate.FormulaJModel;
 import th.co.rcmo.rcmoapp.R;
 
@@ -32,15 +33,14 @@ public class CalculateCostExpandableListAdapterD extends BaseExpandableListAdapt
     private List<String> _listDataHeader; // header titles
     // child data in format of header title, child title
     private HashMap<String, List<String[]>> _listDataChild;
-    AbstractFormulaModel model;
+    FormulaDModel model;
 
 
-
-    public CalculateCostExpandableListAdapterD(Context context, Object dataObj , String formulaType){
+    public CalculateCostExpandableListAdapterD(Context context, FormulaDModel dataObj) {
 //        List<String> listDataHeader,
 //
 //                                              HashMap<String, List<String[]>> listChildData) {
-        model = (FormulaJModel)dataObj;
+        model = dataObj;
 
         this._context = context;
         this._listDataHeader = model.listDataHeader;
@@ -97,9 +97,9 @@ public class CalculateCostExpandableListAdapterD extends BaseExpandableListAdapt
             public void afterTextChanged(Editable s) {
                 Log.d("addTextChangedListener", "onTextChanged: " + childText[1] + " , Value : " + s.toString());
                 try {
-                    model.setValueFromAttributeName(FormulaJModel.class , childText[4], s.toString());
-                }catch(Exception e){
-                    Log.e("Error" , "Error addTextChangedListener" + e.getMessage());
+                    model.setValueFromAttributeName(model, childText[4], s.toString());
+                } catch (Exception e) {
+                    Log.e("Error", "Error addTextChangedListener" + e.getMessage());
                 }
             }
         });
@@ -117,9 +117,9 @@ public class CalculateCostExpandableListAdapterD extends BaseExpandableListAdapt
                 .findViewById(R.id.txCostUnit);
         txCostUnit.setText(childText[3]);
 
-        String layoutId = "formula_j_"+childText[4];
+        String layoutId = "formula_j_" + childText[4];
 
-        int id = _context.getResources().getIdentifier(layoutId,"id" , _context.getPackageName());
+        int id = _context.getResources().getIdentifier(layoutId, "id", _context.getPackageName());
 
         convertView.setId(id);
 
@@ -157,12 +157,15 @@ public class CalculateCostExpandableListAdapterD extends BaseExpandableListAdapt
             LayoutInflater infalInflater = (LayoutInflater) this._context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = infalInflater.inflate(R.layout.calculate_cost_list_group, null);
-        }
 
-        TextView lblListHeader = (TextView) convertView
-                .findViewById(R.id.lblListHeader);
-        lblListHeader.setTypeface(null, Typeface.BOLD);
-        lblListHeader.setText(headerTitle);
+
+
+            TextView lblListHeader = (TextView) convertView
+                    .findViewById(R.id.lblListHeader);
+            lblListHeader.setText(headerTitle);
+            lblListHeader.setBackgroundResource(R.drawable.pink_cut_top_conner);
+
+        }
 
         return convertView;
     }
@@ -177,7 +180,7 @@ public class CalculateCostExpandableListAdapterD extends BaseExpandableListAdapt
         return true;
     }
 
-    public Object getDataObj(){
+    public FormulaDModel getDataObj() {
         return model;
     }
 

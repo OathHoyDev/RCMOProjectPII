@@ -23,11 +23,17 @@ import th.co.rcmo.rcmoapp.Module.mSavePlotDetail;
 import th.co.rcmo.rcmoapp.Util.ServiceInstance;
 import th.co.rcmo.rcmoapp.View.DialogChoice;
 
+import th.co.rcmo.rcmoapp.Model.UserPlotModel;
+import th.co.rcmo.rcmoapp.Model.calculate.FormulaDModel;
+
 public class CalculateResultActivity extends Activity {
     String TAG ="CalculateResultActivity";
     String plotId;
     boolean saved = false;
    public static UserPlotModel userPlotModel =new UserPlotModel();
+
+    public static FormulaDModel resultModel;
+    public static UserPlotModel userPlotModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
