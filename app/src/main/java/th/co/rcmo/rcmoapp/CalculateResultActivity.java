@@ -21,6 +21,7 @@ import th.co.rcmo.rcmoapp.Model.UserPlotModel;
 import th.co.rcmo.rcmoapp.Model.calculate.FormulaJModel;
 import th.co.rcmo.rcmoapp.Module.mSavePlotDetail;
 import th.co.rcmo.rcmoapp.Util.ServiceInstance;
+import th.co.rcmo.rcmoapp.View.DialogChoice;
 
 public class CalculateResultActivity extends Activity {
     String TAG ="CalculateResultActivity";
@@ -52,7 +53,8 @@ public class CalculateResultActivity extends Activity {
 
             }
         }else{
-               //save image
+            new DialogChoice(CalculateResultActivity.this)
+                    .ShowOneChoice("ไม่สามารถบันทึกข้อมูล", "- กรุณา Login ก่อนทำการบันทึกข้อมูล"); //save image
         }
 
 
