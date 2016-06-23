@@ -4,64 +4,82 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <FrameLayout
+    <RelativeLayout
         android:id="@+id/transFrame"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <FrameLayout
+        <RelativeLayout
             android:id="@+id/borderFrame"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="20dp"
             android:background="@color/RcmoOrangeBG">
 
-            <RelativeLayout
-                android:id="@+id/suggess_layout"
+            <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="15dp"
-                android:background="@color/RcmoWhiteBG">
+                android:layout_margin="10dp"
+                android:id="@+id/suggessScrollView" >
 
-                <com.neopixl.pixlui.components.textview.TextView
-                    android:id="@+id/txRecommend"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="15dp"
-                    android:text="พื้นที่เหมาะสมสำหรับ...."
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="@android:color/black"
-                    pixlui:typeface="Quark-Bold.otf" />
+                <RelativeLayout
+                    android:id="@+id/suggess_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/RcmoWhiteBG">
 
-                <com.neopixl.pixlui.components.textview.TextView
-                    android:id="@+id/txSuggession"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignStart="@+id/txRecommend"
-                    android:layout_below="@+id/txRecommend"
-                    android:layout_marginTop="20dp"
-                    android:text="สัตว์ที่ควรเลี้ยงคือ"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="@color/RcmoGrayBG"
-                    pixlui:typeface="Quark-Bold.otf" />
-            </RelativeLayout>
+                    <com.neopixl.pixlui.components.textview.TextView
+                        android:id="@+id/txSuggession"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="15dp"
+                        android:text="พื้นที่เหมาะสมสำหรับ...."
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textColor="@android:color/black"
+                        pixlui:typeface="Quark-Bold.otf" />
 
-            <ImageView
-                android:id="@+id/imageView5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="false"
-                android:layout_alignRight="@+id/suggess_layout"
-                android:layout_gravity="top|right"
-                android:layout_marginRight="30dp"
-                android:src="@drawable/ic_triangle_arrow" />
+                    <com.neopixl.pixlui.components.textview.TextView
+                        android:id="@+id/txRecommend"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignStart="@+id/txSuggession"
+                        android:layout_below="@+id/txSuggession"
+                        android:layout_marginTop="10dp"
+                        android:text="สัตว์ที่ควรเลี้ยงคือ"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textColor="@color/RcmoGrayBG"
+                        pixlui:typeface="Quark-Bold.otf" />
 
-        </FrameLayout>
+                    <com.neopixl.pixlui.components.textview.TextView
+                        android:id="@+id/txRecommendProduct"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignStart="@+id/txRecommend"
+                        android:layout_below="@+id/txRecommend"
+                        android:text="สัตว์ที่ควรเลี้ยงคือ"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textColor="@color/RcmoGrayBG"
+                        pixlui:typeface="Quark-Bold.otf" />
 
-    </FrameLayout>
+                </RelativeLayout>
+            </ScrollView>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="false"
+        android:layout_gravity="top|right"
+        android:layout_marginRight="50dp"
+        android:src="@drawable/ic_triangle_arrow"
+        android:layout_alignParentRight="true" />
 
 </RelativeLayout>

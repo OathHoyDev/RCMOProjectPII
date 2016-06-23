@@ -19,7 +19,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -39,8 +38,6 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import org.w3c.dom.Text;
-
 import java.util.List;
 
 import th.co.rcmo.rcmoapp.API.RequestServices;
@@ -51,7 +48,6 @@ import th.co.rcmo.rcmoapp.Adapter.DialogTumbonAdapter;
 import th.co.rcmo.rcmoapp.Module.mAmphoe;
 import th.co.rcmo.rcmoapp.Module.mGetPlotDetail;
 import th.co.rcmo.rcmoapp.Module.mGetPlotSuit;
-import th.co.rcmo.rcmoapp.Module.mGetVariable;
 import th.co.rcmo.rcmoapp.Module.mProvince;
 import th.co.rcmo.rcmoapp.Module.mTumbon;
 import th.co.rcmo.rcmoapp.Util.CalculateConstant;
@@ -89,11 +85,20 @@ public class ProductDetailMapFragment extends Fragment implements View.OnClickLi
     private String plodID;
     private String userID;
 
+    private String latitude;
+    private String longitude;
+
     String suggession;
+    String recommend;
+    String recommendProduct = "";
 
     private Context context;
     View v;
     LayoutInflater inflater;
+
+    boolean isPopup = false;
+
+    String TAG = "ProductDetailMapFragment";
 
     public ProductDetailMapFragment() {
         // Required empty public constructor
@@ -179,14 +184,17 @@ public class ProductDetailMapFragment extends Fragment implements View.OnClickLi
 
         if(gps.canGetLocation()){
 
-            double latitude = 0;
-            double longitude = 0;
+            double lat = 0;
+            double lon = 0;
 
             if ("".equalsIgnoreCase(tamCode)){
-                latitude = gps.getLatitude();
-                longitude = gps.getLongitude();
+                lat = gps.getLatitude();
+                lon = gps.getLongitude();
 
-                showMap(latitude,longitude);
+                latitude = String.valueOf(lat);
+                longitude = String.valueOf(lon);
+
+                showMap(lat,lon);
             }else{
                 API_getTumbon(provCode , ampCode ,tamCode);
             }
@@ -218,8 +226,17 @@ public class ProductDetailMapFragment extends Fragment implements View.OnClickLi
 
     private void showMap(double latitude , double longitude){
 
-        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(latitude, longitude), 17);
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(latitude, longitude), 10);
         map.animateCamera(cameraUpdate);
+
+        map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(LatLng latLng) {
+                Log.d(TAG, "onMapClick: " + latLng.toString());
+                API_getPlotSuit(String.valueOf(latLng.latitude) , String.valueOf(latLng.longitude) , "2");
+            }
+        });
+
 
         Bitmap bm = BitmapFactory.decodeResource(getResources(), R.drawable.pin);
 
@@ -234,79 +251,6 @@ public class ProductDetailMapFragment extends Fragment implements View.OnClickLi
         map.addMarker(marker);
     }
 
-    private void API_getPlotDetail(String plodID) {
-        /**
-         1.TamCode (ไม่บังคับใส่)
-         2.AmpCode (บังคับใส่)
-         3.ProvCode (บังคับใส่)
-         */
-        new ResponseAPI(context, new ResponseAPI.OnCallbackAPIListener() {
-            @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
-            @Override
-            public void callbackSuccess(Object obj) {
-
-                mGetPlotDetail mPlotDetail = (mGetPlotDetail) obj;
-                List<mGetPlotDetail.mRespBody> mPlotDetailBodyLists = mPlotDetail.getRespBody();
-
-                if (mPlotDetailBodyLists.size() != 0) {
-
-                    prdID = mPlotDetailBodyLists.get(0).getPrdID();
-
-                    API_getPlotSuit();
-
-                }
-
-
-            }
-
-            @Override
-            public void callbackError(int code, String errorMsg) {
-                Log.d("Error", errorMsg);
-            }
-        }).API_Request(true, RequestServices.ws_getPlotDetail +
-                "?PlotID=" + plodID +
-                "&ImeiCode=" + ServiceInstance.GetDeviceID(context));
-
-    }
-
-    private void API_getPlotSuit() {
-
-        String cmd = "";
-
-        cmd = "?SuitFlag=" + suitFlag + "" +
-                "&PrdID=" + prdID +
-                "&TamCode=" + tamCode +
-                "&AmpCode=" + ampCode +
-                "&ProvCode=" + provCode +
-                "&Latitude=" + "" +
-                "&Longitude=" + "" +
-                "&ImeiCode=" + ServiceInstance.GetDeviceID(context);
-
-
-        new ResponseAPI(context, new ResponseAPI.OnCallbackAPIListener() {
-            @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
-            @Override
-            public void callbackSuccess(Object obj) {
-
-                mGetPlotSuit mPlotSuit = (mGetPlotSuit) obj;
-                List<mGetPlotSuit.mRespBody> mPlotSuitBodyLists = mPlotSuit.getRespBody();
-
-                if (mPlotSuitBodyLists.size() != 0) {
-
-                    displayPlotSuitValue(mPlotSuitBodyLists.get(0));
-
-                }
-
-
-            }
-
-            @Override
-            public void callbackError(int code, String errorMsg) {
-                Log.d("Error", errorMsg);
-            }
-        }).API_Request(true, RequestServices.ws_getPlotSuit + cmd);
-
-    }
 
     private void displayPlotSuitValue(mGetPlotSuit.mRespBody var){
         com.neopixl.pixlui.components.textview.TextView txSuggessPlot = (com.neopixl.pixlui.components.textview.TextView) v.findViewById(R.id.txSuggessPlot);
@@ -333,56 +277,82 @@ public class ProductDetailMapFragment extends Fragment implements View.OnClickLi
                 break;
         }
 
-        suggession = var.getSuitLabel() + "\n" + var.getRecommendLabel() + "\n" + var.getRecommendProduct();
+        suggession = var.getSuitLabel();
+        recommend = var.getRecommendLabel();
+        recommendProduct = "";
+
+        if (!"".equalsIgnoreCase(var.getRecommendProduct())) {
+            String tmpString = var.getRecommendProduct();
+            String [] splitTmpString = tmpString.split(",");
+
+            for (int i = 0; i < splitTmpString.length; i++) {
+                recommendProduct += "- " + splitTmpString[i].trim() + "\n";
+            }
+        }
     }
 
 
     public void onClick(View v){
+
         if(v.getId() == R.id.btnSuggession){
 
             Button btnSuggession = (Button) v.findViewById(R.id.btnSuggession);
 
+            LayoutInflater layoutInflater
+                    = (LayoutInflater) getContext()
+                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View popupView = layoutInflater.inflate(R.layout.layout_suggestion_popup, null);
+
+            RelativeLayout borderLayout = (RelativeLayout)popupView.findViewById(R.id.borderFrame);
+
+            switch (productType){
+                case CalculateConstant.PRODUCT_TYPE_ANIMAL :
+                    borderLayout.setBackgroundResource(R.color.RcmoAnimalBG);
+                    break;
+                case CalculateConstant.PRODUCT_TYPE_PLANT :
+                    borderLayout.setBackgroundResource(R.color.RcmoPlantBG);
+                    break;
+                case CalculateConstant.PRODUCT_TYPE_FISH :
+                    borderLayout.setBackgroundResource(R.color.RcmoFishBG);
+                    break;
+            }
+
+            com.neopixl.pixlui.components.textview.TextView txSuggession = (com.neopixl.pixlui.components.textview.TextView)popupView.findViewById(R.id.txSuggession);
+            txSuggession.setText(suggession);
+
+            com.neopixl.pixlui.components.textview.TextView txRecommend = (com.neopixl.pixlui.components.textview.TextView)popupView.findViewById(R.id.txRecommend);
+            txRecommend.setText(recommend);
+
+            com.neopixl.pixlui.components.textview.TextView txRecommendProduct = (com.neopixl.pixlui.components.textview.TextView)popupView.findViewById(R.id.txRecommendProduct);
+            txRecommendProduct.setText(recommendProduct);
+
             if (popupWindow == null) {
-
-                LayoutInflater layoutInflater
-                        = (LayoutInflater) getContext()
-                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                View popupView = layoutInflater.inflate(R.layout.layout_suggestion_popup, null);
-
-                FrameLayout borderLayout = (FrameLayout)popupView.findViewById(R.id.borderFrame);
-
-
-                switch (productType){
-                    case CalculateConstant.PRODUCT_TYPE_ANIMAL :
-                        borderLayout.setBackgroundResource(R.color.RcmoAnimalBG);
-                        break;
-                    case CalculateConstant.PRODUCT_TYPE_PLANT :
-                        borderLayout.setBackgroundResource(R.color.RcmoPlantBG);
-                        break;
-                    case CalculateConstant.PRODUCT_TYPE_FISH :
-                        borderLayout.setBackgroundResource(R.color.RcmoFishBG);
-                        break;
-                }
-
-                com.neopixl.pixlui.components.textview.TextView txSuggession = (com.neopixl.pixlui.components.textview.TextView)popupView.findViewById(R.id.txSuggession);
-                txSuggession.setText(suggession);
 
                 Display display = getActivity().getWindowManager().getDefaultDisplay();
                 int width = display.getWidth();
-                int popupScreen = (int) (width*0.7);
+                int popupWidth = (int) (width*0.8);
+                int popupHeight = (int) (width*0.6);
 
                 popupWindow = new PopupWindow(
-                        popupView , popupScreen , popupScreen);
+                        popupView , popupWidth , popupHeight);
 
                 popupWindow.setOutsideTouchable(true);
+
+                fadeView.setVisibility(View.VISIBLE);
+                popupWindow.showAsDropDown(btnSuggession, Gravity.TOP | Gravity.RIGHT, 0);
+                isPopup = true;
+
             }else {
 
-                if (popupWindow.isShowing()) {
+                if (isPopup) {
                     fadeView.setVisibility(View.GONE);
                     popupWindow.dismiss();
+                    popupWindow = null;
+                    isPopup = false;
                 } else {
                     fadeView.setVisibility(View.VISIBLE);
                     popupWindow.showAsDropDown(btnSuggession, Gravity.TOP | Gravity.RIGHT, 0);
+                    isPopup = true;
                 }
             }
 
@@ -402,10 +372,11 @@ public class ProductDetailMapFragment extends Fragment implements View.OnClickLi
             }
 
         }else if(v.getId() == R.id.btnCenterMarker){
-            double latitude = gps.getLatitude();
-            double longitude = gps.getLongitude();
 
-            CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(latitude, longitude), 17);
+            double lat = Double.parseDouble(latitude);
+            double lon = Double.parseDouble(longitude);
+
+            CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(lat, lon), 17);
             map.animateCamera(cameraUpdate);
         }
     }
@@ -549,6 +520,94 @@ public class ProductDetailMapFragment extends Fragment implements View.OnClickLi
         dialog.show();
     }
 
+    private void API_getPlotDetail(String plodID) {
+        /**
+         1.TamCode (ไม่บังคับใส่)
+         2.AmpCode (บังคับใส่)
+         3.ProvCode (บังคับใส่)
+         */
+        new ResponseAPI(context, new ResponseAPI.OnCallbackAPIListener() {
+            @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
+            @Override
+            public void callbackSuccess(Object obj) {
+
+                mGetPlotDetail mPlotDetail = (mGetPlotDetail) obj;
+                List<mGetPlotDetail.mRespBody> mPlotDetailBodyLists = mPlotDetail.getRespBody();
+
+                if (mPlotDetailBodyLists.size() != 0) {
+
+                    prdID = mPlotDetailBodyLists.get(0).getPrdID();
+
+                    API_getPlotSuit("" , "" , "1");
+
+                }
+
+
+            }
+
+            @Override
+            public void callbackError(int code, String errorMsg) {
+                Log.d("Error", errorMsg);
+            }
+        }).API_Request(true, RequestServices.ws_getPlotDetail +
+                "?PlotID=" + plodID +
+                "&ImeiCode=" + ServiceInstance.GetDeviceID(context));
+
+    }
+
+    private void API_getPlotSuit(String currLat , String curLon , String suitFlag) {
+
+        String cmd = "";
+
+        if ("1".equalsIgnoreCase(suitFlag)) {
+
+            cmd = "?SuitFlag=" + suitFlag + "" +
+                    "&PrdID=" + prdID +
+                    "&TamCode=" + tamCode +
+                    "&AmpCode=" + ampCode +
+                    "&ProvCode=" + provCode +
+                    "&Latitude=" + currLat +
+                    "&Longitude=" + curLon +
+                    "&ImeiCode=" + ServiceInstance.GetDeviceID(context);
+
+        } else{
+
+            cmd = "?SuitFlag=" + suitFlag + "" +
+                    "&PrdID=" + prdID +
+                    "&TamCode=" + tamCode +
+                    "&AmpCode=" + ampCode +
+                    "&ProvCode=" + provCode +
+                    "&Latitude=" + currLat +
+                    "&Longitude=" + curLon +
+                    "&ImeiCode=" + ServiceInstance.GetDeviceID(context);
+        }
+
+        new ResponseAPI(context, new ResponseAPI.OnCallbackAPIListener() {
+            @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
+            @Override
+            public void callbackSuccess(Object obj) {
+
+                mGetPlotSuit mPlotSuit = (mGetPlotSuit) obj;
+                List<mGetPlotSuit.mRespBody> mPlotSuitBodyLists = mPlotSuit.getRespBody();
+
+                if (mPlotSuitBodyLists.size() != 0) {
+
+                    displayPlotSuitValue(mPlotSuitBodyLists.get(0));
+
+                }
+
+
+            }
+
+            @Override
+            public void callbackError(int code, String errorMsg) {
+                Log.d("Error", errorMsg);
+            }
+        }).API_Request(true, RequestServices.ws_getPlotSuit + cmd);
+
+    }
+
+
     private void API_getProvince() {
         /**
          1.ProvCode (ไม่บังคับใส่)
@@ -667,7 +726,10 @@ public class ProductDetailMapFragment extends Fragment implements View.OnClickLi
                 final List<mTumbon.mRespBody> tumbonBodyLists = tumbonInfo.getRespBody();
                 mTumbon.mRespBody tumbon = tumbonBodyLists.get(0);
 
-                showMap(Double.parseDouble(tumbon.getLatitude()) , Double.parseDouble(tumbon.getLongitude()));
+                latitude = tumbon.getLatitude();
+                longitude = tumbon.getLongitude();
+
+                showMap(Double.parseDouble(latitude) , Double.parseDouble(longitude));
 
             }
 

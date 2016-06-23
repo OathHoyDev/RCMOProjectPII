@@ -103,6 +103,8 @@ public class ProductDetailActivity extends AppCompatActivity {
             bundle.putString("suitFlag" , "1");
         }
 
+        bundle.putString("prdGrpID" , userPlotModel.getPrdGrpID());
+
         bundle.putString("tamCode" , userPlotModel.getTamCode());
         bundle.putString("ampCode" , userPlotModel.getAmpCode());
         bundle.putString("provCode" , userPlotModel.getProvCode());
@@ -166,16 +168,15 @@ public class ProductDetailActivity extends AppCompatActivity {
         productDetailStandardFragment.setArguments(bundle);
         adapter.addFragment(productDetailStandardFragment);
 
-        ProductDetailCalculateFragment productDetailCalculateFragment = new ProductDetailCalculateFragment();
-        productDetailCalculateFragment.setArguments(bundle);
-        adapter.addFragment(productDetailCalculateFragment);
+        ProductDetailCalculateFragmentD productDetailCalculateFragmentD = new ProductDetailCalculateFragmentD();
+        productDetailCalculateFragmentD.setArguments(bundle);
+        adapter.addFragment(productDetailCalculateFragmentD);
 
         ProductDetailMapFragment productDetailMapFragment = new ProductDetailMapFragment();
         productDetailMapFragment.setArguments(bundle);
         adapter.addFragment(productDetailMapFragment);
 
         viewPager.setAdapter(adapter);
-//        viewPager.setCurrentItem(0);
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);
 
@@ -202,32 +203,6 @@ public class ProductDetailActivity extends AppCompatActivity {
         //tabLayout.setBackgroundResource(R.drawable.action_tab_plant);
 
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-
-        tabLayout.setOnTabSelectedListener(
-                new TabLayout.ViewPagerOnTabSelectedListener(viewPager) {
-
-                    @Override
-                    public void onTabSelected(TabLayout.Tab tab) {
-                        super.onTabSelected(tab);
-                        Log.i("Tab", "onTabSelected: " + tab.getPosition());
-                    }
-
-                    @Override
-                    public void onTabUnselected(TabLayout.Tab tab) {
-                        super.onTabUnselected(tab);
-                        Log.i("Tab", "onTabUnselected: " + tab.getPosition());
-                    }
-
-                    @Override
-                    public void onTabReselected(TabLayout.Tab tab) {
-                        super.onTabReselected(tab);
-
-                        Log.i("Tab", "onTabReselected: " + tab.getPosition());
-                    }
-
-                }
-        );
-
 
         viewPager.setCurrentItem(1);
         tabLayout.getTabAt(1).getCustomView().setSelected(true);
