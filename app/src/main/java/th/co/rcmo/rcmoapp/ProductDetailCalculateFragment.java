@@ -21,13 +21,20 @@ import java.util.HashMap;
 import java.util.List;
 
 import th.co.rcmo.rcmoapp.Adapter.CalculateCostExpandableListAdapter;
+import th.co.rcmo.rcmoapp.Model.calculate.AbstractFormulaModel;
 import th.co.rcmo.rcmoapp.Model.calculate.FormulaJModel;
+import th.co.rcmo.rcmoapp.Model.calculate.FormularModelFactory;
+import th.co.rcmo.rcmoapp.Util.BitMapHelper;
+import th.co.rcmo.rcmoapp.Util.CalculateConstant;
+import th.co.rcmo.rcmoapp.Util.ServiceInstance;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class ProductDetailCalculateFragment extends Fragment implements  View.OnClickListener {
+
+    String TAG = "ProductDetailCalculateFragment";
 
     ExpandableListView expandableListView;
     CalculateCostExpandableListAdapter calculateCostExpandableListAdapter;
@@ -40,7 +47,10 @@ public class ProductDetailCalculateFragment extends Fragment implements  View.On
     private Context context;
     View view;
 
-    FormulaJModel jModel;
+    String prdID;
+    String prdGrpID;
+
+    FormulaJModel formulaModel;
 
     RelativeLayout resultFadeView;
     RelativeLayout rootViewLayout;
@@ -65,33 +75,38 @@ public class ProductDetailCalculateFragment extends Fragment implements  View.On
         resultFadeView = (RelativeLayout) view.findViewById(R.id.resultFadeLayout);
         rootViewLayout = (RelativeLayout) view.findViewById(R.id.rootLayoutView);
 
-        jModel = sampleData();
+        getArgumentFromActivity();
 
+        initialProductIcon();
 
-        jModel.calculate();
-        jModel.prepareListData();
+        sampleData();
+
+        getValueFromLayout();
+
+        formulaModel.calculate();
+        formulaModel.prepareListData();
 
         TextView fishpondSizeRai = (TextView) view.findViewById(R.id.lbFishpondSizeRai);
-        fishpondSizeRai.setText(String.valueOf(jModel.fishpondSizeRai));
+        fishpondSizeRai.setText(String.valueOf(formulaModel.getValueFromAttributeName(formulaModel , "fishpondSizeRai")));
 
         TextView lbFishpondSizeNgan = (TextView) view.findViewById(R.id.lbFishpondSizeNgan);
-        lbFishpondSizeNgan.setText(String.valueOf(jModel.fishpondSizeNgan));
+        lbFishpondSizeNgan.setText(String.valueOf(formulaModel.getValueFromAttributeName(formulaModel , "fishpondSizeNgan")));
 
         TextView fishpondSizeSqrWah = (TextView) view.findViewById(R.id.lbFishpondSizeSqrWah);
-        fishpondSizeSqrWah.setText(String.valueOf(jModel.fishpondSizeSqrWah));
+        fishpondSizeSqrWah.setText(String.valueOf(formulaModel.getValueFromAttributeName(formulaModel , "fishpondSizeSqrWah")));
 
         TextView fishpondSizeSqrMeters = (TextView) view.findViewById(R.id.lbFishpondSizeSqrMeters);
-        fishpondSizeSqrMeters.setText(String.valueOf(jModel.fishpondSizeSqrMeters));
+        fishpondSizeSqrMeters.setText(String.valueOf(formulaModel.getValueFromAttributeName(formulaModel , "fishpondSizeSqrMeters")));
 
         TextView amountFish = (TextView) view.findViewById(R.id.lbAmountFish);
-        amountFish.setText(String.valueOf(jModel.amountFish));
+        amountFish.setText(String.valueOf(formulaModel.getValueFromAttributeName(formulaModel , "amountFish")));
 
-        calculateCostExpandableListAdapter = new CalculateCostExpandableListAdapter(context, jModel , "J");
+        calculateCostExpandableListAdapter = new CalculateCostExpandableListAdapter(context, formulaModel, "J");
 
         // setting list adapter
         expandableListView.setAdapter(calculateCostExpandableListAdapter);
 
-        setListViewHeight(expandableListView, jModel.listDataHeader.size()-1 , true);
+        setListViewHeight(expandableListView, formulaModel.listDataHeader.size()-1 , true);
 
         expandableListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
 
@@ -116,9 +131,46 @@ public class ProductDetailCalculateFragment extends Fragment implements  View.On
         return view;
     }
 
+    private void getArgumentFromActivity(){
+
+        prdID = getArguments().getString("prdID");
+
+    }
+
+    private void initialProductIcon(){
+        android.widget.ImageView productIconBG = (android.widget.ImageView)view.findViewById(R.id.productIconBG);
+        android.widget.ImageView productIcon = (android.widget.ImageView)view.findViewById(R.id.productIcon);
+
+        if (CalculateConstant.PRODUCT_TYPE_PLANT.equalsIgnoreCase(getArguments().getString("PrdGrpID"))){
+            productIconBG.setImageResource(R.drawable.plant_ic_gr_circle_bg);
+        }else if(CalculateConstant.PRODUCT_TYPE_ANIMAL.equalsIgnoreCase(getArguments().getString("PrdGrpID"))){
+            productIconBG.setImageResource(R.drawable.animal_ic_gr_circle_bg);
+        }else{
+            productIconBG.setImageResource(R.drawable.fish_ic_gr_circle_bg);
+        }
+
+        String imgName = ServiceInstance.productIMGMap.get(Integer.parseInt(prdID));
+
+        int imgIDInt = getResources().getIdentifier(imgName, "drawable", context.getPackageName());
+
+        productIcon.setImageResource(imgIDInt);
 
 
-    private FormulaJModel sampleData(){
+    }
+
+    private void initialFormulaModel(){
+
+        String prdId = getArguments().getString("prdId");
+
+
+
+    }
+
+    private void getValueFromLayout(){
+        Log.i(TAG, "getValueFromLayout (formula_j_sellFishAvg): " + view.findViewById(R.id.formula_j_sellFishAvg));
+    }
+
+    private void sampleData(){
 
         FormulaJModel jModel = new FormulaJModel();
 
@@ -163,7 +215,7 @@ public class ProductDetailCalculateFragment extends Fragment implements  View.On
         jModel.stdDepreEquip = 6.27;
         jModel.stdOpportEquip = 5.09;
 
-        return jModel;
+        formulaModel = jModel;
     }
 
     private void setListViewHeight(ExpandableListView listView,
@@ -231,26 +283,26 @@ public class ProductDetailCalculateFragment extends Fragment implements  View.On
 
     public void onClick(View v) {
         if(v.getId() == R.id.btnCalculate){
-            jModel = (FormulaJModel) calculateCostExpandableListAdapter.getDataObj();
-            jModel.calculate();
+            formulaModel = (FormulaJModel) calculateCostExpandableListAdapter.getDataObj();
+            formulaModel.calculate();
 
             ImageView calResultProfitLossImage = (ImageView) resultFadeView.findViewById(R.id.calResultProfitLossImage);
             TextView txResultString = (TextView) resultFadeView.findViewById(R.id.txResultString);
             TextView txResult = (TextView) resultFadeView.findViewById(R.id.txResult);
             TextView txResultValue = (TextView) resultFadeView.findViewById(R.id.txResultValue);
 
-            if (jModel.calMixProfitLost > 0){
+            if ((double)formulaModel.getValueFromAttributeName(formulaModel , "calMixProfitLost") > 0){
                 calResultProfitLossImage.setImageResource(R.drawable.ic_profit);
 
                 txResultString.setText("ยินดีด้วย");
                 txResult.setText("คุณได้กำไร");
-                txResultValue.setText("จำนวน " + String.format("%,.2f", jModel.calMixProfitLost) + " บาท");
+                txResultValue.setText("จำนวน " + String.format("%,.2f", formulaModel.getValueFromAttributeName(formulaModel , "calMixProfitLost")) + " บาท");
             }else{
                 calResultProfitLossImage.setImageResource(R.drawable.ic_losecost);
 
                 txResultString.setText("เสียใจด้วย");
                 txResult.setText("คุณได้ขาดทุน");
-                txResultValue.setText("จำนวน " + String.format("%,.2f", jModel.calMixProfitLost) + " บาท");
+                txResultValue.setText("จำนวน " + String.format("%,.2f", formulaModel.getValueFromAttributeName(formulaModel , "calMixProfitLost")) + " บาท");
             }
 
             resultFadeView.setVisibility(View.VISIBLE);

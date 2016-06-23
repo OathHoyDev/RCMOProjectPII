@@ -2,7 +2,6 @@ package th.co.rcmo.rcmoapp.Model.calculate;
 
 import android.util.Log;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Hashtable;
@@ -13,8 +12,9 @@ import java.util.List;
  */
 public class FormulaJModel extends AbstractFormulaModel {
 
-    public List<String> listDataHeader;
-    public HashMap<String, List<String[]>> listDataChild;
+    // Standard Variable
+    public double stdDepreEquip = 6.27;
+    public double stdOpportEquip = 5.09;
 
     public double fishpondSizeRai = 0;
     public double fishpondSizeNgan = 0;
@@ -89,8 +89,7 @@ public class FormulaJModel extends AbstractFormulaModel {
     public double calBySizeProfitLost = 0;
     public double calBySizeProfitLostPerWeight = 0;
 
-    public double stdDepreEquip = 0;
-    public double stdOpportEquip = 0;
+
 
     public static Hashtable<String , String> calculateLabel;
     static {
@@ -108,7 +107,7 @@ public class FormulaJModel extends AbstractFormulaModel {
         tmp.put("costFishSpecies" , "ค่าพันธ์ปลา");
         tmp.put("costFood" , "ค่าอาหาร");
 
-        tmp.put("costLabor" , "ค่าแรงงาน");
+        tmp.put("KaRang" , "ค่าแรงงาน");
         tmp.put("costFeed" , "เลี้ยง");
         tmp.put("costFishing" , "จับและคัดขนาด");
 
@@ -122,7 +121,7 @@ public class FormulaJModel extends AbstractFormulaModel {
         tmp.put("costLandLease" , "ค่าเช่าที่ดิน");
 
         tmp.put("feedTime" , "ระยะเวลาที่เลี้ยง");
-        tmp.put("opportInvestment" , "ค่าเสียโอกาสเงินลงทุน");
+        tmp.put("KaSiaOkardLongtoon" , "ค่าเสียโอกาสเงินลงทุน");
 
         tmp.put("sellFish" , "น้ำหนักที่ขายทั้งหมด");
         tmp.put("sellFishAvg" , "น้ำหนักที่ขายเฉลี่ย");
@@ -188,7 +187,7 @@ public class FormulaJModel extends AbstractFormulaModel {
         tmp.put("costFishSpecies" , "บาท");
         tmp.put("costFood" , "บาท/รุ่น");
 
-        tmp.put("costLabor" , "บาท");
+        tmp.put("KaRang" , "บาท");
         tmp.put("costFeed" , "บาท/เดือน");
         tmp.put("costFishing" , "บาท/รุ่น");
 
@@ -202,7 +201,7 @@ public class FormulaJModel extends AbstractFormulaModel {
         tmp.put("costLandLease" , "บาท/ปี");
 
         tmp.put("feedTime" , "วัน/รุ่น");
-        tmp.put("opportInvestment" , "วัน/รุ่น");
+        tmp.put("KaSiaOkardLongtoon" , "วัน/รุ่น");
 
         tmp.put("sellFish" , "กิโลกรัม");
         tmp.put("sellFishAvg" , "กิโลกรัม/ไร่");
@@ -320,7 +319,7 @@ public class FormulaJModel extends AbstractFormulaModel {
         cost.add(new String[]{"true" , calculateLabel.get("costFuel"), String.format("%,.2f", costFuel), calculateUnit.get("costFuel") , "costFuel"});
         cost.add(new String[]{"true" , calculateLabel.get("costElectricGas"), String.format("%,.2f", costElectricGas), calculateUnit.get("costElectricGas") , "costElectricGas"});
         cost.add(new String[]{"true" , calculateLabel.get("costDredgeUpMud"), String.format("%,.2f", costDredgeUpMud), calculateUnit.get("costDredgeUpMud") , "costDredgeUpMud"});
-        cost.add(new String[]{"false" , calculateLabel.get("costLabor"), String.format("%,.2f", costLabor), calculateUnit.get("costLabor") , "costLabor"});
+        cost.add(new String[]{"false" , calculateLabel.get("KaRang"), String.format("%,.2f", costLabor), calculateUnit.get("KaRang") , "KaRang"});
         cost.add(new String[]{"true" , calculateLabel.get("costFeed"), String.format("%,.2f", costFeed), calculateUnit.get("costFeed") , "costFeed"});
         cost.add(new String[]{"true" , calculateLabel.get("costFishing"), String.format("%,.2f", costFishing), calculateUnit.get("costFishing") , "costFishing"});
         cost.add(new String[]{"true" , calculateLabel.get("costRepairEquip"), String.format("%,.2f", costRepairEquip), calculateUnit.get("costRepairEquip") , "costRepairEquip"});
@@ -330,7 +329,7 @@ public class FormulaJModel extends AbstractFormulaModel {
 
         List<String[]> feedTimeList = new ArrayList<String[]>();
         feedTimeList.add(new String[]{"true" , calculateLabel.get("feedTime"), String.format("%,.2f", feedTime), calculateUnit.get("feedTime") , "feedTime"});
-        feedTimeList.add(new String[]{"false" , calculateLabel.get("opportInvestment"), String.format("%,.2f", opportInvestment), calculateUnit.get("opportInvestment") , "opportInvestment"});
+        feedTimeList.add(new String[]{"false" , calculateLabel.get("KaSiaOkardLongtoon"), String.format("%,.2f", opportInvestment), calculateUnit.get("KaSiaOkardLongtoon") , "KaSiaOkardLongtoon"});
 
         List<String[]> sellMixSize = new ArrayList<String[]>();
         sellMixSize.add(new String[]{"true" , calculateLabel.get("sellFish"), String.format("%,.2f", sellFish), calculateUnit.get("sellFish") , "sellFish"});

@@ -92,12 +92,17 @@ public class ProductDetailActivity extends AppCompatActivity {
         bundle.putString("prdID" , userPlotModel.getPrdID());
         bundle.putString("productType", userPlotModel.getPrdGrpID());
         bundle.putString("plodID", userPlotModel.getPlotID());
-        bundle.putString("suitFlag" , "1");
+
+        if ("".equalsIgnoreCase(userPlotModel.getTamCode())){
+            bundle.putString("suitFlag" , "2");
+        }else{
+            bundle.putString("suitFlag" , "1");
+        }
+
         bundle.putString("tamCode" , userPlotModel.getTamCode());
         bundle.putString("ampCode" , userPlotModel.getAmpCode());
         bundle.putString("provCode" , userPlotModel.getProvCode());
-        bundle.putString("lat" , "14.200792");
-        bundle.putString("lon" , "100.509152");
+        bundle.putString("userID" , userPlotModel.getUserID());
     }
 
     private void setUI(){
@@ -209,7 +214,9 @@ public class ProductDetailActivity extends AppCompatActivity {
                 }
         );
 
-        tabLayout.getTabAt(0).getCustomView().setSelected(true);
+
+        viewPager.setCurrentItem(1);
+        tabLayout.getTabAt(1).getCustomView().setSelected(true);
 
     }
 

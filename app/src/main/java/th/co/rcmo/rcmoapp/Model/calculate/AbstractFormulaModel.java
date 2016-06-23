@@ -6,6 +6,7 @@ import android.os.Build;
 import android.util.Log;
 
 import java.lang.reflect.Field;
+import java.util.HashMap;
 import java.util.List;
 
 import th.co.rcmo.rcmoapp.API.RequestServices;
@@ -17,19 +18,64 @@ import th.co.rcmo.rcmoapp.Util.ServiceInstance;
 /**
  * Created by SilVeriSm on 6/22/2016 AD.
  */
-abstract class AbstractFormulaModel {
+public abstract class AbstractFormulaModel {
 
-    public void setProperty(String fieldName, String value) throws NoSuchFieldException, IllegalAccessException {
-        Field field = this.getClass().getDeclaredField(fieldName);
-        if (field.getType() == Character.TYPE) {field.set(getClass(), value.charAt(0)); return;}
-        if (field.getType() == Short.TYPE) {field.set(getClass(), Short.parseShort(value)); return;}
-        if (field.getType() == Integer.TYPE) {field.set(getClass(), Integer.parseInt(value)); return;}
-        if (field.getType() == Long.TYPE) {field.set(getClass(), Long.parseLong(value)); return;}
-        if (field.getType() == Float.TYPE) {field.set(getClass(), Float.parseFloat(value)); return;}
-        if (field.getType() == Double.TYPE) {field.set(getClass(), Double.parseDouble(value)); return;}
-        if (field.getType() == Byte.TYPE) {field.set(getClass(), Byte.parseByte(value)); return;}
-        if (field.getType() == Boolean.TYPE) {field.set(getClass(), Boolean.parseBoolean(value)); return;}
-        field.set(getClass(), value);
+    public List<String> listDataHeader;
+    public HashMap<String, List<String[]>> listDataChild;
+
+    public abstract void calculate();
+    public abstract void prepareListData();
+
+    public Object getValueFromAttributeName(Object obj , String fieldName){
+
+        Object result = null;
+
+        try {
+
+            Field field = obj.getClass().getDeclaredField(fieldName);
+
+            if (field.getType() == Character.TYPE) {
+                result = field.getChar(obj);
+            }
+            if (field.getType() == Short.TYPE) {
+                result = field.getShort(obj);
+            } else if (field.getType() == Integer.TYPE) {
+                result = field.getShort(obj);
+            } else if (field.getType() == Long.TYPE) {
+                result = field.getLong(obj);
+            } else if (field.getType() == Float.TYPE) {
+                result = field.getFloat(obj);
+            } else if (field.getType() == Double.TYPE) {
+                result = field.getDouble(obj);
+            } else if (field.getType() == Byte.TYPE) {
+                result = field.getByte(obj);
+            } else if (field.getType() == Boolean.TYPE) {
+                result = field.getBoolean(obj);
+            } else {
+                result = field.getBoolean(obj);
+            }
+
+        }catch (NoSuchFieldException noE){
+
+        }catch (IllegalAccessException ilE){
+
+        }
+
+        return result;
+
+    }
+
+    public void setValueFromAttributeName(Object obj , String fieldName, String value) throws NoSuchFieldException, IllegalAccessException {
+        Field field = obj.getClass().getDeclaredField(fieldName);
+        if (field.getType() == Character.TYPE) {field.set(obj, value.charAt(0)); return;}
+        if (field.getType() == Short.TYPE) {field.set(obj, Short.parseShort(value)); return;}
+        if (field.getType() == Integer.TYPE) {field.set(obj, Integer.parseInt(value)); return;}
+        if (field.getType() == Long.TYPE) {field.set(obj, Long.parseLong(value)); return;}
+        if (field.getType() == Float.TYPE) {field.set(obj, Float.parseFloat(value)); return;}
+        if (field.getType() == Double.TYPE) {field.set(obj, Double.parseDouble(value)); return;}
+        if (field.getType() == Byte.TYPE) {field.set(obj, Byte.parseByte(value)); return;}
+        if (field.getType() == Boolean.TYPE) {field.set(obj, Boolean.parseBoolean(value)); return;}
+        field.set(obj, value);
     }
 
     private void API_savePlotDetail(Context context , String userID , mGetPlotDetail plotDetail , String varName , String varValue) {
@@ -83,5 +129,7 @@ abstract class AbstractFormulaModel {
                         "&CalResult=''");
 
     }
+
+
 
 }

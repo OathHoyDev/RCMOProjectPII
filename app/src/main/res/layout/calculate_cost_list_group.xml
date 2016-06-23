@@ -22,7 +22,7 @@
             android:textColor="@color/RcmoWhiteBG"
             android:background="@drawable/bar_title_blue"
             android:text="Header"
-            android:gravity="center_vertical" />
+            android:gravity="center_vertical|center_horizontal" />
     </RelativeLayout>
 
 </LinearLayout>

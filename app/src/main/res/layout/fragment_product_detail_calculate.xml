@@ -223,7 +223,7 @@
                     <ImageView
                         android:layout_width="130dp"
                         android:layout_height="130dp"
-                        android:id="@+id/imageView8"
+                        android:id="@+id/productIconBG"
                         android:background="@drawable/fish_ic_gr_circle_bg"
                         android:layout_centerInParent="true" />
 

@@ -14,25 +14,27 @@ import android.widget.BaseExpandableListAdapter;
 import com.neopixl.pixlui.components.edittext.EditText;
 import com.neopixl.pixlui.components.textview.TextView;
 
-import java.lang.reflect.Method;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import th.co.rcmo.rcmoapp.Model.calculate.AbstractFormulaModel;
 import th.co.rcmo.rcmoapp.Model.calculate.FormulaJModel;
 import th.co.rcmo.rcmoapp.R;
-import th.co.rcmo.rcmoapp.expandable.standard.cost.CostCategory;
 
 /**
  * Created by SilVeriSm on 6/18/2016 AD.
  */
 public class CalculateCostExpandableListAdapter extends BaseExpandableListAdapter {
 
+    String TAG = "CalculateCostExpandableListAdapter";
+
     private Context _context;
     private List<String> _listDataHeader; // header titles
     // child data in format of header title, child title
     private HashMap<String, List<String[]>> _listDataChild;
-    FormulaJModel model;
+    AbstractFormulaModel model;
+
+
 
     public CalculateCostExpandableListAdapter(Context context, Object dataObj , String formulaType){
 //        List<String> listDataHeader,
@@ -95,7 +97,7 @@ public class CalculateCostExpandableListAdapter extends BaseExpandableListAdapte
             public void afterTextChanged(Editable s) {
                 Log.d("addTextChangedListener", "onTextChanged: " + childText[1] + " , Value : " + s.toString());
                 try {
-                    model.setProperty(childText[4], s.toString());
+                    model.setValueFromAttributeName(FormulaJModel.class , childText[4], s.toString());
                 }catch(Exception e){
                     Log.e("Error" , "Error addTextChangedListener" + e.getMessage());
                 }
@@ -114,6 +116,14 @@ public class CalculateCostExpandableListAdapter extends BaseExpandableListAdapte
         TextView txCostUnit = (TextView) convertView
                 .findViewById(R.id.txCostUnit);
         txCostUnit.setText(childText[3]);
+
+        String layoutId = "formula_j_"+childText[4];
+
+        int id = _context.getResources().getIdentifier(layoutId,"id" , _context.getPackageName());
+
+        convertView.setId(id);
+
+        Log.d(TAG, "getChildView: Set ID : " + layoutId + " -> " + id);
 
         return convertView;
     }
