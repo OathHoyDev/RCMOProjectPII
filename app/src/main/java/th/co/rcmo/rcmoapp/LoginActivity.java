@@ -12,6 +12,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import com.neopixl.pixlui.components.edittext.EditText;
@@ -38,6 +40,9 @@ public class LoginActivity extends Activity {
        findViewById(R.id.mainLoginLayout).setBackground(new BitmapDrawable(BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.bg_total, 300, 400)));
         inputUsername = (EditText) findViewById(R.id.inputUsername);
         inputPassword = (EditText) findViewById(R.id.inputPassword);
+
+        inputUsername.requestFocus();
+         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
 
         setUI();
         setAction();
@@ -66,6 +71,7 @@ public class LoginActivity extends Activity {
     }
 
     private void setAction() {
+
 
         findViewById(R.id.imgGotoOtherApp).setOnClickListener(new View.OnClickListener() {
             @Override

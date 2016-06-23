@@ -565,7 +565,7 @@ public class UserPlotListActivity extends Activity {
         View layout = inflater.inflate(R.layout.toast_layout,
                 (ViewGroup) findViewById(R.id.toast_layout_root));
         Toast toast = new Toast(getApplicationContext());
-        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.setGravity(Gravity.BOTTOM, 0, 50);
         toast.setDuration(Toast.LENGTH_LONG);
         toast.setView(layout);
 
@@ -581,7 +581,7 @@ public class UserPlotListActivity extends Activity {
 
         plotModel.setPlotID(String.valueOf(resp.getPlotID()));
         plotModel.setPrdGrpID(String.valueOf(resp.getPrdGrpID()));
-        plotModel.setPrdID(String.valueOf(resp.getPrdGrpID()));
+        plotModel.setPrdID(String.valueOf(resp.getPrdID()));
         plotModel.setUserID(userId);
 
 
