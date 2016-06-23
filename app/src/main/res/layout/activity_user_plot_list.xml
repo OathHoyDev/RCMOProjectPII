@@ -27,7 +27,7 @@
         <ImageView
             android:layout_width="@dimen/size_howto"
             android:layout_height="@dimen/size_howto"
-            android:src="@drawable/ic_profile"
+            android:src="@drawable/action_ic_user_profile"
             android:layout_alignParentLeft="true"
             android:id="@+id/btnProfile"
             android:layout_margin="10dp"/>

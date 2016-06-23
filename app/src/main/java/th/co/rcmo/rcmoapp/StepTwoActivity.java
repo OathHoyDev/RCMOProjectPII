@@ -115,6 +115,14 @@ public class StepTwoActivity extends Activity {
             }
         });
 
+        findViewById(R.id.prodHierarchy).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+
 
 
 

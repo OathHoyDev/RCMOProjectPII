@@ -214,10 +214,11 @@ public class RegisterActivity extends Activity {
             @Override
             public void callbackError(int code, String errorMsg) {
                 new DialogChoice(RegisterActivity.this).ShowOneChoice(errorMsg, "");
-                if(code==4){
+                if(code==4 && "ชื่อผู้ใช้หรืออีเมล์นี้มีอยู่แล้วในระบบ!!".equals(errorMsg)){
+
+
                     Holder.inputEmail.setBackgroundResource(R.drawable.white_cut_conner_invalid);
-                    Holder.inputEmail.requestFocus();
-                }else{
+                   // Holder.inputEmail.requestFocus();
                     Holder.inputUsername.setBackgroundResource(R.drawable.white_cut_conner_invalid);
                     Holder.inputUsername.requestFocus();
                 }
