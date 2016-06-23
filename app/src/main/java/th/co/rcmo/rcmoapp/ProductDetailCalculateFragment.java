@@ -14,6 +14,7 @@ import android.widget.ExpandableListView;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 
+import com.neopixl.pixlui.components.button.Button;
 import com.neopixl.pixlui.components.imageview.ImageView;
 import com.neopixl.pixlui.components.textview.TextView;
 
@@ -118,7 +119,7 @@ public class ProductDetailCalculateFragment extends Fragment implements  View.On
             }
         });
 
-        ImageButton btnCalculate = (ImageButton) view.findViewById(R.id.btnCalculate);
+        Button btnCalculate = (Button) view.findViewById(R.id.btnCalculate);
         btnCalculate.setOnClickListener(this);
 
         ImageButton btnShowReport = (ImageButton) view.findViewById(R.id.btnShowReport);
