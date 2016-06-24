@@ -33,7 +33,7 @@ import th.co.rcmo.rcmoapp.Util.ServiceInstance;
  */
 public class ProductDetailCalculateFragmentD extends Fragment implements  View.OnClickListener {
 
-    String TAG = "ProductDetailCalculateFragment";
+    String TAG = "ProductDetailCalculateFragmentD";
 
     ExpandableListView expandableListView;
     CalculateCostExpandableListAdapterD calculateCostExpandableListAdapter;
