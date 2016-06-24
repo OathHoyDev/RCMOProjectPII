@@ -29,6 +29,15 @@ public class UserPlotModel {
     private String varName="";
     private String varValue="";
     private String calResult="";
+    private String prdValue = "";
+
+    public String getPrdValue() {
+        return prdValue;
+    }
+
+    public void setPrdValue(String prdValue) {
+        this.prdValue = prdValue;
+    }
 
     public int getPageId() {
         return pageId;

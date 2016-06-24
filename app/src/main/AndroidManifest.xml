@@ -89,7 +89,11 @@
         <activity
             android:name=".StepThreeActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".CalculateResultActivity"></activity>
+        <activity android:name=".CalculateResultActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".PBProductDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/TabTheme"/>
     </application>
 
 </manifest>

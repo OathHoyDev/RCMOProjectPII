@@ -1,0 +1,99 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:pixlui="http://schemas.android.com/apk/com.neopixl.pixlui"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PBProdDetailMapFment"
+    android:background="@color/RcmoWhiteBG">
+
+    <!-- TODO: Update blank fragment layout -->
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/map"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"/>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/btnMapStyle"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="100dp"
+            android:background="@drawable/btn_sate"/>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:id="@+id/btnCenterMarker"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/btn_my_pin"
+            android:layout_below="@+id/btnMapStyle"
+            android:layout_alignStart="@+id/btnMapStyle"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            android:clickable="true"
+            android:layout_alignEnd="@+id/btnMapStyle" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/RcmoAnimalTranBG"
+            android:layout_alignParentEnd="true"
+            android:id="@+id/suggessBottomBG">
+
+            <com.neopixl.pixlui.components.textview.TextView
+                pixlui:typeface="Quark-Bold.otf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text=""
+                android:id="@+id/txSuggessPlot"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:id="@+id/suggessStar"
+                android:layout_below="@+id/txSuggessPlot"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/ic_0star"
+                android:scaleType="fitCenter"
+                android:layout_marginTop="5dp" />
+
+            <com.neopixl.pixlui.components.textview.TextView
+                pixlui:typeface="Quark-Bold.otf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text=""
+                android:id="@+id/txAddress"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="10dp" />
+        </RelativeLayout>
+
+        <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/fadeLayout"
+            android:background="@color/black_overlay">
+        </FrameLayout>
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:id="@+id/btnSuggession"
+            android:layout_alignTop="@+id/btnMapStyle"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/btn_suggestion"
+            android:layout_marginRight="30dp" />
+
+    </RelativeLayout>
+
+</FrameLayout>

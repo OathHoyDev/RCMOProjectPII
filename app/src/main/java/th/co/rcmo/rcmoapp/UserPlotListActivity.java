@@ -348,8 +348,8 @@ public class UserPlotListActivity extends Activity {
                 @Override
                 public void onClick(View v) {
                     Log.d("On Calculate"," position : "+position);
-                    ProductDetailActivity.userPlotModel =  prepareDataForCalculate(respBody);
-                    startActivity(new Intent(UserPlotListActivity.this, ProductDetailActivity.class));
+                    PBProductDetailActivity.userPlotModel =  prepareDataForCalculate(respBody);
+                    startActivity(new Intent(UserPlotListActivity.this, PBProductDetailActivity.class));
                 }
             });
 
@@ -583,6 +583,7 @@ public class UserPlotListActivity extends Activity {
         plotModel.setPrdGrpID(String.valueOf(resp.getPrdGrpID()));
         plotModel.setPrdID(String.valueOf(resp.getPrdID()));
         plotModel.setUserID(userId);
+        plotModel.setPrdValue(resp.getPrdValue());
         plotModel.setPageId(0);
 
 
