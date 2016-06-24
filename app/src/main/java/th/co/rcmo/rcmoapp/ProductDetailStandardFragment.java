@@ -230,84 +230,84 @@ public class ProductDetailStandardFragment extends Fragment implements View.OnCl
             case "E":
             case "F":
 
-                stdName = new String[4];
-                stdValue = new String[4];
-                stdUnit = new String[4];
+                stdName = new String[2];
+                stdValue = new String[2];
+                stdUnit = new String[2];
 
-                Log.d("displayStandardValue", CalculateConstant.CALCULATE_STANDARD_CONST_DEF.get("F") + " : " + var.getF());
-                stdName[0] = CalculateConstant.CALCULATE_STANDARD_CONST_DEF.get("F");
-                stdValue[0] = var.getF();
-                stdUnit[0] = "บาท/ไร่";
-
-                Log.d("displayStandardValue", CalculateConstant.CALCULATE_STANDARD_CONST_DEF.get("B") + " : " + var.getB());
-                stdName[1] = CalculateConstant.CALCULATE_STANDARD_CONST_DEF.get("B");
-                stdValue[1] = var.getB();
-                stdUnit[1] = "บาท/ไร่";
+//                Log.d("displayStandardValue", CalculateConstant.CALCULATE_STANDARD_CONST_DEF.get("F") + " : " + var.getF());
+//                stdName[0] = CalculateConstant.CALCULATE_STANDARD_CONST_DEF.get("F");
+//                stdValue[0] = var.getF();
+//                stdUnit[0] = "บาท/ไร่";
+//
+//                Log.d("displayStandardValue", CalculateConstant.CALCULATE_STANDARD_CONST_DEF.get("B") + " : " + var.getB());
+//                stdName[1] = CalculateConstant.CALCULATE_STANDARD_CONST_DEF.get("B");
+//                stdValue[1] = var.getB();
+//                stdUnit[1] = "บาท/ไร่";
 
                 Log.d("displayStandardValue", CalculateConstant.CALCULATE_STANDARD_CONST_DEF.get("D") + " : " + var.getD());
-                stdName[2] = CalculateConstant.CALCULATE_STANDARD_CONST_DEF.get("D");
-                stdValue[2] = var.getD();
-                stdUnit[2] = "บาท/ไร่";
+                stdName[0] = CalculateConstant.CALCULATE_STANDARD_CONST_DEF.get("D");
+                stdValue[0] = var.getD();
+                stdUnit[0] = "บาท/ไร่";
 
                 Log.d("displayStandardValue", CalculateConstant.CALCULATE_STANDARD_CONST_DEF.get("O") + " : " + var.getO());
-                stdName[3] = CalculateConstant.CALCULATE_STANDARD_CONST_DEF.get("O");
-                stdValue[3] = var.getO();
-                stdUnit[3] = "บาท/ไร่";
+                stdName[0] = CalculateConstant.CALCULATE_STANDARD_CONST_DEF.get("O");
+                stdValue[0] = var.getO();
+                stdUnit[0] = "บาท/ไร่";
 
                 break;
 
             case "H":
 
-                stdName = new String[3];
-                stdValue = new String[3];
-                stdUnit = new String[3];
+                stdName = new String[1];
+                stdValue = new String[1];
+                stdUnit = new String[1];
 
-                Log.d("displayStandardValue", CalculateConstant.CALCULATE_STANDARD_CONST_H.get("F") + " : " + var.getF());
-                stdName[0] = CalculateConstant.CALCULATE_STANDARD_CONST_DEF.get("F");
-                stdValue[0] = var.getF();
-                stdUnit[0] = "บาท/ไร่";
-
-                Log.d("displayStandardValue", CalculateConstant.CALCULATE_STANDARD_CONST_H.get("B") + " : " + var.getB());
-                stdName[1] = CalculateConstant.CALCULATE_STANDARD_CONST_DEF.get("B");
-                stdValue[1] = var.getB();
-                stdUnit[1] = "บาท/ไร่";
+//                Log.d("displayStandardValue", CalculateConstant.CALCULATE_STANDARD_CONST_H.get("F") + " : " + var.getF());
+//                stdName[0] = CalculateConstant.CALCULATE_STANDARD_CONST_DEF.get("F");
+//                stdValue[0] = var.getF();
+//                stdUnit[0] = "บาท/ไร่";
+//
+//                Log.d("displayStandardValue", CalculateConstant.CALCULATE_STANDARD_CONST_H.get("B") + " : " + var.getB());
+//                stdName[1] = CalculateConstant.CALCULATE_STANDARD_CONST_DEF.get("B");
+//                stdValue[1] = var.getB();
+//                stdUnit[1] = "บาท/ไร่";
 
                 Log.d("displayStandardValue", CalculateConstant.CALCULATE_STANDARD_CONST_H.get("D") + " : " + var.getD());
-                stdName[2] = CalculateConstant.CALCULATE_STANDARD_CONST_DEF.get("D");
-                stdValue[2] = var.getD();
-                stdUnit[2] = "บาท/ไร่";
+                stdName[0] = CalculateConstant.CALCULATE_STANDARD_CONST_DEF.get("D");
+                stdValue[0] = var.getD();
+                stdUnit[0] = "บาท/ไร่";
 
                 break;
 
             case "G":
 
-                stdName = new String[6];
-                stdValue = new String[6];
-                stdUnit = new String[6];
+                stdName = new String[4];
+                stdValue = new String[4];
+                stdUnit = new String[4];
 
-                stdName[0] = CalculateConstant.CALCULATE_STANDARD_CONST_G.get("F");
-                stdValue[0] = var.getF();
+//                stdName[0] = CalculateConstant.CALCULATE_STANDARD_CONST_G.get("F");
+//                stdValue[0] = var.getF();
+//                stdUnit[0] = "บาท/ไร่";
+//
+//                stdName[1] = CalculateConstant.CALCULATE_STANDARD_CONST_G.get("B");
+//                stdValue[1] = var.getB();
+//                stdUnit[1] = "บาท/ไร่";
+
+                stdName[0] = CalculateConstant.CALCULATE_STANDARD_CONST_G.get("DH");
+                stdValue[0] = var.getDH();
                 stdUnit[0] = "บาท/ไร่";
 
-                stdName[1] = CalculateConstant.CALCULATE_STANDARD_CONST_G.get("B");
-                stdValue[1] = var.getB();
+                stdName[1] = CalculateConstant.CALCULATE_STANDARD_CONST_G.get("DD");
+                stdValue[1] = var.getDD();
                 stdUnit[1] = "บาท/ไร่";
 
-                stdName[2] = CalculateConstant.CALCULATE_STANDARD_CONST_G.get("DH");
-                stdValue[2] = var.getDH();
+                stdName[2] = CalculateConstant.CALCULATE_STANDARD_CONST_G.get("OH");
+                stdValue[2] = var.getOH();
                 stdUnit[2] = "บาท/ไร่";
 
-                stdName[3] = CalculateConstant.CALCULATE_STANDARD_CONST_G.get("DD");
-                stdValue[3] = var.getDD();
+                stdName[3] = CalculateConstant.CALCULATE_STANDARD_CONST_G.get("OD");
+                stdValue[3] = var.getOD();
                 stdUnit[3] = "บาท/ไร่";
-
-                stdName[4] = CalculateConstant.CALCULATE_STANDARD_CONST_G.get("OH");
-                stdValue[4] = var.getOH();
-                stdUnit[4] = "บาท/ไร่";
-
-                stdName[5] = CalculateConstant.CALCULATE_STANDARD_CONST_G.get("OD");
-                stdValue[5] = var.getOD();
-                stdUnit[5] = "บาท/ไร่";
 
                 break;
 
@@ -315,34 +315,34 @@ public class ProductDetailStandardFragment extends Fragment implements View.OnCl
             case "J":
             case "K":
 
-                stdName = new String[4];
-                stdValue = new String[4];
-                stdUnit = new String[4];
+                stdName = new String[2];
+                stdValue = new String[2];
+                stdUnit = new String[2];
 
-                stdName[0] = CalculateConstant.CALCULATE_STANDARD_CONST_IJK.get("F");
-                stdValue[0] = var.getF();
-                stdUnit[0] = "บาท/ไร่";
-
-                stdName[1] = CalculateConstant.CALCULATE_STANDARD_CONST_IJK.get("B");
-                stdValue[1] = var.getB();
-                stdUnit[1] = "บาท/ไร่";
+//                stdName[0] = CalculateConstant.CALCULATE_STANDARD_CONST_IJK.get("F");
+//                stdValue[0] = var.getF();
+//                stdUnit[0] = "บาท/ไร่";
+//
+//                stdName[1] = CalculateConstant.CALCULATE_STANDARD_CONST_IJK.get("B");
+//                stdValue[1] = var.getB();
+//                stdUnit[1] = "บาท/ไร่";
 
                 if ("1".equalsIgnoreCase(fisheryType)) {
-                    stdName[2] = CalculateConstant.CALCULATE_STANDARD_CONST_IJK.get("DP");
-                    stdValue[2] = var.getDP();
-                    stdUnit[2] = "บาท/ไร่";
+                    stdName[0] = CalculateConstant.CALCULATE_STANDARD_CONST_IJK.get("DP");
+                    stdValue[0] = var.getDP();
+                    stdUnit[0] = "บาท/ไร่";
 
-                    stdName[3] = CalculateConstant.CALCULATE_STANDARD_CONST_IJK.get("OP");
-                    stdValue[3] = var.getOP();
-                    stdUnit[3] = "บาท/ไร่";
+                    stdName[1] = CalculateConstant.CALCULATE_STANDARD_CONST_IJK.get("OP");
+                    stdValue[1] = var.getOP();
+                    stdUnit[1] = "บาท/ไร่";
                 } else {
-                    stdName[2] = CalculateConstant.CALCULATE_STANDARD_CONST_IJK.get("DB");
-                    stdValue[2] = var.getDP();
-                    stdUnit[2] = "บาท/ไร่";
+                    stdName[0] = CalculateConstant.CALCULATE_STANDARD_CONST_IJK.get("DB");
+                    stdValue[0] = var.getDP();
+                    stdUnit[0] = "บาท/ไร่";
 
-                    stdName[3] = CalculateConstant.CALCULATE_STANDARD_CONST_IJK.get("OB");
-                    stdValue[3] = var.getOP();
-                    stdUnit[3] = "บาท/ไร่";
+                    stdName[1] = CalculateConstant.CALCULATE_STANDARD_CONST_IJK.get("OB");
+                    stdValue[1] = var.getOP();
+                    stdUnit[1] = "บาท/ไร่";
                 }
 
                 break;

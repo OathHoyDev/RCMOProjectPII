@@ -22,8 +22,10 @@ import com.neopixl.pixlui.components.textview.TextView;
 import java.util.HashMap;
 import java.util.List;
 
+import th.co.rcmo.rcmoapp.Adapter.CalculateCostExpandableListAdapterA;
 import th.co.rcmo.rcmoapp.Adapter.CalculateCostExpandableListAdapterD;
 import th.co.rcmo.rcmoapp.Model.UserPlotModel;
+import th.co.rcmo.rcmoapp.Model.calculate.FormulaAModel;
 import th.co.rcmo.rcmoapp.Model.calculate.FormulaDModel;
 import th.co.rcmo.rcmoapp.Util.ServiceInstance;
 
@@ -31,12 +33,12 @@ import th.co.rcmo.rcmoapp.Util.ServiceInstance;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ProductDetailCalculateFragmentD extends Fragment implements  View.OnClickListener {
+public class ProductDetailCalculateFragmentA extends Fragment implements  View.OnClickListener {
 
-    String TAG = "ProductDetailCalculateFragment";
+    String TAG = "ProductDetailCalculateFragmentA";
 
     ExpandableListView expandableListView;
-    CalculateCostExpandableListAdapterD calculateCostExpandableListAdapter;
+    CalculateCostExpandableListAdapterA calculateCostExpandableListAdapter;
 
     List<String> listDataHeader;
     HashMap<String, List<String[]>> listDataChild;
@@ -52,14 +54,14 @@ public class ProductDetailCalculateFragmentD extends Fragment implements  View.O
     String userID;
     String prdGrpID;
 
-    FormulaDModel formulaModel;
+    FormulaAModel formulaModel;
 
     RelativeLayout resultFadeView;
     RelativeLayout rootViewLayout;
 
     boolean isCalIncludeOption = false;
 
-    public ProductDetailCalculateFragmentD() {
+    public ProductDetailCalculateFragmentA() {
         // Required empty public constructor
     }
 
@@ -72,7 +74,7 @@ public class ProductDetailCalculateFragmentD extends Fragment implements  View.O
 
         userPlotModel = ((ProductDetailActivity)this.getActivity()).userPlotModel;
 
-        view = inflater.inflate(R.layout.fragment_product_detail_calculate_d, container,
+        view = inflater.inflate(R.layout.fragment_product_detail_calculate_a, container,
                 false);
 
         context = view.getContext();
@@ -87,20 +89,17 @@ public class ProductDetailCalculateFragmentD extends Fragment implements  View.O
 
         loadDataFromPlotID();
 
-        sampleData();
+        FormulaAModel aModel = new FormulaAModel();
 
-        getValueFromLayout();
+        formulaModel = aModel;
 
         formulaModel.calculate();
         formulaModel.prepareListData();
 
-        TextView txStartPrice = (TextView) view.findViewById(R.id.txStartPrice);
-        txStartPrice.setText(String.valueOf(formulaModel.getValueFromAttributeName(formulaModel , "RermLeang")));
-
         TextView txStartUnit = (TextView) view.findViewById(R.id.txStartUnit);
-        txStartUnit.setText(String.valueOf(formulaModel.getValueFromAttributeName(formulaModel , "RakaReamLeang")));
+        txStartUnit.setText(String.valueOf(formulaModel.getValueFromAttributeName(formulaModel , "KaNardPlangTDin")));
 
-        calculateCostExpandableListAdapter = new CalculateCostExpandableListAdapterD(context, formulaModel);
+        calculateCostExpandableListAdapter = new CalculateCostExpandableListAdapterA(context, formulaModel);
 
         // setting list adapter
         expandableListView.setAdapter(calculateCostExpandableListAdapter);
@@ -159,9 +158,9 @@ public class ProductDetailCalculateFragmentD extends Fragment implements  View.O
             Button btnOption = (Button)view.findViewById(R.id.btnOption);
 
             if(isCalIncludeOption){
-                btnOption.setBackgroundResource(R.drawable.radio_cal_pink_check);
+                btnOption.setBackgroundResource(R.drawable.radio_cal_green_check);
             }else{
-                btnOption.setBackgroundResource(R.drawable.radio_cal_pink);
+                btnOption.setBackgroundResource(R.drawable.radio_cal_green);
             }
 
         }
@@ -174,35 +173,6 @@ public class ProductDetailCalculateFragmentD extends Fragment implements  View.O
 
 
 
-    }
-
-    private void getValueFromLayout(){
-        Log.i(TAG, "getValueFromLayout (formula_j_sellFishAvg): " + view.findViewById(R.id.formula_j_sellFishAvg));
-    }
-
-    private void sampleData(){
-
-        FormulaDModel jModel = new FormulaDModel();
-
-        jModel.RermLeang = 0;
-        jModel.RakaReamLeang = 0;
-        jModel.KaPan = 0;
-        jModel.KaAHan = 0;
-        jModel.KaYa = 0;
-        jModel.KaRangGgan = 0;
-        jModel.KaNamKaFai = 0;
-        jModel.KaNamMan = 0;
-        jModel.KaWassaduSinPleung = 0;
-        jModel.KaSomRongRaun = 0;
-        jModel.KaChoaTDin = 0;
-        jModel.NamNakChaLia = 0;
-        jModel.JumNounTuaTKai = 0;
-        jModel.NamNakTKai = 0;
-        jModel.RakaTKai = 0;
-        jModel.RaYaWeRaLeang = 0;
-        jModel.KaSiaOkardLongtoon = 0;
-
-        formulaModel = jModel;
     }
 
     private void setListViewHeight(ExpandableListView listView,
@@ -271,7 +241,7 @@ public class ProductDetailCalculateFragmentD extends Fragment implements  View.O
     public void onClick(View v) {
         if(v.getId() == R.id.btnCalculate){
 
-            formulaModel = (FormulaDModel) calculateCostExpandableListAdapter.getDataObj();
+            formulaModel = (FormulaAModel) calculateCostExpandableListAdapter.getDataObj();
 
             formulaModel.calculate();
 
@@ -300,10 +270,10 @@ public class ProductDetailCalculateFragmentD extends Fragment implements  View.O
         }else if(v.getId() == R.id.btnOption) {
             Button btnOption = (Button)view.findViewById(R.id.btnOption);
             if(isCalIncludeOption){
-                btnOption.setBackgroundResource(R.drawable.radio_cal_pink);
+                btnOption.setBackgroundResource(R.drawable.radio_cal_green);
                 isCalIncludeOption = false;
             }else{
-                btnOption.setBackgroundResource(R.drawable.radio_cal_pink_check);
+                btnOption.setBackgroundResource(R.drawable.radio_cal_green_check);
                 isCalIncludeOption = true;
             }
 
@@ -313,7 +283,7 @@ public class ProductDetailCalculateFragmentD extends Fragment implements  View.O
 
             resultFadeView.setVisibility(View.GONE);
 
-            CalculateResultActivity.resultModel = formulaModel;
+            CalculateResultActivity.resultModel = null;
             CalculateResultActivity.userPlotModel = userPlotModel;
 
             startActivity(new Intent(context, CalculateResultActivity.class));

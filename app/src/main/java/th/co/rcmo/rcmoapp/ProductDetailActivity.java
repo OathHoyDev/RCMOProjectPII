@@ -32,6 +32,7 @@ import th.co.rcmo.rcmoapp.API.ResponseAPI;
 import th.co.rcmo.rcmoapp.Model.ProductDetailModel;
 import th.co.rcmo.rcmoapp.Model.UserPlotModel;
 import th.co.rcmo.rcmoapp.Module.mGetPlotDetail;
+import th.co.rcmo.rcmoapp.Module.mGetVariable;
 import th.co.rcmo.rcmoapp.Module.mProduct;
 import th.co.rcmo.rcmoapp.Util.CalculateConstant;
 import th.co.rcmo.rcmoapp.Util.ServiceInstance;
@@ -46,6 +47,8 @@ public class ProductDetailActivity extends AppCompatActivity {
     private String productType;
     private Bundle bundle;
     Context context;
+
+    public static String formularCode = "";
 
 //    public ProductDetailModel getProductDetailModel() {
 //        return productDetailModel;
@@ -120,19 +123,11 @@ public class ProductDetailActivity extends AppCompatActivity {
 
             createBundleForFragment();
 
-            initialTab();
+            API_getVariable(userPlotModel.getPrdID() , userPlotModel.getFisheryType());
         }
 
 
     }
-
-//    private void testDataMethod(){
-//
-//        userPlotModel.setPlotID("7");
-//        userPlotModel.setTamCode("2");
-//        userPlotModel.setAmpCode("2");
-//        userPlotModel.setProvCode("14");
-//    }
 
     private void initialTab(){
 
@@ -168,9 +163,19 @@ public class ProductDetailActivity extends AppCompatActivity {
         productDetailStandardFragment.setArguments(bundle);
         adapter.addFragment(productDetailStandardFragment);
 
-        ProductDetailCalculateFragmentD productDetailCalculateFragmentD = new ProductDetailCalculateFragmentD();
-        productDetailCalculateFragmentD.setArguments(bundle);
-        adapter.addFragment(productDetailCalculateFragmentD);
+        if ("A".equalsIgnoreCase(formularCode)) {
+
+            ProductDetailCalculateFragmentA productDetailCalculateFragmentA = new ProductDetailCalculateFragmentA();
+            productDetailCalculateFragmentA.setArguments(bundle);
+            adapter.addFragment(productDetailCalculateFragmentA);
+
+        }else if ("D".equalsIgnoreCase(formularCode)) {
+
+            ProductDetailCalculateFragmentD productDetailCalculateFragmentD = new ProductDetailCalculateFragmentD();
+            productDetailCalculateFragmentD.setArguments(bundle);
+            adapter.addFragment(productDetailCalculateFragmentD);
+
+        }
 
         ProductDetailMapFragment productDetailMapFragment = new ProductDetailMapFragment();
         productDetailMapFragment.setArguments(bundle);
@@ -304,6 +309,37 @@ public class ProductDetailActivity extends AppCompatActivity {
         }
     }
 
+    private void API_getVariable(String prdID , final String fisheryType) {
+
+        new ResponseAPI(context, new ResponseAPI.OnCallbackAPIListener() {
+            @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
+            @Override
+            public void callbackSuccess(Object obj) {
+
+                mGetVariable mVariable = (mGetVariable) obj;
+                List<mGetVariable.mRespBody> mVariableBodyLists = mVariable.getRespBody();
+
+                if (mVariableBodyLists.size() != 0) {
+
+                    formularCode = mVariableBodyLists.get(0).getFormularCode();
+
+                    initialTab();
+
+                }
+
+
+            }
+
+            @Override
+            public void callbackError(int code, String errorMsg) {
+                Log.d("Error", errorMsg);
+            }
+        }).API_Request(true, RequestServices.ws_getVariable +
+                "?PrdID=" + prdID +
+                "&FisheryType=" + 1);
+
+    }
+
     private void API_getPlotDetail(String plodID) {
         /**
          1.TamCode (ไม่บังคับใส่)
@@ -324,11 +360,11 @@ public class ProductDetailActivity extends AppCompatActivity {
                     userPlotModel.setAmpCode(mPlotDetailBodyLists.get(0).getAmpCode());
                     userPlotModel.setProvCode(mPlotDetailBodyLists.get(0).getProvCode());
 
+
+
                     API_getProduct(mPlotDetailBodyLists.get(0).getPrdID() , mPlotDetailBodyLists.get(0).getPrdGrpID() , mPlotDetailBodyLists.get(0).getPlantGrpID());
 
-                    createBundleForFragment();
 
-                    initialTab();
                 }
 
 
@@ -359,6 +395,12 @@ public class ProductDetailActivity extends AppCompatActivity {
                     RelativeLayout headerLayout  =     (RelativeLayout)findViewById(R.id.headerLayout);
                     com.neopixl.pixlui.components.textview.TextView titleText = (com.neopixl.pixlui.components.textview.TextView)headerLayout.findViewById(R.id.titleLable);
                     titleText.setText(mProductBodyLists.get(0).getPrdName());
+
+                    API_getVariable(userPlotModel.getPrdID() , userPlotModel.getFisheryType());
+
+                    createBundleForFragment();
+
+
 
                 }
 

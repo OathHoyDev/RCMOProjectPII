@@ -55,12 +55,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="เมื่อเริ่มเลี้ยงมี"
+                        android:text="ขนาดแปลงที่ดิน"
                         android:id="@+id/start"
                         android:layout_alignParentEnd="false"
                         android:layout_alignParentLeft="true"
                         android:textColor="@color/RcmoGrayBG"
-                        android:layout_marginTop="20dp" />
+                        android:layout_marginTop="20dp"
+                        android:layout_centerVertical="true" />
 
                     <com.neopixl.pixlui.components.textview.TextView
                         pixlui:typeface="Quark-Bold.otf"
@@ -69,10 +70,9 @@
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:text="xx"
                         android:id="@+id/txStartUnit"
-                        android:textColor="@color/RcmoAnimalBG"
+                        android:textColor="@color/RcmoPlantBG"
                         android:layout_marginLeft="5dp"
-                        android:layout_toEndOf="@+id/startPrice"
-                        android:layout_toRightOf="@+id/start"
+                        android:layout_toEndOf="@+id/start"
                         android:layout_alignTop="@+id/start" />
 
                     <com.neopixl.pixlui.components.textview.TextView
@@ -80,49 +80,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="ตัว"
+                        android:text="ไร่"
                         android:id="@+id/textView4"
                         android:textColor="@color/RcmoGrayBG"
                         android:layout_marginLeft="5dp"
                         android:layout_alignTop="@+id/txStartUnit"
                         android:layout_toEndOf="@+id/txStartUnit"
                         android:layout_toRightOf="@+id/txStartUnit" />
-
-                    <com.neopixl.pixlui.components.textview.TextView
-                        pixlui:typeface="Quark-Bold.otf"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="ราคาเมื่อเริ่มเลี้ยง"
-                        android:id="@+id/startPrice"
-                        android:textColor="@color/RcmoGrayBG"
-                        android:layout_below="@+id/start"
-                        android:layout_toEndOf="@+id/lbFishpondSizeRai"
-                        android:layout_alignParentLeft="true" />
-
-                    <com.neopixl.pixlui.components.textview.TextView
-                        pixlui:typeface="Quark-Bold.otf"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="xx"
-                        android:id="@+id/txStartPrice"
-                        android:textColor="@color/RcmoAnimalBG"
-                        android:layout_alignTop="@+id/startPrice"
-                        android:layout_toEndOf="@+id/textView4"
-                        android:layout_alignParentLeft="false" />
-
-                    <com.neopixl.pixlui.components.textview.TextView
-                        pixlui:typeface="Quark-Bold.otf"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="บาท / ตัว"
-                        android:id="@+id/textView6"
-                        android:textColor="@color/RcmoGrayBG"
-                        android:layout_marginLeft="5dp"
-                        android:layout_alignTop="@+id/txStartPrice"
-                        android:layout_toEndOf="@+id/txStartPrice" />
 
                     <com.neopixl.pixlui.components.button.Button
                         pixlui:typeface="Quark-Bold.otf"
@@ -138,6 +102,8 @@
                         android:background="@android:color/transparent"
                         android:layout_marginRight="10dp" />
 
+
+
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -149,7 +115,7 @@
                         android:layout_width="130dp"
                         android:layout_height="130dp"
                         android:id="@+id/productIconBG"
-                        android:background="@drawable/animal_ic_gr_circle_bg"
+                        android:background="@drawable/plant_ic_gr_circle_bg"
                         android:layout_centerInParent="true" />
 
                     <ImageView
@@ -193,7 +159,7 @@
                         android:id="@+id/btnOption"
                         android:layout_marginLeft="30dp"
                         android:layout_centerVertical="true"
-                        android:background="@drawable/radio_cal_pink"
+                        android:background="@drawable/radio_cal_green"
                         android:scaleType="fitXY" />
 
                     <com.neopixl.pixlui.components.textview.TextView
@@ -206,7 +172,7 @@
                         android:layout_centerVertical="true"
                         android:layout_toRightOf="@+id/btnOption"
                         android:layout_marginLeft="10dp"
-                        android:textColor="@color/RcmoAnimalBG"
+                        android:textColor="@color/RcmoPlantBG"
                         android:gravity="center_vertical" />
                 </RelativeLayout>
 
@@ -214,7 +180,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/imageView3"
-                    android:src="@drawable/bottom_pink"
+                    android:src="@drawable/bottom_green"
                     android:scaleType="fitEnd"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentLeft="true" />
@@ -233,7 +199,7 @@
                     android:textColor="@color/RcmoWhiteBG"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentRight="true"
-                    android:background="@drawable/circle_animal_cut_top"/>
+                    android:background="@drawable/circle_plant_cut_top"/>
 
             </RelativeLayout>
 

@@ -13,7 +13,7 @@ public class FormulaDModel extends AbstractFormulaModel {
     public List<String> listDataHeader;
     public HashMap<String, List<String[]>> listDataChild;
 
-    boolean isCalIncludeOption = false;
+    public boolean isCalIncludeOption = false;
 
     //Standard
     public double KaSermRongRaun = 0.7;
@@ -45,15 +45,9 @@ public class FormulaDModel extends AbstractFormulaModel {
 
     public double dieRatio = 0;
 
-
-
     public static Hashtable<String , String> calculateLabel;
     static {
         Hashtable<String, String> tmp = new Hashtable<String, String>();
-//        tmp.put("fishpondSizeRai" , "เนื้อที่บ่อ");
-//        tmp.put("fishpondSizeNgan" , "");
-//        tmp.put("fishpondSizeSqrWah" , "");
-//        tmp.put("fishpondSizeSqrMeters" , "");
         tmp.put("RermLeang","จำนวนตัวทั้งหมด");
         tmp.put("RakaReamLeang","ราคาลูกxxเมื่อเริ่มเลี้ยง");
         tmp.put("KaPan","ค่าพันธุ์ทั้งหมด");
@@ -71,13 +65,11 @@ public class FormulaDModel extends AbstractFormulaModel {
         tmp.put("RakaTKai","ราคาที่เกษตรกรขายได้");
         tmp.put("RaYaWeRaLeang","ระยะเวลาเลี้ยง");
         tmp.put("KaSiaOkardLongtoon","ค่าเสียโอกาสเงินลงทุน");
-        tmp.put("","");
         tmp.put("calCost","ต้นทุนทั้งหมด");
         tmp.put("calCostPerUnit","ต้นทุนต่อ 1 ตัว");
         tmp.put("calCostPerKg","ต้นทุนต่อ 1 กิโลกรัม");
         tmp.put("calProfitLossPerKg","กำไร-ขาดทุน ต่อ 1 กิโลกรัม");
         tmp.put("calProfitLoss","กำไร-ขาดทุนทั้งหมด");
-
 
         tmp.put("dieRatio","อัตราการตาย");
 

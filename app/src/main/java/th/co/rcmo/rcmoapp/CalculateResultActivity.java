@@ -11,7 +11,10 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.neopixl.pixlui.components.button.Button;
 
 import java.util.List;
 
@@ -20,6 +23,7 @@ import th.co.rcmo.rcmoapp.API.ResponseAPI;
 import th.co.rcmo.rcmoapp.Model.UserPlotModel;
 import th.co.rcmo.rcmoapp.Model.calculate.FormulaJModel;
 import th.co.rcmo.rcmoapp.Module.mSavePlotDetail;
+import th.co.rcmo.rcmoapp.Util.CalculateConstant;
 import th.co.rcmo.rcmoapp.Util.ServiceInstance;
 import th.co.rcmo.rcmoapp.View.DialogChoice;
 
@@ -27,10 +31,10 @@ import th.co.rcmo.rcmoapp.Model.UserPlotModel;
 import th.co.rcmo.rcmoapp.Model.calculate.FormulaDModel;
 
 public class CalculateResultActivity extends Activity {
-    String TAG ="CalculateResultActivity";
+    String TAG = "CalculateResultActivity";
     String plotId;
     boolean saved = false;
-   public static UserPlotModel userPlotModel =new UserPlotModel();
+    String prdID;
 
     public static FormulaDModel resultModel;
     public static UserPlotModel userPlotModel;
@@ -39,17 +43,44 @@ public class CalculateResultActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculate_result);
+        initialProductIcon();
+    }
+
+    private void initialProductIcon() {
+
+        ImageView bgImage = (android.widget.ImageView) findViewById(R.id.productIconBG);
+
+        switch (userPlotModel.getPrdGrpID()) {
+            case CalculateConstant.PRODUCT_TYPE_PLANT:
+                bgImage.setBackgroundResource(R.drawable.plant_ic_gr_circle_bg);
+                break;
+            case CalculateConstant.PRODUCT_TYPE_ANIMAL:
+                bgImage.setBackgroundResource(R.drawable.animal_ic_gr_circle_bg);
+                break;
+            case CalculateConstant.PRODUCT_TYPE_FISH:
+                bgImage.setBackgroundResource(R.drawable.fish_ic_gr_circle_bg);
+                break;
+        }
+
+        android.widget.ImageView productIcon = (android.widget.ImageView) findViewById(R.id.productIcon);
+
+        String imgName = ServiceInstance.productIMGMap.get(Integer.parseInt(userPlotModel.getPrdID()));
+
+        int imgIDInt = getResources().getIdentifier(imgName, "drawable", getPackageName());
+
+        productIcon.setImageResource(imgIDInt);
+
+
     }
 
 
-
-    private void upsertUserPlot(){
+    private void upsertUserPlot() {
 
         // API_GetUserPlot(userId,prdId,prdGrpId,plotId);
         SharedPreferences sp = getSharedPreferences(ServiceInstance.PREF_NAME, Context.MODE_PRIVATE);
         String userId = sp.getString(ServiceInstance.sp_userId, "0");
         userPlotModel.setUserID(userId);
-        if(!userId.equals("0")) {
+        if (!userId.equals("0")) {
             if (!saved) {
                 Log.d(TAG, "Go to save plot Module ");
                 API_SavePlotDetail("1", userPlotModel);
@@ -58,7 +89,7 @@ public class CalculateResultActivity extends Activity {
                 API_SavePlotDetail("2", userPlotModel);
 
             }
-        }else{
+        } else {
             new DialogChoice(CalculateResultActivity.this)
                     .ShowOneChoice("ไม่สามารถบันทึกข้อมูล", "- กรุณา Login ก่อนทำการบันทึกข้อมูล"); //save image
         }
@@ -107,13 +138,15 @@ public class CalculateResultActivity extends Activity {
                 mSavePlotDetail savePlotDetailInfo = (mSavePlotDetail) obj;
                 List<mSavePlotDetail.mRespBody> savePlotDetailBodyLists = savePlotDetailInfo.getRespBody();
 
-                Log.d(TAG,"---- >Size"+savePlotDetailBodyLists.size());
+                Log.d(TAG, "---- >Size" + savePlotDetailBodyLists.size());
                 if (savePlotDetailBodyLists.size() != 0) {
 
-                    plotId =  String.valueOf(savePlotDetailBodyLists.get(0).getPlotID());
-                    if(plotId==null){plotId="";}
+                    plotId = String.valueOf(savePlotDetailBodyLists.get(0).getPlotID());
+                    if (plotId == null) {
+                        plotId = "";
+                    }
                     userPlotModel.setPlotID(plotId);
-                    Log.d(TAG,"Response plotId : "+plotId);
+                    Log.d(TAG, "Response plotId : " + plotId);
                     saved = true;
                     toastMsg("บันทึกข้อมูลสำเร็จ");
                 }
@@ -127,31 +160,31 @@ public class CalculateResultActivity extends Activity {
         }).API_Request(true, RequestServices.ws_savePlotDetail +
 
                 "?SaveFlag=" + saveFlag +
-                "&UserID=" +userPlotInfo.getUserID()+
-                "&PlotID=" +userPlotInfo.getPlotID()+
+                "&UserID=" + userPlotInfo.getUserID() +
+                "&PlotID=" + userPlotInfo.getPlotID() +
                 "&PrdID=" + userPlotInfo.getPrdID() +
                 "&PrdGrpID=" + userPlotInfo.getPrdGrpID() +
-                "&PlotRai=" +userPlotInfo.getPlotRai() +
-                "&PondRai=" +userPlotInfo.getPondRai()+
-                "&PondNgan=" +userPlotInfo.getPondNgan()+
-                "&PondWa=" +userPlotInfo.getPondWa()+
-                "&PondMeter=" +userPlotInfo.getPondMeter()+
-                "&CoopMeter=" +userPlotInfo.getCoopMeter()+
-                "&CoopNumber=" +userPlotInfo.getCoopNumber()+
-                "&TamCode=" +userPlotInfo.getTamCode()+
-                "&AmpCode=" +userPlotInfo.getAmpCode()+
-                "&ProvCode=" +userPlotInfo.getProvCode()+
-                "&AnimalNumber=" +userPlotInfo.getAnimalNumber()+
-                "&AnimalWeight=" +userPlotInfo.getAnimalWeight()+
-                "&AnimalPrice=" +userPlotInfo.getAnimalPrice()+
-                "&FisheryType=" +userPlotInfo.getFisheryType()+
-                "&FisheryNumType=" +userPlotInfo.getFisheryNumType()+
-                "&FisheryNumber=" +userPlotInfo.getFisheryNumber()+
-                "&FisheryWeight=" +userPlotInfo.getFisheryWeight()+
-                "&ImeiCode=" + ServiceInstance.GetDeviceID(CalculateResultActivity.this)+
-                "&VarName=" +userPlotInfo.getVarName()+
-                "&VarValue=" +userPlotInfo.getVarValue()+
-                "&CalResult="+userPlotInfo.getCalResult()
+                "&PlotRai=" + userPlotInfo.getPlotRai() +
+                "&PondRai=" + userPlotInfo.getPondRai() +
+                "&PondNgan=" + userPlotInfo.getPondNgan() +
+                "&PondWa=" + userPlotInfo.getPondWa() +
+                "&PondMeter=" + userPlotInfo.getPondMeter() +
+                "&CoopMeter=" + userPlotInfo.getCoopMeter() +
+                "&CoopNumber=" + userPlotInfo.getCoopNumber() +
+                "&TamCode=" + userPlotInfo.getTamCode() +
+                "&AmpCode=" + userPlotInfo.getAmpCode() +
+                "&ProvCode=" + userPlotInfo.getProvCode() +
+                "&AnimalNumber=" + userPlotInfo.getAnimalNumber() +
+                "&AnimalWeight=" + userPlotInfo.getAnimalWeight() +
+                "&AnimalPrice=" + userPlotInfo.getAnimalPrice() +
+                "&FisheryType=" + userPlotInfo.getFisheryType() +
+                "&FisheryNumType=" + userPlotInfo.getFisheryNumType() +
+                "&FisheryNumber=" + userPlotInfo.getFisheryNumber() +
+                "&FisheryWeight=" + userPlotInfo.getFisheryWeight() +
+                "&ImeiCode=" + ServiceInstance.GetDeviceID(CalculateResultActivity.this) +
+                "&VarName=" + userPlotInfo.getVarName() +
+                "&VarValue=" + userPlotInfo.getVarValue() +
+                "&CalResult=" + userPlotInfo.getCalResult()
         );
     }
 
