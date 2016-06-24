@@ -583,6 +583,8 @@ public class UserPlotListActivity extends Activity {
         plotModel.setPrdGrpID(String.valueOf(resp.getPrdGrpID()));
         plotModel.setPrdID(String.valueOf(resp.getPrdID()));
         plotModel.setUserID(userId);
+        plotModel.setPageId(0);
+
 
 
         return plotModel;

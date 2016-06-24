@@ -204,8 +204,8 @@ public class ProductDetailActivity extends AppCompatActivity {
 
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
-        viewPager.setCurrentItem(1);
-        tabLayout.getTabAt(1).getCustomView().setSelected(true);
+        viewPager.setCurrentItem(userPlotModel.getPageId());
+        tabLayout.getTabAt(userPlotModel.getPageId()).getCustomView().setSelected(true);
 
     }
 

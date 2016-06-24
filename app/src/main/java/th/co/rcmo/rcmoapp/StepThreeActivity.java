@@ -240,17 +240,26 @@ public class StepThreeActivity extends Activity {
                 userPlotModel.setPrdGrpID(String.valueOf(productionInfo.getPrdGrpID()));
                 //userPlotModel.setUserID(userId);
 
+                boolean isValidate = false;
                 if ("1".equals(userPlotModel.getPrdGrpID())) {
+                    isValidate = isValidPlantInputData();
                     preparePlantDataForInsert();
 
                 } else if ("2".equals(userPlotModel.getPrdGrpID())) {
+                    isValidate = isValidAnimalInputData();
                     prepareAnimalDataForInsert();
                 } else if ("3".equals(userPlotModel.getPrdGrpID())) {
+                    isValidate = isValidFishInputData();
                     prepareFishDataForInsert();
                 }
 
-                ProductDetailActivity.userPlotModel = userPlotModel;
-                startActivity(new Intent(StepThreeActivity.this, ProductDetailActivity.class));
+                if(isValidate) {
+                    ProductDetailActivity.userPlotModel = userPlotModel;
+                    userPlotModel.setPageId(1);
+                    startActivity(new Intent(StepThreeActivity.this, ProductDetailActivity.class));
+                }else{
+
+                }
             }
 
 
