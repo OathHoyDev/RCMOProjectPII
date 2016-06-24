@@ -37,7 +37,7 @@ public class CalculateResultActivity extends Activity {
     String prdID;
 
     public static FormulaDModel resultModel;
-    public static UserPlotModel userPlotModel;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

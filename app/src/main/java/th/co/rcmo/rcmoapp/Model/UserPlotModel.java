@@ -4,6 +4,7 @@ package th.co.rcmo.rcmoapp.Model;
  * Created by Taweesin on 6/16/2016.
  */
 public class UserPlotModel {
+    private int pageId;
     private String userID ="";
     private String plotID="";
     private String prdID="";
@@ -28,6 +29,14 @@ public class UserPlotModel {
     private String varName="";
     private String varValue="";
     private String calResult="";
+
+    public int getPageId() {
+        return pageId;
+    }
+
+    public void setPageId(int pageId) {
+        this.pageId = pageId;
+    }
 
     public String getUserID() {
         return userID;

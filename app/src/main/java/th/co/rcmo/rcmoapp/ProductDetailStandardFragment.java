@@ -89,18 +89,18 @@ public class ProductDetailStandardFragment extends Fragment implements View.OnCl
         switch (productType){
             case CalculateConstant.PRODUCT_TYPE_PLANT:
                 buttomImageView.setImageResource(R.drawable.bottom_green_total);
-                btnRecalculate.setBackgroundResource(R.drawable.btn_green_recal);
-                btnGetVariable.setBackgroundResource(R.drawable.btn_green_refresh);
+                btnRecalculate.setBackgroundResource(R.drawable.circle_plant_cut_top_active);
+                btnGetVariable.setBackgroundResource(R.drawable.circle_plant_cut_top);
                 break;
             case CalculateConstant.PRODUCT_TYPE_ANIMAL:
                 buttomImageView.setImageResource(R.drawable.bottom_pink_total);
-                btnRecalculate.setBackgroundResource(R.drawable.btn_pink_recal);
-                btnGetVariable.setBackgroundResource(R.drawable.btn_pink_refresh);
+                btnRecalculate.setBackgroundResource(R.drawable.circle_animal_cut_top_active);
+                btnGetVariable.setBackgroundResource(R.drawable.circle_animal_cut_top);
                 break;
             case CalculateConstant.PRODUCT_TYPE_FISH:
                 buttomImageView.setImageResource(R.drawable.bottom_blue_total);
-                btnRecalculate.setBackgroundResource(R.drawable.btn_blue_recal);
-                btnGetVariable.setBackgroundResource(R.drawable.btn_blue_refresh);
+                btnRecalculate.setBackgroundResource(R.drawable.circle_fish_cut_top_active);
+                btnGetVariable.setBackgroundResource(R.drawable.circle_fish_cut_top);
                 break;
         }
 
