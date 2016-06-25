@@ -19,6 +19,7 @@ import com.neopixl.pixlui.components.button.Button;
 import com.neopixl.pixlui.components.imageview.ImageView;
 import com.neopixl.pixlui.components.textview.TextView;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -76,7 +77,7 @@ public class ProductDetailCalculateFragmentA extends Fragment implements  View.O
         // Inflate the layout for this fragment
         //return inflater.inflate(R.layout.fragment_product_detail_map, container, false);
 
-        userPlotModel = ((ProductDetailActivity)this.getActivity()).userPlotModel;
+        userPlotModel = PBProductDetailActivity.userPlotModel;
 
         view = inflater.inflate(R.layout.fragment_product_detail_calculate_a, container,
                 false);
@@ -132,9 +133,9 @@ public class ProductDetailCalculateFragmentA extends Fragment implements  View.O
 
     private void getArgumentFromActivity(){
 
-        prdID = getArguments().getString("prdID");
-        userID = getArguments().getString("userID");
-        prdGrpID = getArguments().getString("prdGrpID");
+        prdID = userPlotModel.getPrdID();
+        userID = userPlotModel.getUserID();
+        prdGrpID = userPlotModel.getPrdGrpID();
 
     }
 
@@ -222,12 +223,31 @@ public class ProductDetailCalculateFragmentA extends Fragment implements  View.O
             CalculateResultModel calculateResultModel = new CalculateResultModel();
             calculateResultModel.formularCode = "A";
             calculateResultModel.calculateResult = formulaModel.calSumCost;
-            calculateResultModel.productName = ((ProductDetailActivity)this.getActivity()).productName;
-            calculateResultModel.mPlotSuit = ((ProductDetailActivity)this.getActivity()).mPlotSuit;
+            calculateResultModel.productName = userPlotModel.getPrdValue();
+            calculateResultModel.mPlotSuit = PBProductDetailActivity.mPlotSuit;
             calculateResultModel.compareStdResult = formulaModel.calSumCost - formulaModel.TontumMattratarn;
 
             DialogCalculateResult.userPlotModel = userPlotModel;
             DialogCalculateResult.calculateResultModel = calculateResultModel;
+
+            List resultArrayResult = new ArrayList();
+
+            String [] tontoonCal_1 = {"ต้นทุนรวมเกษตร" , String.format("%,.2f", formulaModel.calSumCost) , "บาท"};
+            resultArrayResult.add(tontoonCal_1);
+
+            String [] tontoonCal_2 = {"" , String.format("%,.2f", formulaModel.calSumCostPerRai) , "บาท"};
+            resultArrayResult.add(tontoonCal_2);
+
+            String [] raydai_1 = {"รายได้" , String.format("%,.2f", formulaModel.calIncome) , "บาท"};
+            resultArrayResult.add(raydai_1);
+
+            String [] raydai_2 = {"" , String.format("%,.2f", formulaModel.calIncomePerRai) , "บาท"};
+            resultArrayResult.add(raydai_2);
+
+            String [] tontoon = {"ต้นทุนมาตรฐานของ สศก." , String.format("%,.2f", formulaModel.TontumMattratarnPerRai) , "บาท"};
+            resultArrayResult.add(tontoon);
+
+            DialogCalculateResult.calculateResultModel.resultList = resultArrayResult;
 
             new DialogCalculateResult(context).Show();
 

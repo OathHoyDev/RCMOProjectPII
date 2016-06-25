@@ -223,6 +223,8 @@ public class ProductDetailCalculateFragmentB extends Fragment implements  View.O
             DialogCalculateResult.userPlotModel = userPlotModel;
             DialogCalculateResult.calculateResultModel = calculateResultModel;
 
+
+
             new DialogCalculateResult(context).Show();
 
 

@@ -189,7 +189,7 @@
                         android:layout_height="61dp"
                         android:layout_alignParentBottom="true"
                         android:layout_alignParentRight="true"
-                        android:background="@drawable/circle_plant_cut_top"
+                        android:background="@drawable/action_plant_recal"
                         android:gravity="bottom|center"
                         android:paddingBottom="10dp"
                         android:scaleType="fitEnd"

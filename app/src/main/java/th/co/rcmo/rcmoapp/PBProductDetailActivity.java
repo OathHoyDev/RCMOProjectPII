@@ -32,6 +32,7 @@ import th.co.rcmo.rcmoapp.Model.STDVarModel;
 import th.co.rcmo.rcmoapp.Model.UserPlotModel;
 import th.co.rcmo.rcmoapp.Module.mGetPlotSuit;
 import th.co.rcmo.rcmoapp.Module.mGetVariable;
+import th.co.rcmo.rcmoapp.Util.Util;
 
 public class PBProductDetailActivity extends AppCompatActivity {
     public static ViewPager  pager;
@@ -39,6 +40,9 @@ public class PBProductDetailActivity extends AppCompatActivity {
     public static UserPlotModel userPlotModel = new UserPlotModel();
     public static List<STDVarModel> stdVarModelList = new ArrayList<STDVarModel>();
     public static mGetPlotSuit.mRespBody mPlotSuit;
+
+    public String formularCode = "";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,9 +53,12 @@ public class PBProductDetailActivity extends AppCompatActivity {
 
         setAction();
 
+        Util.showDialogAndDismiss(PBProductDetailActivity.this , "getFormularCode : " + userPlotModel.getFormularCode());
+
         pager= (ViewPager) findViewById(R.id.view_pager);
         FragmentManager manager=getSupportFragmentManager();
-        PBCalculatePagerAdapter adapter=new PBCalculatePagerAdapter(manager);
+
+        PBCalculatePagerAdapter adapter=new PBCalculatePagerAdapter(manager , userPlotModel);
         pager.setAdapter(adapter);
 
 
@@ -143,34 +150,35 @@ public class PBProductDetailActivity extends AppCompatActivity {
              }
          });
      }
-/*
-    private void API_getVariable(String prdID , final String fisheryType) {
 
-        new ResponseAPI(PBProductDetailActivity.this, new ResponseAPI.OnCallbackAPIListener() {
-            @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
-            @Override
-            public void callbackSuccess(Object obj) {
+//    private void API_getVariable(String prdID , final String fisheryType) {
+//
+//        new ResponseAPI(PBProductDetailActivity.this, new ResponseAPI.OnCallbackAPIListener() {
+//            @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
+//            @Override
+//            public void callbackSuccess(Object obj) {
+//
+//                mGetVariable mVariable = (mGetVariable) obj;
+//                List<mGetVariable.mRespBody> mVariableBodyLists = mVariable.getRespBody();
+//
+//                if (mVariableBodyLists.size() != 0) {
+//
+//                    //stdVarModelList =  ProductService.prepareSTDVarList(mVariableBodyLists.get(0), fisheryType);
+//                    formularCode = mVariableBodyLists.get(0).getFormularCode();
+//
+//                }
+//
+//
+//            }
+//
+//            @Override
+//            public void callbackError(int code, String errorMsg) {
+//                Log.d("Error", errorMsg);
+//            }
+//        }).API_Request(true, RequestServices.ws_getVariable +
+//                "?PrdID=" + prdID +
+//                "&FisheryType=" + userPlotModel.getFisheryType());
+//
+//    }
 
-                mGetVariable mVariable = (mGetVariable) obj;
-                List<mGetVariable.mRespBody> mVariableBodyLists = mVariable.getRespBody();
-
-                if (mVariableBodyLists.size() != 0) {
-
-                    stdVarModelList =  ProductService.prepareSTDVarList(mVariableBodyLists.get(0), fisheryType);
-
-                }
-
-
-            }
-
-            @Override
-            public void callbackError(int code, String errorMsg) {
-                Log.d("Error", errorMsg);
-            }
-        }).API_Request(true, RequestServices.ws_getVariable +
-                "?PrdID=" + prdID +
-                "&FisheryType=" + userPlotModel.getFisheryType());
-
-    }
-*/
 }

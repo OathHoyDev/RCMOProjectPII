@@ -1,5 +1,6 @@
 package th.co.rcmo.rcmoapp.Adapter;
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.os.Build;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -15,6 +16,7 @@ import th.co.rcmo.rcmoapp.Module.mGetVariable;
 import th.co.rcmo.rcmoapp.PBProdDetailCalculateFment;
 import th.co.rcmo.rcmoapp.PBProdDetailMapFment;
 import th.co.rcmo.rcmoapp.PBProdDetailStandradFment;
+import th.co.rcmo.rcmoapp.ProductDetailCalculateFragmentA;
 import th.co.rcmo.rcmoapp.ProductDetailMapFragment;
 
 /**
@@ -23,9 +25,12 @@ import th.co.rcmo.rcmoapp.ProductDetailMapFragment;
 public class PBCalculatePagerAdapter extends FragmentStatePagerAdapter {
 
     UserPlotModel userPlotModel;
+    Context context;
 
-    public PBCalculatePagerAdapter(FragmentManager fm) {
+
+    public PBCalculatePagerAdapter(FragmentManager fm , UserPlotModel userPlotModel) {
         super(fm);
+        this.userPlotModel = userPlotModel;
     }
 
     @Override
@@ -37,8 +42,11 @@ public class PBCalculatePagerAdapter extends FragmentStatePagerAdapter {
                 frag=new PBProdDetailStandradFment();
                 break;
             case 1:
-                //userPlotModel = get
-                frag=new PBProdDetailCalculateFment();
+                if ("A".equalsIgnoreCase(userPlotModel.getFormularCode())){
+                    frag=new ProductDetailCalculateFragmentA();
+                }else {
+                    frag = new PBProdDetailCalculateFment();
+                }
                 break;
             case 2:
                 frag=new ProductDetailMapFragment();
@@ -69,36 +77,5 @@ public class PBCalculatePagerAdapter extends FragmentStatePagerAdapter {
 
         return title;
     }
-
-//    private void API_getVariable(String prdID , final String fisheryType) {
-//
-//        new ResponseAPI(context, new ResponseAPI.OnCallbackAPIListener() {
-//            @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
-//            @Override
-//            public void callbackSuccess(Object obj) {
-//
-//                mGetVariable mVariable = (mGetVariable) obj;
-//                List<mGetVariable.mRespBody> mVariableBodyLists = mVariable.getRespBody();
-//
-//                if (mVariableBodyLists.size() != 0) {
-//
-//                    formularCode = mVariableBodyLists.get(0).getFormularCode();
-//
-//                    initialTab();
-//
-//                }
-//
-//
-//            }
-//
-//            @Override
-//            public void callbackError(int code, String errorMsg) {
-//                Log.d("Error", errorMsg);
-//            }
-//        }).API_Request(true, RequestServices.ws_getVariable +
-//                "?PrdID=" + prdID +
-//                "&FisheryType=" + 1);
-//
-//    }
 
 }

@@ -31,6 +31,15 @@ public class UserPlotModel {
     private String calResult="";
     private String plantGrpID="";
     private String prdValue = "";
+    private String formularCode = "";
+
+    public String getFormularCode() {
+        return formularCode;
+    }
+
+    public void setFormularCode(String formularCode) {
+        this.formularCode = formularCode;
+    }
 
     public String getPlantGrpID() {
         return plantGrpID;

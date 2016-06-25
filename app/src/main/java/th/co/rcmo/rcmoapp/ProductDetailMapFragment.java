@@ -696,7 +696,7 @@ public class ProductDetailMapFragment extends Fragment implements View.OnClickLi
 
                 if (mPlotSuitBodyLists.size() != 0) {
 
-                    ((PBProductDetailActivity) getActivity()).mPlotSuit = mPlotSuitBodyLists.get(0);
+                    PBProductDetailActivity.mPlotSuit = mPlotSuitBodyLists.get(0);
 
                     displayPlotSuitValue(mPlotSuitBodyLists.get(0));
                 }

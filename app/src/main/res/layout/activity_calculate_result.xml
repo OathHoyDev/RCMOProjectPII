@@ -49,53 +49,56 @@
     </RelativeLayout>
 
 
-    <RelativeLayout
-        android:id="@+id/buttonLayout"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_alignParentBottom="true">
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:orientation="horizontal"
+        android:id="@+id/linearLayout5">
 
-        <ImageView
-            android:id="@+id/buttomImage"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="false"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="-20dp" />
-
-        <com.neopixl.pixlui.components.button.Button
+        <com.neopixl.pixlui.components.textview.TextView
             android:id="@+id/btnRecalculate"
-            android:layout_width="100dp"
-            android:layout_height="60dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true"
-            android:layout_toLeftOf="@+id/buttomImage"
-            android:background="@drawable/circle_plant_cut_top_active"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/btn_bg_greendark_cal"
             android:gravity="bottom|center"
-            android:paddingBottom="10dp"
-            android:text="คำนวณใหม่"
+            android:paddingBottom="5dp"
+            android:text="คำนวนใหม่"
+            android:clickable="true"
+            android:focusable="true"
             android:textColor="@color/RcmoWhiteBG"
-            android:textSize="@dimen/textsize_xlarge"
+            android:textSize="@dimen/textsize_large"
             pixlui:typeface="Quark-Bold.otf" />
 
-        <com.neopixl.pixlui.components.button.Button
-            android:id="@+id/btnSavePlotDetail"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_toRightOf="@+id/buttomImage"
-            android:background="@drawable/circle_plant_cut_top"
-            android:clickable="true"
-            android:gravity="bottom|center"
-            android:nestedScrollingEnabled="false"
-            android:paddingBottom="10dp"
-            android:text="บันทึกผล"
-            android:textColor="@color/RcmoWhiteBG"
-            android:textSize="@dimen/textsize_xlarge"
+        <com.neopixl.pixlui.components.textview.TextView
+            android:id="@+id/centerImg"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_gravity="bottom"
+            android:layout_weight="1"
+            android:background="@drawable/bottom_green_total"
+            android:gravity="center"
             pixlui:typeface="Quark-Bold.otf" />
-    </RelativeLayout>
+
+
+        <com.neopixl.pixlui.components.textview.TextView
+            android:id="@+id/btnSavePlotDetail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/btn_bg_green_cal"
+            android:gravity="bottom|center"
+            android:paddingBottom="5dp"
+            android:text="ดึงข้อมูลล่าสุด"
+            android:textColor="@color/RcmoWhiteBG"
+            android:textSize="@dimen/textsize_large"
+            android:clickable="true"
+            android:focusable="true"
+            pixlui:typeface="Quark-Bold.otf" />
+
+    </LinearLayout>
 
     <com.neopixl.pixlui.components.textview.TextView
         android:id="@+id/productNameLabel"
@@ -171,7 +174,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:text="งาน"
+                    android:text="บาท"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textColor="@color/RcmoGrayBG"
                     pixlui:typeface="Quark-Bold.otf"
@@ -208,14 +211,14 @@
         android:id="@+id/linearLayout4"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_above="@+id/buttonLayout"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="10dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:background="@drawable/light_gray_cut_conner"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_above="@+id/linearLayout5"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -294,11 +297,18 @@
 
     </LinearLayout>
 
-    <ListView
-        android:id="@+id/listViewSummary"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_above="@+id/linearLayout4"
         android:layout_below="@+id/linearLayout3"
-        android:layout_centerHorizontal="true" />
+        android:id="@+id/resultLayout">
+
+        <ListView
+            android:id="@+id/listViewSummary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
+
 </RelativeLayout>

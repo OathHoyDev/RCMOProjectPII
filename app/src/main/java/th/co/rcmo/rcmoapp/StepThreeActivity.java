@@ -40,6 +40,7 @@ import th.co.rcmo.rcmoapp.Model.ProductModel;
 import th.co.rcmo.rcmoapp.Model.UserModel;
 import th.co.rcmo.rcmoapp.Model.UserPlotModel;
 import th.co.rcmo.rcmoapp.Module.mAmphoe;
+import th.co.rcmo.rcmoapp.Module.mGetVariable;
 import th.co.rcmo.rcmoapp.Module.mProvince;
 import th.co.rcmo.rcmoapp.Module.mSavePlotDetail;
 import th.co.rcmo.rcmoapp.Module.mTumbon;
@@ -60,6 +61,8 @@ public class StepThreeActivity extends Activity {
     String userId ="" ;
     String plotId ="";
     boolean saved = false;
+
+
 
 
     @Override
@@ -257,9 +260,8 @@ public class StepThreeActivity extends Activity {
                 }
 
                 if(isValidate) {
-                    PBProductDetailActivity.userPlotModel = userPlotModel;
-                    userPlotModel.setPageId(1);
-                    startActivity(new Intent(StepThreeActivity.this, PBProductDetailActivity.class));
+                    API_getVariable();
+
                 }else{
 
                 }
@@ -802,6 +804,39 @@ public class StepThreeActivity extends Activity {
         }).API_Request(false, RequestServices.ws_getPlotList +
                 "?UserID=" + userId + "&PlotID=" +
                 "&ImeiCode=" + ServiceInstance.GetDeviceID(StepThreeActivity.this));
+
+    }
+
+    private void API_getVariable() {
+
+        new ResponseAPI(StepThreeActivity.this, new ResponseAPI.OnCallbackAPIListener() {
+            @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
+            @Override
+            public void callbackSuccess(Object obj) {
+
+                mGetVariable mVariable = (mGetVariable) obj;
+                List<mGetVariable.mRespBody> mVariableBodyLists = mVariable.getRespBody();
+
+                if (mVariableBodyLists.size() != 0) {
+
+                    PBProductDetailActivity.userPlotModel = userPlotModel;
+                    userPlotModel.setPageId(1);
+                    userPlotModel.setFormularCode(mVariableBodyLists.get(0).getFormularCode());
+
+                    startActivity(new Intent(StepThreeActivity.this, PBProductDetailActivity.class));
+
+                }
+
+
+            }
+
+            @Override
+            public void callbackError(int code, String errorMsg) {
+                Log.d("Error", errorMsg);
+            }
+        }).API_Request(true, RequestServices.ws_getVariable +
+                "?PrdID=" + userPlotModel.getPrdID() +
+                "&FisheryType=" + userPlotModel.getFisheryType());
 
     }
 

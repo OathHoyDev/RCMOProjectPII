@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.database.DataSetObserver;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,7 +12,10 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.neopixl.pixlui.components.button.Button;
@@ -47,11 +51,14 @@ public class CalculateResultActivity extends Activity {
         initialDetail();
     }
 
+
+
     private void initialDetail() {
 
         ImageView bgImage = (android.widget.ImageView) findViewById(R.id.productIconBG);
-        Button btnRecalculate = (Button) findViewById(R.id.btnRecalculate);
-        Button btnSavePlotDetail = (Button) findViewById(R.id.btnSavePlotDetail);
+        TextView canterTextview = (TextView) findViewById(R.id.centerImg);
+        TextView btnRecalculate = (TextView) findViewById(R.id.btnRecalculate);
+        TextView btnSavePlotDetail = (TextView) findViewById(R.id.btnSavePlotDetail);
 
         TextView recommandLocation = (TextView) findViewById(R.id.recommandLocation);
         TextView recommandPrice = (TextView) findViewById(R.id.recommandPrice);
@@ -65,24 +72,30 @@ public class CalculateResultActivity extends Activity {
         switch (userPlotModel.getPrdGrpID()) {
             case CalculateConstant.PRODUCT_TYPE_PLANT:
                 bgImage.setBackgroundResource(R.drawable.plant_ic_gr_circle_bg);
-                btnRecalculate.setBackgroundResource(R.drawable.circle_plant_cut_top);
-                btnSavePlotDetail.setBackgroundResource(R.drawable.circle_plant_cut_top);
+                btnRecalculate.setBackgroundResource(R.drawable.action_plant_recal);
+                btnSavePlotDetail.setBackgroundResource(R.drawable.action_plant_reget);
                 titleLable.setBackgroundColor(getResources().getColor(R.color.RcmoPlantBG));
                 productNameLabel.setBackgroundColor(getResources().getColor(R.color.RcmoPlantDarkBG));
+                canterTextview.setBackgroundResource(R.drawable.bottom_green_total);
+                txProfitLossValue.setTextColor(getResources().getColor(R.color.RcmoPlantBG));
                 break;
             case CalculateConstant.PRODUCT_TYPE_ANIMAL:
                 bgImage.setBackgroundResource(R.drawable.animal_ic_gr_circle_bg);
-                btnRecalculate.setBackgroundResource(R.drawable.circle_animal_cut_top);
-                btnSavePlotDetail.setBackgroundResource(R.drawable.circle_animal_cut_top);
+                btnRecalculate.setBackgroundResource(R.drawable.action_animal_recal);
+                btnSavePlotDetail.setBackgroundResource(R.drawable.action_animal_reget);
                 titleLable.setBackgroundColor(getResources().getColor(R.color.RcmoAnimalBG));
                 productNameLabel.setBackgroundColor(getResources().getColor(R.color.RcmoAnimalDarkBG));
+                canterTextview.setBackgroundResource(R.drawable.bottom_pink_total);
+                txProfitLossValue.setTextColor(getResources().getColor(R.color.RcmoAnimalBG));
                 break;
             case CalculateConstant.PRODUCT_TYPE_FISH:
                 bgImage.setBackgroundResource(R.drawable.fish_ic_gr_circle_bg);
-                btnRecalculate.setBackgroundResource(R.drawable.circle_fish_cut_top);
-                btnSavePlotDetail.setBackgroundResource(R.drawable.circle_fish_cut_top);
+                btnRecalculate.setBackgroundResource(R.drawable.action_fish_recal);
+                btnSavePlotDetail.setBackgroundResource(R.drawable.action_fish_reget);
                 titleLable.setBackgroundColor(getResources().getColor(R.color.RcmoFishBG));
                 productNameLabel.setBackgroundColor(getResources().getColor(R.color.RcmoFishDarkBG));
+                canterTextview.setBackgroundResource(R.drawable.bottom_blue_total);
+                txProfitLossValue.setTextColor(getResources().getColor(R.color.RcmoFishBG));
                 break;
         }
 

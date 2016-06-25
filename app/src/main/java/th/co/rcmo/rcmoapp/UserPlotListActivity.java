@@ -33,6 +33,7 @@ import th.co.rcmo.rcmoapp.Model.UserPlotModel;
 import th.co.rcmo.rcmoapp.Module.mCopyPlot;
 import th.co.rcmo.rcmoapp.Module.mDeletePlot;
 import th.co.rcmo.rcmoapp.Module.mGetRegister;
+import th.co.rcmo.rcmoapp.Module.mGetVariable;
 import th.co.rcmo.rcmoapp.Module.mUpdateUserPlotSeq;
 import th.co.rcmo.rcmoapp.Module.mUserPlotList;
 import th.co.rcmo.rcmoapp.Util.BitMapHelper;
@@ -350,8 +351,10 @@ public class UserPlotListActivity extends Activity {
                 @Override
                 public void onClick(View v) {
                     Log.d("On Calculate"," position : "+position);
-                    PBProductDetailActivity.userPlotModel =  prepareDataForCalculate(respBody);
-                    startActivity(new Intent(UserPlotListActivity.this, PBProductDetailActivity.class));
+                    UserPlotModel userPlotModel = prepareDataForCalculate(respBody);
+
+                    API_getVariable(userPlotModel);
+
                 }
             });
 
@@ -422,6 +425,41 @@ public class UserPlotListActivity extends Activity {
 
     }
 /*============================== API ================================*/
+
+    private void API_getVariable(final UserPlotModel userPlotModel) {
+
+        new ResponseAPI(UserPlotListActivity.this, new ResponseAPI.OnCallbackAPIListener() {
+            @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
+            @Override
+            public void callbackSuccess(Object obj) {
+
+                mGetVariable mVariable = (mGetVariable) obj;
+                List<mGetVariable.mRespBody> mVariableBodyLists = mVariable.getRespBody();
+
+                if (mVariableBodyLists.size() != 0) {
+
+                    PBProductDetailActivity.userPlotModel = userPlotModel;
+                    userPlotModel.setPageId(1);
+                    userPlotModel.setFormularCode(mVariableBodyLists.get(0).getFormularCode());
+
+                    startActivity(new Intent(UserPlotListActivity.this, PBProductDetailActivity.class));
+
+
+
+                }
+
+
+            }
+
+            @Override
+            public void callbackError(int code, String errorMsg) {
+                Log.d("Error", errorMsg);
+            }
+        }).API_Request(true, RequestServices.ws_getVariable +
+                "?PrdID=" + userPlotModel.getPrdID() +
+                "&FisheryType=" + userPlotModel.getFisheryType());
+
+    }
 
     private void API_GetRegister(final int userId) {
           //1.UserID (บังคับใส่)
