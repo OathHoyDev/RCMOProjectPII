@@ -9,6 +9,7 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.Gravity;
@@ -36,6 +37,7 @@ import th.co.rcmo.rcmoapp.Module.mUpdateUserPlotSeq;
 import th.co.rcmo.rcmoapp.Module.mUserPlotList;
 import th.co.rcmo.rcmoapp.Util.BitMapHelper;
 import th.co.rcmo.rcmoapp.Util.ServiceInstance;
+import th.co.rcmo.rcmoapp.Util.Util;
 import th.co.rcmo.rcmoapp.View.DialogChoice;
 
 public class UserPlotListActivity extends Activity {
@@ -501,7 +503,7 @@ public class UserPlotListActivity extends Activity {
                       //  toastMsg("คัดลอกข้อมูลสำเร็จ");
                     }else{
                         Log.d(TAG, "API_updateUserPlotSeq Complete ");
-                        toastMsg("คัดลอกข้อมูลสำเร็จ");
+                        Util.showDialogAndDismiss(UserPlotListActivity.this,"คัดลอกข้อมูลสำเร็จ");
                     }
               //  }
 
@@ -559,7 +561,7 @@ public class UserPlotListActivity extends Activity {
                 "&PlotID=" + plotId
         );
     }
-
+/*
     private void toastMsg(String msg) {
         LayoutInflater inflater = getLayoutInflater();
         View layout = inflater.inflate(R.layout.toast_layout,
@@ -574,7 +576,7 @@ public class UserPlotListActivity extends Activity {
 
         toast.show();
     }
-
+*/
 
     private UserPlotModel prepareDataForCalculate(mUserPlotList.mRespBody resp){
         UserPlotModel plotModel = new UserPlotModel();
@@ -585,13 +587,30 @@ public class UserPlotListActivity extends Activity {
         plotModel.setPlantGrpID(String.valueOf(resp.getPlantGrpID()));
         plotModel.setUserID(userId);
         plotModel.setPrdValue(resp.getPrdValue());
+
         plotModel.setPageId(0);
 
-
+        String name  = resp.getPrdValue();
+        if(name.contains("กระชัง")){
+            plotModel.setFisheryType("2");
+        }else if (name.contains("บ่อ")){
+            plotModel.setFisheryType("1");
+        }
 
         return plotModel;
     }
 
-
-
+/*
+  private void showDialogAndDismiss(String msg){
+      final android.app.Dialog dialog =   new DialogChoice(UserPlotListActivity.this).Show(msg,"");
+      final Handler handler  = new Handler();
+      final Runnable runnable = new Runnable() {
+          @Override
+          public void run() {
+              dialog.dismiss();
+          }
+      };
+      handler.postDelayed(runnable, ServiceInstance.DISMISS_DURATION_MS);
+  }
+*/
 }

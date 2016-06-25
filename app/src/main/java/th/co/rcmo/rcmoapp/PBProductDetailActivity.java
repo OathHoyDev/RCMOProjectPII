@@ -56,7 +56,7 @@ public class PBProductDetailActivity extends AppCompatActivity {
 
 
         tabLayout.setupWithViewPager(pager);
-        //tabLayout.setBackgroundResource(R.color.black_overlay);
+        tabLayout.setBackgroundResource(R.color.RcmoWhiteBG);
     //    pager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         pager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout) {
             @Override
@@ -80,6 +80,7 @@ public class PBProductDetailActivity extends AppCompatActivity {
         });
 
         tabLayout.setTabsFromPagerAdapter(adapter);
+       // tabLayout.setBackgroundResource(R.color.RcmoLightTranBG);
 
         setTabStyle(adapter);
 
@@ -104,6 +105,7 @@ public class PBProductDetailActivity extends AppCompatActivity {
             tabLayout.addTab(tab.setText(adapter.getPageTitle(i)));
             AppCompatTextView view = (AppCompatTextView) ((ViewGroup)slidingTabStrip.getChildAt(i)).getChildAt(1);
             view.setTypeface(typeface, Typeface.NORMAL);
+            //view.setBackgroundResource(R.color.RcmoLightTranBG);
 
         }
     }

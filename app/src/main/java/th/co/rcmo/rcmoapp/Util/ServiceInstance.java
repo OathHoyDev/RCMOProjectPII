@@ -29,7 +29,7 @@ public class ServiceInstance {
     public static final String FISHERY_NUM_TYPE_TUA = "1";
     public static final String FISHERY_NUM_TYPE_KK  = "2";
 
-
+    public static final int DISMISS_DURATION_MS = 1000;
     public static final int version = Build.VERSION.SDK_INT;
     public static final String PREF_NAME = "RCMO";
     public static final String sp_userId    = "sp_user_id";

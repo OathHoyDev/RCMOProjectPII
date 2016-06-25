@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Handler;
 
+import th.co.rcmo.rcmoapp.View.DialogChoice;
+
 /**
  * Created by Taweesin on 6/20/2016.
  */
@@ -59,5 +61,18 @@ public class Util {
 
         }
 
+    }
+
+
+    public static void showDialogAndDismiss(Context context,String msg){
+        final android.app.Dialog dialog =   new DialogChoice(context).Show(msg,"");
+        final Handler handler  = new Handler();
+        final Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                dialog.dismiss();
+            }
+        };
+        handler.postDelayed(runnable, ServiceInstance.DISMISS_DURATION_MS);
     }
 }
