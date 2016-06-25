@@ -1,8 +1,10 @@
 package th.co.rcmo.rcmoapp;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
@@ -19,24 +21,32 @@ import android.widget.Toast;
 
 import com.neopixl.pixlui.components.textview.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import th.co.rcmo.rcmoapp.API.ProductService;
+import th.co.rcmo.rcmoapp.API.RequestServices;
+import th.co.rcmo.rcmoapp.API.ResponseAPI;
 import th.co.rcmo.rcmoapp.Adapter.PBCalculatePagerAdapter;
+import th.co.rcmo.rcmoapp.Model.STDVarModel;
 import th.co.rcmo.rcmoapp.Model.UserPlotModel;
+import th.co.rcmo.rcmoapp.Module.mGetVariable;
 
 public class PBProductDetailActivity extends AppCompatActivity {
-    ViewPager  pager;
+    public static ViewPager  pager;
     TabLayout tabLayout;
     public static UserPlotModel userPlotModel = new UserPlotModel();
+    public static List<STDVarModel> stdVarModelList = new ArrayList<STDVarModel>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pbproduct_detail);
 
         setUI(Integer.valueOf(userPlotModel.getPrdGrpID()));
+
         setAction();
 
-
         pager= (ViewPager) findViewById(R.id.view_pager);
-
         FragmentManager manager=getSupportFragmentManager();
         PBCalculatePagerAdapter adapter=new PBCalculatePagerAdapter(manager);
         pager.setAdapter(adapter);
@@ -73,8 +83,14 @@ public class PBProductDetailActivity extends AppCompatActivity {
         pager.setCurrentItem(userPlotModel.getPageId());
 
     }
-
-
+/*
+    private void  reqDataFromServer(){
+         API_getVariable(userPlotModel.getPrdID(),userPlotModel.getFisheryType());
+        for(STDVarModel tmp:stdVarModelList){
+           Log.d("Test "," String : "+tmp.toString());
+        }
+    }
+*/
     private void  setTabStyle(PBCalculatePagerAdapter adapter){
         Typeface typeface = Typeface.createFromAsset(PBProductDetailActivity.this.getAssets(), "fonts/Quark-Bold.otf");
 
@@ -122,4 +138,34 @@ public class PBProductDetailActivity extends AppCompatActivity {
              }
          });
      }
+/*
+    private void API_getVariable(String prdID , final String fisheryType) {
+
+        new ResponseAPI(PBProductDetailActivity.this, new ResponseAPI.OnCallbackAPIListener() {
+            @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
+            @Override
+            public void callbackSuccess(Object obj) {
+
+                mGetVariable mVariable = (mGetVariable) obj;
+                List<mGetVariable.mRespBody> mVariableBodyLists = mVariable.getRespBody();
+
+                if (mVariableBodyLists.size() != 0) {
+
+                    stdVarModelList =  ProductService.prepareSTDVarList(mVariableBodyLists.get(0), fisheryType);
+
+                }
+
+
+            }
+
+            @Override
+            public void callbackError(int code, String errorMsg) {
+                Log.d("Error", errorMsg);
+            }
+        }).API_Request(true, RequestServices.ws_getVariable +
+                "?PrdID=" + prdID +
+                "&FisheryType=" + userPlotModel.getFisheryType());
+
+    }
+*/
 }

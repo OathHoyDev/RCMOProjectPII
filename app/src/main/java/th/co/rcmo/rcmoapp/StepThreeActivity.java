@@ -1079,6 +1079,7 @@ public class StepThreeActivity extends Activity {
             // kc is a : kachang(กระชัง) in thai
             // bo is a : (บ่อ) in thai
             // va is a : แวนนาโม(กุ้ง)
+            Log.d("Test","KaChang Flag"+kcSelected);
             if (kcSelected) {
                 EditText kc_inputSqMPerKC = (EditText) findViewById(R.id.kc_inputSqMPerKC);
                 EditText kc_inputNumberOfKC = (EditText) findViewById(R.id.kc_inputNuberOfKC);

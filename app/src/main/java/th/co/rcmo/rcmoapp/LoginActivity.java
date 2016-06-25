@@ -41,9 +41,10 @@ public class LoginActivity extends Activity {
         inputUsername = (EditText) findViewById(R.id.inputUsername);
         inputPassword = (EditText) findViewById(R.id.inputPassword);
 
+        /*
         inputUsername.requestFocus();
          getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
-
+*/
         setUI();
         setAction();
 
