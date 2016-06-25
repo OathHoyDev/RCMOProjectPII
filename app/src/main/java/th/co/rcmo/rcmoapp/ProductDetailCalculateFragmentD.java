@@ -24,8 +24,10 @@ import java.util.List;
 
 import th.co.rcmo.rcmoapp.Adapter.CalculateCostExpandableListAdapterD;
 import th.co.rcmo.rcmoapp.Model.UserPlotModel;
+import th.co.rcmo.rcmoapp.Model.calculate.CalculateResultModel;
 import th.co.rcmo.rcmoapp.Model.calculate.FormulaDModel;
 import th.co.rcmo.rcmoapp.Util.ServiceInstance;
+import th.co.rcmo.rcmoapp.View.DialogCalculateResult;
 
 
 /**
@@ -78,7 +80,6 @@ public class ProductDetailCalculateFragmentD extends Fragment implements  View.O
         context = view.getContext();
 
         expandableListView = (ExpandableListView) view.findViewById(R.id.expandableListView);
-        resultFadeView = (RelativeLayout) view.findViewById(R.id.resultFadeLayout);
         rootViewLayout = (RelativeLayout) view.findViewById(R.id.rootLayoutView);
 
         getArgumentFromActivity();
@@ -124,14 +125,9 @@ public class ProductDetailCalculateFragmentD extends Fragment implements  View.O
         Button btnCalculate = (Button) view.findViewById(R.id.btnCalculate);
         btnCalculate.setOnClickListener(this);
 
-        ImageButton btnShowReport = (ImageButton) view.findViewById(R.id.btnShowReport);
-        btnShowReport.setOnClickListener(this);
-
         Button btnOption = (Button) view.findViewById(R.id.btnOption);
         btnOption.setOnClickListener(this);
 
-
-        resultFadeView.setVisibility(View.GONE);
 
 
         return view;
@@ -253,19 +249,6 @@ public class ProductDetailCalculateFragmentD extends Fragment implements  View.O
         listView.setLayoutParams(params);
         listView.requestLayout();
 
-        int allLayoutHeight = (int)((120 + 120 + 100)*density);
-
-        ViewGroup.LayoutParams resultFadeViewLayoutParams = resultFadeView.getLayoutParams();
-        resultFadeViewLayoutParams.height = totalHeight + allLayoutHeight;
-        resultFadeView.setLayoutParams(resultFadeViewLayoutParams);
-        resultFadeView.requestLayout();
-
-        ImageButton btnShowReport = (ImageButton) resultFadeView.findViewById(R.id.btnShowReport);
-        ViewGroup.LayoutParams btnShowReportParams = btnShowReport.getLayoutParams();
-        btnShowReportParams.height = totalHeight + allLayoutHeight;
-        btnShowReport.setLayoutParams(btnShowReportParams);
-        btnShowReport.requestLayout();
-
     }
 
     public void onClick(View v) {
@@ -275,26 +258,19 @@ public class ProductDetailCalculateFragmentD extends Fragment implements  View.O
 
             formulaModel.calculate();
 
-            ImageView calResultProfitLossImage = (ImageView) resultFadeView.findViewById(R.id.calResultProfitLossImage);
-            TextView txResultString = (TextView) resultFadeView.findViewById(R.id.txResultString);
-            TextView txResult = (TextView) resultFadeView.findViewById(R.id.txResult);
-            TextView txResultValue = (TextView) resultFadeView.findViewById(R.id.txResultValue);
+            CalculateResultModel calculateResultModel = new CalculateResultModel();
+            calculateResultModel.formularCode = "A";
+            calculateResultModel.calculateResult = formulaModel.calProfitLoss;
+            calculateResultModel.productName = ((ProductDetailActivity)this.getActivity()).productName;
+            calculateResultModel.mPlotSuit = ((ProductDetailActivity)this.getActivity()).mPlotSuit;
+            calculateResultModel.compareStdResult = 0;
 
-            if ((double)formulaModel.getValueFromAttributeName(formulaModel , "calProfitLoss") > 0){
-                calResultProfitLossImage.setImageResource(R.drawable.ic_profit);
+            DialogCalculateResult.userPlotModel = userPlotModel;
+            DialogCalculateResult.calculateResultModel = calculateResultModel;
 
-                txResultString.setText("ยินดีด้วย");
-                txResult.setText("คุณได้กำไร");
-                txResultValue.setText("จำนวน " + String.format("%,.2f", formulaModel.getValueFromAttributeName(formulaModel , "calProfitLoss")) + " บาท");
-            }else{
-                calResultProfitLossImage.setImageResource(R.drawable.ic_losecost);
 
-                txResultString.setText("เสียใจด้วย");
-                txResult.setText("คุณได้ขาดทุน");
-                txResultValue.setText("จำนวน " + String.format("%,.2f", formulaModel.getValueFromAttributeName(formulaModel , "calProfitLoss")) + " บาท");
-            }
+            new DialogCalculateResult(context).Show();
 
-            resultFadeView.setVisibility(View.VISIBLE);
 
 
         }else if(v.getId() == R.id.btnOption) {
@@ -309,14 +285,6 @@ public class ProductDetailCalculateFragmentD extends Fragment implements  View.O
 
             formulaModel.isCalIncludeOption = isCalIncludeOption;
 
-        }else if(v.getId() == R.id.btnShowReport){
-
-            resultFadeView.setVisibility(View.GONE);
-
-            CalculateResultActivity.resultModel = formulaModel;
-            CalculateResultActivity.userPlotModel = userPlotModel;
-
-            startActivity(new Intent(context, CalculateResultActivity.class));
         }
 
     }

@@ -2,32 +2,28 @@ package th.co.rcmo.rcmoapp;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
-import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 
 import com.neopixl.pixlui.components.button.Button;
-import com.neopixl.pixlui.components.imageview.ImageView;
 import com.neopixl.pixlui.components.textview.TextView;
 
 import java.util.HashMap;
 import java.util.List;
 
 import th.co.rcmo.rcmoapp.Adapter.CalculateCostExpandableListAdapterA;
-import th.co.rcmo.rcmoapp.Adapter.CalculateCostExpandableListAdapterD;
+import th.co.rcmo.rcmoapp.Adapter.CalculateCostExpandableListAdapterB;
 import th.co.rcmo.rcmoapp.Model.UserPlotModel;
 import th.co.rcmo.rcmoapp.Model.calculate.CalculateResultModel;
 import th.co.rcmo.rcmoapp.Model.calculate.FormulaAModel;
-import th.co.rcmo.rcmoapp.Model.calculate.FormulaDModel;
+import th.co.rcmo.rcmoapp.Model.calculate.FormulaBModel;
 import th.co.rcmo.rcmoapp.Util.ServiceInstance;
 import th.co.rcmo.rcmoapp.View.DialogCalculateResult;
 
@@ -35,12 +31,12 @@ import th.co.rcmo.rcmoapp.View.DialogCalculateResult;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ProductDetailCalculateFragmentA extends Fragment implements  View.OnClickListener {
+public class ProductDetailCalculateFragmentB extends Fragment implements  View.OnClickListener {
 
-    String TAG = "ProductDetailCalculateFragmentA";
+    String TAG = "ProductDetailCalculateFragmentB";
 
     ExpandableListView expandableListView;
-    CalculateCostExpandableListAdapterA calculateCostExpandableListAdapter;
+    CalculateCostExpandableListAdapterB calculateCostExpandableListAdapter;
 
     List<String> listDataHeader;
     HashMap<String, List<String[]>> listDataChild;
@@ -56,7 +52,7 @@ public class ProductDetailCalculateFragmentA extends Fragment implements  View.O
     String userID;
     String prdGrpID;
 
-    FormulaAModel formulaModel;
+    FormulaBModel formulaModel;
 
     RelativeLayout resultFadeView;
     RelativeLayout rootViewLayout;
@@ -65,7 +61,7 @@ public class ProductDetailCalculateFragmentA extends Fragment implements  View.O
 
     String prdName;
 
-    public ProductDetailCalculateFragmentA() {
+    public ProductDetailCalculateFragmentB() {
         // Required empty public constructor
     }
 
@@ -90,9 +86,7 @@ public class ProductDetailCalculateFragmentA extends Fragment implements  View.O
 
         initialProductIcon();
 
-        FormulaAModel aModel = new FormulaAModel();
-
-        formulaModel = aModel;
+        formulaModel = new FormulaBModel();
 
         formulaModel.calculate();
         formulaModel.prepareListData();
@@ -100,7 +94,7 @@ public class ProductDetailCalculateFragmentA extends Fragment implements  View.O
         TextView txStartUnit = (TextView) view.findViewById(R.id.txStartUnit);
         txStartUnit.setText(String.valueOf(formulaModel.getValueFromAttributeName(formulaModel , "KaNardPlangTDin")));
 
-        calculateCostExpandableListAdapter = new CalculateCostExpandableListAdapterA(context, formulaModel);
+        calculateCostExpandableListAdapter = new CalculateCostExpandableListAdapterB(context, formulaModel);
 
         // setting list adapter
         expandableListView.setAdapter(calculateCostExpandableListAdapter);
@@ -215,12 +209,12 @@ public class ProductDetailCalculateFragmentA extends Fragment implements  View.O
     public void onClick(View v) {
         if(v.getId() == R.id.btnCalculate){
 
-            formulaModel = (FormulaAModel) calculateCostExpandableListAdapter.getDataObj();
+            formulaModel = (FormulaBModel) calculateCostExpandableListAdapter.getDataObj();
 
             formulaModel.calculate();
 
             CalculateResultModel calculateResultModel = new CalculateResultModel();
-            calculateResultModel.formularCode = "A";
+            calculateResultModel.formularCode = "B";
             calculateResultModel.calculateResult = formulaModel.calSumCost;
             calculateResultModel.productName = ((ProductDetailActivity)this.getActivity()).productName;
             calculateResultModel.mPlotSuit = ((ProductDetailActivity)this.getActivity()).mPlotSuit;

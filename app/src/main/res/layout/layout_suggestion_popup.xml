@@ -7,26 +7,33 @@
     <RelativeLayout
         android:id="@+id/transFrame"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        android:layout_alignParentRight="false">
 
         <RelativeLayout
             android:id="@+id/borderFrame"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="20dp"
-            android:background="@color/RcmoOrangeBG">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/RcmoOrangeBG"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginRight="10dp">
 
             <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp"
+                android:layout_height="110dp"
+                android:layout_margin="5dp"
                 android:id="@+id/suggessScrollView" >
 
                 <RelativeLayout
                     android:id="@+id/suggess_layout"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/RcmoWhiteBG">
+                    android:background="@color/RcmoWhiteBG"
+                    android:padding="10dp">
 
                     <com.neopixl.pixlui.components.textview.TextView
                         android:id="@+id/txSuggession"
@@ -35,8 +42,6 @@
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentTop="true"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="15dp"
                         android:text="พื้นที่เหมาะสมสำหรับ...."
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:textColor="@android:color/black"
@@ -75,11 +80,12 @@
     <ImageView
         android:id="@+id/imageView5"
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_height="30dp"
         android:layout_alignParentEnd="false"
         android:layout_gravity="top|right"
-        android:layout_marginRight="50dp"
+        android:layout_marginRight="30dp"
         android:src="@drawable/ic_triangle_arrow"
         android:layout_alignParentRight="true" />
+
 
 </RelativeLayout>

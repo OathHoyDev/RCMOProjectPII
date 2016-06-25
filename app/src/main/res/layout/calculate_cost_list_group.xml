@@ -20,7 +20,7 @@
             android:textSize="@dimen/textsize_large"
             android:textColor="@color/RcmoWhiteBG"
             android:background="@drawable/bar_title_blue"
-            android:text="คำนวน"
+            android:text="คำนวณ"
             android:gravity="center_vertical|center_horizontal" />
     </RelativeLayout>
 

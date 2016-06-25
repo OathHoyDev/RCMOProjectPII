@@ -91,6 +91,7 @@ public class ProductDetailMapFragment extends Fragment implements View.OnClickLi
     String suggession;
     String recommend;
     String recommendProduct = "";
+    String mapSuggess = "";
 
     private Context context;
     View v;
@@ -125,6 +126,25 @@ public class ProductDetailMapFragment extends Fragment implements View.OnClickLi
         }
 
         return v;
+    }
+
+    @Override
+    public void onResume() {
+        mapView.onResume();
+        super.onResume();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mapView != null)
+            mapView.onDestroy();
+    }
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        mapView.onLowMemory();
     }
 
     private void getArgumentFromActivity(){
@@ -226,7 +246,7 @@ public class ProductDetailMapFragment extends Fragment implements View.OnClickLi
 
     private void showMap(double latitude , double longitude){
 
-        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(latitude, longitude), 10);
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(latitude, longitude), 12);
         map.animateCamera(cameraUpdate);
 
         map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
@@ -237,6 +257,9 @@ public class ProductDetailMapFragment extends Fragment implements View.OnClickLi
             }
         });
 
+        map.getUiSettings().setZoomControlsEnabled(true);
+        map.getUiSettings().setMyLocationButtonEnabled(false);
+        map.setPadding(0,250,0,400);
 
         Bitmap bm = BitmapFactory.decodeResource(getResources(), R.drawable.pin);
 
@@ -260,7 +283,7 @@ public class ProductDetailMapFragment extends Fragment implements View.OnClickLi
         String address = "จ." + var.getProvNameTH() + " อ." + var.getAmpNameTH() + " ต." + var.getTamNameTH();
 
         txAddress.setText(address);
-        txSuggessPlot.setText(var.getSuitLabel());
+        txSuggessPlot.setText(var.getSuitValue());
 
         switch (var.getSuitLevel()){
             case "1" :
@@ -276,6 +299,7 @@ public class ProductDetailMapFragment extends Fragment implements View.OnClickLi
                 suggessStar.setImageResource(R.drawable.ic_0star);
                 break;
         }
+
 
         suggession = var.getSuitLabel();
         recommend = var.getRecommendLabel();
@@ -303,19 +327,19 @@ public class ProductDetailMapFragment extends Fragment implements View.OnClickLi
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View popupView = layoutInflater.inflate(R.layout.layout_suggestion_popup, null);
 
-            RelativeLayout borderLayout = (RelativeLayout)popupView.findViewById(R.id.borderFrame);
+//            RelativeLayout borderLayout = (RelativeLayout)popupView.findViewById(R.id.borderFrame);
 
-            switch (productType){
-                case CalculateConstant.PRODUCT_TYPE_ANIMAL :
-                    borderLayout.setBackgroundResource(R.color.RcmoAnimalBG);
-                    break;
-                case CalculateConstant.PRODUCT_TYPE_PLANT :
-                    borderLayout.setBackgroundResource(R.color.RcmoPlantBG);
-                    break;
-                case CalculateConstant.PRODUCT_TYPE_FISH :
-                    borderLayout.setBackgroundResource(R.color.RcmoFishBG);
-                    break;
-            }
+//            switch (productType){
+//                case CalculateConstant.PRODUCT_TYPE_ANIMAL :
+//                    borderLayout.setBackgroundResource(R.color.RcmoAnimalBG);
+//                    break;
+//                case CalculateConstant.PRODUCT_TYPE_PLANT :
+//                    borderLayout.setBackgroundResource(R.color.RcmoPlantBG);
+//                    break;
+//                case CalculateConstant.PRODUCT_TYPE_FISH :
+//                    borderLayout.setBackgroundResource(R.color.RcmoFishBG);
+//                    break;
+//            }
 
             com.neopixl.pixlui.components.textview.TextView txSuggession = (com.neopixl.pixlui.components.textview.TextView)popupView.findViewById(R.id.txSuggession);
             txSuggession.setText(suggession);
@@ -330,7 +354,7 @@ public class ProductDetailMapFragment extends Fragment implements View.OnClickLi
 
                 Display display = getActivity().getWindowManager().getDefaultDisplay();
                 int width = display.getWidth();
-                int popupWidth = (int) (width*0.8);
+                int popupWidth = (int) (width*0.7);
                 int popupHeight = (int) (width*0.6);
 
                 popupWindow = new PopupWindow(
@@ -376,10 +400,13 @@ public class ProductDetailMapFragment extends Fragment implements View.OnClickLi
             double lat = Double.parseDouble(latitude);
             double lon = Double.parseDouble(longitude);
 
-            CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(lat, lon), 17);
+            CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(lat, lon), 12);
             map.animateCamera(cameraUpdate);
         }
     }
+
+
+    // API --------------------------------------------
 
     private void popUpProvinceListDialog(final List<mProvince.mRespBody> provinceRespList) {
         final Dialog dialog = new Dialog(context);
@@ -592,6 +619,8 @@ public class ProductDetailMapFragment extends Fragment implements View.OnClickLi
 
                 if (mPlotSuitBodyLists.size() != 0) {
 
+                    ((ProductDetailActivity)getActivity()).mPlotSuit = mPlotSuitBodyLists.get(0);
+
                     displayPlotSuitValue(mPlotSuitBodyLists.get(0));
 
                 }
@@ -606,7 +635,6 @@ public class ProductDetailMapFragment extends Fragment implements View.OnClickLi
         }).API_Request(true, RequestServices.ws_getPlotSuit + cmd);
 
     }
-
 
     private void API_getProvince() {
         /**
@@ -745,22 +773,5 @@ public class ProductDetailMapFragment extends Fragment implements View.OnClickLi
 
     }
 
-    @Override
-    public void onResume() {
-        mapView.onResume();
-        super.onResume();
-    }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if (mapView != null)
-            mapView.onDestroy();
-    }
-
-    @Override
-    public void onLowMemory() {
-        super.onLowMemory();
-        mapView.onLowMemory();
-    }
 }

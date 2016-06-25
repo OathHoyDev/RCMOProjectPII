@@ -32,8 +32,10 @@ import th.co.rcmo.rcmoapp.API.ResponseAPI;
 import th.co.rcmo.rcmoapp.Model.ProductDetailModel;
 import th.co.rcmo.rcmoapp.Model.UserPlotModel;
 import th.co.rcmo.rcmoapp.Module.mGetPlotDetail;
+import th.co.rcmo.rcmoapp.Module.mGetPlotSuit;
 import th.co.rcmo.rcmoapp.Module.mGetVariable;
 import th.co.rcmo.rcmoapp.Module.mProduct;
+import th.co.rcmo.rcmoapp.Module.mRiceProduct;
 import th.co.rcmo.rcmoapp.Util.CalculateConstant;
 import th.co.rcmo.rcmoapp.Util.ServiceInstance;
 import th.co.rcmo.rcmoapp.View.DialogChoice;
@@ -48,15 +50,11 @@ public class ProductDetailActivity extends AppCompatActivity {
     private Bundle bundle;
     Context context;
 
-    public static String formularCode = "";
+    public static mGetPlotSuit.mRespBody mPlotSuit;
 
-//    public ProductDetailModel getProductDetailModel() {
-//        return productDetailModel;
-//    }
-//
-//    public void setProductDetailModel(ProductDetailModel productDetailModel) {
-//        this.productDetailModel = productDetailModel;
-//    }
+    public static String productName;
+
+    public static String formularCode = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,10 +117,8 @@ public class ProductDetailActivity extends AppCompatActivity {
         if (userPlotModel.getUserID() != null && !"".equalsIgnoreCase(userPlotModel.getUserID())) {
             API_getPlotDetail(userPlotModel.getPlotID());
         }else{
-            API_getProduct(userPlotModel.getPrdID() , userPlotModel.getPrdGrpID() , "0");
-
+            API_getProduct(userPlotModel.getPrdID() , userPlotModel.getPrdGrpID() , userPlotModel.getPlantGrpID());
             createBundleForFragment();
-
             API_getVariable(userPlotModel.getPrdID() , userPlotModel.getFisheryType());
         }
 
@@ -149,19 +145,15 @@ public class ProductDetailActivity extends AppCompatActivity {
                 break;
         }
 
-        //setSupportActionBar(toolbar);
-
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//        getSupportActionBar().setDisplayShowTitleEnabled(false);
-
-
 
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         final ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager(), this);
 
+
         ProductDetailStandardFragment productDetailStandardFragment = new ProductDetailStandardFragment();
         productDetailStandardFragment.setArguments(bundle);
         adapter.addFragment(productDetailStandardFragment);
+
 
         if ("A".equalsIgnoreCase(formularCode)) {
 
@@ -177,19 +169,18 @@ public class ProductDetailActivity extends AppCompatActivity {
 
         }
 
+
         ProductDetailMapFragment productDetailMapFragment = new ProductDetailMapFragment();
         productDetailMapFragment.setArguments(bundle);
         adapter.addFragment(productDetailMapFragment);
 
+
+
         viewPager.setAdapter(adapter);
-
         tabLayout = (TabLayout) findViewById(R.id.tabs);
-
         tabLayout.addTab(tabLayout.newTab());
         tabLayout.addTab(tabLayout.newTab());
         tabLayout.addTab(tabLayout.newTab());
-
-
         /*
          tabLayout.addTab(tabLayout.newTab().setCustomView(adapter.getTabView(0)));
         tabLayout.addTab(tabLayout.newTab().setCustomView(adapter.getTabView(1)));
@@ -243,7 +234,7 @@ public class ProductDetailActivity extends AppCompatActivity {
                             //tabImage.setBackgroundResource(R.drawable.action_tab_plant_standard);
                             break;
                         case 1:
-                            tabImage.setText("คำนวนต้นทุน");
+                            tabImage.setText("คำนวณต้นทุน");
                             //tabImage.setBackgroundResource(R.drawable.action_tab_plant_calculate);
                             break;
                         case 2:
@@ -261,7 +252,7 @@ public class ProductDetailActivity extends AppCompatActivity {
                            // tabImage.setBackgroundResource(R.drawable.action_tab_animal_standard);
                             break;
                         case 1:
-                            tabImage.setText("คำนวนต้นทุน");
+                            tabImage.setText("คำนวณต้นทุน");
                            // tabImage.setBackgroundResource(R.drawable.action_tab_animal_calculate);
                             break;
                         case 2:
@@ -278,7 +269,7 @@ public class ProductDetailActivity extends AppCompatActivity {
                           //  tabImage.setBackgroundResource(R.drawable.action_tab_fish_standard);
                             break;
                         case 1:
-                            tabImage.setText("คำนวนต้นทุน");
+                            tabImage.setText("คำนวณต้นทุน");
                           //  tabImage.setBackgroundResource(R.drawable.action_tab_fish_calculate);
                             break;
                         case 2:
@@ -341,11 +332,7 @@ public class ProductDetailActivity extends AppCompatActivity {
     }
 
     private void API_getPlotDetail(String plodID) {
-        /**
-         1.TamCode (ไม่บังคับใส่)
-         2.AmpCode (บังคับใส่)
-         3.ProvCode (บังคับใส่)
-         */
+
         new ResponseAPI(context, new ResponseAPI.OnCallbackAPIListener() {
             @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
             @Override
@@ -360,9 +347,11 @@ public class ProductDetailActivity extends AppCompatActivity {
                     userPlotModel.setAmpCode(mPlotDetailBodyLists.get(0).getAmpCode());
                     userPlotModel.setProvCode(mPlotDetailBodyLists.get(0).getProvCode());
 
-
-
-                    API_getProduct(mPlotDetailBodyLists.get(0).getPrdID() , mPlotDetailBodyLists.get(0).getPrdGrpID() , mPlotDetailBodyLists.get(0).getPlantGrpID());
+                    if ("1".equalsIgnoreCase(mPlotDetailBodyLists.get(0).getRiceTypeID())) {
+                        API_getRiceProduct(mPlotDetailBodyLists.get(0).getPrdID(), mPlotDetailBodyLists.get(0).getRiceTypeID());
+                    }else{
+                        API_getProduct(mPlotDetailBodyLists.get(0).getPrdID(), mPlotDetailBodyLists.get(0).getPrdGrpID(), mPlotDetailBodyLists.get(0).getPlantGrpID());
+                    }
 
 
                 }
@@ -380,6 +369,44 @@ public class ProductDetailActivity extends AppCompatActivity {
 
     }
 
+    private void API_getRiceProduct(String prdID , String riceTypeID) {
+
+        new ResponseAPI(context, new ResponseAPI.OnCallbackAPIListener() {
+            @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
+            @Override
+            public void callbackSuccess(Object obj) {
+
+                mRiceProduct mRice = (mRiceProduct) obj;
+                List<mRiceProduct.mRespBody> mRiceProductBodyLists = mRice.getRespBody();
+
+                if (mRiceProductBodyLists.size() != 0) {
+
+                    productName = mRiceProductBodyLists.get(0).getPrdName();
+                    RelativeLayout headerLayout  =     (RelativeLayout)findViewById(R.id.headerLayout);
+                    com.neopixl.pixlui.components.textview.TextView titleText = (com.neopixl.pixlui.components.textview.TextView)headerLayout.findViewById(R.id.titleLable);
+                    titleText.setText(mRiceProductBodyLists.get(0).getPrdName());
+
+                    API_getVariable(userPlotModel.getPrdID() , userPlotModel.getFisheryType());
+
+                    createBundleForFragment();
+
+
+
+                }
+
+
+            }
+
+            @Override
+            public void callbackError(int code, String errorMsg) {
+                Log.d("Error", errorMsg);
+            }
+        }).API_Request(true, RequestServices.ws_getRiceProduct +
+                "?PrdID=" + prdID +
+                "&RiceTypeID=" + riceTypeID);
+
+    }
+
     private void API_getProduct(String prdID , String prdGrpID , String plantGrpID) {
 
         new ResponseAPI(context, new ResponseAPI.OnCallbackAPIListener() {
@@ -392,6 +419,7 @@ public class ProductDetailActivity extends AppCompatActivity {
 
                 if (mProductBodyLists.size() != 0) {
 
+                    productName = mProductBodyLists.get(0).getPrdName();
                     RelativeLayout headerLayout  =     (RelativeLayout)findViewById(R.id.headerLayout);
                     com.neopixl.pixlui.components.textview.TextView titleText = (com.neopixl.pixlui.components.textview.TextView)headerLayout.findViewById(R.id.titleLable);
                     titleText.setText(mProductBodyLists.get(0).getPrdName());
@@ -400,10 +428,7 @@ public class ProductDetailActivity extends AppCompatActivity {
 
                     createBundleForFragment();
 
-
-
                 }
-
 
             }
 

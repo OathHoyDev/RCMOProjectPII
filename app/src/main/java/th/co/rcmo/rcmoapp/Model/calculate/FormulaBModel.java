@@ -8,53 +8,63 @@ import java.util.List;
 /**
  * Created by SilVeriSm on 6/20/2016 AD.
  */
-public class FormulaAModel extends AbstractFormulaModel {
+public class FormulaBModel extends AbstractFormulaModel {
+
+    public static String prdID = "";
+    // 13 = อ้อยโรงงาน
+    // 14 = สัปปะรดโรงงาน
 
     public static List<String> listDataHeader;
     public static HashMap<String, List<String[]>> listDataChild;
 
     public boolean isCalIncludeOption = false;
 
-    public static double KaNardPlangTDin = 0;
 
-    public static double KaRang = 0;
-    public static double KaTreamDin = 0;
-    public static double KaPluk = 0;
-    public static double KaDoolae = 0;
-    public static double KaGebGeaw = 0;
+    public double Year = 0;
 
-    public static double KaWassadu = 0;
-    public static double KaPan = 0;
-    public static double KaPuy = 0;
-    public static double KaYaplab = 0;
-    public static double KaWassaduUn = 0;
+    public double KaNardPlangTDin = 0;
 
-    public static double KaSiaOkardLongtoon = 0;
+    public double KaRang = 0;
+    public double KaTreamDin = 0;
+    public double KaPluk = 0;
+    public double KaDoolae = 0;
+    public double KaGebGeaw = 0;
 
-    public static double KaChaoTDin = 0;
+    public double KaWassadu = 0;
+    public double KaPan = 0;
+    public double KaPuy = 0;
+    public double KaYaplab = 0;
+    public double KaWassaduUn = 0;
 
-    public static double PonPalid = 0;
-    public static double predictPrice = 0;
+    public double KaSiaOkardLongtoon = 0;
 
-    public static double calSumCost = 0;
-    public static double calIncome = 0;
-    public static double calProfitLoss = 0;
+    public double KaChaoTDin = 0;
 
-    public static double calSumCostPerRai = 0;
-    public static double calIncomePerRai = 0;
-    public static double calProfitLossPerRai = 0;
+    public double PonPalid = 0;
+    public double predictPrice = 0;
 
-    public static double AttraDokbia = 0;
+    public double calSumCost = 0;
+    public double calIncome = 0;
+    public double calProfitLoss = 0;
 
-    public static double TontumMattratarn = 0;
+    public double AttraDokbia = 0;
 
-    public static double KaSermOuppakorn = 7.37;
-    public static double KaSiaOkardOuppakorn = 1.81;
-    public static double TontumMattratarnPerRai = 4689.83;
+    public double TontumMattratarn = 0;
+
+    public double KaSermOuppakorn = 7.37;
+    public double KaSiaOkardOuppakorn = 1.81;
+    public double TontumMattratarnPerRai = 4689.83;
 
     public static Hashtable<String, String> calculateLabel;
     static {
         Hashtable<String, String> tmp = new Hashtable<String, String>();
+
+        if("13".equalsIgnoreCase(prdID)) {
+            tmp.put("Year", "จำนวนปี");
+        }else{
+            tmp.put("Year", "จำนวนรอบ (มีด)");
+        }
+
         tmp.put("KaNardPlangTDin", "พื้นที่เพราะปลูก (ไร่)");
         tmp.put("KaRang", "ค่าแรงงาน");
         tmp.put("KaTreamDin", "ค่าเตรียมดิน");
@@ -83,9 +93,6 @@ public class FormulaAModel extends AbstractFormulaModel {
         tmp.put("KaSiaOkardOuppakorn", "ค่าเสียโอกาสอุปกรณ์");
         tmp.put("TontumMattratarn", "ต้นทุนมาตรฐานของ สศก.");
 
-        tmp.put("calSumCostPerRai", "คิดเป็น");
-        tmp.put("calIncomePerRai", "คิดเป็น");
-        tmp.put("calProfitLossPerRai", "คิดเป็น");
 
         calculateLabel = tmp;
     }
@@ -93,6 +100,7 @@ public class FormulaAModel extends AbstractFormulaModel {
     public static Hashtable<String, String> calculateUnit;
     static {
         Hashtable<String, String> tmp = new Hashtable<String, String>();
+        tmp.put("Year", "ปี (ตอ)");
         tmp.put("KaNardPlangTDin", "ไร่");
         tmp.put("KaRang", "บาท");
         tmp.put("KaTreamDin", "บาท");
@@ -120,9 +128,6 @@ public class FormulaAModel extends AbstractFormulaModel {
         tmp.put("KaSiaOkardOuppakorn", "ค่าเสียโอกาสอุปกรณ์");
         tmp.put("TontumMattratarn", "ต้นทุนมาตรฐานของ สศก.");
 
-        tmp.put("calSumCostPerRai", "คิดเป็น");
-        tmp.put("calIncomePerRai", "คิดเป็น");
-        tmp.put("calProfitLossPerRai", "คิดเป็น");
 
         calculateUnit = tmp;
     }
@@ -132,10 +137,15 @@ public class FormulaAModel extends AbstractFormulaModel {
         listDataHeader = new ArrayList<String>();
         listDataChild = new HashMap<String, List<String[]>>();
 
+        listDataHeader.add("จำนวนปีที่ปลูกทั้งแปลง");
         listDataHeader.add("ค่าใช้จ่าย");
-        listDataHeader.add("ผลผลิต ที่คาดว่าจะเก็บได้ในแปลงนี้");
-        listDataHeader.add("ราคาที่ควรจะขายได้");
-        listDataHeader.add("อัตราดอกเบี้ย ร้อยละ / ปี");
+        listDataHeader.add("ผลผลิต ที่คาดว่าจะเก็บเกี่ยวได้ในแปลงนี้");
+        listDataHeader.add("ราคาที่คาดว่าจะขายได้");
+        listDataHeader.add("อัตราดอกเบี้ย ร้อยละ/ปี");
+
+        List<String[]> yearHeader = new ArrayList<String[]>();
+        yearHeader.add(new String[]{"true", "", String.format("%,.2f", Year), calculateUnit.get("Year"), "Year"});
+
 
         List<String[]> cost = new ArrayList<String[]>(); // canEdit , Label , value , unit
         cost.add(new String[]{"false", calculateLabel.get("KaRang"), String.format("%,.2f", KaRang), calculateUnit.get("KaRang"), "KaRang"});
@@ -156,42 +166,51 @@ public class FormulaAModel extends AbstractFormulaModel {
         List<String[]> predict = new ArrayList<String[]>();
         predict.add(new String[]{"true", "", String.format("%,.2f", PonPalid), calculateUnit.get("PonPalid"), "PonPalid"});
 
+
         List<String[]> predictPriceList = new ArrayList<String[]>();
         predictPriceList.add(new String[]{"true", "", String.format("%,.2f", predictPrice), calculateUnit.get("predictPrice"), "predictPrice"});
 
         List<String[]> attraDokbia = new ArrayList<String[]>();
         attraDokbia.add(new String[]{"true", "", String.format("%,.2f", AttraDokbia), calculateUnit.get("AttraDokbia"), "AttraDokbia"});
 
-        listDataChild.put(listDataHeader.get(0), cost); // Header, Child data
-        listDataChild.put(listDataHeader.get(1), predict);
-        listDataChild.put(listDataHeader.get(2), predictPriceList);
-        listDataChild.put(listDataHeader.get(3), attraDokbia);
+        // Header, Child data
+        listDataChild.put(listDataHeader.get(0), yearHeader);
+        listDataChild.put(listDataHeader.get(1), cost);
+        listDataChild.put(listDataHeader.get(2), predict);
+        listDataChild.put(listDataHeader.get(3), predictPriceList);
+        listDataChild.put(listDataHeader.get(4), attraDokbia);
     }
 
     public void calculate() {
 
         KaRang = KaTreamDin + KaPluk + KaDoolae + KaGebGeaw;
+
+        double yearKaTreamDin = KaTreamDin / (Year+1) ;
+        double yearKaPluk = KaPluk / (Year+1) ;
+
+        double yearKaRang = yearKaTreamDin + yearKaPluk + KaDoolae + KaGebGeaw;
+
         KaWassadu = KaPan + KaPuy + KaYaplab + KaWassaduUn;
+
+        double yearKaPan =  KaPan  / (Year+1) ;
+        double yearKaWassadu = yearKaPan + + KaPuy + KaYaplab + KaWassaduUn;
+
+
         KaSiaOkardLongtoon = Math.pow((KaRang + KaWassadu) * (AttraDokbia / 100) * (6 / 12), 2);
+        double yearKaSiaOkardLongtoon = Math.pow((yearKaRang + yearKaWassadu) * (AttraDokbia / 100) * (6 / 12), 2);
+
         double costKaSermOuppakorn = KaNardPlangTDin * KaSermOuppakorn;
         double costKaSiaOkardOuppakorn = KaNardPlangTDin * KaSiaOkardOuppakorn;
 
-        calSumCost = KaRang + KaWassadu + KaSiaOkardLongtoon + KaChaoTDin + costKaSermOuppakorn + costKaSiaOkardOuppakorn;
+        calSumCost = yearKaRang + yearKaWassadu + yearKaSiaOkardLongtoon + KaChaoTDin + costKaSermOuppakorn + costKaSiaOkardOuppakorn;
 
 
         if (isCalIncludeOption) {
             calSumCost += costKaSermOuppakorn + costKaSiaOkardOuppakorn;
         }
 
-        calSumCostPerRai = calSumCost/KaNardPlangTDin;
-
         calIncome = PonPalid * predictPrice;
-
-        calIncomePerRai = calIncome/KaNardPlangTDin;
-
         calProfitLoss = calIncome - calSumCost;
-
-        calProfitLossPerRai = calProfitLoss / KaNardPlangTDin;
 
         TontumMattratarn = TontumMattratarnPerRai * KaNardPlangTDin;
     }

@@ -15,20 +15,19 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.neopixl.pixlui.components.button.Button;
+import com.neopixl.pixlui.components.textview.TextView;
 
 import java.util.List;
 
 import th.co.rcmo.rcmoapp.API.RequestServices;
 import th.co.rcmo.rcmoapp.API.ResponseAPI;
 import th.co.rcmo.rcmoapp.Model.UserPlotModel;
-import th.co.rcmo.rcmoapp.Model.calculate.FormulaJModel;
+import th.co.rcmo.rcmoapp.Model.calculate.CalculateResultModel;
+import th.co.rcmo.rcmoapp.Module.mGetPlotSuit;
 import th.co.rcmo.rcmoapp.Module.mSavePlotDetail;
 import th.co.rcmo.rcmoapp.Util.CalculateConstant;
 import th.co.rcmo.rcmoapp.Util.ServiceInstance;
 import th.co.rcmo.rcmoapp.View.DialogChoice;
-
-import th.co.rcmo.rcmoapp.Model.UserPlotModel;
-import th.co.rcmo.rcmoapp.Model.calculate.FormulaDModel;
 
 public class CalculateResultActivity extends Activity {
     String TAG = "CalculateResultActivity";
@@ -36,32 +35,58 @@ public class CalculateResultActivity extends Activity {
     boolean saved = false;
     String prdID;
 
-    public static FormulaDModel resultModel;
     public static UserPlotModel userPlotModel;
+    public static CalculateResultModel calculateResultModel;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculate_result);
-        initialProductIcon();
+        initialDetail();
     }
 
-    private void initialProductIcon() {
+    private void initialDetail() {
 
         ImageView bgImage = (android.widget.ImageView) findViewById(R.id.productIconBG);
+        Button btnRecalculate = (Button) findViewById(R.id.btnRecalculate);
+        Button btnSavePlotDetail = (Button) findViewById(R.id.btnSavePlotDetail);
+
+        TextView recommandLocation = (TextView) findViewById(R.id.recommandLocation);
+        TextView recommandPrice = (TextView) findViewById(R.id.recommandPrice);
+
+        TextView titleLable = (TextView) findViewById(R.id.titleLable);
+        TextView productNameLabel = (TextView) findViewById(R.id.productNameLabel);
+
+        TextView txProfitLoss = (TextView) findViewById(R.id.txProfitLoss);
+        TextView txProfitLossValue = (TextView) findViewById(R.id.txProfitLossValue);
 
         switch (userPlotModel.getPrdGrpID()) {
             case CalculateConstant.PRODUCT_TYPE_PLANT:
                 bgImage.setBackgroundResource(R.drawable.plant_ic_gr_circle_bg);
+                btnRecalculate.setBackgroundResource(R.drawable.circle_plant_cut_top);
+                btnSavePlotDetail.setBackgroundResource(R.drawable.circle_plant_cut_top);
+                titleLable.setBackgroundColor(getResources().getColor(R.color.RcmoPlantBG));
+                productNameLabel.setBackgroundColor(getResources().getColor(R.color.RcmoPlantDarkBG));
                 break;
             case CalculateConstant.PRODUCT_TYPE_ANIMAL:
                 bgImage.setBackgroundResource(R.drawable.animal_ic_gr_circle_bg);
+                btnRecalculate.setBackgroundResource(R.drawable.circle_animal_cut_top);
+                btnSavePlotDetail.setBackgroundResource(R.drawable.circle_animal_cut_top);
+                titleLable.setBackgroundColor(getResources().getColor(R.color.RcmoAnimalBG));
+                productNameLabel.setBackgroundColor(getResources().getColor(R.color.RcmoAnimalDarkBG));
                 break;
             case CalculateConstant.PRODUCT_TYPE_FISH:
                 bgImage.setBackgroundResource(R.drawable.fish_ic_gr_circle_bg);
+                btnRecalculate.setBackgroundResource(R.drawable.circle_fish_cut_top);
+                btnSavePlotDetail.setBackgroundResource(R.drawable.circle_fish_cut_top);
+                titleLable.setBackgroundColor(getResources().getColor(R.color.RcmoFishBG));
+                productNameLabel.setBackgroundColor(getResources().getColor(R.color.RcmoFishDarkBG));
                 break;
         }
+
+        productNameLabel.setText(calculateResultModel.productName);
 
         android.widget.ImageView productIcon = (android.widget.ImageView) findViewById(R.id.productIcon);
 
@@ -71,6 +96,23 @@ public class CalculateResultActivity extends Activity {
 
         productIcon.setImageResource(imgIDInt);
 
+        recommandLocation.setText(calculateResultModel.mPlotSuit.getSuitLabel());
+
+        if (calculateResultModel.compareStdResult > 0){
+            recommandPrice.setText("ค่าใช้จ่ายเกินกว่าค่ามาตรฐาน");
+        }else if (calculateResultModel.compareStdResult == 0) {
+            recommandPrice.setText("ค่าใช้จ่ายเท่ากับค่ามาตรฐาน");
+        }else {
+            recommandPrice.setText("ค่าใช้จ่ายต่ำกว่าค่ามาตรฐาน");
+        }
+
+        if (calculateResultModel.calculateResult >= 0){
+            txProfitLoss.setText("กำไร");
+            txProfitLossValue.setText(String.format("%,.2f", calculateResultModel.calculateResult));
+        }else{
+            txProfitLoss.setText("ขาดทุน");
+            txProfitLossValue.setText(String.format("%,.2f", calculateResultModel.calculateResult));
+        }
 
     }
 

@@ -30,9 +30,11 @@ public class CalculateCostExpandableListAdapter extends BaseExpandableListAdapte
     String TAG = "CalculateCostExpandableListAdapter";
 
     private Context _context;
-    private List<String> _listDataHeader; // header titles
+
+    // header titles
+    private static List<String> _listDataHeader;
     // child data in format of header title, child title
-    private HashMap<String, List<String[]>> _listDataChild;
+    private static HashMap<String, List<String[]>> _listDataChild;
     FormulaJModel model;
 
 

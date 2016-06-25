@@ -30,9 +30,10 @@ public class CalculateCostExpandableListAdapterD extends BaseExpandableListAdapt
     String TAG = "CalculateCostExpandableListAdapter";
 
     private Context _context;
-    private List<String> _listDataHeader; // header titles
+    // header titles
+    private static List<String> _listDataHeader;
     // child data in format of header title, child title
-    private HashMap<String, List<String[]>> _listDataChild;
+    private static HashMap<String, List<String[]>> _listDataChild;
     FormulaDModel model;
 
 
@@ -81,7 +82,8 @@ public class CalculateCostExpandableListAdapterD extends BaseExpandableListAdapt
 
         EditText txCostValue = (EditText) convertView
                 .findViewById(R.id.txCostValue);
-        txCostValue.setText(childText[2]);
+        txCostValue.setText(String.valueOf(model.getValueFromAttributeName(model , childText[4])));
+
         txCostValue.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

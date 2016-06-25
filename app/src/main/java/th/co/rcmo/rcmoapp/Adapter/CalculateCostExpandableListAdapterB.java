@@ -17,13 +17,13 @@ import java.util.HashMap;
 import java.util.List;
 
 import th.co.rcmo.rcmoapp.Model.calculate.FormulaAModel;
-import th.co.rcmo.rcmoapp.Model.calculate.FormulaDModel;
+import th.co.rcmo.rcmoapp.Model.calculate.FormulaBModel;
 import th.co.rcmo.rcmoapp.R;
 
 /**
  * Created by SilVeriSm on 6/18/2016 AD.
  */
-public class CalculateCostExpandableListAdapterA extends BaseExpandableListAdapter {
+public class CalculateCostExpandableListAdapterB extends BaseExpandableListAdapter {
 
     String TAG = "CalculateCostExpandableListAdapter";
 
@@ -32,10 +32,11 @@ public class CalculateCostExpandableListAdapterA extends BaseExpandableListAdapt
     private static List<String> _listDataHeader;
     // child data in format of header title, child title
     private static HashMap<String, List<String[]>> _listDataChild;
-    FormulaAModel model;
+
+    FormulaBModel model;
 
 
-    public CalculateCostExpandableListAdapterA(Context context, FormulaAModel dataObj) {
+    public CalculateCostExpandableListAdapterB(Context context, FormulaBModel dataObj) {
 //        List<String> listDataHeader,
 //
 //                                              HashMap<String, List<String[]>> listChildData) {
@@ -82,6 +83,7 @@ public class CalculateCostExpandableListAdapterA extends BaseExpandableListAdapt
                 .findViewById(R.id.txCostValue);
         txCostValue.setText(String.valueOf(model.getValueFromAttributeName(model , childText[4])));
 
+
         txCostValue.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -95,7 +97,6 @@ public class CalculateCostExpandableListAdapterA extends BaseExpandableListAdapt
 
             @Override
             public void afterTextChanged(Editable s) {
-                Log.d("addTextChangedListener", "onTextChanged: " + childText[1] + " , Value : " + s.toString());
                 try {
                     model.setValueFromAttributeName(model, childText[4], s.toString());
                 } catch (Exception e) {
@@ -180,7 +181,7 @@ public class CalculateCostExpandableListAdapterA extends BaseExpandableListAdapt
         return true;
     }
 
-    public FormulaAModel getDataObj() {
+    public FormulaBModel getDataObj() {
         return model;
     }
 

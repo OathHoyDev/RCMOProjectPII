@@ -15,7 +15,7 @@
         pixlui:typeface="Quark-Bold.otf"
         android:layout_width="wrap_content"
         android:layout_height="45dp"
-        android:text="คำนวน"
+        android:text="คำนวณ"
         android:layout_gravity="center"
         android:textColor="@color/RcmoWhiteBG"
         android:gravity="center"

@@ -33,7 +33,7 @@
             android:id="@+id/btnRecalculate"
             android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true"
-            android:text="คำนวนใหม่"
+            android:text="คำนวณใหม่"
             android:textColor="@color/RcmoWhiteBG"
             android:background="@drawable/circle_plant_cut_top_active"
             android:layout_toLeftOf="@+id/buttomImage"

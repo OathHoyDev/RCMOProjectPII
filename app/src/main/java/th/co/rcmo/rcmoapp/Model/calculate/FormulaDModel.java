@@ -10,8 +10,8 @@ import java.util.List;
  */
 public class FormulaDModel extends AbstractFormulaModel {
 
-    public List<String> listDataHeader;
-    public HashMap<String, List<String[]>> listDataChild;
+    public static List<String> listDataHeader;
+    public static HashMap<String, List<String[]>> listDataChild;
 
     public boolean isCalIncludeOption = false;
 
