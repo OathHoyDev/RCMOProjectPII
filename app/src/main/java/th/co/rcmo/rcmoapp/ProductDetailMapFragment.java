@@ -126,7 +126,13 @@ public class ProductDetailMapFragment extends Fragment implements View.OnClickLi
         if (!"".equalsIgnoreCase(userID)) {
             API_getPlotDetail(plodID);
         } else {
-            API_getTumbon(provCode, ampCode, tamCode);
+            if ("".equalsIgnoreCase(tamCode)) {
+                getCurrentGPS();
+                showMap(Double.parseDouble(latitude), Double.parseDouble(longitude));
+                API_getPlotSuit(latitude, longitude, "2");
+            } else {
+                API_getTumbon(provCode, ampCode, tamCode);
+            }
         }
 
         return v;
@@ -693,18 +699,17 @@ public class ProductDetailMapFragment extends Fragment implements View.OnClickLi
                     ((PBProductDetailActivity) getActivity()).mPlotSuit = mPlotSuitBodyLists.get(0);
 
                     displayPlotSuitValue(mPlotSuitBodyLists.get(0));
-
-
                 }
-
-
             }
 
             @Override
             public void callbackError(int code, String errorMsg) {
+
                 Log.d("Error", errorMsg);
+
+                displayPlotSuitDefault();
             }
-        }).API_Request(true, RequestServices.ws_getPlotSuit + cmd);
+        }).API_Request(false, RequestServices.ws_getPlotSuit + cmd);
 
     }
 
