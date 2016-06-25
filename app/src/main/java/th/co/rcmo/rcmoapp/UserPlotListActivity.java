@@ -587,9 +587,15 @@ public class UserPlotListActivity extends Activity {
         plotModel.setPlantGrpID(String.valueOf(resp.getPlantGrpID()));
         plotModel.setUserID(userId);
         plotModel.setPrdValue(resp.getPrdValue());
+
         plotModel.setPageId(0);
 
-
+        String name  = resp.getPrdValue();
+        if(name.contains("กระชัง")){
+            plotModel.setFisheryType("2");
+        }else if (name.contains("บ่อ")){
+            plotModel.setFisheryType("1");
+        }
 
         return plotModel;
     }

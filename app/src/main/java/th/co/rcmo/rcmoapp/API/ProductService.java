@@ -12,6 +12,7 @@ import th.co.rcmo.rcmoapp.Module.mGetVariable;
 import th.co.rcmo.rcmoapp.ProductDetailStandardListCustomAdapter;
 import th.co.rcmo.rcmoapp.R;
 import th.co.rcmo.rcmoapp.Util.CalculateConstant;
+import th.co.rcmo.rcmoapp.Util.ServiceInstance;
 
 /**
  * Created by Taweesin on 25/6/2559.
@@ -21,13 +22,14 @@ public class ProductService {
    static String[] B_StdDisplay = {"D","O","CS"};
    static String[] C_StdDisplay = {"D","O","CS","CA"};
    static String[] F_StdDisplay = {"D","O"};
-   static String[] H_StdDisplay = {"O"};
+   static String[] H_StdDisplay = {"D"};
    static String[] G_StdDisplay = {"DH","DD","OH","OD"};
-   static String[] K_StdDisplay = {"DP","OP","DB","OB"};
+   static String[] KB_StdDisplay = {"DP","OP"};
+   static String[] KC_StdDisplay = {"DB","OB"};
 
     public static  List<STDVarModel>  prepareSTDVarList(mGetVariable.mRespBody var , String fisheryType){
 
-        Log.d("prepareSTDVarList", "FormularCode : " + var.getFormularCode());
+        Log.d("prepareSTDVarList", "FormularCode : " + var.getFormularCode()+" fisheryType :"+fisheryType);
 
         String formularCode = var.getFormularCode();
 
@@ -76,7 +78,12 @@ public class ProductService {
             case "I":
             case "J":
             case "K":
-               keyDisplay_Type =K_StdDisplay;
+                if(ServiceInstance.FISHERY_TYPE_KC.equals(fisheryType)) {
+                    keyDisplay_Type = KC_StdDisplay;
+                }else{
+                    keyDisplay_Type = KB_StdDisplay;
+                }
+
                hashValue_Type  =CalculateConstant.PB_CALCULATE_STANDARD_CONST_IJK;
 
                 break;
