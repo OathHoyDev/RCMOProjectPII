@@ -44,7 +44,9 @@ public class FormulaBModel extends AbstractFormulaModel {
     public double predictPrice = 0;
 
     public double calSumCost = 0;
+    public double calSumCostPerRai = 0;
     public double calIncome = 0;
+    public double calIncomePerRai = 0;
     public double calProfitLoss = 0;
 
     public double AttraDokbia = 0;
@@ -204,12 +206,14 @@ public class FormulaBModel extends AbstractFormulaModel {
 
         calSumCost = yearKaRang + yearKaWassadu + yearKaSiaOkardLongtoon + KaChaoTDin + costKaSermOuppakorn + costKaSiaOkardOuppakorn;
 
+        calSumCostPerRai = calSumCost/KaNardPlangTDin;
 
         if (isCalIncludeOption) {
             calSumCost += costKaSermOuppakorn + costKaSiaOkardOuppakorn;
         }
 
         calIncome = PonPalid * predictPrice;
+        calIncomePerRai = calIncome / KaNardPlangTDin;
         calProfitLoss = calIncome - calSumCost;
 
         TontumMattratarn = TontumMattratarnPerRai * KaNardPlangTDin;

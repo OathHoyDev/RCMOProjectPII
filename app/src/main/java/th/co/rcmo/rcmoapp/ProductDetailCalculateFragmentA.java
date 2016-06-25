@@ -3,6 +3,7 @@ package th.co.rcmo.rcmoapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -87,6 +88,8 @@ public class ProductDetailCalculateFragmentA extends Fragment implements  View.O
         expandableListView = (ExpandableListView) view.findViewById(R.id.expandableListView);
         rootViewLayout = (RelativeLayout) view.findViewById(R.id.rootLayoutView);
 
+        setDimens();
+
         getArgumentFromActivity();
 
         initialProductIcon();
@@ -129,6 +132,30 @@ public class ProductDetailCalculateFragmentA extends Fragment implements  View.O
         btnOption.setOnClickListener(this);
 
         return view;
+    }
+
+    public void setDimens()
+    {
+        float density = getActivity().getResources().getDisplayMetrics().density;
+        Display display = getActivity().getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        int width = size.x;
+        int height = size.y;
+        Display display2 = getActivity().getWindowManager().getDefaultDisplay();
+        int width2 = display2.getWidth();  // deprecated
+        int height2 = display2.getHeight();  // deprecated
+        //expListView.setIndicatorBounds(width2-GetDipsFromPixel(35), width2-GetDipsFromPixel(5)); //not works
+        expandableListView.setIndicatorBounds(expandableListView.getRight()- 40, expandableListView.getWidth()); //not works
+
+    }
+
+    public int GetDipsFromPixel(float pixels)
+    {
+        // Get the screen's density scale
+        final float scale = getResources().getDisplayMetrics().density;
+        // Convert the dps to pixels, based on density scale
+        return (int) (pixels * scale + 0.5f);
     }
 
     private void getArgumentFromActivity(){
@@ -189,18 +216,15 @@ public class ProductDetailCalculateFragmentA extends Fragment implements  View.O
 
         ViewGroup.LayoutParams params = listView.getLayoutParams();
         int height = totalHeight
-                + (listView.getDividerHeight() * (listAdapter.getGroupCount() - 1));
+                + (listView.getDividerHeight() * (listAdapter.getGroupCount() - 1)) + 50;
         if (height < 10)
             height = 200;
 
         float density = getActivity().getResources().getDisplayMetrics().density;
         Display display = getActivity().getWindowManager().getDefaultDisplay();
-        int pxHeight = display.getHeight();
-
-
         int screenHeight = display.getHeight();
 
-        int remainScreenHeight = (int) (screenHeight - ((120 + 130 + 30 + 100)*density));
+        int remainScreenHeight = (int) (screenHeight - ((120 + 130 + 50 + 100)*density));
 
         if (isFirstLoadView || height < remainScreenHeight){
             height = (remainScreenHeight);

@@ -157,15 +157,12 @@ public class CalculateCostExpandableListAdapterA extends BaseExpandableListAdapt
             LayoutInflater infalInflater = (LayoutInflater) this._context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = infalInflater.inflate(R.layout.calculate_cost_list_group, null);
-
-
-
-            TextView lblListHeader = (TextView) convertView
-                    .findViewById(R.id.lblListHeader);
-            lblListHeader.setText(headerTitle);
-            lblListHeader.setBackgroundResource(R.drawable.green_cut_top_conner);
-
         }
+
+        TextView lblListHeader = (TextView) convertView
+                .findViewById(R.id.lblListHeader);
+        lblListHeader.setText(headerTitle);
+        lblListHeader.setBackgroundResource(R.drawable.green_cut_top_conner);
 
         return convertView;
     }

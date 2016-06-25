@@ -10,7 +10,7 @@
     <ScrollView
         android:id="@+id/activity_expandable_scroll_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
 
     <RelativeLayout
@@ -25,7 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
-            android:paddingTop="60dp">
+            android:paddingTop="30dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -171,7 +171,8 @@
                 android:layout_below="@+id/headerLayout"
                 android:layout_alignParentBottom="false"
                 android:footerDividersEnabled="false"
-                android:backgroundTint="@android:color/transparent" />
+                android:backgroundTint="@android:color/transparent"
+                android:layout_marginBottom="10dp" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
