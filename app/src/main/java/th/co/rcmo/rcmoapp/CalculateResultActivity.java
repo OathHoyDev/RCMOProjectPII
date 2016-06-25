@@ -112,11 +112,11 @@ public class CalculateResultActivity extends Activity {
         recommandLocation.setText(calculateResultModel.mPlotSuit.getSuitLabel());
 
         if (calculateResultModel.compareStdResult > 0){
-            recommandPrice.setText("ค่าใช้จ่ายเกินกว่าค่ามาตรฐาน");
+            recommandPrice.setText("ต้นทุนเกินกว่าค่ามาตรฐาน");
         }else if (calculateResultModel.compareStdResult == 0) {
-            recommandPrice.setText("ค่าใช้จ่ายเทียบเท่าค่ามาตรฐาน");
+            recommandPrice.setText("ต้นทุนเทียบเท่าค่ามาตรฐาน");
         }else {
-            recommandPrice.setText("ค่าใช้จ่ายต่ำกว่าค่ามาตรฐาน");
+            recommandPrice.setText("ต้นทุนต่ำกว่าค่ามาตรฐาน");
         }
 
         if (calculateResultModel.calculateResult >= 0){
