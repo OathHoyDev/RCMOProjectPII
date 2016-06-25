@@ -20,8 +20,6 @@ public class FormulaCModel extends AbstractFormulaModel {
     public boolean isCalIncludeOption = false;
 
 
-    public double Year = 0;
-
     public double KaNardPlangTDin = 0;
 
     public double KaRang = 0;
@@ -46,7 +44,7 @@ public class FormulaCModel extends AbstractFormulaModel {
     public double calSumCost = 0;
     public double calStartCostPerYear = 0;
     public double calStartCostPerRai = 0;
-    public double calLifeCostPerYear = 0;
+    public double calLifeCostPerRai = 0;
 
     public double calProfitLoss = 0;
 
@@ -57,6 +55,10 @@ public class FormulaCModel extends AbstractFormulaModel {
     public double KaSermOuppakorn = 7.37;
     public double KaSiaOkardOuppakorn = 1.81;
     public double TontumMattratarnPerRai = 4689.83;
+
+    public double TonToonChaliaGonHaiPon = 2138.30;
+
+    public double calIncome = 0;
 
     public static Hashtable<String, String> calculateLabel;
     static {
@@ -141,14 +143,9 @@ public class FormulaCModel extends AbstractFormulaModel {
         listDataChild = new HashMap<String, List<String[]>>();
 
         listDataHeader.add("จำนวนปีที่ปลูกทั้งแปลง");
-        listDataHeader.add("ค่าใช้จ่าย");
         listDataHeader.add("ผลผลิต ที่คาดว่าจะเก็บเกี่ยวได้ในแปลงนี้");
         listDataHeader.add("ราคาที่คาดว่าจะขายได้");
         listDataHeader.add("อัตราดอกเบี้ย ร้อยละ/ปี");
-
-        List<String[]> yearHeader = new ArrayList<String[]>();
-        yearHeader.add(new String[]{"true", "", String.format("%,.2f", Year), calculateUnit.get("Year"), "Year"});
-
 
         List<String[]> cost = new ArrayList<String[]>(); // canEdit , Label , value , unit
         cost.add(new String[]{"false", calculateLabel.get("KaRang"), String.format("%,.2f", KaRang), calculateUnit.get("KaRang"), "KaRang"});
@@ -177,48 +174,54 @@ public class FormulaCModel extends AbstractFormulaModel {
         attraDokbia.add(new String[]{"true", "", String.format("%,.2f", AttraDokbia), calculateUnit.get("AttraDokbia"), "AttraDokbia"});
 
         // Header, Child data
-        listDataChild.put(listDataHeader.get(0), yearHeader);
-        listDataChild.put(listDataHeader.get(1), cost);
-        listDataChild.put(listDataHeader.get(2), predict);
-        listDataChild.put(listDataHeader.get(3), predictPriceList);
-        listDataChild.put(listDataHeader.get(4), attraDokbia);
+        listDataChild.put(listDataHeader.get(0), cost);
+        listDataChild.put(listDataHeader.get(1), predict);
+        listDataChild.put(listDataHeader.get(2), predictPriceList);
+        listDataChild.put(listDataHeader.get(3), attraDokbia);
     }
 
     public void calculate() {
 
-        double costKaDoolae = KaDoolae / KaNardPlangTDin;
+        double KaDoolaePerRai = KaDoolae / KaNardPlangTDin;
 
-        //double costKarang
-
+        double KaRangPerRai = KaDoolaePerRai + KaGebGeaw;
 
         KaRang = KaTreamDin + KaPluk + KaDoolae + KaGebGeaw;
 
-        double yearKaTreamDin = KaTreamDin / (Year+1) ;
-        double yearKaPluk = KaPluk / (Year+1) ;
-
-        double yearKaRang = yearKaTreamDin + yearKaPluk + KaDoolae + KaGebGeaw;
-
         KaWassadu = KaPan + KaPuy + KaYaplab + KaWassaduUn;
 
-        double yearKaPan =  KaPan  / (Year+1) ;
-        double yearKaWassadu = yearKaPan + + KaPuy + KaYaplab + KaWassaduUn;
+        double KaPuyPerRai = KaPuy / KaNardPlangTDin;
 
+        double KaPanPerRai =  KaPan  / KaNardPlangTDin ;
+        double KaYaplabPerRai = KaYaplab / KaNardPlangTDin ;
+        double KaWassaduUnPerRai = KaWassaduUn / KaNardPlangTDin ;
 
-        KaSiaOkardLongtoon = Math.pow((KaRang + KaWassadu) * (AttraDokbia / 100) * (6 / 12), 2);
-        double yearKaSiaOkardLongtoon = Math.pow((yearKaRang + yearKaWassadu) * (AttraDokbia / 100) * (6 / 12), 2);
+        double KaWassaduPerRai = KaPanPerRai + KaYaplabPerRai + KaWassaduUnPerRai;
+
+        KaSiaOkardLongtoon = Math.pow((KaRang + KaWassadu) * (AttraDokbia / 100) * (12 / 12), 2);
+        double KaSiaOkardLongtoonPerRai = Math.pow((KaRangPerRai + KaWassaduPerRai) * (AttraDokbia / 100) * (12 / 12), 2);
+
+        double KaChaoTDinPerRai = KaChaoTDin/KaNardPlangTDin;
 
         double costKaSermOuppakorn = KaNardPlangTDin * KaSermOuppakorn;
         double costKaSiaOkardOuppakorn = KaNardPlangTDin * KaSiaOkardOuppakorn;
 
-        calSumCost = yearKaRang + yearKaWassadu + yearKaSiaOkardLongtoon + KaChaoTDin + costKaSermOuppakorn + costKaSiaOkardOuppakorn;
+        calSumCost = KaRang + KaWassadu + KaSiaOkardLongtoon +  KaChaoTDin;
 
+        double calSumCostPerRai = KaRangPerRai + KaWassaduPerRai + KaSiaOkardLongtoonPerRai + KaChaoTDinPerRai;
+
+        calLifeCostPerRai =calSumCostPerRai + TonToonChaliaGonHaiPon ;
 
         if (isCalIncludeOption) {
             calSumCost += costKaSermOuppakorn + costKaSiaOkardOuppakorn;
+            calLifeCostPerRai += costKaSermOuppakorn + costKaSiaOkardOuppakorn;
         }
 
-//        calIncome = PonPalid * predictPrice;
-//        calProfitLoss = calIncome - calSumCost;
+        calStartCostPerRai = calSumCost / KaNardPlangTDin;
+
+        calIncome = (PonPalid * predictPrice)/1000;
+
+        calProfitLoss = calIncome - calSumCost;
 
         TontumMattratarn = TontumMattratarnPerRai * KaNardPlangTDin;
     }

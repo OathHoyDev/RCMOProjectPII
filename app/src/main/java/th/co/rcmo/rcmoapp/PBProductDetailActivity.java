@@ -30,6 +30,7 @@ import th.co.rcmo.rcmoapp.API.ResponseAPI;
 import th.co.rcmo.rcmoapp.Adapter.PBCalculatePagerAdapter;
 import th.co.rcmo.rcmoapp.Model.STDVarModel;
 import th.co.rcmo.rcmoapp.Model.UserPlotModel;
+import th.co.rcmo.rcmoapp.Module.mGetPlotSuit;
 import th.co.rcmo.rcmoapp.Module.mGetVariable;
 
 public class PBProductDetailActivity extends AppCompatActivity {
@@ -37,6 +38,8 @@ public class PBProductDetailActivity extends AppCompatActivity {
     TabLayout tabLayout;
     public static UserPlotModel userPlotModel = new UserPlotModel();
     public static List<STDVarModel> stdVarModelList = new ArrayList<STDVarModel>();
+    public static mGetPlotSuit.mRespBody mPlotSuit;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

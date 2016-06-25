@@ -101,7 +101,7 @@ public class CalculateResultActivity extends Activity {
         if (calculateResultModel.compareStdResult > 0){
             recommandPrice.setText("ค่าใช้จ่ายเกินกว่าค่ามาตรฐาน");
         }else if (calculateResultModel.compareStdResult == 0) {
-            recommandPrice.setText("ค่าใช้จ่ายเท่ากับค่ามาตรฐาน");
+            recommandPrice.setText("ค่าใช้จ่ายเทียบเท่าค่ามาตรฐาน");
         }else {
             recommandPrice.setText("ค่าใช้จ่ายต่ำกว่าค่ามาตรฐาน");
         }
