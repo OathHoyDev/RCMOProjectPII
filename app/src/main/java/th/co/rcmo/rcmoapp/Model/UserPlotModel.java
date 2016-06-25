@@ -30,6 +30,7 @@ public class UserPlotModel {
     private String varValue="";
     private String calResult="";
     private String plantGrpID="";
+    private String prdValue = "";
 
     public String getPlantGrpID() {
         return plantGrpID;
@@ -37,6 +38,15 @@ public class UserPlotModel {
 
     public void setPlantGrpID(String plantGrpID) {
         this.plantGrpID = plantGrpID;
+    }
+
+
+    public String getPrdValue() {
+        return prdValue;
+    }
+
+    public void setPrdValue(String prdValue) {
+        this.prdValue = prdValue;
     }
 
     public int getPageId() {

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:pixlui="http://schemas.android.com/apk/com.neopixl.pixlui"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/headerLayout">
+
+        <com.neopixl.pixlui.components.textview.TextView
+            pixlui:typeface="Quark-Bold.otf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ชนิดพืช"
+            android:layout_alignParentTop="true"
+            android:gravity="center|top"
+            android:padding="12dp"
+            android:id="@+id/titleLable"
+            android:textColor="@color/RcmoNormalLightText"
+            android:textSize="@dimen/textsize_xxxlarge" />
+
+
+        <com.neopixl.pixlui.components.textview.TextView
+            pixlui:typeface="Quark-Bold.otf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="&lt; กลับ"
+            android:layout_alignParentLeft="true"
+            android:id="@+id/backBtn"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/RcmoNormalLightText"
+            android:textSize="@dimen/textsize_xxlarge" />
+
+
+        <ImageView
+            android:layout_width="@dimen/size_howto"
+            android:layout_height="@dimen/size_howto"
+            android:src="@drawable/btn_howto"
+            android:layout_alignParentRight="true"
+            android:id="@+id/btnQuestion"
+            android:layout_margin="10dp"/>
+
+
+    </RelativeLayout>
+    <android.support.design.widget.TabLayout
+
+        android:layout_alignParentTop="true"
+        android:id="@+id/tab_layout_plant"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        app:tabSelectedTextColor="#ffffff"
+        app:tabBackground="@drawable/action_tab_plant"
+        app:tabIndicatorHeight="0dp"
+        app:tabTextAppearance="@style/calTab"
+
+
+        >
+
+    </android.support.design.widget.TabLayout>
+    <android.support.design.widget.TabLayout
+
+        android:layout_alignParentTop="true"
+        android:id="@+id/tab_layout_animal"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        app:tabSelectedTextColor="#ffffff"
+        app:tabBackground="@drawable/action_tab_animal"
+        app:tabIndicatorHeight="0dp"
+        app:tabTextAppearance="@style/calTab"
+
+        />
+    <android.support.design.widget.TabLayout
+
+        android:layout_alignParentTop="true"
+        android:id="@+id/tab_layout_fish"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        app:tabSelectedTextColor="#ffffff"
+        app:tabBackground="@drawable/action_tab_fish"
+        app:tabIndicatorHeight="0dp"
+        app:tabTextAppearance="@style/calTab"
+
+        >
+
+    </android.support.design.widget.TabLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
+</LinearLayout>

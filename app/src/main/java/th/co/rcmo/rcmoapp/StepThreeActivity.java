@@ -238,6 +238,7 @@ public class StepThreeActivity extends Activity {
                 userPlotModel.setPrdGrpID(String.valueOf(productionInfo.getPrdGrpID()));
                 userPlotModel.setPrdID(String.valueOf(productionInfo.getPrdID()));
                 userPlotModel.setPrdGrpID(String.valueOf(productionInfo.getPrdGrpID()));
+                userPlotModel.setPrdValue(productionInfo.getPrdName());
                 //userPlotModel.setUserID(userId);
 
                 boolean isValidate = false;
@@ -254,9 +255,9 @@ public class StepThreeActivity extends Activity {
                 }
 
                 if(isValidate) {
-                    ProductDetailActivity.userPlotModel = userPlotModel;
+                    PBProductDetailActivity.userPlotModel = userPlotModel;
                     userPlotModel.setPageId(1);
-                    startActivity(new Intent(StepThreeActivity.this, ProductDetailActivity.class));
+                    startActivity(new Intent(StepThreeActivity.this, PBProductDetailActivity.class));
                 }else{
 
                 }
