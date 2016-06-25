@@ -30,6 +30,7 @@ import th.co.rcmo.rcmoapp.Adapter.ProdDetailStandardAdapter;
 import th.co.rcmo.rcmoapp.Model.STDVarModel;
 import th.co.rcmo.rcmoapp.Model.UserPlotModel;
 import th.co.rcmo.rcmoapp.Module.mGetVariable;
+import th.co.rcmo.rcmoapp.Util.Util;
 
 
 public class PBProdDetailStandradFment extends Fragment implements  View.OnClickListener {
@@ -74,14 +75,17 @@ public class PBProdDetailStandradFment extends Fragment implements  View.OnClick
            // startActivity(new Intent(context, PBProductDetailActivity.class));
             //PBProductDetailActivity.finish();
 
-            Toast toast = Toast.makeText( v.getContext(), "คำนวนใหม่สำเร็จ่", Toast.LENGTH_SHORT);
-            toast.show();
+            //Toast toast = Toast.makeText( v.getContext(), "คำนวนใหม่สำเร็จ่", Toast.LENGTH_SHORT);
+          //  toast.show();
+            Util.showDialogAndDismiss(v.getContext(),"คำนวนใหม่สำเร็จ");
             PBProductDetailActivity.pager.setCurrentItem(1);
 
         }else if (v.getId() == R.id.reGetBtn){
+
             API_getVariable(userPlotModel.getPrdID(),userPlotModel.getFisheryType());
-            Toast toast = Toast.makeText( v.getContext(), "ดึงข้อมูลใหม่สำเร็จ", Toast.LENGTH_SHORT);
-            toast.show();
+            Util.showDialogAndDismiss(v.getContext(),"ดึงข้อมูลล่าสุดเรียบร้อย");
+           // Toast toast = Toast.makeText( v.getContext(), "ดึงข้อมูลใหม่สำเร็จ", Toast.LENGTH_SHORT);
+           // toast.show();
         }
     }
 

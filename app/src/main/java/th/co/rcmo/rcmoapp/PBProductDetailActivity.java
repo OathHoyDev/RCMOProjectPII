@@ -70,7 +70,7 @@ public class PBProductDetailActivity extends AppCompatActivity {
 
             @Override
             public void onPageScrollStateChanged(int state) {
-                //tabLayout.setBackgroundResource(R.color.RcmoWhiteBG);
+                tabLayout.setBackgroundResource(R.color.RcmoWhiteBG);
                // Toast toast = Toast.makeText( PBProductDetailActivity.this, "onPageScrollStateChanged", Toast.LENGTH_SHORT);
                 //toast.show();
             }

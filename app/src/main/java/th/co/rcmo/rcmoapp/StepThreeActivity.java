@@ -11,6 +11,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -45,6 +46,7 @@ import th.co.rcmo.rcmoapp.Module.mTumbon;
 import th.co.rcmo.rcmoapp.Module.mUserPlotList;
 import th.co.rcmo.rcmoapp.Util.BitMapHelper;
 import th.co.rcmo.rcmoapp.Util.ServiceInstance;
+import th.co.rcmo.rcmoapp.Util.Util;
 import th.co.rcmo.rcmoapp.View.DialogChoice;
 
 public class StepThreeActivity extends Activity {
@@ -271,7 +273,7 @@ public class StepThreeActivity extends Activity {
             @Override
             public void onClick(View view) {
 
-                if (userPlotModel.getUserID() == null || userPlotModel.getUserID().equals("0")) {
+                if (userPlotModel.getUserID() == null || userPlotModel.getUserID().equals("0") || userPlotModel.getUserID().equals("")) {
                     new DialogChoice(StepThreeActivity.this)
                             .ShowOneChoice("ไม่สามารถบันทึกข้อมูล", "- กรุณา Login ก่อนทำการบันทึกข้อมูล");
 
@@ -723,7 +725,7 @@ public class StepThreeActivity extends Activity {
                     if(plotId==null){plotId="";}
                     Log.d(TAG,"Response plotId : "+plotId);
                     saved = true;
-                    toastMsg("บันทึกข้อมูลสำเร็จ");
+                    Util.showDialogAndDismiss(StepThreeActivity.this,"บันทึกข้อมูลสำเร็จ");
                 }
 
             }
@@ -821,12 +823,13 @@ public class StepThreeActivity extends Activity {
 
     }
 
+    /*
     private void toastMsg(String msg) {
         LayoutInflater inflater = getLayoutInflater();
         View layout = inflater.inflate(R.layout.toast_layout,
                 (ViewGroup) findViewById(R.id.toast_layout_root));
         Toast toast = new Toast(getApplicationContext());
-        toast.setGravity(Gravity.BOTTOM, 0, 50);
+        toast.setGravity(Gravity.CENTER, 0, 0);
         toast.setDuration(Toast.LENGTH_LONG);
         toast.setView(layout);
 
@@ -835,25 +838,38 @@ public class StepThreeActivity extends Activity {
 
         toast.show();
     }
+    */
+
 
     //======================== Prepare data && validate ===============================
 
     private boolean isValidPlantInputData (){
-        boolean isValid = false;
+        boolean isValid = true;
         EditText inputRai = (EditText) findViewById(R.id.inputRai);
 
+        String errorMsg = "";
         if(inputRai.getText() == null || inputRai.getText().toString().equals("")){
-            new DialogChoice(StepThreeActivity.this).ShowOneChoice("กรุณากรอกข้อมูล", "- ขนาดแปลงที่ดิน");
-        }else{
-            isValid = true;
+            errorMsg += "- ขนาดแปลงที่ดิน\n";
+            isValid = false;
         }
 
 
-        /*
-        else if(selectedprovince == null || selectedAmphoe == null || selectedTumbon == null){
-            new DialogChoice(StepThreeActivity.this).ShowOneChoice("", "กรุณากรอกตำแหน่งแปลงทีดิน");
+        if(selectedprovince!=null){
+            if(selectedAmphoe!=null){
+                if(selectedTumbon == null){
+                    errorMsg+= "- ตำบล \n";
+                    isValid = false;
+                }
+            }else{
+                errorMsg+=  "- อำเภอ \n- ตำบล";
+                isValid = false;
+            }
         }
-         */
+
+        if(!isValid){
+            new DialogChoice(StepThreeActivity.this).ShowOneChoice("กรุณากรอกข้อมูล", errorMsg);
+        }
+
 
         return isValid;
 
@@ -862,6 +878,9 @@ public class StepThreeActivity extends Activity {
     private boolean isValidAnimalInputData () {
         boolean isValid = true;
 
+        Log.d(TAG,"Province : "+selectedprovince);
+        Log.d(TAG,"Amphoe : "+selectedAmphoe);
+        Log.d(TAG,"Tumbon : "+selectedTumbon);
 
         if(   userPlotModel.getPrdID().equals("39")
                 || userPlotModel.getPrdID().equals("40")
@@ -878,8 +897,20 @@ public class StepThreeActivity extends Activity {
             }
 
             if (inputPricePerUnit.getText() == null || inputPricePerUnit.getText().toString().equals("")){
-                errorMsg+= "- ราคาเมื่อเริ่มเลียง ";
+                errorMsg+= "- ราคาเมื่อเริ่มเลียง \n";
                 isValid = false;
+            }
+
+            if(selectedprovince!=null){
+                if(selectedAmphoe!=null){
+                    if(selectedTumbon == null){
+                        errorMsg+= "- ตำบล \n";
+                        isValid = false;
+                    }
+                }else{
+                    errorMsg+=  "- อำเภอ \n- ตำบล";
+                    isValid = false;
+                }
             }
 
 
@@ -889,11 +920,28 @@ public class StepThreeActivity extends Activity {
 
         }else if( userPlotModel.getPrdID().equals("43")){
             EditText inputNumberOfStart = (EditText) findViewById(R.id.inputNumberOfStart);
-
+            String errorMsg = "";
             if (inputNumberOfStart.getText() == null || inputNumberOfStart.getText().toString().equals("")) {
-                new DialogChoice(StepThreeActivity.this).ShowOneChoice("กรุณากรอกข้อมูล", "- จำนวนแม่โครีดนม");
+                errorMsg+="- จำนวนแม่โครีดนม\n";
                 isValid = false;
             }
+
+            if(selectedprovince!=null){
+                if(selectedAmphoe!=null){
+                    if(selectedTumbon == null){
+                        errorMsg+= "- ตำบล \n";
+                        isValid = false;
+                    }
+                }else{
+                    errorMsg+=  "- อำเภอ \n- ตำบล";
+                    isValid = false;
+                }
+            }
+
+            if(!isValid){
+                new DialogChoice(StepThreeActivity.this).ShowOneChoice("กรุณากรอกข้อมูล", errorMsg);
+            }
+
 
 
         }else if( userPlotModel.getPrdID().equals("44")){
@@ -907,8 +955,22 @@ public class StepThreeActivity extends Activity {
             }
 
             if (inputWeightPerUnit.getText() == null || inputWeightPerUnit.getText().toString().equals("")){
-                errorMsg+= "- น้ำหนักเฉลี่ยเมื่อเลียง ";
+                errorMsg+= "- น้ำหนักเฉลี่ยเมื่อเลียง \n ";
                 isValid = false;
+            }
+
+
+            if(selectedprovince!=null){
+                if(selectedAmphoe!=null){
+                    if(selectedTumbon == null){
+                        errorMsg+= "- ตำบล \n";
+                        isValid = false;
+                    }
+
+                }else{
+                    errorMsg+=  "- อำเภอ \n- ตำบล";
+                    isValid = false;
+                }
             }
 
             if(!isValid){
@@ -942,8 +1004,20 @@ public class StepThreeActivity extends Activity {
             }
 
             if (va_inputNuberOfva.getText() == null || va_inputNuberOfva.getText().toString().equals("")) {
-                errorMsg+= "- จำนวนลูกกุ้งที่ปล่อย ";
+                errorMsg+= "- จำนวนลูกกุ้งที่ปล่อย \n";
                 isValid = false;
+            }
+
+            if(selectedprovince!=null){
+                if(selectedAmphoe!=null){
+                    if(selectedTumbon == null){
+                        errorMsg+= "- ตำบล \n";
+                        isValid = false;
+                    }
+                }else{
+                    errorMsg+=  "- อำเภอ \n- ตำบล";
+                    isValid = false;
+                }
             }
 
             if(!isValid){
@@ -974,6 +1048,18 @@ public class StepThreeActivity extends Activity {
                     isValid = false;
                 }
 
+                if(selectedprovince!=null){
+                    if(selectedAmphoe!=null){
+                        if(selectedTumbon == null){
+                            errorMsg+= "- ตำบล \n";
+                            isValid = false;
+                        }
+                    }else{
+                        errorMsg+=  "- อำเภอ \n- ตำบล";
+                        isValid = false;
+                    }
+                }
+
                 if(!isValid){
                     new DialogChoice(StepThreeActivity.this).ShowOneChoice("กรุณากรอกข้อมูล", errorMsg);
                 }
@@ -1000,6 +1086,18 @@ public class StepThreeActivity extends Activity {
                 if (bo_inputNuberOfUnit.getText() == null || bo_inputNuberOfUnit.getText().toString().equals("")) {
                     errorMsg+= "- จำนวนลูกปลาที่ปล่อย ";
                     isValid = false;
+                }
+
+                if(selectedprovince!=null){
+                    if(selectedAmphoe!=null){
+                        if(selectedTumbon == null){
+                            errorMsg+= "- ตำบล \n";
+                            isValid = false;
+                        }
+                    }else{
+                        errorMsg+=  "- อำเภอ \n- ตำบล";
+                        isValid = false;
+                    }
                 }
 
                 if(!isValid){

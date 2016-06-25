@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +24,7 @@ import th.co.rcmo.rcmoapp.Module.mGetRegister;
 import th.co.rcmo.rcmoapp.Module.mRegister;
 import th.co.rcmo.rcmoapp.Util.BitMapHelper;
 import th.co.rcmo.rcmoapp.Util.ServiceInstance;
+import th.co.rcmo.rcmoapp.Util.Util;
 import th.co.rcmo.rcmoapp.View.DialogChoice;
 
 public class EditUserActivity extends Activity {
@@ -158,14 +160,26 @@ public class EditUserActivity extends Activity {
                 editor.clear();
                 editor.commit();
 
-                toastDisplayCustom_API("ออกจากระบบสำเร็จ");
+                //Util.showDialogAndDismiss(EditUserActivity.this,"ออกจากระบบสำเร็จ");
 
-                Intent  i= new Intent(EditUserActivity.this, LoginActivity.class);
-                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(i);
-                finish();
+
+
+                final android.app.Dialog dialog =   new DialogChoice(EditUserActivity.this).Show("ออกจากระบบสำเร็จ","");
+                final Handler handler  = new Handler();
+                final Runnable runnable = new Runnable() {
+                    @Override
+                    public void run() {
+                        dialog.dismiss();
+                        Intent  i= new Intent(EditUserActivity.this, LoginActivity.class);
+                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(i);
+                        finish();
+                    }
+                };
+                handler.postDelayed(runnable, ServiceInstance.DISMISS_DURATION_MS);
+
 
               /*  startActivity(new Intent(LoginActivity.this, WebActivity.class)
                         .putExtra("link", "http://www.google.co.th/"));
@@ -219,7 +233,7 @@ public class EditUserActivity extends Activity {
 
                 if (mRegisterBodyLists.size() != 0) {
 
-                    toastDisplayCustom_API("ปรับปรุงข้อมูลผู้ใช้งานสำเร็จ");
+                    Util.showDialogAndDismiss(EditUserActivity.this,"ปรับปรุงข้อมูลผู้ใช้งานสำเร็จ");
                 }
 
             }
@@ -245,6 +259,7 @@ public class EditUserActivity extends Activity {
         );
     }
 
+    /*
     private  void toastDisplayCustom_API(String msg){
         LayoutInflater inflater = getLayoutInflater();
         View layout = inflater.inflate(R.layout.toast_layout,
@@ -259,7 +274,7 @@ public class EditUserActivity extends Activity {
 
         toast.show();
     }
-
+*/
     private static class  Holder {
         static  EditText  inputName,inputSirName,inputEmail;
         static  TextView inputUsername;

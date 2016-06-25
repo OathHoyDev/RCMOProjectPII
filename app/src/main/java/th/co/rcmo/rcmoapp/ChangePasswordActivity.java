@@ -23,6 +23,7 @@ import th.co.rcmo.rcmoapp.Module.mLogin;
 import th.co.rcmo.rcmoapp.Module.mRegister;
 import th.co.rcmo.rcmoapp.Util.BitMapHelper;
 import th.co.rcmo.rcmoapp.Util.ServiceInstance;
+import th.co.rcmo.rcmoapp.Util.Util;
 import th.co.rcmo.rcmoapp.View.DialogChoice;
 
 public class ChangePasswordActivity extends Activity {
@@ -167,7 +168,7 @@ public class ChangePasswordActivity extends Activity {
 
                 if (mRegisterBodyLists.size() != 0) {
 
-                    toastDisplayCustom_API("เปลียนรหัสผ่านสำเร็จ");
+                    Util.showDialogAndDismiss(ChangePasswordActivity.this,"เปลียนรหัสผ่านสำเร็จ");
                 }
 
             }
@@ -190,6 +191,7 @@ public class ChangePasswordActivity extends Activity {
         );
     }
 
+    /*
     private  void toastDisplayCustom_API(String msg){
         LayoutInflater inflater = getLayoutInflater();
         View layout = inflater.inflate(R.layout.toast_layout,
@@ -204,7 +206,7 @@ public class ChangePasswordActivity extends Activity {
 
         toast.show();
     }
-
+*/
 
     private void API_CheckOldPassword(final String userId ,final String username, String password, final String newPassword,final String fname, final String lname,final String email) {
         new ResponseAPI(this, new ResponseAPI.OnCallbackAPIListener() {

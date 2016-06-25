@@ -18,7 +18,7 @@
     <ImageView
         android:id="@+id/imgEconApp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="20dp"
         android:adjustViewBounds="true"
@@ -27,7 +27,7 @@
     <ImageView
         android:id="@+id/imgOicApp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_gravity="left|center"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="5dp"
