@@ -595,6 +595,8 @@ public class UserPlotListActivity extends Activity {
             plotModel.setFisheryType("2");
         }else if (name.contains("บ่อ")){
             plotModel.setFisheryType("1");
+        }else{
+            plotModel.setFisheryType("");
         }
 
         return plotModel;

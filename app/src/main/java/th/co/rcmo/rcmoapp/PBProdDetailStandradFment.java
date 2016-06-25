@@ -137,7 +137,7 @@ public class PBProdDetailStandradFment extends Fragment implements  View.OnClick
             }
         }).API_Request(true, RequestServices.ws_getVariable +
                 "?PrdID=" + prdID +
-                "&FisheryType=" + 1);
+                "&FisheryType=" + fisheryType);
 
     }
 
