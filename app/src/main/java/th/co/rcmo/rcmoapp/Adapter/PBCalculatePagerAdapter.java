@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import th.co.rcmo.rcmoapp.PBProdDetailCalculateFment;
 import th.co.rcmo.rcmoapp.PBProdDetailMapFment;
 import th.co.rcmo.rcmoapp.PBProdDetailStandradFment;
+import th.co.rcmo.rcmoapp.ProductDetailMapFragment;
 
 /**
  * Created by Taweesin on 24/6/2559.
@@ -28,7 +29,8 @@ public class PBCalculatePagerAdapter extends FragmentStatePagerAdapter {
                 frag=new PBProdDetailCalculateFment();
                 break;
             case 2:
-                frag=new PBProdDetailMapFment();
+               // frag=new PBProdDetailMapFment();
+                   frag = new ProductDetailMapFragment();
                 break;
         }
         return frag;

@@ -45,6 +45,7 @@ import th.co.rcmo.rcmoapp.API.ResponseAPI;
 import th.co.rcmo.rcmoapp.Adapter.DialogAmphoeAdapter;
 import th.co.rcmo.rcmoapp.Adapter.DialogProvinceAdapter;
 import th.co.rcmo.rcmoapp.Adapter.DialogTumbonAdapter;
+import th.co.rcmo.rcmoapp.Model.UserPlotModel;
 import th.co.rcmo.rcmoapp.Module.mAmphoe;
 import th.co.rcmo.rcmoapp.Module.mGetPlotDetail;
 import th.co.rcmo.rcmoapp.Module.mGetPlotSuit;
@@ -60,6 +61,7 @@ import th.co.rcmo.rcmoapp.Util.ServiceInstance;
  */
 public class ProductDetailMapFragment extends Fragment implements View.OnClickListener {
 
+    public  UserPlotModel userPlotModel;
     mProvince.mRespBody  selectedprovince = null;
     mAmphoe.mRespBody    selectedAmphoe    = null;
     mTumbon.mRespBody    selectedTumbon   = null;
@@ -116,7 +118,7 @@ public class ProductDetailMapFragment extends Fragment implements View.OnClickLi
                 false);
         this.inflater = inflater;
         context = v.getContext();
-
+        userPlotModel = PBProductDetailActivity.userPlotModel;
         getArgumentFromActivity();
 
         initialLayout(savedInstanceState);
@@ -149,6 +151,7 @@ public class ProductDetailMapFragment extends Fragment implements View.OnClickLi
 
     private void getArgumentFromActivity(){
 
+         /*
         plodID = getArguments().getString("plodID");
         suitFlag = getArguments().getString("suitFlag");
         tamCode = getArguments().getString("tamCode");
@@ -157,7 +160,19 @@ public class ProductDetailMapFragment extends Fragment implements View.OnClickLi
         userID = getArguments().getString("userID");
 
         productType = getArguments().getString("productType");
+        */
+                plodID = userPlotModel.getPrdID();
+        if(userPlotModel.getTamCode().equals("")) {
+            suitFlag = "2";
+        }else{
+            suitFlag = "1";
+        }
+        tamCode = userPlotModel.getTamCode();
+        ampCode = userPlotModel.getAmpCode();
+        provCode = userPlotModel.getProvCode();
+        userID = userPlotModel.getUserID();
 
+        productType = userPlotModel.getPrdGrpID();
     }
 
     private void initialLayout(Bundle savedInstanceState){
