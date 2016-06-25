@@ -2,6 +2,7 @@ package th.co.rcmo.rcmoapp;
 
 
 import android.content.Context;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.Display;
@@ -15,6 +16,7 @@ import android.widget.RelativeLayout;
 import com.neopixl.pixlui.components.button.Button;
 import com.neopixl.pixlui.components.textview.TextView;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -72,9 +74,9 @@ public class ProductDetailCalculateFragmentB extends Fragment implements  View.O
         // Inflate the layout for this fragment
         //return inflater.inflate(R.layout.fragment_product_detail_map, container, false);
 
-        userPlotModel = ((ProductDetailActivity)this.getActivity()).userPlotModel;
+        userPlotModel = PBProductDetailActivity.userPlotModel;
 
-        view = inflater.inflate(R.layout.fragment_product_detail_calculate_a, container,
+        view = inflater.inflate(R.layout.fragment_product_detail_calculate_b, container,
                 false);
 
         context = view.getContext();
@@ -90,6 +92,7 @@ public class ProductDetailCalculateFragmentB extends Fragment implements  View.O
 
         formulaModel.calculate();
         formulaModel.prepareListData();
+        setDimens();
 
         TextView txStartUnit = (TextView) view.findViewById(R.id.txStartUnit);
         txStartUnit.setText(String.valueOf(formulaModel.getValueFromAttributeName(formulaModel , "KaNardPlangTDin")));
@@ -124,11 +127,35 @@ public class ProductDetailCalculateFragmentB extends Fragment implements  View.O
         return view;
     }
 
+    public void setDimens()
+    {
+        float density = getActivity().getResources().getDisplayMetrics().density;
+        Display display = getActivity().getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        int width = size.x;
+        int height = size.y;
+        Display display2 = getActivity().getWindowManager().getDefaultDisplay();
+        int width2 = display2.getWidth();  // deprecated
+        int height2 = display2.getHeight();  // deprecated
+        //expListView.setIndicatorBounds(width2-GetDipsFromPixel(35), width2-GetDipsFromPixel(5)); //not works
+        expandableListView.setIndicatorBounds(expandableListView.getRight()- 40, expandableListView.getWidth()); //not works
+
+    }
+
+    public int GetDipsFromPixel(float pixels)
+    {
+        // Get the screen's density scale
+        final float scale = getResources().getDisplayMetrics().density;
+        // Convert the dps to pixels, based on density scale
+        return (int) (pixels * scale + 0.5f);
+    }
+
     private void getArgumentFromActivity(){
 
-        prdID = getArguments().getString("prdID");
-        userID = getArguments().getString("userID");
-        prdGrpID = getArguments().getString("prdGrpID");
+        prdID = userPlotModel.getPrdID();
+        userID = userPlotModel.getUserID();
+        prdGrpID = userPlotModel.getPrdGrpID();
 
     }
 
@@ -182,7 +209,7 @@ public class ProductDetailCalculateFragmentB extends Fragment implements  View.O
 
         ViewGroup.LayoutParams params = listView.getLayoutParams();
         int height = totalHeight
-                + (listView.getDividerHeight() * (listAdapter.getGroupCount() - 1));
+                + (listView.getDividerHeight() * (listAdapter.getGroupCount() - 1)) + 50;
         if (height < 10)
             height = 200;
 
@@ -193,7 +220,7 @@ public class ProductDetailCalculateFragmentB extends Fragment implements  View.O
 
         int screenHeight = display.getHeight();
 
-        int remainScreenHeight = (int) (screenHeight - ((120 + 130 + 30 + 100)*density));
+        int remainScreenHeight = (int) (screenHeight - ((120 + 130 + 50 + 100)*density));
 
         if (isFirstLoadView || height < remainScreenHeight){
             height = (remainScreenHeight);
@@ -216,14 +243,31 @@ public class ProductDetailCalculateFragmentB extends Fragment implements  View.O
             CalculateResultModel calculateResultModel = new CalculateResultModel();
             calculateResultModel.formularCode = "B";
             calculateResultModel.calculateResult = formulaModel.calSumCost;
-            calculateResultModel.productName = ((ProductDetailActivity)this.getActivity()).productName;
-            calculateResultModel.mPlotSuit = ((ProductDetailActivity)this.getActivity()).mPlotSuit;
+            calculateResultModel.productName = userPlotModel.getPrdValue();
+            calculateResultModel.mPlotSuit = PBProductDetailActivity.mPlotSuit;
             calculateResultModel.compareStdResult = formulaModel.calSumCost - formulaModel.TontumMattratarn;
 
             DialogCalculateResult.userPlotModel = userPlotModel;
             DialogCalculateResult.calculateResultModel = calculateResultModel;
 
+            List resultArrayResult = new ArrayList();
 
+            String [] tontoonCal_1 = {"ต้นทุนรวมเกษตร" , String.format("%,.2f", formulaModel.calSumCost) , "บาท"};
+            resultArrayResult.add(tontoonCal_1);
+
+            String [] tontoonCal_2 = {"" , String.format("%,.2f", formulaModel.calSumCostPerRai) , "บาท"};
+            resultArrayResult.add(tontoonCal_2);
+
+            String [] raydai_1 = {"รายได้" , String.format("%,.2f", formulaModel.calIncome) , "บาท"};
+            resultArrayResult.add(raydai_1);
+
+            String [] raydai_2 = {"" , String.format("%,.2f", formulaModel.calIncomePerRai) , "บาท"};
+            resultArrayResult.add(raydai_2);
+
+            String [] tontoon = {"ต้นทุนมาตรฐานของ สศก." , String.format("%,.2f", formulaModel.TontumMattratarnPerRai) , "บาท"};
+            resultArrayResult.add(tontoon);
+
+            DialogCalculateResult.calculateResultModel.resultList = resultArrayResult;
 
             new DialogCalculateResult(context).Show();
 

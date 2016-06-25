@@ -82,7 +82,7 @@ public class CalculateCostExpandableListAdapterD extends BaseExpandableListAdapt
 
         EditText txCostValue = (EditText) convertView
                 .findViewById(R.id.txCostValue);
-        txCostValue.setText(String.valueOf(model.getValueFromAttributeName(model , childText[4])));
+        txCostValue.setText(String.valueOf(model.getValueFromAttributeName(model, childText[4])));
 
         txCostValue.addTextChangedListener(new TextWatcher() {
             @Override
@@ -160,14 +160,12 @@ public class CalculateCostExpandableListAdapterD extends BaseExpandableListAdapt
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = infalInflater.inflate(R.layout.calculate_cost_list_group, null);
 
-
-
-            TextView lblListHeader = (TextView) convertView
-                    .findViewById(R.id.lblListHeader);
-            lblListHeader.setText(headerTitle);
-            lblListHeader.setBackgroundResource(R.drawable.pink_cut_top_conner);
-
         }
+
+        TextView lblListHeader = (TextView) convertView
+                .findViewById(R.id.lblListHeader);
+        lblListHeader.setText(headerTitle);
+        lblListHeader.setBackgroundResource(R.drawable.pink_cut_top_conner);
 
         return convertView;
     }

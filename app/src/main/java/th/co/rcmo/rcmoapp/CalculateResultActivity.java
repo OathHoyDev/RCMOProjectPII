@@ -109,7 +109,11 @@ public class CalculateResultActivity extends Activity {
 
         productIcon.setImageResource(imgIDInt);
 
-        recommandLocation.setText(calculateResultModel.mPlotSuit.getSuitLabel());
+        if(calculateResultModel.mPlotSuit != null) {
+            recommandLocation.setText(calculateResultModel.mPlotSuit.getSuitLabel());
+        }else{
+            recommandLocation.setText("ไม่พบข้อมูล");
+        }
 
         if (calculateResultModel.compareStdResult > 0){
             recommandPrice.setText("ต้นทุนเกินกว่าค่ามาตรฐาน");

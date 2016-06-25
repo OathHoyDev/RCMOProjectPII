@@ -17,6 +17,9 @@ import th.co.rcmo.rcmoapp.PBProdDetailCalculateFment;
 import th.co.rcmo.rcmoapp.PBProdDetailMapFment;
 import th.co.rcmo.rcmoapp.PBProdDetailStandradFment;
 import th.co.rcmo.rcmoapp.ProductDetailCalculateFragmentA;
+import th.co.rcmo.rcmoapp.ProductDetailCalculateFragmentB;
+import th.co.rcmo.rcmoapp.ProductDetailCalculateFragmentC;
+import th.co.rcmo.rcmoapp.ProductDetailCalculateFragmentD;
 import th.co.rcmo.rcmoapp.ProductDetailMapFragment;
 
 /**
@@ -44,6 +47,12 @@ public class PBCalculatePagerAdapter extends FragmentStatePagerAdapter {
             case 1:
                 if ("A".equalsIgnoreCase(userPlotModel.getFormularCode())){
                     frag=new ProductDetailCalculateFragmentA();
+                }else if ("B".equalsIgnoreCase(userPlotModel.getFormularCode())){
+                    frag=new ProductDetailCalculateFragmentB();
+                }else if ("C".equalsIgnoreCase(userPlotModel.getFormularCode())){
+                    frag=new ProductDetailCalculateFragmentC();
+                }else if ("D".equalsIgnoreCase(userPlotModel.getFormularCode())){
+                    frag=new ProductDetailCalculateFragmentD();
                 }else {
                     frag = new PBProdDetailCalculateFment();
                 }

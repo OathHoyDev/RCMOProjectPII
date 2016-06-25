@@ -59,6 +59,7 @@ public class FormulaCModel extends AbstractFormulaModel {
     public double TonToonChaliaGonHaiPon = 2138.30;
 
     public double calIncome = 0;
+    public double calIncomePerRai = 0;
 
     public static Hashtable<String, String> calculateLabel;
     static {
@@ -220,6 +221,8 @@ public class FormulaCModel extends AbstractFormulaModel {
         calStartCostPerRai = calSumCost / KaNardPlangTDin;
 
         calIncome = (PonPalid * predictPrice)/1000;
+        calIncomePerRai = calIncome / KaNardPlangTDin;
+
 
         calProfitLoss = calIncome - calSumCost;
 
