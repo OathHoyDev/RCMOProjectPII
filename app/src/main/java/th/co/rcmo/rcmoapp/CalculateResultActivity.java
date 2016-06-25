@@ -127,6 +127,9 @@ public class CalculateResultActivity extends Activity {
             txProfitLossValue.setText(String.format("%,.2f", calculateResultModel.calculateResult));
         }
 
+
+
+      //  calculateResultModel.resultList;
     }
 
 
