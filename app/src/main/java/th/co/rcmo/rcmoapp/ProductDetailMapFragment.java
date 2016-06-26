@@ -160,12 +160,6 @@ public class ProductDetailMapFragment extends Fragment {
             showMap(Double.parseDouble(latitude), Double.parseDouble(longitude));
             suitFlag = "2";
             API_getPlotSuit(latitude, longitude, suitFlag);
-        }else{
-
-
-
-            new DialogChoice(context)
-                    .ShowLocationSettingChoice("กดตกลงเพื่อเปิดระบบ" , "ไม่ยังไม่เปิดระบบ GPS");
         }
 
 
@@ -262,9 +256,6 @@ public class ProductDetailMapFragment extends Fragment {
                         PackageManager.PERMISSION_GRANTED) {
             map.setMyLocationEnabled(true);
 
-        }else{
-            new DialogChoice(context)
-                    .ShowOneChoice("Disable ACCESS_FINE_LOCATION", null);
         }
 
         map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
