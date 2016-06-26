@@ -419,6 +419,16 @@ public class ProductDetailMapFragment extends Fragment {
                     popupWindow.showAsDropDown(btnSuggession, Gravity.TOP | Gravity.RIGHT, 0);
                     isPopup = true;
 
+                    popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+
+                        @Override
+                        public void onDismiss() {
+                            isPopup = false;
+                            fadeView.setVisibility(View.GONE);
+                            popupWindow.dismiss();
+                        }
+                    });
+
                 } else {
 
                     if (isPopup) {
