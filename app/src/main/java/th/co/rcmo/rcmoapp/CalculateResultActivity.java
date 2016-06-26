@@ -134,6 +134,9 @@ public class CalculateResultActivity extends Activity {
 
         userPlotModel.setCalResult(String.format("%,.2f", calculateResultModel.calculateResult));
 
+
+
+      //  calculateResultModel.resultList;
     }
 
 
@@ -157,8 +160,6 @@ public class CalculateResultActivity extends Activity {
             }
         });
     }
-
-    // API
 
     private void API_SavePlotDetail(String saveFlag, UserPlotModel userPlotInfo) {
         /**
