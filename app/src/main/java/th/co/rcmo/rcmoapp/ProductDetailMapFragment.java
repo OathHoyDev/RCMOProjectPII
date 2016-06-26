@@ -129,7 +129,8 @@ public class ProductDetailMapFragment extends Fragment implements View.OnClickLi
             if ("".equalsIgnoreCase(tamCode)) {
                 getCurrentGPS();
                 showMap(Double.parseDouble(latitude), Double.parseDouble(longitude));
-                API_getPlotSuit(latitude, longitude, "2");
+                suitFlag = "2";
+                API_getPlotSuit(latitude, longitude, suitFlag);
             } else {
                 API_getTumbon(provCode, ampCode, tamCode);
             }
@@ -256,30 +257,6 @@ public class ProductDetailMapFragment extends Fragment implements View.OnClickLi
             e.printStackTrace();
         }
 
-//        gps = new GPSTracker(getContext());
-//
-//        if (gps.canGetLocation()) {
-//
-//            double lat = 0;
-//            double lon = 0;
-//
-//            if ("".equalsIgnoreCase(tamCode)) {
-//                lat = gps.getLatitude();
-//                lon = gps.getLongitude();
-//
-//                latitude = String.valueOf(lat);
-//                longitude = String.valueOf(lon);
-//
-//                showMap(lat, lon);
-//            }
-////            else {
-////                API_getTumbon(provCode, ampCode, tamCode);
-////            }
-//
-//
-//        }
-
-
         // Add Button Action
         ImageButton buttonMapStyle = (ImageButton) v.findViewById(R.id.btnMapStyle);
 
@@ -296,6 +273,9 @@ public class ProductDetailMapFragment extends Fragment implements View.OnClickLi
         Button btnSuggession = (Button) v.findViewById(R.id.btnSuggession);
 
         btnSuggession.setOnClickListener(this);
+
+        ImageButton btnChangeLoaction = (ImageButton) v.findViewById(R.id.btnChangeLocation);
+        btnChangeLoaction.setOnClickListener(this);
 
     }
 
@@ -364,18 +344,18 @@ public class ProductDetailMapFragment extends Fragment implements View.OnClickLi
     }
 
     private void displayPlotSuitDefault() {
+
         com.neopixl.pixlui.components.textview.TextView txSuggessPlot = (com.neopixl.pixlui.components.textview.TextView) v.findViewById(R.id.txSuggessPlot);
         com.neopixl.pixlui.components.textview.TextView txAddress = (com.neopixl.pixlui.components.textview.TextView) v.findViewById(R.id.txAddress);
         ImageView suggessStar = (ImageView) v.findViewById(R.id.suggessStar);
 
-        txAddress.setText("");
+        txAddress.setText("ไม่พบที่อยู่");
         txSuggessPlot.setText("ไม่พบข้อมูล");
-
 
         suggessStar.setImageResource(R.drawable.ic_0star);
 
 
-        suggession = "ไม่พบข้อมูล";
+        suggession = "ไม่พบข้อมูล\n\n";
         recommend = "";
         recommendProduct = "";
 
@@ -394,19 +374,7 @@ public class ProductDetailMapFragment extends Fragment implements View.OnClickLi
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View popupView = layoutInflater.inflate(R.layout.layout_suggestion_popup, null);
 
-//            RelativeLayout borderLayout = (RelativeLayout)popupView.findViewById(R.id.borderFrame);
-
-//            switch (productType){
-//                case CalculateConstant.PRODUCT_TYPE_ANIMAL :
-//                    borderLayout.setBackgroundResource(R.color.RcmoAnimalBG);
-//                    break;
-//                case CalculateConstant.PRODUCT_TYPE_PLANT :
-//                    borderLayout.setBackgroundResource(R.color.RcmoPlantBG);
-//                    break;
-//                case CalculateConstant.PRODUCT_TYPE_FISH :
-//                    borderLayout.setBackgroundResource(R.color.RcmoFishBG);
-//                    break;
-//            }
+            RelativeLayout suggess_layout = (RelativeLayout) popupView.findViewById(R.id.suggess_layout);
 
             com.neopixl.pixlui.components.textview.TextView txSuggession = (com.neopixl.pixlui.components.textview.TextView) popupView.findViewById(R.id.txSuggession);
             txSuggession.setText(suggession);
@@ -422,7 +390,10 @@ public class ProductDetailMapFragment extends Fragment implements View.OnClickLi
                 Display display = getActivity().getWindowManager().getDefaultDisplay();
                 int width = display.getWidth();
                 int popupWidth = (int) (width * 0.7);
-                int popupHeight = (int) (width * 0.6);
+                int popupHeight = (int) (width * 0.5);
+
+                ViewGroup.LayoutParams suggessParam = suggess_layout.getLayoutParams();
+                //suggessParam.height = (int) (popupHeight * 0.9);
 
                 popupWindow = new PopupWindow(
                         popupView, popupWidth, popupHeight);
@@ -469,6 +440,10 @@ public class ProductDetailMapFragment extends Fragment implements View.OnClickLi
 
             CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(lat, lon), 12);
             map.animateCamera(cameraUpdate);
+
+            API_getPlotSuit(latitude , longitude , suitFlag);
+        } else if (v.getId() == R.id.btnSuggession) {
+
         }
     }
 
@@ -638,7 +613,8 @@ public class ProductDetailMapFragment extends Fragment implements View.OnClickLi
                     if ("".equalsIgnoreCase(tamCode)) {
                         getCurrentGPS();
                         showMap(Double.parseDouble(latitude), Double.parseDouble(longitude));
-                        API_getPlotSuit(latitude, longitude, "2");
+                        suitFlag = "2";
+                        API_getPlotSuit(latitude, longitude, suitFlag);
                     } else {
                         API_getTumbon(provCode, ampCode, tamCode);
                     }
@@ -833,9 +809,9 @@ public class ProductDetailMapFragment extends Fragment implements View.OnClickLi
 
                 latitude = tumbon.getLatitude();
                 longitude = tumbon.getLongitude();
-
+                suitFlag = "1";
                 showMap(Double.parseDouble(latitude), Double.parseDouble(longitude));
-                API_getPlotSuit(latitude, longitude, "1");
+                API_getPlotSuit(latitude, longitude, suitFlag);
             }
 
             @Override

@@ -20,7 +20,7 @@
             android:layout_height="50dp"
             android:id="@+id/btnMapStyle"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/btn_sate"/>
 
         <ImageButton
@@ -52,29 +52,48 @@
                 android:text=""
                 android:id="@+id/txSuggessPlot"
                 android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp" />
+                android:layout_gravity="center_horizontal"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/RcmoWhiteBG" />
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:id="@+id/suggessStar"
-                android:layout_below="@+id/txSuggessPlot"
-                android:layout_centerHorizontal="true"
                 android:src="@drawable/ic_0star"
                 android:scaleType="fitCenter"
-                android:layout_marginTop="5dp" />
+                android:layout_centerInParent="true" />
 
-            <com.neopixl.pixlui.components.textview.TextView
-                pixlui:typeface="Quark-Bold.otf"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text=""
-                android:id="@+id/txAddress"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="10dp" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_alignParentBottom="true">
+
+                <com.neopixl.pixlui.components.textview.TextView
+                    pixlui:typeface="Quark-Bold.otf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text=""
+                    android:id="@+id/txAddress"
+                    android:layout_alignParentBottom="false"
+                    android:layout_marginBottom="5dp"
+                    android:layout_centerInParent="true"
+                    android:textColor="@color/RcmoWhiteBG" />
+
+                <ImageButton
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:id="@+id/btnChangeLocation"
+                    android:src="@drawable/action_change_location"
+                    android:background="@android:color/transparent"
+                    android:scaleType="fitXY"
+                    android:layout_marginLeft="10dp"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/txAddress" />
+            </RelativeLayout>
+
         </RelativeLayout>
 
         <FrameLayout
