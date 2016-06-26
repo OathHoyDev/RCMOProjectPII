@@ -2,6 +2,7 @@ package th.co.rcmo.rcmoapp;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,10 +10,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+
 import com.neopixl.pixlui.components.edittext.EditText;
 import com.neopixl.pixlui.components.textview.TextView;
 import java.util.ArrayList;
@@ -95,6 +99,9 @@ public class PBProdDetailCalculateFmentA extends Fragment implements  View.OnCli
         h.group4_header_arrow = (ImageView) view.findViewById(R.id.group4_header_arrow);
         h.group4_header.setOnClickListener(this);
 
+        h.headerLayout =(RelativeLayout) view.findViewById(R.id.headerLayout);
+        h.headerLayout.setOnClickListener(this);
+
         h.calBtn     = (TextView) view.findViewById(R.id.calBtn);
         h.calBtn.setOnClickListener(this);
 
@@ -115,8 +122,8 @@ public class PBProdDetailCalculateFmentA extends Fragment implements  View.OnCli
         formulaModel = aModel;
         API_getVariable(userPlotModel.getPrdID(),userPlotModel.getFisheryType());
 
-
-        formulaModel.calculate();
+        //bindingData(aModel);
+        //formulaModel.calculate();
 
 
 
@@ -126,12 +133,12 @@ public class PBProdDetailCalculateFmentA extends Fragment implements  View.OnCli
 
 
     private void setUpCalUI(FormulaAModel aModel){
-        h.group1_item_1.setText(String.valueOf(aModel.KaRang));
-        h.group1_item_6.setText(String.valueOf(aModel.KaWassadu));
-        h.group1_item_11.setText(String.valueOf(aModel.KaSiaOkardOuppakorn));
-        h.group1_item_12.setText(String.valueOf(aModel.KaChaoTDin));
-        h.group1_item_13.setText(String.valueOf(aModel.KaSermOuppakorn));
-        h.group1_item_14.setText(String.valueOf(aModel.KaSiaOkardOuppakorn));
+        h.group1_item_1.setText(Util.dobbleToStringNumber(aModel.KaRang));
+        h.group1_item_6.setText(Util.dobbleToStringNumber(aModel.KaWassadu));
+        h.group1_item_11.setText(Util.dobbleToStringNumber(aModel.KaSiaOkardOuppakorn));
+        h.group1_item_12.setText(Util.dobbleToStringNumber(aModel.KaChaoTDin));
+        h.group1_item_13.setText(Util.dobbleToStringNumber(aModel.KaSermOuppakorn));
+        h.group1_item_14.setText(Util.dobbleToStringNumber(aModel.KaSiaOkardOuppakorn));
 
     }
 
@@ -157,6 +164,8 @@ public class PBProdDetailCalculateFmentA extends Fragment implements  View.OnCli
 
 
         aModel.AttraDokbia = Util.strToDoubleDefaultZero(h.group4_item_1.getText().toString());
+
+        aModel.KaNardPlangTDin = Util.strToDoubleDefaultZero(h.txStartUnit.getText().toString());
 
 
     }
@@ -212,16 +221,16 @@ public class PBProdDetailCalculateFmentA extends Fragment implements  View.OnCli
             String [] tontoonCal_1 = {"ต้นทุนรวมเกษตร" , String.format("%,.2f", formulaModel.calSumCost) , "บาท"};
             resultArrayResult.add(tontoonCal_1);
 
-            String [] tontoonCal_2 = {"" , String.format("%,.2f", formulaModel.calSumCostPerRai) , "บาท"};
+            String [] tontoonCal_2 = {"" , String.format("%,.2f", formulaModel.calSumCostPerRai) , "บาท/ไร่"};
             resultArrayResult.add(tontoonCal_2);
 
             String [] raydai_1 = {"รายได้" , String.format("%,.2f", formulaModel.calIncome) , "บาท"};
             resultArrayResult.add(raydai_1);
 
-            String [] raydai_2 = {"" , String.format("%,.2f", formulaModel.calIncomePerRai) , "บาท"};
+            String [] raydai_2 = {"" , String.format("%,.2f", formulaModel.calIncomePerRai) , "บาท/ไร่"};
             resultArrayResult.add(raydai_2);
 
-            String [] tontoon = {"ต้นทุนมาตรฐานของ สศก." , String.format("%,.2f", formulaModel.TontumMattratarnPerRai) , "บาท"};
+            String [] tontoon = {"ต้นทุนเฉลี่ย" , String.format("%,.2f", formulaModel.TontumMattratarnPerRai) , "บาท/ไร่"};
             resultArrayResult.add(tontoon);
 
             DialogCalculateResult.calculateResultModel.resultList = resultArrayResult;
@@ -292,6 +301,10 @@ public class PBProdDetailCalculateFmentA extends Fragment implements  View.OnCli
 
             formulaModel.isCalIncludeOption = isCalIncludeOption;
 
+        }else if(v.getId()== R.id.headerLayout){
+
+
+            popUpTumbonListDialog();
         }
 
     }
@@ -319,6 +332,8 @@ public class PBProdDetailCalculateFmentA extends Fragment implements  View.OnCli
                          ,group4_header_arrow;
 
         private Button btnOption;
+
+        private RelativeLayout headerLayout;
     }
 
 
@@ -386,4 +401,46 @@ public class PBProdDetailCalculateFmentA extends Fragment implements  View.OnCli
                 "&FisheryType=" + fisheryType);
 
     }
+
+
+    private void popUpTumbonListDialog() {
+
+
+
+        final android.app.Dialog dialog = new android.app.Dialog(context);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_edit_plant);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+        android.widget.TextView title =(android.widget.TextView) dialog.findViewById(R.id.edit_rai_label);
+        final android.widget.TextView inputRai = (android.widget.TextView)dialog.findViewById(R.id.edit_rai);
+        android.widget.TextView btn_cancel = (android.widget.TextView)dialog.findViewById(R.id.cancel);
+        android.widget.TextView btn_ok = (android.widget.TextView)dialog.findViewById(R.id.ok);
+
+        title.setText("ขนาดแปลงที่ดิน");
+        inputRai.setText(h.txStartUnit.getText());
+
+        btn_ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                h.txStartUnit.setText(inputRai.getText());
+                //userPlotModel.setPlotRai(String.valueOf(Util.strToDoubleDefaultZero(inputRai.getText().toString())));
+
+                userPlotModel.setPlotRai(inputRai.getText().toString());
+                dialog.dismiss();
+            }
+        });
+
+        btn_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                dialog.cancel();
+            }
+        });
+        dialog.show();
+
+    }
+
+
 }

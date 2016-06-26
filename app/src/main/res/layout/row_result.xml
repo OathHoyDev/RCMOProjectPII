@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:pixlui="http://schemas.android.com/apk/com.neopixl.pixlui"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:id="@+id/group1_2_item"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            >
+            <com.neopixl.pixlui.components.textview.TextView
+                pixlui:typeface="Quark-Bold.otf"
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ต้นทุรวมเกษตรกร"
+                android:textColor="@color/RcmoNormalDarkText"
+                android:gravity="left|center"
+                android:paddingLeft="15dp"
+                android:layout_weight="1"
+                android:inputType="text"
+                android:textSize="@dimen/textsize_normal"
+                />
+
+            <com.neopixl.pixlui.components.textview.TextView
+                pixlui:typeface="Quark-Bold.otf"
+                android:layout_weight="1.5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:hint="0.00"
+                android:textColor="@color/RcmoPlantBG"
+                android:gravity="right"
+                android:padding="5dp"
+                android:textSize="@dimen/textsize_normal"
+                android:id="@+id/value"/>
+        </LinearLayout>
+        <com.neopixl.pixlui.components.textview.TextView
+            pixlui:typeface="Quark-Bold.otf"
+            android:id="@+id/unit"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:text="@string/bath"
+            android:textColor="@color/RcmoNormalDarkText"
+            android:gravity="left|center"
+            android:paddingLeft="10dp"
+            android:layout_weight="3.5"
+            android:inputType="text"
+            android:textSize="@dimen/textsize_normal"
+            />
+    </LinearLayout>
+
+</LinearLayout>
