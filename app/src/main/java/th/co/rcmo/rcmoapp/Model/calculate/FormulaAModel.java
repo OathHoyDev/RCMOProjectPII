@@ -67,25 +67,12 @@ public class FormulaAModel extends AbstractFormulaModel {
         tmp.put("KaYaplab", "ค่ายาปราบศัตรูพืชและวัชพืช");
         tmp.put("KaWassaduUn", "ค่าวัสดุอื่น ๆ นำมันเชื้อเพลิง และค่าซ่อมแซมอุปกรณ์");
         tmp.put("KaSiaOkardLongtoon", "เสียโอกาสเงินลงทุน");
-        tmp.put("landLease", "ค่าเช่าที่ดิน");
         tmp.put("KaSermOuppakorn", "ค่าเสื่อมอุปกรณ์");
         tmp.put("KaChaoTDin", "ค่าเช่าที่ดิน");
         tmp.put("KaSiaOkardOuppakorn", "ค่าเสียโอกาสอุปกรณ์");
         tmp.put("PonPalid", "ผลผลิต ที่คาดว่าจะเก็บเกี่ยวได้ในแปลงนี้");
         tmp.put("predictPrice", "ราคาที่คาดว่าจะขายได้");
-        tmp.put("calSumCost", "ต้นทุนรวมของเกษตรกร");
-        tmp.put("calIncome", "รายได้");
-        tmp.put("calProfitLoss", "กำไร/ขาดทุน");
-
         tmp.put("AttraDokbia", "อัตราดอกเบี้ยร้อยละ/ปี");
-
-        tmp.put("KaSermOuppakorn", "ค่าเสื่อมอุปกรณ์");
-        tmp.put("KaSiaOkardOuppakorn", "ค่าเสียโอกาสอุปกรณ์");
-        tmp.put("TontumMattratarn", "ต้นทุนมาตรฐานของ สศก.");
-
-        tmp.put("calSumCostPerRai", "คิดเป็น");
-        tmp.put("calIncomePerRai", "คิดเป็น");
-        tmp.put("calProfitLossPerRai", "คิดเป็น");
 
         calculateLabel = tmp;
     }
@@ -93,7 +80,7 @@ public class FormulaAModel extends AbstractFormulaModel {
     public static Hashtable<String, String> calculateUnit;
     static {
         Hashtable<String, String> tmp = new Hashtable<String, String>();
-        tmp.put("KaNardPlangTDin", "ไร่");
+        tmp.put("KaNardPlangTDin", "บาท");
         tmp.put("KaRang", "บาท");
         tmp.put("KaTreamDin", "บาท");
         tmp.put("KaPluk", "บาท");
@@ -104,25 +91,13 @@ public class FormulaAModel extends AbstractFormulaModel {
         tmp.put("KaPuy", "บาท");
         tmp.put("KaYaplab", "บาท");
         tmp.put("KaWassaduUn", "บาท");
-        tmp.put("KaSiaOkardLongtoon", "บาท");
-        tmp.put("KaChaoTDin", "บาท/ไร่");
+        tmp.put("KaSiaOkardLongtoon", "บาท/ไร่");
         tmp.put("KaSermOuppakorn", "บาท/ไร่");
+        tmp.put("KaChaoTDin", "บาท/ไร่");
         tmp.put("KaSiaOkardOuppakorn", "บาท/ไร่");
         tmp.put("PonPalid", "กก.");
         tmp.put("predictPrice", "บาท/ตัน");
-        tmp.put("calSumCost", "ต้นทุนรวมของเกษตรกร");
-        tmp.put("calIncome", "รายได้");
-        tmp.put("calProfitLoss", "กำไร/ขาดทุน");
-
         tmp.put("AttraDokbia", "ร้อยละ/ปี");
-
-        tmp.put("KaSermOuppakorn", "ค่าเสื่อมอุปกรณ์");
-        tmp.put("KaSiaOkardOuppakorn", "ค่าเสียโอกาสอุปกรณ์");
-        tmp.put("TontumMattratarn", "ต้นทุนมาตรฐานของ สศก.");
-
-        tmp.put("calSumCostPerRai", "คิดเป็น");
-        tmp.put("calIncomePerRai", "คิดเป็น");
-        tmp.put("calProfitLossPerRai", "คิดเป็น");
 
         calculateUnit = tmp;
     }
@@ -146,7 +121,7 @@ public class FormulaAModel extends AbstractFormulaModel {
         cost.add(new String[]{"false", calculateLabel.get("KaWassadu"), String.format("%,.2f", KaWassadu), calculateUnit.get("KaWassadu"), "KaWassadu"});
         cost.add(new String[]{"true", calculateLabel.get("KaPan"), String.format("%,.2f", KaPan), calculateUnit.get("KaPan"), "KaPan"});
         cost.add(new String[]{"true", calculateLabel.get("KaPuy"), String.format("%,.2f", KaPuy), calculateUnit.get("KaPuy"), "KaPuy"});
-        cost.add(new String[]{"false", calculateLabel.get("KaYaplab"), String.format("%,.2f", KaYaplab), calculateUnit.get("dieRatio"), "KaYaplab"});
+        cost.add(new String[]{"true", calculateLabel.get("KaYaplab"), String.format("%,.2f", KaYaplab), calculateUnit.get("dieRatio"), "KaYaplab"});
         cost.add(new String[]{"true", calculateLabel.get("KaWassaduUn"), String.format("%,.2f", KaWassaduUn), calculateUnit.get("KaWassaduUn"), "KaWassaduUn"});
         cost.add(new String[]{"false", calculateLabel.get("KaSiaOkardLongtoon"), String.format("%,.2f", KaSiaOkardLongtoon), calculateUnit.get("KaSiaOkardLongtoon"), "KaSiaOkardLongtoon"});
         cost.add(new String[]{"true", calculateLabel.get("KaChaoTDin"), String.format("%,.2f", KaChaoTDin), calculateUnit.get("KaChaoTDin"), "KaChaoTDin"});
@@ -194,6 +169,8 @@ public class FormulaAModel extends AbstractFormulaModel {
         calProfitLossPerRai = calProfitLoss / KaNardPlangTDin;
 
         TontumMattratarn = TontumMattratarnPerRai * KaNardPlangTDin;
+
+
     }
 
 

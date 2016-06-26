@@ -89,10 +89,6 @@ public class FormulaCModel extends AbstractFormulaModel {
         tmp.put("PonPalid", "ผลผลิต ที่คาดว่าจะเก็บเกี่ยวได้ในแปลงนี้");
         tmp.put("predictPrice", "ราคาที่คาดว่าจะขายได้");
 
-        tmp.put("calSumCost", "ต้นทุนรวมของเกษตรกร");
-        tmp.put("calIncome", "รายได้");
-        tmp.put("calProfitLoss", "กำไร/ขาดทุน");
-
         tmp.put("AttraDokbia", "อัตราดอกเบี้ยร้อยละ/ปี");
 
         tmp.put("KaSermOuppakorn", "ค่าเสื่อมอุปกรณ์");
@@ -124,9 +120,6 @@ public class FormulaCModel extends AbstractFormulaModel {
         tmp.put("KaSiaOkardOuppakorn", "บาท/ไร่");
         tmp.put("PonPalid", "กก.");
         tmp.put("predictPrice", "บาท/ตัน");
-        tmp.put("calSumCost", "ต้นทุนรวมของเกษตรกร");
-        tmp.put("calIncome", "รายได้");
-        tmp.put("calProfitLoss", "กำไร/ขาดทุน");
 
         tmp.put("AttraDokbia", "ร้อยละ/ปี");
 
@@ -157,7 +150,7 @@ public class FormulaCModel extends AbstractFormulaModel {
         cost.add(new String[]{"false", calculateLabel.get("KaWassadu"), String.format("%,.2f", KaWassadu), calculateUnit.get("KaWassadu"), "KaWassadu"});
         cost.add(new String[]{"true", calculateLabel.get("KaPan"), String.format("%,.2f", KaPan), calculateUnit.get("KaPan"), "KaPan"});
         cost.add(new String[]{"true", calculateLabel.get("KaPuy"), String.format("%,.2f", KaPuy), calculateUnit.get("KaPuy"), "KaPuy"});
-        cost.add(new String[]{"false", calculateLabel.get("KaYaplab"), String.format("%,.2f", KaYaplab), calculateUnit.get("dieRatio"), "KaYaplab"});
+        cost.add(new String[]{"true", calculateLabel.get("KaYaplab"), String.format("%,.2f", KaYaplab), calculateUnit.get("dieRatio"), "KaYaplab"});
         cost.add(new String[]{"true", calculateLabel.get("KaWassaduUn"), String.format("%,.2f", KaWassaduUn), calculateUnit.get("KaWassaduUn"), "KaWassaduUn"});
         cost.add(new String[]{"false", calculateLabel.get("KaSiaOkardLongtoon"), String.format("%,.2f", KaSiaOkardLongtoon), calculateUnit.get("KaSiaOkardLongtoon"), "KaSiaOkardLongtoon"});
         cost.add(new String[]{"true", calculateLabel.get("KaChaoTDin"), String.format("%,.2f", KaChaoTDin), calculateUnit.get("KaChaoTDin"), "KaChaoTDin"});

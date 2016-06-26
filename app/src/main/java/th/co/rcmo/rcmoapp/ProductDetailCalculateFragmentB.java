@@ -264,8 +264,11 @@ public class ProductDetailCalculateFragmentB extends Fragment implements  View.O
             String [] raydai_2 = {"" , String.format("%,.2f", formulaModel.calIncomePerRai) , "บาท"};
             resultArrayResult.add(raydai_2);
 
-            String [] tontoon = {"ต้นทุนมาตรฐานของ สศก." , String.format("%,.2f", formulaModel.TontumMattratarnPerRai) , "บาท"};
+            String [] tontoon = {"ต้นทุนเฉลี่ย" , String.format("%,.2f", formulaModel.TontumMattratarnPerRai) , "บาท"};
             resultArrayResult.add(tontoon);
+
+            DialogCalculateResult.userPlotModel.setVarName(formulaModel.getParamName(formulaModel , formulaModel.calculateLabel));
+            DialogCalculateResult.userPlotModel.setVarValue(formulaModel.getParamValue(formulaModel , formulaModel.calculateLabel));
 
             DialogCalculateResult.calculateResultModel.resultList = resultArrayResult;
 

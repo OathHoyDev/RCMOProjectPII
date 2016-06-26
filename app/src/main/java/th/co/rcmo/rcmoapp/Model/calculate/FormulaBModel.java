@@ -21,33 +21,21 @@ public class FormulaBModel extends AbstractFormulaModel {
 
 
     public double Year = 0;
-
     public double KaNardPlangTDin = 0;
-
     public double KaRang = 0;
     public double KaTreamDin = 0;
     public double KaPluk = 0;
     public double KaDoolae = 0;
     public double KaGebGeaw = 0;
-
     public double KaWassadu = 0;
     public double KaPan = 0;
     public double KaPuy = 0;
     public double KaYaplab = 0;
     public double KaWassaduUn = 0;
-
     public double KaSiaOkardLongtoon = 0;
-
     public double KaChaoTDin = 0;
-
     public double PonPalid = 0;
     public double predictPrice = 0;
-
-    public double calSumCost = 0;
-    public double calSumCostPerRai = 0;
-    public double calIncome = 0;
-    public double calIncomePerRai = 0;
-    public double calProfitLoss = 0;
 
     public double AttraDokbia = 0;
 
@@ -56,6 +44,12 @@ public class FormulaBModel extends AbstractFormulaModel {
     public double KaSermOuppakorn = 7.37;
     public double KaSiaOkardOuppakorn = 1.81;
     public double TontumMattratarnPerRai = 4689.83;
+
+    public double calSumCost = 0;
+    public double calSumCostPerRai = 0;
+    public double calIncome = 0;
+    public double calIncomePerRai = 0;
+    public double calProfitLoss = 0;
 
     public static Hashtable<String, String> calculateLabel;
     static {
@@ -79,16 +73,10 @@ public class FormulaBModel extends AbstractFormulaModel {
         tmp.put("KaYaplab", "ค่ายาปราบศัตรูพืชและวัชพืช");
         tmp.put("KaWassaduUn", "ค่าวัสดุอื่น ๆ นำมันเชื้อเพลิง และค่าซ่อมแซมอุปกรณ์");
         tmp.put("KaSiaOkardLongtoon", "เสียโอกาสเงินลงทุน");
-        tmp.put("landLease", "ค่าเช่าที่ดิน");
-        tmp.put("KaSermOuppakorn", "ค่าเสื่อมอุปกรณ์");
         tmp.put("KaChaoTDin", "ค่าเช่าที่ดิน");
         tmp.put("KaSiaOkardOuppakorn", "ค่าเสียโอกาสอุปกรณ์");
         tmp.put("PonPalid", "ผลผลิต ที่คาดว่าจะเก็บเกี่ยวได้ในแปลงนี้");
         tmp.put("predictPrice", "ราคาที่คาดว่าจะขายได้");
-        tmp.put("calSumCost", "ต้นทุนรวมของเกษตรกร");
-        tmp.put("calIncome", "รายได้");
-        tmp.put("calProfitLoss", "กำไร/ขาดทุน");
-
         tmp.put("AttraDokbia", "อัตราดอกเบี้ยร้อยละ/ปี");
 
         tmp.put("KaSermOuppakorn", "ค่าเสื่อมอุปกรณ์");
@@ -158,7 +146,7 @@ public class FormulaBModel extends AbstractFormulaModel {
         cost.add(new String[]{"false", calculateLabel.get("KaWassadu"), String.format("%,.2f", KaWassadu), calculateUnit.get("KaWassadu"), "KaWassadu"});
         cost.add(new String[]{"true", calculateLabel.get("KaPan"), String.format("%,.2f", KaPan), calculateUnit.get("KaPan"), "KaPan"});
         cost.add(new String[]{"true", calculateLabel.get("KaPuy"), String.format("%,.2f", KaPuy), calculateUnit.get("KaPuy"), "KaPuy"});
-        cost.add(new String[]{"false", calculateLabel.get("KaYaplab"), String.format("%,.2f", KaYaplab), calculateUnit.get("dieRatio"), "KaYaplab"});
+        cost.add(new String[]{"true", calculateLabel.get("KaYaplab"), String.format("%,.2f", KaYaplab), calculateUnit.get("dieRatio"), "KaYaplab"});
         cost.add(new String[]{"true", calculateLabel.get("KaWassaduUn"), String.format("%,.2f", KaWassaduUn), calculateUnit.get("KaWassaduUn"), "KaWassaduUn"});
         cost.add(new String[]{"false", calculateLabel.get("KaSiaOkardLongtoon"), String.format("%,.2f", KaSiaOkardLongtoon), calculateUnit.get("KaSiaOkardLongtoon"), "KaSiaOkardLongtoon"});
         cost.add(new String[]{"true", calculateLabel.get("KaChaoTDin"), String.format("%,.2f", KaChaoTDin), calculateUnit.get("KaChaoTDin"), "KaChaoTDin"});

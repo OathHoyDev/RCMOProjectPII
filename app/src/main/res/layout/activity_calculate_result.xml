@@ -91,7 +91,7 @@
             android:background="@drawable/btn_bg_green_cal"
             android:gravity="bottom|center"
             android:paddingBottom="5dp"
-            android:text="ดึงข้อมูลล่าสุด"
+            android:text="บันทึกผล"
             android:textColor="@color/RcmoWhiteBG"
             android:textSize="@dimen/textsize_large"
             android:clickable="true"

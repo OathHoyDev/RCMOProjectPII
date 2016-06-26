@@ -96,7 +96,6 @@
                         android:id="@+id/startPrice"
                         android:textColor="@color/RcmoGrayBG"
                         android:layout_below="@+id/start"
-                        android:layout_toEndOf="@+id/lbFishpondSizeRai"
                         android:layout_alignParentLeft="true" />
 
                     <com.neopixl.pixlui.components.textview.TextView
@@ -109,7 +108,8 @@
                         android:textColor="@color/RcmoAnimalBG"
                         android:layout_alignTop="@+id/startPrice"
                         android:layout_toEndOf="@+id/textView4"
-                        android:layout_alignParentLeft="false" />
+                        android:layout_alignParentLeft="false"
+                        android:layout_alignLeft="@+id/txStartUnit" />
 
                     <com.neopixl.pixlui.components.textview.TextView
                         pixlui:typeface="Quark-Bold.otf"
