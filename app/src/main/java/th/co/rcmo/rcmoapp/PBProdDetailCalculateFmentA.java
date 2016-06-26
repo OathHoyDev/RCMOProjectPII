@@ -130,7 +130,7 @@ public class PBProdDetailCalculateFmentA extends Fragment implements  View.OnCli
         //bindingData(aModel);
         //formulaModel.calculate();
 
-
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         setUI();
         return view;
