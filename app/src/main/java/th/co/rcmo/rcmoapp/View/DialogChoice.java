@@ -2,6 +2,7 @@ package th.co.rcmo.rcmoapp.View;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Handler;
 import android.view.Gravity;
@@ -92,6 +93,47 @@ public class DialogChoice {
 
         dialog.show();
 
+
+    }
+
+    public void ShowLocationSettingChoice(String t,String msg){
+
+        final android.app.Dialog dialog = new android.app.Dialog(context);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_two_choice);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+        TextView title =(TextView) dialog.findViewById(R.id.title);
+        TextView detail = (TextView)dialog.findViewById(R.id.message);
+        TextView btn_cancel = (TextView)dialog.findViewById(R.id.cancel);
+        TextView btn_ok = (TextView)dialog.findViewById(R.id.ok);
+
+        if(t.length()==0) title.setVisibility(View.GONE);
+        else title.setText(t);
+        detail.setText(msg);
+
+        btn_ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(onSelectChoiceListener!=null)
+                    onSelectChoiceListener.OnSelect(OK);
+                dialog.dismiss();
+                Intent callGPSSettingIntent = new Intent(
+                        android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                context.startActivity(callGPSSettingIntent);
+
+            }
+        });
+
+        btn_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(onSelectChoiceListener!=null)
+                    onSelectChoiceListener.OnSelect(CANCEL);
+                dialog.cancel();
+            }
+        });
+        dialog.show();
 
     }
 

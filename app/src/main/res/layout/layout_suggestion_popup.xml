@@ -1,43 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:pixlui="http://schemas.android.com/apk/com.neopixl.pixlui"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
 
     <RelativeLayout
         android:id="@+id/transFrame"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/transparent"
-        android:layout_alignParentRight="false">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="false"
+        android:background="@android:color/transparent">
 
         <RelativeLayout
             android:id="@+id/borderFrame"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/RcmoOrangeBG"
             android:layout_alignParentRight="true"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
-            android:layout_marginRight="10dp">
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/RcmoOrangeBG">
 
             <ScrollView
+                android:id="@+id/suggessScrollView"
                 android:layout_width="match_parent"
-                android:layout_height="110dp"
-                android:layout_margin="5dp"
-                android:id="@+id/suggessScrollView" >
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp">
 
                 <RelativeLayout
                     android:id="@+id/suggess_layout"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="120dp"
                     android:background="@color/RcmoWhiteBG"
-                    android:padding="10dp">
+                    android:padding="20dp">
 
                     <com.neopixl.pixlui.components.textview.TextView
                         android:id="@+id/txSuggession"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentTop="true"
@@ -49,7 +49,7 @@
 
                     <com.neopixl.pixlui.components.textview.TextView
                         android:id="@+id/txRecommend"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignStart="@+id/txSuggession"
                         android:layout_below="@+id/txSuggession"
@@ -61,14 +61,15 @@
 
                     <com.neopixl.pixlui.components.textview.TextView
                         android:id="@+id/txRecommendProduct"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignStart="@+id/txRecommend"
                         android:layout_below="@+id/txRecommend"
                         android:text="สัตว์ที่ควรเลี้ยงคือ"
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:textColor="@color/RcmoGrayBG"
-                        pixlui:typeface="Quark-Bold.otf" />
+                        pixlui:typeface="Quark-Bold.otf"
+                        android:layout_marginLeft="10dp" />
 
                 </RelativeLayout>
             </ScrollView>
@@ -82,10 +83,10 @@
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_alignParentEnd="false"
+        android:layout_alignParentRight="true"
         android:layout_gravity="top|right"
         android:layout_marginRight="30dp"
-        android:src="@drawable/ic_triangle_arrow"
-        android:layout_alignParentRight="true" />
+        android:src="@drawable/ic_triangle_arrow" />
 
 
 </RelativeLayout>
