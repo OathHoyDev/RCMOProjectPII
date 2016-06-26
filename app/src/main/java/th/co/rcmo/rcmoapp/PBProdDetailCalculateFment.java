@@ -28,16 +28,17 @@ public class PBProdDetailCalculateFment extends Fragment implements  View.OnClic
 
         userPlotModel = PBProductDetailActivity.userPlotModel;
 
-        holder.calBtn     = (TextView) view.findViewById(R.id.calBtn);
-        holder.centerImg  = (TextView) view.findViewById(R.id.centerImg);
+        ((TextView) view.findViewById(R.id.showTest)).setText("การคำนวน Plan "+userPlotModel.getFormularCode()+" อยู่ระหว่างพัฒนา");
+      //  holder.centerImg  = (TextView) view.findViewById(R.id.centerImg);
 
-        holder.calBtn.setOnClickListener(this);
+      //  holder.calBtn.setOnClickListener(this);
 
         setUi();
         return view;
     }
 
     private void setUi(){
+        /*
         int groupId = Integer.valueOf(userPlotModel.getPrdGrpID());
         if(groupId == 1){
             holder.calBtn.setBackgroundResource(R.drawable.action_plant_reget);
@@ -50,14 +51,17 @@ public class PBProdDetailCalculateFment extends Fragment implements  View.OnClic
             holder.centerImg.setBackgroundResource(R.drawable.bottom_blue);
 
         }
+        */
     }
 
     @Override
     public void onClick(View v) {
+        /*
         if (v.getId() == R.id.calBtn) {
             Toast toast = Toast.makeText( v.getContext(), "onClick คำนวน", Toast.LENGTH_SHORT);
             toast.show();
         }
+        */
     }
 
     static class ViewHolder {

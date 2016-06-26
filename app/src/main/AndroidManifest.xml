@@ -94,6 +94,10 @@
         <activity android:name=".PBProductDetailActivity"
             android:screenOrientation="portrait"
             android:theme="@style/TabTheme"/>
+        <activity
+            android:name=".PBCalculateResultActivity"
+            android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>

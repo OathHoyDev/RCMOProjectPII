@@ -225,7 +225,8 @@ public class ProductDetailMapFragment extends Fragment implements View.OnClickLi
         mapView.onCreate(savedInstanceState);
 
         map = mapView.getMap();
-        map.getUiSettings().setMyLocationButtonEnabled(true);
+        Log.d("TAGG "," map = mapView.getMap() : "+ map);
+       // map.getUiSettings().setMyLocationButtonEnabled(true);
 
         // Gets to GoogleMap from the MapView and does initialization stuff
         if (ContextCompat.checkSelfPermission(context, android.Manifest.permission.ACCESS_FINE_LOCATION) ==

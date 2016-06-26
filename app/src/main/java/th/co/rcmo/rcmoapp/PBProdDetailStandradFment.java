@@ -36,6 +36,7 @@ import th.co.rcmo.rcmoapp.Util.Util;
 public class PBProdDetailStandradFment extends Fragment implements  View.OnClickListener {
     ViewHolder holder = new ViewHolder();
     static UserPlotModel userPlotModel;
+    public  static  List<STDVarModel> stdVarModelList =  new ArrayList<STDVarModel>();
     Context context;
     //static List<STDVarModel> stdVarModelList = new ArrayList<STDVarModel>();
     public PBProdDetailStandradFment(){
@@ -122,7 +123,7 @@ public class PBProdDetailStandradFment extends Fragment implements  View.OnClick
 
                 if (mVariableBodyLists.size() != 0) {
 
-                   List<STDVarModel> stdVarModelList =  ProductService.prepareSTDVarList(mVariableBodyLists.get(0), fisheryType);
+                    stdVarModelList =  ProductService.prepareSTDVarList(mVariableBodyLists.get(0), fisheryType);
 
                     holder.listView.setAdapter(new ProdDetailStandardAdapter( context,stdVarModelList,Integer.valueOf(userPlotModel.getPrdGrpID())));
 

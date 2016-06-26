@@ -63,6 +63,14 @@ public class Util {
 
     }
 
+    public static double strToDoubleDefaultZero(String input){
+        double value = 0;
+        if(input!=null && !input.equals("")) {
+             value = Double.parseDouble(input);
+        }
+        return value;
+    }
+
 
     public static void showDialogAndDismiss(Context context,String msg){
         final android.app.Dialog dialog =   new DialogChoice(context).Show(msg,"");
