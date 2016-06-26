@@ -224,7 +224,7 @@ public class PBProdDetailCalculateFmentA extends Fragment implements  View.OnCli
          //  String str = new StringEntity(ProductService.genJsonPlanAVariable(formulaModel), HTTP.UTF_8);
 
 
-            userPlotModel.setVarValue(ProductService.genJsonPlanAVariable(formulaModel));
+            //userPlotModel.setVarValue(ProductService.genJsonPlanAVariable(formulaModel));
 
 
             List resultArrayResult = new ArrayList();

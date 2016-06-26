@@ -402,9 +402,10 @@ public class PBCalculateResultActivity extends Activity {
                     if (userPlotModel.getTamCode().equals("") || userPlotModel.getTamCode().equals("0")) {
                         userPlotModel.setTamCode(String.valueOf(plotDetail.getTamCode()));
                     }
+                    /*
                     if(userPlotModel.getVarValue().equals("")|| userPlotModel.getVarValue().equals("0")){
                         userPlotModel.setVarValue(plotDetail.getVarValue());
-                    }
+                    }*/
 
 
                     API_SavePlotDetail("2", userPlotModel);

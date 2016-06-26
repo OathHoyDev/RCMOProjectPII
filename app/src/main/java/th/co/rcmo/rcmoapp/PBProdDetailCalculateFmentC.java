@@ -27,7 +27,7 @@ public class PBProdDetailCalculateFmentC extends Fragment implements View.OnClic
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         ViewHolder h = new ViewHolder();
-        View view = inflater.inflate(R.layout.frag_prod_cal_plan_i, container, false);
+        View view = inflater.inflate(R.layout.frag_prod_cal_plan_c, container, false);
 
 
         h.productIconImg = (ImageView) view.findViewById(R.id.productIconImg);

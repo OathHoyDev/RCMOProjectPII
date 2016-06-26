@@ -50,6 +50,8 @@ public class PBCalculatePagerAdapter extends FragmentStatePagerAdapter {
                 frag = new PBProdDetailStandradFment();
                 break;
             case 1:
+
+                Log.d("TAG", "---------------------------plan :"+userPlotModel.getFormularCode());
                 if ("A".equalsIgnoreCase(userPlotModel.getFormularCode())) {
                     frag = new PBProdDetailCalculateFmentA();
                 } else if ("B".equalsIgnoreCase(userPlotModel.getFormularCode())){
