@@ -15,7 +15,13 @@
     <string name="title_activity_product_detail">ProductDetailActivity</string>
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
-
+    <string name="bath">บาท</string>
+    <string name="percen_year">ร้อยละ/ปี</string>
+    <string name="bath_tun">บาท/ตัน</string>
+    <string name="bath_rai">บาท/ไร่</string>
+    <string name="bath_rai_year">บาท/ไร่/ปี</string>
+    <string name="kg_rai">กก./ไร่</string>
+    <string name="karang">ค่าแรงงาน</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

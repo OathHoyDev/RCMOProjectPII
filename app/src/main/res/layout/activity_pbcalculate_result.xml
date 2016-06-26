@@ -1,0 +1,314 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:pixlui="http://schemas.android.com/apk/com.neopixl.pixlui"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/RcmoWhiteBG">
+
+    <RelativeLayout
+        android:id="@+id/headerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/RcmoPlantBG">
+
+        <com.neopixl.pixlui.components.textview.TextView
+            android:id="@+id/titleLable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:gravity="center|top"
+            android:padding="12dp"
+            android:text="ผลการคำนวณต้นทุน"
+            android:textColor="@color/RcmoNormalLightText"
+            android:textSize="@dimen/textsize_xxxlarge"
+            pixlui:typeface="Quark-Bold.otf" />
+
+
+        <com.neopixl.pixlui.components.textview.TextView
+            android:id="@+id/backBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
+            android:text="&lt; กลับ"
+            android:textColor="@color/RcmoNormalLightText"
+            android:textSize="@dimen/textsize_xxlarge"
+            pixlui:typeface="Quark-Bold.otf" />
+
+
+        <ImageView
+            android:id="@+id/btnQuestion"
+            android:layout_width="@dimen/size_howto"
+            android:layout_height="@dimen/size_howto"
+            android:layout_alignParentRight="true"
+            android:layout_margin="10dp"
+            android:src="@drawable/btn_howto" />
+
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:orientation="horizontal"
+        android:id="@+id/linearLayout5">
+
+        <com.neopixl.pixlui.components.textview.TextView
+            android:id="@+id/btnRecalculate"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/btn_bg_greendark_cal"
+            android:gravity="bottom|center"
+            android:paddingBottom="5dp"
+            android:text="คำนวนใหม่"
+            android:clickable="true"
+            android:focusable="true"
+            android:textColor="@color/RcmoWhiteBG"
+            android:textSize="@dimen/textsize_large"
+            pixlui:typeface="Quark-Bold.otf" />
+
+        <com.neopixl.pixlui.components.textview.TextView
+            android:id="@+id/centerImg"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_gravity="bottom"
+            android:layout_weight="1"
+            android:background="@drawable/bottom_green_total"
+            android:gravity="center"
+            pixlui:typeface="Quark-Bold.otf" />
+
+
+        <com.neopixl.pixlui.components.textview.TextView
+            android:id="@+id/btnSavePlotDetail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/btn_bg_green_cal"
+            android:gravity="bottom|center"
+            android:paddingBottom="5dp"
+            android:text="บันทึกข้อมูล"
+            android:textColor="@color/RcmoWhiteBG"
+            android:textSize="@dimen/textsize_large"
+            android:clickable="true"
+            android:focusable="true"
+            pixlui:typeface="Quark-Bold.otf" />
+
+    </LinearLayout>
+
+    <com.neopixl.pixlui.components.textview.TextView
+        android:id="@+id/productNameLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/headerLayout"
+        android:background="@color/RcmoPlantDarkBG"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="สัปปะรดโรงงาน"
+        android:textColor="@color/RcmoWhiteBG"
+        android:textSize="@dimen/textsize_large"
+        android:textStyle="bold"
+        pixlui:typeface="Quark-Bold.otf" />
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/productNameLabel"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/itemLayout"
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp">
+
+            <ImageView
+                android:id="@+id/imageIcon"
+                android:layout_width="fill_parent"
+                android:layout_height="100dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="50dp"
+                android:background="@drawable/light_gray_cut_conner" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/ImageProductLayout">
+
+                <com.neopixl.pixlui.components.textview.TextView
+                    android:id="@+id/txProfitLoss"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="กำไร"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@color/RcmoGrayBG"
+                    pixlui:typeface="Quark-Bold.otf"
+                    android:textSize="30dp"/>
+
+                <com.neopixl.pixlui.components.textview.TextView
+                    android:id="@+id/txProfitLossValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="xx"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@color/RcmoFishBG"
+                    pixlui:typeface="Quark-Bold.otf"
+                    android:layout_alignLeft="@+id/txProfitLoss"
+                    android:layout_below="@+id/txProfitLoss"
+                    android:textSize="30dp"/>
+
+                <com.neopixl.pixlui.components.textview.TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="บาท"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@color/RcmoGrayBG"
+                    pixlui:typeface="Quark-Bold.otf"
+                    android:textSize="20dp"
+                    android:layout_toRightOf="@+id/txProfitLossValue"
+                    android:layout_alignBaseline="@+id/txProfitLossValue" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/ImageProductLayout"
+                android:layout_width="130dp"
+                android:layout_height="130dp">
+
+                <ImageView
+                    android:id="@+id/productIconBG"
+                    android:layout_width="130dp"
+                    android:layout_height="130dp"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/fish_ic_gr_circle_bg" />
+
+                <ImageView
+                    android:id="@+id/productIcon"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/f1" />
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/light_gray_cut_conner"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_above="@+id/linearLayout5"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.neopixl.pixlui.components.textview.TextView
+                android:id="@+id/locationLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/headerLayout"
+                android:layout_weight="3"
+                android:gravity="right"
+                android:padding="5dp"
+                android:text="สถานที่"
+                android:textColor="@color/RcmoToastTranBG"
+                android:textSize="@dimen/textsize_large"
+                android:textStyle="bold"
+                pixlui:typeface="Quark-Bold.otf" />
+
+            <com.neopixl.pixlui.components.textview.TextView
+                android:id="@+id/recommandLocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/headerLayout"
+                android:layout_marginLeft="20dp"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:padding="5dp"
+                android:text="แปลงของท่านเหมาะสมกับการปลูก"
+                android:textColor="@color/RcmoProfitBG"
+                android:textSize="@dimen/textsize_large"
+                android:textStyle="bold"
+                pixlui:typeface="Quark-Bold.otf" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.neopixl.pixlui.components.textview.TextView
+                android:id="@+id/priceLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/headerLayout"
+                android:layout_weight="3"
+                android:gravity="right"
+                android:padding="5dp"
+                android:text="ราคา"
+                android:textColor="@color/RcmoToastTranBG"
+                android:textSize="@dimen/textsize_large"
+                android:textStyle="bold"
+                pixlui:typeface="Quark-Bold.otf" />
+
+            <com.neopixl.pixlui.components.textview.TextView
+                android:id="@+id/recommandPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/headerLayout"
+                android:layout_marginLeft="20dp"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:padding="5dp"
+                android:text="ค่าใช้จ่ายเกินกว่ามาตรฐาน"
+                android:textColor="@color/RcmoOrangeBG"
+                android:textSize="@dimen/textsize_large"
+                android:textStyle="bold"
+                pixlui:typeface="Quark-Bold.otf" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/linearLayout4"
+        android:layout_below="@+id/linearLayout3"
+        android:id="@+id/resultLayout">
+
+        <ListView
+            android:id="@+id/listViewSummary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -140,67 +140,67 @@
                     android:layout_marginBottom="10dp" />
 
                 <RelativeLayout
-                    android:id="@+id/footerLayout"
+                android:id="@+id/footerLayout"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_alignParentBottom="true"
+                android:layout_below="@+id/expandableListView">
+
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_below="@+id/expandableListView">
+                    android:layout_height="50dp"
+                    android:layout_alignParentTop="true">
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_alignParentTop="true">
-
-                        <!-- Test -->
-                        <com.neopixl.pixlui.components.button.Button
-                            android:id="@+id/btnOption"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_centerVertical="true"
-                            android:layout_marginLeft="30dp"
-                            android:background="@drawable/radio_cal_green"
-                            android:scaleType="fitXY" />
-
-                        <com.neopixl.pixlui.components.textview.TextView
-                            android:id="@+id/optionText"
-                            android:layout_width="fill_parent"
-                            android:layout_height="30dp"
-                            android:layout_centerVertical="true"
-                            android:layout_marginLeft="10dp"
-                            android:layout_toRightOf="@+id/btnOption"
-                            android:gravity="center_vertical"
-                            android:text="คำนวณรวม 'ค่าเสื่อมและค่าเสียโอกาส'"
-                            android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:textColor="@color/RcmoPlantBG"
-                            pixlui:typeface="Quark-Bold.otf" />
-                    </RelativeLayout>
-
-                    <ImageView
-                        android:id="@+id/imageView3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_alignParentLeft="true"
-                        android:scaleType="fitEnd"
-                        android:src="@drawable/bottom_green" />
-
+                    <!-- Test -->
                     <com.neopixl.pixlui.components.button.Button
-                        android:id="@+id/btnCalculate"
-                        android:layout_width="130dp"
-                        android:layout_height="61dp"
-                        android:layout_alignParentBottom="true"
-                        android:layout_alignParentRight="true"
-                        android:background="@drawable/action_plant_recal"
-                        android:gravity="bottom|center"
-                        android:paddingBottom="10dp"
-                        android:scaleType="fitEnd"
-                        android:text="คำนวณ"
-                        android:textColor="@color/RcmoWhiteBG"
-                        android:textSize="@dimen/textsize_xlarge"
-                        android:textStyle="bold"
-                        pixlui:typeface="Quark-Bold.otf" />
+                        android:id="@+id/btnOption"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="30dp"
+                        android:background="@drawable/radio_cal_green"
+                        android:scaleType="fitXY" />
 
+                    <com.neopixl.pixlui.components.textview.TextView
+                        android:id="@+id/optionText"
+                        android:layout_width="fill_parent"
+                        android:layout_height="30dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@+id/btnOption"
+                        android:gravity="center_vertical"
+                        android:text="คำนวณรวม 'ค่าเสื่อมและค่าเสียโอกาส'"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@color/RcmoPlantBG"
+                        pixlui:typeface="Quark-Bold.otf" />
                 </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:scaleType="fitEnd"
+                    android:src="@drawable/bottom_green" />
+
+                <com.neopixl.pixlui.components.button.Button
+                    android:id="@+id/btnCalculate"
+                    android:layout_width="130dp"
+                    android:layout_height="61dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/action_plant_recal"
+                    android:gravity="bottom|center"
+                    android:paddingBottom="10dp"
+                    android:scaleType="fitEnd"
+                    android:text="คำนวณ"
+                    android:textColor="@color/RcmoWhiteBG"
+                    android:textSize="@dimen/textsize_xlarge"
+                    android:textStyle="bold"
+                    pixlui:typeface="Quark-Bold.otf" />
+
+            </RelativeLayout>
 
             </RelativeLayout>
 
