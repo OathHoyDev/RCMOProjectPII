@@ -155,7 +155,7 @@
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textColor="@color/RcmoGrayBG"
                     pixlui:typeface="Quark-Bold.otf"
-                    android:textSize="30dp"/>
+                    android:textSize="25dp"/>
 
                 <com.neopixl.pixlui.components.textview.TextView
                     android:id="@+id/txProfitLossValue"
@@ -167,7 +167,7 @@
                     pixlui:typeface="Quark-Bold.otf"
                     android:layout_alignLeft="@+id/txProfitLoss"
                     android:layout_below="@+id/txProfitLoss"
-                    android:textSize="30dp"/>
+                    android:textSize="25dp"/>
 
                 <com.neopixl.pixlui.components.textview.TextView
                     android:id="@+id/textView3"

@@ -48,9 +48,14 @@ public class FormulaAModel extends AbstractFormulaModel {
 
     public static double TontumMattratarn = 0;
 
+    public static double KaSermOuppakorn = 0;
+    public static double KaSiaOkardOuppakorn = 0;
+    public static double TontumMattratarnPerRai = 0;
+    /*
     public static double KaSermOuppakorn = 7.37;
     public static double KaSiaOkardOuppakorn = 1.81;
     public static double TontumMattratarnPerRai = 4689.83;
+    */
 
     public static Hashtable<String, String> calculateLabel;
     static {

@@ -402,6 +402,9 @@ public class PBCalculateResultActivity extends Activity {
                     if (userPlotModel.getTamCode().equals("") || userPlotModel.getTamCode().equals("0")) {
                         userPlotModel.setTamCode(String.valueOf(plotDetail.getTamCode()));
                     }
+                    if(userPlotModel.getVarValue().equals("")|| userPlotModel.getVarValue().equals("0")){
+                        userPlotModel.setVarValue(plotDetail.getVarValue());
+                    }
 
 
                     API_SavePlotDetail("2", userPlotModel);
@@ -494,6 +497,7 @@ public class PBCalculateResultActivity extends Activity {
             // image naming and path  to include sd card  appending name you choose for file
             String mPath = Environment.getExternalStorageDirectory().toString() + "/" + now + ".jpg";
 
+            Log.d("TEST","Path : "+mPath);
             // create bitmap screen capture
             View v1 = getWindow().getDecorView().getRootView();
             v1.setDrawingCacheEnabled(true);

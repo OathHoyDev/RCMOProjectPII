@@ -15,6 +15,10 @@ import th.co.rcmo.rcmoapp.Model.UserPlotModel;
 import th.co.rcmo.rcmoapp.Module.mGetVariable;
 import th.co.rcmo.rcmoapp.PBProdDetailCalculateFment;
 import th.co.rcmo.rcmoapp.PBProdDetailCalculateFmentA;
+import th.co.rcmo.rcmoapp.PBProdDetailCalculateFmentB;
+import th.co.rcmo.rcmoapp.PBProdDetailCalculateFmentC;
+import th.co.rcmo.rcmoapp.PBProdDetailCalculateFmentD;
+import th.co.rcmo.rcmoapp.PBProdDetailCalculateFmentI;
 import th.co.rcmo.rcmoapp.PBProdDetailMapFment;
 import th.co.rcmo.rcmoapp.PBProdDetailStandradFment;
 import th.co.rcmo.rcmoapp.ProductDetailCalculateFragmentA;
@@ -41,14 +45,44 @@ public class PBCalculatePagerAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
 
         Fragment frag=null;
-        switch (position){
+        switch (position) {
             case 0:
-                frag=new PBProdDetailStandradFment();
+                frag = new PBProdDetailStandradFment();
                 break;
             case 1:
                 if ("A".equalsIgnoreCase(userPlotModel.getFormularCode())) {
                     frag = new PBProdDetailCalculateFmentA();
-                }else{
+                } else if ("B".equalsIgnoreCase(userPlotModel.getFormularCode())){
+                    frag = new PBProdDetailCalculateFmentB();
+
+                }else if ("C".equalsIgnoreCase(userPlotModel.getFormularCode())){
+                    frag = new PBProdDetailCalculateFmentC();
+
+                }else if ("D".equalsIgnoreCase(userPlotModel.getFormularCode())){
+                    frag = new PBProdDetailCalculateFmentD();
+
+                }else if ("E".equalsIgnoreCase(userPlotModel.getFormularCode())){
+                    frag = new PBProdDetailCalculateFmentD();
+
+                }else if ("F".equalsIgnoreCase(userPlotModel.getFormularCode())){
+                    frag = new PBProdDetailCalculateFmentD();
+
+                }else if ("G".equalsIgnoreCase(userPlotModel.getFormularCode())){
+                    frag = new PBProdDetailCalculateFmentD();
+
+                }else if ("H".equalsIgnoreCase(userPlotModel.getFormularCode())){
+                    frag = new PBProdDetailCalculateFmentD();
+
+                } else if ("I".equalsIgnoreCase(userPlotModel.getFormularCode())){
+                    frag = new PBProdDetailCalculateFmentI();
+
+                } else if ("J".equalsIgnoreCase(userPlotModel.getFormularCode())){
+                    frag = new PBProdDetailCalculateFmentI();
+
+                }else if ("K".equalsIgnoreCase(userPlotModel.getFormularCode())){
+                    frag = new PBProdDetailCalculateFmentI();
+
+                }else {
                     frag = new PBProdDetailCalculateFment();
                 }
                 /*

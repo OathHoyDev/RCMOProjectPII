@@ -17,10 +17,14 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.neopixl.pixlui.components.edittext.EditText;
 import com.neopixl.pixlui.components.textview.TextView;
 import java.util.ArrayList;
 import java.util.List;
+
+import th.co.rcmo.rcmoapp.API.ProductService;
 import th.co.rcmo.rcmoapp.API.RequestServices;
 import th.co.rcmo.rcmoapp.API.ResponseAPI;
 import th.co.rcmo.rcmoapp.Model.STDVarModel;
@@ -29,6 +33,7 @@ import th.co.rcmo.rcmoapp.Model.calculate.CalculateResultModel;
 import th.co.rcmo.rcmoapp.Model.calculate.FormulaAModel;
 import th.co.rcmo.rcmoapp.Module.mGetPlotDetail;
 import th.co.rcmo.rcmoapp.Module.mGetVariable;
+import th.co.rcmo.rcmoapp.Module.mVarPlanA;
 import th.co.rcmo.rcmoapp.Util.BitMapHelper;
 import th.co.rcmo.rcmoapp.Util.ServiceInstance;
 import th.co.rcmo.rcmoapp.Util.Util;
@@ -215,6 +220,12 @@ public class PBProdDetailCalculateFmentA extends Fragment implements  View.OnCli
 
             DialogCalculateResult.userPlotModel = userPlotModel;
             DialogCalculateResult.calculateResultModel = calculateResultModel;
+
+         //  String str = new StringEntity(ProductService.genJsonPlanAVariable(formulaModel), HTTP.UTF_8);
+
+
+            userPlotModel.setVarValue(ProductService.genJsonPlanAVariable(formulaModel));
+
 
             List resultArrayResult = new ArrayList();
 
