@@ -96,7 +96,7 @@
                         android:id="@+id/startPrice"
                         android:textColor="@color/RcmoGrayBG"
                         android:layout_below="@+id/start"
-                        android:layout_toEndOf="@+id/lbFishpondSizeRai"
+
                         android:layout_alignParentLeft="true" />
 
                     <com.neopixl.pixlui.components.textview.TextView
