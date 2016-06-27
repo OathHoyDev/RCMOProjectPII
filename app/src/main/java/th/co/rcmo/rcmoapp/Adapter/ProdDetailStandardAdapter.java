@@ -17,6 +17,7 @@ import java.util.List;
 import th.co.rcmo.rcmoapp.Model.STDVarModel;
 import th.co.rcmo.rcmoapp.R;
 import th.co.rcmo.rcmoapp.Util.CalculateConstant;
+import th.co.rcmo.rcmoapp.Util.Util;
 
 /**
  * Created by Taweesin on 6/25/2016.
@@ -83,7 +84,7 @@ public class ProdDetailStandardAdapter extends BaseAdapter {
 
 
         h.txStandardName.setText(tempVar.name);
-        h.txStandardValue.setText(tempVar.value);
+        h.txStandardValue.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(tempVar.value)));
         h.txStandardUnit.setText(tempVar.unit);
 
         return convertView;

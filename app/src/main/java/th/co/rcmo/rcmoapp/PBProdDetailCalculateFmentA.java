@@ -16,15 +16,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.neopixl.pixlui.components.edittext.EditText;
 import com.neopixl.pixlui.components.textview.TextView;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import th.co.rcmo.rcmoapp.API.ProductService;
 import th.co.rcmo.rcmoapp.API.RequestServices;
 import th.co.rcmo.rcmoapp.API.ResponseAPI;
@@ -36,6 +32,7 @@ import th.co.rcmo.rcmoapp.Module.mGetPlotDetail;
 import th.co.rcmo.rcmoapp.Module.mGetVariable;
 import th.co.rcmo.rcmoapp.Module.mVarPlanA;
 import th.co.rcmo.rcmoapp.Util.BitMapHelper;
+import th.co.rcmo.rcmoapp.Util.PlanATextWatcher;
 import th.co.rcmo.rcmoapp.Util.ServiceInstance;
 import th.co.rcmo.rcmoapp.Util.Util;
 import th.co.rcmo.rcmoapp.View.DialogCalculateResult;
@@ -114,14 +111,26 @@ public class PBProdDetailCalculateFmentA extends Fragment implements View.OnClic
         h.btnOption = (Button) view.findViewById(R.id.btnOption);
         h.btnOption.setOnClickListener(this);
 
+        h.listOfSumKaRang = new ArrayList<>();
+        h.listOfSumKaRang.add(h.group1_item_2);
+        h.listOfSumKaRang.add(h.group1_item_3);
+        h.listOfSumKaRang.add(h.group1_item_4);
+        h.listOfSumKaRang.add(h.group1_item_5);
+
+        h.listOfSumWasadu= new ArrayList<>();
+        h.listOfSumKaRang.add(h.group1_item_7);
+        h.listOfSumKaRang.add(h.group1_item_8);
+        h.listOfSumKaRang.add(h.group1_item_9);
+        h.listOfSumKaRang.add(h.group1_item_10);
+
+
+
 
 //=========================== Setup data ==========================================/
 
         userPlotModel = PBProductDetailActivity.userPlotModel;
 
-        FormulaAModel aModel = new FormulaAModel();
-
-        formulaModel = aModel;
+        formulaModel = new FormulaAModel();
 
         API_getVariable(userPlotModel.getPrdID(), userPlotModel.getFisheryType());
 
@@ -131,14 +140,34 @@ public class PBProdDetailCalculateFmentA extends Fragment implements View.OnClic
 
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         setUI();
+        setAction();
 
         return view;
     }
 
+
+    private void  setAction(){
+        h.group1_item_2.addTextChangedListener(new PlanATextWatcher(h.group1_item_2, h, "Karang"));
+        h.group1_item_3.addTextChangedListener(new PlanATextWatcher(h.group1_item_3, h, "Karang"));
+        h.group1_item_4.addTextChangedListener(new PlanATextWatcher(h.group1_item_4, h, "Karang"));
+        h.group1_item_5.addTextChangedListener(new PlanATextWatcher(h.group1_item_5, h, "Karang"));
+
+        h.group1_item_7.addTextChangedListener(new PlanATextWatcher(h.group1_item_7, h, "KaWassadu"));
+        h.group1_item_8.addTextChangedListener(new PlanATextWatcher(h.group1_item_8, h, "KaWassadu"));
+        h.group1_item_9.addTextChangedListener(new PlanATextWatcher(h.group1_item_9, h, "KaWassadu"));
+        h.group1_item_10.addTextChangedListener(new PlanATextWatcher(h.group1_item_10, h, "KaWassadu"));
+
+        h.group1_item_12.addTextChangedListener(new PlanATextWatcher(h.group1_item_12, h, ""));
+
+    }
+
     private void initVariableDataFromDB() {
         API_getPlotDetailANDBlinding(userPlotModel.getPlotID(), formulaModel);
-        formulaModel.calculate();
-        setUpCalUI(formulaModel);
+
+
+        // set variable to json obj
+        //userPlotModel.setVarValue(ProductService.genJsonPlanAVariable(formulaModel));
+
     }
 
 
@@ -150,10 +179,11 @@ public class PBProdDetailCalculateFmentA extends Fragment implements View.OnClic
         h.group1_item_13.setText(Util.dobbleToStringNumber(aModel.KaSermOuppakorn));
         h.group1_item_14.setText(Util.dobbleToStringNumber(aModel.KaSiaOkardOuppakorn));
 
+
     }
 
     private void bindingData(FormulaAModel aModel) {
-        //  aModel.KaRang = 10;
+
         aModel.KaTreamDin = Util.strToDoubleDefaultZero(h.group1_item_2.getText().toString());
         aModel.KaPluk = Util.strToDoubleDefaultZero(h.group1_item_3.getText().toString());
         aModel.KaDoolae = Util.strToDoubleDefaultZero(h.group1_item_4.getText().toString());
@@ -168,26 +198,6 @@ public class PBProdDetailCalculateFmentA extends Fragment implements View.OnClic
         aModel.AttraDokbia = Util.strToDoubleDefaultZero(h.group4_item_1.getText().toString());
         aModel.KaNardPlangTDin = Util.strToDoubleDefaultZero(h.txStartUnit.getText().toString());
 
-        userPlotModel.setVarValue(ProductService.genJsonPlanAVariable(aModel));
-/*
-        mVarPlanA varA   = new mVarPlanA();
-        varA.KaTreamDin  = h.group1_item_2.getText().toString();
-        varA.KaPluk      = h.group1_item_3.getText().toString();
-        varA.KaDoolae    = h.group1_item_4.getText().toString();
-        varA.KaGebGeaw   = h.group1_item_5.getText().toString();
-        varA.KaPan       = h.group1_item_7.getText().toString();
-        varA.KaPuy       = h.group1_item_8.getText().toString();
-        varA.KaYaplab    = h.group1_item_9.getText().toString();
-        varA.KaWassaduUn = h.group1_item_10.getText().toString();
-        //varA.KaChaoTDin = h.group1_item_12.getText().toString();
-        varA.PonPalid    = h.group2_item_1.getText().toString();
-        varA.Raka        = h.group3_item_1.getText().toString();
-        varA.AttraDokbia = h.group4_item_1.getText().toString();
-        varA.KaNardPlangTDin = h.txStartUnit.getText().toString();
-        */
-
-
-
 
 
     }
@@ -199,6 +209,7 @@ public class PBProdDetailCalculateFmentA extends Fragment implements View.OnClic
             h.productIconImg.setImageBitmap(BitMapHelper.decodeSampledBitmapFromResource(getResources(), getResources().getIdentifier(imgName, "drawable", getActivity().getPackageName()), R.dimen.iccircle_img_width, R.dimen.iccircle_img_height));
         }
         if (!userPlotModel.getPlotID().equals("") && !userPlotModel.getPlotID().equals("0")) {
+
             initVariableDataFromDB();
             havePlotId = true;
         } else {
@@ -241,7 +252,7 @@ public class PBProdDetailCalculateFmentA extends Fragment implements View.OnClic
             //  String str = new StringEntity(ProductService.genJsonPlanAVariable(formulaModel), HTTP.UTF_8);
 
 
-            userPlotModel.setVarValue(ProductService.genJsonPlanAVariable(formulaModel));
+            userPlotModel.setVarValue(ProductService.genJsonPlanVariable(formulaModel));
 
 
             List resultArrayResult = new ArrayList();
@@ -337,13 +348,13 @@ public class PBProdDetailCalculateFmentA extends Fragment implements View.OnClic
 
     }
 
-    static class ViewHolder {
-        private TextView group1_item_1, group1_item_6, group1_item_11, group1_item_13, group1_item_14;
-        private EditText group1_item_2, group1_item_3, group1_item_4, group1_item_5, group1_item_7, group1_item_8, group1_item_9, group1_item_10, group1_item_12;
+    public static class ViewHolder {
+        public TextView group1_item_1, group1_item_6, group1_item_11, group1_item_13, group1_item_14;
+        public EditText group1_item_2, group1_item_3, group1_item_4, group1_item_5, group1_item_7, group1_item_8, group1_item_9, group1_item_10, group1_item_12;
 
-        private EditText group2_item_1;
-        private EditText group3_item_1;
-        private EditText group4_item_1;
+        public EditText group2_item_1;
+        public EditText group3_item_1;
+        public EditText group4_item_1;
 
         private ImageView productIconImg;
 
@@ -356,6 +367,8 @@ public class PBProdDetailCalculateFmentA extends Fragment implements View.OnClic
         private Button btnOption;
 
         private RelativeLayout headerLayout;
+
+        private List<android.widget.EditText> listOfSumKaRang, listOfSumWasadu;
     }
 
 
@@ -373,8 +386,10 @@ public class PBProdDetailCalculateFmentA extends Fragment implements View.OnClic
                     mGetVariable.mRespBody var = mVariableBodyLists.get(0);
                     formulaModel.KaSermOuppakorn = Util.strToDoubleDefaultZero(var.getD());
                     formulaModel.KaSiaOkardOuppakorn = Util.strToDoubleDefaultZero(var.getO());
+                    formulaModel.TontumMattratarnPerRai = Util.strToDoubleDefaultZero(var.getCS());
                     h.group1_item_13.setText(String.valueOf(formulaModel.KaSermOuppakorn));
                     h.group1_item_14.setText(String.valueOf(formulaModel.KaSiaOkardOuppakorn));
+
 
                 }
 
@@ -450,40 +465,41 @@ public class PBProdDetailCalculateFmentA extends Fragment implements View.OnClic
                     if (!plotDetail.getVarValue().equals("")) {
                         mVarPlanA varA = new Gson().fromJson(plotDetail.getVarValue(), mVarPlanA.class);
 
-                        aModel.KaTreamDin = Util.strToDoubleDefaultZero(varA.getKaTreamDin());
-                        aModel.KaPluk = Util.strToDoubleDefaultZero(varA.getKaPluk());
-                        aModel.KaDoolae = Util.strToDoubleDefaultZero(varA.getKaDoolae());
-                        aModel.KaGebGeaw = Util.strToDoubleDefaultZero(varA.getKaGebGeaw());
+                        aModel.KaTreamDin       = varA.getKaTreamDin();
+                        aModel.KaPluk           = varA.getKaPluk();
+                        aModel.KaDoolae         = varA.getKaDoolae();
+                        aModel.KaGebGeaw        = varA.getKaGebGeaw();
+                        aModel.KaPan            = varA.getKaPan();
+                        aModel.KaPuy            = varA.getKaPuy();
+                        aModel.KaYaplab         = varA.getKaYaplab();
+                        aModel.KaWassaduUn      = varA.getKaWassaduUn();
+                        aModel.KaChaoTDin       = varA.getKaChaoTDin();
+                        aModel.PonPalid         = varA.getPonPalid();
+                        aModel.predictPrice     = varA.getRaka();
+                        aModel.AttraDokbia      = varA.getAttraDokbia();
+                        aModel.KaNardPlangTDin  = varA.getKaNardPlangTDin();
 
 
-                        aModel.KaPan = Util.strToDoubleDefaultZero(varA.getKaPan());
-                        aModel.KaPuy = Util.strToDoubleDefaultZero(varA.getKaPuy());
-                        aModel.KaYaplab = Util.strToDoubleDefaultZero(varA.getKaYaplab());
-                        aModel.KaWassaduUn = Util.strToDoubleDefaultZero(varA.getKaWassaduUn());
+                        h.group1_item_2.setText(Util.dobbleToStringNumber(varA.KaTreamDin));
+                        h.group1_item_3.setText(Util.dobbleToStringNumber(varA.KaPluk));
+                        h.group1_item_4.setText(Util.dobbleToStringNumber(varA.KaDoolae));
+                        h.group1_item_5.setText(Util.dobbleToStringNumber(varA.KaGebGeaw));
+                        h.group1_item_7.setText(Util.dobbleToStringNumber(varA.KaPan));
+                        h.group1_item_8.setText(Util.dobbleToStringNumber(varA.KaPuy));
+                        h.group1_item_9.setText(Util.dobbleToStringNumber(varA.KaYaplab));
+                        h.group1_item_10.setText(Util.dobbleToStringNumber(varA.KaWassaduUn));
+                        h.group1_item_12.setText(Util.dobbleToStringNumber(varA.KaChaoTDin));
+                        h.group2_item_1.setText(Util.dobbleToStringNumber(varA.PonPalid));
+                        h.group3_item_1.setText(Util.dobbleToStringNumber(varA.getRaka()));
+                        h.group4_item_1.setText(Util.dobbleToStringNumber(varA.AttraDokbia));
 
-                        aModel.KaChaoTDin = Util.strToDoubleDefaultZero(varA.getKaChaoTDin());
+                        h.txStartUnit.setText(Util.dobbleToStringNumber(varA.getKaNardPlangTDin()));
 
-                        aModel.PonPalid = Util.strToDoubleDefaultZero(varA.getPonPalid());
-                        aModel.predictPrice = Util.strToDoubleDefaultZero(varA.getRaka());
-                        aModel.AttraDokbia = Util.strToDoubleDefaultZero(varA.getAttraDokbia());
-                        aModel.KaNardPlangTDin = Util.strToDoubleDefaultZero(varA.getKaNardPlangTDin());
+                        formulaModel.calculate();
 
-
-                        h.group1_item_2.setText(varA.KaTreamDin);
-                        h.group1_item_3.setText(varA.KaPluk);
-                        h.group1_item_4.setText(varA.KaDoolae);
-                        h.group1_item_5.setText(varA.KaGebGeaw);
-                        h.group1_item_7.setText(varA.KaPan);
-                        h.group1_item_8.setText(varA.KaPuy);
-                        h.group1_item_9.setText(varA.KaYaplab);
-                        h.group1_item_10.setText(varA.KaWassaduUn);
-                        h.group1_item_12.setText(varA.KaChaoTDin);
-                        h.group2_item_1.setText(varA.PonPalid);
-                        h.group3_item_1.setText(varA.getRaka());
-                        h.group4_item_1.setText(varA.AttraDokbia);
-
-                        h.txStartUnit.setText(varA.getKaNardPlangTDin());
-
+                        setUpCalUI(formulaModel);
+                    }else{
+                        h.txStartUnit.setText(plotDetail.getPlotRai());
                     }
                 }
             }
@@ -497,6 +513,8 @@ public class PBProdDetailCalculateFmentA extends Fragment implements View.OnClic
                 "&ImeiCode=" + ServiceInstance.GetDeviceID(context));
 
     }
+
+
 
 
 }

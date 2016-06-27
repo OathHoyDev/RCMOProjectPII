@@ -17,8 +17,11 @@ import java.util.List;
 
 import th.co.rcmo.rcmoapp.Model.STDVarModel;
 import th.co.rcmo.rcmoapp.Model.calculate.FormulaAModel;
+import th.co.rcmo.rcmoapp.Model.calculate.FormulaBModel;
+import th.co.rcmo.rcmoapp.Model.calculate.FormulaCModel;
 import th.co.rcmo.rcmoapp.Module.mGetVariable;
 import th.co.rcmo.rcmoapp.Module.mVarPlanA;
+import th.co.rcmo.rcmoapp.Module.mVarPlanB;
 import th.co.rcmo.rcmoapp.ProductDetailStandardListCustomAdapter;
 import th.co.rcmo.rcmoapp.R;
 import th.co.rcmo.rcmoapp.Util.CalculateConstant;
@@ -120,31 +123,26 @@ public class ProductService {
       return stdVarModelList;
     }
 
-    public static String genJsonPlanAVariable(FormulaAModel aModel){
+    public static String genJsonPlanVariable(FormulaAModel aModel){
         mVarPlanA  varA = new mVarPlanA();
-
-        varA.setAttraDokbia(String.valueOf(aModel.AttraDokbia));
-        varA.setKaDoolae(String.valueOf(aModel.KaDoolae));
-        varA.setKaGebGeaw(String.valueOf(aModel.KaGebGeaw));
-        varA.setKaNardPlangTDin(String.valueOf(aModel.KaNardPlangTDin));
-
-        varA.setKaPan(String.valueOf(aModel.KaPan));
-        varA.setKaPluk(String.valueOf(aModel.KaPluk));
-        varA.setKaPuy(String.valueOf(aModel.KaPuy));
-        varA.setKaRang(String.valueOf(aModel.KaRang));
-
-        varA.setKaSermOuppakorn(String.valueOf(aModel.KaSermOuppakorn));
-        varA.setKaSiaOkardLongtoon(String.valueOf(aModel.KaSiaOkardLongtoon));
-        varA.setKaSiaOkardOuppakorn(String.valueOf(aModel.KaSiaOkardOuppakorn));
-        varA.setKaTreamDin(String.valueOf(aModel.KaTreamDin));
-
-        varA.setKaWassadu(String.valueOf(aModel.KaWassadu));
-        varA.setKaWassaduUn(String.valueOf(aModel.KaWassaduUn));
-        varA.setKaYaplab(String.valueOf(aModel.KaYaplab));
-        varA.setRaka(String.valueOf(aModel.predictPrice));
-
-        varA.setPonPalid(String.valueOf(aModel.PonPalid));
-        varA.setKaChaoTDin(String.valueOf(aModel.KaChaoTDin));
+        varA.setAttraDokbia(aModel.AttraDokbia);
+        varA.setKaDoolae(aModel.KaDoolae);
+        varA.setKaGebGeaw(aModel.KaGebGeaw);
+        varA.setKaNardPlangTDin(aModel.KaNardPlangTDin);
+        varA.setKaPan(aModel.KaPan);
+        varA.setKaPluk(aModel.KaPluk);
+        varA.setKaPuy(aModel.KaPuy);
+        varA.setKaRang(aModel.KaRang);
+        varA.setKaSermOuppakorn(aModel.KaSermOuppakorn);
+        varA.setKaSiaOkardLongtoon(aModel.KaSiaOkardLongtoon);
+        varA.setKaSiaOkardOuppakorn(aModel.KaSiaOkardOuppakorn);
+        varA.setKaTreamDin(aModel.KaTreamDin);
+        varA.setKaWassadu(aModel.KaWassadu);
+        varA.setKaWassaduUn(aModel.KaWassaduUn);
+        varA.setKaYaplab(aModel.KaYaplab);
+        varA.setRaka(aModel.predictPrice);
+        varA.setPonPalid(aModel.PonPalid);
+        varA.setKaChaoTDin(aModel.KaChaoTDin);
 
 
         //jsonPlanA = TextUtils.htmlEncode(jsonPlanA);
@@ -158,6 +156,86 @@ public class ProductService {
        }catch(Exception e){
          e.printStackTrace();
        }
+
+        Log.d("GSON","Json -> "+jsonPlanA);
+
+        return value;
+    }
+
+    public static String genJsonPlanVariable(FormulaBModel model){
+        mVarPlanB var = new mVarPlanB();
+        var.setYear(model.Year);
+        var.setAttraDokbia(model.AttraDokbia);
+        var.setKaDoolae(model.KaDoolae);
+        var.setKaGebGeaw(model.KaGebGeaw);
+        var.setKaNardPlangTDin(model.KaNardPlangTDin);
+        var.setKaPan(model.KaPan);
+        var.setKaPluk(model.KaPluk);
+        var.setKaPuy(model.KaPuy);
+        var.setKaRang(model.KaRang);
+        var.setKaSermOuppakorn(model.KaSermOuppakorn);
+        var.setKaSiaOkardLongtoon(model.KaSiaOkardLongtoon);
+        var.setKaSiaOkardOuppakorn(model.KaSiaOkardOuppakorn);
+        var.setKaTreamDin(model.KaTreamDin);
+        var.setKaWassadu(model.KaWassadu);
+        var.setKaWassaduUn(model.KaWassaduUn);
+        var.setKaYaplab(model.KaYaplab);
+        var.setRaka(model.predictPrice);
+        var.setPonPalid(model.PonPalid);
+        var.setKaChaoTDin(model.KaChaoTDin);
+
+
+        //jsonPlanA = TextUtils.htmlEncode(jsonPlanA);
+        String jsonPlanA =(new Gson().toJson(var));
+        String value = "";
+        try {
+
+            byte ptext[] = jsonPlanA.getBytes("ISO-8859-1");
+            value = new String(ptext, "UTF-8");
+            Log.d("Test "," -----------------------------> "+value);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        Log.d("GSON","Json -> "+jsonPlanA);
+
+        return value;
+    }
+
+    public static String genJsonPlanVariable(FormulaCModel model){
+        mVarPlanB var = new mVarPlanB();
+
+        var.setAttraDokbia(model.AttraDokbia);
+        var.setKaDoolae(model.KaDoolae);
+        var.setKaGebGeaw(model.KaGebGeaw);
+        var.setKaNardPlangTDin(model.KaNardPlangTDin);
+        var.setKaPan(model.KaPan);
+        var.setKaPluk(model.KaPluk);
+        var.setKaPuy(model.KaPuy);
+        var.setKaRang(model.KaRang);
+        var.setKaSermOuppakorn(model.KaSermOuppakorn);
+        var.setKaSiaOkardLongtoon(model.KaSiaOkardLongtoon);
+        var.setKaSiaOkardOuppakorn(model.KaSiaOkardOuppakorn);
+        var.setKaTreamDin(model.KaTreamDin);
+        var.setKaWassadu(model.KaWassadu);
+        var.setKaWassaduUn(model.KaWassaduUn);
+        var.setKaYaplab(model.KaYaplab);
+        var.setRaka(model.predictPrice);
+        var.setPonPalid(model.PonPalid);
+        var.setKaChaoTDin(model.KaChaoTDin);
+
+
+        //jsonPlanA = TextUtils.htmlEncode(jsonPlanA);
+        String jsonPlanA =(new Gson().toJson(var));
+        String value = "";
+        try {
+
+            byte ptext[] = jsonPlanA.getBytes("ISO-8859-1");
+            value = new String(ptext, "UTF-8");
+            Log.d("Test "," -----------------------------> "+value);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
 
         Log.d("GSON","Json -> "+jsonPlanA);
 

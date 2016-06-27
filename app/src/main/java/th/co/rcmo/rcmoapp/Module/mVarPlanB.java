@@ -3,8 +3,9 @@ package th.co.rcmo.rcmoapp.Module;
 /**
  * Created by Taweesin on 26/6/2559.
  */
-public class mVarPlanA {
+public class mVarPlanB {
 
+    public double Year ;
     public double KaNardPlangTDin ;
     public double KaRang ;
     public double KaTreamDin;
@@ -26,6 +27,14 @@ public class mVarPlanA {
     public double Raka;
 
     public double AttraDokbia;
+
+    public double getYear() {
+        return Year;
+    }
+
+    public void setYear(double year) {
+        Year = year;
+    }
 
     public double getKaNardPlangTDin() {
         return KaNardPlangTDin;

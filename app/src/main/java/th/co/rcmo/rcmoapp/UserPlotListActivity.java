@@ -300,7 +300,7 @@ public class UserPlotListActivity extends Activity {
                 h.btnProfit.setText("กำไร");
             }
 
-            h.labelProfit.setText(calResult);
+            h.labelProfit.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(calResult)));
             h.labelAddress.setText(respBody.getPlotLocation());
             h.labelPlotSize.setText(respBody.getPlotSize());
             h.labelDate.setText(ServiceInstance.formatStrDate(respBody.getDateUpdated()));

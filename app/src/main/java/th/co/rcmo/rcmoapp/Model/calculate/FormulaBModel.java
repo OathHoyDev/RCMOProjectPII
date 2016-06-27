@@ -41,9 +41,9 @@ public class FormulaBModel extends AbstractFormulaModel {
 
     public double TontumMattratarn = 0;
 
-    public double KaSermOuppakorn = 7.37;
-    public double KaSiaOkardOuppakorn = 1.81;
-    public double TontumMattratarnPerRai = 4689.83;
+    public double KaSermOuppakorn = 0;
+    public double KaSiaOkardOuppakorn = 0;
+    public double TontumMattratarnPerRai = 0;
 
     public double calSumCost = 0;
     public double calSumCostPerRai = 0;

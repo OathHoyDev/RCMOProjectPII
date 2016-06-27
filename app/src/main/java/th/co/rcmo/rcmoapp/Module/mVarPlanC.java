@@ -3,7 +3,8 @@ package th.co.rcmo.rcmoapp.Module;
 /**
  * Created by Taweesin on 26/6/2559.
  */
-public class mVarPlanA {
+public class mVarPlanC {
+
 
     public double KaNardPlangTDin ;
     public double KaRang ;
@@ -26,6 +27,8 @@ public class mVarPlanA {
     public double Raka;
 
     public double AttraDokbia;
+
+
 
     public double getKaNardPlangTDin() {
         return KaNardPlangTDin;
