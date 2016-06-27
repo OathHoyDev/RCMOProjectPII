@@ -10,6 +10,7 @@ import com.google.gson.GsonBuilder;
 
 import org.json.JSONObject;
 
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
@@ -143,17 +144,24 @@ public class ProductService {
         varA.setRaka(String.valueOf(aModel.predictPrice));
 
         varA.setPonPalid(String.valueOf(aModel.PonPalid));
+        varA.setKaChaoTDin(String.valueOf(aModel.KaChaoTDin));
 
 
         //jsonPlanA = TextUtils.htmlEncode(jsonPlanA);
-       String jsonPlanA = Html.escapeHtml(new Gson().toJson(varA));
+       String jsonPlanA =(new Gson().toJson(varA));
+        String value = "";
+       try {
 
-      //  jsonPlanA.replace("\\n", " ");
-
+           byte ptext[] = jsonPlanA.getBytes("ISO-8859-1");
+           value = new String(ptext, "UTF-8");
+           Log.d("Test "," -----------------------------> "+value);
+       }catch(Exception e){
+         e.printStackTrace();
+       }
 
         Log.d("GSON","Json -> "+jsonPlanA);
 
-        return jsonPlanA;
+        return value;
     }
 
 }

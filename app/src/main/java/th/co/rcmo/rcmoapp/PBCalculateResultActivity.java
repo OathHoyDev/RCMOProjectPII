@@ -6,39 +6,39 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.Toast;
 
-import com.mobeta.android.dslv.DragSortListView;
+import com.google.gson.Gson;
 import com.neopixl.pixlui.components.textview.TextView;
+
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
+import th.co.rcmo.rcmoapp.API.ResponseAPI_POST;
 import th.co.rcmo.rcmoapp.API.RequestServices;
 import th.co.rcmo.rcmoapp.API.ResponseAPI;
-import th.co.rcmo.rcmoapp.Model.UserModel;
 import th.co.rcmo.rcmoapp.Model.UserPlotModel;
 import th.co.rcmo.rcmoapp.Model.calculate.CalculateResultModel;
 import th.co.rcmo.rcmoapp.Module.mGetPlotDetail;
+import th.co.rcmo.rcmoapp.Module.mGetVariable;
 import th.co.rcmo.rcmoapp.Module.mSavePlotDetail;
 import th.co.rcmo.rcmoapp.Module.mUserPlotList;
-import th.co.rcmo.rcmoapp.Util.BitMapHelper;
+import th.co.rcmo.rcmoapp.Module.mVarPlanA;
 import th.co.rcmo.rcmoapp.Util.CalculateConstant;
 import th.co.rcmo.rcmoapp.Util.ServiceInstance;
 import th.co.rcmo.rcmoapp.Util.Util;
@@ -222,7 +222,7 @@ public class PBCalculateResultActivity extends Activity {
                     //  API_SavePlotDetail("2", userPlotModel);
                     API_getPlotDetailAndSave(userPlotModel.getPlotID());
                 } else {
-                    API_SavePlotDetail("1", userPlotModel);
+                    API_SaveProd_POST("1", userPlotModel);
                 }
             } else {
                 Log.d(TAG, "Go to update plot Module ");
@@ -238,7 +238,7 @@ public class PBCalculateResultActivity extends Activity {
 
     }
 
-    private void API_SavePlotDetail(String saveFlag, UserPlotModel userPlotInfo) {
+    private void API_SavePlotDetail_GET(String saveFlag, UserPlotModel userPlotInfo) {
         /**
          * 1.SaveFlag (บังคับ)
          2.UserID (บังคับ)
@@ -330,6 +330,67 @@ public class PBCalculateResultActivity extends Activity {
         );
     }
 
+    private void API_SaveProd_POST(String saveFlag, UserPlotModel userPlotInfo) {
+        HashMap<String,Object> param = new HashMap<>();
+
+        param.put("SaveFlag",saveFlag);
+        param.put("UserID",userPlotInfo.getUserID());
+        param.put("PlotID",userPlotInfo.getPlotID() );
+        param.put("PrdID",userPlotInfo.getPrdID());
+        param.put("PrdGrpID",userPlotInfo.getPrdGrpID());
+        param.put("PlotRai",userPlotInfo.getPlotRai());
+        param.put("PondRai",userPlotInfo.getPondRai());
+        param.put("PondNgan",userPlotInfo.getPondNgan());
+        param.put("PondWa",userPlotInfo.getPondWa());
+        param.put("PondMeter",userPlotInfo.getPondMeter());
+        param.put("CoopMeter",userPlotInfo.getCoopMeter());
+        param.put("CoopNumber",userPlotInfo.getCoopNumber());
+        param.put("TamCode",userPlotInfo.getTamCode());
+        param.put("AmpCode",userPlotInfo.getAmpCode());
+        param.put("ProvCode",userPlotInfo.getProvCode());
+        param.put("AnimalNumber",userPlotInfo.getAnimalNumber());
+        param.put("AnimalWeight",userPlotInfo.getAnimalWeight());
+        param.put("AnimalPrice",userPlotInfo.getAnimalPrice());
+        param.put("FisheryType",userPlotInfo.getFisheryType());
+        param.put("FisheryNumType",userPlotInfo.getFisheryNumType());
+        param.put("FisheryNumber",userPlotInfo.getFisheryNumber() );
+        param.put("FisheryWeight",userPlotInfo.getFisheryWeight());
+        param.put("ImeiCode",ServiceInstance.GetDeviceID(PBCalculateResultActivity.this));
+        param.put("VarName",userPlotInfo.getVarName() );
+        param.put("VarValue",userPlotInfo.getVarValue());
+        param.put("CalResult",userPlotInfo.getCalResult());
+
+
+
+        new ResponseAPI_POST(PBCalculateResultActivity.this, new ResponseAPI_POST.OnCallbackAPIListener() {
+            @Override
+            public void callbackSuccess(JSONObject obj) {
+                mSavePlotDetail mSaveResp = new Gson().fromJson(obj.toString(), mSavePlotDetail.class);
+                List<mSavePlotDetail.mRespBody> mRespBody = mSaveResp.getRespBody();
+                if(mRespBody.size()>0){
+                    Log.d("Test ------>","PlodId "+mRespBody.get(0).getPlotID());
+                    plotId = String.valueOf(mRespBody.get(0).getPlotID());
+                    if (plotId == null) {
+                        plotId = "";
+                    }
+                    userPlotModel.setPlotID(plotId);
+                    Log.d(TAG, "Response plotId : " + plotId);
+                    takeScreenshot();
+                    saved = true;
+                    Util.showDialogAndDismiss(PBCalculateResultActivity.this, "บันทึกข้อมูลสำเร็จ");
+                }
+            }
+
+            @Override
+            public void callbackError(int code, String errorMsg) {
+              //  progressbar.gone(PriceActivity.this);
+                //listview.setVisibility(View.INVISIBLE);
+                //findViewById(R.id.no_list).setVisibility(View.VISIBLE);
+
+            }
+        }).POST(RequestServices.ws_savePlotDetail, param, true, false);
+
+    }
 
 
     private void API_GetUserPlot(final String userId) {
@@ -373,6 +434,9 @@ public class PBCalculateResultActivity extends Activity {
     }
 
 
+
+
+
     private void API_getPlotDetailAndSave(String plotID) {
         /**
          1.TamCode (ไม่บังคับใส่)
@@ -402,13 +466,15 @@ public class PBCalculateResultActivity extends Activity {
                     if (userPlotModel.getTamCode().equals("") || userPlotModel.getTamCode().equals("0")) {
                         userPlotModel.setTamCode(String.valueOf(plotDetail.getTamCode()));
                     }
-                    /*
+
                     if(userPlotModel.getVarValue().equals("")|| userPlotModel.getVarValue().equals("0")){
                         userPlotModel.setVarValue(plotDetail.getVarValue());
-                    }*/
+                    }
 
 
-                    API_SavePlotDetail("2", userPlotModel);
+                   // mVarPlanA varA =  new Gson().fromJson(plotDetail.getVarValue(), mVarPlanA.class);
+                  //  Log.d("Testttt --> ",varA.toString());
+                    API_SaveProd_POST("2", userPlotModel);
 
 
                 }

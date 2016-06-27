@@ -34,5 +34,20 @@ public class mSavePlotDetail {
         public int getPlotID() {
             return PlotID;
         }
+
+        @Override
+        public String toString() {
+            return "mRespBody{" +
+                    "PlotID=" + PlotID +
+                    '}';
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "mSavePlotDetail{" +
+                "RespBody=" + RespBody +
+                ", RespStatus=" + RespStatus +
+                '}';
     }
 }

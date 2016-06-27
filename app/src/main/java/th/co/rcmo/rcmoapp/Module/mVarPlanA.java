@@ -9,7 +9,7 @@ public class mVarPlanA {
     public String KaRang ;
     public String KaTreamDin;
     public String KaPluk;
-
+    public String KaChaoTDin;
     public String KaDoolae ;
     public String KaGebGeaw ;
     public String KaWassadu;
@@ -26,6 +26,14 @@ public class mVarPlanA {
     public String Raka;
 
     public String AttraDokbia;
+
+    public String getKaChaoTDin() {
+        return KaChaoTDin;
+    }
+
+    public void setKaChaoTDin(String kaChaoTDin) {
+        KaChaoTDin = kaChaoTDin;
+    }
 
     public String getKaNardPlangTDin() {
         return KaNardPlangTDin;
@@ -161,5 +169,28 @@ public class mVarPlanA {
 
     public void setAttraDokbia(String attraDokbia) {
         AttraDokbia = attraDokbia;
+    }
+
+    @Override
+    public String toString() {
+        return "mVarPlanA{" +
+                "KaNardPlangTDin='" + KaNardPlangTDin + '\'' +
+                ", KaRang='" + KaRang + '\'' +
+                ", KaTreamDin='" + KaTreamDin + '\'' +
+                ", KaPluk='" + KaPluk + '\'' +
+                ", KaDoolae='" + KaDoolae + '\'' +
+                ", KaGebGeaw='" + KaGebGeaw + '\'' +
+                ", KaWassadu='" + KaWassadu + '\'' +
+                ", KaPan='" + KaPan + '\'' +
+                ", KaPuy='" + KaPuy + '\'' +
+                ", KaYaplab='" + KaYaplab + '\'' +
+                ", KaWassaduUn='" + KaWassaduUn + '\'' +
+                ", KaSiaOkardLongtoon='" + KaSiaOkardLongtoon + '\'' +
+                ", KaSermOuppakorn='" + KaSermOuppakorn + '\'' +
+                ", KaSiaOkardOuppakorn='" + KaSiaOkardOuppakorn + '\'' +
+                ", PonPalid='" + PonPalid + '\'' +
+                ", Raka='" + Raka + '\'' +
+                ", AttraDokbia='" + AttraDokbia + '\'' +
+                '}';
     }
 }

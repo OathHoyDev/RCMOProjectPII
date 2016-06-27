@@ -2,8 +2,11 @@ package th.co.rcmo.rcmoapp.Util;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Handler;
+
+import java.text.DecimalFormat;
 
 import th.co.rcmo.rcmoapp.View.DialogChoice;
 
@@ -76,6 +79,11 @@ public class Util {
         return String.format("%,.2f", input);
     }
 
+    public static boolean isNetworkAvailable(Context context) {
+        final ConnectivityManager connectivityManager = ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE));
+        return connectivityManager.getActiveNetworkInfo() != null && connectivityManager.getActiveNetworkInfo().isConnected();
+    }
+
     public static void showDialogAndDismiss(Context context,String msg){
         final android.app.Dialog dialog =   new DialogChoice(context).Show(msg,"");
         final Handler handler  = new Handler();
@@ -86,5 +94,12 @@ public class Util {
             }
         };
         handler.postDelayed(runnable, ServiceInstance.DISMISS_DURATION_MS);
+    }
+
+    public static  String formatPrice(int i) {
+        DecimalFormat formatter = new DecimalFormat("###,###,###");
+        String yourFormattedString = formatter.format(i);
+
+        return yourFormattedString;
     }
 }
