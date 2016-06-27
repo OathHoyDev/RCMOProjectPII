@@ -57,7 +57,7 @@ public class PlanCTextWatcher implements TextWatcher {
             et.setText(formattedString);
             et.setSelection(et.getText().length());
         } catch (NumberFormatException nfe) {
-            nfe.printStackTrace();
+           // nfe.printStackTrace();
         }
         //formulaAModel.calculate();
         double value = 0;

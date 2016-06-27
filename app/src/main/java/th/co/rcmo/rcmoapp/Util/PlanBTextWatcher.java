@@ -49,17 +49,17 @@ public class PlanBTextWatcher implements TextWatcher {
             if (originalString.contains(",")) {
                 originalString = originalString.replaceAll(",", "");
             }
-            longval = Long.parseLong(originalString);
+            double parsedoble = Util.strToDoubleDefaultZero(originalString);
 
             DecimalFormat formatter = (DecimalFormat) NumberFormat.getInstance(Locale.US);
             formatter.applyPattern("#,###,###,###");
-            String formattedString = formatter.format(longval);
+            String formattedString = formatter.format(parsedoble);
 
             //setting text after format to EditText
             et.setText(formattedString);
             et.setSelection(et.getText().length());
         } catch (NumberFormatException nfe) {
-            nfe.printStackTrace();
+           // nfe.printStackTrace();
         }
         //formulaAModel.calculate();
         double value = 0;
