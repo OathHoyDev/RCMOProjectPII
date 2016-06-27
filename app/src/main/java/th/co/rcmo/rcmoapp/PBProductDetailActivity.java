@@ -53,7 +53,7 @@ public class PBProductDetailActivity extends AppCompatActivity {
 
         setAction();
 
-        Util.showDialogAndDismiss(PBProductDetailActivity.this , "getFormularCode : " + userPlotModel.getFormularCode());
+        //Util.showDialogAndDismiss(PBProductDetailActivity.this , "getFormularCode : " + userPlotModel.getFormularCode());
 
         pager= (ViewPager) findViewById(R.id.view_pager);
         FragmentManager manager=getSupportFragmentManager();

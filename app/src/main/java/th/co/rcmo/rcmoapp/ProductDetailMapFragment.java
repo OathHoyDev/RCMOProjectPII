@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.ColorDrawable;
+import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -27,7 +28,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -37,6 +37,7 @@ import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.neopixl.pixlui.components.textview.TextView;
 
 import java.util.List;
 
@@ -54,12 +55,13 @@ import th.co.rcmo.rcmoapp.Module.mTumbon;
 import th.co.rcmo.rcmoapp.Util.CalculateConstant;
 import th.co.rcmo.rcmoapp.Util.GPSTracker;
 import th.co.rcmo.rcmoapp.Util.ServiceInstance;
+import th.co.rcmo.rcmoapp.View.DialogChoice;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ProductDetailMapFragment extends Fragment implements View.OnClickListener {
+public class ProductDetailMapFragment extends Fragment {
 
     public UserPlotModel userPlotModel;
     mProvince.mRespBody selectedprovince = null;
@@ -80,10 +82,10 @@ public class ProductDetailMapFragment extends Fragment implements View.OnClickLi
     private String productType;
 
     private String suitFlag;
-    private String prdID;
-    private String tamCode;
-    private String ampCode;
-    private String provCode;
+//    private String prdID;
+//    private String tamCode;
+//    private String ampCode;
+//    private String provCode;
     private String plodID;
     private String userID;
 
@@ -96,7 +98,7 @@ public class ProductDetailMapFragment extends Fragment implements View.OnClickLi
     String mapSuggess = "";
 
     private Context context;
-    View v;
+    View fragmentView;
     LayoutInflater inflater;
 
     boolean isPopup = false;
@@ -114,10 +116,10 @@ public class ProductDetailMapFragment extends Fragment implements View.OnClickLi
         // Inflate the layout for this fragment
         //return inflater.inflate(R.layout.fragment_product_detail_map, container, false);
 
-        v = inflater.inflate(R.layout.fragment_product_detail_map, container,
+        fragmentView = inflater.inflate(R.layout.fragment_product_detail_map, container,
                 false);
         this.inflater = inflater;
-        context = v.getContext();
+        context = fragmentView.getContext();
         userPlotModel = PBProductDetailActivity.userPlotModel;
         getArgumentFromActivity();
 
@@ -126,33 +128,41 @@ public class ProductDetailMapFragment extends Fragment implements View.OnClickLi
         if (!"".equalsIgnoreCase(userID)) {
             API_getPlotDetail(plodID);
         } else {
-            if ("".equalsIgnoreCase(tamCode)) {
-                getCurrentGPS();
-                showMap(Double.parseDouble(latitude), Double.parseDouble(longitude));
-                API_getPlotSuit(latitude, longitude, "2");
+            if ("".equalsIgnoreCase(userPlotModel.getTamCode())) {
+                getCurrentGPSForGetPlotSuit();
             } else {
-                API_getTumbon(provCode, ampCode, tamCode);
+                API_getTumbon(userPlotModel.getProvCode(), userPlotModel.getAmpCode(), userPlotModel.getTamCode());
             }
         }
 
-        return v;
+        return fragmentView;
     }
 
-    private void getCurrentGPS() {
+    private void getCurrentGPSForGetPlotSuit() {
 
-        gps = new GPSTracker(getContext());
+        LocationManager locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
 
-        if (gps.canGetLocation()) {
+        if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
+            gps = new GPSTracker(getContext());
 
-            double lat = 0;
-            double lon = 0;
+            if (gps.canGetLocation()) {
 
-            lat = gps.getLatitude();
-            lon = gps.getLongitude();
+                double lat = 0;
+                double lon = 0;
 
-            latitude = String.valueOf(lat);
-            longitude = String.valueOf(lon);
+                lat = gps.getLatitude();
+                lon = gps.getLongitude();
+
+                latitude = String.valueOf(lat);
+                longitude = String.valueOf(lon);
+            }
+
+            showMap(Double.parseDouble(latitude), Double.parseDouble(longitude));
+            suitFlag = "2";
+            API_getPlotSuit(latitude, longitude, suitFlag);
         }
+
+
 
     }
 
@@ -188,15 +198,15 @@ public class ProductDetailMapFragment extends Fragment implements View.OnClickLi
         productType = getArguments().getString("productType");
         */
         plodID = userPlotModel.getPlotID();
-        prdID = userPlotModel.getPrdID();
+//        prdID = userPlotModel.getPrdID();
         if (userPlotModel.getTamCode().equals("")) {
             suitFlag = "2";
         } else {
             suitFlag = "1";
         }
-        tamCode = userPlotModel.getTamCode();
-        ampCode = userPlotModel.getAmpCode();
-        provCode = userPlotModel.getProvCode();
+//        tamCode = userPlotModel.getTamCode();
+//        ampCode = userPlotModel.getAmpCode();
+//        provCode = userPlotModel.getProvCode();
         userID = userPlotModel.getUserID();
 
         productType = userPlotModel.getPrdGrpID();
@@ -204,7 +214,19 @@ public class ProductDetailMapFragment extends Fragment implements View.OnClickLi
 
     private void initialLayout(Bundle savedInstanceState) {
 
-        RelativeLayout suggessBottomBG = (RelativeLayout) v.findViewById(R.id.suggessBottomBG);
+        RelativeLayout suggessBottomBG = (RelativeLayout) fragmentView.findViewById(R.id.suggessBottomBG);
+        RelativeLayout changeLocationLayout = (RelativeLayout) fragmentView.findViewById(R.id.changeLocationLayout);
+        changeLocationLayout.setVisibility(View.GONE);
+
+        ImageButton btnCenterMarker = (ImageButton) fragmentView.findViewById(R.id.btnCenterMarker);
+
+        if ("".equalsIgnoreCase(userPlotModel.getProvCode()) &&
+            "".equalsIgnoreCase(userPlotModel.getAmpCode()) &&
+            "".equalsIgnoreCase(userPlotModel.getTamCode())){
+            btnCenterMarker.setVisibility(View.GONE);
+            displayPlotSuitDefault();
+        }
+
         //
         switch (productType) {
             case CalculateConstant.PRODUCT_TYPE_PLANT:
@@ -218,14 +240,14 @@ public class ProductDetailMapFragment extends Fragment implements View.OnClickLi
                 break;
         }
 
-        fadeView = (FrameLayout) v.findViewById(R.id.fadeLayout);
+        fadeView = (FrameLayout) fragmentView.findViewById(R.id.fadeLayout);
         fadeView.setVisibility(View.GONE);
 
-        mapView = (MapView) v.findViewById(R.id.map);
+        mapView = (MapView) fragmentView.findViewById(R.id.map);
         mapView.onCreate(savedInstanceState);
 
         map = mapView.getMap();
-        map.getUiSettings().setMyLocationButtonEnabled(true);
+
 
         // Gets to GoogleMap from the MapView and does initialization stuff
         if (ContextCompat.checkSelfPermission(context, android.Manifest.permission.ACCESS_FINE_LOCATION) ==
@@ -234,14 +256,19 @@ public class ProductDetailMapFragment extends Fragment implements View.OnClickLi
                         PackageManager.PERMISSION_GRANTED) {
             map.setMyLocationEnabled(true);
 
-
         }
 
         map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
+
+                map.clear();
+                pinPlotLocation(Double.parseDouble(latitude), Double.parseDouble(longitude));
+
                 Log.d(TAG, "onMapClick: " + latLng.toString());
                 API_getPlotSuit(String.valueOf(latLng.latitude), String.valueOf(latLng.longitude), "2");
+                MarkerOptions marker = new MarkerOptions().position(new LatLng(latLng.latitude, latLng.longitude));
+                map.addMarker(marker);
             }
         });
 
@@ -256,53 +283,19 @@ public class ProductDetailMapFragment extends Fragment implements View.OnClickLi
             e.printStackTrace();
         }
 
-//        gps = new GPSTracker(getContext());
-//
-//        if (gps.canGetLocation()) {
-//
-//            double lat = 0;
-//            double lon = 0;
-//
-//            if ("".equalsIgnoreCase(tamCode)) {
-//                lat = gps.getLatitude();
-//                lon = gps.getLongitude();
-//
-//                latitude = String.valueOf(lat);
-//                longitude = String.valueOf(lon);
-//
-//                showMap(lat, lon);
-//            }
-////            else {
-////                API_getTumbon(provCode, ampCode, tamCode);
-////            }
-//
-//
-//        }
-
-
         // Add Button Action
-        ImageButton buttonMapStyle = (ImageButton) v.findViewById(R.id.btnMapStyle);
-
-        buttonMapStyle.setBackgroundResource(R.drawable.btn_sate);
-        mapType = 1;
-        map.setMapType(1);
-
-        buttonMapStyle.setOnClickListener(this);
-
-        ImageButton buttonCenterMarker = (ImageButton) v.findViewById(R.id.btnCenterMarker);
-
-        buttonCenterMarker.setOnClickListener(this);
-
-        Button btnSuggession = (Button) v.findViewById(R.id.btnSuggession);
-
-        btnSuggession.setOnClickListener(this);
-
+        setAction();
     }
 
     private void showMap(double latitude, double longitude) {
 
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(latitude, longitude), 12);
         map.animateCamera(cameraUpdate);
+
+        pinPlotLocation(latitude, longitude);
+    }
+
+    private void pinPlotLocation(double latitude, double longitude) {
 
         Bitmap bm = BitmapFactory.decodeResource(getResources(), R.drawable.pin);
 
@@ -319,9 +312,9 @@ public class ProductDetailMapFragment extends Fragment implements View.OnClickLi
 
 
     private void displayPlotSuitValue(mGetPlotSuit.mRespBody var) {
-        com.neopixl.pixlui.components.textview.TextView txSuggessPlot = (com.neopixl.pixlui.components.textview.TextView) v.findViewById(R.id.txSuggessPlot);
-        com.neopixl.pixlui.components.textview.TextView txAddress = (com.neopixl.pixlui.components.textview.TextView) v.findViewById(R.id.txAddress);
-        ImageView suggessStar = (ImageView) v.findViewById(R.id.suggessStar);
+        com.neopixl.pixlui.components.textview.TextView txSuggessPlot = (com.neopixl.pixlui.components.textview.TextView) fragmentView.findViewById(R.id.txSuggessPlot);
+        com.neopixl.pixlui.components.textview.TextView txAddress = (com.neopixl.pixlui.components.textview.TextView) fragmentView.findViewById(R.id.txAddress);
+        ImageView suggessStar = (ImageView) fragmentView.findViewById(R.id.suggessStar);
 
         String address = "จ." + var.getProvNameTH() + " อ." + var.getAmpNameTH() + " ต." + var.getTamNameTH();
 
@@ -364,18 +357,18 @@ public class ProductDetailMapFragment extends Fragment implements View.OnClickLi
     }
 
     private void displayPlotSuitDefault() {
-        com.neopixl.pixlui.components.textview.TextView txSuggessPlot = (com.neopixl.pixlui.components.textview.TextView) v.findViewById(R.id.txSuggessPlot);
-        com.neopixl.pixlui.components.textview.TextView txAddress = (com.neopixl.pixlui.components.textview.TextView) v.findViewById(R.id.txAddress);
-        ImageView suggessStar = (ImageView) v.findViewById(R.id.suggessStar);
 
-        txAddress.setText("");
+        com.neopixl.pixlui.components.textview.TextView txSuggessPlot = (com.neopixl.pixlui.components.textview.TextView) fragmentView.findViewById(R.id.txSuggessPlot);
+        com.neopixl.pixlui.components.textview.TextView txAddress = (com.neopixl.pixlui.components.textview.TextView) fragmentView.findViewById(R.id.txAddress);
+        ImageView suggessStar = (ImageView) fragmentView.findViewById(R.id.suggessStar);
+
+        txAddress.setText("กรุณาระบุพื้นที่");
         txSuggessPlot.setText("ไม่พบข้อมูล");
-
 
         suggessStar.setImageResource(R.drawable.ic_0star);
 
 
-        suggession = "ไม่พบข้อมูล";
+        suggession = "ไม่พบข้อมูล\n\n";
         recommend = "";
         recommendProduct = "";
 
@@ -383,93 +376,187 @@ public class ProductDetailMapFragment extends Fragment implements View.OnClickLi
     }
 
 
-    public void onClick(View v) {
+    public void setAction() {
 
-        if (v.getId() == R.id.btnSuggession) {
+        fragmentView.findViewById(R.id.btnSuggession).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-            Button btnSuggession = (Button) v.findViewById(R.id.btnSuggession);
+                Button btnSuggession = (Button) v.findViewById(R.id.btnSuggession);
 
-            LayoutInflater layoutInflater
-                    = (LayoutInflater) getContext()
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View popupView = layoutInflater.inflate(R.layout.layout_suggestion_popup, null);
+                LayoutInflater layoutInflater
+                        = (LayoutInflater) getContext()
+                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                View popupView = layoutInflater.inflate(R.layout.layout_suggestion_popup, null);
 
-//            RelativeLayout borderLayout = (RelativeLayout)popupView.findViewById(R.id.borderFrame);
+                RelativeLayout suggess_layout = (RelativeLayout) popupView.findViewById(R.id.suggess_layout);
 
-//            switch (productType){
-//                case CalculateConstant.PRODUCT_TYPE_ANIMAL :
-//                    borderLayout.setBackgroundResource(R.color.RcmoAnimalBG);
-//                    break;
-//                case CalculateConstant.PRODUCT_TYPE_PLANT :
-//                    borderLayout.setBackgroundResource(R.color.RcmoPlantBG);
-//                    break;
-//                case CalculateConstant.PRODUCT_TYPE_FISH :
-//                    borderLayout.setBackgroundResource(R.color.RcmoFishBG);
-//                    break;
-//            }
+                com.neopixl.pixlui.components.textview.TextView txSuggession = (com.neopixl.pixlui.components.textview.TextView) popupView.findViewById(R.id.txSuggession);
+                txSuggession.setText(suggession);
 
-            com.neopixl.pixlui.components.textview.TextView txSuggession = (com.neopixl.pixlui.components.textview.TextView) popupView.findViewById(R.id.txSuggession);
-            txSuggession.setText(suggession);
+                com.neopixl.pixlui.components.textview.TextView txRecommend = (com.neopixl.pixlui.components.textview.TextView) popupView.findViewById(R.id.txRecommend);
+                txRecommend.setText(recommend);
 
-            com.neopixl.pixlui.components.textview.TextView txRecommend = (com.neopixl.pixlui.components.textview.TextView) popupView.findViewById(R.id.txRecommend);
-            txRecommend.setText(recommend);
+                com.neopixl.pixlui.components.textview.TextView txRecommendProduct = (com.neopixl.pixlui.components.textview.TextView) popupView.findViewById(R.id.txRecommendProduct);
+                txRecommendProduct.setText(recommendProduct);
 
-            com.neopixl.pixlui.components.textview.TextView txRecommendProduct = (com.neopixl.pixlui.components.textview.TextView) popupView.findViewById(R.id.txRecommendProduct);
-            txRecommendProduct.setText(recommendProduct);
+                if (popupWindow == null) {
 
-            if (popupWindow == null) {
+                    Display display = getActivity().getWindowManager().getDefaultDisplay();
+                    int width = display.getWidth();
+                    int popupWidth = (int) (width * 0.7);
+                    int popupHeight = (int) (width * 0.5);
 
-                Display display = getActivity().getWindowManager().getDefaultDisplay();
-                int width = display.getWidth();
-                int popupWidth = (int) (width * 0.7);
-                int popupHeight = (int) (width * 0.6);
+                    ViewGroup.LayoutParams suggessParam = suggess_layout.getLayoutParams();
+                    //suggessParam.height = (int) (popupHeight * 0.9);
 
-                popupWindow = new PopupWindow(
-                        popupView, popupWidth, popupHeight);
+                    popupWindow = new PopupWindow(
+                            popupView, popupWidth, popupHeight);
 
-                popupWindow.setOutsideTouchable(true);
+                    popupWindow.setOutsideTouchable(true);
 
-                fadeView.setVisibility(View.VISIBLE);
-                popupWindow.showAsDropDown(btnSuggession, Gravity.TOP | Gravity.RIGHT, 0);
-                isPopup = true;
-
-            } else {
-
-                if (isPopup) {
-                    fadeView.setVisibility(View.GONE);
-                    popupWindow.dismiss();
-                    popupWindow = null;
-                    isPopup = false;
-                } else {
                     fadeView.setVisibility(View.VISIBLE);
                     popupWindow.showAsDropDown(btnSuggession, Gravity.TOP | Gravity.RIGHT, 0);
                     isPopup = true;
+
+                    popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+
+                        @Override
+                        public void onDismiss() {
+                            isPopup = false;
+                            fadeView.setVisibility(View.GONE);
+                            popupWindow.dismiss();
+                        }
+                    });
+
+                } else {
+
+                    if (isPopup) {
+                        fadeView.setVisibility(View.GONE);
+                        popupWindow.dismiss();
+                        popupWindow = null;
+                        isPopup = false;
+                    } else {
+                        fadeView.setVisibility(View.VISIBLE);
+                        popupWindow.showAsDropDown(btnSuggession, Gravity.TOP | Gravity.RIGHT, 0);
+                        isPopup = true;
+                    }
                 }
             }
+        });
 
+        fragmentView.findViewById(R.id.btnMapStyle).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-        } else if (v.getId() == R.id.btnMapStyle) {
+                ImageButton btnMap = (ImageButton) v.findViewById(R.id.btnMapStyle);
 
-            ImageButton btnMap = (ImageButton) v.findViewById(R.id.btnMapStyle);
-
-            if (mapType == 1) {
-                mapType = 2;
-                map.setMapType(2);
-                btnMap.setBackgroundResource(R.drawable.btn_road);
-            } else {
-                mapType = 1;
-                map.setMapType(1);
-                btnMap.setBackgroundResource(R.drawable.btn_sate);
+                if (mapType == 1) {
+                    mapType = 2;
+                    map.setMapType(2);
+                    btnMap.setBackgroundResource(R.drawable.btn_road);
+                } else {
+                    mapType = 1;
+                    map.setMapType(1);
+                    btnMap.setBackgroundResource(R.drawable.btn_sate);
+                }
             }
+        });
 
-        } else if (v.getId() == R.id.btnCenterMarker) {
+        fragmentView.findViewById(R.id.btnCenterMarker).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-            double lat = Double.parseDouble(latitude);
-            double lon = Double.parseDouble(longitude);
+                double lat = Double.parseDouble(latitude);
+                double lon = Double.parseDouble(longitude);
 
-            CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(lat, lon), 12);
-            map.animateCamera(cameraUpdate);
-        }
+                map.clear();
+                pinPlotLocation(lat, lon);
+
+                CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(lat, lon), 12);
+                map.animateCamera(cameraUpdate);
+
+                API_getPlotSuit(latitude, longitude, suitFlag);
+            }
+        });
+
+        fragmentView.findViewById(R.id.btnChangeLocation).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                RelativeLayout changeLocationLayout = (RelativeLayout) fragmentView.findViewById(R.id.changeLocationLayout);
+
+                changeLocationLayout.setVisibility(View.VISIBLE);
+            }
+        });
+
+        fragmentView.findViewById(R.id.btnCloseChangeLocation).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                RelativeLayout changeLocationLayout = (RelativeLayout) fragmentView.findViewById(R.id.changeLocationLayout);
+
+                changeLocationLayout.setVisibility(View.GONE);
+            }
+        });
+
+        fragmentView.findViewById(R.id.inputprovice).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                API_getProvince();
+            }
+        });
+
+        fragmentView.findViewById(R.id.inputAmphoe).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                API_getAmphoe(selectedprovince.getProvCode());
+            }
+        });
+
+        fragmentView.findViewById(R.id.inputTumbon).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                API_getTumbonList(selectedprovince.getProvCode(), selectedAmphoe.getAmpCode());
+            }
+        });
+
+        fragmentView.findViewById(R.id.btnSaveChangeLocation).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (selectedprovince == null || selectedAmphoe == null || selectedTumbon == null){
+
+                    new DialogChoice(context)
+                            .ShowOneChoice("กรุณากรอกข้อมูลให้ครบถ้วน", null);
+
+                }else {
+
+                    userPlotModel.setProvCode(selectedprovince.getProvCode());
+                    userPlotModel.setAmpCode(selectedAmphoe.getAmpCode());
+                    userPlotModel.setTamCode(selectedTumbon.getTamCode());
+
+                    ImageButton btnCenterMarker = (ImageButton) fragmentView.findViewById(R.id.btnCenterMarker);
+                    RelativeLayout changeLocationLayout = (RelativeLayout) fragmentView.findViewById(R.id.changeLocationLayout);
+
+                    changeLocationLayout.setVisibility(View.GONE);
+
+                    selectedprovince = null;
+                    selectedAmphoe = null;
+                    selectedTumbon = null;
+
+                    btnCenterMarker.setVisibility(View.VISIBLE);
+
+                    API_getTumbon(userPlotModel.getProvCode(), userPlotModel.getAmpCode(), userPlotModel.getTamCode());
+
+                }
+            }
+        });
+
+
     }
 
 
@@ -498,9 +585,9 @@ public class ProductDetailMapFragment extends Fragment implements View.OnClickLi
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                TextView provinceTextView = (TextView) view.findViewById(R.id.inputprovice);
-                TextView amphoeTextView = (TextView) view.findViewById(R.id.inputAmphoe);
-                TextView tumbonTextView = (TextView) view.findViewById(R.id.inputTumbon);
+                TextView provinceTextView = (TextView) fragmentView.findViewById(R.id.inputprovice);
+                TextView amphoeTextView = (TextView) fragmentView.findViewById(R.id.inputAmphoe);
+                TextView tumbonTextView = (TextView) fragmentView.findViewById(R.id.inputTumbon);
 
 
                 selectedAmphoe = null;
@@ -549,8 +636,8 @@ public class ProductDetailMapFragment extends Fragment implements View.OnClickLi
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                TextView amphoeTextView = (TextView) view.findViewById(R.id.inputAmphoe);
-                TextView tumbonTextView = (TextView) view.findViewById(R.id.inputTumbon);
+                TextView amphoeTextView = (TextView) fragmentView.findViewById(R.id.inputAmphoe);
+                TextView tumbonTextView = (TextView) fragmentView.findViewById(R.id.inputTumbon);
 
                 selectedTumbon = null;
 
@@ -597,7 +684,7 @@ public class ProductDetailMapFragment extends Fragment implements View.OnClickLi
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 //   TextView amphoeTextView = (TextView) view.findViewById(R.id.inputAmphoe);
-                TextView tumbonTextView = (TextView) view.findViewById(R.id.inputTumbon);
+                TextView tumbonTextView = (TextView) fragmentView.findViewById(R.id.inputTumbon);
                 if (tunbonRespList.get(position).getTamCode().equals("0")) {
                     selectedTumbon = null;
                     tumbonTextView.setText("");
@@ -630,17 +717,15 @@ public class ProductDetailMapFragment extends Fragment implements View.OnClickLi
 
                 if (mPlotDetailBodyLists.size() != 0) {
 
-                    prdID = mPlotDetailBodyLists.get(0).getPrdID();
-                    provCode = mPlotDetailBodyLists.get(0).getProvCode();
-                    ampCode = mPlotDetailBodyLists.get(0).getAmpCode();
-                    tamCode = mPlotDetailBodyLists.get(0).getTamCode();
+                    userPlotModel.setPrdID(String.valueOf(mPlotDetailBodyLists.get(0).getPrdID()));
+                    userPlotModel.setProvCode(String.valueOf(mPlotDetailBodyLists.get(0).getProvCode()));
+                    userPlotModel.setAmpCode(String.valueOf(mPlotDetailBodyLists.get(0).getAmpCode()));
+                    userPlotModel.setTamCode(String.valueOf(mPlotDetailBodyLists.get(0).getTamCode()));
 
-                    if ("".equalsIgnoreCase(tamCode)) {
-                        getCurrentGPS();
-                        showMap(Double.parseDouble(latitude), Double.parseDouble(longitude));
-                        API_getPlotSuit(latitude, longitude, "2");
+                    if ("".equalsIgnoreCase(userPlotModel.getTamCode())) {
+                        getCurrentGPSForGetPlotSuit();
                     } else {
-                        API_getTumbon(provCode, ampCode, tamCode);
+                        API_getTumbon(userPlotModel.getProvCode(), userPlotModel.getAmpCode(), userPlotModel.getTamCode());
                     }
 
 
@@ -661,26 +746,28 @@ public class ProductDetailMapFragment extends Fragment implements View.OnClickLi
 
     private void API_getPlotSuit(String currLat, String curLon, String suitFlag) {
 
+        //SuitFlag (1=ใช้ TamCode / 2 = ใช้ latlng)
+
         String cmd = "";
 
         if ("1".equalsIgnoreCase(suitFlag)) {
 
             cmd = "?SuitFlag=" + suitFlag + "" +
-                    "&PrdID=" + prdID +
-                    "&TamCode=" + tamCode +
-                    "&AmpCode=" + ampCode +
-                    "&ProvCode=" + provCode +
-                    "&Latitude=" + currLat +
-                    "&Longitude=" + curLon +
+                    "&PrdID=" + userPlotModel.getPrdID() +
+                    "&TamCode=" + userPlotModel.getTamCode() +
+                    "&AmpCode=" + userPlotModel.getAmpCode() +
+                    "&ProvCode=" + userPlotModel.getProvCode() +
+                    "&Latitude="  +
+                    "&Longitude="  +
                     "&ImeiCode=" + ServiceInstance.GetDeviceID(context);
 
         } else {
 
             cmd = "?SuitFlag=" + suitFlag + "" +
-                    "&PrdID=" + prdID +
-                    "&TamCode=" + tamCode +
-                    "&AmpCode=" + ampCode +
-                    "&ProvCode=" + provCode +
+                    "&PrdID="  + userPlotModel.getPrdID() +
+                    "&TamCode="  +
+                    "&AmpCode="  +
+                    "&ProvCode=" +
                     "&Latitude=" + currLat +
                     "&Longitude=" + curLon +
                     "&ImeiCode=" + ServiceInstance.GetDeviceID(context);
@@ -834,8 +921,9 @@ public class ProductDetailMapFragment extends Fragment implements View.OnClickLi
                 latitude = tumbon.getLatitude();
                 longitude = tumbon.getLongitude();
 
+                suitFlag = "1";
                 showMap(Double.parseDouble(latitude), Double.parseDouble(longitude));
-                API_getPlotSuit(latitude, longitude, "1");
+                API_getPlotSuit(latitude, longitude, suitFlag);
             }
 
             @Override

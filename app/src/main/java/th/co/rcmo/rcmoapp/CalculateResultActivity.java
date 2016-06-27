@@ -49,6 +49,7 @@ public class CalculateResultActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculate_result);
         initialDetail();
+        setAction();
     }
 
 
@@ -131,6 +132,8 @@ public class CalculateResultActivity extends Activity {
             txProfitLossValue.setText(String.format("%,.2f", calculateResultModel.calculateResult));
         }
 
+        userPlotModel.setCalResult(String.format("%,.2f", calculateResultModel.calculateResult));
+
 
 
       //  calculateResultModel.resultList;
@@ -143,21 +146,19 @@ public class CalculateResultActivity extends Activity {
         SharedPreferences sp = getSharedPreferences(ServiceInstance.PREF_NAME, Context.MODE_PRIVATE);
         String userId = sp.getString(ServiceInstance.sp_userId, "0");
         userPlotModel.setUserID(userId);
-        if (!userId.equals("0")) {
-            if (!saved) {
-                Log.d(TAG, "Go to save plot Module ");
-                API_SavePlotDetail("1", userPlotModel);
-            } else {
-                Log.d(TAG, "Go to update plot Module ");
-                API_SavePlotDetail("2", userPlotModel);
+        API_SavePlotDetail("2", userPlotModel);
 
+
+    }
+    // Action
+
+    private void setAction() {
+        findViewById(R.id.btnSavePlotDetail).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                upsertUserPlot();
             }
-        } else {
-            new DialogChoice(CalculateResultActivity.this)
-                    .ShowOneChoice("ไม่สามารถบันทึกข้อมูล", "- กรุณา Login ก่อนทำการบันทึกข้อมูล"); //save image
-        }
-
-
+        });
     }
 
     private void API_SavePlotDetail(String saveFlag, UserPlotModel userPlotInfo) {

@@ -22,7 +22,7 @@ public class CalculateConstant {
         tmp.put("D","ค่าเสื่อมอุปกรณ์");
         tmp.put("O","ค่าเสียโอกาสอุปกรณ์");
         tmp.put("CA","ต้นทุนเฉลี่ยก่อนให้ผล");
-        tmp.put("CS","ต้นทุนมาตรฐาน ของ สศก.");
+        tmp.put("CS","ต้นทุนเฉลี่ย");
         CALCULATE_STANDARD_CONST_AB = tmp;
     }
 
@@ -33,7 +33,7 @@ public class CalculateConstant {
         tmp.put("D","ค่าเสื่อมอุปกรณ์");
         tmp.put("O","ค่าเสียโอกาสอุปกรณ์");
         tmp.put("CA","ต้นทุนเฉลี่ยก่อนให้ผล");
-        tmp.put("CS","ต้นทุนมาตรฐาน ของ สศก.");
+        tmp.put("CS","ต้นทุนเฉลี่ย");
         CALCULATE_STANDARD_CONST_C = tmp;
     }
 
@@ -101,7 +101,7 @@ public class CalculateConstant {
         tmp.put("D",new String[]{"ค่าเสื่อมอุปกรณ์"           , UNIT_BATH_RAI});
         tmp.put("O",new String[]{"ค่าเสียโอกาสอุปกรณ์"       , UNIT_BATH_RAI});
         tmp.put("CA",new String[]{"ต้นทุนเฉลี่ยก่อนให้ผล"      , UNIT_BATH_RAI});
-        tmp.put("CS",new String[]{"ต้นทุนเฉลี่ย ของ สศก." , UNIT_BATH_RAI});
+        tmp.put("CS",new String[]{"ต้นทุนเฉลี่ย" , UNIT_BATH_RAI});
 
         PB_CALCULATE_STANDARD_CONST_AB = tmp;
     }
@@ -113,7 +113,7 @@ public class CalculateConstant {
         tmp.put("D", new String[]{"ค่าเสื่อมอุปกรณ์"      , UNIT_BATH_RAI});
         tmp.put("O",  new String[]{"ค่าเสียโอกาสอุปกรณ์" ,UNIT_BATH_RAI});
         tmp.put("CA", new String[]{"ต้นทุนเฉลี่ยก่อนให้ผล" ,UNIT_BATH_RAI});
-        tmp.put("CS", new String[]{"ต้นทุนเฉลี่ย ของ สศก.",UNIT_BATH_RAI});
+        tmp.put("CS", new String[]{"ต้นทุนเฉลี่ย",UNIT_BATH_RAI});
         PB_CALCULATE_STANDARD_CONST_C = tmp;
     }
 

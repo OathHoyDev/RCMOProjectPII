@@ -20,7 +20,7 @@
             android:layout_height="50dp"
             android:id="@+id/btnMapStyle"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/btn_sate"/>
 
         <ImageButton
@@ -37,6 +37,113 @@
             android:layout_alignEnd="@+id/btnMapStyle" />
 
         <RelativeLayout
+            android:id="@+id/changeLocationLayout"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_above="@+id/suggessBottomBG"
+            android:background="@color/RcmoWhiteBG">
+
+            <LinearLayout
+                android:paddingBottom="15dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_gravity="top"
+                >
+
+                <ImageButton
+                    android:id="@+id/btnCloseChangeLocation"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/btn_close_map"
+                    android:background="@android:color/transparent"
+                    android:layout_gravity="right"
+                    android:scaleType="fitXY"/>
+
+
+                <com.neopixl.pixlui.components.textview.TextView
+                    pixlui:typeface="Quark-Bold.otf"
+                    android:layout_weight="1"
+                    android:drawableRight="@drawable/arrow_dropdown"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="15dp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="@dimen/margin_normal"
+                    android:hint="จังหวัด"
+                    android:textColor="@color/RcmoNormalDarkText"
+                    android:textColorHint="@color/RcmoHintText"
+                    android:imeOptions="actionNext"
+                    android:background="@color/RcmoLightGrayBG"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:inputType="text"
+                    android:textCursorDrawable="@drawable/text_cursor"
+                    android:clickable="true"
+                    android:textSize="@dimen/textsize_normal"
+                    android:id="@+id/inputprovice"/>
+
+                <com.neopixl.pixlui.components.textview.TextView
+                    pixlui:typeface="Quark-Bold.otf"
+                    android:drawableRight="@drawable/arrow_dropdown"
+                    android:layout_width="300dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="15dp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="@dimen/margin_normal"
+                    android:hint="อำเภอ"
+                    android:textColor="@color/RcmoNormalDarkText"
+                    android:textColorHint="@color/RcmoHintText"
+                    android:imeOptions="actionNext"
+                    android:background="@color/RcmoLightGrayBG"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:inputType="text"
+                    android:textCursorDrawable="@drawable/text_cursor"
+                    android:textSize="@dimen/textsize_normal"
+                    android:id="@+id/inputAmphoe"/>
+
+                <com.neopixl.pixlui.components.textview.TextView
+                    android:drawableRight="@drawable/arrow_dropdown"
+                    pixlui:typeface="Quark-Bold.otf"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="15dp"
+                    android:layout_weight="1"
+                    android:textStyle="bold"
+                    android:layout_marginTop="@dimen/margin_normal"
+                    android:hint="ตำบล"
+                    android:textColor="@color/RcmoNormalDarkText"
+                    android:textColorHint="@color/RcmoHintText"
+                    android:imeOptions="actionNext"
+                    android:background="@color/RcmoLightGrayBG"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:inputType="text"
+                    android:textCursorDrawable="@drawable/text_cursor"
+                    android:textSize="@dimen/textsize_normal"
+                    android:id="@+id/inputTumbon"/>
+
+                <com.neopixl.pixlui.components.textview.TextView
+                    pixlui:typeface="Quark-Bold.otf"
+                    android:background="@drawable/action_orange_cut_conner"
+                    android:layout_weight="1"
+                    android:layout_width="200dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="@dimen/margin_large"
+                    android:text="บันทึก"
+                    android:id="@+id/btnSaveChangeLocation"
+                    android:gravity="center_vertical|center_horizontal" />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_alignParentBottom="true"
@@ -48,33 +155,52 @@
                 pixlui:typeface="Quark-Bold.otf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text=""
                 android:id="@+id/txSuggessPlot"
                 android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp" />
+                android:layout_gravity="center_horizontal"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/RcmoWhiteBG" />
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:id="@+id/suggessStar"
-                android:layout_below="@+id/txSuggessPlot"
-                android:layout_centerHorizontal="true"
                 android:src="@drawable/ic_0star"
                 android:scaleType="fitCenter"
-                android:layout_marginTop="5dp" />
+                android:layout_centerInParent="true" />
 
-            <com.neopixl.pixlui.components.textview.TextView
-                pixlui:typeface="Quark-Bold.otf"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text=""
-                android:id="@+id/txAddress"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="10dp" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_alignParentBottom="true">
+
+                <com.neopixl.pixlui.components.textview.TextView
+                    pixlui:typeface="Quark-Bold.otf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text=""
+                    android:id="@+id/txAddress"
+                    android:layout_alignParentBottom="false"
+                    android:layout_marginBottom="5dp"
+                    android:layout_centerInParent="true"
+                    android:textColor="@color/RcmoWhiteBG" />
+
+                <ImageButton
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:id="@+id/btnChangeLocation"
+                    android:src="@drawable/action_change_location"
+                    android:background="@android:color/transparent"
+                    android:scaleType="fitXY"
+                    android:layout_marginLeft="10dp"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/txAddress" />
+            </RelativeLayout>
+
         </RelativeLayout>
 
         <FrameLayout

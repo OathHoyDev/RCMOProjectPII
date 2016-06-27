@@ -306,6 +306,12 @@ public class ProductDetailCalculateFragmentD extends Fragment implements  View.O
             String [] tontoonCal_3 = {"" , String.format("%,.2f", formulaModel.calCostPerKg) , "บาท/กก."};
             resultArrayResult.add(tontoonCal_3);
 
+            DialogCalculateResult.calculateResultModel.resultList = resultArrayResult;
+
+            DialogCalculateResult.userPlotModel.setVarName(formulaModel.getParamName(formulaModel , formulaModel.calculateLabel));
+            DialogCalculateResult.userPlotModel.setVarValue(formulaModel.getParamValue(formulaModel , formulaModel.calculateLabel));
+
+
 
             new DialogCalculateResult(context).Show();
 

@@ -63,6 +63,18 @@ public class Util {
 
     }
 
+    public static double strToDoubleDefaultZero(String input){
+        double value = 0;
+        if(input!=null && !input.equals("")) {
+            input.replaceAll("[^\\d.,]","");
+             value = Double.parseDouble(input);
+        }
+        return value;
+    }
+
+    public static String dobbleToStringNumber(double input){
+        return String.format("%,.2f", input);
+    }
 
     public static void showDialogAndDismiss(Context context,String msg){
         final android.app.Dialog dialog =   new DialogChoice(context).Show(msg,"");

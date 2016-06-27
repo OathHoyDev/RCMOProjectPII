@@ -1,14 +1,23 @@
 package th.co.rcmo.rcmoapp.API;
 
+import android.text.Html;
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.ListView;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
 import th.co.rcmo.rcmoapp.Model.STDVarModel;
+import th.co.rcmo.rcmoapp.Model.calculate.FormulaAModel;
 import th.co.rcmo.rcmoapp.Module.mGetVariable;
+import th.co.rcmo.rcmoapp.Module.mVarPlanA;
 import th.co.rcmo.rcmoapp.ProductDetailStandardListCustomAdapter;
 import th.co.rcmo.rcmoapp.R;
 import th.co.rcmo.rcmoapp.Util.CalculateConstant;
@@ -110,5 +119,41 @@ public class ProductService {
       return stdVarModelList;
     }
 
+    public static String genJsonPlanAVariable(FormulaAModel aModel){
+        mVarPlanA  varA = new mVarPlanA();
+
+        varA.setAttraDokbia(String.valueOf(aModel.AttraDokbia));
+        varA.setKaDoolae(String.valueOf(aModel.KaDoolae));
+        varA.setKaGebGeaw(String.valueOf(aModel.KaGebGeaw));
+        varA.setKaNardPlangTDin(String.valueOf(aModel.KaNardPlangTDin));
+
+        varA.setKaPan(String.valueOf(aModel.KaPan));
+        varA.setKaPluk(String.valueOf(aModel.KaPluk));
+        varA.setKaPuy(String.valueOf(aModel.KaPuy));
+        varA.setKaRang(String.valueOf(aModel.KaRang));
+
+        varA.setKaSermOuppakorn(String.valueOf(aModel.KaSermOuppakorn));
+        varA.setKaSiaOkardLongtoon(String.valueOf(aModel.KaSiaOkardLongtoon));
+        varA.setKaSiaOkardOuppakorn(String.valueOf(aModel.KaSiaOkardOuppakorn));
+        varA.setKaTreamDin(String.valueOf(aModel.KaTreamDin));
+
+        varA.setKaWassadu(String.valueOf(aModel.KaWassadu));
+        varA.setKaWassaduUn(String.valueOf(aModel.KaWassaduUn));
+        varA.setKaYaplab(String.valueOf(aModel.KaYaplab));
+        varA.setRaka(String.valueOf(aModel.predictPrice));
+
+        varA.setPonPalid(String.valueOf(aModel.PonPalid));
+
+
+        //jsonPlanA = TextUtils.htmlEncode(jsonPlanA);
+       String jsonPlanA = Html.escapeHtml(new Gson().toJson(varA));
+
+      //  jsonPlanA.replace("\\n", " ");
+
+
+        Log.d("GSON","Json -> "+jsonPlanA);
+
+        return jsonPlanA;
+    }
 
 }
