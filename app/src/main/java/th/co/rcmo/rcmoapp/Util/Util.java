@@ -71,7 +71,7 @@ public class Util {
 
     public static double strToDoubleDefaultZero(String input){
         double value = 0;
-        Log.d("Input" ,"---------------->"+input);
+       // Log.d("Input" ,"---------------->"+input);
         try {
             if (input != null && !input.equals("")) {
                 input = input.replaceAll(",", "");
