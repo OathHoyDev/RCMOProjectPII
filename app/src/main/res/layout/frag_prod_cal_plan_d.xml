@@ -238,7 +238,7 @@
                                 android:textSize="@dimen/cal_item_size"
                                 />
 
-                            <com.neopixl.pixlui.components.edittext.EditText
+                            <com.neopixl.pixlui.components.textview.TextView
                                 pixlui:typeface="Quark-Bold.otf"
                                 android:layout_weight="1.5"
                                 android:layout_width="match_parent"
@@ -247,12 +247,9 @@
                                 android:hint="0.00"
                                 android:textColor="@color/RcmoAnimalBG"
                                 android:textColorHint="@color/RcmoAnimalBG"
-                                android:imeOptions="actionNext"
                                 android:background="@color/RcmoLightGrayBG"
                                 android:gravity="right"
                                 android:padding="5dp"
-                                android:inputType="numberDecimal"
-                                android:textCursorDrawable="@drawable/text_cursor"
                                 android:textSize="@dimen/cal_item_size"
                                 android:id="@+id/group1_item_1"/>
                         </LinearLayout>
@@ -1080,7 +1077,7 @@
                                 android:textSize="@dimen/cal_item_size"
                                 />
 
-                            <com.neopixl.pixlui.components.edittext.EditText
+                            <com.neopixl.pixlui.components.textview.TextView
                                 pixlui:typeface="Quark-Bold.otf"
                                 android:layout_weight="1.5"
                                 android:layout_width="match_parent"
@@ -1089,12 +1086,9 @@
                                 android:hint="0.00"
                                 android:textColor="@color/RcmoAnimalBG"
                                 android:textColorHint="@color/RcmoAnimalBG"
-                                android:imeOptions="actionNext"
                                 android:background="@color/RcmoLightGrayBG"
                                 android:gravity="right"
                                 android:padding="5dp"
-                                android:inputType="numberDecimal"
-                                android:textCursorDrawable="@drawable/text_cursor"
                                 android:textSize="@dimen/cal_item_size"
                                 android:id="@+id/group3_item_3"/>
                         </LinearLayout>
@@ -1269,7 +1263,7 @@
                                 android:textSize="@dimen/cal_item_size"
                                 />
 
-                            <com.neopixl.pixlui.components.edittext.EditText
+                            <com.neopixl.pixlui.components.textview.TextView
                                 pixlui:typeface="Quark-Bold.otf"
                                 android:layout_weight="1.5"
                                 android:layout_width="match_parent"
@@ -1282,8 +1276,6 @@
                                 android:background="@color/RcmoLightGrayBG"
                                 android:gravity="right"
                                 android:padding="5dp"
-                                android:inputType="numberDecimal"
-                                android:textCursorDrawable="@drawable/text_cursor"
                                 android:textSize="@dimen/cal_item_size"
                                 android:id="@+id/group3_item_6"/>
                         </LinearLayout>

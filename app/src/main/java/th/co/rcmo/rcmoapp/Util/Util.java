@@ -8,6 +8,8 @@ import android.os.Handler;
 import android.util.Log;
 
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 import th.co.rcmo.rcmoapp.View.DialogChoice;
 
@@ -69,10 +71,12 @@ public class Util {
 
     public static double strToDoubleDefaultZero(String input){
         double value = 0;
-       // Log.d("Input" ,"---------------->"+input);
+        Log.d("Input" ,"---------------->"+input);
         try {
             if (input != null && !input.equals("")) {
                 input = input.replaceAll(",", "");
+                input = input.replaceAll("%", "");
+                Log.d("Input" ,"---------------->"+input);
                 value = Double.parseDouble(input);
                // value = Double.parseDouble(input.toString().replace(',', '.'));
             }
@@ -87,6 +91,17 @@ public class Util {
     public static String dobbleToStringNumber(double input){
         return String.format("%,.2f", input);
     }
+
+    public static String dobbleToStringNumberWithClearDigit(double input){
+      //String  format =   String.format("%,.2f", input);
+        DecimalFormat formatter = (DecimalFormat) NumberFormat.getInstance(Locale.US);
+        formatter.applyPattern("#,###,###,###.##");
+        String formattedString = formatter.format(input);
+        return formattedString;
+
+    }
+
+
 
     public static boolean isNetworkAvailable(Context context) {
         final ConnectivityManager connectivityManager = ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE));

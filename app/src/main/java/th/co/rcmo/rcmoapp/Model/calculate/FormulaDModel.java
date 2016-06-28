@@ -1,5 +1,7 @@
 package th.co.rcmo.rcmoapp.Model.calculate;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Hashtable;
@@ -16,8 +18,8 @@ public class FormulaDModel extends AbstractFormulaModel {
     public boolean isCalIncludeOption = false;
 
     //Standard
-    public double KaSermRongRaun = 0.7;
-    public double KaSiaOkardRongRaun = 0.58;
+    public double KaSermRongRaun = 0;
+    public double KaSiaOkardRongRaun = 0;
 
     public double RermLeang = 0;
     public double RakaReamLeang = 0;
@@ -123,10 +125,23 @@ public class FormulaDModel extends AbstractFormulaModel {
             calCost += costKaSermRongRaun + costKaSiaOkardRongRaun;
         }
 
+
+
+
         calCostPerUnit = calCost/JumNounTuaTKai;
         calCostPerKg = calCost/NamNakTKai;
-        calProfitLossPerKg = RakaTKai-calCostPerUnit;
+        calProfitLossPerKg = RakaTKai-calCostPerKg;
         calProfitLoss = calProfitLossPerKg*NamNakTKai;
+
+        Log.d("Cal","*****calCost :"+calCost);
+        Log.d("Cal","*****JumNounTuaTKai :"+JumNounTuaTKai);
+        Log.d("Cal","*****NamNakTKai :"+NamNakTKai);
+        Log.d("Cal","*****RakaTKai :"+RakaTKai);
+
+        Log.d("Cal","*****calCostPerUnit :"+calCostPerUnit);
+        Log.d("Cal","*****calCostPerKg :"+calCostPerKg);
+        Log.d("Cal","*****calProfitLossPerKg :"+calProfitLossPerKg);
+        Log.d("Cal","*****calProfitLoss :"+calProfitLoss);
     }
 
     public void prepareListData() {
