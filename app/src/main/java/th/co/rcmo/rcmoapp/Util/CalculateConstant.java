@@ -89,6 +89,8 @@ public class CalculateConstant {
     //====================================================
 
     public static String   UNIT_BATH_RAI= "บาท/ไร่";
+    public static String   UNIT_BATH_TUA= "บาท/ตัว";
+    public static String   UNIT_BATH= "บาท";
 
 
     public static final Hashtable<String , String[]> PB_CALCULATE_STANDARD_CONST_AB;
@@ -121,10 +123,10 @@ public class CalculateConstant {
     static{
         Hashtable<String,String[]> tmp =
                 new Hashtable<String,String[]>();
-        tmp.put("F", new String[]{"Fix Variable"        ,UNIT_BATH_RAI});
-        tmp.put("B", new String[]{"อัตราดอกเบี้ยจาก ธกส.",UNIT_BATH_RAI});
-        tmp.put("D", new String[]{"ค่าเสื่อมโรงเรือน"      ,UNIT_BATH_RAI});
-        tmp.put("O", new String[]{"ค่าเสียโอกาสโรงเรือน"  ,UNIT_BATH_RAI});
+        tmp.put("F", new String[]{"Fix Variable"        ,UNIT_BATH_TUA});
+        tmp.put("B", new String[]{"อัตราดอกเบี้ยจาก ธกส.",UNIT_BATH});
+        tmp.put("D", new String[]{"ค่าเสื่อมโรงเรือน"      ,UNIT_BATH_TUA});
+        tmp.put("O", new String[]{"ค่าเสียโอกาสโรงเรือน"  ,UNIT_BATH_TUA});
         PB_CALCULATE_STANDARD_CONST_DEF = tmp;
     }
 

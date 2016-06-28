@@ -134,17 +134,19 @@
             <ImageView
                 android:id="@+id/imageIcon"
                 android:layout_width="fill_parent"
-                android:layout_height="100dp"
+                android:layout_height="110dp"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="50dp"
                 android:background="@drawable/light_gray_cut_conner" />
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
+                android:orientation="vertical"
                 android:layout_toRightOf="@+id/ImageProductLayout">
+
 
                 <com.neopixl.pixlui.components.textview.TextView
                     android:id="@+id/txProfitLoss"
@@ -156,33 +158,77 @@
                     android:textColor="@color/RcmoGrayBG"
                     pixlui:typeface="Quark-Bold.otf"
                     android:textSize="25dp"/>
-
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:layout_marginRight="5dp">
                 <com.neopixl.pixlui.components.textview.TextView
                     android:id="@+id/txProfitLossValue"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="right"
                     android:layout_height="wrap_content"
-                    android:text="xx"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="12000000.00"
                     android:textColor="@color/RcmoFishBG"
                     pixlui:typeface="Quark-Bold.otf"
                     android:layout_alignLeft="@+id/txProfitLoss"
                     android:layout_below="@+id/txProfitLoss"
-                    android:textSize="25dp"/>
+                    android:textSize="22dp"/>
 
                 <com.neopixl.pixlui.components.textview.TextView
                     android:id="@+id/textView3"
-                    android:layout_width="wrap_content"
+                    android:layout_weight="2.2"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:text="บาท"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textColor="@color/RcmoGrayBG"
                     pixlui:typeface="Quark-Bold.otf"
-                    android:textSize="20dp"
+                    android:textSize="@dimen/textsize_normal"
                     android:layout_toRightOf="@+id/txProfitLossValue"
                     android:layout_alignBaseline="@+id/txProfitLossValue" />
 
-            </RelativeLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/t1"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:layout_marginRight="5dp">
+                    <com.neopixl.pixlui.components.textview.TextView
+                        android:id="@+id/value_t1"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="10.16"
+                        android:textColor="@color/RcmoFishBG"
+                        pixlui:typeface="Quark-Bold.otf"
+                        android:layout_alignLeft="@+id/txProfitLoss"
+                        android:layout_below="@+id/txProfitLoss"
+                        android:textSize="@dimen/textsize_large"/>
+
+                    <com.neopixl.pixlui.components.textview.TextView
+                        android:id="@+id/unit_t1"
+                        android:layout_width="match_parent"
+
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="บาท/กก."
+                        android:layout_weight="2.2"
+                        android:textColor="@color/RcmoGrayBG"
+                        pixlui:typeface="Quark-Bold.otf"
+                        android:textSize="@dimen/textsize_normal"
+                        android:layout_toRightOf="@+id/txProfitLossValue"
+                        android:layout_alignBaseline="@+id/txProfitLossValue" />
+
+                </LinearLayout>
+
+            </LinearLayout>
 
             <RelativeLayout
                 android:id="@+id/ImageProductLayout"

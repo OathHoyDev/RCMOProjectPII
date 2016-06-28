@@ -65,7 +65,10 @@ public class PBCalculateResultActivity extends Activity {
 
         setAction();
 
+
     }
+
+
 
     private void setAction() {
 
@@ -140,8 +143,11 @@ public class PBCalculateResultActivity extends Activity {
         TextView txProfitLoss = (TextView) findViewById(R.id.txProfitLoss);
         TextView txProfitLossValue = (TextView) findViewById(R.id.txProfitLossValue);
 
+
+
         switch (userPlotModel.getPrdGrpID()) {
             case CalculateConstant.PRODUCT_TYPE_PLANT:
+                findViewById(R.id.t1).setVisibility(View.INVISIBLE);
                 bgImage.setBackgroundResource(R.drawable.plant_ic_gr_circle_bg);
                 btnRecalculate.setBackgroundResource(R.drawable.action_plant_recal);
                 btnSavePlotDetail.setBackgroundResource(R.drawable.action_plant_reget);
@@ -151,6 +157,10 @@ public class PBCalculateResultActivity extends Activity {
                 txProfitLossValue.setTextColor(getResources().getColor(R.color.RcmoPlantBG));
                 break;
             case CalculateConstant.PRODUCT_TYPE_ANIMAL:
+                findViewById(R.id.t1).setVisibility(View.VISIBLE);
+                TextView unit_t1 = (TextView)findViewById(R.id.unit_t1);
+                TextView value_t1 = (TextView)findViewById(R.id.value_t1);
+
                 bgImage.setBackgroundResource(R.drawable.animal_ic_gr_circle_bg);
                 btnRecalculate.setBackgroundResource(R.drawable.action_animal_recal);
                 btnSavePlotDetail.setBackgroundResource(R.drawable.action_animal_reget);
@@ -158,8 +168,16 @@ public class PBCalculateResultActivity extends Activity {
                 productNameLabel.setBackgroundColor(getResources().getColor(R.color.RcmoAnimalDarkBG));
                 canterTextview.setBackgroundResource(R.drawable.bottom_pink_total);
                 txProfitLossValue.setTextColor(getResources().getColor(R.color.RcmoAnimalBG));
+
+
+                unit_t1.setText(calculateResultModel.unit_t1);
+                value_t1.setText(Util.dobbleToStringNumberWithClearDigit(calculateResultModel.value_t1));
+                value_t1.setTextColor(getResources().getColor(R.color.RcmoAnimalBG));
+
+
                 break;
             case CalculateConstant.PRODUCT_TYPE_FISH:
+                findViewById(R.id.t1).setVisibility(View.INVISIBLE);
                 bgImage.setBackgroundResource(R.drawable.fish_ic_gr_circle_bg);
                 btnRecalculate.setBackgroundResource(R.drawable.action_fish_recal);
                 btnSavePlotDetail.setBackgroundResource(R.drawable.action_fish_reget);
@@ -196,10 +214,10 @@ public class PBCalculateResultActivity extends Activity {
 
         if (calculateResultModel.calculateResult >= 0) {
             txProfitLoss.setText("กำไร");
-            txProfitLossValue.setText(String.format("%,.2f", calculateResultModel.calculateResult));
+            txProfitLossValue.setText(Util.dobbleToStringNumberWithClearDigit(calculateResultModel.calculateResult));
         } else {
             txProfitLoss.setText("ขาดทุน");
-            txProfitLossValue.setText(String.format("%,.2f", calculateResultModel.calculateResult));
+            txProfitLossValue.setText(Util.dobbleToStringNumberWithClearDigit(calculateResultModel.calculateResult));
         }
 
 

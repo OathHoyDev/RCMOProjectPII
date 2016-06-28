@@ -101,6 +101,10 @@ public class Util {
 
     }
 
+    public static String strToDobbleToStrFormat(String input){
+      return dobbleToStringNumberWithClearDigit(strToDoubleDefaultZero(input));
+    }
+
 
 
     public static boolean isNetworkAvailable(Context context) {

@@ -22,13 +22,23 @@ public class PlanDTextWatcher implements TextWatcher {
     PBProdDetailCalculateFmentD.ViewHolder h;
     private String name;
     private EditText et ;
+    boolean changetext = true;
 
     public PlanDTextWatcher(EditText editText , PBProdDetailCalculateFmentD.ViewHolder h, String name) {
-
+        changetext = true;
         hasFractionalPart = false;
         this.h = h;
         this.name = name;
         this.et = editText;
+
+    }
+
+    public PlanDTextWatcher( PBProdDetailCalculateFmentD.ViewHolder h, String name) {
+
+        hasFractionalPart = false;
+        this.h = h;
+        this.name = name;
+        changetext = false;
 
     }
 
@@ -39,36 +49,40 @@ public class PlanDTextWatcher implements TextWatcher {
 
     @Override
     public void afterTextChanged(Editable s) {
-        et.removeTextChangedListener(this);
 
-        try {
-            String originalString = s.toString();
+if( changetext ) {
+    et.removeTextChangedListener(this);
+    try {
+        String originalString = s.toString();
 
-            Long longval;
-            if (originalString.contains(",")) {
-                originalString = originalString.replaceAll(",", "");
-            }
-            longval = Long.parseLong(originalString);
-
-            DecimalFormat formatter = (DecimalFormat) NumberFormat.getInstance(Locale.US);
-            formatter.applyPattern("#,###,###,###");
-            String formattedString = formatter.format(longval);
-
-            //setting text after format to EditText
-            et.setText(formattedString);
-            et.setSelection(et.getText().length());
-        } catch (NumberFormatException nfe) {
-           // nfe.printStackTrace();
+        Long longval;
+        if (originalString.contains(",")) {
+            originalString = originalString.replaceAll(",", "");
         }
+        longval = Long.parseLong(originalString);
+
+        DecimalFormat formatter = (DecimalFormat) NumberFormat.getInstance(Locale.US);
+        formatter.applyPattern("#,###,###,###");
+        String formattedString = formatter.format(longval);
+
+        //setting text after format to EditText
+        et.setText(formattedString);
+        et.setSelection(et.getText().length());
+        et.addTextChangedListener(this);
+    } catch (NumberFormatException nfe) {
+        // nfe.printStackTrace();
+    }
+}
         //formulaAModel.calculate();
         double value = 0;
-        if("KaPan".equalsIgnoreCase(name)) {
+        if(name.contains("KaPan")) {
             value =   (Util.strToDoubleDefaultZero(h.txStartPrice.getText().toString()))
                     * (Util.strToDoubleDefaultZero(h.txStartUnit.getText().toString()));
 
 
             h.group1_item_1.setText(Util.dobbleToStringNumber(value));
-        }else if("DieRate".equalsIgnoreCase(name)) {
+        }
+        if(name.contains("DieRate")) {
            value =   ((Util.strToDoubleDefaultZero(h.txStartUnit.getText().toString())) - (Util.strToDoubleDefaultZero(h.group3_item_2.getText().toString())));
           //  Log.d("Test ","-----> "+value);
                         value =  value/(Util.strToDoubleDefaultZero(h.txStartUnit.getText().toString())) * 100;
@@ -81,9 +95,28 @@ public class PlanDTextWatcher implements TextWatcher {
             }
 
         }
+        if(name.contains("NamNakTKai")){
+           value =  Util.strToDoubleDefaultZero(h.group3_item_1.getText().toString())
+                   *Util.strToDoubleDefaultZero(h.group3_item_2.getText().toString()) ;
+            h.group3_item_3.setText(Util.dobbleToStringNumber(value));
+        }
+
+        if(name.contains("costKaSiaOkardRongRaun")){
+            value = Util.strToDoubleDefaultZero(h.group1_item_1.getText().toString());
+            value+= Util.strToDoubleDefaultZero(h.group1_item_2.getText().toString());
+            value+= Util.strToDoubleDefaultZero(h.group1_item_3.getText().toString());
+            value+= Util.strToDoubleDefaultZero(h.group1_item_4.getText().toString())/30.42*Util.strToDoubleDefaultZero(h.group3_item_5.getText().toString());
+            value+= Util.strToDoubleDefaultZero(h.group1_item_5.getText().toString())/30.42*Util.strToDoubleDefaultZero(h.group3_item_5.getText().toString());
+            value+= Util.strToDoubleDefaultZero(h.group1_item_6.getText().toString())/30.42*Util.strToDoubleDefaultZero(h.group3_item_5.getText().toString());
+            value+= Util.strToDoubleDefaultZero(h.group1_item_7.getText().toString());
+            value+= Util.strToDoubleDefaultZero(h.group1_item_8.getText().toString());
+
+            value = value*0.0675/365*Util.strToDoubleDefaultZero(h.group3_item_5.getText().toString());
+            h.group3_item_6.setText(Util.dobbleToStringNumber(value));
+        }
 
 
-        et.addTextChangedListener(this);
+
     }
 
     public void beforeTextChanged(CharSequence s, int start, int count, int after) {

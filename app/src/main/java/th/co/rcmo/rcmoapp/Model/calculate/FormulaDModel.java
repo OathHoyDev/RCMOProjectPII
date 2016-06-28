@@ -133,15 +133,22 @@ public class FormulaDModel extends AbstractFormulaModel {
         calProfitLossPerKg = RakaTKai-calCostPerKg;
         calProfitLoss = calProfitLossPerKg*NamNakTKai;
 
-        Log.d("Cal","*****calCost :"+calCost);
-        Log.d("Cal","*****JumNounTuaTKai :"+JumNounTuaTKai);
-        Log.d("Cal","*****NamNakTKai :"+NamNakTKai);
-        Log.d("Cal","*****RakaTKai :"+RakaTKai);
 
-        Log.d("Cal","*****calCostPerUnit :"+calCostPerUnit);
-        Log.d("Cal","*****calCostPerKg :"+calCostPerKg);
-        Log.d("Cal","*****calProfitLossPerKg :"+calProfitLossPerKg);
-        Log.d("Cal","*****calProfitLoss :"+calProfitLoss);
+        Log.d("Cal","***** ค่าเสื่อมโรงเรือน :"+KaSermRongRaun);
+        Log.d("Cal","***** ค่าเสียโอกาสโรงเรื่อน :"+KaSiaOkardRongRaun);
+        Log.d("Cal","***** ต้นทุนทั้งหมด :"+calCost);
+        Log.d("Cal","-----------------------------------------");
+        Log.d("Cal","***** ค่าแรงงาน   หลังคำนวน :"+costKaRangGgan);
+        Log.d("Cal","***** ค่าน้ำ-ค่าไฟ หลังคำนวน :"+costKaNamKaFai);
+        Log.d("Cal","***** ค่าน้ำมัน    หลังคำนวน :"+costKaNamMan);
+        Log.d("Cal","***** ค่าเช่าที่ดิน   หลังคำนวน :"+costKaChoaTDin);
+        Log.d("Cal","***** ค่าเสื่อมโรงเรือน หลังคำนวน :"+costKaSermRongRaun);
+        Log.d("Cal","***** ค่าเสียโอกาสโรงเรื่อน หลังคำนวน :"+costKaSiaOkardRongRaun);
+        Log.d("Cal","-----------------------------------------");
+        Log.d("Cal","***** ต้นทุนต่อ 1 ตัว :"+calCostPerUnit);
+        Log.d("Cal","***** ต้นทุนต่อ 1 กิโลกรัม :"+calCostPerKg);
+        Log.d("Cal","***** กำไร-ขาดทุน ต่อ 1 กิโลกรัม :"+calProfitLossPerKg);
+        Log.d("Cal","***** กำไร-ขาดทุนทั้งหมด :"+calProfitLoss);
     }
 
     public void prepareListData() {
