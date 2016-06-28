@@ -86,7 +86,7 @@ if( changetext ) {
            value =   ((Util.strToDoubleDefaultZero(h.txStartUnit.getText().toString())) - (Util.strToDoubleDefaultZero(h.group3_item_2.getText().toString())));
           //  Log.d("Test ","-----> "+value);
                         value =  value/(Util.strToDoubleDefaultZero(h.txStartUnit.getText().toString())) * 100;
-            Log.d("Test ","2-----> "+value);
+           // Log.d("Test ","2-----> "+value);
 
             if(value<0){
                 h.group2_item_1.setText("100%");
