@@ -7,9 +7,6 @@ import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
 
-/**
- * Created by SilVeriSm on 6/20/2016 AD.
- */
 public class FormulaEModel extends AbstractFormulaModel {
 
     public static List<String> listDataHeader;

@@ -22,12 +22,14 @@ import th.co.rcmo.rcmoapp.Model.calculate.FormulaCModel;
 import th.co.rcmo.rcmoapp.Model.calculate.FormulaDModel;
 import th.co.rcmo.rcmoapp.Model.calculate.FormulaEModel;
 import th.co.rcmo.rcmoapp.Model.calculate.FormulaFModel;
+import th.co.rcmo.rcmoapp.Model.calculate.FormulaHModel;
 import th.co.rcmo.rcmoapp.Module.mGetVariable;
 import th.co.rcmo.rcmoapp.Module.mVarPlanA;
 import th.co.rcmo.rcmoapp.Module.mVarPlanB;
 import th.co.rcmo.rcmoapp.Module.mVarPlanD;
 import th.co.rcmo.rcmoapp.Module.mVarPlanE;
 import th.co.rcmo.rcmoapp.Module.mVarPlanF;
+import th.co.rcmo.rcmoapp.Module.mVarPlanH;
 import th.co.rcmo.rcmoapp.ProductDetailStandardListCustomAdapter;
 import th.co.rcmo.rcmoapp.R;
 import th.co.rcmo.rcmoapp.Util.CalculateConstant;
@@ -358,5 +360,48 @@ public class ProductService {
 
         return value;
     }
+
+
+    public static String genJsonPlanVariable(FormulaHModel model){
+        mVarPlanH var = new mVarPlanH();
+
+        var.JumnuanTKai = model.JumnuanTKai;
+        var.KaPan       = model.KaPan;
+        var.KaAHanKon   = model.KaAHanKon;
+        var.KaAKanYab   = model.KaAKanYab;
+        var.KaNamKaFai  = model.KaNamKaFai;
+        var.KaYa        = model.KaYa;
+        var.KaRang      = model.KaRang;
+        var.KaNamKaFai  = model.KaNamKaFai;
+        var.KaChoaTDin  = model.KaChoaTDin;
+        var.KaSiaOkardLongtoon  = model.KaSiaOkardLongtoon;
+        var.NumnukChalia = model.NumnukChalia;
+        var.RakaChalia   = model.RakaChalia;
+        var.RayaWera     = model.RayaWera;
+        var.RermLeang       = model.RermLeang;
+        var.NumnukRermLeang = model.NumnukRermLeang;
+
+
+        //jsonPlanA = TextUtils.htmlEncode(jsonPlanA);
+        String json =(new Gson().toJson(var));
+        String value = "";
+        try {
+
+            byte ptext[] = json.getBytes("ISO-8859-1");
+            value = new String(ptext, "UTF-8");
+            Log.d("Test "," -----------------------------> "+value);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        Log.d("GSON","Json -> "+json);
+
+        return value;
+    }
+
+
+
+
+
 
 }

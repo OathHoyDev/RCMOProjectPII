@@ -250,7 +250,7 @@ public class PBCalculateResultActivity extends Activity {
             }
         } else {
             new DialogChoice(PBCalculateResultActivity.this)
-                    .ShowOneChoice("ไม่สามารถบันทึกข้อมูล1111", "- กรุณา Login ก่อนทำการบันทึกข้อมูล"); //save image
+                    .ShowOneChoice("ไม่สามารถบันทึกข้อมูล", "- กรุณา Login ก่อนทำการบันทึกข้อมูล"); //save image
         }
 
 
@@ -498,6 +498,10 @@ public class PBCalculateResultActivity extends Activity {
 
                     if(userPlotModel.getAnimalPrice().equals("")|| userPlotModel.getAnimalPrice().equals("0")){
                         userPlotModel.setAnimalPrice(plotDetail.getAnimalPrice());
+                    }
+
+                    if(userPlotModel.getAnimalWeight().equals("")|| userPlotModel.getAnimalWeight().equals("0")){
+                        userPlotModel.setAnimalWeight(plotDetail.getAnimalWeight());
                     }
 
 
