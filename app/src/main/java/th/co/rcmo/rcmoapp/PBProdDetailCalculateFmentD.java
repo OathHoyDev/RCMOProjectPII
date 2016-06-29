@@ -483,7 +483,7 @@ public class PBProdDetailCalculateFmentD extends Fragment implements View.OnClic
 
                         setUpCalUI(formulaModel);
                     } else {
-                        h.txStartUnit.setText(Util.strToDobbleToStrFormat(plotDetail.getPlotRai()));
+                        h.txStartUnit.setText(Util.strToDobbleToStrFormat(plotDetail.getAnimalNumber()));
                         h.txStartPrice.setText(Util.strToDobbleToStrFormat(plotDetail.getAnimalPrice()));
                     }
                 }
