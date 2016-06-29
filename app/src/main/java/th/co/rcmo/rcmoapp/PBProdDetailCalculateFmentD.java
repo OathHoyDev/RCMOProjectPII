@@ -136,8 +136,8 @@ public class PBProdDetailCalculateFmentD extends Fragment implements View.OnClic
 
 
     private void setAction() {
-        h.txStartUnit.addTextChangedListener(new PlanDTextWatcher( h, "KaPan,costKaSiaOkardRongRaun"));
-        h.txStartPrice.addTextChangedListener(new PlanDTextWatcher( h, "KaPan"));
+        h.txStartUnit.addTextChangedListener(new PlanDTextWatcher(h.txStartUnit, h, "KaPan,costKaSiaOkardRongRaun"));
+        h.txStartPrice.addTextChangedListener(new PlanDTextWatcher( h.txStartPrice,h, "KaPan"));
 
         h.group1_item_2.addTextChangedListener(new PlanDTextWatcher(h.group1_item_2, h, "costKaSiaOkardRongRaun"));
         h.group1_item_3.addTextChangedListener(new PlanDTextWatcher(h.group1_item_3, h, "costKaSiaOkardRongRaun"));

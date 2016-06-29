@@ -2,30 +2,27 @@ package th.co.rcmo.rcmoapp.Util;
 
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Locale;
-
-import th.co.rcmo.rcmoapp.PBProdDetailCalculateFmentD;
-import th.co.rcmo.rcmoapp.PBProdDetailCalculateFmentE;
+import th.co.rcmo.rcmoapp.PBProdDetailCalculateFmentF;
 
 /**
  * Created by Taweesin on 28/6/2559.
  */
-public class PlanETextWatcher implements TextWatcher {
+public class PlanFTextWatcher implements TextWatcher {
 
 
     private boolean hasFractionalPart;
-    PBProdDetailCalculateFmentE.ViewHolder h;
+    PBProdDetailCalculateFmentF.ViewHolder h;
     private String name;
     private EditText et ;
     private TextView t;
 
-    public PlanETextWatcher(EditText editText , PBProdDetailCalculateFmentE.ViewHolder h, String name) {
+    public PlanFTextWatcher(EditText editText , PBProdDetailCalculateFmentF.ViewHolder h, String name) {
 
         hasFractionalPart = false;
         this.h = h;
@@ -34,7 +31,7 @@ public class PlanETextWatcher implements TextWatcher {
 
     }
 
-    public PlanETextWatcher(TextView t,PBProdDetailCalculateFmentE.ViewHolder h, String name) {
+    public PlanFTextWatcher(TextView t, PBProdDetailCalculateFmentF.ViewHolder h, String name) {
 
         hasFractionalPart = false;
         this.h = h;
@@ -98,8 +95,31 @@ public class PlanETextWatcher implements TextWatcher {
             value+= Util.strToDoubleDefaultZero(h.group1_item_7.getText().toString());
             value+= Util.strToDoubleDefaultZero(h.group1_item_8.getText().toString());
 
-            value = value*0.0675/365*Util.strToDoubleDefaultZero(h.group3_item_2.getText().toString());
-            h.group3_item_3.setText(Util.dobbleToStringNumber(value));
+            //value = value*0.0675/365*Util.strToDoubleDefaultZero(h.group3_item_2.getText().toString());
+            value = value*0.0675;
+            h.group3_item_5.setText(Util.dobbleToStringNumber(value));
+        }
+
+        if(name.contains("calAllEgg")){
+            value = Util.strToDoubleDefaultZero(h.txStartUnit.getText().toString())
+                    * Util.strToDoubleDefaultZero(h.group3_item_1.getText().toString());
+
+            h.group3_item_6.setText(Util.dobbleToStringNumber(value));
+        }
+
+        if(name.contains("calPriceAllEgg")){
+            value = Util.strToDoubleDefaultZero(h.txStartUnit.getText().toString())
+                    * Util.strToDoubleDefaultZero(h.group3_item_1.getText().toString())
+                    * Util.strToDoubleDefaultZero(h.group3_item_2.getText().toString());
+
+            h.group3_item_7.setText(Util.dobbleToStringNumber(value));
+        }
+
+        if(name.contains("calAllPonPloyDai")){
+            value =Util.strToDoubleDefaultZero(h.txStartUnit.getText().toString())*
+                    Util.strToDoubleDefaultZero(h.group3_item_3.getText().toString());
+
+            h.group3_item_8.setText(Util.dobbleToStringNumber(value));
         }
 
         if(et != null) {

@@ -21,11 +21,13 @@ import th.co.rcmo.rcmoapp.Model.calculate.FormulaBModel;
 import th.co.rcmo.rcmoapp.Model.calculate.FormulaCModel;
 import th.co.rcmo.rcmoapp.Model.calculate.FormulaDModel;
 import th.co.rcmo.rcmoapp.Model.calculate.FormulaEModel;
+import th.co.rcmo.rcmoapp.Model.calculate.FormulaFModel;
 import th.co.rcmo.rcmoapp.Module.mGetVariable;
 import th.co.rcmo.rcmoapp.Module.mVarPlanA;
 import th.co.rcmo.rcmoapp.Module.mVarPlanB;
 import th.co.rcmo.rcmoapp.Module.mVarPlanD;
 import th.co.rcmo.rcmoapp.Module.mVarPlanE;
+import th.co.rcmo.rcmoapp.Module.mVarPlanF;
 import th.co.rcmo.rcmoapp.ProductDetailStandardListCustomAdapter;
 import th.co.rcmo.rcmoapp.R;
 import th.co.rcmo.rcmoapp.Util.CalculateConstant;
@@ -300,6 +302,44 @@ public class ProductService {
 
         var.RermLeang = model.RermLeang;
         var.RakaReamLeang =  model.RakaReamLeang;
+
+
+        //jsonPlanA = TextUtils.htmlEncode(jsonPlanA);
+        String json =(new Gson().toJson(var));
+        String value = "";
+        try {
+
+            byte ptext[] = json.getBytes("ISO-8859-1");
+            value = new String(ptext, "UTF-8");
+            Log.d("Test "," -----------------------------> "+value);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        Log.d("GSON","Json -> "+json);
+
+        return value;
+    }
+
+
+    public static String genJsonPlanVariable(FormulaFModel model){
+        mVarPlanF var = new mVarPlanF();
+        var.KaAHan = model.KaAHan;
+        var.KaYa   = model.KaYa;
+        var.KaRangGgan = model.KaRangGgan;
+        var.KaNamKaFai = model.KaNamKaFai;
+        var.KaNamMan = model.KaNamMan;
+        var.KaWassaduSinPleung = model.KaWassaduSinPleung;
+        var.KaSomRongRaun =model.KaSomRongRaun;
+        var.KaChoaTDin = model.KaChoaTDin;
+
+        var.KaiTDaiTangTaeRoem = model.KaiTDaiTangTaeRoem;
+        var.RakaTKai = model.RakaTKai;
+        var.PonPloyDai =   model.PonPloyDai;
+        var.RaYaWeRaLeang = model.RaYaWeRaLeang;
+
+        var.RermLeang =model.RermLeang;
+        var.RakaReamLeang =model.RakaReamLeang;
 
 
         //jsonPlanA = TextUtils.htmlEncode(jsonPlanA);

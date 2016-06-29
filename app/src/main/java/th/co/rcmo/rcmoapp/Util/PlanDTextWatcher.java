@@ -4,6 +4,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -18,28 +19,23 @@ import th.co.rcmo.rcmoapp.PBProdDetailCalculateFmentD;
 public class PlanDTextWatcher implements TextWatcher {
 
 
-    private boolean hasFractionalPart;
+
     PBProdDetailCalculateFmentD.ViewHolder h;
     private String name;
     private EditText et ;
-    boolean changetext = true;
+    private TextView t;
 
     public PlanDTextWatcher(EditText editText , PBProdDetailCalculateFmentD.ViewHolder h, String name) {
-        changetext = true;
-        hasFractionalPart = false;
         this.h = h;
         this.name = name;
         this.et = editText;
 
     }
 
-    public PlanDTextWatcher( PBProdDetailCalculateFmentD.ViewHolder h, String name) {
-
-        hasFractionalPart = false;
+    public PlanDTextWatcher(TextView t, PBProdDetailCalculateFmentD.ViewHolder h, String name) {
         this.h = h;
         this.name = name;
-        changetext = false;
-
+        this.t = t;
     }
 
 
@@ -50,29 +46,34 @@ public class PlanDTextWatcher implements TextWatcher {
     @Override
     public void afterTextChanged(Editable s) {
 
-if( changetext ) {
-    et.removeTextChangedListener(this);
-    try {
-        String originalString = s.toString();
-
-        Long longval;
-        if (originalString.contains(",")) {
-            originalString = originalString.replaceAll(",", "");
+        if(et != null) {
+            et.removeTextChangedListener(this);
+        }else{
+            t.removeTextChangedListener(this);
         }
-        longval = Long.parseLong(originalString);
+        if(et != null) {
+            try {
+                String originalString = s.toString();
 
-        DecimalFormat formatter = (DecimalFormat) NumberFormat.getInstance(Locale.US);
-        formatter.applyPattern("#,###,###,###");
-        String formattedString = formatter.format(longval);
+                Long longval;
+                if (originalString.contains(",")) {
+                    originalString = originalString.replaceAll(",", "");
+                }
+                longval = Long.parseLong(originalString);
 
-        //setting text after format to EditText
-        et.setText(formattedString);
-        et.setSelection(et.getText().length());
-        et.addTextChangedListener(this);
-    } catch (NumberFormatException nfe) {
-        // nfe.printStackTrace();
-    }
-}
+                DecimalFormat formatter = (DecimalFormat) NumberFormat.getInstance(Locale.US);
+                formatter.applyPattern("#,###,###,###");
+                String formattedString = formatter.format(longval);
+
+                //setting text after format to EditText
+                et.setText(formattedString);
+                et.setSelection(et.getText().length());
+              // et.addTextChangedListener(this);
+            } catch (NumberFormatException nfe) {
+                // nfe.printStackTrace();
+            }
+        }
+
         //formulaAModel.calculate();
         double value = 0;
         if(name.contains("KaPan")) {
@@ -116,7 +117,11 @@ if( changetext ) {
         }
 
 
-
+        if(et != null) {
+            et.addTextChangedListener(this);
+        }else{
+            t.addTextChangedListener(this);
+        }
     }
 
     public void beforeTextChanged(CharSequence s, int start, int count, int after) {

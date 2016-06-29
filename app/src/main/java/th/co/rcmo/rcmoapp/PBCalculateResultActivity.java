@@ -562,6 +562,10 @@ public class PBCalculateResultActivity extends Activity {
             h.value.setText(calResult[1]);
             h.unit.setText(calResult[2]);
 
+            if(userPlotModel.getPrdGrpID().equals("2")) {
+                h.value.setTextColor(getResources().getColor(R.color.RcmoAnimalBG));
+            }
+
             return convertView;
         }
 
