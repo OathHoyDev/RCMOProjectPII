@@ -259,7 +259,7 @@ public class PBProdDetailCalculateFmentF extends Fragment implements View.OnClic
             String [] tontoonCal_3 = {"" , String.format("%,.2f", formulaModel.calCostPerEgg) , "บาท/ฟอง"};
             resultArrayResult.add(tontoonCal_3);
 
-            String [] tontoonCal_4 = {"ต้นทุนเมื่อหักผลพลอยได้" , String.format("%,.2f", formulaModel.calAllCostNotPonPloyDai) , "บาท"};
+            String [] tontoonCal_4 = {"ต้นทุนเมื่อหัก\nผลพลอยได้" , String.format("%,.2f", formulaModel.calAllCostNotPonPloyDai) , "บาท"};
             resultArrayResult.add(tontoonCal_4);
 
             String [] tontoonCal_5 = {"" , String.format("%,.2f", formulaModel.calCostNotPonPloyDai) , "บาท/ตัว"};

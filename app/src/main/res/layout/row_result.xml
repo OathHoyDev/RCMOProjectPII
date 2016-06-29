@@ -30,7 +30,7 @@
                 android:gravity="left|center"
                 android:paddingLeft="15dp"
                 android:layout_weight="1.5"
-                android:inputType="text"
+                android:maxLines="2"
                 android:textSize="@dimen/textsize_normal"
                 />
 
