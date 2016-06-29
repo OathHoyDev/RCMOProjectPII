@@ -473,6 +473,9 @@ public class PBCalculateResultActivity extends Activity {
                     mGetPlotDetail.mRespBody plotDetail = mPlotDetailBodyLists.get(0);
 
                     if (userPlotModel.getPlotRai().equals("") || userPlotModel.getPlotRai().equals("0")) {
+                        if(plotDetail.getPlotRai().equals("0")){
+                            plotDetail.setPlotRai("");
+                        }
                         userPlotModel.setPlotRai(String.valueOf(plotDetail.getPlotRai()));
                     }
                     if (userPlotModel.getProvCode().equals("") || userPlotModel.getProvCode().equals("0")) {
@@ -487,6 +490,14 @@ public class PBCalculateResultActivity extends Activity {
 
                     if(userPlotModel.getVarValue().equals("")|| userPlotModel.getVarValue().equals("0")){
                         userPlotModel.setVarValue(plotDetail.getVarValue());
+                    }
+
+                    if (userPlotModel.getAnimalNumber().equals("") || userPlotModel.getAnimalNumber().equals("0")) {
+                        userPlotModel.setAnimalNumber(String.valueOf(plotDetail.getAnimalNumber()));
+                    }
+
+                    if(userPlotModel.getAnimalPrice().equals("")|| userPlotModel.getAnimalPrice().equals("0")){
+                        userPlotModel.setAnimalPrice(plotDetail.getAnimalPrice());
                     }
 
 
