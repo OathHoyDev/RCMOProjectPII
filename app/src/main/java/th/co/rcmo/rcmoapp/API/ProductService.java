@@ -23,6 +23,7 @@ import th.co.rcmo.rcmoapp.Model.calculate.FormulaDModel;
 import th.co.rcmo.rcmoapp.Model.calculate.FormulaEModel;
 import th.co.rcmo.rcmoapp.Model.calculate.FormulaFModel;
 import th.co.rcmo.rcmoapp.Model.calculate.FormulaHModel;
+import th.co.rcmo.rcmoapp.Model.calculate.FormulaIModel;
 import th.co.rcmo.rcmoapp.Module.mGetVariable;
 import th.co.rcmo.rcmoapp.Module.mVarPlanA;
 import th.co.rcmo.rcmoapp.Module.mVarPlanB;
@@ -30,6 +31,7 @@ import th.co.rcmo.rcmoapp.Module.mVarPlanD;
 import th.co.rcmo.rcmoapp.Module.mVarPlanE;
 import th.co.rcmo.rcmoapp.Module.mVarPlanF;
 import th.co.rcmo.rcmoapp.Module.mVarPlanH;
+import th.co.rcmo.rcmoapp.Module.mVarPlanI;
 import th.co.rcmo.rcmoapp.ProductDetailStandardListCustomAdapter;
 import th.co.rcmo.rcmoapp.R;
 import th.co.rcmo.rcmoapp.Util.CalculateConstant;
@@ -380,6 +382,54 @@ public class ProductService {
         var.RayaWera     = model.RayaWera;
         var.RermLeang       = model.RermLeang;
         var.NumnukRermLeang = model.NumnukRermLeang;
+
+
+        //jsonPlanA = TextUtils.htmlEncode(jsonPlanA);
+        String json =(new Gson().toJson(var));
+        String value = "";
+        try {
+
+            byte ptext[] = json.getBytes("ISO-8859-1");
+            value = new String(ptext, "UTF-8");
+            Log.d("Test "," -----------------------------> "+value);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        Log.d("GSON","Json -> "+json);
+
+        return value;
+    }
+
+    public static String genJsonPlanVariable(FormulaIModel model){
+        mVarPlanI var = new mVarPlanI();
+
+        var.Rai = model.Rai;
+        var.Ngan = model.Ngan;
+        var.TarangWa = model.TarangWa;
+
+        var.rookKung = model.rookKung;
+
+        var.RakaTuaLa = model.RakaTuaLa;
+        var.KaAHan = model.KaAHan;
+        var.KaYa = model.KaYa;
+        var.KaSankemee = model.KaSankemee;
+        var.KaNamMan = model.KaNamMan;
+        var.KaFai = model.KaFai;
+        var.KaRokRain = model.KaRokRain;
+        var.KaLeang = model.KaLeang;
+        var.KaJub = model.KaJub;
+        var.KaSomsamOuppakorn = model.KaSomsamOuppakorn;
+        var.KaChaiJay = model.KaChaiJay;
+        var.KaChaoTDin = model.KaChaoTDin;
+
+        var.PonPalidKung = model.PonPalidKung;
+        var.RakaChalia = model.RakaChalia;
+        var.RayaWelaTeeLeang = model.RayaWelaTeeLeang;
+
+        var.KaSermOuppakorn = model.KaSermOuppakorn;
+        var.KaSiaOkardOuppakorn = model.KaSiaOkardOuppakorn;
+
 
 
         //jsonPlanA = TextUtils.htmlEncode(jsonPlanA);
