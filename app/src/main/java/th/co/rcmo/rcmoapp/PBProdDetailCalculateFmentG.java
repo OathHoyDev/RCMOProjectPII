@@ -355,6 +355,19 @@ public class PBProdDetailCalculateFmentG extends Fragment implements View.OnClic
 
             new DialogCalculateResult(context).Show();
 
+        } else if (v.getId() == R.id.group0_header) {
+
+            if (h.group0_items.getVisibility() == View.GONE) {
+                h.group0_items.setVisibility(View.VISIBLE);
+                h.group0_header_arrow.setImageBitmap(BitMapHelper.
+                        decodeSampledBitmapFromResource(getResources(), getResources().getIdentifier("arrow_hide", "drawable", context.getPackageName()), 30, 30));
+            } else {
+                h.group0_header_arrow.setImageBitmap(BitMapHelper.
+                        decodeSampledBitmapFromResource(getResources(), getResources().getIdentifier("arrow_show", "drawable", context.getPackageName()), 30, 30));
+
+                h.group0_items.setVisibility(View.GONE);
+
+            }
         } else if (v.getId() == R.id.group1_header) {
 
             if (h.group1_items.getVisibility() == View.GONE) {
@@ -405,6 +418,19 @@ public class PBProdDetailCalculateFmentG extends Fragment implements View.OnClic
                         decodeSampledBitmapFromResource(getResources(), getResources().getIdentifier("arrow_show", "drawable", context.getPackageName()), 30, 30));
 
                 h.group4_items.setVisibility(View.GONE);
+
+            }
+        }  else if (v.getId() == R.id.group5_header) {
+
+            if (h.group5_items.getVisibility() == View.GONE) {
+                h.group5_items.setVisibility(View.VISIBLE);
+                h.group5_header_arrow.setImageBitmap(BitMapHelper.
+                        decodeSampledBitmapFromResource(getResources(), getResources().getIdentifier("arrow_hide", "drawable", context.getPackageName()), 30, 30));
+            } else {
+                h.group5_header_arrow.setImageBitmap(BitMapHelper.
+                        decodeSampledBitmapFromResource(getResources(), getResources().getIdentifier("arrow_show", "drawable", context.getPackageName()), 30, 30));
+
+                h.group5_items.setVisibility(View.GONE);
 
             }
         }  else if (v.getId() == R.id.btnOption) {
