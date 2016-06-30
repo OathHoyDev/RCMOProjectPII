@@ -224,7 +224,7 @@ public class PBProdDetailCalculateFmentI extends Fragment implements View.OnClic
             DialogCalculateResult.userPlotModel = userPlotModel;
             DialogCalculateResult.calculateResultModel = calculateResultModel;
 
-            userPlotModel.setVarValue(ProductService.genJsonPlanVariable(formulaModel));
+            //userPlotModel.setVarValue(ProductService.genJsonPlanVariable(formulaModel));
 
             List resultArrayResult = new ArrayList();
 

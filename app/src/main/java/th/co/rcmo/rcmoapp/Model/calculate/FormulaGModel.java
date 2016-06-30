@@ -10,85 +10,85 @@ public class FormulaGModel extends AbstractFormulaModel {
     public boolean isCalIncludeOption = false;
 
     //Standard
-    public double JumuanMaeKo ;
-    public double ParimanNumnom ;
-    public double KumnuanAnimanl;
-    public double JumnuanKo;
-    public double KoRakRakGerd;
-    public double Ko1_2;
-    public double Ko2;
-    public double MaeKoReedNom;
+    public double JumuanMaeKo = 0;
+    public double ParimanNumnom = 0;
+   // public double KumnuanAnimanl;
+   // public double JumnuanKo;
+    public double KoRakRakGerd = 0;
+    public double Ko1_2 = 0;
+    public double Ko2 = 0;
+    public double MaeKoReedNom = 0;
    // public double MoonkaAnimalTuangNumnuk ;
 
-    public double KumnuanTontoonNumnomChaLia;
+  //  public double KumnuanTontoonNumnomChaLia;
 
   //  public double KumnuanTontoonPunPae ;
  //   public double KaRang;
-    public double KaReedNom ;
-    public double KaRangReang;
+    public double KaReedNom = 0;
+    public double KaRangReang= 0;
   //  public double Kawassadu ;
-    public double KaPasomPan ;
-    public double KaAHan ;
-    public double KaAHanYab ;
-    public double KaYa;
-    public double KaNamKaFai ;
-    public double KaNamMan ;
-    public double KaWassaduSinPleung ;
-    public double KaSomsamOuppakorn ;
-    public double KaKonsong;
-    public double KaChaiJay ;
+    public double KaPasomPan = 0;
+    public double KaAHan = 0;
+    public double KaAHanYab= 0;
+    public double KaYa= 0;
+    public double KaNamKaFai = 0;
+    public double KaNamMan = 0;
+    public double KaWassaduSinPleung = 0;
+    public double KaSomsamOuppakorn = 0;
+    public double KaKonsong= 0;
+    public double KaChaiJay= 0 ;
     //public double KaSiaOkardLongtoon ;
    // public double KumnuanTontoonKongTee ;
-    public double KaChaoTDin ;
-    public double KaSermRongRaun;
-    public double KaSermMaeKo ;
-    public double KaSiaOkardRongRaun ;
-    public double KaSiaOkardMaeKo ;
+    public double KaChaoTDin= 0 ;
+    public double KaSermRongRaun= 0;
+    public double KaSermMaeKo = 0;
+    public double KaSiaOkardRongRaun = 0;
+    public double KaSiaOkardMaeKo= 0;
+
+    public double PerKaNamKaFai= 0;
+    public double PerKaNamMan= 0;
+    public double PerKaWassaduSinPleung= 0;
+    public double PerKaSomsamOuppakorn= 0;
+    public double PerKaChaiJay= 0;
+    public double RakaTkai= 0;
 
 
     //====================================================================
-    public double calKoRakRakGerd;
-    public double calKo1_2;
-    public double calKo2;
-    public double calMaeKoReedNom;
-    public double calMoonkaAnimalTuangNumnuk;
+    public double calKoRakRakGerd= 0;
+    public double calKo1_2= 0;
+    public double calKo2= 0;
+    public double calMaeKoReedNom= 0;
+    public double calMoonkaAnimalTuangNumnuk= 0;
 
-    public double calKumnuanTontoonPunPae ;
-    public double calKaRang;
-    public double calKaReedNom ;
-    public double calKaRangReang;
-    public double calKawassadu ;
-    public double calKaPasomPan ;
-    public double calKaAHan ;
-    public double calKaAHanYab ;
-    public double calKaYa;
-    public double calKaNamKaFai ;
-    public double calKaNamMan ;
-    public double calKaWassaduSinPleung ;
-    public double calKaSomsamOuppakorn ;
-    public double calKaKonsong;
-    public double calKaChaiJay ;
-    public double calKaSiaOkardLongtoon ;
-    public double calKumnuanTontoonKongTee ;
-    public double calKaChaoTDin ;
-    public double calKaSermRongRaun;
-    public double calKaSermMaeKo ;
-    public double calKaSiaOkardRongRaun ;
-    public double calKaSiaOkardMaeKo ;
-
-/*
-    public double calRakaTkai =0;
+    public double calKumnuanTontoonPunPae= 0 ;
+    public double calKaRang= 0;
+    public double calKaReedNom = 0;
+    public double calKaRangReang= 0;
+    public double calKawassadu = 0;
+    public double calKaPasomPan = 0;
+    public double calKaAHan = 0;
+    public double calKaAHanYab = 0;
+    public double calKaYa= 0;
+    public double calKaNamKaFai = 0;
+    public double calKaNamMan = 0;
+    public double calKaWassaduSinPleung = 0;
+    public double calKaSomsamOuppakorn= 0 ;
+    public double calKaKonsong= 0;
+    public double calKaChaiJay= 0 ;
+    public double calKaSiaOkardLongtoon = 0;
+    public double calKumnuanTontoonKongTee= 0 ;
+    public double calKaChaoTDin = 0;
+    public double calKaSermRongRaun= 0;
+    public double calKaSermMaeKo= 0 ;
+    public double calKaSiaOkardRongRaun = 0;
+    public double calKaSiaOkardMaeKo= 0 ;
     public double calCost = 0;
-    public double calCostPerTua = 0;
-    public double calCostReturnPerTua= 0;
-    public double calAllCostPerKg = 0;
-    public double calAttraRak =0;
-    public double calProfitLossPerKg = 0;
+    public double costTontunPalitNamnomPerKg = 0;
     public double calProfitLoss = 0;
-    public double calNumnukTungmod =0;
-    public double calNumnukTPuem =0;
-    public double calKaChaiJaiAll =0;
-*/
+    public double calNamnomTReedCharia = 0;
+    public double calAllSalePrice   = 0;
+
+
 
     public void calculate() {
 
@@ -101,7 +101,7 @@ public class FormulaGModel extends AbstractFormulaModel {
         calMoonkaAnimalTuangNumnuk = KoRakRakGerd+Ko1_2+Ko2+MaeKoReedNom;
 
         double fixFMoonkaAnimalTuangNumnuk = calKoRakRakGerd +calKo1_2 +calKo2 +calMaeKoReedNom;
-        double fixEMoonkaAnimalTuangNumnuk = JumnuanKo/fixFMoonkaAnimalTuangNumnuk;
+        double fixEMoonkaAnimalTuangNumnuk = JumuanMaeKo/fixFMoonkaAnimalTuangNumnuk;
 
 
         // C5 = ParimanNumnom
@@ -109,20 +109,24 @@ public class FormulaGModel extends AbstractFormulaModel {
         // ========  2.1.1 ========
         calKaReedNom =KaReedNom/ParimanNumnom;
         calKaRangReang=KaRangReang*fixEMoonkaAnimalTuangNumnuk/ParimanNumnom;
+
+        //F18
         calKaRang=calKaReedNom+calKaRangReang;
 
-        // ========  2.1.2 ========
+        // ========  2.1.2  ========
         calKaPasomPan = KaPasomPan/ParimanNumnom;
         calKaAHan     = KaAHan/ParimanNumnom;
         calKaAHanYab  = KaAHanYab*fixEMoonkaAnimalTuangNumnuk/ParimanNumnom;
         calKaYa       = KaYa/ParimanNumnom;
-        calKaNamKaFai = KaNamKaFai*(40/100)*fixEMoonkaAnimalTuangNumnuk/ParimanNumnom;
-        calKaNamMan   = KaNamMan  *(80/100)*fixEMoonkaAnimalTuangNumnuk/ParimanNumnom;
-        calKaWassaduSinPleung = KaWassaduSinPleung *(30/100)*fixEMoonkaAnimalTuangNumnuk/ParimanNumnom;
-        calKaSomsamOuppakorn  = KaSomsamOuppakorn  *(60/100)*fixEMoonkaAnimalTuangNumnuk/ParimanNumnom;
+        calKaNamKaFai = KaNamKaFai*(PerKaNamKaFai/100)*fixEMoonkaAnimalTuangNumnuk/ParimanNumnom;
+        calKaNamMan   = KaNamMan  *(PerKaNamMan/100)*fixEMoonkaAnimalTuangNumnuk/ParimanNumnom;
+        calKaWassaduSinPleung = KaWassaduSinPleung *(PerKaWassaduSinPleung/100)*fixEMoonkaAnimalTuangNumnuk/ParimanNumnom;
+        calKaSomsamOuppakorn  = KaSomsamOuppakorn  *(PerKaSomsamOuppakorn/100)*fixEMoonkaAnimalTuangNumnuk/ParimanNumnom;
         calKaKonsong = KaKonsong/ParimanNumnom;;
-        calKaChaiJay = KaChaiJay  *(0/100)*fixEMoonkaAnimalTuangNumnuk/ParimanNumnom;
+        calKaChaiJay = KaChaiJay  *(PerKaChaiJay/100)*fixEMoonkaAnimalTuangNumnuk/ParimanNumnom;
 
+
+        //F21
         calKawassadu = calKaPasomPan
                       +calKaAHan
                       +calKaAHanYab
@@ -134,69 +138,68 @@ public class FormulaGModel extends AbstractFormulaModel {
                       +calKaKonsong
                       +calKaChaiJay;
 
-        //==============2.1 ================
-      // calKumnuanTontoonPunPae =;
+        //============== 2.1.3 ==============
+        //F32
+        Log.d("Cal","***** calKaRang :"+calKaRang);
+        Log.d("Cal","***** calKawassadu :"+calKawassadu);
+        calKaSiaOkardLongtoon = Util.round(((calKaRang+calKawassadu)*(0.07))* Util.round((30.42/365),2),2);
+        Log.d("Cal","***** calKaSiaOkardLongtoon :"+(calKaRang+calKawassadu)*(0.07));
+
+        //============== 2.1 ================
+        //F17
+       calKumnuanTontoonPunPae = calKaRang+calKawassadu+calKaSiaOkardLongtoon;
+
+
+        //============== 2.2 ===============
+        calKaChaoTDin     = KaChaoTDin/365*30.42/ParimanNumnom;
+        calKaSermRongRaun = KaSermRongRaun/100;
+        calKaSermMaeKo    = KaSermMaeKo/100;
+        calKaSiaOkardRongRaun = KaSiaOkardRongRaun/100;
+        calKaSiaOkardMaeKo     = KaSiaOkardMaeKo/100;
+
+        //F33
+        calKumnuanTontoonKongTee =  calKaChaoTDin
+                                  + calKaSermRongRaun
+                                  + calKaSermMaeKo
+                                  + calKaSiaOkardRongRaun
+                                  + calKaSiaOkardMaeKo;
 
 
 
+        // ====================== Calculate =============================
+        calCost = (calKumnuanTontoonPunPae+calKumnuanTontoonKongTee)*ParimanNumnom;
+        costTontunPalitNamnomPerKg = calKumnuanTontoonPunPae+calKumnuanTontoonKongTee;
+        calProfitLoss = RakaTkai - costTontunPalitNamnomPerKg;
+        calNamnomTReedCharia =ParimanNumnom/JumuanMaeKo/30.42;
+        calAllSalePrice   = RakaTkai*ParimanNumnom;
 
 
-    /*
-        calKaSiaOkardLongtoon ;
-        calKumnuanTontoonKongTee ;
-        calKaChaoTDin ;
-        calKaSermRongRaun;
-        calKaSermMaeKo ;
-        calKaSiaOkardRongRaun ;
-        calKaSiaOkardMaeKo ;
-*/
-
-        /*
-        Log.d("Cal","***** ค่าแรงงาน  :"+KaRang);
-        double costKaRangGgan = (KaRang/30.42)*RayaWera;
-        double costKaNamKaFai = (KaNamKaFai/30.42)*RayaWera;
-        double costKaChoaTDin = (KaChoaTDin/365*RayaWera/JumnuanTKai);
-        double costKaSermRongRaun = Util.round((KaSermRongRaun * JumnuanTKai),2);
-
-        calNumnukTungmod = NumnukChalia*JumnuanTKai;
-        calNumnukTPuem = NumnukChalia -NumnukRermLeang;
-        calRakaTkai    = RakaChalia/NumnukChalia;
-
-         calKaChaiJaiAll = Util.round((KaPan+KaAHanKon+KaAKanYab+costKaRangGgan+KaYa+costKaNamKaFai+KaWassaduSinPleung),2);
-
-
-        calCost  =Util.round((costKaSermRongRaun+KaSiaOkardLongtoon +calKaChaiJaiAll+costKaChoaTDin),2);
-
-
-        if (isCalIncludeOption){
-            calCost += costKaSermRongRaun + KaSiaOkardLongtoon;
-        }
-
-        calCostPerTua        = calCost/JumnuanTKai;
-        calCostReturnPerTua  = calCost-RakaChalia;
-        calAllCostPerKg      = calCost/calNumnukTungmod;
-        calAttraRak          = calNumnukTPuem/RayaWera;
-        calProfitLossPerKg   = calRakaTkai - calAllCostPerKg;
-        calProfitLoss        = calProfitLossPerKg * calNumnukTungmod;
-
-
+        Log.d("Cal","***** จำนวนแม่โครีดนม :"+JumuanMaeKo);
+        Log.d("Cal","***** ปริมาณน้ำนมดิบที่รีดได้ทั้งหมด :"+ParimanNumnom);
+        Log.d("Cal","-----------------------------------------");
         Log.d("Cal","***** ค่าเสื่อมโรงเรือน :"+KaSermRongRaun);
-        Log.d("Cal","***** ค่าใช้จ่ายทั้งหมด QT :"+calKaChaiJaiAll);
+        Log.d("Cal","***** ค่าเสื่อมแม่โคนม :"+KaSermMaeKo);
+        Log.d("Cal","***** ค่าเสียโอกาสโรงเรือน :"+KaSiaOkardRongRaun);
+        Log.d("Cal","***** ค่าเสียโอกาสแม่โคนม :"+KaSiaOkardMaeKo);
 
         Log.d("Cal","-----------------------------------------");
-        Log.d("Cal","***** ค่าแรงงาน   หลังคำนวน :"+costKaRangGgan);
-        Log.d("Cal","***** ค่าน้ำ-ค่าไฟ หลังคำนวน :"+costKaNamKaFai);
-        Log.d("Cal","***** ค่าเช่าที่ดิน   หลังคำนวน :"+costKaChoaTDin);
-        Log.d("Cal","***** ค่าเสื่อมโรงเรือน หลังคำนวน :"+costKaSermRongRaun);
+        Log.d("Cal","***** 1. การคำนวณค่าหน่วยสัตว์ :"+calMoonkaAnimalTuangNumnuk);
         Log.d("Cal","-----------------------------------------");
+        Log.d("Cal","***** 2.1 การคำนวณต้นทุนผันแปร     :"+calKumnuanTontoonPunPae);
+        Log.d("Cal","***** -- 2.1.1 ค่าแรงงาน            :"+calKaRang);
+        Log.d("Cal","***** -- 2.1.2 ค่าวัสดุ               :"+calKawassadu);
+        Log.d("Cal","***** -- 2.1.3 ค่าเสียโอกาสเงินลงทุน  :"+calKaSiaOkardLongtoon);
+        Log.d("Cal","***** 2.2 การคำนวณต้นทุนคงที่ :"+calKumnuanTontoonKongTee);
+        Log.d("Cal","-----------------------------------------");
+
+        Log.d("Cal","***** ต้นทุนการผลิตน้ำนมดิบเฉลี่ยต่อ 1 กก. :"+costTontunPalitNamnomPerKg);
+        Log.d("Cal","***** ราคาที่เกษตรกรขายได้ :"+RakaTkai);
+        Log.d("Cal","***** กำไร-ขาดทุน :"+calProfitLoss);
+        Log.d("Cal","***** ปริมาณน้ำนมดิบที่รีดได้เฉลี่ย :"+calNamnomTReedCharia);
+        Log.d("Cal","***** มูลค่าที่ขายได้ทั้งหมด :"+calAllSalePrice);
         Log.d("Cal","***** ต้นทุนทั้งหมด :"+calCost);
-        Log.d("Cal","***** ต้นทุนต่อ 1 ตัว :"+calCostPerTua);
-        Log.d("Cal","***** ผลตอบแทนต้นทุนทั้งหมดต่อตัว :"+calCostReturnPerTua);
-        Log.d("Cal","***** ต้นทุนทั้งหมดต่อน้ำหนัก 1 กิโลกรัม :"+calAllCostPerKg);
-        Log.d("Cal","***** อัตราการแลกเนื้อเฉลี่ยต่อวัน :"+calAttraRak);
-        Log.d("Cal","***** กำไร-ขาดทุน 1 กิโลกรัม :"+calProfitLossPerKg);
-        Log.d("Cal","***** กำไร-ขาดทุนทั้งหมด :"+calProfitLoss);
-        */
+
+
     }
 
     public void prepareListData() {
