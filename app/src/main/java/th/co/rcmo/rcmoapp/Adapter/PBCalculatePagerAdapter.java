@@ -22,6 +22,7 @@ import th.co.rcmo.rcmoapp.PBProdDetailCalculateFmentE;
 import th.co.rcmo.rcmoapp.PBProdDetailCalculateFmentF;
 import th.co.rcmo.rcmoapp.PBProdDetailCalculateFmentH;
 import th.co.rcmo.rcmoapp.PBProdDetailCalculateFmentI;
+import th.co.rcmo.rcmoapp.PBProdDetailCalculateFmentJ;
 import th.co.rcmo.rcmoapp.PBProdDetailMapFment;
 import th.co.rcmo.rcmoapp.PBProdDetailStandradFment;
 import th.co.rcmo.rcmoapp.ProductDetailCalculateFragmentA;
@@ -82,7 +83,7 @@ public class PBCalculatePagerAdapter extends FragmentStatePagerAdapter {
                     frag = new PBProdDetailCalculateFmentI();
 
                 } else if ("J".equalsIgnoreCase(userPlotModel.getFormularCode())){
-                    frag = new PBProdDetailCalculateFmentI();
+                    frag = new PBProdDetailCalculateFmentJ();
 
                 }else if ("K".equalsIgnoreCase(userPlotModel.getFormularCode())){
                     frag = new PBProdDetailCalculateFmentI();
