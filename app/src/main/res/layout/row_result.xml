@@ -36,7 +36,7 @@
 
             <com.neopixl.pixlui.components.textview.TextView
                 pixlui:typeface="Quark-Bold.otf"
-                android:layout_weight="1.5"
+                android:layout_weight="1.7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_normal"
@@ -57,7 +57,7 @@
             android:textColor="@color/RcmoNormalDarkText"
             android:gravity="left|center"
             android:paddingLeft="10dp"
-            android:layout_weight="4"
+            android:layout_weight="3"
             android:inputType="text"
             android:textSize="@dimen/textsize_normal"
             />

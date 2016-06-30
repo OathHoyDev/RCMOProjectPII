@@ -170,7 +170,7 @@
                     android:textSize="30dp"/>
 
                 <com.neopixl.pixlui.components.textview.TextView
-                    android:id="@+id/textView3"
+                    android:id="@+id/unit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
