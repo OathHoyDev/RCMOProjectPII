@@ -510,7 +510,7 @@ public class PBProdDetailCalculateFmentG extends Fragment implements View.OnClic
 
                 if (mVariableBodyLists.size() != 0) {
                     mGetVariable.mRespBody var = mVariableBodyLists.get(0);
-                    /*
+
                     formulaModel.KaSermRongRaun = Util.strToDoubleDefaultZero(var.getDH());
                     formulaModel.KaSermMaeKo    =Util.strToDoubleDefaultZero(var.getDD());
                     formulaModel.KaSiaOkardRongRaun = Util.strToDoubleDefaultZero(var.getOH());
@@ -520,8 +520,8 @@ public class PBProdDetailCalculateFmentG extends Fragment implements View.OnClic
                     h.group4_item_3.setText(String.valueOf(Util.strToDoubleDefaultZero(var.getDD())));
                     h.group4_item_4.setText(String.valueOf(Util.strToDoubleDefaultZero(var.getOH())));
                     h.group4_item_5.setText(String.valueOf(Util.strToDoubleDefaultZero(var.getOD())));
-*/
-                    //stub
+
+                    /*     //stub
                     formulaModel.KaSermRongRaun = 66.27;
                     formulaModel.KaSermMaeKo    =46.19;
                     formulaModel.KaSiaOkardRongRaun = 69.36;
@@ -531,7 +531,7 @@ public class PBProdDetailCalculateFmentG extends Fragment implements View.OnClic
                     h.group4_item_3.setText(String.valueOf(formulaModel.KaSermMaeKo));
                     h.group4_item_4.setText(String.valueOf(formulaModel.KaSiaOkardRongRaun));
                     h.group4_item_5.setText(String.valueOf( formulaModel.KaSiaOkardMaeKo));
-
+*/
 
                    // formulaModel.KaSiaOkardRongRaun = Util.strToDoubleDefaultZero(var.getO());
                     //stub
