@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import com.google.gson.Gson;
 import com.neopixl.pixlui.components.edittext.EditText;
 import com.neopixl.pixlui.components.textview.TextView;
 
@@ -23,6 +24,7 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 import java.util.List;
 
+import th.co.rcmo.rcmoapp.API.ProductService;
 import th.co.rcmo.rcmoapp.API.RequestServices;
 import th.co.rcmo.rcmoapp.API.ResponseAPI;
 import th.co.rcmo.rcmoapp.Model.UserPlotModel;
@@ -31,6 +33,7 @@ import th.co.rcmo.rcmoapp.Model.calculate.FormulaAModel;
 import th.co.rcmo.rcmoapp.Model.calculate.FormulaIModel;
 import th.co.rcmo.rcmoapp.Module.mGetPlotDetail;
 import th.co.rcmo.rcmoapp.Module.mGetVariable;
+import th.co.rcmo.rcmoapp.Module.mVarPlanI;
 import th.co.rcmo.rcmoapp.Util.BitMapHelper;
 import th.co.rcmo.rcmoapp.Util.ServiceInstance;
 import th.co.rcmo.rcmoapp.Util.Util;
@@ -67,7 +70,31 @@ public class PBProdDetailCalculateFmentI extends Fragment implements View.OnClic
 
         setUI();
 
+        //sampleData();
+
         return view;
+    }
+
+    private void sampleData () {
+
+        h.group1_item_1.setText("20");
+        h.group1_item_3.setText("7000");
+        h.group1_item_4.setText("350");
+        h.group1_item_5.setText("500");
+        h.group1_item_6.setText("500");
+        h.group1_item_7.setText("450");
+        h.group1_item_8.setText("300");
+
+        h.group1_item_10.setText("500");
+        h.group1_item_11.setText("450");
+        h.group1_item_12.setText("250");
+        h.group1_item_13.setText("100");
+        h.group1_item_14.setText("3000");
+
+        h.group2_item_1.setText("50000");
+        h.group2_item_2.setText("150");
+        h.group2_item_5.setText("130");
+
     }
 
     private void setHolder() {
@@ -124,6 +151,12 @@ public class PBProdDetailCalculateFmentI extends Fragment implements View.OnClic
 
         h.btnOption = (Button) view.findViewById(R.id.btnOption);
         h.btnOption.setOnClickListener(this);
+
+        h.group2_7_item = (LinearLayout) view.findViewById(R.id.group2_7_item);
+        h.group2_8_item = (LinearLayout) view.findViewById(R.id.group2_8_item);
+
+        h.group2_7_item.setVisibility(View.GONE);
+        h.group2_8_item.setVisibility(View.GONE);
     }
 
     private void setupData() {
@@ -158,8 +191,12 @@ public class PBProdDetailCalculateFmentI extends Fragment implements View.OnClic
 
             if (isCalIncludeOption) {
                 h.btnOption.setBackgroundResource(R.drawable.radio_cal_blue_check);
+                h.group2_7_item.setVisibility(View.VISIBLE);
+                h.group2_8_item.setVisibility(View.VISIBLE);
             } else {
                 h.btnOption.setBackgroundResource(R.drawable.radio_cal_blue);
+                h.group2_7_item.setVisibility(View.GONE);
+                h.group2_8_item.setVisibility(View.GONE);
             }
 
             formulaModel.isCalIncludeOption = isCalIncludeOption;
@@ -182,9 +219,12 @@ public class PBProdDetailCalculateFmentI extends Fragment implements View.OnClic
             calculateResultModel.calculateResult = formulaModel.KumraiKadtoon;
             calculateResultModel.productName = userPlotModel.getPrdValue();
             calculateResultModel.mPlotSuit = PBProductDetailActivity.mPlotSuit;
+            calculateResultModel.compareStdResult = 0;
 
             DialogCalculateResult.userPlotModel = userPlotModel;
             DialogCalculateResult.calculateResultModel = calculateResultModel;
+
+            userPlotModel.setVarValue(ProductService.genJsonPlanVariable(formulaModel));
 
             List resultArrayResult = new ArrayList();
 
@@ -194,7 +234,7 @@ public class PBProdDetailCalculateFmentI extends Fragment implements View.OnClic
             String [] tontoonCal_2 = {"" , String.format("%,.2f", formulaModel.TontoonTorKilo) , "บาท/กก."};
             resultArrayResult.add(tontoonCal_2);
 
-            String [] raydai_1 = {"รายได้" , String.format("%,.2f", formulaModel.TontoonTorRai) , "บาท/ไร่"};
+            String [] raydai_1 = {"" , String.format("%,.2f", formulaModel.TontoonTorRai) , "บาท/ไร่"};
             resultArrayResult.add(raydai_1);
 
             DialogCalculateResult.calculateResultModel.resultList = resultArrayResult;
@@ -207,10 +247,14 @@ public class PBProdDetailCalculateFmentI extends Fragment implements View.OnClic
                 h.btnOption.setBackgroundResource(R.drawable.radio_cal_blue);
                 isCalIncludeOption = false;
                 formulaModel.isCalIncludeOption =false;
+                h.group2_7_item.setVisibility(View.GONE);
+                h.group2_8_item.setVisibility(View.GONE);
             }else{
                 h.btnOption.setBackgroundResource(R.drawable.radio_cal_blue_check);
                 isCalIncludeOption = true;
                 formulaModel.isCalIncludeOption = true;
+                h.group2_7_item.setVisibility(View.VISIBLE);
+                h.group2_8_item.setVisibility(View.VISIBLE);
             }
 
             formulaModel.isCalIncludeOption = isCalIncludeOption;
@@ -243,6 +287,10 @@ public class PBProdDetailCalculateFmentI extends Fragment implements View.OnClic
             }
         }
 
+    }
+
+    private void initVariableDataFromDB() {
+        API_getPlotDetailANDBlinding(userPlotModel.getPlotID(), formulaModel);
     }
 
     private void setUpCalUI(FormulaIModel aModel){
@@ -297,6 +345,8 @@ public class PBProdDetailCalculateFmentI extends Fragment implements View.OnClic
         // Group 2
         private EditText group2_item_1, group2_item_2, group2_item_3, group2_item_4, group2_item_5;
         private TextView group2_item_6, group2_item_7, group2_item_8;
+
+        private LinearLayout group2_7_item , group2_8_item;
 
         private TextView calBtn, group1_header, group2_header;
 
@@ -368,6 +418,97 @@ public class PBProdDetailCalculateFmentI extends Fragment implements View.OnClic
         }).API_Request(true, RequestServices.ws_getVariable +
                 "?PrdID=" + prdID +
                 "&FisheryType=" + fisheryType);
+
+    }
+
+    private void API_getPlotDetailANDBlinding(String plotID, final FormulaIModel aModel) {
+        /**
+         1.TamCode (ไม่บังคับใส่)
+         2.AmpCode (บังคับใส่)
+         3.ProvCode (บังคับใส่)
+         */
+        new ResponseAPI(context, new ResponseAPI.OnCallbackAPIListener() {
+            @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
+            @Override
+            public void callbackSuccess(Object obj) {
+
+                mGetPlotDetail mPlotDetail = (mGetPlotDetail) obj;
+                List<mGetPlotDetail.mRespBody> mPlotDetailBodyLists = mPlotDetail.getRespBody();
+
+                if (mPlotDetailBodyLists.size() != 0) {
+                    mGetPlotDetail.mRespBody plotDetail = mPlotDetailBodyLists.get(0);
+                    if (!plotDetail.getVarValue().equals("")) {
+                        mVarPlanI varI = new Gson().fromJson(plotDetail.getVarValue(), mVarPlanI.class);
+
+                        aModel.Rai = varI.getRai();
+                        aModel.Ngan = varI.getNgan();
+                        aModel.TarangWa = varI.getTarangWa();
+
+                        aModel.rookKung = varI.getRookKung();
+
+                        aModel.RakaTuaLa = varI.getRakaTuaLa();
+                        aModel.KaAHan = varI.getKaAHan();
+                        aModel.KaYa = varI.getKaYa();
+                        aModel.KaSankemee = varI.getKaSankemee();
+                        aModel.KaNamMan = varI.getKaNamMan();
+                        aModel.KaFai = varI.getKaFai();
+                        aModel.KaRokRain = varI.getKaRokRain();
+                        aModel.KaLeang = varI.getKaLeang();
+                        aModel.KaJub = varI.getKaJub();
+                        aModel.KaSomsamOuppakorn = varI.getKaSomsamOuppakorn();
+                        aModel.KaChaiJay = varI.getKaChaiJay();
+                        aModel.KaChaoTDin = varI.getKaChaoTDin();
+
+                        aModel.PonPalidKung = varI.getPonPalidKung();
+                        aModel.RakaChalia = varI.getRakaChalia();
+                        aModel.RayaWelaTeeLeang = varI.getRayaWelaTeeLeang();
+
+                        aModel.KaSermOuppakorn = varI.getKaSermOuppakorn();
+                        aModel.KaSiaOkardOuppakorn = varI.getKaSiaOkardOuppakorn();
+
+                        h.rai.setText(Util.dobbleToStringNumber(varI.Rai));
+                        h.ngan.setText(Util.dobbleToStringNumber(varI.Ngan));
+                        h.tarangwa.setText(Util.dobbleToStringNumber(varI.TarangWa));
+                        h.rookKung.setText(Util.dobbleToStringNumber(varI.rookKung));
+
+                        h.group1_item_1.setText(Util.dobbleToStringNumber(varI.RakaTuaLa));
+                        h.group1_item_3.setText(Util.dobbleToStringNumber(varI.KaAHan));
+                        h.group1_item_4.setText(Util.dobbleToStringNumber(varI.KaYa));
+                        h.group1_item_5.setText(Util.dobbleToStringNumber(varI.KaSankemee));
+                        h.group1_item_6.setText(Util.dobbleToStringNumber(varI.KaNamMan));
+                        h.group1_item_7.setText(Util.dobbleToStringNumber(varI.KaFai));
+                        h.group1_item_8.setText(Util.dobbleToStringNumber(varI.KaRokRain));
+
+                        h.group1_item_10.setText(Util.dobbleToStringNumber(varI.KaLeang));
+                        h.group1_item_11.setText(Util.dobbleToStringNumber(varI.KaJub));
+                        h.group1_item_12.setText(Util.dobbleToStringNumber(varI.KaSomsamOuppakorn));
+                        h.group1_item_13.setText(Util.dobbleToStringNumber(varI.KaChaiJay));
+                        h.group1_item_14.setText(Util.dobbleToStringNumber(varI.KaChaoTDin));
+
+                        h.group2_item_1.setText(Util.dobbleToStringNumber(varI.PonPalidKung));
+                        h.group2_item_2.setText(Util.dobbleToStringNumber(varI.RakaChalia));
+                        h.group2_item_5.setText(Util.dobbleToStringNumber(varI.RayaWelaTeeLeang));
+
+
+                        formulaModel.calculate();
+
+                        setUpCalUI(formulaModel);
+                    }else{
+                        h.rai.setText(plotDetail.getPondRai());
+                        h.ngan.setText(plotDetail.getPondNgan());
+                        h.tarangwa.setText(plotDetail.getPondWa());
+                        h.rookKung.setText(plotDetail.getFisheryNumber());
+                    }
+                }
+            }
+
+            @Override
+            public void callbackError(int code, String errorMsg) {
+                Log.d("Error", errorMsg);
+            }
+        }).API_Request(true, RequestServices.ws_getPlotDetail +
+                "?PlotID=" + plotID +
+                "&ImeiCode=" + ServiceInstance.GetDeviceID(context));
 
     }
 
