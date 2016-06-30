@@ -9,7 +9,7 @@ public class mVarPlanG {
     public double JumuanMaeKo ;
     public double ParimanNumnom ;
     public double KumnuanAnimanl;
-    public double JumnuanKo;
+    //public double JumnuanKo;
     public double KoRakRakGerd;
     public double Ko1_2;
     public double Ko2;
@@ -29,6 +29,13 @@ public class mVarPlanG {
     public double KaNamKaFai ;
     public double KaNamMan ;
     public double KaWassaduSinPleung ;
+
+    public double PerKaNamKaFai;
+    public double PerKaNamMan;
+    public double PerKaWassaduSinPleung;
+    public double PerKaSomsamOuppakorn;
+    public double PerKaChaiJay;
+
 
     public double KaSomsamOuppakorn ;
     public double KaKonsong;
@@ -50,6 +57,53 @@ public class mVarPlanG {
 
     public double TontoonTungmod ;
 
+    public double getKaRang() {
+        return KaRang;
+    }
+
+    public void setKaRang(double kaRang) {
+        KaRang = kaRang;
+    }
+
+    public double getPerKaNamKaFai() {
+        return PerKaNamKaFai;
+    }
+
+    public void setPerKaNamKaFai(double perKaNamKaFai) {
+        PerKaNamKaFai = perKaNamKaFai;
+    }
+
+    public double getPerKaNamMan() {
+        return PerKaNamMan;
+    }
+
+    public void setPerKaNamMan(double perKaNamMan) {
+        PerKaNamMan = perKaNamMan;
+    }
+
+    public double getPerKaWassaduSinPleung() {
+        return PerKaWassaduSinPleung;
+    }
+
+    public void setPerKaWassaduSinPleung(double perKaWassaduSinPleung) {
+        PerKaWassaduSinPleung = perKaWassaduSinPleung;
+    }
+
+    public double getPerKaSomsamOuppakorn() {
+        return PerKaSomsamOuppakorn;
+    }
+
+    public void setPerKaSomsamOuppakorn(double perKaSomsamOuppakorn) {
+        PerKaSomsamOuppakorn = perKaSomsamOuppakorn;
+    }
+
+    public double getPerKaChaiJay() {
+        return PerKaChaiJay;
+    }
+
+    public void setPerKaChaiJay(double perKaChaiJay) {
+        PerKaChaiJay = perKaChaiJay;
+    }
 
     public double getJumuanMaeKo() {
         return JumuanMaeKo;
@@ -73,14 +127,6 @@ public class mVarPlanG {
 
     public void setKumnuanAnimanl(double kumnuanAnimanl) {
         KumnuanAnimanl = kumnuanAnimanl;
-    }
-
-    public double getJumnuanKo() {
-        return JumnuanKo;
-    }
-
-    public void setJumnuanKo(double jumnuanKo) {
-        JumnuanKo = jumnuanKo;
     }
 
     public double getKoRakRakGerd() {

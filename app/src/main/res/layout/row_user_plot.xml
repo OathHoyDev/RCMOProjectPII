@@ -193,8 +193,8 @@
                         android:textStyle="bold"
                         android:text="-12000.00"
                         android:textColor="@color/RcmoNormalDarkText"
-                        android:paddingLeft="15dp"
-                        android:textSize="@dimen/margin_xxxxlarge"
+                        android:paddingLeft="10dp"
+                        android:textSize="19sp"
                         android:id="@+id/labelProfit"
                         />
                     <com.neopixl.pixlui.components.textview.TextView

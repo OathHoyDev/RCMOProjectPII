@@ -175,6 +175,16 @@ public class PBCalculateResultActivity extends Activity {
                 value_t1.setTextColor(getResources().getColor(R.color.RcmoAnimalBG));
 
 
+                if("43".equals(userPlotModel.getPrdID())){
+                    ((TextView) findViewById(R.id.unit)).setText("บาท/กก.");
+                    unit_t1.setVisibility(View.GONE);
+                    value_t1.setVisibility(View.GONE);
+                }else{
+                    unit_t1.setText(calculateResultModel.unit_t1);
+                    value_t1.setText(Util.dobbleToStringNumberWithClearDigit(calculateResultModel.value_t1));
+                    value_t1.setTextColor(getResources().getColor(R.color.RcmoAnimalBG));
+                }
+
                 break;
             case CalculateConstant.PRODUCT_TYPE_FISH:
                 findViewById(R.id.t1).setVisibility(View.INVISIBLE);

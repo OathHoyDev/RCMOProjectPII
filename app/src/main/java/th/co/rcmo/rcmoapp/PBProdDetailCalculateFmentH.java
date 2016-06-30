@@ -406,7 +406,7 @@ public class PBProdDetailCalculateFmentH extends Fragment implements View.OnClic
                     formulaModel.KaSermRongRaun = Util.strToDoubleDefaultZero(var.getD());
                    // formulaModel.KaSiaOkardRongRaun = Util.strToDoubleDefaultZero(var.getO());
                     //stub
-                    formulaModel.KaSermRongRaun  =69.36;
+                   // formulaModel.KaSermRongRaun  =69.36;
                    // formulaModel.KaSiaOkardRongRaun=5.46;
                     // h.group1_item_13.setText(String.valueOf(formulaModel.KaSermOuppakorn));
                 }
