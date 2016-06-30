@@ -2,8 +2,16 @@ package th.co.rcmo.rcmoapp.Util;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Handler;
+import android.util.Log;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 import th.co.rcmo.rcmoapp.View.DialogChoice;
 
@@ -65,15 +73,42 @@ public class Util {
 
     public static double strToDoubleDefaultZero(String input){
         double value = 0;
-        if(input!=null && !input.equals("")) {
-            input.replaceAll("[^\\d.,]","");
-             value = Double.parseDouble(input);
+        try {
+            if (input != null && !input.equals("")) {
+                input = input.replaceAll(",", "");
+                input = input.replaceAll("%", "");
+                value = Double.parseDouble(input);
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+            value = 0;
         }
+
         return value;
     }
 
     public static String dobbleToStringNumber(double input){
         return String.format("%,.2f", input);
+    }
+
+    public static String dobbleToStringNumberWithClearDigit(double input){
+      //String  format =   String.format("%,.2f", input);
+        DecimalFormat formatter = (DecimalFormat) NumberFormat.getInstance(Locale.US);
+        formatter.applyPattern("#,###,###,###.##");
+        String formattedString = formatter.format(input);
+        return formattedString;
+
+    }
+
+    public static String strToDobbleToStrFormat(String input){
+      return dobbleToStringNumberWithClearDigit(strToDoubleDefaultZero(input));
+    }
+
+
+
+    public static boolean isNetworkAvailable(Context context) {
+        final ConnectivityManager connectivityManager = ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE));
+        return connectivityManager.getActiveNetworkInfo() != null && connectivityManager.getActiveNetworkInfo().isConnected();
     }
 
     public static void showDialogAndDismiss(Context context,String msg){
@@ -86,5 +121,21 @@ public class Util {
             }
         };
         handler.postDelayed(runnable, ServiceInstance.DISMISS_DURATION_MS);
+    }
+
+    public static  String formatPrice(int i) {
+        DecimalFormat formatter = new DecimalFormat("###,###,###");
+        String yourFormattedString = formatter.format(i);
+
+        return yourFormattedString;
+    }
+
+    public static double round(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
+
+        long factor = (long) Math.pow(10, places);
+        value = value * factor;
+        long tmp = Math.round(value);
+        return (double) tmp / factor;
     }
 }

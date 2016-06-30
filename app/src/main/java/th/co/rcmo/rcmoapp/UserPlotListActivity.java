@@ -40,6 +40,7 @@ import th.co.rcmo.rcmoapp.Util.BitMapHelper;
 import th.co.rcmo.rcmoapp.Util.ServiceInstance;
 import th.co.rcmo.rcmoapp.Util.Util;
 import th.co.rcmo.rcmoapp.View.DialogChoice;
+import th.co.rcmo.rcmoapp.View.ProgressAction;
 
 public class UserPlotListActivity extends Activity {
     DragSortListView  userPlotListView;
@@ -56,6 +57,8 @@ public class UserPlotListActivity extends Activity {
         userId = sp.getString(ServiceInstance.sp_userId, "0");
         setUI();
         setAction();
+
+        ProgressAction.gone(UserPlotListActivity.this);
     }
 
     @Override
@@ -300,7 +303,7 @@ public class UserPlotListActivity extends Activity {
                 h.btnProfit.setText("กำไร");
             }
 
-            h.labelProfit.setText(calResult);
+            h.labelProfit.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(calResult)));
             h.labelAddress.setText(respBody.getPlotLocation());
             h.labelPlotSize.setText(respBody.getPlotSize());
             h.labelDate.setText(ServiceInstance.formatStrDate(respBody.getDateUpdated()));
@@ -352,7 +355,7 @@ public class UserPlotListActivity extends Activity {
                 public void onClick(View v) {
                     Log.d("On Calculate"," position : "+position);
                     UserPlotModel userPlotModel = prepareDataForCalculate(respBody);
-
+                     ProgressAction.show(UserPlotListActivity.this);
                     API_getVariable(userPlotModel);
 
                 }
@@ -639,6 +642,13 @@ public class UserPlotListActivity extends Activity {
 
         return plotModel;
     }
+    @Override
+    public void onResume() {
+        super.onResume();  // Always call the superclass method first
+        ProgressAction.gone(UserPlotListActivity.this);
+
+    }
+
 
 /*
   private void showDialogAndDismiss(String msg){

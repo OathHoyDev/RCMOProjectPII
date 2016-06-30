@@ -6,39 +6,39 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.Toast;
 
-import com.mobeta.android.dslv.DragSortListView;
+import com.google.gson.Gson;
 import com.neopixl.pixlui.components.textview.TextView;
+
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
+import th.co.rcmo.rcmoapp.API.ResponseAPI_POST;
 import th.co.rcmo.rcmoapp.API.RequestServices;
 import th.co.rcmo.rcmoapp.API.ResponseAPI;
-import th.co.rcmo.rcmoapp.Model.UserModel;
 import th.co.rcmo.rcmoapp.Model.UserPlotModel;
 import th.co.rcmo.rcmoapp.Model.calculate.CalculateResultModel;
 import th.co.rcmo.rcmoapp.Module.mGetPlotDetail;
+import th.co.rcmo.rcmoapp.Module.mGetVariable;
 import th.co.rcmo.rcmoapp.Module.mSavePlotDetail;
 import th.co.rcmo.rcmoapp.Module.mUserPlotList;
-import th.co.rcmo.rcmoapp.Util.BitMapHelper;
+import th.co.rcmo.rcmoapp.Module.mVarPlanA;
 import th.co.rcmo.rcmoapp.Util.CalculateConstant;
 import th.co.rcmo.rcmoapp.Util.ServiceInstance;
 import th.co.rcmo.rcmoapp.Util.Util;
@@ -65,7 +65,10 @@ public class PBCalculateResultActivity extends Activity {
 
         setAction();
 
+
     }
+
+
 
     private void setAction() {
 
@@ -140,8 +143,11 @@ public class PBCalculateResultActivity extends Activity {
         TextView txProfitLoss = (TextView) findViewById(R.id.txProfitLoss);
         TextView txProfitLossValue = (TextView) findViewById(R.id.txProfitLossValue);
 
+
+
         switch (userPlotModel.getPrdGrpID()) {
             case CalculateConstant.PRODUCT_TYPE_PLANT:
+                findViewById(R.id.t1).setVisibility(View.INVISIBLE);
                 bgImage.setBackgroundResource(R.drawable.plant_ic_gr_circle_bg);
                 btnRecalculate.setBackgroundResource(R.drawable.action_plant_recal);
                 btnSavePlotDetail.setBackgroundResource(R.drawable.action_plant_reget);
@@ -151,6 +157,10 @@ public class PBCalculateResultActivity extends Activity {
                 txProfitLossValue.setTextColor(getResources().getColor(R.color.RcmoPlantBG));
                 break;
             case CalculateConstant.PRODUCT_TYPE_ANIMAL:
+                findViewById(R.id.t1).setVisibility(View.VISIBLE);
+                TextView unit_t1 = (TextView)findViewById(R.id.unit_t1);
+                TextView value_t1 = (TextView)findViewById(R.id.value_t1);
+
                 bgImage.setBackgroundResource(R.drawable.animal_ic_gr_circle_bg);
                 btnRecalculate.setBackgroundResource(R.drawable.action_animal_recal);
                 btnSavePlotDetail.setBackgroundResource(R.drawable.action_animal_reget);
@@ -158,8 +168,16 @@ public class PBCalculateResultActivity extends Activity {
                 productNameLabel.setBackgroundColor(getResources().getColor(R.color.RcmoAnimalDarkBG));
                 canterTextview.setBackgroundResource(R.drawable.bottom_pink_total);
                 txProfitLossValue.setTextColor(getResources().getColor(R.color.RcmoAnimalBG));
+
+
+                unit_t1.setText(calculateResultModel.unit_t1);
+                value_t1.setText(Util.dobbleToStringNumberWithClearDigit(calculateResultModel.value_t1));
+                value_t1.setTextColor(getResources().getColor(R.color.RcmoAnimalBG));
+
+
                 break;
             case CalculateConstant.PRODUCT_TYPE_FISH:
+                findViewById(R.id.t1).setVisibility(View.INVISIBLE);
                 bgImage.setBackgroundResource(R.drawable.fish_ic_gr_circle_bg);
                 btnRecalculate.setBackgroundResource(R.drawable.action_fish_recal);
                 btnSavePlotDetail.setBackgroundResource(R.drawable.action_fish_reget);
@@ -196,10 +214,10 @@ public class PBCalculateResultActivity extends Activity {
 
         if (calculateResultModel.calculateResult >= 0) {
             txProfitLoss.setText("กำไร");
-            txProfitLossValue.setText(String.format("%,.2f", calculateResultModel.calculateResult));
+            txProfitLossValue.setText(Util.dobbleToStringNumberWithClearDigit(calculateResultModel.calculateResult));
         } else {
             txProfitLoss.setText("ขาดทุน");
-            txProfitLossValue.setText(String.format("%,.2f", calculateResultModel.calculateResult));
+            txProfitLossValue.setText(Util.dobbleToStringNumberWithClearDigit(calculateResultModel.calculateResult));
         }
 
 
@@ -222,7 +240,7 @@ public class PBCalculateResultActivity extends Activity {
                     //  API_SavePlotDetail("2", userPlotModel);
                     API_getPlotDetailAndSave(userPlotModel.getPlotID());
                 } else {
-                    API_SavePlotDetail("1", userPlotModel);
+                    API_SaveProd_POST("1", userPlotModel);
                 }
             } else {
                 Log.d(TAG, "Go to update plot Module ");
@@ -232,13 +250,13 @@ public class PBCalculateResultActivity extends Activity {
             }
         } else {
             new DialogChoice(PBCalculateResultActivity.this)
-                    .ShowOneChoice("ไม่สามารถบันทึกข้อมูล1111", "- กรุณา Login ก่อนทำการบันทึกข้อมูล"); //save image
+                    .ShowOneChoice("ไม่สามารถบันทึกข้อมูล", "- กรุณา Login ก่อนทำการบันทึกข้อมูล"); //save image
         }
 
 
     }
 
-    private void API_SavePlotDetail(String saveFlag, UserPlotModel userPlotInfo) {
+    private void API_SavePlotDetail_GET(String saveFlag, UserPlotModel userPlotInfo) {
         /**
          * 1.SaveFlag (บังคับ)
          2.UserID (บังคับ)
@@ -330,6 +348,67 @@ public class PBCalculateResultActivity extends Activity {
         );
     }
 
+    private void API_SaveProd_POST(String saveFlag, UserPlotModel userPlotInfo) {
+        HashMap<String,Object> param = new HashMap<>();
+
+        param.put("SaveFlag",saveFlag);
+        param.put("UserID",userPlotInfo.getUserID());
+        param.put("PlotID",userPlotInfo.getPlotID() );
+        param.put("PrdID",userPlotInfo.getPrdID());
+        param.put("PrdGrpID",userPlotInfo.getPrdGrpID());
+        param.put("PlotRai",userPlotInfo.getPlotRai());
+        param.put("PondRai",userPlotInfo.getPondRai());
+        param.put("PondNgan",userPlotInfo.getPondNgan());
+        param.put("PondWa",userPlotInfo.getPondWa());
+        param.put("PondMeter",userPlotInfo.getPondMeter());
+        param.put("CoopMeter",userPlotInfo.getCoopMeter());
+        param.put("CoopNumber",userPlotInfo.getCoopNumber());
+        param.put("TamCode",userPlotInfo.getTamCode());
+        param.put("AmpCode",userPlotInfo.getAmpCode());
+        param.put("ProvCode",userPlotInfo.getProvCode());
+        param.put("AnimalNumber",userPlotInfo.getAnimalNumber());
+        param.put("AnimalWeight",userPlotInfo.getAnimalWeight());
+        param.put("AnimalPrice",userPlotInfo.getAnimalPrice());
+        param.put("FisheryType",userPlotInfo.getFisheryType());
+        param.put("FisheryNumType",userPlotInfo.getFisheryNumType());
+        param.put("FisheryNumber",userPlotInfo.getFisheryNumber() );
+        param.put("FisheryWeight",userPlotInfo.getFisheryWeight());
+        param.put("ImeiCode",ServiceInstance.GetDeviceID(PBCalculateResultActivity.this));
+        param.put("VarName",userPlotInfo.getVarName() );
+        param.put("VarValue",userPlotInfo.getVarValue());
+        param.put("CalResult",userPlotInfo.getCalResult());
+
+
+
+        new ResponseAPI_POST(PBCalculateResultActivity.this, new ResponseAPI_POST.OnCallbackAPIListener() {
+            @Override
+            public void callbackSuccess(JSONObject obj) {
+                mSavePlotDetail mSaveResp = new Gson().fromJson(obj.toString(), mSavePlotDetail.class);
+                List<mSavePlotDetail.mRespBody> mRespBody = mSaveResp.getRespBody();
+                if(mRespBody.size()>0){
+                    Log.d("Test ------>","PlodId "+mRespBody.get(0).getPlotID());
+                    plotId = String.valueOf(mRespBody.get(0).getPlotID());
+                    if (plotId == null) {
+                        plotId = "";
+                    }
+                    userPlotModel.setPlotID(plotId);
+                    Log.d(TAG, "Response plotId : " + plotId);
+                    takeScreenshot();
+                    saved = true;
+                    Util.showDialogAndDismiss(PBCalculateResultActivity.this, "บันทึกข้อมูลสำเร็จ");
+                }
+            }
+
+            @Override
+            public void callbackError(int code, String errorMsg) {
+              //  progressbar.gone(PriceActivity.this);
+                //listview.setVisibility(View.INVISIBLE);
+                //findViewById(R.id.no_list).setVisibility(View.VISIBLE);
+
+            }
+        }).POST(RequestServices.ws_savePlotDetail, param, true, false);
+
+    }
 
 
     private void API_GetUserPlot(final String userId) {
@@ -373,6 +452,9 @@ public class PBCalculateResultActivity extends Activity {
     }
 
 
+
+
+
     private void API_getPlotDetailAndSave(String plotID) {
         /**
          1.TamCode (ไม่บังคับใส่)
@@ -391,6 +473,9 @@ public class PBCalculateResultActivity extends Activity {
                     mGetPlotDetail.mRespBody plotDetail = mPlotDetailBodyLists.get(0);
 
                     if (userPlotModel.getPlotRai().equals("") || userPlotModel.getPlotRai().equals("0")) {
+                        if(plotDetail.getPlotRai().equals("0")){
+                            plotDetail.setPlotRai("");
+                        }
                         userPlotModel.setPlotRai(String.valueOf(plotDetail.getPlotRai()));
                     }
                     if (userPlotModel.getProvCode().equals("") || userPlotModel.getProvCode().equals("0")) {
@@ -402,13 +487,27 @@ public class PBCalculateResultActivity extends Activity {
                     if (userPlotModel.getTamCode().equals("") || userPlotModel.getTamCode().equals("0")) {
                         userPlotModel.setTamCode(String.valueOf(plotDetail.getTamCode()));
                     }
-                    /*
+
                     if(userPlotModel.getVarValue().equals("")|| userPlotModel.getVarValue().equals("0")){
                         userPlotModel.setVarValue(plotDetail.getVarValue());
-                    }*/
+                    }
+
+                    if (userPlotModel.getAnimalNumber().equals("") || userPlotModel.getAnimalNumber().equals("0")) {
+                        userPlotModel.setAnimalNumber(String.valueOf(plotDetail.getAnimalNumber()));
+                    }
+
+                    if(userPlotModel.getAnimalPrice().equals("")|| userPlotModel.getAnimalPrice().equals("0")){
+                        userPlotModel.setAnimalPrice(plotDetail.getAnimalPrice());
+                    }
+
+                    if(userPlotModel.getAnimalWeight().equals("")|| userPlotModel.getAnimalWeight().equals("0")){
+                        userPlotModel.setAnimalWeight(plotDetail.getAnimalWeight());
+                    }
 
 
-                    API_SavePlotDetail("2", userPlotModel);
+                   // mVarPlanA varA =  new Gson().fromJson(plotDetail.getVarValue(), mVarPlanA.class);
+                  //  Log.d("Testttt --> ",varA.toString());
+                    API_SaveProd_POST("2", userPlotModel);
 
 
                 }
@@ -477,6 +576,10 @@ public class PBCalculateResultActivity extends Activity {
             h.name.setText(calResult[0]);
             h.value.setText(calResult[1]);
             h.unit.setText(calResult[2]);
+
+            if(userPlotModel.getPrdGrpID().equals("2")) {
+                h.value.setTextColor(getResources().getColor(R.color.RcmoAnimalBG));
+            }
 
             return convertView;
         }

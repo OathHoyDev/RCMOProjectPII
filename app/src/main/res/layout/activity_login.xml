@@ -84,7 +84,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
-                        android:text="dev v. 0.11"
+                        android:text="dev v. 0.16"
                         android:textColor="@color/RcmoWhiteBG"
                         android:gravity="center"
                         android:textSize="@dimen/textsize_xxsmall"

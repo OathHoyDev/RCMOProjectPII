@@ -1,5 +1,7 @@
 package th.co.rcmo.rcmoapp.Model.calculate;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Hashtable;
@@ -16,8 +18,8 @@ public class FormulaDModel extends AbstractFormulaModel {
     public boolean isCalIncludeOption = false;
 
     //Standard
-    public double KaSermRongRaun = 0.7;
-    public double KaSiaOkardRongRaun = 0.58;
+    public double KaSermRongRaun = 0;
+    public double KaSiaOkardRongRaun = 0;
 
     public double RermLeang = 0;
     public double RakaReamLeang = 0;
@@ -123,10 +125,30 @@ public class FormulaDModel extends AbstractFormulaModel {
             calCost += costKaSermRongRaun + costKaSiaOkardRongRaun;
         }
 
+
+
+
         calCostPerUnit = calCost/JumNounTuaTKai;
         calCostPerKg = calCost/NamNakTKai;
-        calProfitLossPerKg = RakaTKai-calCostPerUnit;
+        calProfitLossPerKg = RakaTKai-calCostPerKg;
         calProfitLoss = calProfitLossPerKg*NamNakTKai;
+
+
+        Log.d("Cal","***** ค่าเสื่อมโรงเรือน :"+KaSermRongRaun);
+        Log.d("Cal","***** ค่าเสียโอกาสโรงเรื่อน :"+KaSiaOkardRongRaun);
+        Log.d("Cal","***** ต้นทุนทั้งหมด :"+calCost);
+        Log.d("Cal","-----------------------------------------");
+        Log.d("Cal","***** ค่าแรงงาน   หลังคำนวน :"+costKaRangGgan);
+        Log.d("Cal","***** ค่าน้ำ-ค่าไฟ หลังคำนวน :"+costKaNamKaFai);
+        Log.d("Cal","***** ค่าน้ำมัน    หลังคำนวน :"+costKaNamMan);
+        Log.d("Cal","***** ค่าเช่าที่ดิน   หลังคำนวน :"+costKaChoaTDin);
+        Log.d("Cal","***** ค่าเสื่อมโรงเรือน หลังคำนวน :"+costKaSermRongRaun);
+        Log.d("Cal","***** ค่าเสียโอกาสโรงเรื่อน หลังคำนวน :"+costKaSiaOkardRongRaun);
+        Log.d("Cal","-----------------------------------------");
+        Log.d("Cal","***** ต้นทุนต่อ 1 ตัว :"+calCostPerUnit);
+        Log.d("Cal","***** ต้นทุนต่อ 1 กิโลกรัม :"+calCostPerKg);
+        Log.d("Cal","***** กำไร-ขาดทุน ต่อ 1 กิโลกรัม :"+calProfitLossPerKg);
+        Log.d("Cal","***** กำไร-ขาดทุนทั้งหมด :"+calProfitLoss);
     }
 
     public void prepareListData() {
