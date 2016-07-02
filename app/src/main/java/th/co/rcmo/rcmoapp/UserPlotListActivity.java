@@ -247,6 +247,7 @@ public class UserPlotListActivity extends Activity {
                 h.pinImg           = (ImageView)convertView.findViewById(R.id.pinImg);
                 h.params           = (LinearLayout.LayoutParams)h.layoutPlotRow.getLayoutParams();
                 h.editableLayout   =(LinearLayout)convertView.findViewById(R.id.editableLayout);
+                h.baseLine         = (LinearLayout)convertView.findViewById(R.id.baseLine);
                 convertView.setTag(h);
             }else{
                 h = (ViewHolder) convertView.getTag();
@@ -254,7 +255,8 @@ public class UserPlotListActivity extends Activity {
 
           //  Log.d(TAG,"Position : "+position);
             //Log.d(TAG,"Count : "+getCount());
-
+           final  LinearLayout tmpTayoutPlotRowh =h.layoutPlotRow;
+            final LinearLayout temBaseLine =  h.baseLine;
 
             if ((position+1) == getCount()){
                 h.params.setMargins(10, 10, 10, 225); //substitute parameters for left, top, right, bottom
@@ -354,6 +356,17 @@ public class UserPlotListActivity extends Activity {
                 @Override
                 public void onClick(View v) {
                     Log.d("On Calculate"," position : "+position);
+                    tmpTayoutPlotRowh.setBackgroundResource(R.drawable.gray_cut_conner_2);
+                    temBaseLine.setBackgroundResource(R.color.RcmoDarkTran3BG);
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            tmpTayoutPlotRowh.setBackgroundResource(R.drawable.white_cut_conner);
+                            temBaseLine.setBackgroundResource(R.color.RcmoLightGrayBG);
+                           // delayCallback.afterDelay();
+                        }
+                    }, 1000 );
                     UserPlotModel userPlotModel = prepareDataForCalculate(respBody);
                      ProgressAction.show(UserPlotListActivity.this);
                     API_getVariable(userPlotModel);
@@ -421,7 +434,7 @@ public class UserPlotListActivity extends Activity {
     static class ViewHolder {
         private  TextView labelAddress,labelPlotSize,labelProductName,labelProfit,labelDate,btnProfit,btnDelete,btnCopy;
         private  ImageView imgProduct,prodImg,pinImg;
-        private  LinearLayout prodBg,layoutPlotRow,editableLayout ;
+        private  LinearLayout prodBg,layoutPlotRow,editableLayout ,baseLine;
         private  LinearLayout.LayoutParams params;
         private  String userId;
 

@@ -136,6 +136,7 @@ public class PBCalculateResultActivity extends Activity {
 
         TextView recommandLocation = (TextView) findViewById(R.id.recommandLocation);
         TextView recommandPrice = (TextView) findViewById(R.id.recommandPrice);
+        TextView recommandpriceLabel = (TextView) findViewById(R.id.priceLabel);
 
         TextView titleLable = (TextView) findViewById(R.id.titleLable);
         TextView productNameLabel = (TextView) findViewById(R.id.productNameLabel);
@@ -214,20 +215,26 @@ public class PBCalculateResultActivity extends Activity {
             recommandLocation.setText("ไม่พบข้อมูล");
         }
 
-        if (calculateResultModel.compareStdResult > 0) {
-            recommandPrice.setText("ต้นทุนเกินกว่าค่ามาตรฐาน");
-        } else if (calculateResultModel.compareStdResult == 0) {
-            recommandPrice.setText("ต้นทุนเทียบเท่าค่ามาตรฐาน");
-        } else {
-            recommandPrice.setText("ต้นทุนต่ำกว่าค่ามาตรฐาน");
-        }
+
+if(userPlotModel.getPrdID().equals("40") || userPlotModel.getPrdID().equals("41")) {
+   recommandpriceLabel.setVisibility(View.GONE);
+    recommandPrice.setVisibility(View.GONE);
+}else{
+    if (calculateResultModel.compareStdResult > 0) {
+        recommandPrice.setText("ต้นทุนเกินกว่าค่ามาตรฐาน");
+    } else if (calculateResultModel.compareStdResult == 0) {
+        recommandPrice.setText("ต้นทุนเทียบเท่าค่ามาตรฐาน");
+    } else {
+        recommandPrice.setText("ต้นทุนต่ำกว่าค่ามาตรฐาน");
+    }
+}
 
         if (calculateResultModel.calculateResult >= 0) {
             txProfitLoss.setText("กำไร");
-            txProfitLossValue.setText(Util.dobbleToStringNumberWithClearDigit(calculateResultModel.calculateResult));
+            txProfitLossValue.setText(Util.dobbleToStringNumber(calculateResultModel.calculateResult));
         } else {
             txProfitLoss.setText("ขาดทุน");
-            txProfitLossValue.setText(Util.dobbleToStringNumberWithClearDigit(calculateResultModel.calculateResult));
+            txProfitLossValue.setText(Util.dobbleToStringNumber(calculateResultModel.calculateResult));
         }
 
 

@@ -1,9 +1,13 @@
 package th.co.rcmo.rcmoapp.Model.calculate;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
+
+import th.co.rcmo.rcmoapp.Util.Util;
 
 /**
  * Created by SilVeriSm on 6/20/2016 AD.
@@ -60,6 +64,9 @@ public class FormulaCModel extends AbstractFormulaModel {
 
     public double calIncome = 0;
     public double calIncomePerRai = 0;
+
+    public double costKaSermOuppakorn = 0;
+    public double costKaSiaOkardOuppakorn = 0;
 
     public static Hashtable<String, String> calculateLabel;
     static {
@@ -175,30 +182,32 @@ public class FormulaCModel extends AbstractFormulaModel {
     }
 
     public void calculate() {
-
+      // ================ 1.1 =====================
         double KaDoolaePerRai = KaDoolae / KaNardPlangTDin;
 
         double KaRangPerRai = KaDoolaePerRai + KaGebGeaw;
 
-        KaRang = KaTreamDin + KaPluk + KaDoolae + KaGebGeaw;
+        KaRang = KaTreamDin + KaPluk + KaDoolae ;
+
+
+        //=============== 1.2 ====================
 
         KaWassadu = KaPan + KaPuy + KaYaplab + KaWassaduUn;
 
         double KaPuyPerRai = KaPuy / KaNardPlangTDin;
 
-        double KaPanPerRai =  KaPan  / KaNardPlangTDin ;
+        //double KaPanPerRai =  KaPan  / KaNardPlangTDin ;
         double KaYaplabPerRai = KaYaplab / KaNardPlangTDin ;
         double KaWassaduUnPerRai = KaWassaduUn / KaNardPlangTDin ;
+        double KaWassaduPerRai = KaPuyPerRai + KaYaplabPerRai + KaWassaduUnPerRai;
 
-        double KaWassaduPerRai = KaPanPerRai + KaYaplabPerRai + KaWassaduUnPerRai;
-
-        KaSiaOkardLongtoon = Math.pow((KaRang + KaWassadu) * (AttraDokbia / 100) * (12 / 12), 2);
-        double KaSiaOkardLongtoonPerRai = Math.pow((KaRangPerRai + KaWassaduPerRai) * (AttraDokbia / 100) * (12 / 12), 2);
+        KaSiaOkardLongtoon =  Util.round((KaRang + KaWassadu) * (AttraDokbia / 100) * (12 / 12), 2);
+        double KaSiaOkardLongtoonPerRai = Util.round((KaRangPerRai + KaWassaduPerRai) * (AttraDokbia / 100) * (12 / 12), 2);
 
         double KaChaoTDinPerRai = KaChaoTDin/KaNardPlangTDin;
 
-        double costKaSermOuppakorn = KaNardPlangTDin * KaSermOuppakorn;
-        double costKaSiaOkardOuppakorn = KaNardPlangTDin * KaSiaOkardOuppakorn;
+         costKaSermOuppakorn = KaNardPlangTDin * KaSermOuppakorn;
+         costKaSiaOkardOuppakorn = KaNardPlangTDin * KaSiaOkardOuppakorn;
 
         calSumCost = KaRang + KaWassadu + KaSiaOkardLongtoon +  KaChaoTDin;
 
@@ -208,7 +217,7 @@ public class FormulaCModel extends AbstractFormulaModel {
 
         if (isCalIncludeOption) {
             calSumCost += costKaSermOuppakorn + costKaSiaOkardOuppakorn;
-            calLifeCostPerRai += costKaSermOuppakorn + costKaSiaOkardOuppakorn;
+            calLifeCostPerRai += KaSermOuppakorn + KaSiaOkardOuppakorn;
         }
 
         calStartCostPerRai = calSumCost / KaNardPlangTDin;
@@ -217,9 +226,15 @@ public class FormulaCModel extends AbstractFormulaModel {
         calIncomePerRai = calIncome / KaNardPlangTDin;
 
 
-        calProfitLoss = calIncome - calSumCost;
+        calProfitLoss = calIncome - calStartCostPerRai;
 
         TontumMattratarn = TontumMattratarnPerRai * KaNardPlangTDin;
+
+        Log.d("Cal","-----------------------------------------");
+        Log.d("Cal","*****  ต้นทุนรวมของเกษตรกร :"+calSumCost);
+        Log.d("Cal","*****  รายได้ :"+calIncome);
+        Log.d("Cal","***** กำไร/ขาดทุน :"+calProfitLoss);
+        Log.d("Cal","***** ต้นทุนมาตรฐาน :"+TontumMattratarn);
     }
 
 

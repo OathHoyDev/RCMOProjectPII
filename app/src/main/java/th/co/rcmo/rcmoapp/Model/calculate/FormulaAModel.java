@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
 
+import th.co.rcmo.rcmoapp.Util.Util;
+
 /**
  * Created by SilVeriSm on 6/20/2016 AD.
  */
@@ -51,6 +53,9 @@ public class FormulaAModel extends AbstractFormulaModel {
     public static double KaSermOuppakorn = 0;
     public static double KaSiaOkardOuppakorn = 0;
     public static double TontumMattratarnPerRai = 0;
+
+    public static double costKaSermOuppakorn = 0;
+    public static double costKaSiaOkardOuppakorn = 0;
     /*
     public static double KaSermOuppakorn = 7.37;
     public static double KaSiaOkardOuppakorn = 1.81;
@@ -152,9 +157,9 @@ public class FormulaAModel extends AbstractFormulaModel {
 
         KaRang = KaTreamDin + KaPluk + KaDoolae + KaGebGeaw;
         KaWassadu = KaPan + KaPuy + KaYaplab + KaWassaduUn;
-        KaSiaOkardLongtoon = Math.pow((KaRang + KaWassadu) * (AttraDokbia / 100) * (6 / 12), 2);
-        double costKaSermOuppakorn = KaNardPlangTDin * KaSermOuppakorn;
-        double costKaSiaOkardOuppakorn = KaNardPlangTDin * KaSiaOkardOuppakorn;
+        KaSiaOkardLongtoon = Util.round((KaRang + KaWassadu) * (AttraDokbia / 100) * (0.5), 2);
+         costKaSermOuppakorn = KaNardPlangTDin * KaSermOuppakorn;
+         costKaSiaOkardOuppakorn = KaNardPlangTDin * KaSiaOkardOuppakorn;
 
         calSumCost = KaRang + KaWassadu + KaSiaOkardLongtoon + KaChaoTDin + costKaSermOuppakorn + costKaSiaOkardOuppakorn;
 
@@ -165,7 +170,7 @@ public class FormulaAModel extends AbstractFormulaModel {
 
         calSumCostPerRai = calSumCost/KaNardPlangTDin;
 
-        calIncome = PonPalid * predictPrice;
+        calIncome = PonPalid * (predictPrice/1000);
 
         calIncomePerRai = calIncome/KaNardPlangTDin;
 
