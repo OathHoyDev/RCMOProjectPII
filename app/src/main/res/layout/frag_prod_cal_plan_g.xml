@@ -979,7 +979,7 @@
                                         android:gravity="left|center"
                                         android:inputType="text"
                                         android:paddingLeft="30dp"
-                                        android:text="ค่าอาหารข้นแม่โครีดนมี"
+                                        android:text="ค่าอาหารข้นแม่โครีดนม"
                                         android:textColor="@color/RcmoNormalDarkText"
                                         android:textSize="@dimen/cal_item_size"
                                         pixlui:typeface="Quark-Bold.otf" />
@@ -2019,7 +2019,6 @@
                                         android:layout_height="wrap_content"
                                         android:layout_weight="1"
                                         android:gravity="left|center"
-                                        android:inputType="text"
                                         android:maxLines="2"
                                         android:paddingLeft="15dp"
                                         android:text="ค่าเช่าที่ดินทำฟาร์มโคนม\n(ไม่รวมแปลงหญ้า)"

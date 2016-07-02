@@ -134,9 +134,9 @@ public class CalculateConstant {
     static{
         Hashtable<String,String[]> tmp =
                 new Hashtable<String,String[]>();
-        tmp.put("F", new String[]{"Fix Variable",UNIT_BATH_RAI});
-        tmp.put("B", new String[]{"อัตราดอกเบี้ยจาก ธกส.",UNIT_BATH_RAI});
-        tmp.put("D", new String[]{"ค่าเสื่อมโรงเรือน",UNIT_BATH_RAI});
+        tmp.put("F", new String[]{"Fix Variable",UNIT_BATH});
+        tmp.put("B", new String[]{"อัตราดอกเบี้ยจาก ธกส.",UNIT_BATH});
+        tmp.put("D", new String[]{"ค่าเสื่อมโรงเรือน",UNIT_BATH});
         PB_CALCULATE_STANDARD_CONST_H = tmp;
     }
 
@@ -146,10 +146,10 @@ public class CalculateConstant {
                 new Hashtable<String,String[]>();
         tmp.put("F", new String[]{"Fix Variable",UNIT_BATH_RAI});
         tmp.put("B", new String[]{"อัตราดอกเบี้ยจาก ธกส.",UNIT_BATH_RAI});
-        tmp.put("DH", new String[]{"ค่าเสื่อมโรงเรือน",UNIT_BATH_RAI});
-        tmp.put("DD", new String[]{"ค่าเสื่อมแม่โคนม",UNIT_BATH_RAI});
-        tmp.put("OH", new String[]{"ค่าเสียโอกาสโรงเรือน",UNIT_BATH_RAI});
-        tmp.put("OD", new String[]{"ค่าเสียโอกาสแม่โคนม",UNIT_BATH_RAI});
+        tmp.put("DH", new String[]{"ค่าเสื่อมโรงเรือน","บาท/100 กก."});
+        tmp.put("DD", new String[]{"ค่าเสื่อมแม่โคนม","บาท/100 กก."});
+        tmp.put("OH", new String[]{"ค่าเสียโอกาสโรงเรือน","บาท/100 กก."});
+        tmp.put("OD", new String[]{"ค่าเสียโอกาสแม่โคนม","บาท/100 กก."});
         PB_CALCULATE_STANDARD_CONST_G = tmp;
     }
 

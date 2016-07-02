@@ -168,7 +168,19 @@ public class FormulaGModel extends AbstractFormulaModel {
 
         // ====================== Calculate =============================
         calCost = (calKumnuanTontoonPunPae+calKumnuanTontoonKongTee)*ParimanNumnom;
+
+
+
+
         costTontunPalitNamnomPerKg = calKumnuanTontoonPunPae+calKumnuanTontoonKongTee;
+
+        if (isCalIncludeOption){
+            calCost += (calKaSermRongRaun + calKaSermMaeKo+calKaSiaOkardRongRaun+calKaSiaOkardMaeKo)*ParimanNumnom;
+            costTontunPalitNamnomPerKg += (calKaSermRongRaun + calKaSermMaeKo+calKaSiaOkardRongRaun+calKaSiaOkardMaeKo);
+
+        }
+
+
         calProfitLoss = RakaTkai - costTontunPalitNamnomPerKg;
         calNamnomTReedCharia =ParimanNumnom/JumuanMaeKo/30.42;
         calAllSalePrice   = RakaTkai*ParimanNumnom;

@@ -84,7 +84,7 @@ public class ProductService {
             case "H":
 
                keyDisplay_Type = H_StdDisplay;
-               hashValue_Type  = CalculateConstant.PB_CALCULATE_STANDARD_CONST_DEF;
+               hashValue_Type  = CalculateConstant.PB_CALCULATE_STANDARD_CONST_H;
                break;
 
             case "G":

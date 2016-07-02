@@ -996,7 +996,7 @@
                                         android:inputType="text"
                                         android:paddingLeft="15dp"
                                         android:text="น้ำหนักทั้งหมดเมื่อขายเฉลี่ย"
-                                        android:textColor="@color/RcmoNormalDarkText"
+                                        android:textColor="@color/RcmoAnimalBG"
                                         android:textSize="@dimen/cal_item_size"
                                         pixlui:typeface="Quark-Bold.otf" />
 
@@ -1055,7 +1055,7 @@
                                         android:inputType="text"
                                         android:paddingLeft="15dp"
                                         android:text="น้ำหนักที่เพิ่มขึ้นต่อตัว"
-                                        android:textColor="@color/RcmoNormalDarkText"
+                                        android:textColor="@color/RcmoAnimalBG"
                                         android:textSize="@dimen/cal_item_size"
                                         pixlui:typeface="Quark-Bold.otf" />
 
@@ -1233,7 +1233,7 @@
                                         android:inputType="text"
                                         android:paddingLeft="15dp"
                                         android:text="ราคาที่เกษตรกรขายได้"
-                                        android:textColor="@color/RcmoNormalDarkText"
+                                        android:textColor="@color/RcmoAnimalBG"
                                         android:textSize="@dimen/cal_item_size"
                                         pixlui:typeface="Quark-Bold.otf" />
 

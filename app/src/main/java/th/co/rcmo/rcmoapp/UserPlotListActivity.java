@@ -248,6 +248,8 @@ public class UserPlotListActivity extends Activity {
                 h.params           = (LinearLayout.LayoutParams)h.layoutPlotRow.getLayoutParams();
                 h.editableLayout   =(LinearLayout)convertView.findViewById(R.id.editableLayout);
                 h.baseLine         = (LinearLayout)convertView.findViewById(R.id.baseLine);
+                h.labelBath       =  (TextView) convertView.findViewById(R.id.labelBath);
+
                 convertView.setTag(h);
             }else{
                 h = (ViewHolder) convertView.getTag();
@@ -305,6 +307,12 @@ public class UserPlotListActivity extends Activity {
                 h.btnProfit.setText("กำไร");
             }
 
+
+           if(respBody.getPrdID() == 43){
+               h.labelBath.setText("บาท/กก.");
+           }else{
+               h.labelBath.setText("บาท");
+           }
             h.labelProfit.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(calResult)));
             h.labelAddress.setText(respBody.getPlotLocation());
             h.labelPlotSize.setText(respBody.getPlotSize());
@@ -432,7 +440,7 @@ public class UserPlotListActivity extends Activity {
     }
 
     static class ViewHolder {
-        private  TextView labelAddress,labelPlotSize,labelProductName,labelProfit,labelDate,btnProfit,btnDelete,btnCopy;
+        private  TextView labelAddress,labelPlotSize,labelProductName,labelProfit,labelDate,btnProfit,btnDelete,btnCopy,labelBath;
         private  ImageView imgProduct,prodImg,pinImg;
         private  LinearLayout prodBg,layoutPlotRow,editableLayout ,baseLine;
         private  LinearLayout.LayoutParams params;

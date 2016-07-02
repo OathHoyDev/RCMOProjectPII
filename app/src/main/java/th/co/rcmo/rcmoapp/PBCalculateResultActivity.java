@@ -79,7 +79,21 @@ public class PBCalculateResultActivity extends Activity {
                 if(!(userPlotModel.getUserID().equals("0")) && saved ){
                     API_GetUserPlot(userPlotModel.getUserID());
                 }else{
-                    finish();
+                    if(!(userPlotModel.getUserID().equals("0"))){
+                        new DialogChoice(PBCalculateResultActivity.this, new DialogChoice.OnSelectChoiceListener() {
+                            @Override
+                            public void OnSelect(int choice) {
+
+                                if (choice == DialogChoice.OK) {
+                                    upsertUserPlot();
+
+                                }
+                            }
+                        }).ShowTwoChoice("", "คุณต้องการบันทึกข้อมูลหรือไม่");
+                    }else{
+                        finish();
+                    }
+
 
                 }
             }
@@ -216,9 +230,11 @@ public class PBCalculateResultActivity extends Activity {
         }
 
 
-if(userPlotModel.getPrdID().equals("40") || userPlotModel.getPrdID().equals("41")) {
-   recommandpriceLabel.setVisibility(View.GONE);
-    recommandPrice.setVisibility(View.GONE);
+if(userPlotModel.getPrdID().equals("40")
+        || userPlotModel.getPrdID().equals("41")
+        || userPlotModel.getPrdID().equals("43")) {
+   recommandpriceLabel.setVisibility(View.INVISIBLE);
+    recommandPrice.setVisibility(View.INVISIBLE);
 }else{
     if (calculateResultModel.compareStdResult > 0) {
         recommandPrice.setText("ต้นทุนเกินกว่าค่ามาตรฐาน");

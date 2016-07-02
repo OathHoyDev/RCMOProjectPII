@@ -89,9 +89,9 @@ public class PlanFTextWatcher implements TextWatcher {
             value = Util.strToDoubleDefaultZero(h.group1_item_1.getText().toString());
             value+= Util.strToDoubleDefaultZero(h.group1_item_2.getText().toString());
             value+= Util.strToDoubleDefaultZero(h.group1_item_3.getText().toString());
-            value+= Util.strToDoubleDefaultZero(h.group1_item_4.getText().toString())/30.42*Util.strToDoubleDefaultZero(h.group3_item_2.getText().toString());
-            value+= Util.strToDoubleDefaultZero(h.group1_item_5.getText().toString())/30.42*Util.strToDoubleDefaultZero(h.group3_item_2.getText().toString());
-            value+= Util.strToDoubleDefaultZero(h.group1_item_6.getText().toString())/30.42*Util.strToDoubleDefaultZero(h.group3_item_2.getText().toString());
+            value+= (Util.strToDoubleDefaultZero(h.group1_item_4.getText().toString())/30.42)*(Util.strToDoubleDefaultZero(h.group3_item_4.getText().toString())*7);
+            value+= (Util.strToDoubleDefaultZero(h.group1_item_5.getText().toString())/30.42)*(Util.strToDoubleDefaultZero(h.group3_item_4.getText().toString())*7);
+            value+= (Util.strToDoubleDefaultZero(h.group1_item_6.getText().toString())/30.42)*(Util.strToDoubleDefaultZero(h.group3_item_4.getText().toString())*7);
             value+= Util.strToDoubleDefaultZero(h.group1_item_7.getText().toString());
             value+= Util.strToDoubleDefaultZero(h.group1_item_8.getText().toString());
 

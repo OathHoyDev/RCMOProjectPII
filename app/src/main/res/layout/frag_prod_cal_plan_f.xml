@@ -248,7 +248,7 @@
                                         android:inputType="text"
                                         android:paddingLeft="15dp"
                                         android:text="ค่าพันธุ์ทั้งหมด"
-                                        android:textColor="@color/RcmoNormalDarkText"
+                                        android:textColor="@color/RcmoAnimalBG"
                                         android:textSize="@dimen/cal_item_size"
                                         pixlui:typeface="Quark-Bold.otf" />
 
@@ -864,9 +864,8 @@
                                         android:layout_height="wrap_content"
                                         android:layout_weight="1"
                                         android:gravity="left|center"
-                                        android:inputType="text"
                                         android:paddingLeft="15dp"
-                                        android:text="ไข่ที่ได้รับตั้งแต่เริ่มเลี้ยงถึงปลด"
+                                        android:text="ไข่ที่ได้รับตั้งแต่\nเริ่มเลี้ยงถึงปลด"
                                         android:textColor="@color/RcmoNormalDarkText"
                                         android:textSize="@dimen/cal_item_size"
                                         pixlui:typeface="Quark-Bold.otf" />
@@ -1115,7 +1114,7 @@
                                         android:inputType="text"
                                         android:paddingLeft="15dp"
                                         android:text="ค่าเสียโอกาสเงินลงทุน"
-                                        android:textColor="@color/RcmoNormalDarkText"
+                                        android:textColor="@color/RcmoAnimalBG"
                                         android:textSize="@dimen/cal_item_size"
                                         pixlui:typeface="Quark-Bold.otf" />
 
