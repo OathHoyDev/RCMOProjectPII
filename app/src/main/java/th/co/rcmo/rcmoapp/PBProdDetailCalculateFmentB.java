@@ -58,6 +58,8 @@ public class PBProdDetailCalculateFmentB extends Fragment implements View.OnClic
 
         View view = inflater.inflate(R.layout.frag_prod_cal_plan_b, container, false);
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
+
         //================= Set Holder ========================================//
         context = view.getContext();
         h.group0_item_1 = (EditText) view.findViewById(R.id.group0_item_1);
@@ -81,6 +83,11 @@ public class PBProdDetailCalculateFmentB extends Fragment implements View.OnClic
 
         h.productIconImg = (ImageView) view.findViewById(R.id.productIconImg);
         h.txStartUnit = (TextView) view.findViewById(R.id.txStartUnit);
+
+        h.group0_items = (LinearLayout) view.findViewById(R.id.group0_items);
+        h.group0_header = (TextView) view.findViewById(R.id.group0_header);
+        h.group0_header_arrow = (ImageView) view.findViewById(R.id.group0_header_arrow);
+        h.group0_header.setOnClickListener(this);
 
         h.group1_items = (LinearLayout) view.findViewById(R.id.group1_items);
         h.group1_header = (TextView) view.findViewById(R.id.group1_header);
@@ -117,12 +124,25 @@ public class PBProdDetailCalculateFmentB extends Fragment implements View.OnClic
 
         userPlotModel = PBProductDetailActivity.userPlotModel;
 
+        //13 อ้อยโรงงาน
+        if(userPlotModel.getPrdID().equals("13")) {
+            ((TextView) view.findViewById(R.id.group0_header)).setText("จำนวนรอบ(มีด)ที่ปลูกทั้งแปลง");
+            ((TextView) view.findViewById(R.id.group0_unit_1)).setText("ปี(ตอ)ไม่รวมปีปลูก");
+        }else{
+            ((TextView) view.findViewById(R.id.group0_header)).setText("จำนวนปีที่ปลูกทั้งแปลง");
+            ((TextView) view.findViewById(R.id.group0_unit_1)).setText("ปี(ตอ)รวมปีปลูก");
+        }
+
         formulaModel = new FormulaBModel();
 
         API_getVariable(userPlotModel.getPrdID(), userPlotModel.getFisheryType());
 
         if (!userPlotModel.getPlotID().equals("") && userPlotModel.getPlotID().equals("0")) {
             initVariableDataFromDB();
+        }else{
+            formulaModel.KaNardPlangTDin       =  Util.strToDoubleDefaultZero(userPlotModel.getPlotRai());
+            formulaModel.calculate();
+            setUpCalUI(formulaModel);
         }
 
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
@@ -135,7 +155,7 @@ public class PBProdDetailCalculateFmentB extends Fragment implements View.OnClic
 
     private void setAction() {
 
-        h.group0_item_1.addTextChangedListener(new PlanBTextWatcher(h.group0_item_1, h, ""));
+        h.group0_item_1.addTextChangedListener(new PlanBTextWatcher(h.group0_item_1, h,formulaModel, "KaSermOuppakorn,KaSiaOkardOuppakorn"));
 
         h.group1_item_2.addTextChangedListener(new PlanBTextWatcher(h.group1_item_2, h, "Karang"));
         h.group1_item_3.addTextChangedListener(new PlanBTextWatcher(h.group1_item_3, h, "Karang"));
@@ -147,6 +167,12 @@ public class PBProdDetailCalculateFmentB extends Fragment implements View.OnClic
         h.group1_item_9.addTextChangedListener(new PlanBTextWatcher(h.group1_item_9, h, "KaWassadu"));
         h.group1_item_10.addTextChangedListener(new PlanBTextWatcher(h.group1_item_10, h, "KaWassadu"));
         h.group1_item_12.addTextChangedListener(new PlanBTextWatcher(h.group1_item_12, h, ""));
+
+        h.group2_item_1.addTextChangedListener(new PlanBTextWatcher(h.group2_item_1, h, ""));
+
+        h.group3_item_1.addTextChangedListener(new PlanBTextWatcher(h.group3_item_1, h, ""));
+
+        h.group4_item_1.addTextChangedListener(new PlanBTextWatcher(h.group4_item_1, h, ""));
     }
 
     private void initVariableDataFromDB() {
@@ -162,10 +188,10 @@ public class PBProdDetailCalculateFmentB extends Fragment implements View.OnClic
     private void setUpCalUI(FormulaBModel model) {
         h.group1_item_1.setText(Util.dobbleToStringNumber(model.KaRang));
         h.group1_item_6.setText(Util.dobbleToStringNumber(model.KaWassadu));
-        h.group1_item_11.setText(Util.dobbleToStringNumber(model.KaSiaOkardOuppakorn));
+        h.group1_item_11.setText(Util.dobbleToStringNumber(model.KaSiaOkardLongtoon));
         h.group1_item_12.setText(Util.dobbleToStringNumber(model.KaChaoTDin));
-        h.group1_item_13.setText(Util.dobbleToStringNumber(model.KaSermOuppakorn));
-        h.group1_item_14.setText(Util.dobbleToStringNumber(model.KaSiaOkardOuppakorn));
+        h.group1_item_13.setText(Util.dobbleToStringNumber(model.costKaSermOuppakorn));
+        h.group1_item_14.setText(Util.dobbleToStringNumber(model.costKaSiaOkardOuppakorn));
 
 
     }
@@ -265,6 +291,19 @@ public class PBProdDetailCalculateFmentB extends Fragment implements View.OnClic
 
             new DialogCalculateResult(context).Show();
 
+        } else if (v.getId() == R.id.group0_header) {
+
+            if (h.group0_items.getVisibility() == View.GONE) {
+                h.group0_items.setVisibility(View.VISIBLE);
+                h.group0_header_arrow.setImageBitmap(BitMapHelper.
+                        decodeSampledBitmapFromResource(getResources(), getResources().getIdentifier("arrow_hide", "drawable", context.getPackageName()), 30, 30));
+            } else {
+                h.group0_header_arrow.setImageBitmap(BitMapHelper.
+                        decodeSampledBitmapFromResource(getResources(), getResources().getIdentifier("arrow_show", "drawable", context.getPackageName()), 30, 30));
+
+                h.group0_items.setVisibility(View.GONE);
+
+            }
         } else if (v.getId() == R.id.group1_header) {
 
             if (h.group1_items.getVisibility() == View.GONE) {
@@ -347,11 +386,11 @@ public class PBProdDetailCalculateFmentB extends Fragment implements View.OnClic
 
         private ImageView productIconImg;
 
-        private TextView txStartUnit, calBtn, group1_header, group2_header, group3_header, group4_header;
+        private TextView txStartUnit, calBtn, group0_header, group1_header, group2_header, group3_header, group4_header;
 
-        private LinearLayout group1_items, group2_items, group3_items, group4_items;
+        private LinearLayout group0_items,group1_items, group2_items, group3_items, group4_items;
 
-        private ImageView group1_header_arrow, group2_header_arrow, group3_header_arrow, group4_header_arrow;
+        private ImageView group0_header_arrow,group1_header_arrow, group2_header_arrow, group3_header_arrow, group4_header_arrow;
 
         private Button btnOption;
 
