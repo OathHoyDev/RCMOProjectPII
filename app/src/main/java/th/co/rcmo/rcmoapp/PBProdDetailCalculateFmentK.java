@@ -22,15 +22,16 @@ import com.neopixl.pixlui.components.textview.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import th.co.rcmo.rcmoapp.API.ProductService;
 import th.co.rcmo.rcmoapp.API.RequestServices;
 import th.co.rcmo.rcmoapp.API.ResponseAPI;
 import th.co.rcmo.rcmoapp.Model.UserPlotModel;
 import th.co.rcmo.rcmoapp.Model.calculate.CalculateResultModel;
 import th.co.rcmo.rcmoapp.Model.calculate.FormulaJModel;
+import th.co.rcmo.rcmoapp.Model.calculate.FormulaKModel;
 import th.co.rcmo.rcmoapp.Module.mGetPlotDetail;
 import th.co.rcmo.rcmoapp.Module.mGetVariable;
 import th.co.rcmo.rcmoapp.Module.mVarPlanJ;
+import th.co.rcmo.rcmoapp.Module.mVarPlanK;
 import th.co.rcmo.rcmoapp.Util.BitMapHelper;
 import th.co.rcmo.rcmoapp.Util.ServiceInstance;
 import th.co.rcmo.rcmoapp.Util.Util;
@@ -40,7 +41,7 @@ import th.co.rcmo.rcmoapp.View.DialogChoice;
 /**
  * Created by Taweesin on 27/6/2559.
  */
-public class PBProdDetailCalculateFmentJ extends Fragment implements View.OnClickListener {
+public class PBProdDetailCalculateFmentK extends Fragment implements View.OnClickListener {
 
     int tuaOrKilo = 0; // 0 = จำนวนตัว , 1 = จำนวนกิโล
     int calType = 0; // ประเภทการขายปลา : 1 = คละขนาด , 2 = แยกขนาด
@@ -49,7 +50,7 @@ public class PBProdDetailCalculateFmentJ extends Fragment implements View.OnClic
     UserPlotModel userPlotModel;
     ViewHolder h = new ViewHolder();
     View view;
-    FormulaJModel formulaModel;
+    FormulaKModel formulaModel;
 
     private boolean havePlotId = false;
 
@@ -63,7 +64,7 @@ public class PBProdDetailCalculateFmentJ extends Fragment implements View.OnClic
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        view = inflater.inflate(R.layout.frag_prod_cal_plan_j, container, false);
+        view = inflater.inflate(R.layout.frag_prod_cal_plan_k, container, false);
         context = view.getContext();
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
@@ -80,34 +81,30 @@ public class PBProdDetailCalculateFmentJ extends Fragment implements View.OnClic
 
     private void sampleData () {
 
-        h.rai.setText("10");
-        h.ngan.setText("2");
-        h.tarangwa.setText("50");
-        h.tarangMeter.setText("0");
+        h.kanardKachang.setText("25");
+        h.jumnounKachang.setText("10");
 
-        h.rookPla.setText("700");
+        h.lookPla.setText("7500");
 
-        h.group1_item_1.setText("0.5");
+        h.group1_item_1.setText("0.25");
 
-        h.group1_item_3.setText("500000");
-        h.group1_item_4.setText("350");
-        h.group1_item_5.setText("500");
-        h.group1_item_6.setText("500");
-        h.group1_item_7.setText("450");
-        h.group1_item_8.setText("300");
+        h.group1_item_3.setText("700000");
+        h.group1_item_4.setText("500");
+        h.group1_item_5.setText("350");
+        h.group1_item_6.setText("400");
+        h.group1_item_7.setText("350");
 
-        h.group1_item_10.setText("500");
-        h.group1_item_11.setText("450");
-        h.group1_item_12.setText("250");
-        h.group1_item_13.setText("100");
-        h.group1_item_14.setText("3000");
+        h.group1_item_9.setText("250");
+        h.group1_item_10.setText("250");
+        h.group1_item_11.setText("400");
+        h.group1_item_12.setText("1000");
 
-        h.group2_item_1.setText("150");
+        h.group2_item_1.setText("130");
 
 
         h.group3_item_1.setText("50000");
-        h.group3_item_3.setText("20");
-        h.group3_item_4.setText("7");
+        h.group3_item_3.setText("28");
+        h.group3_item_4.setText("7.9");
 
         h.group4_item_1_1.setText("10");
         h.group4_item_1_2.setText("25");
@@ -130,6 +127,11 @@ public class PBProdDetailCalculateFmentJ extends Fragment implements View.OnClic
 
     private void setHolder() {
 
+        h.productIconImg = (ImageView) view.findViewById(R.id.productIconImg);
+        h.kanardKachang = (TextView) view.findViewById(R.id.KanardKachang);
+        h.jumnounKachang = (TextView) view.findViewById(R.id.JumnounKachang);
+
+        h.lookPla = (TextView) view.findViewById(R.id.rookPla);
 
         h.group1_item_1 = (EditText) view.findViewById(R.id.group1_item_1);
         h.group1_item_2 = (EditText) view.findViewById(R.id.group1_item_2);
@@ -138,13 +140,11 @@ public class PBProdDetailCalculateFmentJ extends Fragment implements View.OnClic
         h.group1_item_5 = (EditText) view.findViewById(R.id.group1_item_5);
         h.group1_item_6 = (EditText) view.findViewById(R.id.group1_item_6);
         h.group1_item_7 = (EditText) view.findViewById(R.id.group1_item_7);
-        h.group1_item_8 = (EditText) view.findViewById(R.id.group1_item_8);
-        h.group1_item_9 = (TextView) view.findViewById(R.id.group1_item_9);
+        h.group1_item_8 = (TextView) view.findViewById(R.id.group1_item_8);
+        h.group1_item_9 = (EditText) view.findViewById(R.id.group1_item_9);
         h.group1_item_10 = (EditText) view.findViewById(R.id.group1_item_10);
         h.group1_item_11 = (EditText) view.findViewById(R.id.group1_item_11);
         h.group1_item_12 = (EditText) view.findViewById(R.id.group1_item_12);
-        h.group1_item_13 = (EditText) view.findViewById(R.id.group1_item_13);
-        h.group1_item_14 = (EditText) view.findViewById(R.id.group1_item_14);
 
         h.group2_item_1 = (EditText) view.findViewById(R.id.group2_item_1);
         h.group2_item_2 = (TextView) view.findViewById(R.id.group2_item_2);
@@ -199,14 +199,6 @@ public class PBProdDetailCalculateFmentJ extends Fragment implements View.OnClic
         h.group4_3_header = (LinearLayout) view.findViewById(R.id.group4_3_header);
         h.group4_4_header = (LinearLayout) view.findViewById(R.id.group4_4_header);
 
-
-        h.productIconImg = (ImageView) view.findViewById(R.id.productIconImg);
-        h.rai = (TextView) view.findViewById(R.id.rai);
-        h.ngan = (TextView) view.findViewById(R.id.ngan);
-        h.tarangwa = (TextView) view.findViewById(R.id.tarangwa);
-        h.tarangMeter = (TextView) view.findViewById(R.id.tarangMeter);
-        h.rookPla = (TextView) view.findViewById(R.id.rookPla);
-
         h.group1_items = (LinearLayout) view.findViewById(R.id.group1_items);
         h.group1_header = (TextView) view.findViewById(R.id.group1_header);
         h.group1_header_arrow = (ImageView) view.findViewById(R.id.group1_header_arrow);
@@ -257,8 +249,8 @@ public class PBProdDetailCalculateFmentJ extends Fragment implements View.OnClic
         userPlotModel = PBProductDetailActivity.userPlotModel;
 
 
-        FormulaJModel aModel = new FormulaJModel();
-        formulaModel = aModel;
+        FormulaKModel model = new FormulaKModel();
+        formulaModel = model;
 
         API_getVariable(userPlotModel.getPrdID(), userPlotModel.getFisheryType());
 
@@ -278,12 +270,10 @@ public class PBProdDetailCalculateFmentJ extends Fragment implements View.OnClic
             API_getPlotDetail(userPlotModel.getPlotID());
             havePlotId = true;
         } else {
-            h.rai.setText(userPlotModel.getPondRai());
-            h.ngan.setText(userPlotModel.getPondNgan());
-            h.tarangwa.setText(userPlotModel.getPondWa());
-            h.tarangMeter.setText(userPlotModel.getPondMeter());
+            h.kanardKachang.setText(userPlotModel.getCoopMeter());
+            h.jumnounKachang.setText(userPlotModel.getCoopNumber());
 
-            h.rookPla.setText(userPlotModel.getFisheryNumber());
+            h.lookPla.setText(userPlotModel.getFisheryNumber());
         }
 
 
@@ -384,7 +374,7 @@ public class PBProdDetailCalculateFmentJ extends Fragment implements View.OnClic
                 DialogCalculateResult.userPlotModel = userPlotModel;
                 DialogCalculateResult.calculateResultModel = calculateResultModel;
 
-                userPlotModel.setVarValue(ProductService.genJsonPlanVariable(formulaModel));
+                //userPlotModel.setVarValue(ProductService.genJsonPlanVariable(formulaModel));
 
                 List resultArrayResult = new ArrayList();
 
@@ -724,7 +714,8 @@ public class PBProdDetailCalculateFmentJ extends Fragment implements View.OnClic
         API_getPlotDetailANDBlinding(userPlotModel.getPlotID(), formulaModel);
     }
 
-    private void setUpCalUI(FormulaJModel model){
+    private void setUpCalUI(FormulaKModel model){
+
         if (model.CalType == 1){
             h.group3_header_check.setImageBitmap(BitMapHelper.
                     decodeSampledBitmapFromResource(getResources(),getResources().getIdentifier("radio_cal_blue_check", "drawable", context.getPackageName()), 20, 20));
@@ -773,65 +764,61 @@ public class PBProdDetailCalculateFmentJ extends Fragment implements View.OnClic
 
     }
 
-    private void bindingData(FormulaJModel aModel) {
+    private void bindingData(FormulaKModel model) {
 
-        aModel.Rai = Util.strToDoubleDefaultZero(h.rai.getText().toString());
-        aModel.Ngan = Util.strToDoubleDefaultZero(h.ngan.getText().toString());
-        aModel.TarangWa = Util.strToDoubleDefaultZero(h.tarangwa.getText().toString());
-        aModel.TarangMeter = Util.strToDoubleDefaultZero(h.tarangMeter.getText().toString());
-        aModel.LookPla = Util.strToDoubleDefaultZero(h.rookPla.getText().toString());
+        model.KanardKaChang = Util.strToDoubleDefaultZero(h.kanardKachang.getText().toString());
+        model.JumnounKachang = Util.strToDoubleDefaultZero(h.jumnounKachang.getText().toString());
 
-        aModel.Raka = Util.strToDoubleDefaultZero(h.group1_item_1.getText().toString());
-        aModel.KaAHan = Util.strToDoubleDefaultZero(h.group1_item_3.getText().toString());
-        aModel.KaYa = Util.strToDoubleDefaultZero(h.group1_item_4.getText().toString());
-        aModel.KaSanKMe = Util.strToDoubleDefaultZero(h.group1_item_5.getText().toString());
-        aModel.KaNamman = Util.strToDoubleDefaultZero(h.group1_item_6.getText().toString());
-        aModel.KaFaifa = Util.strToDoubleDefaultZero(h.group1_item_7.getText().toString());
-        aModel.KaLoklen = Util.strToDoubleDefaultZero(h.group1_item_8.getText().toString());
+        model.LookPla = Util.strToDoubleDefaultZero(h.lookPla.getText().toString());
 
-        aModel.KaRangNganLeang = Util.strToDoubleDefaultZero(h.group1_item_10.getText().toString());
-        aModel.KaRangNganJub = Util.strToDoubleDefaultZero(h.group1_item_11.getText().toString());
-        aModel.KaSomSam = Util.strToDoubleDefaultZero(h.group1_item_12.getText().toString());
-        aModel.KaChaijai = Util.strToDoubleDefaultZero(h.group1_item_13.getText().toString());
-        aModel.KaChoaTDin = Util.strToDoubleDefaultZero(h.group1_item_14.getText().toString());
+        model.Raka = Util.strToDoubleDefaultZero(h.group1_item_1.getText().toString());
+        model.KaAHan = Util.strToDoubleDefaultZero(h.group1_item_3.getText().toString());
+        model.KaYa = Util.strToDoubleDefaultZero(h.group1_item_4.getText().toString());
+        model.KaSanKMe = Util.strToDoubleDefaultZero(h.group1_item_5.getText().toString());
+        model.KaNamman = Util.strToDoubleDefaultZero(h.group1_item_6.getText().toString());
+        model.KaFaifa = Util.strToDoubleDefaultZero(h.group1_item_7.getText().toString());
 
-        aModel.RayaWela = Util.strToDoubleDefaultZero(h.group2_item_1.getText().toString());
+        model.KaRangNganLeang = Util.strToDoubleDefaultZero(h.group1_item_9.getText().toString());
+        model.KaRangNganJub = Util.strToDoubleDefaultZero(h.group1_item_10.getText().toString());
+        model.KaSomSam = Util.strToDoubleDefaultZero(h.group1_item_11.getText().toString());
+        model.KaChaijai = Util.strToDoubleDefaultZero(h.group1_item_12.getText().toString());
 
-        aModel.NamnakTKai = Util.strToDoubleDefaultZero(h.group3_item_1.getText().toString());
-        aModel.RakaTKai = Util.strToDoubleDefaultZero(h.group3_item_3.getText().toString());
-        aModel.KanardPlaChalia = Util.strToDoubleDefaultZero(h.group3_item_4.getText().toString());
+        model.RayaWela = Util.strToDoubleDefaultZero(h.group2_item_1.getText().toString());
 
-        aModel.KanardPla1 = Util.strToDoubleDefaultZero(h.group4_item_1_1.getText().toString());
-        aModel.RakaPla1 = Util.strToDoubleDefaultZero(h.group4_item_1_2.getText().toString());
-        aModel.NamnakPla1 = Util.strToDoubleDefaultZero(h.group4_item_1_3.getText().toString());
+        model.NamnakTKai = Util.strToDoubleDefaultZero(h.group3_item_1.getText().toString());
+        model.RakaTKai = Util.strToDoubleDefaultZero(h.group3_item_3.getText().toString());
+        model.KanardPlaChalia = Util.strToDoubleDefaultZero(h.group3_item_4.getText().toString());
 
-        aModel.KanardPla2 = Util.strToDoubleDefaultZero(h.group4_item_2_1.getText().toString());
-        aModel.RakaPla2 = Util.strToDoubleDefaultZero(h.group4_item_2_2.getText().toString());
-        aModel.NamnakPla2 = Util.strToDoubleDefaultZero(h.group4_item_2_3.getText().toString());
+        model.KanardPla1 = Util.strToDoubleDefaultZero(h.group4_item_1_1.getText().toString());
+        model.RakaPla1 = Util.strToDoubleDefaultZero(h.group4_item_1_2.getText().toString());
+        model.NamnakPla1 = Util.strToDoubleDefaultZero(h.group4_item_1_3.getText().toString());
 
-        aModel.KanardPla3 = Util.strToDoubleDefaultZero(h.group4_item_3_1.getText().toString());
-        aModel.RakaPla3 = Util.strToDoubleDefaultZero(h.group4_item_3_2.getText().toString());
-        aModel.NamnakPla3 = Util.strToDoubleDefaultZero(h.group4_item_3_3.getText().toString());
+        model.KanardPla2 = Util.strToDoubleDefaultZero(h.group4_item_2_1.getText().toString());
+        model.RakaPla2 = Util.strToDoubleDefaultZero(h.group4_item_2_2.getText().toString());
+        model.NamnakPla2 = Util.strToDoubleDefaultZero(h.group4_item_2_3.getText().toString());
 
-        aModel.KanardPla4 = Util.strToDoubleDefaultZero(h.group4_item_4_1.getText().toString());
-        aModel.RakaPla4 = Util.strToDoubleDefaultZero(h.group4_item_4_2.getText().toString());
-        aModel.NamnakPla4 = Util.strToDoubleDefaultZero(h.group4_item_4_3.getText().toString());
+        model.KanardPla3 = Util.strToDoubleDefaultZero(h.group4_item_3_1.getText().toString());
+        model.RakaPla3 = Util.strToDoubleDefaultZero(h.group4_item_3_2.getText().toString());
+        model.NamnakPla3 = Util.strToDoubleDefaultZero(h.group4_item_3_3.getText().toString());
 
-
-
+        model.KanardPla4 = Util.strToDoubleDefaultZero(h.group4_item_4_1.getText().toString());
+        model.RakaPla4 = Util.strToDoubleDefaultZero(h.group4_item_4_2.getText().toString());
+        model.NamnakPla4 = Util.strToDoubleDefaultZero(h.group4_item_4_3.getText().toString());
 
     }
 
     static class ViewHolder {
 
         // Header
-        private TextView rai, ngan, tarangwa, tarangMeter , rookPla;
+        private TextView kanardKachang;
+        private TextView jumnounKachang;
+        private TextView lookPla;
         private ImageView productIconImg;
 
         // Group 1
-        private EditText group1_item_1, group1_item_2, group1_item_3, group1_item_4, group1_item_5, group1_item_6, group1_item_7, group1_item_8;
-        private TextView group1_item_9;
-        private EditText group1_item_10, group1_item_11, group1_item_12, group1_item_13 , group1_item_14;
+        private EditText group1_item_1, group1_item_2, group1_item_3, group1_item_4, group1_item_5, group1_item_6, group1_item_7;
+        private TextView group1_item_8;
+        private EditText group1_item_9 , group1_item_10, group1_item_11, group1_item_12;
 
         // Group 2
         private EditText group2_item_1;
@@ -867,8 +854,6 @@ public class PBProdDetailCalculateFmentJ extends Fragment implements View.OnClic
         private TextView delete_group4_4;
 
         private LinearLayout group4_1_header , group4_2_header , group4_3_header , group4_4_header;
-
-
 
         private TextView calBtn, group1_header, group2_header , group3_header , group4_header;
 
@@ -923,16 +908,11 @@ public class PBProdDetailCalculateFmentJ extends Fragment implements View.OnClic
 
                 if (mVariableBodyLists.size() != 0) {
 
-                    formulaModel.NueaTeeBor = (double)((Integer.parseInt(userPlotModel.getPondRai())*4*400)+
-                            (Integer.parseInt(userPlotModel.getPondNgan())*400)+
-                                    (Integer.parseInt(userPlotModel.getPondWa())*4)+
-                                            (Integer.parseInt(userPlotModel.getPondMeter())))/1600;
-
                     mGetVariable.mRespBody var = mVariableBodyLists.get(0);
-                    formulaModel.KaSermOuppakorn = Util.strToDoubleDefaultZero(var.getDP());
-                    formulaModel.KaSiaOkardOuppakorn = Util.strToDoubleDefaultZero(var.getOP());
-                    h.group2_item_3.setText(String.valueOf(formulaModel.KaSermOuppakorn * formulaModel.NueaTeeBor));
-                    h.group2_item_4.setText(String.valueOf(formulaModel.KaSiaOkardOuppakorn * formulaModel.NueaTeeBor));
+                    formulaModel.KaSermOuppakorn = Util.strToDoubleDefaultZero(var.getDB());
+                    formulaModel.KaSiaOkardOuppakorn = Util.strToDoubleDefaultZero(var.getOB());
+                    h.group2_item_3.setText(String.valueOf(formulaModel.KaSermOuppakorn * Integer.parseInt(userPlotModel.getCoopNumber())));
+                    h.group2_item_4.setText(String.valueOf(formulaModel.KaSiaOkardOuppakorn * Integer.parseInt(userPlotModel.getCoopNumber())));
                 }
             }
 
@@ -946,7 +926,7 @@ public class PBProdDetailCalculateFmentJ extends Fragment implements View.OnClic
 
     }
 
-    private void API_getPlotDetailANDBlinding(String plotID, final FormulaJModel aModel) {
+    private void API_getPlotDetailANDBlinding(String plotID, final FormulaKModel model) {
         /**
          1.TamCode (ไม่บังคับใส่)
          2.AmpCode (บังคับใส่)
@@ -964,96 +944,91 @@ public class PBProdDetailCalculateFmentJ extends Fragment implements View.OnClic
                     mGetPlotDetail.mRespBody plotDetail = mPlotDetailBodyLists.get(0);
                     if (!plotDetail.getVarValue().equals("")) {
 
-                        mVarPlanJ varJ = new Gson().fromJson(plotDetail.getVarValue(), mVarPlanJ.class);
+                        mVarPlanK var = new Gson().fromJson(plotDetail.getVarValue(), mVarPlanK.class);
 
-                        aModel.CalType = varJ.getCalType();
-                        aModel.TuaOrKilo = varJ.getTuaOrKilo();
-                        aModel.CustomSize = varJ.getCustomSize();
+                        model.CalType = var.getCalType();
+                        model.TuaOrKilo = var.getTuaOrKilo();
+                        model.CustomSize = var.getCustomSize();
 
-                        aModel.Rai = varJ.getRai();
-                        aModel.Ngan = varJ.getNgan();
-                        aModel.TarangWa = varJ.getTarangWa();
-                        aModel.TarangMeter = varJ.getTarangMeter();
+                        model.KanardKaChang = var.getKanardKachang();
+                        model.JumnounKachang = var.getJumnounKachang();
 
-                        aModel.LookPla = varJ.getRookPla();
 
-                        aModel.Raka = varJ.getRaka();
-                        aModel.KaAHan = varJ.getKaAHan();
-                        aModel.KaRangNganLeang = varJ.getKaRangNganLeang();
-                        aModel.KaRangNganJub = varJ.getKaRangNganJub();
-                        aModel.KaYa = varJ.getKaYa();
-                        aModel.KaSanKMe = varJ.getKaSanKMe();
-                        aModel.KaNamman = varJ.getKaNamman();
-                        aModel.KaFaifa = varJ.getKaFaifa();
-                        aModel.KaLoklen = varJ.getKaLoklen();
-                        aModel.KaSomSam = varJ.getKaSomSam();
-                        aModel.KaChaijai = varJ.getKaChaijai();
-                        aModel.KaChoaTDin = varJ.getKaChoaTDin();
-                        aModel.RayaWela = varJ.getRayaWela();
+                        model.LookPla = var.getLookPla();
 
-                        aModel.NamnakTKai = varJ.getNamnakTKai();
-                        aModel.RakaTKai = varJ.getRakaTKai();
-                        aModel.KanardPlaChalia = varJ.getKanardPlaChalia();
+                        model.Raka = var.getRaka();
+                        model.KaAHan = var.getKaAHan();
+                        model.KaRangNganLeang = var.getKaRangNganLeang();
+                        model.KaRangNganJub = var.getKaRangNganJub();
+                        model.KaYa = var.getKaYa();
+                        model.KaSanKMe = var.getKaSanKMe();
+                        model.KaNamman = var.getKaNamman();
+                        model.KaFaifa = var.getKaFaifa();
 
-                        aModel.KanardPla1 = varJ.getKanardPla1();
-                        aModel.NamnakPla1 = varJ.getNamnakPla1();
-                        aModel.RakaPla1 = varJ.getRakaPla1();
+                        model.KaSomSam = var.getKaSomSam();
+                        model.KaChaijai = var.getKaChaijai();
 
-                        aModel.KanardPla2 = varJ.getKanardPla2();
-                        aModel.NamnakPla2 = varJ.getNamnakPla2();
-                        aModel.RakaPla2 = varJ.getRakaPla2();
+                        model.RayaWela = var.getRayaWela();
 
-                        aModel.KanardPla3 = varJ.getKanardPla3();
-                        aModel.NamnakPla3 = varJ.getNamnakPla3();
-                        aModel.RakaPla3 = varJ.getRakaPla3();
+                        model.NamnakTKai = var.getNamnakTKai();
+                        model.RakaTKai = var.getRakaTKai();
+                        model.KanardPlaChalia = var.getKanardPlaChalia();
 
-                        aModel.KanardPla4 = varJ.getKanardPla4();
-                        aModel.NamnakPla4 = varJ.getNamnakPla4();
-                        aModel.RakaPla4 = varJ.getRakaPla4();
+                        model.KanardPla1 = var.getKanardPla1();
+                        model.NamnakPla1 = var.getNamnakPla1();
+                        model.RakaPla1 = var.getRakaPla1();
 
-                        h.rai.setText(Util.dobbleToStringNumber(varJ.Rai));
-                        h.ngan.setText(Util.dobbleToStringNumber(varJ.Ngan));
-                        h.tarangwa.setText(Util.dobbleToStringNumber(varJ.TarangWa));
-                        h.tarangMeter.setText(Util.dobbleToStringNumber(varJ.TarangMeter));
+                        model.KanardPla2 = var.getKanardPla2();
+                        model.NamnakPla2 = var.getNamnakPla2();
+                        model.RakaPla2 = var.getRakaPla2();
 
-                        h.rookPla.setText(Util.dobbleToStringNumber(varJ.RookPla));
+                        model.KanardPla3 = var.getKanardPla3();
+                        model.NamnakPla3 = var.getNamnakPla3();
+                        model.RakaPla3 = var.getRakaPla3();
 
-                        h.group1_item_1.setText(Util.dobbleToStringNumber(varJ.Raka));
+                        model.KanardPla4 = var.getKanardPla4();
+                        model.NamnakPla4 = var.getNamnakPla4();
+                        model.RakaPla4 = var.getRakaPla4();
 
-                        h.group1_item_3.setText(Util.dobbleToStringNumber(varJ.KaAHan));
-                        h.group1_item_4.setText(Util.dobbleToStringNumber(varJ.KaYa));
-                        h.group1_item_5.setText(Util.dobbleToStringNumber(varJ.KaSanKMe));
-                        h.group1_item_6.setText(Util.dobbleToStringNumber(varJ.KaNamman));
-                        h.group1_item_7.setText(Util.dobbleToStringNumber(varJ.KaFaifa));
-                        h.group1_item_8.setText(Util.dobbleToStringNumber(varJ.KaLoklen));
+                        h.kanardKachang.setText(Util.dobbleToStringNumber(var.KanardKachang));
+                        h.jumnounKachang.setText(Util.dobbleToStringNumber(var.JumnounKachang));
 
-                        h.group1_item_10.setText(Util.dobbleToStringNumber(varJ.KaRangNganLeang));
-                        h.group1_item_11.setText(Util.dobbleToStringNumber(varJ.KaRangNganJub));
-                        h.group1_item_12.setText(Util.dobbleToStringNumber(varJ.KaSomSam));
-                        h.group1_item_13.setText(Util.dobbleToStringNumber(varJ.KaChaijai));
-                        h.group1_item_14.setText(Util.dobbleToStringNumber(varJ.KaChoaTDin));
+                        h.lookPla.setText(Util.dobbleToStringNumber(var.LookPla));
 
-                        h.group2_item_1.setText(Util.dobbleToStringNumber(varJ.RayaWela));
+                        h.group1_item_1.setText(Util.dobbleToStringNumber(var.Raka));
 
-                        h.group3_item_1.setText(Util.dobbleToStringNumber(varJ.NamnakTKai));
-                        h.group3_item_3.setText(Util.dobbleToStringNumber(varJ.RakaTKai));
-                        h.group3_item_4.setText(Util.dobbleToStringNumber(varJ.KanardPlaChalia));
+                        h.group1_item_3.setText(Util.dobbleToStringNumber(var.KaAHan));
+                        h.group1_item_4.setText(Util.dobbleToStringNumber(var.KaYa));
+                        h.group1_item_5.setText(Util.dobbleToStringNumber(var.KaSanKMe));
+                        h.group1_item_6.setText(Util.dobbleToStringNumber(var.KaNamman));
+                        h.group1_item_7.setText(Util.dobbleToStringNumber(var.KaFaifa));
 
-                        h.group4_item_1_1.setText(Util.dobbleToStringNumber(varJ.KanardPla1));
-                        h.group4_item_1_2.setText(Util.dobbleToStringNumber(varJ.RakaPla1));
-                        h.group4_item_1_3.setText(Util.dobbleToStringNumber(varJ.NamnakPla1));
+                        h.group1_item_9.setText(Util.dobbleToStringNumber(var.KaRangNganLeang));
+                        h.group1_item_10.setText(Util.dobbleToStringNumber(var.KaRangNganJub));
+                        h.group1_item_11.setText(Util.dobbleToStringNumber(var.KaSomSam));
+                        h.group1_item_12.setText(Util.dobbleToStringNumber(var.KaChaijai));
 
-                        h.group4_item_2_1.setText(Util.dobbleToStringNumber(varJ.KanardPla2));
-                        h.group4_item_2_2.setText(Util.dobbleToStringNumber(varJ.RakaPla2));
-                        h.group4_item_2_3.setText(Util.dobbleToStringNumber(varJ.NamnakPla2));
+                        h.group2_item_1.setText(Util.dobbleToStringNumber(var.RayaWela));
 
-                        h.group4_item_3_1.setText(Util.dobbleToStringNumber(varJ.KanardPla3));
-                        h.group4_item_3_2.setText(Util.dobbleToStringNumber(varJ.RakaPla3));
-                        h.group4_item_3_3.setText(Util.dobbleToStringNumber(varJ.NamnakPla3));
+                        h.group3_item_1.setText(Util.dobbleToStringNumber(var.NamnakTKai));
+                        h.group3_item_3.setText(Util.dobbleToStringNumber(var.RakaTKai));
+                        h.group3_item_4.setText(Util.dobbleToStringNumber(var.KanardPlaChalia));
 
-                        h.group4_item_4_1.setText(Util.dobbleToStringNumber(varJ.KanardPla4));
-                        h.group4_item_4_2.setText(Util.dobbleToStringNumber(varJ.RakaPla4));
-                        h.group4_item_4_3.setText(Util.dobbleToStringNumber(varJ.NamnakPla4));
+                        h.group4_item_1_1.setText(Util.dobbleToStringNumber(var.KanardPla1));
+                        h.group4_item_1_2.setText(Util.dobbleToStringNumber(var.RakaPla1));
+                        h.group4_item_1_3.setText(Util.dobbleToStringNumber(var.NamnakPla1));
+
+                        h.group4_item_2_1.setText(Util.dobbleToStringNumber(var.KanardPla2));
+                        h.group4_item_2_2.setText(Util.dobbleToStringNumber(var.RakaPla2));
+                        h.group4_item_2_3.setText(Util.dobbleToStringNumber(var.NamnakPla2));
+
+                        h.group4_item_3_1.setText(Util.dobbleToStringNumber(var.KanardPla3));
+                        h.group4_item_3_2.setText(Util.dobbleToStringNumber(var.RakaPla3));
+                        h.group4_item_3_3.setText(Util.dobbleToStringNumber(var.NamnakPla3));
+
+                        h.group4_item_4_1.setText(Util.dobbleToStringNumber(var.KanardPla4));
+                        h.group4_item_4_2.setText(Util.dobbleToStringNumber(var.RakaPla4));
+                        h.group4_item_4_3.setText(Util.dobbleToStringNumber(var.NamnakPla4));
 
                         formulaModel.calculate();
 
@@ -1061,11 +1036,9 @@ public class PBProdDetailCalculateFmentJ extends Fragment implements View.OnClic
 
 
                     }else{
-                        h.rai.setText(plotDetail.getPondRai());
-                        h.ngan.setText(plotDetail.getPondNgan());
-                        h.tarangwa.setText(plotDetail.getPondWa());
-                        h.tarangwa.setText(plotDetail.getPondMeter());
-                        h.rookPla.setText(plotDetail.getFisheryNumber());
+                        h.kanardKachang.setText(plotDetail.getCoopMeter());
+                        h.jumnounKachang.setText(plotDetail.getCoopNumber());
+                        h.lookPla.setText(plotDetail.getFisheryNumber());
 
                     }
                 }
