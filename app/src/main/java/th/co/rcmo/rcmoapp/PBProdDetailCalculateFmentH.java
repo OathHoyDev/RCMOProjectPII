@@ -169,10 +169,10 @@ public class PBProdDetailCalculateFmentH extends Fragment implements View.OnClic
         h.group1_item_7.addTextChangedListener(new PlanHTextWatcher(h.group1_item_7, h, ""));
         h.group1_item_8.addTextChangedListener(new PlanHTextWatcher(h.group1_item_8, h, ""));
         h.group1_item_9.addTextChangedListener(new PlanHTextWatcher(h.group1_item_9, h, ""));
-        h.group1_item_10.addTextChangedListener(new PlanHTextWatcher(h.group1_item_10, h, "calRakaTkai"));
+        h.group1_item_10.addTextChangedListener(new PlanHTextWatcher(h.group1_item_10, h, ""));
 
         h.group2_item_1.addTextChangedListener(new PlanHTextWatcher(h.group2_item_1, h, "calNumnukTungmod,calNumnukTPuem,calRakaTkai"));
-        h.group3_item_1.addTextChangedListener(new PlanHTextWatcher(h.group3_item_1, h, ""));
+        h.group3_item_1.addTextChangedListener(new PlanHTextWatcher(h.group3_item_1, h, "calRakaTkai"));
         h.group4_item_1.addTextChangedListener(new PlanHTextWatcher(h.group4_item_1, h, ""));
 
       //  calAllEgg
@@ -189,9 +189,9 @@ public class PBProdDetailCalculateFmentH extends Fragment implements View.OnClic
 
 
     private void setUpCalUI(FormulaHModel model) {
-        h.group2_item_2.setText(Util.dobbleToStringNumber(model.calNumnukTungmod));
-        h.group2_item_3.setText(Util.dobbleToStringNumber(model.calNumnukTPuem));
-        h.group3_item_2.setText(Util.dobbleToStringNumber(model.calRakaTkai));
+        h.group2_item_2.setText(Util.dobbleToStringNumber(Util.verifyDoubleDefaultZero(model.calNumnukTungmod)));
+        h.group2_item_3.setText(Util.dobbleToStringNumber(Util.verifyDoubleDefaultZero(model.calNumnukTPuem)));
+        h.group3_item_2.setText(Util.dobbleToStringNumber(Util.verifyDoubleDefaultZero(model.calRakaTkai)));
 
 
     }
@@ -441,7 +441,7 @@ public class PBProdDetailCalculateFmentH extends Fragment implements View.OnClic
         android.widget.TextView btn_ok = (android.widget.TextView) dialog.findViewById(R.id.ok);
 
         ((TextView) dialog.findViewById(R.id.label_t1)).setText("น้ำหนักเฉลี่ยเมื่อเริ่มเลี้ยง");
-        ((TextView) dialog.findViewById(R.id.unit_t1)).setText("ตัว/กก.");;
+        ((TextView) dialog.findViewById(R.id.unit_t1)).setText("กก./ตัว");;
         edit.setText(h.txStartUnit.getText());
         edit_t1.setText(h.txStartNumnakReam.getText());
 

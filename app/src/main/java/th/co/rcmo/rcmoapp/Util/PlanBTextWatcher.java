@@ -127,7 +127,7 @@ public class PlanBTextWatcher implements TextWatcher {
 
         if(name.contains("KaSiaOkardLongtoon")) {
 
-            Util.round(  ( Util.strToDoubleDefaultZero(h.group1_item_1.getText().toString())
+          value=   Util.round(  ( Util.strToDoubleDefaultZero(h.group1_item_1.getText().toString())
                          + Util.strToDoubleDefaultZero(h.group1_item_6.getText().toString()))
                         * (Util.strToDoubleDefaultZero(h.group4_item_1.getText().toString()) / 100) * (12 / 12), 2);
 

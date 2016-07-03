@@ -105,7 +105,7 @@
                     android:layout_alignTop="@+id/txStartPrice"
                     android:layout_marginLeft="5dp"
                     android:layout_toEndOf="@+id/txStartPrice"
-                    android:text="บาท / ตัว"
+                    android:text="กก./ตัว"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textColor="@color/RcmoGrayBG"
                     pixlui:typeface="Quark-Bold.otf" />

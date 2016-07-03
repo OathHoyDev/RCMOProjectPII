@@ -1021,7 +1021,7 @@
                                 android:padding="5dp"
                                 android:inputType="numberDecimal"
                                 android:textCursorDrawable="@drawable/text_cursor"
-                                android:textSize="@dimen/textsize_normal"
+                                android:textSize="@dimen/cal_item_size"
                                 android:id="@+id/group1_item_12"/>
                         </LinearLayout>
                         <com.neopixl.pixlui.components.textview.TextView

@@ -911,7 +911,7 @@
                                         android:textColor="@color/RcmoNormalDarkText"
                                         android:textColorHint="@color/RcmoHintText"
                                         android:textCursorDrawable="@drawable/text_cursor"
-                                        android:textSize="@dimen/textsize_normal"
+                                        android:textSize="@dimen/cal_item_size"
                                         pixlui:typeface="Quark-Bold.otf" />
                                 </LinearLayout>
 

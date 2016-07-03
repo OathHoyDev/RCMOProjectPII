@@ -161,7 +161,7 @@ public class FormulaAModel extends AbstractFormulaModel {
          costKaSermOuppakorn = KaNardPlangTDin * KaSermOuppakorn;
          costKaSiaOkardOuppakorn = KaNardPlangTDin * KaSiaOkardOuppakorn;
 
-        calSumCost = KaRang + KaWassadu + KaSiaOkardLongtoon + KaChaoTDin + costKaSermOuppakorn + costKaSiaOkardOuppakorn;
+        calSumCost = KaRang + KaWassadu + KaSiaOkardLongtoon + KaChaoTDin ;
 
 
         if (isCalIncludeOption) {

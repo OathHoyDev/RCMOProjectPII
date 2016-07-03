@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -58,6 +59,8 @@ public class UserPlotListActivity extends Activity {
         setUI();
         setAction();
 
+
+
         ProgressAction.gone(UserPlotListActivity.this);
     }
 
@@ -85,25 +88,30 @@ public class UserPlotListActivity extends Activity {
 
         userPlotListView = (DragSortListView) findViewById(R.id.listviewPlotDragUser);
 
-        adapter = new UserPlotAdapter(userPlotRespBodyList);
-        userPlotListView.setAdapter(adapter);
-        userPlotListView.setDropListener(adapter.onDrop);
-        userPlotListView.setRemoveListener(adapter.onRemove);
+        if(userPlotRespBodyList.size()!= 0) {
+            ((LinearLayout) findViewById(R.id.ani_add_plot)).setVisibility(View.GONE);
+            adapter = new UserPlotAdapter(userPlotRespBodyList);
+            userPlotListView.setAdapter(adapter);
+            userPlotListView.setDropListener(adapter.onDrop);
+            userPlotListView.setRemoveListener(adapter.onRemove);
 
-        DragSortController controller = new DragSortController(userPlotListView);
-        controller.setDragHandleId(R.id.layoutPlotRow);
-        controller.setRemoveEnabled(false);
-        controller.setSortEnabled(true);
-        controller.setDragInitMode(2);
-       // controller.setBackgroundColor(R.color.RcmoLightTranBG);
-         controller.setBackgroundColor(ContextCompat.getColor(UserPlotListActivity.this, R.color.RcmoDarkTranBG));
-         //controller.setBackgroundColor(getResources().getColor(R.color.RcmoDarkTranBG));
-        //controller.setRemoveMode(removeMode);
-        //controller.setClickRemoveId(R.id.);
+            DragSortController controller = new DragSortController(userPlotListView);
+            controller.setDragHandleId(R.id.layoutPlotRow);
+            controller.setRemoveEnabled(false);
+            controller.setSortEnabled(true);
+            controller.setDragInitMode(2);
+            // controller.setBackgroundColor(R.color.RcmoLightTranBG);
+            controller.setBackgroundColor(ContextCompat.getColor(UserPlotListActivity.this, R.color.RcmoDarkTranBG));
+            //controller.setBackgroundColor(getResources().getColor(R.color.RcmoDarkTranBG));
+            //controller.setRemoveMode(removeMode);
+            //controller.setClickRemoveId(R.id.);
 
-        userPlotListView.setFloatViewManager(controller);
-        userPlotListView.setOnTouchListener(controller);
-        userPlotListView.setDragEnabled(true);
+            userPlotListView.setFloatViewManager(controller);
+            userPlotListView.setOnTouchListener(controller);
+            userPlotListView.setDragEnabled(true);
+        }else{
+            displayNotFoundPlotAnimation();
+        }
     }
 
     private void setAction() {
@@ -399,6 +407,11 @@ public class UserPlotListActivity extends Activity {
                                 API_DeletePlot(userPlotList.get(position).getPlotID());
                                 removeItem(position);
                                 notifyDataSetChanged();
+
+                                if(getCount() ==0) {
+                                    ((LinearLayout) findViewById(R.id.ani_add_plot)).setVisibility(View.VISIBLE);
+                                    displayNotFoundPlotAnimation();
+                                }
                             }
                         }
                     }).ShowTwoChoice("", "ยืนยันการลบข้อมูล");
@@ -670,6 +683,59 @@ public class UserPlotListActivity extends Activity {
 
     }
 
+// ============= Animation ======================
+private void displayNotFoundPlotAnimation() {
+
+    LinearLayout aniLayout = ((LinearLayout) findViewById(R.id.ani_add_plot));
+
+
+
+
+    final ImageView arrowImg = (ImageView) findViewById(R.id.ani_arrow);
+    arrowImg.setBackgroundResource(R.drawable.arrow_seq);
+    final AnimationDrawable arrowSeq = (AnimationDrawable) arrowImg.getBackground();
+
+
+    final ImageView circleImg = (ImageView) findViewById(R.id.ani_circle);
+    circleImg.setBackgroundResource(R.drawable.circle_seq);
+    final AnimationDrawable circleSeq = (AnimationDrawable) circleImg.getBackground();
+
+    circleImg.setVisibility(View.INVISIBLE);
+
+    final Handler handler = new Handler();
+    handler.postDelayed(new Runnable() {
+        int i = 0;
+
+        public void run() {
+
+            if (arrowSeq.isRunning()) {
+                circleImg.setVisibility(View.INVISIBLE);
+                arrowSeq.stop();
+                circleSeq.stop();
+            }
+
+            arrowSeq.start();
+
+            Util.delay(1000, new Util.DelayCallback() {
+                @Override
+                public void afterDelay() {
+
+                    if (circleImg.getVisibility() == View.VISIBLE) {
+                        circleImg.setVisibility(View.INVISIBLE);
+                    } else {
+                        circleImg.setVisibility(View.VISIBLE);
+                    }
+                    circleSeq.start();
+                }
+            });
+
+            handler.postDelayed(this, 1600);
+
+
+        }
+    }, 100);
+
+}
 
 /*
   private void showDialogAndDismiss(String msg){

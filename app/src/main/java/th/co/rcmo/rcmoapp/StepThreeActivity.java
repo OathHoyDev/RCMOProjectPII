@@ -244,6 +244,7 @@ public class StepThreeActivity extends Activity {
                 userPlotModel.setPrdID(String.valueOf(productionInfo.getPrdID()));
                 userPlotModel.setPrdGrpID(String.valueOf(productionInfo.getPrdGrpID()));
                 userPlotModel.setPrdValue(productionInfo.getPrdName());
+                userPlotModel.setPlotID(plotId);
                 //userPlotModel.setUserID(userId);
 
                 boolean isValidate = false;

@@ -58,6 +58,9 @@ public class PBCalculateResultActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pbcalculate_result);
+        SharedPreferences sp = getSharedPreferences(ServiceInstance.PREF_NAME, Context.MODE_PRIVATE);
+        String userId = sp.getString(ServiceInstance.sp_userId, "0");
+        userPlotModel.setUserID(userId);
         initialDetail();
 
         ListView listView = (ListView) findViewById(R.id.listViewSummary);
@@ -79,7 +82,9 @@ public class PBCalculateResultActivity extends Activity {
                 if(!(userPlotModel.getUserID().equals("0")) && saved ){
                     API_GetUserPlot(userPlotModel.getUserID());
                 }else{
-                    if(!(userPlotModel.getUserID().equals("0"))){
+                    if((userPlotModel.getUserID().equals("0")||userPlotModel.getUserID().equals("") )){
+                        finish();
+                    }else{
                         new DialogChoice(PBCalculateResultActivity.this, new DialogChoice.OnSelectChoiceListener() {
                             @Override
                             public void OnSelect(int choice) {
@@ -92,11 +97,8 @@ public class PBCalculateResultActivity extends Activity {
                                 }
                             }
                         }).ShowTwoChoice("", "คุณต้องการบันทึกข้อมูลหรือไม่");
-                    }else{
-                        finish();
+
                     }
-
-
                 }
             }
         });
@@ -234,17 +236,20 @@ public class PBCalculateResultActivity extends Activity {
 
 if(userPlotModel.getPrdID().equals("40")
         || userPlotModel.getPrdID().equals("41")
-        || userPlotModel.getPrdID().equals("43")) {
+        || userPlotModel.getPrdID().equals("42")
+        || userPlotModel.getPrdID().equals("43")
+        || "D".equalsIgnoreCase(calculateResultModel.formularCode)) {
    recommandpriceLabel.setVisibility(View.INVISIBLE);
     recommandPrice.setVisibility(View.INVISIBLE);
 }else{
     if (calculateResultModel.compareStdResult > 0) {
-        recommandPrice.setText("ต้นทุนเกินกว่าค่ามาตรฐาน");
+        recommandPrice.setText("ต้นทุนสูงกว่าค่าเฉลี่ย");
     } else if (calculateResultModel.compareStdResult == 0) {
-        recommandPrice.setText("ต้นทุนเทียบเท่าค่ามาตรฐาน");
+        recommandPrice.setText("ต้นทุนเทียบเท่าค่าเฉลี่ย");
     } else {
-        recommandPrice.setText("ต้นทุนต่ำกว่าค่ามาตรฐาน");
+        recommandPrice.setText("ต้นทุนต่ำกว่าค่าเฉลี่ย");
     }
+
 }
 
         if (calculateResultModel.calculateResult >= 0) {

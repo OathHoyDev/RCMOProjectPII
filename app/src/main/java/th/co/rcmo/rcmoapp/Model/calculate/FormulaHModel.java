@@ -59,14 +59,17 @@ public class FormulaHModel extends AbstractFormulaModel {
         calNumnukTPuem = NumnukChalia -NumnukRermLeang;
         calRakaTkai    = RakaChalia/NumnukChalia;
 
+        calRakaTkai = Util.verifyDoubleDefaultZero(calRakaTkai);
+
          calKaChaiJaiAll = Util.round((KaPan+KaAHanKon+KaAKanYab+costKaRangGgan+KaYa+costKaNamKaFai+KaWassaduSinPleung),2);
 
 
-        calCost  =Util.round((costKaSermRongRaun+KaSiaOkardLongtoon +calKaChaiJaiAll+costKaChoaTDin),2);
+        //calCost  =Util.round((costKaSermRongRaun+KaSiaOkardLongtoon +calKaChaiJaiAll+costKaChoaTDin),2);
+        calCost  =Util.round((KaSiaOkardLongtoon +calKaChaiJaiAll+costKaChoaTDin),2);
 
 
         if (isCalIncludeOption){
-            calCost += costKaSermRongRaun + KaSiaOkardLongtoon;
+            calCost += costKaSermRongRaun ;
         }
 
         calCostPerTua        = calCost/JumnuanTKai;
@@ -76,6 +79,12 @@ public class FormulaHModel extends AbstractFormulaModel {
         calProfitLossPerKg   = calRakaTkai - calAllCostPerKg;
         calProfitLoss        = calProfitLossPerKg * calNumnukTungmod;
 
+        calCostPerTua = Util.verifyDoubleDefaultZero(calCostPerTua);
+        calCostReturnPerTua = Util.verifyDoubleDefaultZero(calCostReturnPerTua);
+        calAllCostPerKg = Util.verifyDoubleDefaultZero(calAllCostPerKg);
+        calAttraRak = Util.verifyDoubleDefaultZero(calAttraRak);
+        calProfitLossPerKg = Util.verifyDoubleDefaultZero(calProfitLossPerKg);
+        calProfitLoss = Util.verifyDoubleDefaultZero(calProfitLoss);
 
         Log.d("Cal","***** ค่าเสื่อมโรงเรือน :"+KaSermRongRaun);
         Log.d("Cal","***** ค่าใช้จ่ายทั้งหมด QT :"+calKaChaiJaiAll);

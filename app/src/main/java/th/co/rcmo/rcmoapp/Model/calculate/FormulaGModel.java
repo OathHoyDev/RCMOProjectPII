@@ -101,7 +101,7 @@ public class FormulaGModel extends AbstractFormulaModel {
         calMoonkaAnimalTuangNumnuk = KoRakRakGerd+Ko1_2+Ko2+MaeKoReedNom;
 
         double fixFMoonkaAnimalTuangNumnuk = calKoRakRakGerd +calKo1_2 +calKo2 +calMaeKoReedNom;
-        double fixEMoonkaAnimalTuangNumnuk = JumuanMaeKo/fixFMoonkaAnimalTuangNumnuk;
+        double fixEMoonkaAnimalTuangNumnuk = Util.round(JumuanMaeKo/fixFMoonkaAnimalTuangNumnuk,2);
 
 
         // C5 = ParimanNumnom
@@ -142,7 +142,7 @@ public class FormulaGModel extends AbstractFormulaModel {
         //F32
         Log.d("Cal","***** calKaRang :"+calKaRang);
         Log.d("Cal","***** calKawassadu :"+calKawassadu);
-        calKaSiaOkardLongtoon = Util.round(((calKaRang+calKawassadu)*(0.07))* Util.round((30.42/365),2),2);
+        calKaSiaOkardLongtoon = Util.round(((calKaRang+calKawassadu)*(0.07))* (30.42/365),2);
         Log.d("Cal","***** calKaSiaOkardLongtoon :"+(calKaRang+calKawassadu)*(0.07));
 
         //============== 2.1 ================

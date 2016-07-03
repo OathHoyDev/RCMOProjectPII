@@ -126,16 +126,16 @@ public class PBProdDetailCalculateFmentB extends Fragment implements View.OnClic
 
         //13 อ้อยโรงงาน
         if(userPlotModel.getPrdID().equals("13")) {
-            ((TextView) view.findViewById(R.id.group0_header)).setText("จำนวนรอบ(มีด)ที่ปลูกทั้งแปลง");
+            ((TextView) view.findViewById(R.id.group0_header)).setText("จำนวนรอบ(มีด)");
             ((TextView) view.findViewById(R.id.group0_unit_1)).setText("ปี(ตอ)ไม่รวมปีปลูก");
         }else{
-            ((TextView) view.findViewById(R.id.group0_header)).setText("จำนวนปีที่ปลูกทั้งแปลง");
+            ((TextView) view.findViewById(R.id.group0_header)).setText("จำนวนปี");
             ((TextView) view.findViewById(R.id.group0_unit_1)).setText("ปี(ตอ)รวมปีปลูก");
         }
 
         formulaModel = new FormulaBModel();
 
-        API_getVariable(userPlotModel.getPrdID(), userPlotModel.getFisheryType());
+        API_getVariable(userPlotModel.getPrdID(), userPlotModel.getFisheryType(),formulaModel);
 
         if (!userPlotModel.getPlotID().equals("") && userPlotModel.getPlotID().equals("0")) {
             initVariableDataFromDB();
@@ -157,15 +157,15 @@ public class PBProdDetailCalculateFmentB extends Fragment implements View.OnClic
 
         h.group0_item_1.addTextChangedListener(new PlanBTextWatcher(h.group0_item_1, h,formulaModel, "KaSermOuppakorn,KaSiaOkardOuppakorn"));
 
-        h.group1_item_2.addTextChangedListener(new PlanBTextWatcher(h.group1_item_2, h, "Karang"));
-        h.group1_item_3.addTextChangedListener(new PlanBTextWatcher(h.group1_item_3, h, "Karang"));
-        h.group1_item_4.addTextChangedListener(new PlanBTextWatcher(h.group1_item_4, h, "Karang"));
-        h.group1_item_5.addTextChangedListener(new PlanBTextWatcher(h.group1_item_5, h, "Karang"));
+        h.group1_item_2.addTextChangedListener(new PlanBTextWatcher(h.group1_item_2, h, "Karang,KaSiaOkardLongtoon"));
+        h.group1_item_3.addTextChangedListener(new PlanBTextWatcher(h.group1_item_3, h, "Karang,KaSiaOkardLongtoon"));
+        h.group1_item_4.addTextChangedListener(new PlanBTextWatcher(h.group1_item_4, h, "Karang,KaSiaOkardLongtoon"));
+        h.group1_item_5.addTextChangedListener(new PlanBTextWatcher(h.group1_item_5, h, "Karang,KaSiaOkardLongtoon"));
 
-        h.group1_item_7.addTextChangedListener(new PlanBTextWatcher(h.group1_item_7, h, "KaWassadu"));
-        h.group1_item_8.addTextChangedListener(new PlanBTextWatcher(h.group1_item_8, h, "KaWassadu"));
-        h.group1_item_9.addTextChangedListener(new PlanBTextWatcher(h.group1_item_9, h, "KaWassadu"));
-        h.group1_item_10.addTextChangedListener(new PlanBTextWatcher(h.group1_item_10, h, "KaWassadu"));
+        h.group1_item_7.addTextChangedListener(new PlanBTextWatcher(h.group1_item_7, h, "KaWassadu,KaSiaOkardLongtoon"));
+        h.group1_item_8.addTextChangedListener(new PlanBTextWatcher(h.group1_item_8, h, "KaWassadu,KaSiaOkardLongtoon"));
+        h.group1_item_9.addTextChangedListener(new PlanBTextWatcher(h.group1_item_9, h, "KaWassadu,KaSiaOkardLongtoon"));
+        h.group1_item_10.addTextChangedListener(new PlanBTextWatcher(h.group1_item_10, h, "KaWassadu,KaSiaOkardLongtoon"));
         h.group1_item_12.addTextChangedListener(new PlanBTextWatcher(h.group1_item_12, h, ""));
 
         h.group2_item_1.addTextChangedListener(new PlanBTextWatcher(h.group2_item_1, h, ""));
@@ -189,7 +189,7 @@ public class PBProdDetailCalculateFmentB extends Fragment implements View.OnClic
         h.group1_item_1.setText(Util.dobbleToStringNumber(model.KaRang));
         h.group1_item_6.setText(Util.dobbleToStringNumber(model.KaWassadu));
         h.group1_item_11.setText(Util.dobbleToStringNumber(model.KaSiaOkardLongtoon));
-        h.group1_item_12.setText(Util.dobbleToStringNumber(model.KaChaoTDin));
+       // h.group1_item_12.setText(Util.dobbleToStringNumber(model.KaChaoTDin));
         h.group1_item_13.setText(Util.dobbleToStringNumber(model.costKaSermOuppakorn));
         h.group1_item_14.setText(Util.dobbleToStringNumber(model.costKaSiaOkardOuppakorn));
 
@@ -224,7 +224,7 @@ public class PBProdDetailCalculateFmentB extends Fragment implements View.OnClic
             h.productIconImg.setImageBitmap(BitMapHelper.decodeSampledBitmapFromResource(getResources(), getResources().getIdentifier(imgName, "drawable", getActivity().getPackageName()), R.dimen.iccircle_img_width, R.dimen.iccircle_img_height));
         }
         if (!userPlotModel.getPlotID().equals("") && !userPlotModel.getPlotID().equals("0")) {
-
+            API_getVariable(userPlotModel.getPrdID(), userPlotModel.getFisheryType(),formulaModel);
             initVariableDataFromDB();
             havePlotId = true;
         } else {
@@ -400,7 +400,7 @@ public class PBProdDetailCalculateFmentB extends Fragment implements View.OnClic
     }
 
 
-    private void API_getVariable(String prdID, final String fisheryType) {
+    private void API_getVariable(String prdID, final String fisheryType,final FormulaBModel formulaModel) {
 
         new ResponseAPI(context, new ResponseAPI.OnCallbackAPIListener() {
             @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
@@ -415,8 +415,8 @@ public class PBProdDetailCalculateFmentB extends Fragment implements View.OnClic
                     formulaModel.KaSermOuppakorn = Util.strToDoubleDefaultZero(var.getD());
                     formulaModel.KaSiaOkardOuppakorn = Util.strToDoubleDefaultZero(var.getO());
                     formulaModel.TontumMattratarnPerRai = Util.strToDoubleDefaultZero(var.getCS());
-                    h.group1_item_13.setText(String.valueOf(formulaModel.KaSermOuppakorn));
-                    h.group1_item_14.setText(String.valueOf(formulaModel.KaSiaOkardOuppakorn));
+                    h.group1_item_13.setText(Util.dobbleToStringNumber(formulaModel.KaSermOuppakorn*formulaModel.Year));
+                    h.group1_item_14.setText(Util.dobbleToStringNumber(formulaModel.KaSiaOkardOuppakorn*formulaModel.Year));
 
 
                 }
@@ -525,7 +525,8 @@ public class PBProdDetailCalculateFmentB extends Fragment implements View.OnClic
                         h.group4_item_1.setText(Util.dobbleToStringNumber(var.AttraDokbia));
 
                         h.txStartUnit.setText(Util.dobbleToStringNumber(var.getKaNardPlangTDin()));
-
+                       // h.group1_item_13.setText(String.valueOf(formulaModel.KaSermOuppakorn*var.getYear()));
+                       // h.group1_item_14.setText(String.valueOf(formulaModel.KaSiaOkardOuppakorn*var.getYear()));
                         formulaModel.calculate();
 
                         setUpCalUI(formulaModel);

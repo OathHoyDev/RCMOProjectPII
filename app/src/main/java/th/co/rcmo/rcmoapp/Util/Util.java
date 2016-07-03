@@ -138,4 +138,15 @@ public class Util {
         long tmp = Math.round(value);
         return (double) tmp / factor;
     }
+
+    public static double verifyDoubleDefaultZero(double input){
+
+        try{
+            input = Double.isNaN(input) ? 0:input;
+            input = Double.isInfinite(input) ? 0:input;
+        }catch (Exception e){
+           e.printStackTrace();
+        }
+     return  input;
+    }
 }

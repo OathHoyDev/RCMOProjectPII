@@ -188,7 +188,7 @@ public class PBProdDetailCalculateFmentA extends Fragment implements View.OnClic
         h.group1_item_1.setText(Util.dobbleToStringNumber(aModel.KaRang));
         h.group1_item_6.setText(Util.dobbleToStringNumber(aModel.KaWassadu));
         h.group1_item_11.setText(Util.dobbleToStringNumber(aModel.KaSiaOkardLongtoon));
-        h.group1_item_12.setText(Util.dobbleToStringNumber(aModel.KaChaoTDin));
+        //h.group1_item_12.setText(Util.dobbleToStringNumber(aModel.KaChaoTDin));
         h.group1_item_13.setText(Util.dobbleToStringNumber(aModel.costKaSermOuppakorn));
         h.group1_item_14.setText(Util.dobbleToStringNumber(aModel.costKaSiaOkardOuppakorn));
 
