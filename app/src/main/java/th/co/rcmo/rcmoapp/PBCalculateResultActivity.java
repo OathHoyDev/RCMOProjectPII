@@ -87,6 +87,8 @@ public class PBCalculateResultActivity extends Activity {
                                 if (choice == DialogChoice.OK) {
                                     upsertUserPlot();
 
+                                }else{
+                                    finish();
                                 }
                             }
                         }).ShowTwoChoice("", "คุณต้องการบันทึกข้อมูลหรือไม่");
