@@ -58,6 +58,9 @@ public class PBCalculateResultActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pbcalculate_result);
+        SharedPreferences sp = getSharedPreferences(ServiceInstance.PREF_NAME, Context.MODE_PRIVATE);
+        String userId = sp.getString(ServiceInstance.sp_userId, "0");
+        userPlotModel.setUserID(userId);
         initialDetail();
 
         ListView listView = (ListView) findViewById(R.id.listViewSummary);
@@ -79,8 +82,23 @@ public class PBCalculateResultActivity extends Activity {
                 if(!(userPlotModel.getUserID().equals("0")) && saved ){
                     API_GetUserPlot(userPlotModel.getUserID());
                 }else{
-                    finish();
+                    if((userPlotModel.getUserID().equals("0")||userPlotModel.getUserID().equals("") )){
+                        finish();
+                    }else{
+                        new DialogChoice(PBCalculateResultActivity.this, new DialogChoice.OnSelectChoiceListener() {
+                            @Override
+                            public void OnSelect(int choice) {
 
+                                if (choice == DialogChoice.OK) {
+                                    upsertUserPlot();
+
+                                }else{
+                                    finish();
+                                }
+                            }
+                        }).ShowTwoChoice("", "คุณต้องการบันทึกข้อมูลหรือไม่");
+
+                    }
                 }
             }
         });
@@ -136,6 +154,7 @@ public class PBCalculateResultActivity extends Activity {
 
         TextView recommandLocation = (TextView) findViewById(R.id.recommandLocation);
         TextView recommandPrice = (TextView) findViewById(R.id.recommandPrice);
+        TextView recommandpriceLabel = (TextView) findViewById(R.id.priceLabel);
 
         TextView titleLable = (TextView) findViewById(R.id.titleLable);
         TextView productNameLabel = (TextView) findViewById(R.id.productNameLabel);
@@ -175,6 +194,16 @@ public class PBCalculateResultActivity extends Activity {
                 value_t1.setTextColor(getResources().getColor(R.color.RcmoAnimalBG));
 
 
+                if("43".equals(userPlotModel.getPrdID())){
+                    ((TextView) findViewById(R.id.unit)).setText("บาท/กก.");
+                    unit_t1.setVisibility(View.GONE);
+                    value_t1.setVisibility(View.GONE);
+                }else{
+                    unit_t1.setText(calculateResultModel.unit_t1);
+                    value_t1.setText(Util.dobbleToStringNumberWithClearDigit(calculateResultModel.value_t1));
+                    value_t1.setTextColor(getResources().getColor(R.color.RcmoAnimalBG));
+                }
+
                 break;
             case CalculateConstant.PRODUCT_TYPE_FISH:
                 findViewById(R.id.t1).setVisibility(View.INVISIBLE);
@@ -204,20 +233,31 @@ public class PBCalculateResultActivity extends Activity {
             recommandLocation.setText("ไม่พบข้อมูล");
         }
 
-        if (calculateResultModel.compareStdResult > 0) {
-            recommandPrice.setText("ต้นทุนเกินกว่าค่ามาตรฐาน");
-        } else if (calculateResultModel.compareStdResult == 0) {
-            recommandPrice.setText("ต้นทุนเทียบเท่าค่ามาตรฐาน");
-        } else {
-            recommandPrice.setText("ต้นทุนต่ำกว่าค่ามาตรฐาน");
-        }
+
+if(userPlotModel.getPrdID().equals("40")
+        || userPlotModel.getPrdID().equals("41")
+        || userPlotModel.getPrdID().equals("42")
+        || userPlotModel.getPrdID().equals("43")
+        || "D".equalsIgnoreCase(calculateResultModel.formularCode)) {
+   recommandpriceLabel.setVisibility(View.INVISIBLE);
+    recommandPrice.setVisibility(View.INVISIBLE);
+}else{
+    if (calculateResultModel.compareStdResult > 0) {
+        recommandPrice.setText("ต้นทุนสูงกว่าค่าเฉลี่ย");
+    } else if (calculateResultModel.compareStdResult == 0) {
+        recommandPrice.setText("ต้นทุนเทียบเท่าค่าเฉลี่ย");
+    } else {
+        recommandPrice.setText("ต้นทุนต่ำกว่าค่าเฉลี่ย");
+    }
+
+}
 
         if (calculateResultModel.calculateResult >= 0) {
             txProfitLoss.setText("กำไร");
-            txProfitLossValue.setText(Util.dobbleToStringNumberWithClearDigit(calculateResultModel.calculateResult));
+            txProfitLossValue.setText(Util.dobbleToStringNumber(calculateResultModel.calculateResult));
         } else {
             txProfitLoss.setText("ขาดทุน");
-            txProfitLossValue.setText(Util.dobbleToStringNumberWithClearDigit(calculateResultModel.calculateResult));
+            txProfitLossValue.setText(Util.dobbleToStringNumber(calculateResultModel.calculateResult));
         }
 
 

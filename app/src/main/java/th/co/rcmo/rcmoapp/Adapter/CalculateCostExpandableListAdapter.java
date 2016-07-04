@@ -100,7 +100,7 @@ public class CalculateCostExpandableListAdapter extends BaseExpandableListAdapte
             public void afterTextChanged(Editable s) {
                 Log.d("addTextChangedListener", "onTextChanged: " + childText[1] + " , Value : " + s.toString());
                 try {
-                    model.setValueFromAttributeName(FormulaJModel.class , childText[4], s.toString());
+                    //model.setValueFromAttributeName(FormulaJModel.class , childText[4], s.toString());
                 }catch(Exception e){
                     Log.e("Error" , "Error addTextChangedListener" + e.getMessage());
                 }

@@ -244,6 +244,7 @@ public class StepThreeActivity extends Activity {
                 userPlotModel.setPrdID(String.valueOf(productionInfo.getPrdID()));
                 userPlotModel.setPrdGrpID(String.valueOf(productionInfo.getPrdGrpID()));
                 userPlotModel.setPrdValue(productionInfo.getPrdName());
+                userPlotModel.setPlotID(plotId);
                 //userPlotModel.setUserID(userId);
 
                 boolean isValidate = false;
@@ -275,6 +276,7 @@ public class StepThreeActivity extends Activity {
             @Override
             public void onClick(View view) {
 
+                userPlotModel.setUserID(userId);
                 if (userPlotModel.getUserID() == null || userPlotModel.getUserID().equals("0") || userPlotModel.getUserID().equals("")) {
                     new DialogChoice(StepThreeActivity.this)
                             .ShowOneChoice("ไม่สามารถบันทึกข้อมูล", "- กรุณา Login ก่อนทำการบันทึกข้อมูล");

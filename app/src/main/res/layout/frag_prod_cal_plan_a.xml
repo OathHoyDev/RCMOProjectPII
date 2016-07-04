@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:pixlui="http://schemas.android.com/apk/com.neopixl.pixlui"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -7,7 +7,11 @@
     android:background="@color/RcmoWhiteBG"
 
     >
-
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/RcmoWhiteBG">
     <RelativeLayout
         android:id="@+id/headerLayout"
         android:layout_width="match_parent"
@@ -51,7 +55,7 @@
                 android:layout_alignTop="@+id/start"
                 android:layout_marginLeft="5dp"
                 android:layout_toEndOf="@+id/start"
-                android:text="xx"
+                android:text="0.0"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/RcmoPlantBG"
                 pixlui:typeface="Quark-Bold.otf" />
@@ -110,7 +114,8 @@
     <ScrollView
         android:id="@+id/activity_expandable_scroll_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingBottom="60dp">
 
         <LinearLayout
             android:id="@+id/super_main_layout"
@@ -454,7 +459,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_marginTop="@dimen/margin_normal"
-                                android:text="ค่าเก็บเกียวรวบรวม"
+                                android:text="ค่าเก็บเกี่ยว รวบรวม"
                                 android:textColor="@color/RcmoNormalDarkText"
                                 android:gravity="left|center"
                                 android:paddingLeft="15dp"
@@ -770,7 +775,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_marginTop="@dimen/margin_normal"
-                                android:text="ค่าวัสดุอืน ๆ"
+                                android:text="ค่าวัสดุอื่น ๆ"
                                 android:textColor="@color/RcmoNormalDarkText"
                                 android:gravity="left|center"
                                 android:paddingLeft="15dp"
@@ -863,7 +868,7 @@
                             pixlui:typeface="Quark-Bold.otf"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:text="บาท/ไร่"
+                            android:text="บาท"
                             android:textColor="@color/RcmoNormalDarkText"
                             android:gravity="left|center"
                             android:paddingLeft="10dp"
@@ -895,7 +900,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:text="ค่าเช่าที่ดิน"
-                                android:textColor="@color/RcmoPlantBG"
+                                android:textColor="@color/RcmoNormalDarkText"
                                 android:gravity="left|center"
                                 android:layout_weight="1"
                                 android:inputType="text"
@@ -917,14 +922,14 @@
                                 android:padding="5dp"
                                 android:inputType="numberDecimal"
                                 android:textCursorDrawable="@drawable/text_cursor"
-                                android:textSize="@dimen/textsize_normal"
+                                android:textSize="@dimen/cal_item_size"
                                 android:id="@+id/group1_item_12"/>
                         </LinearLayout>
                         <com.neopixl.pixlui.components.textview.TextView
                             pixlui:typeface="Quark-Bold.otf"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:text="บาท/ไร่"
+                            android:text="บาท"
                             android:textColor="@color/RcmoNormalDarkText"
                             android:gravity="left|center"
                             android:paddingLeft="10dp"
@@ -969,7 +974,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_marginTop="@dimen/margin_normal"
-                                android:hint="7.55"
+                                android:hint="0.00"
                                 android:textColor="@color/RcmoPlantBG"
                                 android:textColorHint="@color/RcmoPlantBG"
                                 android:imeOptions="actionNext"
@@ -985,7 +990,7 @@
                             pixlui:typeface="Quark-Bold.otf"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:text="บาท/ไร่"
+                            android:text="บาท"
                             android:textColor="@color/RcmoNormalDarkText"
                             android:gravity="left|center"
                             android:paddingLeft="10dp"
@@ -1030,7 +1035,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_marginTop="@dimen/margin_normal"
-                                android:hint="1.77"
+                                android:hint="0.00"
                                 android:textColor="@color/RcmoPlantBG"
                                 android:textColorHint="@color/RcmoPlantBG"
                                 android:imeOptions="actionNext"
@@ -1046,7 +1051,7 @@
                             pixlui:typeface="Quark-Bold.otf"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:text="บาท/ไร่"
+                            android:text="บาท"
                             android:textColor="@color/RcmoNormalDarkText"
                             android:gravity="left|center"
                             android:paddingLeft="10dp"
@@ -1130,7 +1135,7 @@
                             android:hint="0.00"
                             android:textColor="@color/RcmoNormalDarkText"
                             android:textColorHint="@color/RcmoHintText"
-                            android:imeOptions="actionDone"
+                            android:imeOptions="actionNext"
                             android:background="@color/RcmoWhiteBG"
                             android:gravity="right"
                             android:padding="5dp"
@@ -1226,7 +1231,7 @@
                             android:hint="0.00"
                             android:textColor="@color/RcmoNormalDarkText"
                             android:textColorHint="@color/RcmoHintText"
-                            android:imeOptions="actionDone"
+                            android:imeOptions="actionNext"
                             android:background="@color/RcmoWhiteBG"
                             android:gravity="right"
                             android:padding="5dp"
@@ -1382,49 +1387,51 @@
                     pixlui:typeface="Quark-Bold.otf" />
             </RelativeLayout>
 
-            <LinearLayout
-                android:id="@+id/relativeLayout"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentStart="true"
-                android:orientation="horizontal">
 
-                <com.neopixl.pixlui.components.textview.TextView
-                    android:id="@+id/centerImg"
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_gravity="bottom"
-                    android:layout_weight="1"
-                    android:background="@drawable/bottom_green"
-                    android:gravity="center"
-                    pixlui:typeface="Quark-Bold.otf" />
-
-                <com.neopixl.pixlui.components.textview.TextView
-                    android:id="@+id/calBtn"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignTop="@+id/relativeLayout"
-                    android:layout_weight="2"
-                    android:background="@drawable/action_plant_reget"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:gravity="bottom|center"
-                    android:paddingBottom="5dp"
-                    android:text="คำนวน"
-                    android:textColor="@color/RcmoWhiteBG"
-                    android:textSize="@dimen/textsize_large"
-                    pixlui:typeface="Quark-Bold.otf" />
-
-            </LinearLayout>
 
         </LinearLayout>
 
     </ScrollView>
 
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:orientation="horizontal"
+       >
 
-</LinearLayout>
+        <com.neopixl.pixlui.components.textview.TextView
+            android:id="@+id/centerImg"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_gravity="bottom"
+            android:layout_weight="1"
+            android:background="@drawable/bottom_green"
+            android:gravity="center"
+            pixlui:typeface="Quark-Bold.otf" />
+
+        <com.neopixl.pixlui.components.textview.TextView
+            android:id="@+id/calBtn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignTop="@+id/relativeLayout"
+            android:layout_weight="2"
+            android:background="@drawable/action_plant_reget"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="bottom|center"
+            android:paddingBottom="5dp"
+            android:text="คำนวน"
+            android:textColor="@color/RcmoWhiteBG"
+            android:textSize="@dimen/textsize_large"
+            pixlui:typeface="Quark-Bold.otf" />
+
+    </LinearLayout>
+</RelativeLayout>

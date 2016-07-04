@@ -3,6 +3,7 @@ package th.co.rcmo.rcmoapp.View;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
+import android.media.MediaPlayer;
 import android.util.StringBuilderPrinter;
 import android.view.Gravity;
 import android.view.View;
@@ -61,11 +62,15 @@ public class DialogCalculateResult {
 
         if (calculateResultModel.calculateResult > 0) {
             iconResult.setBackgroundResource(R.drawable.ic_profit);
+            MediaPlayer mp = MediaPlayer.create(context.getApplicationContext(), R.raw.profit);
+            mp.start();
             txResultString.setText("ดีใจด้วย");
             txResult.setText("คุณได้กำไร");
             txResultValue.setText("จำนวน " + String.format("%,.2f", calculateResultModel.calculateResult) + " บาท");
         } else {
             iconResult.setBackgroundResource(R.drawable.ic_losecost);
+            MediaPlayer mp = MediaPlayer.create(context.getApplicationContext(), R.raw.loss);
+            mp.start();
             txResultString.setText("เสียใจด้วย");
             txResult.setText("คุณขาดทุน");
             txResultValue.setText("จำนวน " + String.format("%,.2f", calculateResultModel.calculateResult) + " บาท");

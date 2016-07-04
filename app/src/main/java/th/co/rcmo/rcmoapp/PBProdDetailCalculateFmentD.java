@@ -125,6 +125,7 @@ public class PBProdDetailCalculateFmentD extends Fragment implements View.OnClic
             formulaModel.RermLeang     =  Util.strToDoubleDefaultZero(userPlotModel.getAnimalNumber());
             formulaModel.calculate();
             setUpCalUI(formulaModel);
+            h.group2_item_1.setText(Util.dobbleToStringNumberWithClearDigit(0)+"%");
         }
 
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);

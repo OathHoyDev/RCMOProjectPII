@@ -1,9 +1,13 @@
 package th.co.rcmo.rcmoapp.Model.calculate;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
+
+import th.co.rcmo.rcmoapp.Util.Util;
 
 /**
  * Created by SilVeriSm on 6/20/2016 AD.
@@ -50,6 +54,9 @@ public class FormulaBModel extends AbstractFormulaModel {
     public double calIncome = 0;
     public double calIncomePerRai = 0;
     public double calProfitLoss = 0;
+
+    public double costKaSermOuppakorn =    0;
+    public double costKaSiaOkardOuppakorn = 0;
 
     public static Hashtable<String, String> calculateLabel;
     static {
@@ -172,39 +179,58 @@ public class FormulaBModel extends AbstractFormulaModel {
     }
 
     public void calculate() {
-
-        KaRang = KaTreamDin + KaPluk + KaDoolae + KaGebGeaw;
+        // E4 = year
+        //==============  1.1 =============================
+        KaRang = KaTreamDin
+                + KaPluk
+                + KaDoolae
+                + KaGebGeaw;
 
         double yearKaTreamDin = KaTreamDin / (Year+1) ;
         double yearKaPluk = KaPluk / (Year+1) ;
-
         double yearKaRang = yearKaTreamDin + yearKaPluk + KaDoolae + KaGebGeaw;
 
-        KaWassadu = KaPan + KaPuy + KaYaplab + KaWassaduUn;
+        //============= 1.2 ==================================
+
+        KaWassadu = KaPan
+                   + KaPuy
+                   + KaYaplab
+                   + KaWassaduUn;
 
         double yearKaPan =  KaPan  / (Year+1) ;
         double yearKaWassadu = yearKaPan + + KaPuy + KaYaplab + KaWassaduUn;
 
+        //============== 1.3 ===================================
+        KaSiaOkardLongtoon = Util.round((KaRang + KaWassadu) * (AttraDokbia / 100) * (12 / 12), 2);
+        double yearKaSiaOkardLongtoon = Util.round((yearKaRang + yearKaWassadu) * (AttraDokbia / 100) * (12 / 12), 2);
 
-        KaSiaOkardLongtoon = Math.pow((KaRang + KaWassadu) * (AttraDokbia / 100) * (6 / 12), 2);
-        double yearKaSiaOkardLongtoon = Math.pow((yearKaRang + yearKaWassadu) * (AttraDokbia / 100) * (6 / 12), 2);
-
-        double costKaSermOuppakorn = KaNardPlangTDin * KaSermOuppakorn;
-        double costKaSiaOkardOuppakorn = KaNardPlangTDin * KaSiaOkardOuppakorn;
+        costKaSermOuppakorn =     KaSermOuppakorn * Year;
+        costKaSiaOkardOuppakorn = KaSiaOkardOuppakorn * Year;
 
         calSumCost = yearKaRang + yearKaWassadu + yearKaSiaOkardLongtoon + KaChaoTDin + costKaSermOuppakorn + costKaSiaOkardOuppakorn;
-
-        calSumCostPerRai = calSumCost/KaNardPlangTDin;
 
         if (isCalIncludeOption) {
             calSumCost += costKaSermOuppakorn + costKaSiaOkardOuppakorn;
         }
+        calSumCostPerRai = calSumCost/KaNardPlangTDin;
 
         calIncome = PonPalid * predictPrice;
         calIncomePerRai = calIncome / KaNardPlangTDin;
         calProfitLoss = calIncome - calSumCost;
 
         TontumMattratarn = TontumMattratarnPerRai * KaNardPlangTDin;
+        Log.d("Cal","-----------------------------------------");
+        Log.d("Cal","*****  yearKaRang :"+yearKaRang);
+        Log.d("Cal","*****  yearKaTreamDin :"+yearKaTreamDin);
+        Log.d("Cal","***** yearKaPluk :"+yearKaPluk);
+        Log.d("Cal","***** yearKaPan :"+yearKaPan);
+        Log.d("Cal","***** yearKaWassadu :"+yearKaWassadu);
+
+        Log.d("Cal","-----------------------------------------");
+        Log.d("Cal","*****  ต้นทุนรวมของเกษตรกร :"+calSumCost);
+        Log.d("Cal","*****  รายได้ :"+calIncome);
+        Log.d("Cal","***** กำไร/ขาดทุน :"+calProfitLoss);
+        Log.d("Cal","***** ต้นทุนมาตรฐาน :"+TontumMattratarn);
     }
 
 

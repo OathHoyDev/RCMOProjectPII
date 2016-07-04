@@ -104,8 +104,10 @@
 
 
         <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="2dp"
+            android:id="@+id/baseLine"
             android:background="@color/RcmoLightGrayBG">
         </LinearLayout>
 
@@ -193,8 +195,8 @@
                         android:textStyle="bold"
                         android:text="-12000.00"
                         android:textColor="@color/RcmoNormalDarkText"
-                        android:paddingLeft="15dp"
-                        android:textSize="@dimen/margin_xxxxlarge"
+                        android:paddingLeft="10dp"
+                        android:textSize="18sp"
                         android:id="@+id/labelProfit"
                         />
                     <com.neopixl.pixlui.components.textview.TextView

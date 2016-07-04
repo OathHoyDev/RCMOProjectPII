@@ -129,7 +129,11 @@ public class FormulaDModel extends AbstractFormulaModel {
 
 
         calCostPerUnit = calCost/JumNounTuaTKai;
+        calCostPerUnit = Double.isInfinite(calCostPerUnit) ? 0 : calCostPerUnit;
+
         calCostPerKg = calCost/NamNakTKai;
+        calCostPerKg = Double.isInfinite(calCostPerKg) ? 0 : calCostPerKg;
+
         calProfitLossPerKg = RakaTKai-calCostPerKg;
         calProfitLoss = calProfitLossPerKg*NamNakTKai;
 

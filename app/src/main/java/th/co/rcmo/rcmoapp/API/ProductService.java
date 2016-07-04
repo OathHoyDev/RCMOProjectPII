@@ -1,16 +1,9 @@
 package th.co.rcmo.rcmoapp.API;
 
-import android.text.Html;
-import android.text.TextUtils;
 import android.util.Log;
-import android.widget.ListView;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
-import org.json.JSONObject;
-
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
@@ -22,16 +15,20 @@ import th.co.rcmo.rcmoapp.Model.calculate.FormulaCModel;
 import th.co.rcmo.rcmoapp.Model.calculate.FormulaDModel;
 import th.co.rcmo.rcmoapp.Model.calculate.FormulaEModel;
 import th.co.rcmo.rcmoapp.Model.calculate.FormulaFModel;
+import th.co.rcmo.rcmoapp.Model.calculate.FormulaGModel;
 import th.co.rcmo.rcmoapp.Model.calculate.FormulaHModel;
+import th.co.rcmo.rcmoapp.Model.calculate.FormulaIModel;
+import th.co.rcmo.rcmoapp.Model.calculate.FormulaJModel;
 import th.co.rcmo.rcmoapp.Module.mGetVariable;
 import th.co.rcmo.rcmoapp.Module.mVarPlanA;
 import th.co.rcmo.rcmoapp.Module.mVarPlanB;
 import th.co.rcmo.rcmoapp.Module.mVarPlanD;
 import th.co.rcmo.rcmoapp.Module.mVarPlanE;
 import th.co.rcmo.rcmoapp.Module.mVarPlanF;
+import th.co.rcmo.rcmoapp.Module.mVarPlanG;
 import th.co.rcmo.rcmoapp.Module.mVarPlanH;
-import th.co.rcmo.rcmoapp.ProductDetailStandardListCustomAdapter;
-import th.co.rcmo.rcmoapp.R;
+import th.co.rcmo.rcmoapp.Module.mVarPlanI;
+import th.co.rcmo.rcmoapp.Module.mVarPlanJ;
 import th.co.rcmo.rcmoapp.Util.CalculateConstant;
 import th.co.rcmo.rcmoapp.Util.ServiceInstance;
 
@@ -87,7 +84,7 @@ public class ProductService {
             case "H":
 
                keyDisplay_Type = H_StdDisplay;
-               hashValue_Type  = CalculateConstant.PB_CALCULATE_STANDARD_CONST_DEF;
+               hashValue_Type  = CalculateConstant.PB_CALCULATE_STANDARD_CONST_H;
                break;
 
             case "G":
@@ -380,6 +377,172 @@ public class ProductService {
         var.RayaWera     = model.RayaWera;
         var.RermLeang       = model.RermLeang;
         var.NumnukRermLeang = model.NumnukRermLeang;
+
+
+        //jsonPlanA = TextUtils.htmlEncode(jsonPlanA);
+        String json =(new Gson().toJson(var));
+        String value = "";
+        try {
+
+            byte ptext[] = json.getBytes("ISO-8859-1");
+            value = new String(ptext, "UTF-8");
+            Log.d("Test "," -----------------------------> "+value);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        Log.d("GSON","Json -> "+json);
+
+        return value;
+    }
+
+    public static String genJsonPlanVariable(FormulaIModel model){
+        mVarPlanI var = new mVarPlanI();
+
+        var.Rai = model.Rai;
+        var.Ngan = model.Ngan;
+        var.TarangWa = model.TarangWa;
+
+        var.rookKung = model.rookKung;
+
+        var.RakaTuaLa = model.RakaTuaLa;
+        var.KaAHan = model.KaAHan;
+        var.KaYa = model.KaYa;
+        var.KaSankemee = model.KaSankemee;
+        var.KaNamMan = model.KaNamMan;
+        var.KaFai = model.KaFai;
+        var.KaRokRain = model.KaRokRain;
+        var.KaLeang = model.KaLeang;
+        var.KaJub = model.KaJub;
+        var.KaSomsamOuppakorn = model.KaSomsamOuppakorn;
+        var.KaChaiJay = model.KaChaiJay;
+        var.KaChaoTDin = model.KaChaoTDin;
+
+        var.PonPalidKung = model.PonPalidKung;
+        var.RakaChalia = model.RakaChalia;
+        var.RayaWelaTeeLeang = model.RayaWelaTeeLeang;
+
+        var.KaSermOuppakorn = model.KaSermOuppakorn;
+        var.KaSiaOkardOuppakorn = model.KaSiaOkardOuppakorn;
+
+
+
+        //jsonPlanA = TextUtils.htmlEncode(jsonPlanA);
+        String json =(new Gson().toJson(var));
+        String value = "";
+        try {
+
+            byte ptext[] = json.getBytes("ISO-8859-1");
+            value = new String(ptext, "UTF-8");
+            Log.d("Test "," -----------------------------> "+value);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        Log.d("GSON","Json -> "+json);
+
+        return value;
+    }
+
+    public static String genJsonPlanVariable(FormulaJModel model){
+        mVarPlanJ var = new mVarPlanJ();
+
+
+        var.CalType = model.CalType;
+        var.TuaOrKilo = model.TuaOrKilo;
+        var.CustomSize = model.CustomSize;
+
+        var.Rai = model.Rai;
+        var.Ngan = model.Ngan;
+        var.TarangWa = model.TarangWa;
+        var.TarangMeter = model.TarangMeter;
+
+        var.RookPla = model.LookPla;
+
+        var.Raka = model.Raka;
+        var.KaAHan = model.KaAHan;
+        var.KaRangNganLeang = model.KaRangNganLeang;
+        var.KaRangNganJub = model.KaRangNganJub;
+        var.KaYa = model.KaYa;
+        var.KaSanKMe = model.KaSanKMe;
+        var.KaNamman = model.KaNamman;
+        var.KaFaifa = model.KaFaifa;
+        var.KaLoklen = model.KaLoklen;
+        var.KaSomSam = model.KaSomSam;
+        var.KaChaijai = model.KaChaijai;
+        var.KaChoaTDin = model.KaChoaTDin;
+        var.RayaWela = model.RayaWela;
+
+        var.NamnakTKai = model.NamnakTKai;
+        var.RakaTKai = model.RakaTKai;
+        var.KanardPlaChalia = model.KanardPlaChalia;
+
+        var.KanardPla1 = model.KanardPla1;
+        var.NamnakPla1 = model.NamnakPla1;
+        var.RakaPla1 = model.RakaPla1;
+
+        var.KanardPla2 = model.KanardPla2;
+        var.NamnakPla2 = model.NamnakPla2;
+        var.RakaPla2 = model.RakaPla2;
+
+        var.KanardPla3 = model.KanardPla3;
+        var.NamnakPla3 = model.NamnakPla3;
+        var.RakaPla3 = model.RakaPla3;
+
+        var.KanardPla4 = model.KanardPla4;
+        var.NamnakPla4 = model.NamnakPla4;
+        var.RakaPla4 = model.RakaPla4;
+
+
+
+        //jsonPlanA = TextUtils.htmlEncode(jsonPlanA);
+        String json =(new Gson().toJson(var));
+        String value = "";
+        try {
+
+            byte ptext[] = json.getBytes("ISO-8859-1");
+            value = new String(ptext, "UTF-8");
+            Log.d("Test "," -----------------------------> "+value);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        Log.d("GSON","Json -> "+json);
+
+        return value;
+    }
+
+    public static String genJsonPlanVariable(FormulaGModel model){
+        mVarPlanG var = new mVarPlanG();
+
+        var.ParimanNumnom =  model.ParimanNumnom;
+
+        var.KoRakRakGerd        =  model.KoRakRakGerd;
+        var.Ko1_2               =  model.Ko1_2;
+        var.Ko2                 =  model.Ko2;
+        var.MaeKoReedNom        =  model.MaeKoReedNom;
+
+        var.KaReedNom           =  model.KaReedNom;
+        var.KaRangReang         =  model.KaRangReang;
+
+        var.KaPasomPan          =  model.KaPasomPan;
+        var.KaAHan              =  model.KaAHan;
+        var.KaAHanYab           =  model.KaAHanYab;
+        var.KaYa                =  model.KaYa;
+        var.KaNamKaFai          =  model.KaNamKaFai;
+        var.KaNamMan            =  model.KaNamMan;
+        var.KaWassaduSinPleung  =  model.KaWassaduSinPleung;
+        var.KaSomsamOuppakorn   =  model.KaSomsamOuppakorn;
+        var.KaKonsong           =  model.KaKonsong;
+        var.KaChaiJay           =  model.KaChaiJay;
+        var.PerKaNamKaFai          =  model.PerKaNamKaFai;
+        var.PerKaNamMan            =  model.PerKaNamMan;
+        var.PerKaWassaduSinPleung  =  model.PerKaWassaduSinPleung;
+        var.PerKaSomsamOuppakorn   =  model.PerKaSomsamOuppakorn;
+        var.PerKaChaiJay           =  model.PerKaChaiJay;
+        var.KaChaoTDin           =  model.KaChaoTDin;
+        var.Raka                =  model.RakaTkai;
+        var.JumuanMaeKo          =  model.JumuanMaeKo;
 
 
         //jsonPlanA = TextUtils.htmlEncode(jsonPlanA);

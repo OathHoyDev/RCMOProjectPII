@@ -22,6 +22,9 @@
     <string name="bath_rai_year">บาท/ไร่/ปี</string>
     <string name="kg_rai">กก./ไร่</string>
     <string name="karang">ค่าแรงงาน</string>
+
+    <string name="c_g5_item1_label">ค่าเก็บเกี่ยวรวบรวม\n(ช่วงปีให้ผล เฉลี่ยต่อปี)</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
