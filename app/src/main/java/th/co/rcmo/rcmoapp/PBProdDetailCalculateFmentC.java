@@ -239,6 +239,8 @@ public class PBProdDetailCalculateFmentC extends Fragment implements View.OnClic
             calculateResultModel.formularCode = "C";
             calculateResultModel.calculateResult = formulaModel.calProfitLoss;
             calculateResultModel.productName = userPlotModel.getPrdValue();
+            calculateResultModel.unit_t1 = "บาท/ไร่" ;
+            calculateResultModel.value_t1 = formulaModel.calProfitLossPerRai ;
             calculateResultModel.mPlotSuit = PBProductDetailActivity.mPlotSuit;
             calculateResultModel.compareStdResult = formulaModel.calSumCost - formulaModel.TontumMattratarn;
 
@@ -252,13 +254,13 @@ public class PBProdDetailCalculateFmentC extends Fragment implements View.OnClic
 
             List resultArrayResult = new ArrayList();
 
-            String [] tontoonCal_1 = {"ต้นทุนรวมเกษตรทั้งแปลง" , String.format("%,.2f", formulaModel.calSumCost) , "บาท"};
+            String [] tontoonCal_1 = {"ต้นทุนเริ่มต้นของเกษตรกรทั้งแปลง" , String.format("%,.2f", formulaModel.calSumCost) , "บาท"};
             resultArrayResult.add(tontoonCal_1);
-
+/*
             String [] tontoonCal_2 = {"" , String.format("%,.2f", formulaModel.calStartCostPerRai) , "บาท/ไร่"};
             resultArrayResult.add(tontoonCal_2);
-
-            String [] tontoonCal_3 = {"ต้นทุนรวมเกษตรเฉลี่ยต่อไร่" , String.format("%,.2f", formulaModel.calStartCostPerRai) , "บาท/ไร่"};
+*/
+            String [] tontoonCal_3 = {"ต้นทุนเริ่มต้นของเกษตรกรเฉลี่ยต่อไร่" , String.format("%,.2f", formulaModel.calStartCostPerRai) , "บาท/ไร่"};
             resultArrayResult.add(tontoonCal_3);
 
             String [] tontoonCal_4 = {"ต้นทุนรวมของเกษตรกร เฉลี่ยต่อปี ตลอดอายุขัยเฉลี่ยของพืชนั้น" , String.format("%,.2f", formulaModel.calLifeCostPerRai) , "บาท"};

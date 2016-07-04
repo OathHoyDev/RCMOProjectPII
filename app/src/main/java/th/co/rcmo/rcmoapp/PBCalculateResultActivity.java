@@ -174,6 +174,17 @@ public class PBCalculateResultActivity extends Activity {
                 productNameLabel.setBackgroundColor(getResources().getColor(R.color.RcmoPlantDarkBG));
                 canterTextview.setBackgroundResource(R.drawable.bottom_green_total);
                 txProfitLossValue.setTextColor(getResources().getColor(R.color.RcmoPlantBG));
+
+                if(calculateResultModel.formularCode.equals("A")||calculateResultModel.formularCode.equals("C")){
+                    findViewById(R.id.t1).setVisibility(View.VISIBLE);
+                    TextView unit_t1 = (TextView)findViewById(R.id.unit_t1);
+                    TextView value_t1 = (TextView)findViewById(R.id.value_t1);
+
+                    unit_t1.setText(calculateResultModel.unit_t1);
+                    value_t1.setText(Util.dobbleToStringNumber(calculateResultModel.value_t1));
+                    value_t1.setTextColor(getResources().getColor(R.color.RcmoPlantBG));
+                }
+
                 break;
             case CalculateConstant.PRODUCT_TYPE_ANIMAL:
                 findViewById(R.id.t1).setVisibility(View.VISIBLE);
@@ -238,6 +249,7 @@ if(userPlotModel.getPrdID().equals("40")
         || userPlotModel.getPrdID().equals("41")
         || userPlotModel.getPrdID().equals("42")
         || userPlotModel.getPrdID().equals("43")
+        || userPlotModel.getPrdID().equals("44")
         || "D".equalsIgnoreCase(calculateResultModel.formularCode)) {
    recommandpriceLabel.setVisibility(View.INVISIBLE);
     recommandPrice.setVisibility(View.INVISIBLE);

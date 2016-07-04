@@ -167,16 +167,14 @@ public class FormulaGModel extends AbstractFormulaModel {
 
 
         // ====================== Calculate =============================
-        calCost = (calKumnuanTontoonPunPae+calKumnuanTontoonKongTee)*ParimanNumnom;
-
-
-
-
-        costTontunPalitNamnomPerKg = calKumnuanTontoonPunPae+calKumnuanTontoonKongTee;
+        calCost = (calKumnuanTontoonPunPae)*ParimanNumnom;
+        costTontunPalitNamnomPerKg = calKumnuanTontoonPunPae;
 
         if (isCalIncludeOption){
-            calCost += (calKaSermRongRaun + calKaSermMaeKo+calKaSiaOkardRongRaun+calKaSiaOkardMaeKo)*ParimanNumnom;
-            costTontunPalitNamnomPerKg += (calKaSermRongRaun + calKaSermMaeKo+calKaSiaOkardRongRaun+calKaSiaOkardMaeKo);
+            calCost = (calKumnuanTontoonPunPae+calKumnuanTontoonKongTee)*ParimanNumnom;
+            costTontunPalitNamnomPerKg = calKumnuanTontoonPunPae+calKumnuanTontoonKongTee;
+          //  calCost += (calKaSermRongRaun + calKaSermMaeKo+calKaSiaOkardRongRaun+calKaSiaOkardMaeKo)*ParimanNumnom;
+            //costTontunPalitNamnomPerKg += (calKaSermRongRaun + calKaSermMaeKo+calKaSiaOkardRongRaun+calKaSiaOkardMaeKo);
 
         }
 

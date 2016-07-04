@@ -51,6 +51,7 @@ public class FormulaCModel extends AbstractFormulaModel {
     public double calLifeCostPerRai = 0;
 
     public double calProfitLoss = 0;
+    public double calProfitLossPerRai = 0;
 
     public double AttraDokbia = 0;
 
@@ -227,7 +228,8 @@ public class FormulaCModel extends AbstractFormulaModel {
 
 
         calProfitLoss = calIncome - calStartCostPerRai;
-
+        calProfitLossPerRai = calProfitLoss/KaNardPlangTDin;
+        calProfitLossPerRai = Util.verifyDoubleDefaultZero(calProfitLossPerRai);
         TontumMattratarn = TontumMattratarnPerRai * KaNardPlangTDin;
 
         Log.d("Cal","-----------------------------------------");

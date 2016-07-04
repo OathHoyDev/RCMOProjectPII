@@ -125,12 +125,13 @@ public class PBProdDetailCalculateFmentB extends Fragment implements View.OnClic
         userPlotModel = PBProductDetailActivity.userPlotModel;
 
         //13 อ้อยโรงงาน
-        if(userPlotModel.getPrdID().equals("13")) {
+        if(!userPlotModel.getPrdID().equals("13")) {
             ((TextView) view.findViewById(R.id.group0_header)).setText("จำนวนรอบ(มีด)");
-            ((TextView) view.findViewById(R.id.group0_unit_1)).setText("ปี(ตอ)ไม่รวมปีปลูก");
+            ((TextView) view.findViewById(R.id.group0_unit_1)).setText("รวมปีปลูก");
         }else{
             ((TextView) view.findViewById(R.id.group0_header)).setText("จำนวนปี");
-            ((TextView) view.findViewById(R.id.group0_unit_1)).setText("ปี(ตอ)รวมปีปลูก");
+            ((TextView) view.findViewById(R.id.group0_unit_1)).setText("ปี(ตอ)ไม่รวมปีปลูก");
+
         }
 
         formulaModel = new FormulaBModel();
@@ -172,7 +173,7 @@ public class PBProdDetailCalculateFmentB extends Fragment implements View.OnClic
 
         h.group3_item_1.addTextChangedListener(new PlanBTextWatcher(h.group3_item_1, h, ""));
 
-        h.group4_item_1.addTextChangedListener(new PlanBTextWatcher(h.group4_item_1, h, ""));
+        h.group4_item_1.addTextChangedListener(new PlanBTextWatcher(h.group4_item_1, h, "KaSiaOkardLongtoon"));
     }
 
     private void initVariableDataFromDB() {
@@ -272,7 +273,7 @@ public class PBProdDetailCalculateFmentB extends Fragment implements View.OnClic
 
             List resultArrayResult = new ArrayList();
 
-            String[] tontoonCal_1 = {"ต้นทุนรวมเกษตร", String.format("%,.2f", formulaModel.calSumCost), "บาท"};
+            String[] tontoonCal_1 = {"ต้นทุนรวมเกษตรกร", String.format("%,.2f", formulaModel.calSumCost), "บาท"};
             resultArrayResult.add(tontoonCal_1);
 
             String[] tontoonCal_2 = {"", String.format("%,.2f", formulaModel.calSumCostPerRai), "บาท/ไร่"};

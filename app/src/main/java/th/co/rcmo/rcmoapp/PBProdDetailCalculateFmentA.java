@@ -257,6 +257,8 @@ public class PBProdDetailCalculateFmentA extends Fragment implements View.OnClic
             calculateResultModel.formularCode = "A";
             calculateResultModel.calculateResult = formulaModel.calProfitLoss;
             calculateResultModel.productName = userPlotModel.getPrdValue();
+            calculateResultModel.unit_t1 = "บาท/ไร่" ;
+            calculateResultModel.value_t1 = formulaModel.calProfitLossPerRai ;
             calculateResultModel.mPlotSuit = PBProductDetailActivity.mPlotSuit;
             calculateResultModel.compareStdResult = formulaModel.calSumCost - formulaModel.TontumMattratarn;
 
