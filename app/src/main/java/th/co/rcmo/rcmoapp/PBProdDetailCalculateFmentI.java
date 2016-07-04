@@ -212,7 +212,7 @@ public class PBProdDetailCalculateFmentI extends Fragment implements View.OnClic
             formulaModel.calculate();
 
             setUpCalUI(formulaModel);
-            Util.showDialogAndDismiss(context,"คำนวนสำเร็จ : "+formulaModel.KumraiKadtoon);
+          //  Util.showDialogAndDismiss(context,"คำนวนสำเร็จ : "+formulaModel.KumraiKadtoon);
 
             CalculateResultModel calculateResultModel = new CalculateResultModel();
             calculateResultModel.formularCode = "I";

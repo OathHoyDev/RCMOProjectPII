@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
 
+import th.co.rcmo.rcmoapp.Util.Util;
+
 /**
  * Created by SilVeriSm on 6/20/2016 AD.
  */
@@ -173,10 +175,19 @@ public class FormulaIModel {
         }
 
         TontoonTorRai = TontoonTungmod / NueaTeeBor;
+        TontoonTorRai = Util.verifyDoubleDefaultZero(TontoonTorRai);
+
         TontoonTorKilo = TontoonTungmod / PonPalidKung;
+        TontoonTorKilo = Util.verifyDoubleDefaultZero(TontoonTorKilo);
+
         KumraiKadtoon = RayDaiTungmod - TontoonTungmod;
+        KumraiKadtoon = Util.verifyDoubleDefaultZero(KumraiKadtoon);
+
         KumraiKadtoonTorRai = RayDaiChalia - TontoonTorRai;
+        KumraiKadtoonTorRai = Util.verifyDoubleDefaultZero(KumraiKadtoonTorRai);
+
         KumraiKadtoonTorKilo = RakaChalia - TontoonTorKilo;
+        KumraiKadtoonTorKilo = Util.verifyDoubleDefaultZero(KumraiKadtoonTorKilo);
 
     }
 
