@@ -119,7 +119,7 @@ public class PBProdDetailCalculateFmentC extends Fragment implements View.OnClic
         formulaModel = new FormulaCModel();
 
          API_getVariable(userPlotModel.getPrdID(), userPlotModel.getFisheryType(),formulaModel);
-        formulaModel.KaSermOuppakorn  +=1;
+       // formulaModel.KaSermOuppakorn  +=1;
         if (!userPlotModel.getPlotID().equals("") && userPlotModel.getPlotID().equals("0")) {
             initVariableDataFromDB();
         }else{
@@ -137,7 +137,7 @@ public class PBProdDetailCalculateFmentC extends Fragment implements View.OnClic
 
 
     private void setAction() {
-        h.txStartUnit.addTextChangedListener(new PlanCTextWatcher(h.txStartUnit, h, "KaSermOuppakorn,KaSiaOkardOuppakorn"));
+        h.txStartUnit.addTextChangedListener(new PlanCTextWatcher(h.txStartUnit, h,formulaModel, "KaSermOuppakorn,KaSiaOkardOuppakorn"));
         h.group1_item_2.addTextChangedListener(new PlanCTextWatcher(h.group1_item_2, h, "Karang"));
         h.group1_item_3.addTextChangedListener(new PlanCTextWatcher(h.group1_item_3, h, "Karang"));
         h.group1_item_4.addTextChangedListener(new PlanCTextWatcher(h.group1_item_4, h, "Karang"));
