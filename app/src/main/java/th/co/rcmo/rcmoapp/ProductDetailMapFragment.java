@@ -738,7 +738,7 @@ public class ProductDetailMapFragment extends Fragment {
             public void callbackError(int code, String errorMsg) {
                 Log.d("Error", errorMsg);
             }
-        }).API_Request(true, RequestServices.ws_getPlotDetail +
+        }).API_Request(false, RequestServices.ws_getPlotDetail +
                 "?PlotID=" + plodID +
                 "&ImeiCode=" + ServiceInstance.GetDeviceID(context));
 

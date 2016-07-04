@@ -61,6 +61,17 @@ public class RegisterActivity extends Activity {
 
             }
         });
+
+        //tutorial
+        findViewById(R.id.btnHowto).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new DialogChoice(RegisterActivity.this)
+                        .ShowTutorial("g2");
+
+            }
+        });
+
     }
 
     private static class Holder {

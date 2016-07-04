@@ -140,13 +140,12 @@ public class UserPlotListActivity extends Activity {
         });
 
         //tutorial
-        findViewById(R.id.btnQuestion).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.btnHowto).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                new DialogChoice(UserPlotListActivity.this)
+                        .ShowTutorial("g3");
 
-              /*  startActivity(new Intent(LoginActivity.this, WebActivity.class)
-                        .putExtra("link", "http://www.google.co.th/"));
-                        */
             }
         });
 
@@ -725,13 +724,21 @@ private void displayNotFoundPlotAnimation() {
                     } else {
                         circleImg.setVisibility(View.VISIBLE);
                     }
-                    circleSeq.start();
+                    if (i <=3) {
+                        circleSeq.start();
+                    }else{
+                        circleImg.setVisibility(View.INVISIBLE);
+                    }
                 }
             });
+            if (i < 3) {
+                handler.postDelayed(this, 1600);
+            }else{
+                circleImg.setVisibility(View.INVISIBLE);
+                arrowImg.setVisibility(View.INVISIBLE);
+            }
 
-            handler.postDelayed(this, 1600);
-
-
+            i++;
         }
     }, 100);
 

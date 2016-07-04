@@ -117,7 +117,7 @@ public class PBProdDetailCalculateFmentD extends Fragment implements View.OnClic
         formulaModel = new FormulaDModel();
 
         API_getVariable(userPlotModel.getPrdID(), userPlotModel.getFisheryType());
-
+        Log.d("userPlotModel : ",userPlotModel.getPlotID());
         if (!userPlotModel.getPlotID().equals("") && userPlotModel.getPlotID().equals("0")) {
             initVariableDataFromDB();
         }else{

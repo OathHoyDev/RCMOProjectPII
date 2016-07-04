@@ -222,7 +222,23 @@ public class StepThreeActivity extends Activity {
     }
 
     private void setAction() {
+        //tutorial
+        findViewById(R.id.btnHowto).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                if(productionInfo.getPrdGrpID()==1) {
+                    new DialogChoice(StepThreeActivity.this)
+                            .ShowTutorial("g11");
+                }else if(productionInfo.getPrdGrpID()==2){
+                    new DialogChoice(StepThreeActivity.this)
+                            .ShowTutorial("g12");
+                }else{
+                    new DialogChoice(StepThreeActivity.this)
+                            .ShowTutorial("g13");
+                }
+            }
+        });
         findViewById(R.id.backBtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -24,6 +24,7 @@ import th.co.rcmo.rcmoapp.Module.mProduct;
 import th.co.rcmo.rcmoapp.Util.BitMapHelper;
 import th.co.rcmo.rcmoapp.Util.ServiceInstance;
 import th.co.rcmo.rcmoapp.Util.Util;
+import th.co.rcmo.rcmoapp.View.DialogChoice;
 
 public class StepOneActivity extends Activity {
 
@@ -139,6 +140,16 @@ if(ServiceInstance.isTablet(StepOneActivity.this)){
             public void onClick(View v) {
                 final ImageView img =  ((ImageView) findViewById(R.id.bringFishImage));
                 API_GoToStepTwoActivity(img,3);
+            }
+        });
+
+        //tutorial
+        findViewById(R.id.btnHowto).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new DialogChoice(StepOneActivity.this)
+                        .ShowTutorial("g6");
+
             }
         });
     }

@@ -73,6 +73,16 @@ public class LoginActivity extends Activity {
 
     private void setAction() {
 
+        findViewById(R.id.btnHowto).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+                // finish();
+                new DialogChoice(LoginActivity.this)
+                        .ShowTutorial("g1");
+            }
+        });
+
 
         findViewById(R.id.imgGotoOtherApp).setOnClickListener(new View.OnClickListener() {
             @Override

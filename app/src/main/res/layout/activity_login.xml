@@ -33,6 +33,7 @@
     <ImageView
         android:layout_width="@dimen/size_howto"
         android:layout_height="@dimen/size_howto"
+        android:id="@+id/btnHowto"
         android:src="@drawable/btn_howto"
         android:layout_alignParentRight="true"
         android:layout_margin="10dp"/>

@@ -41,7 +41,7 @@
             android:layout_height="@dimen/size_howto"
             android:src="@drawable/btn_howto"
             android:layout_alignParentRight="true"
-            android:id="@+id/btnQuestion"
+            android:id="@+id/btnHowto"
             android:layout_margin="10dp"/>
 
 

@@ -25,6 +25,7 @@ import th.co.rcmo.rcmoapp.Module.mProduct;
 import th.co.rcmo.rcmoapp.Module.mRiceProduct;
 import th.co.rcmo.rcmoapp.Util.BitMapHelper;
 import th.co.rcmo.rcmoapp.Util.ServiceInstance;
+import th.co.rcmo.rcmoapp.View.DialogChoice;
 
 
 public class StepTwoActivity extends Activity {
@@ -123,7 +124,29 @@ public class StepTwoActivity extends Activity {
         });
 
 
+        //tutorial
+        findViewById(R.id.btnHowto).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                if(groupId==1) {
+                    if(gplantGroupId == 0) {
+                        new DialogChoice(StepTwoActivity.this)
+                                .ShowTutorial("g8");
+                    }else{
+                        new DialogChoice(StepTwoActivity.this)
+                                .ShowTutorial("g7");
+                    }
+                }else if(groupId==2){
+                    new DialogChoice(StepTwoActivity.this)
+                            .ShowTutorial("g9");
+                }else{
+                    new DialogChoice(StepTwoActivity.this)
+                            .ShowTutorial("g10");
+                }
+
+            }
+        });
 
 
 

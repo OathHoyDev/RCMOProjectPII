@@ -33,6 +33,7 @@ import th.co.rcmo.rcmoapp.Model.UserPlotModel;
 import th.co.rcmo.rcmoapp.Module.mGetPlotSuit;
 import th.co.rcmo.rcmoapp.Module.mGetVariable;
 import th.co.rcmo.rcmoapp.Util.Util;
+import th.co.rcmo.rcmoapp.View.DialogChoice;
 
 public class PBProductDetailActivity extends AppCompatActivity {
     public static ViewPager  pager;
@@ -147,6 +148,23 @@ public class PBProductDetailActivity extends AppCompatActivity {
              @Override
              public void onClick(View v) {
                  finish();
+             }
+         });
+         findViewById(R.id.btnHowto).setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+
+                 if(pager.getCurrentItem() == 0) {
+                     new DialogChoice(PBProductDetailActivity.this)
+                             .ShowTutorial("g16");
+                 }else if(pager.getCurrentItem() == 1){
+                     new DialogChoice(PBProductDetailActivity.this)
+                             .ShowTutorial("g14");
+                 }else{
+                     new DialogChoice(PBProductDetailActivity.this)
+                             .ShowTutorial("g15");
+                 }
+
              }
          });
      }

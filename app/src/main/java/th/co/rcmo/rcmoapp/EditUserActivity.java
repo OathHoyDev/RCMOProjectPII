@@ -189,13 +189,12 @@ public class EditUserActivity extends Activity {
 
 
         //tutorial
-        findViewById(R.id.btnQuestion).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.btnHowto).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                new DialogChoice(EditUserActivity.this)
+                        .ShowTutorial("g4");
 
-              /*  startActivity(new Intent(LoginActivity.this, WebActivity.class)
-                        .putExtra("link", "http://www.google.co.th/"));
-                        */
             }
         });
 

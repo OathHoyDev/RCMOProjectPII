@@ -3,16 +3,20 @@ package th.co.rcmo.rcmoapp.View;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Handler;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import th.co.rcmo.rcmoapp.R;
+import th.co.rcmo.rcmoapp.Util.BitMapHelper;
 import th.co.rcmo.rcmoapp.Util.ServiceInstance;
 import th.co.rcmo.rcmoapp.Util.Util;
 
@@ -243,6 +247,42 @@ public class DialogChoice {
 
 
     }
+
+
+    public void ShowTutorial(String tutorailBg){
+        final android.app.Dialog dialog = new android.app.Dialog(context);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_tutorail);
+
+        dialog.getWindow().setBackgroundDrawable(new BitmapDrawable(BitMapHelper.decodeSampledBitmapFromResource(context.getResources(), context.getResources().getIdentifier(tutorailBg, "drawable", context.getPackageName()), 300, 400)));
+
+
+        dialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
+        LinearLayout tutoraioBg = (LinearLayout)dialog.findViewById(R.id.tutorail_bg);
+        TextView tutorail_close = (TextView)dialog.findViewById(R.id.tutorail_close);
+
+      //  tutoraioBg.setBackground(new BitmapDrawable(BitMapHelper.decodeSampledBitmapFromResource(context.getResources(), context.getResources().getIdentifier(tutorailBg, "drawable", context.getPackageName()), 300, 400)));
+
+
+        tutoraioBg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+
+        tutorail_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+
+
+    }
+
 
         /*
         btn_cancel.setOnClickListener(new View.OnClickListener() {

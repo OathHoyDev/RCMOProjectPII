@@ -134,6 +134,16 @@ public class ChangePasswordActivity extends Activity {
 
             }
         });
+
+        //tutorial
+        findViewById(R.id.btnHowto).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new DialogChoice(ChangePasswordActivity.this)
+                        .ShowTutorial("g5");
+
+            }
+        });
     }
 
 
