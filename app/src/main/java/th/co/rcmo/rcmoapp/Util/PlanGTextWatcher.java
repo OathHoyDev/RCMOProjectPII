@@ -113,6 +113,15 @@ public class PlanGTextWatcher implements TextWatcher {
             h.group2_item_4.setText(Util.dobbleToStringNumber(value));
         }
 
+        if(name.contains("costKaSiaOkardRongRaun")){
+            value = Util.strToDoubleDefaultZero(h.group2_item_1.getText().toString());
+            value+= Util.strToDoubleDefaultZero(h.group2_item_4.getText().toString());
+
+            value = Util.round(value*(0.07)*(30.42/365),2);
+
+            h.group2_item_15.setText(Util.dobbleToStringNumber(value));
+        }
+
         if(et != null) {
             et.addTextChangedListener(this);
         }else{

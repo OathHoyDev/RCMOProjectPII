@@ -175,7 +175,9 @@ public class PBCalculateResultActivity extends Activity {
                 canterTextview.setBackgroundResource(R.drawable.bottom_green_total);
                 txProfitLossValue.setTextColor(getResources().getColor(R.color.RcmoPlantBG));
 
-                if(calculateResultModel.formularCode.equals("A")||calculateResultModel.formularCode.equals("C")){
+                if(calculateResultModel.formularCode.equals("A")
+                        ||calculateResultModel.formularCode.equals("B")
+                        ||calculateResultModel.formularCode.equals("C")){
                     findViewById(R.id.t1).setVisibility(View.VISIBLE);
                     TextView unit_t1 = (TextView)findViewById(R.id.unit_t1);
                     TextView value_t1 = (TextView)findViewById(R.id.value_t1);

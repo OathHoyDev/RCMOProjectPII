@@ -113,23 +113,23 @@ public class PlanBTextWatcher implements TextWatcher {
 
         }
         if(name.contains("KaSermOuppakorn")) {
-            value =   (Util.strToDoubleDefaultZero(h.group0_item_1.getText().toString()))*f.KaSermOuppakorn;
+            value =   (Util.strToDoubleDefaultZero(h.txStartUnit.getText().toString()))*f.KaSermOuppakorn;
 
 
             h.group1_item_13.setText(Util.dobbleToStringNumber(value));
 
         }
         if(name.contains("KaSiaOkardOuppakorn")) {
-            value =    (Util.strToDoubleDefaultZero(h.group0_item_1.getText().toString()))*f.KaSiaOkardOuppakorn;
+            value =    (Util.strToDoubleDefaultZero(h.txStartUnit.getText().toString()))*f.KaSiaOkardOuppakorn;
             h.group1_item_14.setText(Util.dobbleToStringNumber(value));
 
         }
 
         if(name.contains("KaSiaOkardLongtoon")) {
 
-          value=   Util.round(  ( Util.strToDoubleDefaultZero(h.group1_item_1.getText().toString())
-                         + Util.strToDoubleDefaultZero(h.group1_item_6.getText().toString()))
-                        * (Util.strToDoubleDefaultZero(h.group4_item_1.getText().toString()) / 100) * (12 / 12), 2);
+            value=   Util.round(  ( Util.strToDoubleDefaultZero(h.group1_item_1.getText().toString())
+                    + Util.strToDoubleDefaultZero(h.group1_item_6.getText().toString()))
+                    * (Util.strToDoubleDefaultZero(h.group4_item_1.getText().toString()) / 100) * (12 / 12), 2);
 
             h.group1_item_11.setText(Util.dobbleToStringNumber(value));
 

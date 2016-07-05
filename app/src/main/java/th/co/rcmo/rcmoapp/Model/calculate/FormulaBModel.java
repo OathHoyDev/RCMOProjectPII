@@ -54,6 +54,7 @@ public class FormulaBModel extends AbstractFormulaModel {
     public double calIncome = 0;
     public double calIncomePerRai = 0;
     public double calProfitLoss = 0;
+    public double calProfitLossPerRai = 0;
 
     public double costKaSermOuppakorn =    0;
     public double costKaSiaOkardOuppakorn = 0;
@@ -186,8 +187,8 @@ public class FormulaBModel extends AbstractFormulaModel {
                 + KaDoolae
                 + KaGebGeaw;
 
-        double yearKaTreamDin = KaTreamDin / (Year+1) ;
-        double yearKaPluk = KaPluk / (Year+1) ;
+        double yearKaTreamDin = (KaTreamDin /Year)+1 ;
+        double yearKaPluk = (KaPluk / Year)+1 ;
         double yearKaRang = yearKaTreamDin + yearKaPluk + KaDoolae + KaGebGeaw;
 
         //============= 1.2 ==================================
@@ -197,17 +198,17 @@ public class FormulaBModel extends AbstractFormulaModel {
                    + KaYaplab
                    + KaWassaduUn;
 
-        double yearKaPan =  KaPan  / (Year+1) ;
+        double yearKaPan =  (KaPan  / Year)+1 ;
         double yearKaWassadu = yearKaPan + + KaPuy + KaYaplab + KaWassaduUn;
 
         //============== 1.3 ===================================
         KaSiaOkardLongtoon = Util.round((KaRang + KaWassadu) * (AttraDokbia / 100) * (12 / 12), 2);
         double yearKaSiaOkardLongtoon = Util.round((yearKaRang + yearKaWassadu) * (AttraDokbia / 100) * (12 / 12), 2);
 
-        costKaSermOuppakorn =     KaSermOuppakorn * Year;
-        costKaSiaOkardOuppakorn = KaSiaOkardOuppakorn * Year;
+        costKaSermOuppakorn =     KaSermOuppakorn * KaNardPlangTDin;
+        costKaSiaOkardOuppakorn = KaSiaOkardOuppakorn * KaNardPlangTDin;
 
-        calSumCost = yearKaRang + yearKaWassadu + yearKaSiaOkardLongtoon + KaChaoTDin + costKaSermOuppakorn + costKaSiaOkardOuppakorn;
+        calSumCost = yearKaRang + yearKaWassadu + yearKaSiaOkardLongtoon + KaChaoTDin ;
 
         if (isCalIncludeOption) {
             calSumCost += costKaSermOuppakorn + costKaSiaOkardOuppakorn;
@@ -217,6 +218,9 @@ public class FormulaBModel extends AbstractFormulaModel {
         calIncome = PonPalid * predictPrice;
         calIncomePerRai = calIncome / KaNardPlangTDin;
         calProfitLoss = calIncome - calSumCost;
+
+        calProfitLossPerRai = calProfitLoss/ KaNardPlangTDin;
+        calProfitLossPerRai = Util.verifyDoubleDefaultZero(calProfitLossPerRai);
 
         TontumMattratarn = TontumMattratarnPerRai * KaNardPlangTDin;
         Log.d("Cal","-----------------------------------------");

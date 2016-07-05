@@ -190,9 +190,10 @@ public class PBProdDetailCalculateFmentG extends Fragment implements View.OnClic
         h.group1_item_4.addTextChangedListener(new PlanGTextWatcher(h.group1_item_4, h, "calMoonkaAnimalTuangNumnuk"));
 
 
-
+        h.group2_item_1.addTextChangedListener(new PlanGTextWatcher(h.group2_item_1, h, "costKaSiaOkardRongRaun"));
         h.group2_item_2.addTextChangedListener(new PlanGTextWatcher(h.group2_item_2, h, "calKaRang"));
         h.group2_item_3.addTextChangedListener(new PlanGTextWatcher(h.group2_item_3, h, "calKaRang"));
+        h.group2_item_4.addTextChangedListener(new PlanGTextWatcher(h.group2_item_4, h, "costKaSiaOkardRongRaun"));
 
         h.group2_item_5.addTextChangedListener(new PlanGTextWatcher(h.group2_item_5, h, "calKawassadu"));
         h.group2_item_6.addTextChangedListener(new PlanGTextWatcher(h.group2_item_6, h, "calKawassadu"));
@@ -204,6 +205,7 @@ public class PBProdDetailCalculateFmentG extends Fragment implements View.OnClic
         h.group2_item_12.addTextChangedListener(new PlanGTextWatcher(h.group2_item_12, h, "calKawassadu"));
         h.group2_item_13.addTextChangedListener(new PlanGTextWatcher(h.group2_item_13, h, "calKawassadu"));
         h.group2_item_14.addTextChangedListener(new PlanGTextWatcher(h.group2_item_14, h, "calKawassadu"));
+
 
 
 

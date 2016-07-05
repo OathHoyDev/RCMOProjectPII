@@ -156,7 +156,8 @@ public class PBProdDetailCalculateFmentB extends Fragment implements View.OnClic
 
     private void setAction() {
 
-        h.group0_item_1.addTextChangedListener(new PlanBTextWatcher(h.group0_item_1, h,formulaModel, "KaSermOuppakorn,KaSiaOkardOuppakorn"));
+        h.txStartUnit.addTextChangedListener(new PlanBTextWatcher(h.txStartUnit, h,formulaModel, "KaSermOuppakorn,KaSiaOkardOuppakorn"));
+        h.group0_item_1.addTextChangedListener(new PlanBTextWatcher(h.group0_item_1, h,formulaModel, ""));
 
         h.group1_item_2.addTextChangedListener(new PlanBTextWatcher(h.group1_item_2, h, "Karang,KaSiaOkardLongtoon"));
         h.group1_item_3.addTextChangedListener(new PlanBTextWatcher(h.group1_item_3, h, "Karang,KaSiaOkardLongtoon"));
@@ -258,6 +259,8 @@ public class PBProdDetailCalculateFmentB extends Fragment implements View.OnClic
             CalculateResultModel calculateResultModel = new CalculateResultModel();
             calculateResultModel.formularCode = "B";
             calculateResultModel.calculateResult = formulaModel.calProfitLoss;
+            calculateResultModel.unit_t1 = "บาท/ไร่" ;
+            calculateResultModel.value_t1 = formulaModel.calProfitLossPerRai ;
             calculateResultModel.productName = userPlotModel.getPrdValue();
             calculateResultModel.mPlotSuit = PBProductDetailActivity.mPlotSuit;
             calculateResultModel.compareStdResult = formulaModel.calSumCost - formulaModel.TontumMattratarn;
@@ -384,10 +387,11 @@ public class PBProdDetailCalculateFmentB extends Fragment implements View.OnClic
         public EditText group2_item_1;
         public EditText group3_item_1;
         public EditText group4_item_1;
+        public TextView txStartUnit;
 
         private ImageView productIconImg;
 
-        private TextView txStartUnit, calBtn, group0_header, group1_header, group2_header, group3_header, group4_header;
+        private TextView  calBtn, group0_header, group1_header, group2_header, group3_header, group4_header;
 
         private LinearLayout group0_items,group1_items, group2_items, group3_items, group4_items;
 
@@ -416,8 +420,8 @@ public class PBProdDetailCalculateFmentB extends Fragment implements View.OnClic
                     formulaModel.KaSermOuppakorn = Util.strToDoubleDefaultZero(var.getD());
                     formulaModel.KaSiaOkardOuppakorn = Util.strToDoubleDefaultZero(var.getO());
                     formulaModel.TontumMattratarnPerRai = Util.strToDoubleDefaultZero(var.getCS());
-                    h.group1_item_13.setText(Util.dobbleToStringNumber(formulaModel.KaSermOuppakorn*formulaModel.Year));
-                    h.group1_item_14.setText(Util.dobbleToStringNumber(formulaModel.KaSiaOkardOuppakorn*formulaModel.Year));
+                    h.group1_item_13.setText(Util.dobbleToStringNumber(formulaModel.KaSermOuppakorn*formulaModel.KaNardPlangTDin));
+                    h.group1_item_14.setText(Util.dobbleToStringNumber(formulaModel.KaSiaOkardOuppakorn*formulaModel.KaNardPlangTDin));
 
 
                 }

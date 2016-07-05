@@ -138,15 +138,18 @@ public class PBProdDetailCalculateFmentC extends Fragment implements View.OnClic
 
     private void setAction() {
         h.txStartUnit.addTextChangedListener(new PlanCTextWatcher(h.txStartUnit, h,formulaModel, "KaSermOuppakorn,KaSiaOkardOuppakorn"));
+        h.group1_item_1.addTextChangedListener(new PlanCTextWatcher(h.group1_item_1, h, "KaSiaOkardLongtoon"));
         h.group1_item_2.addTextChangedListener(new PlanCTextWatcher(h.group1_item_2, h, "Karang"));
         h.group1_item_3.addTextChangedListener(new PlanCTextWatcher(h.group1_item_3, h, "Karang"));
         h.group1_item_4.addTextChangedListener(new PlanCTextWatcher(h.group1_item_4, h, "Karang"));
         h.group1_item_5.addTextChangedListener(new PlanCTextWatcher(h.group1_item_5, h, ""));
-
+        h.group1_item_6.addTextChangedListener(new PlanCTextWatcher(h.group1_item_1, h, "KaSiaOkardLongtoon"));
         h.group1_item_7.addTextChangedListener(new PlanCTextWatcher(h.group1_item_7, h, "KaWassadu"));
         h.group1_item_8.addTextChangedListener(new PlanCTextWatcher(h.group1_item_8, h, "KaWassadu"));
         h.group1_item_9.addTextChangedListener(new PlanCTextWatcher(h.group1_item_9, h, "KaWassadu"));
         h.group1_item_10.addTextChangedListener(new PlanCTextWatcher(h.group1_item_10, h, "KaWassadu"));
+
+
 
         h.group1_item_12.addTextChangedListener(new PlanCTextWatcher(h.group1_item_12, h, ""));
 
@@ -154,7 +157,7 @@ public class PBProdDetailCalculateFmentC extends Fragment implements View.OnClic
 
         h.group3_item_1.addTextChangedListener(new PlanCTextWatcher(h.group3_item_1, h, ""));
 
-        h.group4_item_1.addTextChangedListener(new PlanCTextWatcher(h.group4_item_1, h, ""));
+        h.group4_item_1.addTextChangedListener(new PlanCTextWatcher(h.group4_item_1, h, "KaSiaOkardLongtoon"));
 
     }
 
