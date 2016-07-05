@@ -12,6 +12,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.InputFilter;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -46,6 +47,7 @@ import th.co.rcmo.rcmoapp.Module.mSavePlotDetail;
 import th.co.rcmo.rcmoapp.Module.mTumbon;
 import th.co.rcmo.rcmoapp.Module.mUserPlotList;
 import th.co.rcmo.rcmoapp.Util.BitMapHelper;
+import th.co.rcmo.rcmoapp.Util.InputFilterMinMax;
 import th.co.rcmo.rcmoapp.Util.ServiceInstance;
 import th.co.rcmo.rcmoapp.Util.Util;
 import th.co.rcmo.rcmoapp.View.DialogChoice;
@@ -202,6 +204,14 @@ public class StepThreeActivity extends Activity {
                 h.fishBoLayout.setVisibility(View.GONE);
                 findViewById(R.id.layout_imgBoChoice).setVisibility(View.GONE);
                 findViewById(R.id.layout_imgKcChoice).setVisibility(View.GONE);
+
+                EditText va_inputNgan = (EditText) findViewById(R.id.va_inputNgan);
+                va_inputNgan.setFilters(new InputFilter[]{ new InputFilterMinMax("0", "4")});
+
+                EditText va_inputSqWa = (EditText) findViewById(R.id.va_inputSqWa);
+                va_inputSqWa.setFilters(new InputFilter[]{ new InputFilterMinMax("0", "100")});
+
+
 
             }else {
 
