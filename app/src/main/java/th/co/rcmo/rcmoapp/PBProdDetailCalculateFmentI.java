@@ -2,13 +2,16 @@ package th.co.rcmo.rcmoapp;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.InputFilter;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -35,6 +38,9 @@ import th.co.rcmo.rcmoapp.Module.mGetPlotDetail;
 import th.co.rcmo.rcmoapp.Module.mGetVariable;
 import th.co.rcmo.rcmoapp.Module.mVarPlanI;
 import th.co.rcmo.rcmoapp.Util.BitMapHelper;
+import th.co.rcmo.rcmoapp.Util.InputFilterMinMax;
+import th.co.rcmo.rcmoapp.Util.PlanHTextWatcher;
+import th.co.rcmo.rcmoapp.Util.PlanITextWatcher;
 import th.co.rcmo.rcmoapp.Util.ServiceInstance;
 import th.co.rcmo.rcmoapp.Util.Util;
 import th.co.rcmo.rcmoapp.View.DialogCalculateResult;
@@ -64,44 +70,8 @@ public class PBProdDetailCalculateFmentI extends Fragment implements View.OnClic
         context = view.getContext();
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
-        setHolder();
-
-        setupData();
-
-        setUI();
-
-        //sampleData();
-
-        return view;
-    }
-
-    private void sampleData () {
-
-        h.group1_item_1.setText("20");
-        h.group1_item_3.setText("7000");
-        h.group1_item_4.setText("350");
-        h.group1_item_5.setText("500");
-        h.group1_item_6.setText("500");
-        h.group1_item_7.setText("450");
-        h.group1_item_8.setText("300");
-
-        h.group1_item_10.setText("500");
-        h.group1_item_11.setText("450");
-        h.group1_item_12.setText("250");
-        h.group1_item_13.setText("100");
-        h.group1_item_14.setText("3000");
-
-        h.group2_item_1.setText("50000");
-        h.group2_item_2.setText("150");
-        h.group2_item_5.setText("130");
-
-    }
-
-    private void setHolder() {
-
-
         h.group1_item_1 = (EditText) view.findViewById(R.id.group1_item_1);
-        h.group1_item_2 = (EditText) view.findViewById(R.id.group1_item_2);
+        h.group1_item_2 = (TextView) view.findViewById(R.id.group1_item_2);
         h.group1_item_3 = (EditText) view.findViewById(R.id.group1_item_3);
         h.group1_item_4 = (EditText) view.findViewById(R.id.group1_item_4);
         h.group1_item_5 = (EditText) view.findViewById(R.id.group1_item_5);
@@ -155,20 +125,60 @@ public class PBProdDetailCalculateFmentI extends Fragment implements View.OnClic
         h.group2_7_item = (LinearLayout) view.findViewById(R.id.group2_7_item);
         h.group2_8_item = (LinearLayout) view.findViewById(R.id.group2_8_item);
 
-        h.group2_7_item.setVisibility(View.GONE);
-        h.group2_8_item.setVisibility(View.GONE);
-    }
-
-    private void setupData() {
-
         userPlotModel = PBProductDetailActivity.userPlotModel;
-
 
         FormulaIModel aModel = new FormulaIModel();
         formulaModel = aModel;
 
         API_getVariable(userPlotModel.getPrdID(), userPlotModel.getFisheryType());
+        if (!userPlotModel.getPlotID().equals("") && userPlotModel.getPlotID().equals("0")) {
+            initVariableDataFromDB();
+        }else{
+            formulaModel.Rai           =  Util.strToDoubleDefaultZero( userPlotModel.getPondRai());
+            formulaModel.Ngan          =  Util.strToDoubleDefaultZero(userPlotModel.getPondNgan());
+            formulaModel.TarangWa      =  Util.strToDoubleDefaultZero( userPlotModel.getPondWa());
+            formulaModel.rookKung      =  Util.strToDoubleDefaultZero(userPlotModel.getFisheryNumber());
 
+            formulaModel.calculate();
+            setUpCalUI(formulaModel);
+        }
+
+        setUI();
+        setAction();
+
+        return view;
+    }
+
+
+    private void setAction() {
+
+        h.rookKung.addTextChangedListener(new PlanITextWatcher(h.rookKung, h, "calRakaPan"));
+
+        h.rai.addTextChangedListener(new PlanITextWatcher(h.rai, h, "calRayDaiChalia"));
+        h.ngan.addTextChangedListener(new PlanITextWatcher(h.ngan, h, "calRayDaiChalia"));
+        h.tarangwa.addTextChangedListener(new PlanITextWatcher(h.tarangwa, h, "calRayDaiChalia"));
+
+        h.group1_item_1.addTextChangedListener(new PlanITextWatcher(h.group1_item_1, h, "calRakaPan"));
+        h.group1_item_2.addTextChangedListener(new PlanITextWatcher(h.group1_item_2, h, "calKaSiaOkardLongtoon"));
+        h.group1_item_3.addTextChangedListener(new PlanITextWatcher(h.group1_item_3, h, "calKaSiaOkardLongtoon"));
+        h.group1_item_4.addTextChangedListener(new PlanITextWatcher(h.group1_item_4, h, "calKaSiaOkardLongtoon"));
+        h.group1_item_5.addTextChangedListener(new PlanITextWatcher(h.group1_item_5, h, "calKaSiaOkardLongtoon"));
+        h.group1_item_6.addTextChangedListener(new PlanITextWatcher(h.group1_item_6, h, "calKaSiaOkardLongtoon"));
+        h.group1_item_7.addTextChangedListener(new PlanITextWatcher(h.group1_item_7, h, "calKaSiaOkardLongtoon"));
+        h.group1_item_8.addTextChangedListener(new PlanITextWatcher(h.group1_item_8, h, "calKaSiaOkardLongtoon"));
+        h.group1_item_9.addTextChangedListener(new PlanITextWatcher(h.group1_item_9, h, "calKaSiaOkardLongtoon"));
+        h.group1_item_10.addTextChangedListener(new PlanITextWatcher(h.group1_item_10, h, "calKaRang"));
+        h.group1_item_11.addTextChangedListener(new PlanITextWatcher(h.group1_item_11, h, "calKaRang"));
+        h.group1_item_12.addTextChangedListener(new PlanITextWatcher(h.group1_item_12, h, "calKaSiaOkardLongtoon"));
+        h.group1_item_13.addTextChangedListener(new PlanITextWatcher(h.group1_item_13, h, "calKaSiaOkardLongtoon"));
+        h.group1_item_14.addTextChangedListener(new PlanITextWatcher(h.group1_item_14, h, ""));
+
+        h.group2_item_1.addTextChangedListener(new PlanITextWatcher(h.group2_item_1, h, "calRayDaiTungmod"));
+        h.group2_item_2.addTextChangedListener(new PlanITextWatcher(h.group2_item_2, h, "calRayDaiTungmod"));
+        h.group2_item_3.addTextChangedListener(new PlanITextWatcher(h.group2_item_3, h, "calRayDaiChalia"));
+        h.group2_item_5.addTextChangedListener(new PlanITextWatcher(h.group2_item_5, h, "calKaRang"));
+
+        //  calAllEgg
     }
 
     private void setUI() {
@@ -179,24 +189,25 @@ public class PBProdDetailCalculateFmentI extends Fragment implements View.OnClic
         }
         if (!userPlotModel.getPlotID().equals("") && !userPlotModel.getPlotID().equals("0")) {
             API_getPlotDetail(userPlotModel.getPlotID());
+            initVariableDataFromDB();
             havePlotId = true;
         } else {
-            h.rai.setText(userPlotModel.getPondRai());
-            h.ngan.setText(userPlotModel.getPondNgan());
-            h.tarangwa.setText(userPlotModel.getPondWa());
-            h.rookKung.setText(userPlotModel.getFisheryNumber());
+            h.rai.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(userPlotModel.getPondRai())));
+            h.ngan.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(userPlotModel.getPondNgan())));
+            h.tarangwa.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(userPlotModel.getPondWa())));
+            h.rookKung.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(userPlotModel.getFisheryNumber())));
         }
 
         if (isCalIncludeOption) {
 
             if (isCalIncludeOption) {
                 h.btnOption.setBackgroundResource(R.drawable.radio_cal_blue_check);
-                h.group2_7_item.setVisibility(View.VISIBLE);
-                h.group2_8_item.setVisibility(View.VISIBLE);
+               // h.group2_7_item.setVisibility(View.VISIBLE);
+              //  h.group2_8_item.setVisibility(View.VISIBLE);
             } else {
                 h.btnOption.setBackgroundResource(R.drawable.radio_cal_blue);
-                h.group2_7_item.setVisibility(View.GONE);
-                h.group2_8_item.setVisibility(View.GONE);
+              //  h.group2_7_item.setVisibility(View.GONE);
+              //  h.group2_8_item.setVisibility(View.GONE);
             }
 
             formulaModel.isCalIncludeOption = isCalIncludeOption;
@@ -247,14 +258,14 @@ public class PBProdDetailCalculateFmentI extends Fragment implements View.OnClic
                 h.btnOption.setBackgroundResource(R.drawable.radio_cal_blue);
                 isCalIncludeOption = false;
                 formulaModel.isCalIncludeOption =false;
-                h.group2_7_item.setVisibility(View.GONE);
-                h.group2_8_item.setVisibility(View.GONE);
+               // h.group2_7_item.setVisibility(View.GONE);
+              //  h.group2_8_item.setVisibility(View.GONE);
             }else{
                 h.btnOption.setBackgroundResource(R.drawable.radio_cal_blue_check);
                 isCalIncludeOption = true;
                 formulaModel.isCalIncludeOption = true;
-                h.group2_7_item.setVisibility(View.VISIBLE);
-                h.group2_8_item.setVisibility(View.VISIBLE);
+               // h.group2_7_item.setVisibility(View.VISIBLE);
+               // h.group2_8_item.setVisibility(View.VISIBLE);
             }
 
             formulaModel.isCalIncludeOption = isCalIncludeOption;
@@ -285,6 +296,10 @@ public class PBProdDetailCalculateFmentI extends Fragment implements View.OnClic
                 h.group2_items.setVisibility(View.GONE);
 
             }
+        }if (v.getId() == R.id.headerLayout){
+
+            popUpEditDialog();
+
         }
 
     }
@@ -294,8 +309,12 @@ public class PBProdDetailCalculateFmentI extends Fragment implements View.OnClic
     }
 
     private void setUpCalUI(FormulaIModel aModel){
-        h.group1_item_9.setText(Util.dobbleToStringNumber(aModel.KaRang));
-        h.group2_item_6.setText(Util.dobbleToStringNumber(aModel.KaSiaOkardLongtoon));
+        h.group1_item_9.setText(Util.dobbleToStringNumber(aModel.calKaRang));
+        h.group1_item_2.setText(Util.dobbleToStringNumber(aModel.calRakaPan));
+
+        h.group2_item_3.setText(Util.dobbleToStringNumber(aModel.calRayDaiTungmod));
+        h.group2_item_4.setText(Util.dobbleToStringNumber(aModel.calRayDaiChalia));
+        h.group2_item_6.setText(Util.dobbleToStringNumber(aModel.calKaSiaOkardLongtoon));
     }
 
     private void bindingData(FormulaIModel aModel) {
@@ -307,7 +326,7 @@ public class PBProdDetailCalculateFmentI extends Fragment implements View.OnClic
         aModel.rookKung = Util.strToDoubleDefaultZero(h.rookKung.getText().toString());
 
         aModel.RakaTuaLa = Util.strToDoubleDefaultZero(h.group1_item_1.getText().toString());
-        aModel.RakaPan = Util.strToDoubleDefaultZero(h.group1_item_2.getText().toString());
+       // aModel.RakaPan = Util.strToDoubleDefaultZero(h.group1_item_2.getText().toString());
         aModel.KaAHan = Util.strToDoubleDefaultZero(h.group1_item_3.getText().toString());
         aModel.KaYa = Util.strToDoubleDefaultZero(h.group1_item_4.getText().toString());
         aModel.KaSankemee = Util.strToDoubleDefaultZero(h.group1_item_5.getText().toString());
@@ -323,30 +342,29 @@ public class PBProdDetailCalculateFmentI extends Fragment implements View.OnClic
 
         aModel.PonPalidKung = Util.strToDoubleDefaultZero(h.group2_item_1.getText().toString());
         aModel.RakaChalia = Util.strToDoubleDefaultZero(h.group2_item_2.getText().toString());
-        aModel.RayDaiTungmod = Util.strToDoubleDefaultZero(h.group2_item_3.getText().toString());
-        aModel.RayDaiChalia = Util.strToDoubleDefaultZero(h.group2_item_4.getText().toString());
+
         aModel.RayaWelaTeeLeang = Util.strToDoubleDefaultZero(h.group2_item_5.getText().toString());
 
 
 
     }
 
-    static class ViewHolder {
+    public static class ViewHolder {
 
         // Header
-        private TextView rai, ngan, tarangwa, rookKung;
+        public TextView rai, ngan, tarangwa, rookKung;
         private ImageView productIconImg;
 
         // Group 1
-        private EditText group1_item_1, group1_item_2, group1_item_3, group1_item_4, group1_item_5, group1_item_6, group1_item_7, group1_item_8;
-        private TextView group1_item_9;
-        private EditText group1_item_10, group1_item_11, group1_item_12, group1_item_13 , group1_item_14;
+        public EditText group1_item_1, group1_item_3, group1_item_4, group1_item_5, group1_item_6, group1_item_7, group1_item_8;
+        public TextView group1_item_9,group1_item_2;
+        public EditText group1_item_10, group1_item_11, group1_item_12, group1_item_13 , group1_item_14;
 
         // Group 2
-        private EditText group2_item_1, group2_item_2, group2_item_3, group2_item_4, group2_item_5;
-        private TextView group2_item_6, group2_item_7, group2_item_8;
+        public EditText group2_item_1, group2_item_2, group2_item_3, group2_item_4, group2_item_5;
+        public TextView group2_item_6, group2_item_7, group2_item_8;
 
-        private LinearLayout group2_7_item , group2_8_item;
+        public LinearLayout group2_7_item , group2_8_item;
 
         private TextView calBtn, group1_header, group2_header;
 
@@ -509,6 +527,68 @@ public class PBProdDetailCalculateFmentI extends Fragment implements View.OnClic
         }).API_Request(true, RequestServices.ws_getPlotDetail +
                 "?PlotID=" + plotID +
                 "&ImeiCode=" + ServiceInstance.GetDeviceID(context));
+
+    }
+
+
+    private void popUpEditDialog() {
+
+        final android.app.Dialog dialog = new android.app.Dialog(context);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_edit_shrimp);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+        //android.widget.TextView title = (android.widget.TextView) dialog.findViewById(R.id.edit_rai_label);
+        // final android.widget.TextView inputRai = (android.widget.TextView) dialog.findViewById(R.id.edit_rai);
+
+        final EditText rai = (EditText) dialog.findViewById(R.id.rai);
+
+        final EditText ngan = (EditText) dialog.findViewById(R.id.ngan);
+        ngan.setFilters(new InputFilter[]{ new InputFilterMinMax(0.00d, 3.99d)});
+
+        final EditText sqaWa = (EditText) dialog.findViewById(R.id.sqaWa);
+        sqaWa.setFilters(new InputFilter[]{ new InputFilterMinMax(0.00d, 99.99d)});
+
+        final EditText unit = (EditText) dialog.findViewById(R.id.unit);
+
+        android.widget.TextView btn_cancel = (android.widget.TextView) dialog.findViewById(R.id.cancel);
+        android.widget.TextView btn_ok = (android.widget.TextView) dialog.findViewById(R.id.ok);
+
+        rai.setText(h.rai.getText());
+        ngan.setText( h.ngan.getText());
+        sqaWa.setText(h.tarangwa.getText());
+        unit.setText(h.rookKung.getText());
+
+        h.rai = (TextView) view.findViewById(R.id.rai);
+        h.ngan = (TextView) view.findViewById(R.id.ngan);
+        h.tarangwa = (TextView) view.findViewById(R.id.tarangwa);
+        h.rookKung = (TextView) view.findViewById(R.id.rookKung);
+
+        btn_ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                h.rai.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(rai.getText().toString())));
+                h.ngan.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(ngan.getText().toString())));
+                h.tarangwa.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(sqaWa.getText().toString())));
+                h.rookKung.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(unit.getText().toString())));
+                //userPlotModel.setPlotRai(String.valueOf(Util.strToDoubleDefaultZero(inputRai.getText().toString())));
+
+                userPlotModel.setPondRai(h.rai.getText().toString());
+                userPlotModel.setPondNgan(h.ngan.getText().toString());
+                userPlotModel.setPondWa(h.tarangwa.getText().toString());
+                userPlotModel.setFisheryNumber(h.rookKung.getText().toString());
+                dialog.dismiss();
+            }
+        });
+
+        btn_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                dialog.cancel();
+            }
+        });
+        dialog.show();
 
     }
 

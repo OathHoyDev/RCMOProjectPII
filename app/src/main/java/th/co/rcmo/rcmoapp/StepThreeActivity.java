@@ -206,10 +206,10 @@ public class StepThreeActivity extends Activity {
                 findViewById(R.id.layout_imgKcChoice).setVisibility(View.GONE);
 
                 EditText va_inputNgan = (EditText) findViewById(R.id.va_inputNgan);
-                va_inputNgan.setFilters(new InputFilter[]{ new InputFilterMinMax("0", "4")});
+                va_inputNgan.setFilters(new InputFilter[]{ new InputFilterMinMax(0.00d, 3.99d)});
 
                 EditText va_inputSqWa = (EditText) findViewById(R.id.va_inputSqWa);
-                va_inputSqWa.setFilters(new InputFilter[]{ new InputFilterMinMax("0", "100")});
+                va_inputSqWa.setFilters(new InputFilter[]{ new InputFilterMinMax(0.00d, 99.99d)});
 
 
 

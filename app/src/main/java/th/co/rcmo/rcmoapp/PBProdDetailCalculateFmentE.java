@@ -296,7 +296,7 @@ public class PBProdDetailCalculateFmentE  extends Fragment implements View.OnCli
         } else if (v.getId() == R.id.headerLayout) {
 
 
-            popUpTumbonListDialog();
+            popUpEditDialog();
         }
 
     }
@@ -363,7 +363,7 @@ public class PBProdDetailCalculateFmentE  extends Fragment implements View.OnCli
     }
 
 
-    private void popUpTumbonListDialog() {
+    private void popUpEditDialog() {
 
         final android.app.Dialog dialog = new android.app.Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);

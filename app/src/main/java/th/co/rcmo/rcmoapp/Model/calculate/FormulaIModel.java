@@ -24,14 +24,14 @@ public class FormulaIModel {
     public static double rookKung = 0;
 
     public static double RakaTuaLa = 0;
-    public static double RakaPan = 0;
+    //public static double RakaPan = 0;
     public static double KaAHan = 0;
     public static double KaYa = 0;
     public static double KaSankemee = 0;
     public static double KaNamMan = 0;
     public static double KaFai = 0;
     public static double KaRokRain = 0;
-    public static double KaRang = 0;
+   // public static double KaRang = 0;
     public static double KaLeang = 0;
     public static double KaJub = 0;
     public static double KaSomsamOuppakorn = 0;
@@ -40,10 +40,10 @@ public class FormulaIModel {
 
     public static double PonPalidKung = 0;
     public static double RakaChalia = 0;
-    public static double RayDaiTungmod = 0;
-    public static double RayDaiChalia = 0;
+
+   //public static double RayDaiChalia = 0;
     public static double RayaWelaTeeLeang = 0;
-    public static double KaSiaOkardLongtoon = 0;
+    //public static double KaSiaOkardLongtoon = 0;
 
     public static double TontoonTungmod = 0;
     public static double TontoonTorRai = 0;
@@ -54,6 +54,13 @@ public class FormulaIModel {
 
     public static double KaSermOuppakorn = 0;
     public static double KaSiaOkardOuppakorn = 0;
+
+
+     public static double calKaRang = 0;
+     public static double calRakaPan = 0;
+     public static double calRayDaiTungmod = 0;
+     public static double calKaSiaOkardLongtoon = 0;
+     public static double calRayDaiChalia = 0;
 
 //    public static Hashtable<String, String> calculateLabel;
 //    static {
@@ -154,21 +161,21 @@ public class FormulaIModel {
 
         double calKaLeang = (KaLeang/30.42) * RayaWelaTeeLeang;
 
-        KaRang = calKaLeang + KaJub;
+        calKaRang = calKaLeang + KaJub;
 
-        RakaPan = (RakaTuaLa / 100) * rookKung;
+        calRakaPan = (RakaTuaLa / 100) * rookKung;
 
         double calKaChaoTDin = (KaChaoTDin/365) * NueaTeeBor;
 
-        double calCost = RakaPan + KaAHan + KaYa + KaSankemee + KaNamMan + KaFai + KaRokRain + KaRang + KaSomsamOuppakorn + KaChaiJay;
+        double calCost = calRakaPan + KaAHan + KaYa + KaSankemee + KaNamMan + KaFai + KaRokRain + calKaRang + KaSomsamOuppakorn + KaChaiJay;
 
-        RayDaiTungmod = PonPalidKung * RakaChalia;
+        calRayDaiTungmod = PonPalidKung * RakaChalia;
 
-        RayDaiChalia =  RayDaiTungmod / NueaTeeBor;
+        calRayDaiChalia =  calRayDaiTungmod / NueaTeeBor;
 
-        KaSiaOkardLongtoon = calCost *0.0675 * (RayaWelaTeeLeang / 365);
+        calKaSiaOkardLongtoon = calCost *0.0675 * (RayaWelaTeeLeang / 365);
 
-        TontoonTungmod = calCost + KaSiaOkardLongtoon + calKaChaoTDin;
+        TontoonTungmod = calCost + calKaSiaOkardLongtoon + calKaChaoTDin;
 
         if (isCalIncludeOption) {
             TontoonTungmod += (KaSermOuppakorn + KaSiaOkardOuppakorn) * NueaTeeBor;
@@ -180,10 +187,10 @@ public class FormulaIModel {
         TontoonTorKilo = TontoonTungmod / PonPalidKung;
         TontoonTorKilo = Util.verifyDoubleDefaultZero(TontoonTorKilo);
 
-        KumraiKadtoon = RayDaiTungmod - TontoonTungmod;
+        KumraiKadtoon = calRayDaiTungmod - TontoonTungmod;
         KumraiKadtoon = Util.verifyDoubleDefaultZero(KumraiKadtoon);
 
-        KumraiKadtoonTorRai = RayDaiChalia - TontoonTorRai;
+        KumraiKadtoonTorRai = calRayDaiChalia - TontoonTorRai;
         KumraiKadtoonTorRai = Util.verifyDoubleDefaultZero(KumraiKadtoonTorRai);
 
         KumraiKadtoonTorKilo = RakaChalia - TontoonTorKilo;

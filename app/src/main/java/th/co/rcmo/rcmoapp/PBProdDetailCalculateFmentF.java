@@ -314,7 +314,7 @@ public class PBProdDetailCalculateFmentF extends Fragment implements View.OnClic
         } else if (v.getId() == R.id.headerLayout) {
 
 
-            popUpTumbonListDialog();
+            popUpEditDialog();
         }
 
     }
@@ -381,7 +381,7 @@ public class PBProdDetailCalculateFmentF extends Fragment implements View.OnClic
     }
 
 
-    private void popUpTumbonListDialog() {
+    private void popUpEditDialog() {
 
         final android.app.Dialog dialog = new android.app.Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
