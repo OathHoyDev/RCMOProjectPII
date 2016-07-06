@@ -165,7 +165,7 @@ public class FormulaIModel {
 
         calRakaPan = (RakaTuaLa / 100) * rookKung;
 
-        double calKaChaoTDin = (KaChaoTDin/365) * NueaTeeBor;
+        double calKaChaoTDin = (KaChaoTDin/365) * RayaWelaTeeLeang;
 
         double calCost = calRakaPan + KaAHan + KaYa + KaSankemee + KaNamMan + KaFai + KaRokRain + calKaRang + KaSomsamOuppakorn + KaChaiJay;
 

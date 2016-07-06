@@ -2,6 +2,7 @@ package th.co.rcmo.rcmoapp.Util;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -87,9 +88,10 @@ public class PlanITextWatcher implements TextWatcher {
         if(name.contains("calKaRang")){
 
             value = (   Util.strToDoubleDefaultZero(h.group1_item_10.getText().toString())
-                        *30.42
+                        /30.42
                         *Util.strToDoubleDefaultZero(h.group2_item_5.getText().toString())
-                    )* Util.strToDoubleDefaultZero(h.group1_item_11.getText().toString());
+                    )
+                    + Util.strToDoubleDefaultZero(h.group1_item_11.getText().toString());
 
 
 
@@ -98,14 +100,14 @@ public class PlanITextWatcher implements TextWatcher {
 
         if(name.contains("calRayDaiTungmod")){
             value = Util.strToDoubleDefaultZero(h.group2_item_1.getText().toString())
-                    * (Util.strToDoubleDefaultZero(h.group2_item_2.getText().toString())/100);
+                    * (Util.strToDoubleDefaultZero(h.group2_item_2.getText().toString()));
 
             h.group2_item_3.setText(Util.dobbleToStringNumber(value));
         }
 
         if(name.contains("calRayDaiChalia")){
 
-            double allrai =  ((Util.strToDoubleDefaultZero(h.rai.getText().toString())*4*400)+(Util.strToDoubleDefaultZero(h.rai.getText().toString())*400)+(Util.strToDoubleDefaultZero(h.rai.getText().toString())*4))/1600;
+            double allrai =  ((Util.strToDoubleDefaultZero(h.rai.getText().toString())*4*400)+(Util.strToDoubleDefaultZero(h.ngan.getText().toString())*400)+(Util.strToDoubleDefaultZero(h.tarangwa.getText().toString())*4))/1600;
 
             value = Util.round(Util.strToDoubleDefaultZero(h.group2_item_3.getText().toString())/allrai,2);
             value = Util.verifyDoubleDefaultZero(value);

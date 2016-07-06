@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.google.gson.Gson;
@@ -162,11 +163,19 @@ public class PBCalculateResultActivity extends Activity {
         TextView txProfitLoss = (TextView) findViewById(R.id.txProfitLoss);
         TextView txProfitLossValue = (TextView) findViewById(R.id.txProfitLossValue);
 
+        LinearLayout t1  = (LinearLayout)findViewById(R.id.t1);
+        LinearLayout t2  = (LinearLayout)findViewById(R.id.t2);
+        TextView unit_t1 = (TextView)findViewById(R.id.unit_t1);
+        TextView value_t1 = (TextView)findViewById(R.id.value_t1);
+        TextView unit_t2 = (TextView)findViewById(R.id.unit_t2);
+        TextView value_t2 = (TextView)findViewById(R.id.value_t2);
 
+        t1.setVisibility(View.INVISIBLE);
+        t2.setVisibility(View.INVISIBLE);
 
         switch (userPlotModel.getPrdGrpID()) {
             case CalculateConstant.PRODUCT_TYPE_PLANT:
-                findViewById(R.id.t1).setVisibility(View.INVISIBLE);
+
                 bgImage.setBackgroundResource(R.drawable.plant_ic_gr_circle_bg);
                 btnRecalculate.setBackgroundResource(R.drawable.action_plant_recal);
                 btnSavePlotDetail.setBackgroundResource(R.drawable.action_plant_reget);
@@ -175,23 +184,17 @@ public class PBCalculateResultActivity extends Activity {
                 canterTextview.setBackgroundResource(R.drawable.bottom_green_total);
                 txProfitLossValue.setTextColor(getResources().getColor(R.color.RcmoPlantBG));
 
-                if(calculateResultModel.formularCode.equals("A")
-                        ||calculateResultModel.formularCode.equals("B")
-                        ||calculateResultModel.formularCode.equals("C")){
-                    findViewById(R.id.t1).setVisibility(View.VISIBLE);
-                    TextView unit_t1 = (TextView)findViewById(R.id.unit_t1);
-                    TextView value_t1 = (TextView)findViewById(R.id.value_t1);
 
-                    unit_t1.setText(calculateResultModel.unit_t1);
-                    value_t1.setText(Util.dobbleToStringNumber(calculateResultModel.value_t1));
-                    value_t1.setTextColor(getResources().getColor(R.color.RcmoPlantBG));
-                }
+                t1.setVisibility(View.VISIBLE);
+
+                unit_t1.setText(calculateResultModel.unit_t1);
+                value_t1.setText(Util.dobbleToStringNumber(calculateResultModel.value_t1));
+                value_t1.setTextColor(getResources().getColor(R.color.RcmoPlantBG));
+
 
                 break;
             case CalculateConstant.PRODUCT_TYPE_ANIMAL:
-                findViewById(R.id.t1).setVisibility(View.VISIBLE);
-                TextView unit_t1 = (TextView)findViewById(R.id.unit_t1);
-                TextView value_t1 = (TextView)findViewById(R.id.value_t1);
+                t1.setVisibility(View.VISIBLE);
 
                 bgImage.setBackgroundResource(R.drawable.animal_ic_gr_circle_bg);
                 btnRecalculate.setBackgroundResource(R.drawable.action_animal_recal);
@@ -219,7 +222,8 @@ public class PBCalculateResultActivity extends Activity {
 
                 break;
             case CalculateConstant.PRODUCT_TYPE_FISH:
-                findViewById(R.id.t1).setVisibility(View.INVISIBLE);
+                t1.setVisibility(View.VISIBLE);
+                t2.setVisibility(View.VISIBLE);
                 bgImage.setBackgroundResource(R.drawable.fish_ic_gr_circle_bg);
                 btnRecalculate.setBackgroundResource(R.drawable.action_fish_recal);
                 btnSavePlotDetail.setBackgroundResource(R.drawable.action_fish_reget);
@@ -227,6 +231,14 @@ public class PBCalculateResultActivity extends Activity {
                 productNameLabel.setBackgroundColor(getResources().getColor(R.color.RcmoFishDarkBG));
                 canterTextview.setBackgroundResource(R.drawable.bottom_blue_total);
                 txProfitLossValue.setTextColor(getResources().getColor(R.color.RcmoFishBG));
+
+                unit_t1.setText(calculateResultModel.unit_t1);
+                value_t1.setText(Util.dobbleToStringNumber(calculateResultModel.value_t1));
+                value_t1.setTextColor(getResources().getColor(R.color.RcmoFishBG));
+
+                unit_t2.setText(calculateResultModel.unit_t2);
+                value_t2.setText(Util.dobbleToStringNumber(calculateResultModel.value_t2));
+                value_t2.setTextColor(getResources().getColor(R.color.RcmoFishBG));
                 break;
         }
 
@@ -548,19 +560,57 @@ if(userPlotModel.getPrdID().equals("40")
                     }
 
                     if (userPlotModel.getAnimalNumber().equals("") || userPlotModel.getAnimalNumber().equals("0")) {
+                        plotDetail.setAnimalNumber(plotDetail.getAnimalNumber().equals("0")?"":plotDetail.getAnimalNumber());
                         userPlotModel.setAnimalNumber(String.valueOf(plotDetail.getAnimalNumber()));
                     }
 
                     if(userPlotModel.getAnimalPrice().equals("")|| userPlotModel.getAnimalPrice().equals("0")){
+                        plotDetail.setAnimalPrice(plotDetail.getAnimalPrice().equals("0")?"":plotDetail.getAnimalPrice());
                         userPlotModel.setAnimalPrice(plotDetail.getAnimalPrice());
                     }
 
                     if(userPlotModel.getAnimalWeight().equals("")|| userPlotModel.getAnimalWeight().equals("0")){
+                        plotDetail.setAnimalWeight(plotDetail.getAnimalWeight().equals("0")?"":plotDetail.getAnimalWeight());
                         userPlotModel.setAnimalWeight(plotDetail.getAnimalWeight());
                     }
 
+                    if(userPlotModel.getPondRai().equals("")|| userPlotModel.getPondRai().equals("0")){
+                        plotDetail.setPondRai(plotDetail.getPondRai().equals("0")?"":plotDetail.getPondRai());
+                        userPlotModel.setPondRai(plotDetail.getPondRai());
+                    }
 
-                   // mVarPlanA varA =  new Gson().fromJson(plotDetail.getVarValue(), mVarPlanA.class);
+                    if(userPlotModel.getPondNgan().equals("")|| userPlotModel.getPondNgan().equals("0")){
+                        plotDetail.setPondNgan(plotDetail.getPondNgan().equals("0")?"":plotDetail.getPondNgan());
+                        userPlotModel.setPondNgan(plotDetail.getPondNgan());
+                    }
+
+                    if(userPlotModel.getPondWa().equals("")|| userPlotModel.getPondWa().equals("0")){
+                        plotDetail.setPondWa(plotDetail.getPondWa().equals("0")?"":plotDetail.getPondWa());
+                        userPlotModel.setPondWa(plotDetail.getPondWa());
+                    }
+
+                    if(userPlotModel.getPondMeter().equals("")|| userPlotModel.getPondMeter().equals("0")){
+                        plotDetail.setPondMeter(plotDetail.getPondMeter().equals("0")?"":plotDetail.getPondMeter());
+                        userPlotModel.setPondMeter(plotDetail.getPondMeter());
+                    }
+
+                    if(userPlotModel.getFisheryNumber().equals("")|| userPlotModel.getFisheryNumber().equals("0")){
+                        plotDetail.setFisheryNumber(plotDetail.getFisheryNumber().equals("0")?"":plotDetail.getFisheryNumber());
+                        userPlotModel.setFisheryNumber(plotDetail.getFisheryNumber());
+                    }
+
+                    if(userPlotModel.getFisheryType().equals("")|| userPlotModel.getFisheryType().equals("0")){
+                        plotDetail.setFisheryType(plotDetail.getFisheryType().equals("0")?"":plotDetail.getFisheryType());
+                        userPlotModel.setFisheryType(plotDetail.getFisheryType());
+                    }
+
+                    if(userPlotModel.getFisheryWeight().equals("")|| userPlotModel.getFisheryWeight().equals("0")){
+                        plotDetail.setFisheryWeight(plotDetail.getFisheryWeight().equals("0")?"":plotDetail.getFisheryWeight());
+                        userPlotModel.setFisheryWeight(plotDetail.getFisheryWeight());
+                    }
+
+
+                    // mVarPlanA varA =  new Gson().fromJson(plotDetail.getVarValue(), mVarPlanA.class);
                   //  Log.d("Testttt --> ",varA.toString());
                     API_SaveProd_POST("2", userPlotModel);
 
@@ -634,6 +684,8 @@ if(userPlotModel.getPrdID().equals("40")
 
             if(userPlotModel.getPrdGrpID().equals("2")) {
                 h.value.setTextColor(getResources().getColor(R.color.RcmoAnimalBG));
+            }else if(userPlotModel.getPrdGrpID().equals("3")){
+                h.value.setTextColor(getResources().getColor(R.color.RcmoFishBG));
             }
 
             return convertView;

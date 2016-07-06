@@ -18,5 +18,7 @@ public class CalculateResultModel {
     public mGetPlotSuit.mRespBody mPlotSuit;
     public  String unit_t1;
     public  double value_t1;
+    public  String unit_t2;
+    public  double value_t2;
 
 }

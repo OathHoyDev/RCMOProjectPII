@@ -221,7 +221,6 @@ public class PBProdDetailCalculateFmentI extends Fragment implements View.OnClic
         if (v.getId() == R.id.calBtn) {
             bindingData(formulaModel);
             formulaModel.calculate();
-
             setUpCalUI(formulaModel);
           //  Util.showDialogAndDismiss(context,"คำนวนสำเร็จ : "+formulaModel.KumraiKadtoon);
 
@@ -229,14 +228,18 @@ public class PBProdDetailCalculateFmentI extends Fragment implements View.OnClic
             calculateResultModel.formularCode = "I";
             calculateResultModel.calculateResult = formulaModel.KumraiKadtoon;
             calculateResultModel.productName = userPlotModel.getPrdValue();
+            calculateResultModel.unit_t1 = "บาท/ไร่." ;
+            calculateResultModel.value_t1 = formulaModel.KumraiKadtoonTorRai ;
+            calculateResultModel.unit_t2 = "บาท/กก." ;
+            calculateResultModel.value_t2 = formulaModel.KumraiKadtoonTorKilo ;
             calculateResultModel.mPlotSuit = PBProductDetailActivity.mPlotSuit;
             calculateResultModel.compareStdResult = 0;
 
             DialogCalculateResult.userPlotModel = userPlotModel;
             DialogCalculateResult.calculateResultModel = calculateResultModel;
 
-            //userPlotModel.setVarValue(ProductService.genJsonPlanVariable(formulaModel));
-
+            userPlotModel.setVarValue(ProductService.genJsonPlanVariable(formulaModel));
+            userPlotModel.setFisheryNumType("1");
             List resultArrayResult = new ArrayList();
 
             String [] tontoonCal_1 = {"ต้นทุนทั้งหมด" , String.format("%,.2f", formulaModel.TontoonTungmod) , "บาท"};
@@ -421,8 +424,8 @@ public class PBProdDetailCalculateFmentI extends Fragment implements View.OnClic
                     mGetVariable.mRespBody var = mVariableBodyLists.get(0);
                     formulaModel.KaSermOuppakorn = Util.strToDoubleDefaultZero(var.getDP());
                     formulaModel.KaSiaOkardOuppakorn = Util.strToDoubleDefaultZero(var.getOP());
-                    h.group2_item_7.setText(String.valueOf(formulaModel.KaSermOuppakorn));
-                    h.group2_item_8.setText(String.valueOf(formulaModel.KaSiaOkardOuppakorn));
+                  //  h.group2_item_7.setText(String.valueOf(formulaModel.KaSermOuppakorn));
+                  //  h.group2_item_8.setText(String.valueOf(formulaModel.KaSiaOkardOuppakorn));
 
                 }
 

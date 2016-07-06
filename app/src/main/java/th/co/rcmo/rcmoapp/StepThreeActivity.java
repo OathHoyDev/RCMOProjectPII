@@ -49,6 +49,7 @@ import th.co.rcmo.rcmoapp.Module.mUserPlotList;
 import th.co.rcmo.rcmoapp.Util.BitMapHelper;
 import th.co.rcmo.rcmoapp.Util.InputFilterMinMax;
 import th.co.rcmo.rcmoapp.Util.ServiceInstance;
+import th.co.rcmo.rcmoapp.Util.StepIIITextWatcher;
 import th.co.rcmo.rcmoapp.Util.Util;
 import th.co.rcmo.rcmoapp.View.DialogChoice;
 
@@ -205,11 +206,21 @@ public class StepThreeActivity extends Activity {
                 findViewById(R.id.layout_imgBoChoice).setVisibility(View.GONE);
                 findViewById(R.id.layout_imgKcChoice).setVisibility(View.GONE);
 
+                EditText va_inputRai = (EditText) findViewById(R.id.va_inputRai);
+                va_inputRai.addTextChangedListener(new StepIIITextWatcher(va_inputRai, h, ""));
+
+
+                EditText va_inputNuberOfva = (EditText) findViewById(R.id.va_inputNuberOfva);
+                va_inputNuberOfva.addTextChangedListener(new StepIIITextWatcher(va_inputNuberOfva, h, ""));
+
                 EditText va_inputNgan = (EditText) findViewById(R.id.va_inputNgan);
                 va_inputNgan.setFilters(new InputFilter[]{ new InputFilterMinMax(0.00d, 3.99d)});
 
+
+
                 EditText va_inputSqWa = (EditText) findViewById(R.id.va_inputSqWa);
                 va_inputSqWa.setFilters(new InputFilter[]{ new InputFilterMinMax(0.00d, 99.99d)});
+
 
 
 
@@ -1283,7 +1294,7 @@ public class StepThreeActivity extends Activity {
 
     }
 
-    class Holder{
+   public class Holder{
 
         ImageView prodImg ;
         LinearLayout prodBg,fishBoLayout,fishKcLayout,fishVaLayout;
