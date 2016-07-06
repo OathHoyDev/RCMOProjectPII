@@ -41,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="false"
                 android:layout_alignParentLeft="true"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:text="ขนาดแปลงที่ดิน"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/RcmoGrayBG"
@@ -73,7 +73,7 @@
                 pixlui:typeface="Quark-Bold.otf"
                 android:layout_marginTop="5dp"
                 android:layout_toRightOf="@+id/rai"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="3dp"
                 android:layout_below="@+id/start" />
 
             <com.neopixl.pixlui.components.textview.TextView
@@ -104,39 +104,33 @@
                 pixlui:typeface="Quark-Bold.otf"
                 android:layout_marginTop="5dp"
                 android:layout_toRightOf="@+id/ngan"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="3dp"
                 android:layout_below="@+id/start" />
 
             <com.neopixl.pixlui.components.textview.TextView
                 android:id="@+id/tarangwa"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="false"
-                android:layout_alignParentLeft="false"
                 android:text="xx"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/RcmoFishBG"
                 android:textColorHint="@color/RcmoFishBG"
                 pixlui:typeface="Quark-Bold.otf"
-                android:layout_marginTop="5dp"
-                android:layout_toRightOf="@+id/nganUnit"
                 android:layout_marginLeft="10dp"
-                android:layout_below="@+id/start" />
+                android:layout_alignTop="@+id/tarangwaUnit"
+                android:layout_alignEnd="@+id/raiUnit" />
 
             <com.neopixl.pixlui.components.textview.TextView
                 android:id="@+id/tarangwaUnit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="false"
-                android:layout_alignParentLeft="false"
                 android:text="ตารางวา"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/RcmoGrayBG"
                 pixlui:typeface="Quark-Bold.otf"
-                android:layout_marginTop="5dp"
-                android:layout_toRightOf="@+id/tarangwa"
-                android:layout_marginLeft="10dp"
-                android:layout_below="@+id/start" />
+                android:layout_marginLeft="3dp"
+                android:layout_centerVertical="true"
+                android:layout_toStartOf="@+id/view" />
 
             <com.neopixl.pixlui.components.textview.TextView
                 android:id="@+id/rookKungTx"
@@ -146,8 +140,9 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/RcmoGrayBG"
                 pixlui:typeface="Quark-Bold.otf"
-                android:layout_below="@+id/rai"
-                android:layout_alignParentStart="true" />
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginBottom="20dp" />
 
             <com.neopixl.pixlui.components.textview.TextView
                 android:id="@+id/rookKung"
@@ -168,7 +163,7 @@
             <com.neopixl.pixlui.components.textview.TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="3dp"
                 android:text="ตัว"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/RcmoGrayBG"
