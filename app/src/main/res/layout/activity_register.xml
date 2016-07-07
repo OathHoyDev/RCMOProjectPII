@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/mainRegisterLayout"
-    tools:context="th.co.rcmo.rcmoapp.RegisterActivity">
+    tools:context="th.go.oae.rcmo.RegisterActivity">
 
     <com.neopixl.pixlui.components.textview.TextView
         pixlui:typeface="Quark-Bold.otf"

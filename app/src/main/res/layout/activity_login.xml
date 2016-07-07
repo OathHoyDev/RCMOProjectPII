@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:id="@+id/mainLoginLayout"
 
-    tools:context="th.co.rcmo.rcmoapp.LoginActivity">
+    tools:context="th.go.oae.rcmo.LoginActivity">
 
 
 
