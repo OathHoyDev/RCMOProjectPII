@@ -13,6 +13,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.InputFilter;
+import android.text.InputType;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -241,13 +242,13 @@ public class StepThreeActivity extends Activity {
                 bo_inputRai.addTextChangedListener(new StepIIITextWatcher(bo_inputRai, h, ""));
 
                 EditText bo_inputNgan = (EditText) findViewById(R.id.bo_inputNgan);
-                bo_inputNgan.setFilters(new InputFilter[]{ new InputFilterMinMax(0.00d, 3.99d)});
+                bo_inputNgan.setFilters(new InputFilter[]{ new InputFilterMinMax(0, 4)});
 
                 EditText bo_inputSqWa = (EditText) findViewById(R.id.bo_inputSqWa);
-                bo_inputSqWa.setFilters(new InputFilter[]{ new InputFilterMinMax(0.00d, 99.99d)});
+                bo_inputSqWa.setFilters(new InputFilter[]{ new InputFilterMinMax(0, 100)});
 
                 EditText bo_inputSqMeter = (EditText) findViewById(R.id.bo_inputSqMeter);
-                bo_inputSqMeter.setFilters(new InputFilter[]{ new InputFilterMinMax(0.00d, 399.99d)});
+                bo_inputSqMeter.setFilters(new InputFilter[]{ new InputFilterMinMax(0, 400)});
 
                 EditText bo_inputNuberOfUnit = (EditText) findViewById(R.id.bo_inputNuberOfUnit);
                 bo_inputRai.addTextChangedListener(new StepIIITextWatcher(bo_inputNuberOfUnit, h, ""));
@@ -470,7 +471,9 @@ public class StepThreeActivity extends Activity {
 
                                 ((ImageView) findViewById(R.id.bo_imgTuaSelected)).setImageResource(R.drawable.radio_select);
                                 ((ImageView) findViewById(R.id.bo_imgkkSelected)).setImageResource(R.drawable.radio_not_select);
-                                ((TextView)findViewById(R.id.bo_inputNuberOfUnit)).setHint("ตัว");
+                                EditText inputUnit = (EditText)findViewById(R.id.bo_inputNuberOfUnit);
+                                //inputUnit.setRawInputType(InputType.TYPE_CLASS_NUMBER);
+                                inputUnit.setHint("ตัว");
                                 tuaSelected = true;
                             }
                         }
@@ -483,10 +486,12 @@ public class StepThreeActivity extends Activity {
                             Log.d(TAG, "bo_tuaSelected __>" +tuaSelected);
                             if (tuaSelected) {
 
-                                ((TextView)findViewById(R.id.bo_inputNuberOfUnit)).setHint("กิโลกรัม");
+
                                 ((ImageView) findViewById(R.id.bo_imgkkSelected)).setImageResource(R.drawable.radio_select);
                                 ((ImageView) findViewById(R.id.bo_imgTuaSelected)).setImageResource(R.drawable.radio_not_select);
-
+                                EditText inputUnit = (EditText)findViewById(R.id.bo_inputNuberOfUnit);
+                                inputUnit.setHint("กิโลกรัม");
+                                //inputUnit.setRawInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
                                 tuaSelected = false;
                             }
                         }
@@ -1265,12 +1270,17 @@ public class StepThreeActivity extends Activity {
             EditText va_inputSqWa      = (EditText) findViewById(R.id.va_inputSqWa);
             EditText va_inputNuberOfva = (EditText) findViewById(R.id.va_inputNuberOfva);
 
+//StringUtil.strToDoubleDefaultZero();
 
-            this.userPlotModel.setPondRai(va_inputRai.getText().toString());
-            this.userPlotModel.setPondNgan(va_inputNgan.getText().toString());
-            this.userPlotModel.setPondWa(va_inputSqWa.getText().toString());
+            this.userPlotModel.setPondRai(Util.clearStrNumberFormat(va_inputRai.getText().toString()));
 
-            this.userPlotModel.setFisheryNumber(va_inputNuberOfva.getText().toString());
+            this.userPlotModel.setPondNgan(Util.clearStrNumberFormat(va_inputNgan.getText().toString()));
+
+            this.userPlotModel.setPondWa(Util.clearStrNumberFormat(va_inputSqWa.getText().toString()));
+
+
+            this.userPlotModel.setFisheryNumber(Util.clearStrNumberFormat(va_inputNuberOfva.getText().toString()));
+
             this.userPlotModel.setFisheryNumType(ServiceInstance.FISHERY_NUM_TYPE_TUA);
             this.userPlotModel.setFisheryType(ServiceInstance.FISHERY_TYPE_BO);
 
@@ -1287,9 +1297,12 @@ public class StepThreeActivity extends Activity {
                 EditText kc_inputFishPerKC = (EditText) findViewById(R.id.kc_inputFishPerKC);
 
                 Log.d(TAG,"CoopMeter : "+kc_inputSqMPerKC.getText().toString());
-                this.userPlotModel.setCoopMeter(kc_inputSqMPerKC.getText().toString());
-                this.userPlotModel.setCoopNumber(kc_inputNumberOfKC.getText().toString());
-                this.userPlotModel.setFisheryNumber(kc_inputFishPerKC.getText().toString());
+
+                this.userPlotModel.setCoopMeter(Util.clearStrNumberFormat(kc_inputSqMPerKC.getText().toString()));
+
+                this.userPlotModel.setCoopNumber(Util.clearStrNumberFormat(kc_inputNumberOfKC.getText().toString()));
+
+                this.userPlotModel.setFisheryNumber(Util.clearStrNumberFormat(kc_inputFishPerKC.getText().toString()));
 
                 this.userPlotModel.setFisheryNumType(ServiceInstance.FISHERY_NUM_TYPE_TUA);
                 this.userPlotModel.setFisheryType(ServiceInstance.FISHERY_TYPE_KC);
@@ -1304,17 +1317,24 @@ public class StepThreeActivity extends Activity {
 
                 EditText bo_inputNuberOfUnit = (EditText) findViewById(R.id.bo_inputNuberOfUnit);
 
-                this.userPlotModel.setPondRai  ( bo_inputRai  .getText().toString());
-                this.userPlotModel.setPondNgan ( bo_inputNgan .getText().toString());
-                this.userPlotModel.setPondWa   ( bo_inputSqWa .getText().toString());
-                this.userPlotModel.setPondMeter( bo_inputSqMeter.getText().toString());
+
+                this.userPlotModel.setPondRai(Util.clearStrNumberFormat((bo_inputRai.getText().toString())));
+
+                this.userPlotModel.setPondNgan(Util.clearStrNumberFormat((bo_inputNgan.getText().toString())));
+
+                this.userPlotModel.setPondWa(Util.clearStrNumberFormat((bo_inputSqWa.getText().toString())));
+
+                this.userPlotModel.setPondMeter(Util.clearStrNumberFormat((bo_inputSqMeter.getText().toString())));
 
                 if(tuaSelected) {
                     this.userPlotModel.setFisheryNumType(ServiceInstance.FISHERY_NUM_TYPE_TUA);
-                    this.userPlotModel.setFisheryNumber(bo_inputNuberOfUnit.getText().toString());
+                    this.userPlotModel.setFisheryNumber(Util.clearStrNumberFormat(bo_inputNuberOfUnit.getText().toString()));
+                    this.userPlotModel.setFisheryWeight("");
                 }else{
                     this.userPlotModel.setFisheryNumType(ServiceInstance.FISHERY_NUM_TYPE_KK);
-                    this.userPlotModel.setFisheryWeight(bo_inputNuberOfUnit.getText().toString());
+                    this.userPlotModel.setFisheryWeight(Util.clearStrNumberFormat(bo_inputNuberOfUnit.getText().toString()));
+                    this.userPlotModel.setFisheryNumber("");
+
                 }
                 this.userPlotModel.setFisheryType(ServiceInstance.FISHERY_TYPE_BO);
 

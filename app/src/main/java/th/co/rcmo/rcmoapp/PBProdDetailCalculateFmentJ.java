@@ -89,7 +89,14 @@ public class PBProdDetailCalculateFmentJ extends Fragment implements View.OnClic
 
     private void setHolder() {
 
-
+        //public static final String FISHERY_TYPE_KC = "2";
+        //public static final String FISHERY_TYPE_BO = "1";
+        //public static final String FISHERY_NUM_TYPE_TUA = "1";
+        //public static final String FISHERY_NUM_TYPE_KK  = "2";
+if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())) {
+    ((TextView) view.findViewById(R.id.unit_type)).setText("กก.");
+    ((TextView) view.findViewById(R.id.price_unit_type)).setText("บาท/กก.");
+}
         h.group1_item_1 = (EditText) view.findViewById(R.id.group1_item_1);
         h.group1_item_2 = (TextView) view.findViewById(R.id.group1_item_2);
         h.group1_item_3 = (EditText) view.findViewById(R.id.group1_item_3);
@@ -1123,13 +1130,13 @@ public class PBProdDetailCalculateFmentJ extends Fragment implements View.OnClic
             final EditText rai = (EditText) dialog.findViewById(R.id.rai);
 
             final EditText ngan = (EditText) dialog.findViewById(R.id.ngan);
-            ngan.setFilters(new InputFilter[]{new InputFilterMinMax(0.00d, 3.99d)});
+            ngan.setFilters(new InputFilter[]{new InputFilterMinMax(0, 4)});
 
             final EditText sqaWa = (EditText) dialog.findViewById(R.id.sqaWa);
-            sqaWa.setFilters(new InputFilter[]{new InputFilterMinMax(0.00d, 99.99d)});
+            sqaWa.setFilters(new InputFilter[]{new InputFilterMinMax(0, 100)});
 
             final EditText sqM = (EditText) dialog.findViewById(R.id.sqM);
-            sqM.setFilters(new InputFilter[]{new InputFilterMinMax(0.00d, 399.99d)});
+            sqM.setFilters(new InputFilter[]{new InputFilterMinMax(0, 400)});
 
             final EditText unit = (EditText) dialog.findViewById(R.id.unit);
 

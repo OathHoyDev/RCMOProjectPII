@@ -23,6 +23,15 @@ public class Util {
         void afterDelay();
     }
 
+    public static String clearStrNumberFormat(String input){
+
+        if(input!=null && !input.equals("")){
+                input = input.replaceAll(",","");
+        }
+
+        return input;
+    }
+
     public static void delay(int ms, final DelayCallback delayCallback){
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
@@ -78,6 +87,23 @@ public class Util {
                 input = input.replaceAll(",", "");
                 input = input.replaceAll("%", "");
                 value = Double.parseDouble(input);
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+            value = 0;
+        }
+
+        return value;
+    }
+
+
+    public static int strToIntegerDefaultZero(String input){
+        int value = 0;
+        try {
+            if (input != null && !input.equals("")) {
+                input = input.replaceAll(",", "");
+                input = input.replaceAll("%", "");
+                value = Integer.parseInt(input);
             }
         }catch(Exception e){
             e.printStackTrace();
