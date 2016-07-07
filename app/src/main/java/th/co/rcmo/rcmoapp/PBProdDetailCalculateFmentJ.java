@@ -2,13 +2,16 @@ package th.co.rcmo.rcmoapp;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.InputFilter;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -32,6 +35,9 @@ import th.co.rcmo.rcmoapp.Module.mGetPlotDetail;
 import th.co.rcmo.rcmoapp.Module.mGetVariable;
 import th.co.rcmo.rcmoapp.Module.mVarPlanJ;
 import th.co.rcmo.rcmoapp.Util.BitMapHelper;
+import th.co.rcmo.rcmoapp.Util.InputFilterMinMax;
+import th.co.rcmo.rcmoapp.Util.PlanITextWatcher;
+import th.co.rcmo.rcmoapp.Util.PlanJTextWatcher;
 import th.co.rcmo.rcmoapp.Util.ServiceInstance;
 import th.co.rcmo.rcmoapp.Util.Util;
 import th.co.rcmo.rcmoapp.View.DialogCalculateResult;
@@ -73,66 +79,19 @@ public class PBProdDetailCalculateFmentJ extends Fragment implements View.OnClic
 
         setUI();
 
+        setAction();
         //sampleData();
 
         return view;
     }
 
-    private void sampleData () {
 
-        h.rai.setText("10");
-        h.ngan.setText("2");
-        h.tarangwa.setText("50");
-        h.tarangMeter.setText("0");
-
-        h.rookPla.setText("700");
-
-        h.group1_item_1.setText("0.5");
-
-        h.group1_item_3.setText("500000");
-        h.group1_item_4.setText("350");
-        h.group1_item_5.setText("500");
-        h.group1_item_6.setText("500");
-        h.group1_item_7.setText("450");
-        h.group1_item_8.setText("300");
-
-        h.group1_item_10.setText("500");
-        h.group1_item_11.setText("450");
-        h.group1_item_12.setText("250");
-        h.group1_item_13.setText("100");
-        h.group1_item_14.setText("3000");
-
-        h.group2_item_1.setText("150");
-
-
-        h.group3_item_1.setText("50000");
-        h.group3_item_3.setText("20");
-        h.group3_item_4.setText("7");
-
-        h.group4_item_1_1.setText("10");
-        h.group4_item_1_2.setText("25");
-        h.group4_item_1_3.setText("10000");
-
-        h.group4_item_2_1.setText("8");
-        h.group4_item_2_2.setText("30");
-        h.group4_item_2_3.setText("25000");
-
-        h.group4_item_3_1.setText("7");
-        h.group4_item_3_2.setText("30");
-        h.group4_item_3_3.setText("10000");
-
-        h.group4_item_4_1.setText("5");
-        h.group4_item_4_2.setText("20");
-        h.group4_item_4_3.setText("5000");
-
-
-    }
 
     private void setHolder() {
 
 
         h.group1_item_1 = (EditText) view.findViewById(R.id.group1_item_1);
-        h.group1_item_2 = (EditText) view.findViewById(R.id.group1_item_2);
+        h.group1_item_2 = (TextView) view.findViewById(R.id.group1_item_2);
         h.group1_item_3 = (EditText) view.findViewById(R.id.group1_item_3);
         h.group1_item_4 = (EditText) view.findViewById(R.id.group1_item_4);
         h.group1_item_5 = (EditText) view.findViewById(R.id.group1_item_5);
@@ -250,6 +209,67 @@ public class PBProdDetailCalculateFmentJ extends Fragment implements View.OnClic
 
         h.group2_3_item.setVisibility(View.GONE);
         h.group2_4_item.setVisibility(View.GONE);
+    }
+
+    private void setAction() {
+
+        h.rookPla.addTextChangedListener(new PlanJTextWatcher(h.rookPla, h, ""));
+        h.rai.addTextChangedListener(new PlanJTextWatcher(h.rai, h, ""));
+        h.ngan.addTextChangedListener(new PlanJTextWatcher(h.ngan, h, ""));
+        h.tarangwa.addTextChangedListener(new PlanJTextWatcher(h.tarangwa, h, ""));
+        h.tarangMeter.addTextChangedListener(new PlanJTextWatcher(h.tarangMeter, h, ""));
+
+        h.group1_item_1.addTextChangedListener(new PlanJTextWatcher(h.group1_item_1, h, ""));
+        h.group1_item_2.addTextChangedListener(new PlanJTextWatcher(h.group1_item_2, h, ""));
+        h.group1_item_3.addTextChangedListener(new PlanJTextWatcher(h.group1_item_3, h, ""));
+        h.group1_item_4.addTextChangedListener(new PlanJTextWatcher(h.group1_item_4, h, ""));
+        h.group1_item_5.addTextChangedListener(new PlanJTextWatcher(h.group1_item_5, h, ""));
+        h.group1_item_6.addTextChangedListener(new PlanJTextWatcher(h.group1_item_6, h, ""));
+        h.group1_item_7.addTextChangedListener(new PlanJTextWatcher(h.group1_item_7, h, ""));
+        h.group1_item_8.addTextChangedListener(new PlanJTextWatcher(h.group1_item_8, h, ""));
+        h.group1_item_9.addTextChangedListener(new PlanJTextWatcher(h.group1_item_9, h, ""));
+        h.group1_item_10.addTextChangedListener(new PlanJTextWatcher(h.group1_item_10, h, ""));
+        h.group1_item_11.addTextChangedListener(new PlanJTextWatcher(h.group1_item_11, h, ""));
+        h.group1_item_12.addTextChangedListener(new PlanJTextWatcher(h.group1_item_12, h, ""));
+        h.group1_item_13.addTextChangedListener(new PlanJTextWatcher(h.group1_item_13, h, ""));
+        h.group1_item_14.addTextChangedListener(new PlanJTextWatcher(h.group1_item_14, h, ""));
+
+
+        h.group2_item_1.addTextChangedListener(new PlanJTextWatcher(h.group2_item_1, h, ""));
+        h.group2_item_2.addTextChangedListener(new PlanJTextWatcher(h.group2_item_2, h, ""));
+        h.group2_item_3.addTextChangedListener(new PlanJTextWatcher(h.group2_item_3, h, ""));
+        h.group2_item_4.addTextChangedListener(new PlanJTextWatcher(h.group2_item_4, h, ""));
+
+        h.group3_item_1.addTextChangedListener(new PlanJTextWatcher(h.group3_item_1, h, ""));
+        h.group3_item_2.addTextChangedListener(new PlanJTextWatcher(h.group3_item_2, h, ""));
+        h.group3_item_3.addTextChangedListener(new PlanJTextWatcher(h.group3_item_3, h, ""));
+        h.group3_item_4.addTextChangedListener(new PlanJTextWatcher(h.group3_item_4, h, ""));
+        h.group3_item_5.addTextChangedListener(new PlanJTextWatcher(h.group3_item_5, h, ""));
+
+        h.group4_item_1_1.addTextChangedListener(new PlanJTextWatcher(h.group4_item_1_1, h, ""));
+        h.group4_item_1_2.addTextChangedListener(new PlanJTextWatcher(h.group4_item_1_2, h, ""));
+        h.group4_item_1_3.addTextChangedListener(new PlanJTextWatcher(h.group4_item_1_3, h, ""));
+        h.group4_item_1_4.addTextChangedListener(new PlanJTextWatcher(h.group4_item_1_4, h, ""));
+
+        h.group4_item_2_1.addTextChangedListener(new PlanJTextWatcher(h.group4_item_2_1, h, ""));
+        h.group4_item_2_2.addTextChangedListener(new PlanJTextWatcher(h.group4_item_2_2, h, ""));
+        h.group4_item_2_3.addTextChangedListener(new PlanJTextWatcher(h.group4_item_2_3, h, ""));
+        h.group4_item_2_4.addTextChangedListener(new PlanJTextWatcher(h.group4_item_2_4, h, ""));
+
+        h.group4_item_3_1.addTextChangedListener(new PlanJTextWatcher(h.group4_item_3_1, h, ""));
+        h.group4_item_3_2.addTextChangedListener(new PlanJTextWatcher(h.group4_item_3_2, h, ""));
+        h.group4_item_3_3.addTextChangedListener(new PlanJTextWatcher(h.group4_item_3_3, h, ""));
+        h.group4_item_3_4.addTextChangedListener(new PlanJTextWatcher(h.group4_item_3_4, h, ""));
+
+        h.group4_item_4_1.addTextChangedListener(new PlanJTextWatcher(h.group4_item_4_1, h, ""));
+        h.group4_item_4_2.addTextChangedListener(new PlanJTextWatcher(h.group4_item_4_2, h, ""));
+        h.group4_item_4_3.addTextChangedListener(new PlanJTextWatcher(h.group4_item_4_3, h, ""));
+        h.group4_item_4_4.addTextChangedListener(new PlanJTextWatcher(h.group4_item_4_4, h, ""));
+
+
+       // h.group2_item_5.addTextChangedListener(new PlanITextWatcher(h.group2_item_5, h, "calKaRang"));
+
+        //  calAllEgg
     }
 
     private void setupData() {
@@ -708,6 +728,10 @@ public class PBProdDetailCalculateFmentJ extends Fragment implements View.OnClic
                 customSize += 1;
             }
 
+        }if (v.getId() == R.id.headerLayout){
+
+            popUpEditDialog();
+
         }
 
     }
@@ -822,63 +846,63 @@ public class PBProdDetailCalculateFmentJ extends Fragment implements View.OnClic
 
     }
 
-    static class ViewHolder {
+    public static class ViewHolder {
 
         // Header
-        private TextView rai, ngan, tarangwa, tarangMeter , rookPla;
-        private ImageView productIconImg;
+        public TextView rai, ngan, tarangwa, tarangMeter , rookPla;
+        public ImageView productIconImg;
 
         // Group 1
-        private EditText group1_item_1, group1_item_2, group1_item_3, group1_item_4, group1_item_5, group1_item_6, group1_item_7, group1_item_8;
-        private TextView group1_item_9;
-        private EditText group1_item_10, group1_item_11, group1_item_12, group1_item_13 , group1_item_14;
+        public EditText group1_item_1, group1_item_3, group1_item_4, group1_item_5, group1_item_6, group1_item_7, group1_item_8;
+        public TextView group1_item_9,group1_item_2;
+        public EditText group1_item_10, group1_item_11, group1_item_12, group1_item_13 , group1_item_14;
 
         // Group 2
-        private EditText group2_item_1;
-        private TextView group2_item_2;
-        private TextView group2_item_3;
-        private TextView group2_item_4;
+        public EditText group2_item_1;
+        public TextView group2_item_2;
+        public TextView group2_item_3;
+        public TextView group2_item_4;
 
-        private LinearLayout group2_3_item, group2_4_item;
+        public LinearLayout group2_3_item, group2_4_item;
 
         // Group 3
-        private EditText group3_item_1, group3_item_3 ,group3_item_4;
-        private TextView group3_item_2, group3_item_5;
-        private ImageView group3_header_check;
+        public EditText group3_item_1, group3_item_3 ,group3_item_4;
+        public TextView group3_item_2, group3_item_5;
+        public ImageView group3_header_check;
 
         // Group 4
         private TextView group4_add_item_btn;
         private  ImageView group4_header_check;
 
-        private EditText group4_item_1_1 , group4_item_1_2 , group4_item_1_3;
-        private TextView group4_item_1_4;
+        public EditText group4_item_1_1 , group4_item_1_2 , group4_item_1_3;
+        public TextView group4_item_1_4;
         private TextView delete_group4_1;
 
-        private EditText group4_item_2_1 , group4_item_2_2 , group4_item_2_3;
-        private TextView group4_item_2_4;
-        private TextView delete_group4_2;
+        public EditText group4_item_2_1 , group4_item_2_2 , group4_item_2_3;
+        public TextView group4_item_2_4;
+        public TextView delete_group4_2;
 
-        private EditText group4_item_3_1 , group4_item_3_2 , group4_item_3_3;
-        private TextView group4_item_3_4;
-        private TextView delete_group4_3;
+        public EditText group4_item_3_1 , group4_item_3_2 , group4_item_3_3;
+        public TextView group4_item_3_4;
+        public TextView delete_group4_3;
 
-        private EditText group4_item_4_1 , group4_item_4_2 , group4_item_4_3;
-        private TextView group4_item_4_4;
-        private TextView delete_group4_4;
+        public EditText group4_item_4_1 , group4_item_4_2 , group4_item_4_3;
+        public TextView group4_item_4_4;
+        public TextView delete_group4_4;
 
-        private LinearLayout group4_1_header , group4_2_header , group4_3_header , group4_4_header;
+        public LinearLayout group4_1_header , group4_2_header , group4_3_header , group4_4_header;
 
 
 
-        private TextView calBtn, group1_header, group2_header , group3_header , group4_header;
+        public TextView calBtn, group1_header, group2_header , group3_header , group4_header;
 
-        private LinearLayout group1_items, group2_items , group3_items , group4_items;
+        public LinearLayout group1_items, group2_items , group3_items , group4_items;
 
-        private ImageView group1_header_arrow, group2_header_arrow , group3_header_arrow , group4_header_arrow;
+        public ImageView group1_header_arrow, group2_header_arrow , group3_header_arrow , group4_header_arrow;
 
-        private Button btnOption;
+        public Button btnOption;
 
-        private RelativeLayout headerLayout;
+        public RelativeLayout headerLayout;
     }
 
     private void API_getPlotDetail(String plodID) {
@@ -1078,6 +1102,82 @@ public class PBProdDetailCalculateFmentJ extends Fragment implements View.OnClic
         }).API_Request(true, RequestServices.ws_getPlotDetail +
                 "?PlotID=" + plotID +
                 "&ImeiCode=" + ServiceInstance.GetDeviceID(context));
+
+    }
+
+
+    private void popUpEditDialog() {
+
+        final android.app.Dialog dialog = new android.app.Dialog(context);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_edit_fish);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+       LinearLayout bo_layout = (LinearLayout)dialog.findViewById(R.id.bo_layout);
+
+
+        android.widget.TextView btn_cancel = (android.widget.TextView) dialog.findViewById(R.id.cancel);
+        android.widget.TextView btn_ok = (android.widget.TextView) dialog.findViewById(R.id.ok);
+        if (userPlotModel.getFisheryType().equals("1")) {
+            // bo
+            final EditText rai = (EditText) dialog.findViewById(R.id.rai);
+
+            final EditText ngan = (EditText) dialog.findViewById(R.id.ngan);
+            ngan.setFilters(new InputFilter[]{new InputFilterMinMax(0.00d, 3.99d)});
+
+            final EditText sqaWa = (EditText) dialog.findViewById(R.id.sqaWa);
+            sqaWa.setFilters(new InputFilter[]{new InputFilterMinMax(0.00d, 99.99d)});
+
+            final EditText sqM = (EditText) dialog.findViewById(R.id.sqM);
+            sqM.setFilters(new InputFilter[]{new InputFilterMinMax(0.00d, 399.99d)});
+
+            final EditText unit = (EditText) dialog.findViewById(R.id.unit);
+
+
+            rai.setText(h.rai.getText());
+            ngan.setText(h.ngan.getText());
+            sqaWa.setText(h.tarangwa.getText());
+            sqM.setText(h.tarangMeter.getText());
+            unit.setText(h.rookPla.getText());
+
+            h.rai = (TextView) view.findViewById(R.id.rai);
+            h.ngan = (TextView) view.findViewById(R.id.ngan);
+            h.tarangwa = (TextView) view.findViewById(R.id.tarangwa);
+            h.tarangMeter = (TextView) view.findViewById(R.id.tarangMeter);
+            h.rookPla = (TextView) view.findViewById(R.id.rookPla);
+
+            btn_ok.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    h.rai.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(rai.getText().toString())));
+                    h.ngan.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(ngan.getText().toString())));
+                    h.tarangwa.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(sqaWa.getText().toString())));
+                    h.tarangMeter.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(sqM.getText().toString())));
+                    h.rookPla.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(unit.getText().toString())));
+                    //userPlotModel.setPlotRai(String.valueOf(Util.strToDoubleDefaultZero(inputRai.getText().toString())));
+
+                    userPlotModel.setPondRai(h.rai.getText().toString());
+                    userPlotModel.setPondNgan(h.ngan.getText().toString());
+                    userPlotModel.setPondWa(h.tarangwa.getText().toString());
+                    userPlotModel.setPondMeter(h.tarangMeter.getText().toString());
+                    userPlotModel.setFisheryNumber(h.rookPla.getText().toString());
+                    dialog.dismiss();
+                }
+            });
+
+        }else{
+            // kc
+            bo_layout.setVisibility(View.GONE);
+        }
+
+        btn_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                dialog.cancel();
+            }
+        });
+        dialog.show();
 
     }
 

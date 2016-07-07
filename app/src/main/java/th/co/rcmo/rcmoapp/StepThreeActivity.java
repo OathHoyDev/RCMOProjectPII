@@ -225,6 +225,35 @@ public class StepThreeActivity extends Activity {
 
 
             }else {
+                //kc
+                EditText kc_inputSqMPerKC = (EditText) findViewById(R.id.kc_inputSqMPerKC);
+                kc_inputSqMPerKC.addTextChangedListener(new StepIIITextWatcher(kc_inputSqMPerKC, h, ""));
+
+                EditText kc_inputNuberOfKC = (EditText) findViewById(R.id.kc_inputNuberOfKC);
+                kc_inputNuberOfKC.addTextChangedListener(new StepIIITextWatcher(kc_inputNuberOfKC, h, ""));
+
+                EditText kc_inputFishPerKC = (EditText) findViewById(R.id.kc_inputFishPerKC);
+                kc_inputFishPerKC.addTextChangedListener(new StepIIITextWatcher(kc_inputFishPerKC, h, ""));
+
+
+                //bo
+                EditText bo_inputRai = (EditText) findViewById(R.id.bo_inputRai);
+                bo_inputRai.addTextChangedListener(new StepIIITextWatcher(bo_inputRai, h, ""));
+
+                EditText bo_inputNgan = (EditText) findViewById(R.id.bo_inputNgan);
+                bo_inputNgan.setFilters(new InputFilter[]{ new InputFilterMinMax(0.00d, 3.99d)});
+
+                EditText bo_inputSqWa = (EditText) findViewById(R.id.bo_inputSqWa);
+                bo_inputSqWa.setFilters(new InputFilter[]{ new InputFilterMinMax(0.00d, 99.99d)});
+
+                EditText bo_inputSqMeter = (EditText) findViewById(R.id.bo_inputSqMeter);
+                bo_inputSqMeter.setFilters(new InputFilter[]{ new InputFilterMinMax(0.00d, 399.99d)});
+
+                EditText bo_inputNuberOfUnit = (EditText) findViewById(R.id.bo_inputNuberOfUnit);
+                bo_inputRai.addTextChangedListener(new StepIIITextWatcher(bo_inputNuberOfUnit, h, ""));
+
+
+
 
                 h.fishBoLayout  = (LinearLayout) findViewById(R.id.bo_layout);
                 h.fishVaLayout  = (LinearLayout) findViewById(R.id.va_layout);

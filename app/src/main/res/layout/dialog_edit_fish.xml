@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:pixlui="http://schemas.android.com/apk/com.neopixl.pixlui"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center|top"
+    android:background="@drawable/dialog_bg"
+    android:orientation="vertical"
+    android:paddingBottom="20dp"
+
+    >
+
+    <LinearLayout
+        android:layout_width="250dp"
+        android:id="@+id/bo_layout"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="20dp">
+
+        <com.neopixl.pixlui.components.textview.TextView
+            android:id="@+id/label"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="3dp"
+            android:gravity="left"
+            android:text="ขนาดแปลงที่ดิน"
+            android:textColor="@color/RcmoNormalDarkText"
+            android:textSize="@dimen/textsize_small"
+            pixlui:typeface="Quark-Light.otf" />
+
+        //rai
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+
+            <com.neopixl.pixlui.components.edittext.EditText
+
+                android:id="@+id/rai"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="30dp"
+
+                android:layout_weight="1"
+                android:background="@color/RcmoLightGrayBG"
+                android:gravity="center"
+                android:hint="0.00"
+                android:imeOptions="actionNext"
+                android:inputType="numberDecimal"
+                android:padding="5dp"
+                android:textColor="@color/RcmoNormalDarkText"
+                android:textColorHint="@color/RcmoHintText"
+                android:textCursorDrawable="@drawable/text_cursor"
+                android:textSize="@dimen/cal_item_size"
+                pixlui:typeface="Quark-Bold.otf" />
+
+            <com.neopixl.pixlui.components.textview.TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:layout_weight="3"
+                android:gravity="left|center"
+                android:text="ไร่"
+                android:textColor="@color/RcmoNormalDarkText"
+                android:textSize="@dimen/cal_item_size"
+                pixlui:typeface="Quark-Light.otf" />
+
+
+        </LinearLayout>
+
+        //ngan
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="3dp"
+            android:orientation="horizontal">
+
+
+            <com.neopixl.pixlui.components.edittext.EditText
+
+                android:id="@+id/ngan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="30dp"
+
+                android:layout_weight="1"
+                android:background="@color/RcmoLightGrayBG"
+                android:gravity="center"
+                android:hint="0.00"
+                android:imeOptions="actionNext"
+                android:inputType="numberDecimal"
+                android:padding="5dp"
+                android:textColor="@color/RcmoNormalDarkText"
+                android:textColorHint="@color/RcmoHintText"
+                android:textCursorDrawable="@drawable/text_cursor"
+                android:textSize="@dimen/cal_item_size"
+                pixlui:typeface="Quark-Bold.otf" />
+
+            <com.neopixl.pixlui.components.textview.TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:layout_weight="3"
+                android:gravity="left|center"
+                android:text="งาน"
+                android:textColor="@color/RcmoNormalDarkText"
+                android:textSize="@dimen/cal_item_size"
+                pixlui:typeface="Quark-Light.otf" />
+
+
+        </LinearLayout>
+
+        //sqaWa
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="3dp"
+            android:orientation="horizontal">
+
+
+            <com.neopixl.pixlui.components.edittext.EditText
+
+                android:id="@+id/sqaWa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="30dp"
+
+                android:layout_weight="1"
+                android:background="@color/RcmoLightGrayBG"
+                android:gravity="center"
+                android:hint="0.00"
+                android:imeOptions="actionNext"
+                android:inputType="numberDecimal"
+                android:padding="5dp"
+                android:textColor="@color/RcmoNormalDarkText"
+                android:textColorHint="@color/RcmoHintText"
+                android:textCursorDrawable="@drawable/text_cursor"
+                android:textSize="@dimen/cal_item_size"
+                pixlui:typeface="Quark-Bold.otf" />
+
+            <com.neopixl.pixlui.components.textview.TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:layout_weight="3"
+                android:gravity="left|center"
+                android:text="ตร.วา"
+                android:textColor="@color/RcmoNormalDarkText"
+                android:textSize="@dimen/cal_item_size"
+                pixlui:typeface="Quark-Light.otf" />
+
+        </LinearLayout>
+
+        //sqM
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="3dp"
+            android:orientation="horizontal">
+
+
+            <com.neopixl.pixlui.components.edittext.EditText
+
+                android:id="@+id/sqM"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="30dp"
+
+                android:layout_weight="1"
+                android:background="@color/RcmoLightGrayBG"
+                android:gravity="center"
+                android:hint="0.00"
+                android:imeOptions="actionNext"
+                android:inputType="numberDecimal"
+                android:padding="5dp"
+                android:textColor="@color/RcmoNormalDarkText"
+                android:textColorHint="@color/RcmoHintText"
+                android:textCursorDrawable="@drawable/text_cursor"
+                android:textSize="@dimen/cal_item_size"
+                pixlui:typeface="Quark-Bold.otf" />
+
+            <com.neopixl.pixlui.components.textview.TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:layout_weight="3"
+                android:gravity="left|center"
+                android:text="ตร.เมตร"
+                android:textColor="@color/RcmoNormalDarkText"
+                android:textSize="@dimen/cal_item_size"
+                pixlui:typeface="Quark-Light.otf" />
+
+        </LinearLayout>
+
+        <com.neopixl.pixlui.components.textview.TextView
+            android:id="@+id/label_t1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="3dp"
+            android:gravity="left"
+            android:text="ปล่อยลูกปลา"
+            android:textColor="@color/RcmoNormalDarkText"
+            android:textSize="@dimen/textsize_small"
+            pixlui:typeface="Quark-Light.otf" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+
+            <com.neopixl.pixlui.components.edittext.EditText
+
+                android:id="@+id/unit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="30dp"
+
+                android:layout_weight="1"
+                android:background="@color/RcmoLightGrayBG"
+                android:gravity="center"
+                android:hint="0.00"
+                android:imeOptions="actionNext"
+                android:inputType="numberDecimal"
+                android:padding="5dp"
+                android:textColor="@color/RcmoNormalDarkText"
+                android:textColorHint="@color/RcmoHintText"
+                android:textCursorDrawable="@drawable/text_cursor"
+                android:textSize="@dimen/cal_item_size"
+                pixlui:typeface="Quark-Bold.otf" />
+
+            <com.neopixl.pixlui.components.textview.TextView
+                android:id="@+id/unit_t1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:layout_weight="3"
+                android:gravity="left|center"
+                android:text="ตัว"
+                android:textColor="@color/RcmoNormalDarkText"
+                android:textSize="@dimen/cal_item_size"
+                pixlui:typeface="Quark-Light.otf" />
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+
+        <com.neopixl.pixlui.components.textview.TextView
+            android:id="@+id/cancel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/action_gray_cut_left_conner"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:padding="5dp"
+            android:paddingLeft="15dp"
+            android:text="ยกเลิก"
+            android:textColor="@color/RcmoWhiteBG"
+            android:textSize="@dimen/textsize_normal"
+            android:textStyle="bold"
+            pixlui:typeface="Quark-Bold.otf" />
+
+
+        <com.neopixl.pixlui.components.textview.TextView
+            android:id="@+id/ok"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/action_orange_cut_right_conner"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:padding="5dp"
+            android:paddingLeft="15dp"
+            android:text="ตกลง"
+            android:textColor="@color/RcmoWhiteBG"
+            android:textSize="@dimen/textsize_normal"
+            android:textStyle="bold"
+            pixlui:typeface="Quark-Bold.otf" />
+    </LinearLayout>
+
+</LinearLayout>
+
+
+
+
+
+
