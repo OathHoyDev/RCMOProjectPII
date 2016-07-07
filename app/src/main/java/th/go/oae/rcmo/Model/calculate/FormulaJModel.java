@@ -16,7 +16,7 @@ public class FormulaJModel {
     public int TuaOrKilo;
     public int CustomSize;
     public int CalType; //1=คละ , 2=แยกขนาด
-
+   // public int numType="";
     public double Rai = 0;
     public double Ngan = 0;
     public double TarangWa = 0;
@@ -73,6 +73,15 @@ public class FormulaJModel {
     public double KumraiKadtoonSize = 0;
     public double KumraiKadtoonSizeTorKilo = 0;
 
+
+    public double calKaPan = 0;
+    public double calKaRangNgan = 0;
+
+    public double calRakaTKai1 = 0;
+    public double calRakaTKai2 = 0;
+    public double calRakaTKai3 =0;
+    public double calRakaTKai4 =0;
+
     public double calKaSiaOkardLongtoon = 0;
 
 
@@ -80,11 +89,11 @@ public class FormulaJModel {
 
         double NueaTeeBor = ((Rai*4*400)+(Ngan*400)+(TarangWa*4)+TarangMeter)/1600;
 
-        double calKaPan = LookPla * Raka;
+        calKaPan = LookPla * Raka;
 
         double calKaRangNganLeang = (KaRangNganLeang/30.42) * RayaWela;
 
-        double calKaRangNgan = calKaRangNganLeang + KaRangNganJub;
+        calKaRangNgan = calKaRangNganLeang + KaRangNganJub;
 
         double calKaFaifa = (KaFaifa/30.42) * RayaWela;
 
@@ -95,7 +104,7 @@ public class FormulaJModel {
         double calKaSermOuppakorn = KaSermOuppakorn * NueaTeeBor;
         double calKaSiaOkardOuppakorn = KaSiaOkardOuppakorn * NueaTeeBor;
 
-        double calKaSiaOkardLongtoon = calCost*0.0675*(RayaWela/365);
+        calKaSiaOkardLongtoon = calCost*0.0675*(RayaWela/365);
 
         double calRakaTKai = NamnakTKai*RakaTKai;
 
@@ -111,10 +120,10 @@ public class FormulaJModel {
 
         double calNamnakPlaAll = calNamnakPla1 + calNamnakPla2 + calNamnakPla3 + calNamnakPla4;
 
-        double calRakaTKai1 = NamnakPla1 * RakaPla1;
-        double calRakaTKai2 = NamnakPla2 * RakaPla2;
-        double calRakaTKai3 = NamnakPla3 * RakaPla3;
-        double calRakaTKai4 = NamnakPla4 * RakaPla4;
+         calRakaTKai1 = NamnakPla1 * RakaPla1;
+         calRakaTKai2 = NamnakPla2 * RakaPla2;
+         calRakaTKai3 = NamnakPla3 * RakaPla3;
+         calRakaTKai4 = NamnakPla4 * RakaPla4;
 
         double calRakaTKaiAll = calRakaTKai1 + calRakaTKai2 + calRakaTKai3 + calRakaTKai4;
 
@@ -122,9 +131,14 @@ public class FormulaJModel {
 
         calRakaTKaiChalia = calRakaTKaiAll/(NamnakPla1 + NamnakPla2 + NamnakPla3 + NamnakPla4);
 
+        if(isCalIncludeOption){
+            calCost +=  calKaSermOuppakorn + calKaSiaOkardOuppakorn;
+        }
+
         if (CalType == 1) {
 
-            costTontoonMix = calKaChoaTDin + calCost + calKaSermOuppakorn + calKaSiaOkardOuppakorn;
+
+            costTontoonMix = calKaChoaTDin + calCost;
             costTontoonMixTorRai = costTontoonMix / NueaTeeBor;
             costTontoonMixTorKilo = costTontoonMix / NamnakTKai;
             KumraiKadtoonMix = calRaidai - costTontoonMix;
@@ -132,11 +146,11 @@ public class FormulaJModel {
 
         }else if(CalType == 2) {
 
-            costTontoonSize = calKaChoaTDin + calCost + calKaSermOuppakorn + calKaSiaOkardOuppakorn;
-            costTontoonSizeTorRai = costTontoonSize / NueaTeeBor;
-            costTontoonSizeTorKilo = costTontoonSize / (NamnakPla1 + NamnakPla2 + NamnakPla3 + NamnakPla4);
-            KumraiKadtoonSize = calRakaTKaiAll - costTontoonSize;
-            KumraiKadtoonSizeTorKilo = calRakaTKaiChalia - calRakaTKai;
+            costTontoonMix = calKaChoaTDin + calCost;
+            costTontoonMixTorRai = costTontoonSize / NueaTeeBor;
+            costTontoonMixTorKilo = costTontoonSize / (NamnakPla1 + NamnakPla2 + NamnakPla3 + NamnakPla4);
+            KumraiKadtoonMix = calRakaTKaiAll - costTontoonSize;
+            KumraiKadtoonMixTorKilo = calRakaTKaiChalia - costTontoonMixTorKilo;
 
         }
 

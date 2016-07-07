@@ -188,10 +188,10 @@ public class PBProdDetailCalculateFmentI extends Fragment implements View.OnClic
             initVariableDataFromDB();
             havePlotId = true;
         } else {
-            h.rai.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(userPlotModel.getPondRai())));
-            h.ngan.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(userPlotModel.getPondNgan())));
-            h.tarangwa.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(userPlotModel.getPondWa())));
-            h.rookKung.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(userPlotModel.getFisheryNumber())));
+            h.rai.setText(Util.dobbleToStringNumberWithClearDigit(Util.strToDoubleDefaultZero(userPlotModel.getPondRai())));
+            h.ngan.setText(Util.dobbleToStringNumberWithClearDigit(Util.strToDoubleDefaultZero(userPlotModel.getPondNgan())));
+            h.tarangwa.setText(Util.dobbleToStringNumberWithClearDigit(Util.strToDoubleDefaultZero(userPlotModel.getPondWa())));
+            h.rookKung.setText(Util.dobbleToStringNumberWithClearDigit(Util.strToDoubleDefaultZero(userPlotModel.getFisheryNumber())));
         }
 
         if (isCalIncludeOption) {

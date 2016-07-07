@@ -242,7 +242,7 @@ public class StepThreeActivity extends Activity {
                 bo_inputSqMeter.setFilters(new InputFilter[]{ new InputFilterMinMax(0, 400)});
 
                 EditText bo_inputNuberOfUnit = (EditText) findViewById(R.id.bo_inputNuberOfUnit);
-                bo_inputRai.addTextChangedListener(new StepIIITextWatcher(bo_inputNuberOfUnit, h, ""));
+                bo_inputNuberOfUnit.addTextChangedListener(new StepIIITextWatcher(bo_inputNuberOfUnit, h, ""));
 
 
 

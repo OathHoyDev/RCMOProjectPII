@@ -475,7 +475,7 @@ public class ProductService {
 
         var.NamnakTKai = model.NamnakTKai;
         var.RakaTKai = model.RakaTKai;
-        var.KanardPlaChalia = model.KanardPlaChalia;
+        //var.KanardPlaChalia = model.KanardPlaChalia;
 
         var.KanardPla1 = model.KanardPla1;
         var.NamnakPla1 = model.NamnakPla1;

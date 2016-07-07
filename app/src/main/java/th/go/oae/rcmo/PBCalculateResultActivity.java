@@ -221,7 +221,7 @@ public class PBCalculateResultActivity extends Activity {
                 break;
             case CalculateConstant.PRODUCT_TYPE_FISH:
                 t1.setVisibility(View.VISIBLE);
-                t2.setVisibility(View.VISIBLE);
+
                 bgImage.setBackgroundResource(R.drawable.fish_ic_gr_circle_bg);
                 btnRecalculate.setBackgroundResource(R.drawable.action_fish_recal);
                 btnSavePlotDetail.setBackgroundResource(R.drawable.action_fish_reget);
@@ -234,9 +234,12 @@ public class PBCalculateResultActivity extends Activity {
                 value_t1.setText(Util.dobbleToStringNumber(calculateResultModel.value_t1));
                 value_t1.setTextColor(getResources().getColor(R.color.RcmoFishBG));
 
-                unit_t2.setText(calculateResultModel.unit_t2);
-                value_t2.setText(Util.dobbleToStringNumber(calculateResultModel.value_t2));
-                value_t2.setTextColor(getResources().getColor(R.color.RcmoFishBG));
+                if(calculateResultModel.formularCode.equals("I")) {
+                    t2.setVisibility(View.VISIBLE);
+                    unit_t2.setText(calculateResultModel.unit_t2);
+                    value_t2.setText(Util.dobbleToStringNumber(calculateResultModel.value_t2));
+                    value_t2.setTextColor(getResources().getColor(R.color.RcmoFishBG));
+                }
                 break;
         }
 

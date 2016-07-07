@@ -9,6 +9,7 @@ public class mVarPlanJ {
     public int CalType;
     public int CustomSize;
 
+
     public double Rai;
     public double Ngan;
     public double TarangWa;
