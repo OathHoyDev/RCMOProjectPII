@@ -891,7 +891,7 @@
                             android:gravity="left|center"
                             android:inputType="text"
                             android:paddingLeft="10dp"
-                            android:text="บาท"
+                            android:text="บาท/เดือน"
                             android:textColor="@color/RcmoNormalDarkText"
                             android:textSize="@dimen/cal_item_size"
                             pixlui:typeface="Quark-Bold.otf" />

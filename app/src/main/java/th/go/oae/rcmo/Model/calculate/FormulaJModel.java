@@ -3,6 +3,8 @@ package th.go.oae.rcmo.Model.calculate;
 import java.util.HashMap;
 import java.util.List;
 
+import th.go.oae.rcmo.Util.Util;
+
 /**
  * Created by SilVeriSm on 6/20/2016 AD.
  */
@@ -139,18 +141,37 @@ public class FormulaJModel {
 
 
             costTontoonMix = calKaChoaTDin + calCost;
+            costTontoonMix = Util.verifyDoubleDefaultZero(costTontoonMix);
+
             costTontoonMixTorRai = costTontoonMix / NueaTeeBor;
+            costTontoonMixTorRai = Util.verifyDoubleDefaultZero(costTontoonMixTorRai);
+
             costTontoonMixTorKilo = costTontoonMix / NamnakTKai;
+            costTontoonMixTorKilo = Util.verifyDoubleDefaultZero(costTontoonMixTorKilo);
+
             KumraiKadtoonMix = calRaidai - costTontoonMix;
+            KumraiKadtoonMix = Util.verifyDoubleDefaultZero(KumraiKadtoonMix);
+
+
             KumraiKadtoonMixTorKilo = RakaTKai - costTontoonMixTorKilo;
+            KumraiKadtoonMixTorKilo = Util.verifyDoubleDefaultZero(KumraiKadtoonMixTorKilo);
 
         }else if(CalType == 2) {
 
-            costTontoonMix = calKaChoaTDin + calCost;
-            costTontoonMixTorRai = costTontoonSize / NueaTeeBor;
-            costTontoonMixTorKilo = costTontoonSize / (NamnakPla1 + NamnakPla2 + NamnakPla3 + NamnakPla4);
-            KumraiKadtoonMix = calRakaTKaiAll - costTontoonSize;
-            KumraiKadtoonMixTorKilo = calRakaTKaiChalia - costTontoonMixTorKilo;
+            costTontoonSize = calKaChoaTDin + calCost;
+            costTontoonSize = Util.verifyDoubleDefaultZero(costTontoonSize);
+
+            costTontoonSizeTorRai = costTontoonSize / NueaTeeBor;
+            costTontoonSizeTorRai = Util.verifyDoubleDefaultZero(costTontoonSizeTorRai);
+
+            costTontoonSizeTorKilo = costTontoonSize / (NamnakPla1 + NamnakPla2 + NamnakPla3 + NamnakPla4);
+            costTontoonSizeTorKilo = Util.verifyDoubleDefaultZero(costTontoonSizeTorKilo);
+
+            KumraiKadtoonSize = calRakaTKaiAll - costTontoonSize;
+            KumraiKadtoonSize = Util.verifyDoubleDefaultZero(KumraiKadtoonSize);
+
+            KumraiKadtoonSizeTorKilo = calRakaTKaiChalia - costTontoonMixTorKilo;
+            KumraiKadtoonSizeTorKilo = Util.verifyDoubleDefaultZero(KumraiKadtoonSizeTorKilo);
 
         }
 

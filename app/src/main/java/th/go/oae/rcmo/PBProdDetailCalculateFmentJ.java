@@ -401,9 +401,13 @@ if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())
 
                 if (calType == 1) {
                    // Util.showDialogAndDismiss(context, "คำนวนสำเร็จ : " + formulaModel.KumraiKadtoonMix);
+                    calculateResultModel.unit_t1 = "บาท/กก." ;
+                    calculateResultModel.value_t1 = formulaModel.KumraiKadtoonMixTorKilo ;
                     calculateResultModel.calculateResult = formulaModel.KumraiKadtoonMix;
                 } else if (calType == 2) {
                    // Util.showDialogAndDismiss(context, "คำนวนสำเร็จ : " + formulaModel.KumraiKadtoonSize);
+                    calculateResultModel.unit_t1 = "บาท/กก." ;
+                    calculateResultModel.value_t1 = formulaModel.KumraiKadtoonSizeTorKilo ;
                     calculateResultModel.calculateResult = formulaModel.KumraiKadtoonSize;
                 }
 
@@ -412,8 +416,7 @@ if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())
                 calculateResultModel.productName = userPlotModel.getPrdValue();
                 calculateResultModel.mPlotSuit = PBProductDetailActivity.mPlotSuit;
                 calculateResultModel.compareStdResult = 0;
-                calculateResultModel.unit_t1 = "บาท/กก." ;
-                calculateResultModel.value_t1 = formulaModel.KumraiKadtoonMixTorKilo ;
+
                 DialogCalculateResult.userPlotModel = userPlotModel;
                 DialogCalculateResult.calculateResultModel = calculateResultModel;
 

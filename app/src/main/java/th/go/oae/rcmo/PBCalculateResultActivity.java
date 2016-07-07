@@ -234,7 +234,7 @@ public class PBCalculateResultActivity extends Activity {
                 value_t1.setText(Util.dobbleToStringNumber(calculateResultModel.value_t1));
                 value_t1.setTextColor(getResources().getColor(R.color.RcmoFishBG));
 
-                if(calculateResultModel.formularCode.equals("I")) {
+                if(calculateResultModel.formularCode.equals("I") || calculateResultModel.formularCode.equals("K")) {
                     t2.setVisibility(View.VISIBLE);
                     unit_t2.setText(calculateResultModel.unit_t2);
                     value_t2.setText(Util.dobbleToStringNumber(calculateResultModel.value_t2));
@@ -608,6 +608,16 @@ if(userPlotModel.getPrdID().equals("40")
                     if(userPlotModel.getFisheryWeight().equals("")|| userPlotModel.getFisheryWeight().equals("0")){
                         plotDetail.setFisheryWeight(plotDetail.getFisheryWeight().equals("0")?"":plotDetail.getFisheryWeight());
                         userPlotModel.setFisheryWeight(plotDetail.getFisheryWeight());
+                    }
+
+                    if(userPlotModel.getCoopMeter().equals("")|| userPlotModel.getCoopMeter().equals("0")){
+                        plotDetail.setCoopMeter(plotDetail.getCoopMeter().equals("0")?"":plotDetail.getCoopMeter());
+                        userPlotModel.setCoopMeter(plotDetail.getCoopMeter());
+                    }
+
+                    if(userPlotModel.getCoopNumber().equals("")|| userPlotModel.getCoopNumber().equals("0")){
+                        plotDetail.setCoopNumber(plotDetail.getCoopNumber().equals("0")?"":plotDetail.getCoopNumber());
+                        userPlotModel.setCoopNumber(plotDetail.getCoopNumber());
                     }
 
 

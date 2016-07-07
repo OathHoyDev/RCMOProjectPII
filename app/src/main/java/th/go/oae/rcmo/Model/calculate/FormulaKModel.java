@@ -3,6 +3,8 @@ package th.go.oae.rcmo.Model.calculate;
 import java.util.HashMap;
 import java.util.List;
 
+import th.go.oae.rcmo.Util.Util;
+
 /**
  * Created by SilVeriSm on 6/20/2016 AD.
  */
@@ -70,15 +72,27 @@ public class FormulaKModel {
     public double KumraiKadtoonSizeTorKilo = 0;
 
 
+    public double KumraiKadtoonMixTorKaChang = 0;
+    public double KumraiKadtoonSizeTorKaChang = 0;
+    public double calRakaTKai1 = 0;
+    public double calRakaTKai2 = 0;
+    public double calRakaTKai3 = 0;
+    public double calRakaTKai4 = 0;
+
+    public double calKaPan = 0;
+    public double calKaRangNgan = 0;
+
+
+
     public void calculate() {
 
         //double NueaTeeBor = ((Rai*4*400)+(Ngan*400)+(TarangWa*4)+TarangMeter)/1600;
 
-        double calKaPan = LookPla * Raka * JumnounKachang;
+         calKaPan = LookPla * Raka * JumnounKachang;
 
         double calKaRangNganLeang = (KaRangNganLeang/30.42) * RayaWela;
 
-        double calKaRangNgan = calKaRangNganLeang + KaRangNganJub;
+         calKaRangNgan = calKaRangNganLeang + KaRangNganJub;
 
         double calKaFaifa = (KaFaifa/30.42) * RayaWela;
 
@@ -97,7 +111,7 @@ public class FormulaKModel {
 
         double calRakaTKai = NamnakTKai*RakaTKai;
 
-        calNamnakTKai = NamnakTKai/JumnounKachang;
+        calNamnakTKai = NamnakTKai*JumnounKachang;
 
         calRaidai = calNamnakTKai * RakaTKai;
 
@@ -110,10 +124,11 @@ public class FormulaKModel {
 
         double calNamnakPlaAll = calNamnakPla1 + calNamnakPla2 + calNamnakPla3 + calNamnakPla4;
 
-        double calRakaTKai1 = NamnakPla1 * RakaPla1;
-        double calRakaTKai2 = NamnakPla2 * RakaPla2;
-        double calRakaTKai3 = NamnakPla3 * RakaPla3;
-        double calRakaTKai4 = NamnakPla4 * RakaPla4;
+
+         calRakaTKai1 = NamnakPla1 * RakaPla1;
+         calRakaTKai2 = NamnakPla2 * RakaPla2;
+         calRakaTKai3 = NamnakPla3 * RakaPla3;
+         calRakaTKai4 = NamnakPla4 * RakaPla4;
 
         double calRakaTKaiAll = calRakaTKai1 + calRakaTKai2 + calRakaTKai3 + calRakaTKai4;
 
@@ -124,18 +139,43 @@ public class FormulaKModel {
         if (CalType == 1) {
 
             costTontoonMix = calCost + calKaSiaOkardLongtoon;
+            costTontoonMix = Util.verifyDoubleDefaultZero(costTontoonMix);
+
             costTontoonMixTorRai = costTontoonMix / JumnounKachang;
-            costTontoonMixTorKilo = costTontoonMix / NamnakTKai;
+            costTontoonMixTorRai = Util.verifyDoubleDefaultZero(costTontoonMixTorRai);
+
+            costTontoonMixTorKilo = costTontoonMix / calNamnakTKai;
+            costTontoonMixTorKilo= Util.verifyDoubleDefaultZero(costTontoonMixTorKilo);
+
             KumraiKadtoonMix = calRaidai - costTontoonMix;
+            KumraiKadtoonMix =  Util.verifyDoubleDefaultZero(KumraiKadtoonMix);
+
             KumraiKadtoonMixTorKilo = RakaTKai - costTontoonMixTorKilo;
+            KumraiKadtoonMixTorKilo =  Util.verifyDoubleDefaultZero(KumraiKadtoonMixTorKilo);
+
+            KumraiKadtoonMixTorKaChang = KumraiKadtoonMix/JumnounKachang;
+            KumraiKadtoonMixTorKaChang =  Util.verifyDoubleDefaultZero(KumraiKadtoonMixTorKaChang);
 
         }else if(CalType == 2) {
 
             costTontoonSize = calCost + calKaSiaOkardLongtoon;
+            costTontoonSize =  Util.verifyDoubleDefaultZero(costTontoonSize);
+
             costTontoonSizeTorRai = costTontoonSize / JumnounKachang;
+            costTontoonSizeTorRai =  Util.verifyDoubleDefaultZero(costTontoonSizeTorRai);
+
             costTontoonSizeTorKilo = costTontoonSize / (NamnakPla1 + NamnakPla2 + NamnakPla3 + NamnakPla4);
+            costTontoonSizeTorKilo =  Util.verifyDoubleDefaultZero(costTontoonSizeTorKilo);
+
             KumraiKadtoonSize = calRakaTKaiAll - costTontoonSize;
+            KumraiKadtoonSize =  Util.verifyDoubleDefaultZero(KumraiKadtoonSize);
+
             KumraiKadtoonSizeTorKilo = calRakaTKaiChalia - costTontoonSizeTorKilo;
+            KumraiKadtoonSizeTorKilo =  Util.verifyDoubleDefaultZero(KumraiKadtoonSizeTorKilo);
+
+            KumraiKadtoonSizeTorKaChang = KumraiKadtoonSize/JumnounKachang;
+            KumraiKadtoonSizeTorKaChang =  Util.verifyDoubleDefaultZero(KumraiKadtoonSizeTorKaChang);
+
 
         }
 

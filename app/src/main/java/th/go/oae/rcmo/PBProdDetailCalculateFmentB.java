@@ -288,7 +288,7 @@ public class PBProdDetailCalculateFmentB extends Fragment implements View.OnClic
             String[] raydai_2 = {"", String.format("%,.2f", formulaModel.calIncomePerRai), "บาท/ไร่"};
             resultArrayResult.add(raydai_2);
 
-            String[] tontoon = {"ต้นทุนเฉลี่ย", String.format("%,.2f", formulaModel.TontumMattratarnPerRai), "บาท/ไร่"};
+            String[] tontoon = {"ต้นทุนเฉลี่ย", String.format("%,.2f", formulaModel.TontumMattratarn), "บาท"};
             resultArrayResult.add(tontoon);
 
             DialogCalculateResult.calculateResultModel.resultList = resultArrayResult;

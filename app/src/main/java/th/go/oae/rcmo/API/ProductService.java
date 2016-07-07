@@ -19,6 +19,7 @@ import th.go.oae.rcmo.Model.calculate.FormulaGModel;
 import th.go.oae.rcmo.Model.calculate.FormulaHModel;
 import th.go.oae.rcmo.Model.calculate.FormulaIModel;
 import th.go.oae.rcmo.Model.calculate.FormulaJModel;
+import th.go.oae.rcmo.Model.calculate.FormulaKModel;
 import th.go.oae.rcmo.Module.mGetVariable;
 import th.go.oae.rcmo.Module.mVarPlanA;
 import th.go.oae.rcmo.Module.mVarPlanB;
@@ -29,8 +30,10 @@ import th.go.oae.rcmo.Module.mVarPlanG;
 import th.go.oae.rcmo.Module.mVarPlanH;
 import th.go.oae.rcmo.Module.mVarPlanI;
 import th.go.oae.rcmo.Module.mVarPlanJ;
+import th.go.oae.rcmo.Module.mVarPlanK;
 import th.go.oae.rcmo.Util.CalculateConstant;
 import th.go.oae.rcmo.Util.ServiceInstance;
+import th.go.oae.rcmo.Util.Util;
 
 /**
  * Created by Taweesin on 25/6/2559.
@@ -476,6 +479,69 @@ public class ProductService {
         var.NamnakTKai = model.NamnakTKai;
         var.RakaTKai = model.RakaTKai;
         //var.KanardPlaChalia = model.KanardPlaChalia;
+
+        var.KanardPla1 = model.KanardPla1;
+        var.NamnakPla1 = model.NamnakPla1;
+        var.RakaPla1 = model.RakaPla1;
+
+        var.KanardPla2 = model.KanardPla2;
+        var.NamnakPla2 = model.NamnakPla2;
+        var.RakaPla2 = model.RakaPla2;
+
+        var.KanardPla3 = model.KanardPla3;
+        var.NamnakPla3 = model.NamnakPla3;
+        var.RakaPla3 = model.RakaPla3;
+
+        var.KanardPla4 = model.KanardPla4;
+        var.NamnakPla4 = model.NamnakPla4;
+        var.RakaPla4 = model.RakaPla4;
+
+
+
+        //jsonPlanA = TextUtils.htmlEncode(jsonPlanA);
+        String json =(new Gson().toJson(var));
+        String value = "";
+        try {
+
+            byte ptext[] = json.getBytes("ISO-8859-1");
+            value = new String(ptext, "UTF-8");
+            Log.d("Test "," -----------------------------> "+value);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        Log.d("GSON","Json -> "+json);
+
+        return value;
+    }
+
+    public static String genJsonPlanVariable(FormulaKModel model){
+        mVarPlanK var = new mVarPlanK();
+
+        var.CalType = model.CalType;
+        var.TuaOrKilo = model.TuaOrKilo;
+        var.CustomSize = model.CustomSize;
+
+        var.JumnounKachang = model.JumnounKachang;
+        var.KanardKachang = model.KanardKaChang;
+        var.LookPla = model.LookPla;
+
+        var.Raka = model.Raka;
+        var.KaAHan = model.KaAHan;
+        var.KaRangNganLeang = model.KaRangNganLeang;
+        var.KaRangNganJub = model.KaRangNganJub;
+        var.KaYa = model.KaYa;
+        var.KaSanKMe = model.KaSanKMe;
+        var.KaNamman = model.KaNamman;
+        var.KaFaifa = model.KaFaifa;
+        var.KaSomSam = model.KaSomSam;
+        var.KaChaijai = model.KaChaijai;
+      //  var.KaChoaTDin = model.
+        var.RayaWela = model.RayaWela;
+
+        var.NamnakTKai = model.NamnakTKai;
+        var.RakaTKai = model.RakaTKai;
+        var.KanardPlaChalia = Util.verifyDoubleDefaultZero(model.KanardPlaChalia);
 
         var.KanardPla1 = model.KanardPla1;
         var.NamnakPla1 = model.NamnakPla1;
