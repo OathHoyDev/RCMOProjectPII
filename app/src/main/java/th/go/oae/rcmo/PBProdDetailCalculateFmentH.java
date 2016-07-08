@@ -439,8 +439,8 @@ public class PBProdDetailCalculateFmentH extends Fragment implements View.OnClic
 
         ((TextView) dialog.findViewById(R.id.label_t1)).setText("น้ำหนักเฉลี่ยเมื่อเริ่มเลี้ยง");
         ((TextView) dialog.findViewById(R.id.unit_t1)).setText("กก./ตัว");;
-        edit.setText(h.txStartUnit.getText());
-        edit_t1.setText(h.txStartNumnakReam.getText());
+        edit.setText(Util.clearStrNumberFormat(h.txStartUnit.getText().toString()));
+        edit_t1.setText(Util.clearStrNumberFormat(h.txStartNumnakReam.getText().toString()));
 
         btn_ok.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -449,8 +449,8 @@ public class PBProdDetailCalculateFmentH extends Fragment implements View.OnClic
                 h.txStartNumnakReam.setText(Util.dobbleToStringNumberWithClearDigit(Util.strToDoubleDefaultZero(edit_t1.getText().toString())));
                 //userPlotModel.setPlotRai(String.valueOf(Util.strToDoubleDefaultZero(inputRai.getText().toString())));
 
-                userPlotModel.setAnimalNumber(h.txStartUnit.getText().toString());
-                userPlotModel.setAnimalWeight(h.txStartNumnakReam.getText().toString());
+                userPlotModel.setAnimalNumber(Util.clearStrNumberFormat(h.txStartUnit.getText().toString()));
+                userPlotModel.setAnimalWeight(Util.clearStrNumberFormat(h.txStartNumnakReam.getText().toString()));
                 dialog.dismiss();
             }
         });

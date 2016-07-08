@@ -440,7 +440,7 @@ public class PBProdDetailCalculateFmentA extends Fragment implements View.OnClic
         android.widget.TextView btn_ok = (android.widget.TextView) dialog.findViewById(R.id.ok);
 
         title.setText("ขนาดแปลงที่ดิน");
-        inputRai.setText(h.txStartUnit.getText());
+        inputRai.setText(Util.clearStrNumberFormat(h.txStartUnit.getText().toString()));
 
         btn_ok.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -448,7 +448,7 @@ public class PBProdDetailCalculateFmentA extends Fragment implements View.OnClic
                 h.txStartUnit.setText(inputRai.getText());
                 //userPlotModel.setPlotRai(String.valueOf(Util.strToDoubleDefaultZero(inputRai.getText().toString())));
 
-                userPlotModel.setPlotRai(inputRai.getText().toString());
+                userPlotModel.setPlotRai(Util.clearStrNumberFormat(inputRai.getText().toString()));
                 dialog.dismiss();
             }
         });

@@ -573,7 +573,7 @@ public class PBProdDetailCalculateFmentG extends Fragment implements View.OnClic
         ((TextView) dialog.findViewById(R.id.label_t1)).setVisibility(View.GONE);
         ((TextView) dialog.findViewById(R.id.unit_t1)).setVisibility(View.GONE);
 
-        edit.setText(h.txStartUnit.getText());
+        edit.setText(Util.clearStrNumberFormat(h.txStartUnit.getText().toString()));
       //  edit_t1.setText(h.txStartNumnakReam.getText());
 
         btn_ok.setOnClickListener(new View.OnClickListener() {
@@ -583,7 +583,7 @@ public class PBProdDetailCalculateFmentG extends Fragment implements View.OnClic
                // h.txStartNumnakReam.setText(Util.dobbleToStringNumberWithClearDigit(Util.strToDoubleDefaultZero(edit_t1.getText().toString())));
                 //userPlotModel.setPlotRai(String.valueOf(Util.strToDoubleDefaultZero(inputRai.getText().toString())));
 
-                userPlotModel.setAnimalNumber(h.txStartUnit.getText().toString());
+                userPlotModel.setAnimalNumber(Util.clearStrNumberFormat(h.txStartUnit.getText().toString()));
                // userPlotModel.setAnimalWeight(h.txStartNumnakReam.getText().toString());
                 dialog.dismiss();
             }

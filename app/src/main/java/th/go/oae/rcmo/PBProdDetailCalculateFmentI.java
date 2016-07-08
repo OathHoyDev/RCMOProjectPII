@@ -553,10 +553,10 @@ public class PBProdDetailCalculateFmentI extends Fragment implements View.OnClic
         android.widget.TextView btn_cancel = (android.widget.TextView) dialog.findViewById(R.id.cancel);
         android.widget.TextView btn_ok = (android.widget.TextView) dialog.findViewById(R.id.ok);
 
-        rai.setText(h.rai.getText());
-        ngan.setText( h.ngan.getText());
-        sqaWa.setText(h.tarangwa.getText());
-        unit.setText(h.rookKung.getText());
+        rai.setText(Util.clearStrNumberFormat(h.rai.getText().toString()));
+        ngan.setText( Util.clearStrNumberFormat(h.ngan.getText().toString()));
+        sqaWa.setText(Util.clearStrNumberFormat(h.tarangwa.getText().toString()));
+        unit.setText(Util.clearStrNumberFormat(h.rookKung.getText().toString()));
 
         h.rai = (TextView) view.findViewById(R.id.rai);
         h.ngan = (TextView) view.findViewById(R.id.ngan);
@@ -572,10 +572,10 @@ public class PBProdDetailCalculateFmentI extends Fragment implements View.OnClic
                 h.rookKung.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(unit.getText().toString())));
                 //userPlotModel.setPlotRai(String.valueOf(Util.strToDoubleDefaultZero(inputRai.getText().toString())));
 
-                userPlotModel.setPondRai(h.rai.getText().toString());
-                userPlotModel.setPondNgan(h.ngan.getText().toString());
-                userPlotModel.setPondWa(h.tarangwa.getText().toString());
-                userPlotModel.setFisheryNumber(h.rookKung.getText().toString());
+                userPlotModel.setPondRai(Util.clearStrNumberFormat(h.rai.getText().toString()));
+                userPlotModel.setPondNgan(Util.clearStrNumberFormat(h.ngan.getText().toString()));
+                userPlotModel.setPondWa(Util.clearStrNumberFormat(h.tarangwa.getText().toString()));
+                userPlotModel.setFisheryNumber(Util.clearStrNumberFormat(h.rookKung.getText().toString()));
                 dialog.dismiss();
             }
         });

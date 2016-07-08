@@ -1183,57 +1183,58 @@ if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())
 
         android.widget.TextView btn_cancel = (android.widget.TextView) dialog.findViewById(R.id.cancel);
         android.widget.TextView btn_ok = (android.widget.TextView) dialog.findViewById(R.id.ok);
-        if (userPlotModel.getFisheryType().equals("1")) {
-            // bo
-            final EditText rai = (EditText) dialog.findViewById(R.id.rai);
 
-            final EditText ngan = (EditText) dialog.findViewById(R.id.ngan);
-            ngan.setFilters(new InputFilter[]{new InputFilterMinMax(0, 4)});
+        final EditText rai = (EditText) dialog.findViewById(R.id.rai);
 
-            final EditText sqaWa = (EditText) dialog.findViewById(R.id.sqaWa);
-            sqaWa.setFilters(new InputFilter[]{new InputFilterMinMax(0, 100)});
+        final EditText ngan = (EditText) dialog.findViewById(R.id.ngan);
+        ngan.setFilters(new InputFilter[]{new InputFilterMinMax(0, 4)});
 
-            final EditText sqM = (EditText) dialog.findViewById(R.id.sqM);
-            sqM.setFilters(new InputFilter[]{new InputFilterMinMax(0, 400)});
+        final EditText sqaWa = (EditText) dialog.findViewById(R.id.sqaWa);
+        sqaWa.setFilters(new InputFilter[]{new InputFilterMinMax(0, 100)});
 
-            final EditText unit = (EditText) dialog.findViewById(R.id.unit);
+        final EditText sqM = (EditText) dialog.findViewById(R.id.sqM);
+        sqM.setFilters(new InputFilter[]{new InputFilterMinMax(0, 400)});
+
+        final EditText unit = (EditText) dialog.findViewById(R.id.unit);
 
 
-            rai.setText(h.rai.getText());
-            ngan.setText(h.ngan.getText());
-            sqaWa.setText(h.tarangwa.getText());
-            sqM.setText(h.tarangMeter.getText());
-            unit.setText(h.rookPla.getText());
+        rai.setText(Util.clearStrNumberFormat(h.rai.getText().toString()));
+        ngan.setText(Util.clearStrNumberFormat(h.ngan.getText().toString()));
+        sqaWa.setText(Util.clearStrNumberFormat(h.tarangwa.getText().toString()));
+        sqM.setText(Util.clearStrNumberFormat(h.tarangMeter.getText().toString()));
+        unit.setText(Util.clearStrNumberFormat(h.rookPla.getText().toString()));
 
-            h.rai = (TextView) view.findViewById(R.id.rai);
-            h.ngan = (TextView) view.findViewById(R.id.ngan);
-            h.tarangwa = (TextView) view.findViewById(R.id.tarangwa);
-            h.tarangMeter = (TextView) view.findViewById(R.id.tarangMeter);
-            h.rookPla = (TextView) view.findViewById(R.id.rookPla);
+        h.rai = (TextView) view.findViewById(R.id.rai);
+        h.ngan = (TextView) view.findViewById(R.id.ngan);
+        h.tarangwa = (TextView) view.findViewById(R.id.tarangwa);
+        h.tarangMeter = (TextView) view.findViewById(R.id.tarangMeter);
+        h.rookPla = (TextView) view.findViewById(R.id.rookPla);
 
-            btn_ok.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    h.rai.setText(Util.dobbleToStringNumberWithClearDigit(Util.strToDoubleDefaultZero(rai.getText().toString())));
-                    h.ngan.setText(Util.dobbleToStringNumberWithClearDigit(Util.strToDoubleDefaultZero(ngan.getText().toString())));
-                    h.tarangwa.setText(Util.dobbleToStringNumberWithClearDigit(Util.strToDoubleDefaultZero(sqaWa.getText().toString())));
-                    h.tarangMeter.setText(Util.dobbleToStringNumberWithClearDigit(Util.strToDoubleDefaultZero(sqM.getText().toString())));
-                    h.rookPla.setText(Util.dobbleToStringNumberWithClearDigit(Util.strToDoubleDefaultZero(unit.getText().toString())));
-                    //userPlotModel.setPlotRai(String.valueOf(Util.strToDoubleDefaultZero(inputRai.getText().toString())));
+        btn_ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                h.rai.setText(Util.dobbleToStringNumberWithClearDigit(Util.strToDoubleDefaultZero(rai.getText().toString())));
+                h.ngan.setText(Util.dobbleToStringNumberWithClearDigit(Util.strToDoubleDefaultZero(ngan.getText().toString())));
+                h.tarangwa.setText(Util.dobbleToStringNumberWithClearDigit(Util.strToDoubleDefaultZero(sqaWa.getText().toString())));
+                h.tarangMeter.setText(Util.dobbleToStringNumberWithClearDigit(Util.strToDoubleDefaultZero(sqM.getText().toString())));
+                h.rookPla.setText(Util.dobbleToStringNumberWithClearDigit(Util.strToDoubleDefaultZero(unit.getText().toString())));
+                //userPlotModel.setPlotRai(String.valueOf(Util.strToDoubleDefaultZero(inputRai.getText().toString())));
 
-                    userPlotModel.setPondRai(h.rai.getText().toString());
-                    userPlotModel.setPondNgan(h.ngan.getText().toString());
-                    userPlotModel.setPondWa(h.tarangwa.getText().toString());
-                    userPlotModel.setPondMeter(h.tarangMeter.getText().toString());
-                    userPlotModel.setFisheryNumber(h.rookPla.getText().toString());
-                    dialog.dismiss();
+                userPlotModel.setPondRai(Util.clearStrNumberFormat(h.rai.getText().toString()));
+                userPlotModel.setPondNgan(Util.clearStrNumberFormat(h.ngan.getText().toString()));
+                userPlotModel.setPondWa(Util.clearStrNumberFormat(h.tarangwa.getText().toString()));
+                userPlotModel.setPondMeter(Util.clearStrNumberFormat(h.tarangMeter.getText().toString()));
+
+                if (ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())) {
+                    userPlotModel.setFisheryWeight(Util.clearStrNumberFormat(h.rookPla.getText().toString()));
+                } else {
+                    userPlotModel.setFisheryNumber(Util.clearStrNumberFormat(h.rookPla.getText().toString()));
                 }
-            });
+                dialog.dismiss();
+            }
+        });
 
-        }else{
-            // kc
-            bo_layout.setVisibility(View.GONE);
-        }
+
 
         btn_cancel.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -1119,9 +1119,9 @@ public class PBProdDetailCalculateFmentK extends Fragment implements View.OnClic
 
 
 
-              sqM.setText(h.kanardKachang.getText());
-              kc_unit.setText(h.jumnounKachang.getText());
-              unit.setText(h.lookPla.getText());
+              sqM.setText(Util.clearStrNumberFormat(h.kanardKachang.getText().toString()));
+              kc_unit.setText(Util.clearStrNumberFormat(h.jumnounKachang.getText().toString()));
+              unit.setText(Util.clearStrNumberFormat(h.lookPla.getText().toString()));
 
            // h.kanardKachang = (TextView) view.findViewById(R.id.rai);
           //  h.jumnounKachang = (TextView) view.findViewById(R.id.ngan);
@@ -1135,9 +1135,9 @@ public class PBProdDetailCalculateFmentK extends Fragment implements View.OnClic
                     h.jumnounKachang.setText(Util.dobbleToStringNumberWithClearDigit(Util.strToDoubleDefaultZero(kc_unit.getText().toString())));
                     h.lookPla.setText(Util.dobbleToStringNumberWithClearDigit(Util.strToDoubleDefaultZero(unit.getText().toString())));
 
-                    userPlotModel.setCoopMeter(h.kanardKachang.getText().toString());
-                    userPlotModel.setCoopNumber(h.jumnounKachang.getText().toString());
-                    userPlotModel.setFisheryNumber(h.lookPla.getText().toString());
+                    userPlotModel.setCoopMeter(Util.clearStrNumberFormat(h.kanardKachang.getText().toString()));
+                    userPlotModel.setCoopNumber(Util.clearStrNumberFormat(h.jumnounKachang.getText().toString()));
+                    userPlotModel.setFisheryNumber(Util.clearStrNumberFormat(h.lookPla.getText().toString()));
 
                     dialog.dismiss();
                 }

@@ -397,8 +397,8 @@ public class PBProdDetailCalculateFmentF extends Fragment implements View.OnClic
         android.widget.TextView btn_ok = (android.widget.TextView) dialog.findViewById(R.id.ok);
 
 
-        edit.setText(h.txStartUnit.getText());
-        edit_t1.setText(h.txStartPrice.getText());
+        edit.setText(Util.clearStrNumberFormat(h.txStartUnit.getText().toString()));
+        edit_t1.setText(Util.clearStrNumberFormat(h.txStartPrice.getText().toString()));
 
         btn_ok.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -407,8 +407,8 @@ public class PBProdDetailCalculateFmentF extends Fragment implements View.OnClic
                 h.txStartPrice.setText(Util.dobbleToStringNumberWithClearDigit(Util.strToDoubleDefaultZero(edit_t1.getText().toString())));
                 //userPlotModel.setPlotRai(String.valueOf(Util.strToDoubleDefaultZero(inputRai.getText().toString())));
 
-                userPlotModel.setAnimalNumber(h.txStartUnit.getText().toString());
-                userPlotModel.setAnimalPrice(h.txStartPrice.getText().toString());
+                userPlotModel.setAnimalNumber(Util.clearStrNumberFormat(h.txStartUnit.getText().toString()));
+                userPlotModel.setAnimalPrice(Util.clearStrNumberFormat(h.txStartPrice.getText().toString()));
                 dialog.dismiss();
             }
         });
