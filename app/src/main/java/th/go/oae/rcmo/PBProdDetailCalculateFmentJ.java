@@ -87,7 +87,12 @@ public class PBProdDetailCalculateFmentJ extends Fragment implements View.OnClic
             formulaModel.Ngan          =  Util.strToDoubleDefaultZero(userPlotModel.getPondNgan());
             formulaModel.TarangWa      =  Util.strToDoubleDefaultZero( userPlotModel.getPondWa());
             formulaModel.TarangMeter      =  Util.strToDoubleDefaultZero( userPlotModel.getPondMeter());
-            formulaModel.LookPla       =  Util.strToDoubleDefaultZero(userPlotModel.getFisheryNumber());
+
+            if( ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())) {
+                formulaModel.LookPla = Util.strToDoubleDefaultZero(userPlotModel.getFisheryWeight());
+            }else{
+                formulaModel.LookPla = Util.strToDoubleDefaultZero(userPlotModel.getFisheryNumber());
+            }
             tuaOrKilo =userPlotModel.getFisheryNumType();
             formulaModel.TuaOrKilo = Integer.valueOf(userPlotModel.getFisheryNumType());
             formulaModel.calculate();
@@ -315,7 +320,12 @@ if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())
             h.tarangwa.setText(Util.dobbleToStringNumberWithClearDigit(Util.strToDoubleDefaultZero(userPlotModel.getPondWa())));
             h.tarangMeter.setText(Util.dobbleToStringNumberWithClearDigit(Util.strToDoubleDefaultZero(userPlotModel.getPondMeter())));
 
-            h.rookPla.setText(Util.dobbleToStringNumberWithClearDigit(Util.strToDoubleDefaultZero(userPlotModel.getFisheryNumber())));
+            if( ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())) {
+                h.rookPla.setText(Util.dobbleToStringNumberWithClearDigit(Util.strToDoubleDefaultZero(userPlotModel.getFisheryWeight())));
+            }else{
+                h.rookPla.setText(Util.dobbleToStringNumberWithClearDigit(Util.strToDoubleDefaultZero(userPlotModel.getFisheryNumber())));
+            }
+
         }
 
 
@@ -1121,7 +1131,11 @@ if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())
                         h.group4_item_4_3.setText(Util.dobbleToStringNumber(varJ.NamnakPla4));
 
                         userPlotModel.setFisheryNumType(String.valueOf(varJ.getTuaOrKilo()));
-                        //userPlotModel.setFisheryNumType(plotDetail.ge);
+                      if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(varJ.getTuaOrKilo())){
+                          userPlotModel.setFisheryWeight(plotDetail.getFisheryNumber());
+                      }else{
+                            userPlotModel.setFisheryNumber(plotDetail.getFisheryNumber());
+                      }
                        // userPlotModel.setFisheryNumber(plotDetail.getFisheryNumber());
 
                         formulaModel.calculate();
@@ -1136,8 +1150,12 @@ if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())
                         h.tarangwa.setText(plotDetail.getPondMeter());
                         h.rookPla.setText(plotDetail.getFisheryNumber());
                         userPlotModel.setFisheryNumType(plotDetail.getFisheryType());
-                        userPlotModel.setFisheryNumber(plotDetail.getFisheryNumber());
 
+                        if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(plotDetail.getFisheryType())){
+                            userPlotModel.setFisheryWeight(plotDetail.getFisheryWeight());
+                        }else{
+                            userPlotModel.setFisheryNumber(plotDetail.getFisheryNumber());
+                        }
                     }
                 }
             }
