@@ -31,10 +31,10 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/ImageProductLayout"
-            android:id="@+id/relativeLayout2">
+            android:id="@+id/relativeLayout2"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/ImageProductLayout">
 
             <com.neopixl.pixlui.components.textview.TextView
                 android:id="@+id/start"
@@ -112,14 +112,14 @@
                 android:id="@+id/tarangwa"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
+
                 android:text="0"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/RcmoFishBG"
                 android:textColorHint="@color/RcmoFishBG"
                 pixlui:typeface="Quark-Bold.otf"
-                android:layout_above="@+id/rookPlaTx"
-                android:layout_toEndOf="@+id/tarangMeterUnit" />
+                android:layout_below="@+id/rai"
+                android:layout_alignParentStart="true" />
 
             <com.neopixl.pixlui.components.textview.TextView
                 android:id="@+id/tarangwaUnit"
@@ -137,14 +137,14 @@
                 android:id="@+id/tarangMeter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="0dp"
+                android:layout_marginLeft="5dp"
                 android:text="0"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/RcmoFishBG"
                 android:textColorHint="@color/RcmoFishBG"
                 pixlui:typeface="Quark-Bold.otf"
-                android:layout_below="@+id/rai"
-                android:layout_alignParentStart="true" />
+                android:layout_alignTop="@+id/tarangwaUnit"
+                android:layout_toEndOf="@+id/tarangwaUnit" />
 
             <com.neopixl.pixlui.components.textview.TextView
                 android:id="@+id/tarangMeterUnit"
@@ -166,20 +166,20 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/RcmoGrayBG"
                 pixlui:typeface="Quark-Bold.otf"
-                android:layout_below="@+id/tarangMeterUnit"
-                android:layout_alignParentStart="true" />
+                android:layout_below="@+id/tarangwa"
+                />
 
             <com.neopixl.pixlui.components.textview.TextView
                 android:id="@+id/rookPla"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="5dp"
                 android:text="0"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/RcmoFishBG"
                 android:textColorHint="@color/RcmoFishBG"
                 pixlui:typeface="Quark-Bold.otf"
-                android:layout_below="@+id/tarangwa"
+                android:layout_alignTop="@+id/rookPlaTx"
                 android:layout_toEndOf="@+id/rookPlaTx" />
 
             <com.neopixl.pixlui.components.textview.TextView
@@ -190,9 +190,9 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/RcmoGrayBG"
                 pixlui:typeface="Quark-Bold.otf"
+                android:id="@+id/unit_type"
                 android:layout_alignTop="@+id/rookPla"
-                android:layout_toEndOf="@+id/rookPla"
-                android:id="@+id/unit_type" />
+                android:layout_toEndOf="@+id/rookPla" />
 
             <com.neopixl.pixlui.components.button.Button
                 android:id="@+id/btnEditLandSize"
@@ -204,8 +204,7 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/RcmoGrayBG"
                 pixlui:typeface="Quark-Bold.otf"
-                android:layout_marginEnd="19dp"
-                android:layout_below="@+id/unit_type"
+                android:layout_below="@+id/rookPlaTx"
                 android:layout_alignParentEnd="true" />
 
 
@@ -482,7 +481,7 @@
                             android:gravity="left|center"
                             android:inputType="text"
                             android:paddingLeft="10dp"
-                            android:text="บาท"
+                            android:text="บาท/รุ่น"
                             android:textColor="@color/RcmoNormalDarkText"
                             android:textSize="@dimen/cal_item_size"
                             pixlui:typeface="Quark-Bold.otf" />
@@ -545,7 +544,7 @@
                             android:gravity="left|center"
                             android:inputType="text"
                             android:paddingLeft="10dp"
-                            android:text="บาท"
+                            android:text="บาท/รุ่น"
                             android:textColor="@color/RcmoNormalDarkText"
                             android:textSize="@dimen/cal_item_size"
                             pixlui:typeface="Quark-Bold.otf" />
@@ -607,7 +606,7 @@
                             android:gravity="left|center"
                             android:inputType="text"
                             android:paddingLeft="10dp"
-                            android:text="บาท"
+                            android:text="บาท/รุ่น"
                             android:textColor="@color/RcmoNormalDarkText"
                             android:textSize="@dimen/cal_item_size"
                             pixlui:typeface="Quark-Bold.otf" />
@@ -670,7 +669,7 @@
                             android:gravity="left|center"
                             android:inputType="text"
                             android:paddingLeft="10dp"
-                            android:text="บาท"
+                            android:text="บาท/รุ่น"
                             android:textColor="@color/RcmoNormalDarkText"
                             android:textSize="@dimen/cal_item_size"
                             pixlui:typeface="Quark-Bold.otf" />
@@ -733,7 +732,7 @@
                             android:gravity="left|center"
                             android:inputType="text"
                             android:paddingLeft="10dp"
-                            android:text="บาท"
+                            android:text="บาท/เดือน"
                             android:textColor="@color/RcmoNormalDarkText"
                             android:textSize="@dimen/cal_item_size"
                             pixlui:typeface="Quark-Bold.otf" />
@@ -796,7 +795,7 @@
                             android:gravity="left|center"
                             android:inputType="text"
                             android:paddingLeft="10dp"
-                            android:text="บาท"
+                            android:text="บาท/รุ่น"
                             android:textColor="@color/RcmoNormalDarkText"
                             android:textSize="@dimen/cal_item_size"
                             pixlui:typeface="Quark-Bold.otf" />
@@ -859,7 +858,7 @@
                             android:gravity="left|center"
                             android:inputType="text"
                             android:paddingLeft="10dp"
-                            android:text="บาท/เดือน"
+                            android:text="บาท"
                             android:textColor="@color/RcmoNormalDarkText"
                             android:textSize="@dimen/cal_item_size"
                             pixlui:typeface="Quark-Bold.otf" />

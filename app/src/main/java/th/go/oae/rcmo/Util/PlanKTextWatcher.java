@@ -195,18 +195,26 @@ public class PlanKTextWatcher implements TextWatcher {
             value = sumFishSize/sumNumnak;
             value = Util.verifyDoubleDefaultZero(value);
 
-            h.group4_item_4_4.setText(Util.dobbleToStringNumber(value));
+            h.group4_size_avg_item.setText(Util.dobbleToStringNumber(value));
 
         }
 
         if(name.contains("AvgFishPrice")){
 
+            double sumNumnak  =  Util.strToDoubleDefaultZero(h.group4_item_1_3.getText().toString())
+                    + Util.strToDoubleDefaultZero(h.group4_item_2_3.getText().toString())
+                    + Util.strToDoubleDefaultZero(h.group4_item_3_3.getText().toString())
+                    + Util.strToDoubleDefaultZero(h.group4_item_4_3.getText().toString());
+            double sumFishPrice =   Util.strToDoubleDefaultZero(h.group4_item_1_2.getText().toString())*Util.strToDoubleDefaultZero(h.group4_item_1_3.getText().toString())
+                    + Util.strToDoubleDefaultZero(h.group4_item_2_2.getText().toString())*Util.strToDoubleDefaultZero(h.group4_item_2_3.getText().toString())
+                    + Util.strToDoubleDefaultZero(h.group4_item_3_2.getText().toString())*Util.strToDoubleDefaultZero(h.group4_item_3_3.getText().toString())
+                    + Util.strToDoubleDefaultZero(h.group4_item_4_2.getText().toString())*Util.strToDoubleDefaultZero(h.group4_item_4_3.getText().toString());
 
-            value = Util.strToDoubleDefaultZero(h.group4_item_4_2.getText().toString())
-                    *Util.strToDoubleDefaultZero(h.group4_item_4_3.getText().toString());
+            value = sumFishPrice/sumNumnak;
+
             value = Util.verifyDoubleDefaultZero(value);
 
-            h.group4_item_4_4.setText(Util.dobbleToStringNumber(value));
+            h.group4_price_avg_item.setText(Util.dobbleToStringNumber(value));
 
         }
 

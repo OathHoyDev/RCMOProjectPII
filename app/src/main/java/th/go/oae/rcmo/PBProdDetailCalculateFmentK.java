@@ -170,6 +170,11 @@ public class PBProdDetailCalculateFmentK extends Fragment implements View.OnClic
         h.delete_group4_4 = (TextView) view.findViewById(R.id.delete_group4_4);
         h.delete_group4_4.setOnClickListener(this);
 
+        h.group4_size_avg_item = (TextView) view.findViewById(R.id.group4_size_avg_item);
+        h.group4_price_avg_item = (TextView) view.findViewById(R.id.group4_price_avg_item);
+
+
+
         h.group4_1_header = (LinearLayout) view.findViewById(R.id.group4_1_header);
         h.group4_2_header = (LinearLayout) view.findViewById(R.id.group4_2_header);
         h.group4_3_header = (LinearLayout) view.findViewById(R.id.group4_3_header);
@@ -252,25 +257,27 @@ public class PBProdDetailCalculateFmentK extends Fragment implements View.OnClic
         h.group3_item_4.addTextChangedListener(new PlanKTextWatcher(h.group3_item_4, h, ""));
         h.group3_item_5.addTextChangedListener(new PlanKTextWatcher(h.group3_item_5, h, ""));
 
-        h.group4_item_1_1.addTextChangedListener(new PlanKTextWatcher(h.group4_item_1_1, h, ""));
-        h.group4_item_1_2.addTextChangedListener(new PlanKTextWatcher(h.group4_item_1_2, h, "calRakaTKai1"));
-        h.group4_item_1_3.addTextChangedListener(new PlanKTextWatcher(h.group4_item_1_3, h, "calRakaTKai1"));
+        h.group4_item_1_1.addTextChangedListener(new PlanKTextWatcher(h.group4_item_1_1, h, "AvgFishSize,AvgFishPrice"));
+        h.group4_item_1_2.addTextChangedListener(new PlanKTextWatcher(h.group4_item_1_2, h, "calRakaTKai1,AvgFishSize,AvgFishPrice"));
+        h.group4_item_1_3.addTextChangedListener(new PlanKTextWatcher(h.group4_item_1_3, h, "calRakaTKai1,AvgFishSize,AvgFishPrice"));
         h.group4_item_1_4.addTextChangedListener(new PlanKTextWatcher(h.group4_item_1_4, h, ""));
 
-        h.group4_item_2_1.addTextChangedListener(new PlanKTextWatcher(h.group4_item_2_1, h, ""));
-        h.group4_item_2_2.addTextChangedListener(new PlanKTextWatcher(h.group4_item_2_2, h, "calRakaTKai2"));
-        h.group4_item_2_3.addTextChangedListener(new PlanKTextWatcher(h.group4_item_2_3, h, "calRakaTKai2"));
+        h.group4_item_2_1.addTextChangedListener(new PlanKTextWatcher(h.group4_item_2_1, h, "AvgFishSize,AvgFishPrice"));
+        h.group4_item_2_2.addTextChangedListener(new PlanKTextWatcher(h.group4_item_2_2, h, "calRakaTKai2,AvgFishSize,AvgFishPrice"));
+        h.group4_item_2_3.addTextChangedListener(new PlanKTextWatcher(h.group4_item_2_3, h, "calRakaTKai2,AvgFishSize,AvgFishPrice"));
         h.group4_item_2_4.addTextChangedListener(new PlanKTextWatcher(h.group4_item_2_4, h, ""));
 
-        h.group4_item_3_1.addTextChangedListener(new PlanKTextWatcher(h.group4_item_3_1, h, ""));
-        h.group4_item_3_2.addTextChangedListener(new PlanKTextWatcher(h.group4_item_3_2, h, "calRakaTKai3"));
-        h.group4_item_3_3.addTextChangedListener(new PlanKTextWatcher(h.group4_item_3_3, h, "calRakaTKai3"));
+        h.group4_item_3_1.addTextChangedListener(new PlanKTextWatcher(h.group4_item_3_1, h, "AvgFishSize,AvgFishPrice"));
+        h.group4_item_3_2.addTextChangedListener(new PlanKTextWatcher(h.group4_item_3_2, h, "calRakaTKai3,AvgFishSize,AvgFishPrice"));
+        h.group4_item_3_3.addTextChangedListener(new PlanKTextWatcher(h.group4_item_3_3, h, "calRakaTKai3,AvgFishSize,AvgFishPrice"));
         h.group4_item_3_4.addTextChangedListener(new PlanKTextWatcher(h.group4_item_3_4, h, ""));
 
-        h.group4_item_4_1.addTextChangedListener(new PlanKTextWatcher(h.group4_item_4_1, h, ""));
-        h.group4_item_4_2.addTextChangedListener(new PlanKTextWatcher(h.group4_item_4_2, h, "calRakaTKai4"));
-        h.group4_item_4_3.addTextChangedListener(new PlanKTextWatcher(h.group4_item_4_3, h, "calRakaTKai4"));
+        h.group4_item_4_1.addTextChangedListener(new PlanKTextWatcher(h.group4_item_4_1, h, "AvgFishSize,AvgFishPrice"));
+        h.group4_item_4_2.addTextChangedListener(new PlanKTextWatcher(h.group4_item_4_2, h, "calRakaTKai4,AvgFishSize,AvgFishPrice"));
+        h.group4_item_4_3.addTextChangedListener(new PlanKTextWatcher(h.group4_item_4_3, h, "calRakaTKai4,AvgFishSize,AvgFishPrice"));
         h.group4_item_4_4.addTextChangedListener(new PlanKTextWatcher(h.group4_item_4_4, h, ""));
+
+
 
 
         // h.group2_item_5.addTextChangedListener(new PlanITextWatcher(h.group2_item_5, h, "calKaRang"));
@@ -912,6 +919,8 @@ public class PBProdDetailCalculateFmentK extends Fragment implements View.OnClic
         public ImageView group1_header_arrow, group2_header_arrow , group3_header_arrow , group4_header_arrow;
 
         public Button btnOption;
+
+        public  TextView group4_size_avg_item,group4_price_avg_item;
 
         public RelativeLayout headerLayout;
     }
