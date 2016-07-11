@@ -23,6 +23,7 @@ import th.go.oae.rcmo.Model.calculate.FormulaKModel;
 import th.go.oae.rcmo.Module.mGetVariable;
 import th.go.oae.rcmo.Module.mVarPlanA;
 import th.go.oae.rcmo.Module.mVarPlanB;
+import th.go.oae.rcmo.Module.mVarPlanC;
 import th.go.oae.rcmo.Module.mVarPlanD;
 import th.go.oae.rcmo.Module.mVarPlanE;
 import th.go.oae.rcmo.Module.mVarPlanF;
@@ -136,7 +137,7 @@ public class ProductService {
         varA.setAttraDokbia(aModel.AttraDokbia);
         varA.setKaDoolae(aModel.KaDoolae);
         varA.setKaGebGeaw(aModel.KaGebGeaw);
-        varA.setKaNardPlangTDin(aModel.KaNardPlangTDin);
+       // varA.setKaNardPlangTDin(aModel.KaNardPlangTDin);
         varA.setKaPan(aModel.KaPan);
         varA.setKaPluk(aModel.KaPluk);
         varA.setKaPuy(aModel.KaPuy);
@@ -176,7 +177,7 @@ public class ProductService {
         var.setAttraDokbia(model.AttraDokbia);
         var.setKaDoolae(model.KaDoolae);
         var.setKaGebGeaw(model.KaGebGeaw);
-        var.setKaNardPlangTDin(model.KaNardPlangTDin);
+       // var.setKaNardPlangTDin(model.KaNardPlangTDin);
         var.setKaPan(model.KaPan);
         var.setKaPluk(model.KaPluk);
         var.setKaPuy(model.KaPuy);
@@ -211,12 +212,12 @@ public class ProductService {
     }
 
     public static String genJsonPlanVariable(FormulaCModel model){
-        mVarPlanB var = new mVarPlanB();
+        mVarPlanC var = new mVarPlanC();
 
         var.setAttraDokbia(model.AttraDokbia);
         var.setKaDoolae(model.KaDoolae);
         var.setKaGebGeaw(model.KaGebGeaw);
-        var.setKaNardPlangTDin(model.KaNardPlangTDin);
+        //var.setKaNardPlangTDin(model.KaNardPlangTDin);
         var.setKaPan(model.KaPan);
         var.setKaPluk(model.KaPluk);
         var.setKaPuy(model.KaPuy);

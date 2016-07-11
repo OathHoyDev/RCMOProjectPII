@@ -393,7 +393,10 @@ if(userPlotModel.getPrdID().equals("40")
                 "&PrdID=" + userPlotInfo.getPrdID() +
                 "&PrdGrpID=" + userPlotInfo.getPrdGrpID() +
                 "&PlotRai=" + userPlotInfo.getPlotRai() +
-                "&PondRai=" + userPlotInfo.getPondRai() +
+                "&PlotRai=" +userPlotInfo.getPlotRai() +
+                "&PlotNgan=" +userPlotInfo.getPlotNgan() +
+                "&PlotWa=" +userPlotInfo.getPlotWa() +
+                "&PlotMeter=" +userPlotInfo.getPlotMeter() +
                 "&PondNgan=" + userPlotInfo.getPondNgan() +
                 "&PondWa=" + userPlotInfo.getPondWa() +
                 "&PondMeter=" + userPlotInfo.getPondMeter() +
@@ -424,7 +427,12 @@ if(userPlotModel.getPrdID().equals("40")
         param.put("PlotID",userPlotInfo.getPlotID() );
         param.put("PrdID",userPlotInfo.getPrdID());
         param.put("PrdGrpID",userPlotInfo.getPrdGrpID());
+
         param.put("PlotRai",userPlotInfo.getPlotRai());
+        param.put("PlotNgan",userPlotInfo.getPlotNgan());
+        param.put("PlotWa",userPlotInfo.getPlotWa());
+        param.put("PlotMeter",userPlotInfo.getPlotMeter());
+
         param.put("PondRai",userPlotInfo.getPondRai());
         param.put("PondNgan",userPlotInfo.getPondNgan());
         param.put("PondWa",userPlotInfo.getPondWa());
@@ -546,6 +554,26 @@ if(userPlotModel.getPrdID().equals("40")
                         }
                         userPlotModel.setPlotRai(String.valueOf(plotDetail.getPlotRai()));
                     }
+                    if (userPlotModel.getPlotNgan().equals("") || userPlotModel.getPlotNgan().equals("0")) {
+                        if(plotDetail.getPlotNgan().equals("0")){
+                            plotDetail.setPlotNgan("");
+                        }
+                        userPlotModel.setPlotNgan(String.valueOf(plotDetail.getPlotNgan()));
+                    }
+                    if (userPlotModel.getPlotWa().equals("") || userPlotModel.getPlotWa().equals("0")) {
+                        if(plotDetail.getPlotWa().equals("0")){
+                            plotDetail.setPlotWa("");
+                        }
+                        userPlotModel.setPlotWa(String.valueOf(plotDetail.getPlotWa()));
+                    }
+                    if (userPlotModel.getPlotMeter().equals("") || userPlotModel.getPlotMeter().equals("0")) {
+                        if(plotDetail.getPlotMeter().equals("0")){
+                            plotDetail.setPlotMeter("");
+                        }
+                        userPlotModel.setPlotMeter(String.valueOf(plotDetail.getPlotMeter()));
+                    }
+
+
                     if (userPlotModel.getProvCode().equals("") || userPlotModel.getProvCode().equals("0")) {
                         userPlotModel.setProvCode(String.valueOf(plotDetail.getProvCode()));
                     }

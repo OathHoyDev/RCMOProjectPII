@@ -32,6 +32,33 @@ public class UserPlotModel {
     private String plantGrpID="";
     private String prdValue = "";
     private String formularCode = "";
+    private String plotNgan = "";
+    private String plotWa = "";
+    private String plotMeter = "";
+
+    public String getPlotNgan() {
+        return plotNgan;
+    }
+
+    public void setPlotNgan(String plotNgan) {
+        this.plotNgan = plotNgan;
+    }
+
+    public String getPlotWa() {
+        return plotWa;
+    }
+
+    public void setPlotWa(String plotWa) {
+        this.plotWa = plotWa;
+    }
+
+    public String getPlotMeter() {
+        return plotMeter;
+    }
+
+    public void setPlotMeter(String plotMeter) {
+        this.plotMeter = plotMeter;
+    }
 
     public String getFormularCode() {
         return formularCode;

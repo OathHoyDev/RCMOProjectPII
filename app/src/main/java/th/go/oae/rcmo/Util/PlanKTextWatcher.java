@@ -180,6 +180,36 @@ public class PlanKTextWatcher implements TextWatcher {
 
         }
 
+        if(name.contains("AvgFishSize")){
+
+            double sumNumnak  =  Util.strToDoubleDefaultZero(h.group4_item_1_3.getText().toString())
+                               + Util.strToDoubleDefaultZero(h.group4_item_2_3.getText().toString())
+                               + Util.strToDoubleDefaultZero(h.group4_item_3_3.getText().toString())
+                               + Util.strToDoubleDefaultZero(h.group4_item_4_3.getText().toString());
+
+            double sumFishSize =   Util.strToDoubleDefaultZero(h.group4_item_1_1.getText().toString())*Util.strToDoubleDefaultZero(h.group4_item_1_3.getText().toString())
+                                 + Util.strToDoubleDefaultZero(h.group4_item_2_1.getText().toString())*Util.strToDoubleDefaultZero(h.group4_item_2_3.getText().toString())
+                                 + Util.strToDoubleDefaultZero(h.group4_item_3_1.getText().toString())*Util.strToDoubleDefaultZero(h.group4_item_3_3.getText().toString())
+                                 + Util.strToDoubleDefaultZero(h.group4_item_4_1.getText().toString())*Util.strToDoubleDefaultZero(h.group4_item_4_3.getText().toString());
+
+            value = sumFishSize/sumNumnak;
+            value = Util.verifyDoubleDefaultZero(value);
+
+            h.group4_item_4_4.setText(Util.dobbleToStringNumber(value));
+
+        }
+
+        if(name.contains("AvgFishPrice")){
+
+
+            value = Util.strToDoubleDefaultZero(h.group4_item_4_2.getText().toString())
+                    *Util.strToDoubleDefaultZero(h.group4_item_4_3.getText().toString());
+            value = Util.verifyDoubleDefaultZero(value);
+
+            h.group4_item_4_4.setText(Util.dobbleToStringNumber(value));
+
+        }
+
 
         /*
 

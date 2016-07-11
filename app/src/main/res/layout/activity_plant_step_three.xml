@@ -180,25 +180,94 @@
                     android:id="@+id/labelLandUnit">
                 </com.neopixl.pixlui.components.textview.TextView>
 
-                <com.neopixl.pixlui.components.edittext.EditText
-                    pixlui:typeface="Quark-Bold.otf"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="15dp"
-                    android:textStyle="bold"
-                    android:layout_marginTop="@dimen/margin_normal"
-                    android:hint="ไร่"
-                    android:textColor="@color/RcmoNormalDarkText"
-                    android:textColorHint="@color/RcmoHintText"
-                    android:imeOptions="actionDone"
-                    android:background="@color/RcmoLightGrayBG"
-                    android:gravity="center"
-                    android:padding="5dp"
-                    android:inputType="numberDecimal"
-                    android:textCursorDrawable="@drawable/text_cursor"
-                    android:textSize="@dimen/textsize_large"
-                    android:id="@+id/inputRai"/>
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
 
+                    <com.neopixl.pixlui.components.edittext.EditText
+                        android:id="@+id/inputRai"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginTop="@dimen/margin_normal"
+                        android:background="@color/RcmoLightGrayBG"
+                        android:gravity="center"
+                        android:hint="ไร่"
+                        android:imeOptions="actionDone"
+                        android:inputType="number"
+                        android:padding="5dp"
+
+                        android:textColor="@color/RcmoNormalDarkText"
+                        android:textColorHint="@color/RcmoHintText"
+                        android:textCursorDrawable="@drawable/text_cursor"
+                        android:textSize="@dimen/textsize_large"
+                        android:textStyle="bold"
+                        pixlui:typeface="Quark-Bold.otf" />
+                    <com.neopixl.pixlui.components.edittext.EditText
+                        android:id="@+id/inputNgan"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_normal"
+                        android:background="@color/RcmoLightGrayBG"
+                        android:gravity="center"
+                        android:hint="งาน"
+                        android:imeOptions="actionDone"
+                        android:inputType="number"
+                        android:padding="5dp"
+                        android:layout_marginLeft="2dp"
+                        android:textColor="@color/RcmoNormalDarkText"
+                        android:textColorHint="@color/RcmoHintText"
+                        android:textCursorDrawable="@drawable/text_cursor"
+                        android:textSize="@dimen/textsize_large"
+                        android:textStyle="bold"
+                        pixlui:typeface="Quark-Bold.otf" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <com.neopixl.pixlui.components.edittext.EditText
+                        android:id="@+id/inputWa"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginTop="@dimen/margin_normal"
+                        android:background="@color/RcmoLightGrayBG"
+                        android:gravity="center"
+                        android:hint="ตารางวา"
+                        android:imeOptions="actionDone"
+                        android:inputType="number"
+                        android:padding="5dp"
+
+                        android:textColor="@color/RcmoNormalDarkText"
+                        android:textColorHint="@color/RcmoHintText"
+                        android:textCursorDrawable="@drawable/text_cursor"
+                        android:textSize="@dimen/textsize_large"
+                        android:textStyle="bold"
+                        pixlui:typeface="Quark-Bold.otf" />
+                    <com.neopixl.pixlui.components.edittext.EditText
+                        android:id="@+id/inputMeter"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_normal"
+                        android:background="@color/RcmoLightGrayBG"
+                        android:gravity="center"
+                        android:hint="ตารางเมตร"
+                        android:imeOptions="actionDone"
+                        android:inputType="number"
+                        android:padding="5dp"
+                        android:layout_marginLeft="2dp"
+                        android:textColor="@color/RcmoNormalDarkText"
+                        android:textColorHint="@color/RcmoHintText"
+                        android:textCursorDrawable="@drawable/text_cursor"
+                        android:textSize="@dimen/textsize_large"
+                        android:textStyle="bold"
+                        pixlui:typeface="Quark-Bold.otf" />
+                </LinearLayout>
                 <com.neopixl.pixlui.components.textview.TextView
                     pixlui:typeface="Quark-Bold.otf"
                     android:layout_width="match_parent"

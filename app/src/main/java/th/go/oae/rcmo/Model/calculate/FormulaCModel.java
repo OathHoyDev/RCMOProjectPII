@@ -24,7 +24,13 @@ public class FormulaCModel extends AbstractFormulaModel {
     public boolean isCalIncludeOption = false;
 
 
-    public double KaNardPlangTDin = 0;
+   // public double KaNardPlangTDin = 0;
+    public static double Rai = 0;
+    public static double Ngan = 0;
+    public static double Wa = 0;
+    public static double Meter = 0;
+
+    public static double SumRai = 0;
 
     public double KaRang = 0;
     public double KaTreamDin = 0;
@@ -183,8 +189,9 @@ public class FormulaCModel extends AbstractFormulaModel {
     }
 
     public void calculate() {
+        SumRai = ((Rai*4*400)+(Ngan*400)+(Wa*4)+Meter)/1600;
       // ================ 1.1 =====================
-        double KaDoolaePerRai = KaDoolae / KaNardPlangTDin;
+        double KaDoolaePerRai = KaDoolae / SumRai;
 
         double KaRangPerRai = KaDoolaePerRai + KaGebGeaw;
 
@@ -195,20 +202,20 @@ public class FormulaCModel extends AbstractFormulaModel {
 
         KaWassadu = KaPan + KaPuy + KaYaplab + KaWassaduUn;
 
-        double KaPuyPerRai = KaPuy / KaNardPlangTDin;
+        double KaPuyPerRai = KaPuy / SumRai;
 
         //double KaPanPerRai =  KaPan  / KaNardPlangTDin ;
-        double KaYaplabPerRai = KaYaplab / KaNardPlangTDin ;
-        double KaWassaduUnPerRai = KaWassaduUn / KaNardPlangTDin ;
+        double KaYaplabPerRai = KaYaplab / SumRai ;
+        double KaWassaduUnPerRai = KaWassaduUn / SumRai ;
         double KaWassaduPerRai = KaPuyPerRai + KaYaplabPerRai + KaWassaduUnPerRai;
 
         KaSiaOkardLongtoon =  Util.round((KaRang + KaWassadu) * (AttraDokbia / 100) * (12 / 12), 2);
         double KaSiaOkardLongtoonPerRai = Util.round((KaRangPerRai + KaWassaduPerRai) * (AttraDokbia / 100) * (12 / 12), 2);
 
-        double KaChaoTDinPerRai = KaChaoTDin/KaNardPlangTDin;
+        double KaChaoTDinPerRai = KaChaoTDin/SumRai;
 
-         costKaSermOuppakorn = KaNardPlangTDin * KaSermOuppakorn;
-         costKaSiaOkardOuppakorn = KaNardPlangTDin * KaSiaOkardOuppakorn;
+         costKaSermOuppakorn = SumRai * KaSermOuppakorn;
+         costKaSiaOkardOuppakorn = SumRai * KaSiaOkardOuppakorn;
 
         calSumCost = KaRang + KaWassadu + KaSiaOkardLongtoon +  KaChaoTDin;
 
@@ -221,16 +228,23 @@ public class FormulaCModel extends AbstractFormulaModel {
             calLifeCostPerRai += KaSermOuppakorn + KaSiaOkardOuppakorn;
         }
 
-        calStartCostPerRai = calSumCost / KaNardPlangTDin;
+        calStartCostPerRai = calSumCost / SumRai;
+        calStartCostPerRai = Util.verifyDoubleDefaultZero(calStartCostPerRai);
 
         calIncome = (PonPalid * predictPrice)/1000;
-        calIncomePerRai = calIncome / KaNardPlangTDin;
+        calIncome = Util.verifyDoubleDefaultZero(calIncome);
 
+        calIncomePerRai = calIncome / SumRai;
+        calIncomePerRai = Util.verifyDoubleDefaultZero(calIncomePerRai);
 
         calProfitLoss = calIncome - calStartCostPerRai;
-        calProfitLossPerRai = calProfitLoss/KaNardPlangTDin;
+        calProfitLoss = Util.verifyDoubleDefaultZero(calProfitLoss);
+
+        calProfitLossPerRai = calProfitLoss/SumRai;
         calProfitLossPerRai = Util.verifyDoubleDefaultZero(calProfitLossPerRai);
-        TontumMattratarn = TontumMattratarnPerRai * KaNardPlangTDin;
+
+        TontumMattratarn = TontumMattratarnPerRai * SumRai;
+        TontumMattratarn = Util.verifyDoubleDefaultZero(TontumMattratarn);
 
         Log.d("Cal","-----------------------------------------");
         Log.d("Cal","*****  ต้นทุนรวมของเกษตรกร :"+calSumCost);

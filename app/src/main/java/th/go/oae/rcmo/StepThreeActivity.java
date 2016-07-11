@@ -98,6 +98,16 @@ public class StepThreeActivity extends Activity {
             h.labelProductName.setText(productionInfo.getPrdName());
             h.labelProductHierarchy.setText(ServiceInstance.genProdHierarchy("กลุ่มพืช",productionInfo.getProdHierarchy()));
 
+            EditText inputRai   =  (EditText)findViewById(R.id.inputRai);
+            EditText inputNgan  =  (EditText)findViewById(R.id.inputNgan);
+            EditText inputWa    =  (EditText)findViewById(R.id.inputWa);
+            EditText inputMeter =  (EditText)findViewById(R.id.inputMeter);
+
+            inputRai.addTextChangedListener(new StepIIITextWatcher(inputRai, h, ""));
+            inputNgan.setFilters(new InputFilter[]{ new InputFilterMinMax(0, 4)});
+            inputWa.setFilters(new InputFilter[]{ new InputFilterMinMax(0, 100)});
+            inputMeter.setFilters(new InputFilter[]{ new InputFilterMinMax(0, 400)});
+
             String imgName = ServiceInstance.productIMGMap.get(productionInfo.getPrdID());
             if(imgName!=null) {
                 h.prodImg.setImageResource(getResources().getIdentifier(imgName, "drawable", getPackageName()));
@@ -206,12 +216,12 @@ public class StepThreeActivity extends Activity {
                 va_inputNuberOfva.addTextChangedListener(new StepIIITextWatcher(va_inputNuberOfva, h, ""));
 
                 EditText va_inputNgan = (EditText) findViewById(R.id.va_inputNgan);
-                va_inputNgan.setFilters(new InputFilter[]{ new InputFilterMinMax(0.00d, 3.99d)});
+                va_inputNgan.setFilters(new InputFilter[]{ new InputFilterMinMax(0, 4)});
 
 
 
                 EditText va_inputSqWa = (EditText) findViewById(R.id.va_inputSqWa);
-                va_inputSqWa.setFilters(new InputFilter[]{ new InputFilterMinMax(0.00d, 99.99d)});
+                va_inputSqWa.setFilters(new InputFilter[]{ new InputFilterMinMax(0, 100)});
 
 
 
@@ -808,6 +818,9 @@ public class StepThreeActivity extends Activity {
                 "&PrdID=" + userPlotInfo.getPrdID() +
                 "&PrdGrpID=" + userPlotInfo.getPrdGrpID() +
                 "&PlotRai=" +userPlotInfo.getPlotRai() +
+                "&PlotNgan=" +userPlotInfo.getPlotNgan() +
+                "&PlotWa=" +userPlotInfo.getPlotWa() +
+                "&PlotMeter=" +userPlotInfo.getPlotMeter() +
                 "&PondRai=" +userPlotInfo.getPondRai()+
                 "&PondNgan=" +userPlotInfo.getPondNgan()+
                 "&PondWa=" +userPlotInfo.getPondWa()+
@@ -1217,7 +1230,15 @@ public class StepThreeActivity extends Activity {
         if(selectedAmphoe!=null)   { userPlotModel.setAmpCode(selectedAmphoe.getAmpCode());}
         if(selectedprovince!=null) {userPlotModel.setProvCode(selectedprovince.getProvCode());}
 
-        userPlotModel.setPlotRai(((EditText)findViewById(R.id.inputRai)).getText().toString());
+        EditText inputRai   =  (EditText)findViewById(R.id.inputRai);
+        EditText inputNgan  =  (EditText)findViewById(R.id.inputNgan);
+        EditText inputWa    =  (EditText)findViewById(R.id.inputWa);
+        EditText inputMeter =  (EditText)findViewById(R.id.inputMeter);
+
+        userPlotModel.setPlotRai(Util.clearStrNumberFormat(inputRai.getText().toString()));
+        userPlotModel.setPlotNgan(inputNgan.getText().toString());
+        userPlotModel.setPlotWa(inputWa.getText().toString());
+        userPlotModel.setPlotMeter(inputMeter.getText().toString());
 
     }
 

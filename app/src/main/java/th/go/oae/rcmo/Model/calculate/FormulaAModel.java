@@ -17,7 +17,13 @@ public class FormulaAModel extends AbstractFormulaModel {
 
     public boolean isCalIncludeOption = false;
 
-    public static double KaNardPlangTDin = 0;
+    //public static double KaNardPlangTDin = 0;
+    public static double Rai = 0;
+    public static double Ngan = 0;
+    public static double Wa = 0;
+    public static double Meter = 0;
+
+    public static double SumRai = 0;
 
     public static double KaRang = 0;
     public static double KaTreamDin = 0;
@@ -155,11 +161,14 @@ public class FormulaAModel extends AbstractFormulaModel {
 
     public void calculate() {
 
+        SumRai = ((Rai*4*400)+(Ngan*400)+(Wa*4)+Meter)/1600;
+
+
         KaRang = KaTreamDin + KaPluk + KaDoolae + KaGebGeaw;
         KaWassadu = KaPan + KaPuy + KaYaplab + KaWassaduUn;
         KaSiaOkardLongtoon = Util.round((KaRang + KaWassadu) * (AttraDokbia / 100) * (0.5), 2);
-         costKaSermOuppakorn = KaNardPlangTDin * KaSermOuppakorn;
-         costKaSiaOkardOuppakorn = KaNardPlangTDin * KaSiaOkardOuppakorn;
+         costKaSermOuppakorn = SumRai * KaSermOuppakorn;
+         costKaSiaOkardOuppakorn = SumRai * KaSiaOkardOuppakorn;
 
         calSumCost = KaRang + KaWassadu + KaSiaOkardLongtoon + KaChaoTDin ;
 
@@ -168,17 +177,23 @@ public class FormulaAModel extends AbstractFormulaModel {
             calSumCost += costKaSermOuppakorn + costKaSiaOkardOuppakorn;
         }
 
-        calSumCostPerRai = calSumCost/KaNardPlangTDin;
+        calSumCostPerRai = calSumCost/SumRai;
+        calSumCostPerRai = Util.verifyDoubleDefaultZero(calSumCostPerRai);
 
         calIncome = PonPalid * (predictPrice/1000);
+        calIncome = Util.verifyDoubleDefaultZero(calIncome);
 
-        calIncomePerRai = calIncome/KaNardPlangTDin;
+        calIncomePerRai = calIncome/SumRai;
+        calIncomePerRai = Util.verifyDoubleDefaultZero(calIncomePerRai);
 
         calProfitLoss = calIncome - calSumCost;
+        calProfitLoss = Util.verifyDoubleDefaultZero(calProfitLoss);
 
-        calProfitLossPerRai = calProfitLoss / KaNardPlangTDin;
+        calProfitLossPerRai = calProfitLoss / SumRai;
+        calProfitLossPerRai = Util.verifyDoubleDefaultZero(calProfitLossPerRai);
 
-        TontumMattratarn = TontumMattratarnPerRai * KaNardPlangTDin;
+        TontumMattratarn = TontumMattratarnPerRai * SumRai;
+        TontumMattratarn = Util.verifyDoubleDefaultZero(TontumMattratarn);
 
 
     }

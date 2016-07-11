@@ -25,7 +25,13 @@ public class FormulaBModel extends AbstractFormulaModel {
 
 
     public double Year = 0;
-    public double KaNardPlangTDin = 0;
+    //public double KaNardPlangTDin = 0;
+    public static double Rai = 0;
+    public static double Ngan = 0;
+    public static double Wa = 0;
+    public static double Meter = 0;
+
+    public static double SumRai = 0;
     public double KaRang = 0;
     public double KaTreamDin = 0;
     public double KaPluk = 0;
@@ -180,6 +186,8 @@ public class FormulaBModel extends AbstractFormulaModel {
     }
 
     public void calculate() {
+
+        SumRai = ((Rai*4*400)+(Ngan*400)+(Wa*4)+Meter)/1600;
         // E4 = year
         //==============  1.1 =============================
         KaRang = KaTreamDin
@@ -205,24 +213,34 @@ public class FormulaBModel extends AbstractFormulaModel {
         KaSiaOkardLongtoon = Util.round((KaRang + KaWassadu) * (AttraDokbia / 100) * (12 / 12), 2);
         double yearKaSiaOkardLongtoon = Util.round((yearKaRang + yearKaWassadu) * (AttraDokbia / 100) * (12 / 12), 2);
 
-        costKaSermOuppakorn =     KaSermOuppakorn * KaNardPlangTDin;
-        costKaSiaOkardOuppakorn = KaSiaOkardOuppakorn * KaNardPlangTDin;
+        costKaSermOuppakorn =     KaSermOuppakorn * SumRai;
+        costKaSiaOkardOuppakorn = KaSiaOkardOuppakorn * SumRai;
 
         calSumCost = yearKaRang + yearKaWassadu + yearKaSiaOkardLongtoon + KaChaoTDin ;
 
         if (isCalIncludeOption) {
             calSumCost += costKaSermOuppakorn + costKaSiaOkardOuppakorn;
         }
-        calSumCostPerRai = calSumCost/KaNardPlangTDin;
+
+
+        calSumCostPerRai = calSumCost/SumRai;
+        calSumCostPerRai = Util.verifyDoubleDefaultZero(calSumCostPerRai);
 
         calIncome = PonPalid * predictPrice;
-        calIncomePerRai = calIncome / KaNardPlangTDin;
-        calProfitLoss = calIncome - calSumCost;
+        calIncome = Util.verifyDoubleDefaultZero(calIncome);
 
-        calProfitLossPerRai = calProfitLoss/ KaNardPlangTDin;
+
+        calIncomePerRai = calIncome / SumRai;
+        calIncomePerRai = Util.verifyDoubleDefaultZero(calIncomePerRai);
+
+        calProfitLoss = calIncome - calSumCost;
+        calProfitLoss = Util.verifyDoubleDefaultZero(calProfitLoss);
+
+        calProfitLossPerRai = calProfitLoss/ SumRai;
         calProfitLossPerRai = Util.verifyDoubleDefaultZero(calProfitLossPerRai);
 
-        TontumMattratarn = TontumMattratarnPerRai * KaNardPlangTDin;
+        TontumMattratarn = TontumMattratarnPerRai * SumRai;
+        TontumMattratarn = Util.verifyDoubleDefaultZero(TontumMattratarn);
         Log.d("Cal","-----------------------------------------");
         Log.d("Cal","*****  yearKaRang :"+yearKaRang);
         Log.d("Cal","*****  yearKaTreamDin :"+yearKaTreamDin);

@@ -6,6 +6,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.InputFilter;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,6 +33,7 @@ import th.go.oae.rcmo.Module.mGetPlotDetail;
 import th.go.oae.rcmo.Module.mGetVariable;
 import th.go.oae.rcmo.Module.mVarPlanA;
 import th.go.oae.rcmo.Util.BitMapHelper;
+import th.go.oae.rcmo.Util.InputFilterMinMax;
 import th.go.oae.rcmo.Util.PlanATextWatcher;
 import th.go.oae.rcmo.Util.ServiceInstance;
 import th.go.oae.rcmo.Util.Util;
@@ -80,7 +82,11 @@ public class PBProdDetailCalculateFmentA extends Fragment implements View.OnClic
         h.group4_item_1 = (EditText) view.findViewById(R.id.group4_item_1);
 
         h.productIconImg = (ImageView) view.findViewById(R.id.productIconImg);
-        h.txStartUnit = (TextView) view.findViewById(R.id.txStartUnit);
+        h.rai = (TextView) view.findViewById(R.id.rai);
+        h.ngan = (TextView) view.findViewById(R.id.ngan);
+        h.wa = (TextView) view.findViewById(R.id.wa);
+        h.meter = (TextView) view.findViewById(R.id.meter);
+
 
         h.group1_items = (LinearLayout) view.findViewById(R.id.group1_items);
         h.group1_header = (TextView) view.findViewById(R.id.group1_header);
@@ -138,7 +144,11 @@ public class PBProdDetailCalculateFmentA extends Fragment implements View.OnClic
         if (!userPlotModel.getPlotID().equals("") && userPlotModel.getPlotID().equals("0")) {
             initVariableDataFromDB();
         }else{
-            formulaModel.KaNardPlangTDin       =  Util.strToDoubleDefaultZero(userPlotModel.getPlotRai());
+          //  formulaModel.KaNardPlangTDin       =  Util.strToDoubleDefaultZero(userPlotModel.getPlotRai());
+            formulaModel.Rai = Util.strToDoubleDefaultZero (userPlotModel.getPlotRai());
+            formulaModel.Ngan = Util.strToDoubleDefaultZero(userPlotModel.getPlotNgan());
+            formulaModel.Wa = Util.strToDoubleDefaultZero(userPlotModel.getPlotWa());
+            formulaModel.Meter = Util.strToDoubleDefaultZero(userPlotModel.getPlotMeter());
             formulaModel.calculate();
             setUpCalUI(formulaModel);
         }
@@ -153,7 +163,10 @@ public class PBProdDetailCalculateFmentA extends Fragment implements View.OnClic
 
     private void  setAction(){
 
-        h.txStartUnit.addTextChangedListener(new PlanATextWatcher(h.txStartUnit, h, "KaSermOuppakorn,KaSiaOkardOuppakorn"));
+        h.rai.addTextChangedListener(new PlanATextWatcher(h.rai, h,formulaModel, "KaSermOuppakorn,KaSiaOkardOuppakorn"));
+        h.wa.addTextChangedListener(new PlanATextWatcher(h.wa, h,formulaModel, "KaSermOuppakorn,KaSiaOkardOuppakorn"));
+        h.ngan.addTextChangedListener(new PlanATextWatcher(h.ngan, h,formulaModel, "KaSermOuppakorn,KaSiaOkardOuppakorn"));
+        h.meter.addTextChangedListener(new PlanATextWatcher(h.meter, h,formulaModel, "KaSermOuppakorn,KaSiaOkardOuppakorn"));
         h.group1_item_2.addTextChangedListener(new PlanATextWatcher(h.group1_item_2, h, "Karang,KaSiaOkardLongtoon"));
         h.group1_item_3.addTextChangedListener(new PlanATextWatcher(h.group1_item_3, h, "Karang,KaSiaOkardLongtoon"));
         h.group1_item_4.addTextChangedListener(new PlanATextWatcher(h.group1_item_4, h, "Karang,KaSiaOkardLongtoon"));
@@ -209,7 +222,10 @@ public class PBProdDetailCalculateFmentA extends Fragment implements View.OnClic
         aModel.PonPalid = Util.strToDoubleDefaultZero(h.group2_item_1.getText().toString());
         aModel.predictPrice = Util.strToDoubleDefaultZero(h.group3_item_1.getText().toString());
         aModel.AttraDokbia = Util.strToDoubleDefaultZero(h.group4_item_1.getText().toString());
-        aModel.KaNardPlangTDin = Util.strToDoubleDefaultZero(h.txStartUnit.getText().toString());
+        aModel.Rai = Util.strToDoubleDefaultZero (h.rai.getText().toString());
+        aModel.Ngan = Util.strToDoubleDefaultZero(h.ngan.getText().toString());
+        aModel.Wa = Util.strToDoubleDefaultZero(h.wa.getText().toString());
+        aModel.Meter = Util.strToDoubleDefaultZero(h.meter.getText().toString());
 
 
 
@@ -227,7 +243,11 @@ public class PBProdDetailCalculateFmentA extends Fragment implements View.OnClic
             initVariableDataFromDB();
             havePlotId = true;
         } else {
-            h.txStartUnit.setText(userPlotModel.getPlotRai());
+
+            h.rai.setText(Util.strToDobbleToStrFormat(userPlotModel.getPlotRai()));
+            h.ngan.setText(Util.strToDobbleToStrFormat(userPlotModel.getPlotNgan()));
+            h.wa.setText(Util.strToDobbleToStrFormat(userPlotModel.getPlotWa()));
+            h.meter.setText(Util.strToDobbleToStrFormat(userPlotModel.getPlotMeter()));
 
         }
 
@@ -374,8 +394,9 @@ public class PBProdDetailCalculateFmentA extends Fragment implements View.OnClic
 
         private ImageView productIconImg;
 
-        public TextView txStartUnit, calBtn, group1_header, group2_header, group3_header, group4_header;
+        public TextView  calBtn, group1_header, group2_header, group3_header, group4_header;
 
+        public TextView rai,ngan,wa,meter;
         private LinearLayout group1_items, group2_items, group3_items, group4_items;
 
         private ImageView group1_header_arrow, group2_header_arrow, group3_header_arrow, group4_header_arrow;
@@ -404,10 +425,12 @@ public class PBProdDetailCalculateFmentA extends Fragment implements View.OnClic
                     formulaModel.KaSiaOkardOuppakorn = Util.strToDoubleDefaultZero(var.getO());
                     formulaModel.TontumMattratarnPerRai = Util.strToDoubleDefaultZero(var.getCS());
 
+                    formulaModel.SumRai = ((formulaModel.Rai*4*400)+(formulaModel.Ngan*400)+(formulaModel.Wa*4)+formulaModel.Meter)/1600;
                    // h.group1_item_13.setText(String.valueOf(formulaModel.KaSermOuppakorn));
                    // h.group1_item_14.setText(String.valueOf(formulaModel.KaSiaOkardOuppakorn));
-                    h.group1_item_13.setText(Util.dobbleToStringNumber(Util.round(formulaModel.KaSermOuppakorn*formulaModel.KaNardPlangTDin,2)));
-                    h.group1_item_14.setText(Util.dobbleToStringNumber(Util.round(formulaModel.KaSiaOkardOuppakorn* formulaModel.KaNardPlangTDin,2)));
+                    Log.d("Test ","Sum Rai --> "+formulaModel.SumRai);
+                    h.group1_item_13.setText(Util.dobbleToStringNumber(Util.round(formulaModel.KaSermOuppakorn*formulaModel.SumRai,2)));
+                    h.group1_item_14.setText(Util.dobbleToStringNumber(Util.round(formulaModel.KaSiaOkardOuppakorn* formulaModel.SumRai,2)));
 
 
                 }
@@ -425,7 +448,6 @@ public class PBProdDetailCalculateFmentA extends Fragment implements View.OnClic
 
     }
 
-
     private void popUpEditDialog() {
 
 
@@ -435,20 +457,53 @@ public class PBProdDetailCalculateFmentA extends Fragment implements View.OnClic
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 
         android.widget.TextView title = (android.widget.TextView) dialog.findViewById(R.id.edit_rai_label);
-        final android.widget.TextView inputRai = (android.widget.TextView) dialog.findViewById(R.id.edit_rai);
+
+        final android.widget.TextView rai = (android.widget.TextView) dialog.findViewById(R.id.edit_rai);
+        final android.widget.TextView ngan = (android.widget.TextView) dialog.findViewById(R.id.edit_ngan);
+        final android.widget.TextView wa = (android.widget.TextView) dialog.findViewById(R.id.edit_wa);
+        final android.widget.TextView meter = (android.widget.TextView) dialog.findViewById(R.id.edit_meter);
+
         android.widget.TextView btn_cancel = (android.widget.TextView) dialog.findViewById(R.id.cancel);
         android.widget.TextView btn_ok = (android.widget.TextView) dialog.findViewById(R.id.ok);
 
         title.setText("ขนาดแปลงที่ดิน");
-        inputRai.setText(Util.clearStrNumberFormat(h.txStartUnit.getText().toString()));
+        if("0".equals(h.rai.getText().toString()) || "".equals(h.rai.getText().toString())) {
+            rai.setText("");
+        }else{
+            rai.setText(Util.clearStrNumberFormat(h.rai.getText().toString()));
+        }
+        if("0".equals(h.ngan.getText().toString()) || "".equals(h.ngan.getText().toString())) {
+            ngan.setText("");
+        }else{
+            ngan.setText(Util.clearStrNumberFormat(h.ngan.getText().toString()));
+        }
+        if("0".equals(h.wa.getText().toString()) || "".equals(h.wa.getText().toString())) {
+            wa.setText("");
+        }else{
+            wa.setText(Util.clearStrNumberFormat(h.wa.getText().toString()));
+        }
+        if("0".equals(h.meter.getText().toString()) || "".equals(h.meter.getText().toString())) {
+            meter.setText("");
+        }else{
+            meter.setText(Util.clearStrNumberFormat(h.meter.getText().toString()));
+        }
+
+        ngan.setFilters(new InputFilter[]{ new InputFilterMinMax(0, 4)});
+        wa.setFilters(new InputFilter[]{ new InputFilterMinMax(0, 100)});
+        meter.setFilters(new InputFilter[]{ new InputFilterMinMax(0, 400)});
 
         btn_ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                h.txStartUnit.setText(inputRai.getText());
-                //userPlotModel.setPlotRai(String.valueOf(Util.strToDoubleDefaultZero(inputRai.getText().toString())));
+                h.rai.setText  (rai.getText());
+                h.ngan.setText (ngan.getText());
+                h.wa.setText   (wa.getText());
+                h.meter.setText(meter.getText());
 
-                userPlotModel.setPlotRai(Util.clearStrNumberFormat(inputRai.getText().toString()));
+                userPlotModel.setPlotRai  (Util.clearStrNumberFormat(rai.getText().toString()));
+                userPlotModel.setPlotNgan (Util.clearStrNumberFormat(ngan.getText().toString()));
+                userPlotModel.setPlotWa   (Util.clearStrNumberFormat(wa.getText().toString()));
+                userPlotModel.setPlotMeter(Util.clearStrNumberFormat(meter.getText().toString()));
                 dialog.dismiss();
             }
         });
@@ -496,7 +551,10 @@ public class PBProdDetailCalculateFmentA extends Fragment implements View.OnClic
                         aModel.PonPalid         = varA.getPonPalid();
                         aModel.predictPrice     = varA.getRaka();
                         aModel.AttraDokbia      = varA.getAttraDokbia();
-                        aModel.KaNardPlangTDin  = varA.getKaNardPlangTDin();
+                        aModel.Rai              = Util.strToDoubleDefaultZero(plotDetail.getPlotRai());
+                        aModel.Ngan             = Util.strToDoubleDefaultZero(plotDetail.getPlotNgan());
+                        aModel.Wa               = Util.strToDoubleDefaultZero(plotDetail.getPlotWa());
+                        aModel.Meter            = Util.strToDoubleDefaultZero(plotDetail.getPlotMeter());
 
 
                         h.group1_item_2.setText(Util.dobbleToStringNumber(varA.KaTreamDin));
@@ -512,13 +570,20 @@ public class PBProdDetailCalculateFmentA extends Fragment implements View.OnClic
                         h.group3_item_1.setText(Util.dobbleToStringNumber(varA.getRaka()));
                         h.group4_item_1.setText(Util.dobbleToStringNumber(varA.AttraDokbia));
 
-                        h.txStartUnit.setText(Util.dobbleToStringNumber(varA.getKaNardPlangTDin()));
+
+                        h.rai.setText(Util.strToDobbleToStrFormat(plotDetail.getPlotRai()));
+                        h.ngan.setText(Util.strToDobbleToStrFormat(plotDetail.getPlotNgan()));
+                        h.wa.setText(Util.strToDobbleToStrFormat(plotDetail.getPlotWa()));
+                        h.meter.setText(Util.strToDobbleToStrFormat(plotDetail.getPlotMeter()));
 
                         formulaModel.calculate();
 
                         setUpCalUI(formulaModel);
                     }else{
-                        h.txStartUnit.setText(plotDetail.getPlotRai());
+                        h.rai.setText(Util.strToDobbleToStrFormat(plotDetail.getPlotRai()));
+                        h.ngan.setText(Util.strToDobbleToStrFormat(plotDetail.getPlotNgan()));
+                        h.wa.setText(Util.strToDobbleToStrFormat(plotDetail.getPlotWa()));
+                        h.meter.setText(Util.strToDobbleToStrFormat(plotDetail.getPlotMeter()));
                     }
                 }
             }

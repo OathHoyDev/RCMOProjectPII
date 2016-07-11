@@ -5,7 +5,7 @@ package th.go.oae.rcmo.Module;
  */
 public class mVarPlanA {
 
-    public double KaNardPlangTDin ;
+    //public double KaNardPlangTDin ;
     public double KaRang ;
     public double KaTreamDin;
     public double KaPluk;
@@ -27,6 +27,7 @@ public class mVarPlanA {
 
     public double AttraDokbia;
 
+    /*
     public double getKaNardPlangTDin() {
         return KaNardPlangTDin;
     }
@@ -34,7 +35,7 @@ public class mVarPlanA {
     public void setKaNardPlangTDin(double kaNardPlangTDin) {
         KaNardPlangTDin = kaNardPlangTDin;
     }
-
+*/
     public double getKaRang() {
         return KaRang;
     }

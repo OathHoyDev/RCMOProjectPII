@@ -112,14 +112,24 @@ public class PlanBTextWatcher implements TextWatcher {
 
         }
         if(name.contains("KaSermOuppakorn")) {
-            value =   (Util.strToDoubleDefaultZero(h.txStartUnit.getText().toString()))*f.KaSermOuppakorn;
+            double sumRai = (   (Util.strToDoubleDefaultZero(h.rai.getText().toString())*4*400)
+                    + (Util.strToDoubleDefaultZero(h.ngan.getText().toString())*400)
+                    + (Util.strToDoubleDefaultZero(h.wa.getText().toString())*4)
+                    +  Util.strToDoubleDefaultZero(h.meter.getText().toString())
+            )/1600;
+            value =   sumRai*f.KaSermOuppakorn;
 
 
             h.group1_item_13.setText(Util.dobbleToStringNumber(value));
 
         }
         if(name.contains("KaSiaOkardOuppakorn")) {
-            value =    (Util.strToDoubleDefaultZero(h.txStartUnit.getText().toString()))*f.KaSiaOkardOuppakorn;
+            double sumRai = (   (Util.strToDoubleDefaultZero(h.rai.getText().toString())*4*400)
+                    + (Util.strToDoubleDefaultZero(h.ngan.getText().toString())*400)
+                    + (Util.strToDoubleDefaultZero(h.wa.getText().toString())*4)
+                    +  Util.strToDoubleDefaultZero(h.meter.getText().toString())
+            )/1600;
+            value =    sumRai*f.KaSiaOkardOuppakorn;
             h.group1_item_14.setText(Util.dobbleToStringNumber(value));
 
         }

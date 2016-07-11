@@ -42,6 +42,33 @@ public class mGetPlotDetail {
 
     public static class mRespBody {
         String PlotID , PrdID , PrdGrpID , PlantGrpID , RiceTypeID , PlotRai , PondRai , PondNgan , PondWa , PondMeter , CoopMeter , CoopNumber , TamCode , AmpCode , ProvCode , AnimalNumber , AnimalWeight , AnimalPrice , FisheryType , FisheryNumber , FisheryWeight , SeqNo , CalResult , VarName , VarValue ;
+        String PlotNgan;
+        String PlotWa;
+        String PlotMeter;
+
+        public String getPlotNgan() {
+            return PlotNgan;
+        }
+
+        public void setPlotNgan(String plotNgan) {
+            PlotNgan = plotNgan;
+        }
+
+        public String getPlotWa() {
+            return PlotWa;
+        }
+
+        public void setPlotWa(String plotWa) {
+            PlotWa = plotWa;
+        }
+
+        public String getPlotMeter() {
+            return PlotMeter;
+        }
+
+        public void setPlotMeter(String plotMeter) {
+            PlotMeter = plotMeter;
+        }
 
         public String getPlotID() {
             return PlotID;

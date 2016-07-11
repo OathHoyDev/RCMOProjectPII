@@ -72,7 +72,7 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="2dp"
                 android:layout_toRightOf="@+id/KanardKachang"
-                android:text="ตารางเมตร/กระชัง"
+                android:text="ตร.ม/กระชัง"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/RcmoGrayBG"
                 pixlui:typeface="Quark-Bold.otf" />
@@ -81,30 +81,26 @@
                 android:id="@+id/JumnounKachang"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="false"
-                android:layout_alignParentLeft="true"
-                android:layout_below="@+id/KanardKachang"
-                android:layout_marginTop="2dp"
                 android:text="0"
+                android:layout_marginLeft="5dp"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/RcmoFishBG"
                 android:textColorHint="@color/RcmoFishBG"
-                pixlui:typeface="Quark-Bold.otf" />
+                pixlui:typeface="Quark-Bold.otf"
+                android:layout_alignTop="@+id/raiUnit"
+                android:layout_toEndOf="@+id/raiUnit" />
 
             <com.neopixl.pixlui.components.textview.TextView
                 android:id="@+id/JumnounKachangUnit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="false"
-                android:layout_alignParentLeft="false"
-                android:layout_below="@+id/KanardKachang"
                 android:layout_marginLeft="5dp"
-                android:layout_marginTop="2dp"
-                android:layout_toRightOf="@+id/JumnounKachang"
                 android:text="กระชัง/รุ่น"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/RcmoGrayBG"
-                pixlui:typeface="Quark-Bold.otf" />
+                pixlui:typeface="Quark-Bold.otf"
+                android:layout_above="@+id/view2"
+                android:layout_toEndOf="@+id/JumnounKachang" />
 
 
             <com.neopixl.pixlui.components.textview.TextView
@@ -114,7 +110,7 @@
                 android:layout_alignParentEnd="false"
                 android:layout_alignParentLeft="true"
                 android:layout_below="@+id/JumnounKachang"
-                android:layout_marginTop="2dp"
+
                 android:text="ปล่อยลูกปลา"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/RcmoGrayBG"
@@ -128,7 +124,6 @@
                 android:layout_alignParentLeft="false"
                 android:layout_below="@+id/JumnounKachang"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="2dp"
                 android:layout_toRightOf="@+id/rookPlaTx"
                 android:text="0"
                 android:textAppearance="?android:attr/textAppearanceSmall"
@@ -141,26 +136,13 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/JumnounKachang"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="2dp"
+
                 android:layout_toRightOf="@+id/rookPla"
                 android:text="ตัว"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/RcmoGrayBG"
                 pixlui:typeface="Quark-Bold.otf"
                 android:id="@+id/view2" />
-
-            <com.neopixl.pixlui.components.button.Button
-                android:id="@+id/btnEditLandSize"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                android:background="@android:color/transparent"
-                android:text="* กดเพื่อแก้ไข"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@color/RcmoGrayBG"
-                pixlui:typeface="Quark-Bold.otf"
-                android:layout_below="@+id/view2"
-                android:layout_alignParentEnd="true" />
 
         </RelativeLayout>
 
@@ -183,6 +165,19 @@
                 android:layout_centerInParent="true"
                 android:src="@drawable/f2" />
         </RelativeLayout>
+
+        <com.neopixl.pixlui.components.button.Button
+            android:id="@+id/btnEditLandSize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:background="@android:color/transparent"
+            android:text="* กดเพื่อแก้ไข"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/RcmoGrayBG"
+            pixlui:typeface="Quark-Bold.otf"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true" />
 
     </RelativeLayout>
 
@@ -1402,7 +1397,7 @@
                                 android:gravity="left|center"
                                 android:inputType="text"
                                 android:paddingLeft="15dp"
-                                android:text="น้ำหนักที่ขายทั้งหมด"
+                                android:text="น้ำหนักที่ขายได้เฉลี่ย"
                                 android:textColor="@color/RcmoNormalDarkText"
                                 android:textSize="@dimen/cal_item_size"
                                 pixlui:typeface="Quark-Bold.otf" />
@@ -1434,7 +1429,7 @@
                             android:gravity="left|center"
                             android:inputType="text"
                             android:paddingLeft="10dp"
-                            android:text="กิโลกรัม"
+                            android:text="กก./กระชัง"
                             android:textColor="@color/RcmoNormalDarkText"
                             android:textSize="@dimen/cal_item_size"
                             pixlui:typeface="Quark-Bold.otf" />
@@ -1465,7 +1460,7 @@
                                 android:gravity="left|center"
                                 android:inputType="text"
                                 android:paddingLeft="15dp"
-                                android:text="น้ำหนักที่ขายเฉลี่ย"
+                                android:text="น้ำหนักที่ขายทั้งหมด"
                                 android:textColor="@color/RcmoFishBG"
                                 android:textSize="@dimen/cal_item_size"
                                 pixlui:typeface="Quark-Bold.otf" />
@@ -1497,7 +1492,7 @@
                             android:gravity="left|center"
                             android:inputType="text"
                             android:paddingLeft="10dp"
-                            android:text="กก./กระชัง"
+                            android:text="กิโลกรัม"
                             android:textColor="@color/RcmoNormalDarkText"
                             android:textSize="@dimen/cal_item_size"
                             pixlui:typeface="Quark-Bold.otf" />
