@@ -32,6 +32,7 @@ import th.go.oae.rcmo.Model.UserModel;
 import th.go.oae.rcmo.Model.UserPlotModel;
 import th.go.oae.rcmo.Module.mCopyPlot;
 import th.go.oae.rcmo.Module.mDeletePlot;
+import th.go.oae.rcmo.Module.mGetPlotDetail;
 import th.go.oae.rcmo.Module.mGetRegister;
 import th.go.oae.rcmo.Module.mGetVariable;
 import th.go.oae.rcmo.Module.mUpdateUserPlotSeq;
@@ -473,11 +474,13 @@ public class UserPlotListActivity extends Activity {
 
                 if (mVariableBodyLists.size() != 0) {
 
-                    PBProductDetailActivity.userPlotModel = userPlotModel;
+                    //PBProductDetailActivity.userPlotModel = userPlotModel;
                     userPlotModel.setPageId(1);
                     userPlotModel.setFormularCode(mVariableBodyLists.get(0).getFormularCode());
 
-                    startActivity(new Intent(UserPlotListActivity.this, PBProductDetailActivity.class));
+                    API_getPlotDetail(userPlotModel);
+                   // PBProductDetailActivity.userPlotModel = userPlotModel;
+                    //startActivity(new Intent(UserPlotListActivity.this, PBProductDetailActivity.class));
 
 
 
@@ -743,6 +746,43 @@ private void displayNotFoundPlotAnimation() {
 
 }
 
+
+    private void API_getPlotDetail(final UserPlotModel userPlotModel) {
+        /**
+         1.TamCode (ไม่บังคับใส่)
+         2.AmpCode (บังคับใส่)
+         3.ProvCode (บังคับใส่)
+         */
+        new ResponseAPI(UserPlotListActivity.this, new ResponseAPI.OnCallbackAPIListener() {
+            @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
+            @Override
+            public void callbackSuccess(Object obj) {
+
+                mGetPlotDetail mPlotDetail = (mGetPlotDetail) obj;
+                List<mGetPlotDetail.mRespBody> mPlotDetailBodyLists = mPlotDetail.getRespBody();
+
+                if (mPlotDetailBodyLists.size() != 0) {
+                    mGetPlotDetail.mRespBody plotDetail = mPlotDetailBodyLists.get(0);
+                    if(plotDetail.getProvCode()!=null && !plotDetail.getProvCode().equals("") && !plotDetail.getProvCode().equals("0")){
+                        userPlotModel.setProvCode(plotDetail.getProvCode());
+                        userPlotModel.setAmpCode(plotDetail.getAmpCode());
+                        userPlotModel.setTamCode(plotDetail.getTamCode());
+                    }
+
+                    PBProductDetailActivity.userPlotModel = userPlotModel;
+                    startActivity(new Intent(UserPlotListActivity.this, PBProductDetailActivity.class));
+                }
+            }
+
+            @Override
+            public void callbackError(int code, String errorMsg) {
+                Log.d("Error", errorMsg);
+            }
+        }).API_Request(true, RequestServices.ws_getPlotDetail +
+                "?PlotID=" + userPlotModel.getPlotID() +
+                "&ImeiCode=" + ServiceInstance.GetDeviceID(UserPlotListActivity.this));
+
+    }
 /*
   private void showDialogAndDismiss(String msg){
       final android.app.Dialog dialog =   new DialogChoice(UserPlotListActivity.this).Show(msg,"");
