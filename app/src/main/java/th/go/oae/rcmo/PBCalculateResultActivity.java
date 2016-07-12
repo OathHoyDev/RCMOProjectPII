@@ -141,6 +141,15 @@ public class PBCalculateResultActivity extends Activity {
 
             }
         });
+
+        findViewById(R.id.btnHowto).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new DialogChoice(PBCalculateResultActivity.this)
+                        .ShowTutorial("g17");
+
+            }
+        });
     }
 
 
