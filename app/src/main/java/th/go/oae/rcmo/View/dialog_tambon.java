@@ -87,7 +87,12 @@ public class dialog_tambon {
                 dialog.dismiss();
             }
         });
-        
+        dialog.findViewById(R.id.title).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
         dialog.show();
     }
     

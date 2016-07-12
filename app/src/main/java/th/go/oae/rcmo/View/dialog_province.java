@@ -94,6 +94,13 @@ public class dialog_province {
                 dialog.dismiss();
             }
         });
+
+        dialog.findViewById(R.id.title).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
 /*
         my_location.setOnClickListener(new View.OnClickListener() {
             @Override
