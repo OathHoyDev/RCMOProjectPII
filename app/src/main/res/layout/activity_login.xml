@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:id="@+id/mainLoginLayout"
 
-    tools:context="th.co.rcmo.rcmoapp.LoginActivity">
+    tools:context="th.go.oae.rcmo.LoginActivity">
 
 
 
@@ -33,6 +33,7 @@
     <ImageView
         android:layout_width="@dimen/size_howto"
         android:layout_height="@dimen/size_howto"
+        android:id="@+id/btnHowto"
         android:src="@drawable/btn_howto"
         android:layout_alignParentRight="true"
         android:layout_margin="10dp"/>
@@ -84,7 +85,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
-                        android:text="dev v. 0.17"
+                        android:text="dev v. 0.23"
                         android:textColor="@color/RcmoWhiteBG"
                         android:gravity="center"
                         android:textSize="@dimen/textsize_xxsmall"

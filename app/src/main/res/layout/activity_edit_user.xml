@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
    android:id="@+id/mainEditUserLayout"
-    tools:context="th.co.rcmo.rcmoapp.EditUserActivity">
+    tools:context="th.go.oae.rcmo.EditUserActivity">
 
 
 
@@ -39,7 +39,7 @@
         android:layout_width="@dimen/size_howto"
         android:layout_height="@dimen/size_howto"
         android:src="@drawable/btn_howto"
-        android:id="@+id/btnQuestion"
+        android:id="@+id/btnHowto"
         android:layout_alignParentRight="true"
         android:layout_margin="10dp"/>
 

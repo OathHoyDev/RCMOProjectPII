@@ -1,126 +1,248 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:pixlui="http://schemas.android.com/apk/com.neopixl.pixlui"
-    android:orientation="vertical" android:layout_width="wrap_content"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_gravity="center|top"
     android:background="@drawable/dialog_bg"
+    android:orientation="vertical"
     android:paddingBottom="20dp"
 
-   >
+    >
 
     <LinearLayout
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:paddingTop="20dp"
+        android:orientation="vertical"
 
-        android:paddingRight="10dp"
         android:paddingLeft="10dp"
-        android:orientation="vertical">
-
-    <com.neopixl.pixlui.components.textview.TextView
-
-        pixlui:typeface="Quark-Light.otf"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="left"
-        android:id="@+id/edit_rai_label"
-        android:textColor="@color/RcmoNormalDarkText"
-        android:layout_marginLeft="30dp"
-        android:textSize="16sp"
-        android:text="description"/>
-
-        <LinearLayout
-            android:layout_height="match_parent"
-            android:layout_width="match_parent"
-            android:orientation="horizontal" >
-
-
-        <com.neopixl.pixlui.components.edittext.EditText
-
-            pixlui:typeface="Quark-Bold.otf"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="@dimen/margin_normal"
-            android:hint="0.00"
-            android:textColor="@color/RcmoNormalDarkText"
-            android:textColorHint="@color/RcmoHintText"
-            android:imeOptions="actionNext"
-            android:background="@color/RcmoLightGrayBG"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:padding="5dp"
-            android:inputType="numberDecimal"
-            android:textCursorDrawable="@drawable/text_cursor"
-            android:textSize="@dimen/cal_item_size"
-            android:id="@+id/edit_rai"/>
+        android:paddingRight="10dp"
+        android:paddingTop="20dp">
 
         <com.neopixl.pixlui.components.textview.TextView
-            android:layout_marginTop="@dimen/margin_normal"
-            pixlui:typeface="Quark-Light.otf"
-            android:layout_weight="4"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:id="@+id/edit_unit"
+
+            android:id="@+id/edit_rai_label"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:gravity="left"
+            android:text="description"
             android:textColor="@color/RcmoNormalDarkText"
-            android:layout_marginLeft="5dp"
             android:textSize="16sp"
-            android:text="ไร่"/>
-
-        </LinearLayout>
-
-
+            pixlui:typeface="Quark-Light.otf" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:gravity="center">
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
 
-            <com.neopixl.pixlui.components.textview.TextView
-                pixlui:typeface="Quark-Bold.otf"
+            <com.neopixl.pixlui.components.edittext.EditText
+
+                android:id="@+id/edit_rai"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="@dimen/margin_normal"
                 android:layout_weight="1"
-                android:paddingLeft="15dp"
-                android:textStyle="bold"
-                android:layout_marginTop="10dp"
-                android:text="ยกเลิก"
-                android:textColor="@color/RcmoWhiteBG"
-                android:background="@drawable/action_gray_cut_left_conner"
+                android:background="@color/RcmoLightGrayBG"
                 android:gravity="center"
+                android:hint="0"
+                android:imeOptions="actionNext"
+                android:inputType="number"
                 android:padding="5dp"
-                android:textSize="@dimen/textsize_normal"
-                android:clickable="true"
-                android:focusable="true"
-                android:id="@+id/cancel"/>
-
+                android:textColor="@color/RcmoNormalDarkText"
+                android:textColorHint="@color/RcmoHintText"
+                android:textCursorDrawable="@drawable/text_cursor"
+                android:textSize="@dimen/cal_item_size"
+                pixlui:typeface="Quark-Bold.otf" />
 
             <com.neopixl.pixlui.components.textview.TextView
-                pixlui:typeface="Quark-Bold.otf"
+                android:id="@+id/edit_unit"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingLeft="15dp"
-                android:textStyle="bold"
-                android:layout_marginTop="10dp"
-                android:text="ตกลง"
-                android:textColor="@color/RcmoWhiteBG"
-                android:background="@drawable/action_orange_cut_right_conner"
-                android:gravity="center"
-                android:padding="5dp"
-                android:textSize="@dimen/textsize_normal"
-                android:clickable="true"
-                android:focusable="true"
-                android:id="@+id/ok"/>
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:layout_weight="2"
+                android:gravity="left|center"
+                android:text="ไร่"
+                android:textColor="@color/RcmoNormalDarkText"
+                android:textSize="14sp"
+                pixlui:typeface="Quark-Light.otf" />
+
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+
+            <com.neopixl.pixlui.components.edittext.EditText
+
+                android:id="@+id/edit_ngan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:layout_weight="1"
+                android:background="@color/RcmoLightGrayBG"
+                android:gravity="center"
+                android:hint="0"
+                android:imeOptions="actionNext"
+                android:inputType="number"
+                android:padding="5dp"
+                android:textColor="@color/RcmoNormalDarkText"
+                android:textColorHint="@color/RcmoHintText"
+                android:textCursorDrawable="@drawable/text_cursor"
+                android:textSize="@dimen/cal_item_size"
+                pixlui:typeface="Quark-Bold.otf" />
+
+            <com.neopixl.pixlui.components.textview.TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:layout_weight="2"
+                android:gravity="left|center"
+                android:text="งาน"
+                android:textColor="@color/RcmoNormalDarkText"
+                android:textSize="14sp"
+                pixlui:typeface="Quark-Light.otf" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+
+            <com.neopixl.pixlui.components.edittext.EditText
+
+                android:id="@+id/edit_wa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:layout_weight="1"
+                android:background="@color/RcmoLightGrayBG"
+                android:gravity="center"
+                android:hint="0"
+                android:imeOptions="actionNext"
+                android:inputType="number"
+                android:padding="5dp"
+                android:textColor="@color/RcmoNormalDarkText"
+                android:textColorHint="@color/RcmoHintText"
+                android:textCursorDrawable="@drawable/text_cursor"
+                android:textSize="@dimen/cal_item_size"
+                pixlui:typeface="Quark-Bold.otf" />
+
+            <com.neopixl.pixlui.components.textview.TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:layout_weight="2"
+                android:gravity="left|center"
+                android:text="ตารางวา"
+                android:textColor="@color/RcmoNormalDarkText"
+                android:textSize="14sp"
+                pixlui:typeface="Quark-Light.otf" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+
+            <com.neopixl.pixlui.components.edittext.EditText
+
+                android:id="@+id/edit_meter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:layout_weight="1"
+                android:background="@color/RcmoLightGrayBG"
+                android:gravity="center"
+                android:hint="0"
+                android:imeOptions="actionNext"
+                android:inputType="number"
+                android:padding="5dp"
+                android:textColor="@color/RcmoNormalDarkText"
+                android:textColorHint="@color/RcmoHintText"
+                android:textCursorDrawable="@drawable/text_cursor"
+                android:textSize="@dimen/cal_item_size"
+                pixlui:typeface="Quark-Bold.otf" />
+
+            <com.neopixl.pixlui.components.textview.TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:layout_weight="2"
+                android:gravity="left|center"
+                android:text="ตารางเมตร"
+                android:textColor="@color/RcmoNormalDarkText"
+                android:textSize="14sp"
+                pixlui:typeface="Quark-Light.otf" />
+
+        </LinearLayout>
+
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+
+        <com.neopixl.pixlui.components.textview.TextView
+            android:id="@+id/cancel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/action_gray_cut_left_conner"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:padding="5dp"
+            android:paddingLeft="15dp"
+            android:text="ยกเลิก"
+            android:textColor="@color/RcmoWhiteBG"
+            android:textSize="@dimen/textsize_normal"
+            android:textStyle="bold"
+            pixlui:typeface="Quark-Bold.otf" />
+
+
+        <com.neopixl.pixlui.components.textview.TextView
+            android:id="@+id/ok"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/action_orange_cut_right_conner"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:padding="5dp"
+            android:paddingLeft="15dp"
+            android:text="ตกลง"
+            android:textColor="@color/RcmoWhiteBG"
+            android:textSize="@dimen/textsize_normal"
+            android:textStyle="bold"
+            pixlui:typeface="Quark-Bold.otf" />
+    </LinearLayout>
+
+
 
     </LinearLayout>
 

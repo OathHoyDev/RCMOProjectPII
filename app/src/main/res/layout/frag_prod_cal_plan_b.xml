@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:pixlui="http://schemas.android.com/apk/com.neopixl.pixlui"
-    android:orientation="vertical"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/RcmoWhiteBG"
 
     >
-
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/RcmoWhiteBG">
     <RelativeLayout
         android:id="@+id/headerLayout"
         android:layout_width="match_parent"
@@ -26,7 +30,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="120dp"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/ImageProductLayout">
@@ -35,39 +39,113 @@
                 android:id="@+id/start"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="false"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="23dp"
                 android:text="ขนาดแปลงที่ดิน"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/RcmoGrayBG"
-                pixlui:typeface="Quark-Bold.otf" />
+                pixlui:typeface="Quark-Bold.otf"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true" />
+
 
             <com.neopixl.pixlui.components.textview.TextView
-                android:id="@+id/txStartUnit"
+                android:id="@+id/rai"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/start"
-                android:layout_marginLeft="5dp"
-                android:layout_toEndOf="@+id/start"
-                android:text="xx"
+                android:layout_marginLeft="2dp"
+                android:text="0"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/RcmoPlantBG"
-                pixlui:typeface="Quark-Bold.otf" />
+                pixlui:typeface="Quark-Bold.otf"
+                android:layout_centerVertical="true"
+                android:layout_alignParentStart="true" />
+
+            <com.neopixl.pixlui.components.textview.TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/rai"
+                android:layout_marginLeft="2dp"
+                android:layout_toEndOf="@+id/rai"
+                android:layout_toRightOf="@+id/rai"
+                android:text="ไร่"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/RcmoGrayBG"
+                pixlui:typeface="Quark-Bold.otf"
+                android:id="@+id/view3" />
+
+            <com.neopixl.pixlui.components.textview.TextView
+                android:id="@+id/ngan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="0"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/RcmoPlantBG"
+                pixlui:typeface="Quark-Bold.otf"
+                android:layout_alignTop="@+id/textView4"
+                android:layout_toEndOf="@+id/view3" />
 
             <com.neopixl.pixlui.components.textview.TextView
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/txStartUnit"
-                android:layout_marginLeft="5dp"
-                android:layout_toEndOf="@+id/txStartUnit"
-                android:layout_toRightOf="@+id/txStartUnit"
-                android:text="ไร่"
+                android:layout_marginLeft="2dp"
+                android:text="งาน"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/RcmoGrayBG"
-                pixlui:typeface="Quark-Bold.otf" />
+                pixlui:typeface="Quark-Bold.otf"
+                android:layout_alignTop="@+id/view3"
+                android:layout_toEndOf="@+id/ngan" />
+
+            <com.neopixl.pixlui.components.textview.TextView
+                android:id="@+id/wa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="0"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/RcmoPlantBG"
+                pixlui:typeface="Quark-Bold.otf"
+                android:layout_alignTop="@+id/textView4"
+                android:layout_toEndOf="@+id/textView4" />
+
+            <com.neopixl.pixlui.components.textview.TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:text="ตร.วา"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/RcmoGrayBG"
+                pixlui:typeface="Quark-Bold.otf"
+                android:layout_alignTop="@+id/wa"
+                android:layout_toEndOf="@+id/wa"
+                android:id="@+id/view4" />
+
+
+            <com.neopixl.pixlui.components.textview.TextView
+                android:id="@+id/meter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="0"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/RcmoPlantBG"
+                pixlui:typeface="Quark-Bold.otf"
+                android:layout_alignTop="@+id/view4"
+                android:layout_toEndOf="@+id/view4" />
+
+            <com.neopixl.pixlui.components.textview.TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:text="ตร.เมตร"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/RcmoGrayBG"
+                pixlui:typeface="Quark-Bold.otf"
+                android:layout_alignTop="@+id/meter"
+                android:layout_toEndOf="@+id/meter" />
 
             <com.neopixl.pixlui.components.button.Button
                 android:id="@+id/btnEditLandSize"
@@ -110,7 +188,8 @@
     <ScrollView
         android:id="@+id/activity_expandable_scroll_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingBottom="45dp">
 
 
         <LinearLayout
@@ -1016,7 +1095,7 @@
                                 android:padding="5dp"
                                 android:inputType="numberDecimal"
                                 android:textCursorDrawable="@drawable/text_cursor"
-                                android:textSize="@dimen/textsize_normal"
+                                android:textSize="@dimen/cal_item_size"
                                 android:id="@+id/group1_item_12"/>
                         </LinearLayout>
                         <com.neopixl.pixlui.components.textview.TextView
@@ -1482,49 +1561,50 @@
                     pixlui:typeface="Quark-Bold.otf" />
             </RelativeLayout>
 
-            <LinearLayout
-                android:id="@+id/relativeLayout"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentStart="true"
-                android:orientation="horizontal">
-
-                <com.neopixl.pixlui.components.textview.TextView
-                    android:id="@+id/centerImg"
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_gravity="bottom"
-                    android:layout_weight="1"
-                    android:background="@drawable/bottom_green"
-                    android:gravity="center"
-                    pixlui:typeface="Quark-Bold.otf" />
-
-                <com.neopixl.pixlui.components.textview.TextView
-                    android:id="@+id/calBtn"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignTop="@+id/relativeLayout"
-                    android:layout_weight="2"
-                    android:background="@drawable/action_plant_reget"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:gravity="bottom|center"
-                    android:paddingBottom="5dp"
-                    android:text="คำนวน"
-                    android:textColor="@color/RcmoWhiteBG"
-                    android:textSize="@dimen/textsize_large"
-                    pixlui:typeface="Quark-Bold.otf" />
-
-            </LinearLayout>
 
         </LinearLayout>
 
     </ScrollView>
 
-
 </LinearLayout>
+    <LinearLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:orientation="horizontal">
+
+        <com.neopixl.pixlui.components.textview.TextView
+            android:id="@+id/centerImg"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_gravity="bottom"
+            android:layout_weight="1"
+            android:background="@drawable/bottom_green"
+            android:gravity="center"
+            pixlui:typeface="Quark-Bold.otf" />
+
+        <com.neopixl.pixlui.components.textview.TextView
+            android:id="@+id/calBtn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignTop="@+id/relativeLayout"
+            android:layout_weight="2"
+            android:background="@drawable/action_plant_reget"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="bottom|center"
+            android:paddingBottom="5dp"
+            android:text="คำนวน"
+            android:textColor="@color/RcmoWhiteBG"
+            android:textSize="@dimen/textsize_large"
+            pixlui:typeface="Quark-Bold.otf" />
+
+    </LinearLayout>
+
+</RelativeLayout>
