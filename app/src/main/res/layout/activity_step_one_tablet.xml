@@ -41,7 +41,7 @@
 
 
         <ImageView
-            android:id="@+id/btnQuestion"
+            android:id="@+id/btnHowto"
             android:layout_width="@dimen/size_howto"
             android:layout_height="@dimen/size_howto"
             android:layout_alignParentRight="true"
