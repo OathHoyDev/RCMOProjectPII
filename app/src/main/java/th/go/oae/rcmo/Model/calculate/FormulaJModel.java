@@ -170,7 +170,7 @@ public class FormulaJModel {
             KumraiKadtoonSize = calRakaTKaiAll - costTontoonSize;
             KumraiKadtoonSize = Util.verifyDoubleDefaultZero(KumraiKadtoonSize);
 
-            KumraiKadtoonSizeTorKilo = calRakaTKaiChalia - costTontoonMixTorKilo;
+            KumraiKadtoonSizeTorKilo = calRakaTKaiChalia - costTontoonSizeTorKilo;
             KumraiKadtoonSizeTorKilo = Util.verifyDoubleDefaultZero(KumraiKadtoonSizeTorKilo);
 
         }

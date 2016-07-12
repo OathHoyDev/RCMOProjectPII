@@ -1126,11 +1126,15 @@ public class PBProdDetailCalculateFmentK extends Fragment implements View.OnClic
             final EditText unit = (EditText) dialog.findViewById(R.id.unit);
             final EditText sqM = (EditText) dialog.findViewById(R.id.sqM);
 
+        kc_unit.addTextChangedListener(new PlanKTextWatcher(kc_unit, h, ""));
+        unit.addTextChangedListener(new PlanKTextWatcher(unit, h, ""));
+        sqM.addTextChangedListener(new PlanKTextWatcher(sqM, h, ""));
 
 
-              sqM.setText(Util.clearStrNumberFormat(h.kanardKachang.getText().toString()));
-              kc_unit.setText(Util.clearStrNumberFormat(h.jumnounKachang.getText().toString()));
-              unit.setText(Util.clearStrNumberFormat(h.lookPla.getText().toString()));
+
+              sqM.setText(h.kanardKachang.getText().toString());
+              kc_unit.setText(h.jumnounKachang.getText().toString());
+              unit.setText(h.lookPla.getText().toString());
 
            // h.kanardKachang = (TextView) view.findViewById(R.id.rai);
           //  h.jumnounKachang = (TextView) view.findViewById(R.id.ngan);
