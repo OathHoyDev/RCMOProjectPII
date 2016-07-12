@@ -7,14 +7,14 @@
     <RelativeLayout
         android:id="@+id/transFrame"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="400dp"
         android:layout_alignParentRight="false"
         android:background="@android:color/transparent">
 
         <RelativeLayout
             android:id="@+id/borderFrame"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="380dp"
             android:layout_alignParentRight="true"
             android:layout_marginBottom="20dp"
             android:layout_marginLeft="20dp"
@@ -31,7 +31,7 @@
                 <RelativeLayout
                     android:id="@+id/suggess_layout"
                     android:layout_width="match_parent"
-                    android:layout_height="120dp"
+                    android:layout_height="350dp"
                     android:background="@color/RcmoWhiteBG"
                     android:padding="20dp">
 

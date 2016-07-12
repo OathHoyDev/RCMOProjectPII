@@ -406,10 +406,11 @@ public class ProductDetailMapFragment extends Fragment {
 
                     Display display = getActivity().getWindowManager().getDefaultDisplay();
                     int width = display.getWidth();
-                    int popupWidth = (int) (width * 0.7);
-                    int popupHeight = (int) (width * 0.5);
+                    int height = display.getHeight();
+                    int popupWidth = (int) (width * 0.9);
+                    int popupHeight = (int) (height * 0.8);
 
-                    ViewGroup.LayoutParams suggessParam = suggess_layout.getLayoutParams();
+                    //ViewGroup.LayoutParams suggessParam = suggess_layout.getLayoutParams();
                     //suggessParam.height = (int) (popupHeight * 0.9);
 
                     popupWindow = new PopupWindow(
@@ -417,19 +418,19 @@ public class ProductDetailMapFragment extends Fragment {
 
                     popupWindow.setOutsideTouchable(true);
 
+//                    popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+//
+//                        @Override
+//                        public void onDismiss() {
+//                            isPopup = false;
+//                            fadeView.setVisibility(View.GONE);
+//                            popupWindow.dismiss();
+//                        }
+//                    });
+
                     fadeView.setVisibility(View.VISIBLE);
                     popupWindow.showAsDropDown(btnSuggession, Gravity.TOP | Gravity.RIGHT, 0);
                     isPopup = true;
-
-                    popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
-
-                        @Override
-                        public void onDismiss() {
-                            isPopup = false;
-                            fadeView.setVisibility(View.GONE);
-                            popupWindow.dismiss();
-                        }
-                    });
 
                 } else {
 
