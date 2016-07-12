@@ -44,6 +44,9 @@ import th.go.oae.rcmo.Util.ServiceInstance;
 import th.go.oae.rcmo.Util.StepIIITextWatcher;
 import th.go.oae.rcmo.Util.Util;
 import th.go.oae.rcmo.View.DialogChoice;
+import th.go.oae.rcmo.View.dialog_amphoe;
+import th.go.oae.rcmo.View.dialog_province;
+import th.go.oae.rcmo.View.dialog_tambon;
 
 public class StepThreeActivity extends Activity {
      mProvince.mRespBody  selectedprovince = null;
@@ -667,9 +670,31 @@ public class StepThreeActivity extends Activity {
             defaultProvince.setProvCode("0");
             defaultProvince.setProvNameTH("ไม่ระบุ");
 
+
             if (provinceBodyLists.size() != 0) {
                 provinceBodyLists.add(0,defaultProvince);
-                popUpProvinceListDialog(provinceBodyLists);
+               // popUpProvinceListDialog(provinceBodyLists);
+
+                new dialog_province(StepThreeActivity.this,"จังหวัด",provinceBodyLists, new dialog_province.OnSelectChoice() {
+                    @Override
+                    public void selectChoice(mProvince.mRespBody choice) {
+                        selectedprovince = choice;
+                        TextView provinceTextView = (TextView) findViewById(R.id.inputprovice);
+                        TextView amphoeTextView = (TextView) findViewById(R.id.inputAmphoe);
+                        TextView tumbonTextView = (TextView) findViewById(R.id.inputTumbon);
+                        selectedAmphoe = null;
+                        selectedTumbon = null;
+                        if(selectedprovince.getProvCode().equals("0")){
+                            selectedprovince = null;
+                            provinceTextView.setText("");
+                        }else{
+                            provinceTextView.setText(selectedprovince.getProvNameTH());
+                        }
+                        amphoeTextView.setText("");
+                        tumbonTextView.setText("");
+
+                    }
+                });
             }
         }
 
@@ -702,7 +727,27 @@ public class StepThreeActivity extends Activity {
 
                 if (amphoeBodyLists.size() != 0) {
                     amphoeBodyLists.add(0,defaultAmphoe);
-                    popUpAmphoeListDialog(amphoeBodyLists);
+                   // popUpAmphoeListDialog(amphoeBodyLists);
+                    new dialog_amphoe(StepThreeActivity.this,"อำเภอ",amphoeBodyLists, new dialog_amphoe.OnSelectChoice() {
+                        @Override
+                        public void selectChoice(mAmphoe.mRespBody choice) {
+                            selectedAmphoe = choice;
+                            TextView amphoeTextView = (TextView) findViewById(R.id.inputAmphoe);
+                            TextView tumbonTextView = (TextView) findViewById(R.id.inputTumbon);
+
+                            selectedTumbon = null;
+
+
+                            if(selectedAmphoe.getAmpCode().equals("0")) {
+                                selectedAmphoe = null;
+                                amphoeTextView.setText("");
+                            }else{
+                                amphoeTextView.setText(selectedAmphoe.getAmpNameTH());
+                            }
+                            tumbonTextView.setText("");
+
+                        }
+                    });
                 }
             }
 
@@ -737,7 +782,21 @@ public class StepThreeActivity extends Activity {
 
                 if (tumbonBodyLists.size() != 0) {
                     tumbonBodyLists.add(0,defaultTumbon);
-                    popUpTumbonListDialog(tumbonBodyLists);
+                  //  popUpTumbonListDialog(tumbonBodyLists);
+                    new dialog_tambon(StepThreeActivity.this,"ตำบล", tumbonBodyLists, new dialog_tambon.OnSelectChoice() {
+                        @Override
+                        public void selectChoice(mTumbon.mRespBody choice) {
+                            selectedTumbon = choice;
+
+                            TextView tumbonTextView = (TextView) findViewById(R.id.inputTumbon);
+                            if(selectedTumbon.getTamCode().equals("0")){
+                                selectedTumbon = null;
+                                tumbonTextView.setText("");
+                            }else{
+                                tumbonTextView.setText(selectedTumbon.getTamNameTH());
+                            }
+                        }
+                    });
                 }
             }
 
@@ -1366,6 +1425,8 @@ public class StepThreeActivity extends Activity {
 
 
 }
+
+
 
 /*
     private void API_GetUserPlot(final String userId

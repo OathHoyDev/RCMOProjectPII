@@ -63,7 +63,9 @@
     <color name="RcmoTran">#00000000</color>
 
 
-
+    <color name="bg_listview_gray">#f5f5f5</color>
+    <color name="text_gray">#494949</color>
+    <color name="text_gray_soft">#bbbbbb</color>
 
 
 

@@ -1,0 +1,96 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:pixlui="http://schemas.android.com/apk/com.neopixl.pixlui"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/orange_cut_top_conner">
+
+        <com.neopixl.pixlui.components.textview.TextView
+            pixlui:typeface="Quark-Bold.otf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="จังหวัด"
+            android:id="@+id/title"
+            android:textSize="@dimen/textsize_large"
+            android:textColor="@color/RcmoWhiteBG" />
+
+        <ImageView
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:id="@+id/close"
+            android:clickable="true"
+            android:layout_marginRight="20dp"
+            android:src="@drawable/close"/>
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/RcmoLightGrayBG"
+        android:padding="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center|left"
+            android:background="@drawable/white_cut_conner"
+            android:layout_weight="1"
+            android:layout_margin="5dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:adjustViewBounds="true"
+                android:layout_height="30dp"
+                android:src="@drawable/txt_search"
+                android:padding="5dp"/>
+
+            <com.neopixl.pixlui.components.edittext.EditText
+                pixlui:typeface="Quark-Bold.otf"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center|left"
+                android:padding="5dp"
+                android:background="@null"
+                android:inputType="text"
+                android:imeOptions="actionSearch"
+                android:hint="ค้นหา"
+                android:textSize="@dimen/textsize_normal"
+                android:id="@+id/input_search"
+                android:textColor="@color/text_gray" />
+
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_weight="1"
+        android:background="@color/RcmoWhiteBG"
+        android:divider="@null"
+        android:dividerHeight="0dp"
+        android:id="@+id/listview"></ListView>
+
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@drawable/white_cut_bottom_conner"></ListView>
+
+
+
+</LinearLayout>
