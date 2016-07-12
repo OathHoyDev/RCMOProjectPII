@@ -88,7 +88,7 @@
 
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="10dp"
+        android:layout_height="20dp"
         android:background="@drawable/white_cut_bottom_conner"></ListView>
 
 
