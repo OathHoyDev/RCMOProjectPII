@@ -129,7 +129,8 @@ public class ProductDetailMapFragment extends Fragment {
             API_getPlotDetail(plodID);
         } else {
             if ("".equalsIgnoreCase(userPlotModel.getTamCode())) {
-                getCurrentGPSForGetPlotSuit();
+//                getCurrentGPSForGetPlotSuit();
+                displayPlotSuitDefault();
             } else {
                 API_getTumbon(userPlotModel.getProvCode(), userPlotModel.getAmpCode(), userPlotModel.getTamCode());
             }
@@ -354,6 +355,7 @@ public class ProductDetailMapFragment extends Fragment {
                 recommendProduct += "- " + splitTmpString[i].trim() + "\n";
             }
         }
+
     }
 
     private void displayPlotSuitDefault() {
@@ -362,7 +364,7 @@ public class ProductDetailMapFragment extends Fragment {
         com.neopixl.pixlui.components.textview.TextView txAddress = (com.neopixl.pixlui.components.textview.TextView) fragmentView.findViewById(R.id.txAddress);
         ImageView suggessStar = (ImageView) fragmentView.findViewById(R.id.suggessStar);
 
-        txAddress.setText("กรุณาระบุพื้นที่");
+        txAddress.setText("ไม่ได้กำหนดตำแหน่งแปลงที่ดิน");
         txSuggessPlot.setText("ไม่พบข้อมูล");
 
         suggessStar.setImageResource(R.drawable.ic_0star);
@@ -725,6 +727,9 @@ public class ProductDetailMapFragment extends Fragment {
                     if ("".equalsIgnoreCase(userPlotModel.getTamCode())) {
                         getCurrentGPSForGetPlotSuit();
                     } else {
+                        ImageButton btnCenterMarker = (ImageButton) fragmentView.findViewById(R.id.btnCenterMarker);
+                        btnCenterMarker.setVisibility(View.VISIBLE);
+
                         API_getTumbon(userPlotModel.getProvCode(), userPlotModel.getAmpCode(), userPlotModel.getTamCode());
                     }
 
