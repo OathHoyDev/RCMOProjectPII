@@ -441,6 +441,9 @@ public class PBProdDetailCalculateFmentE  extends Fragment implements View.OnCli
                         model.RermLeang =var.RermLeang;
                         model.RakaReamLeang =var.RakaReamLeang;
 
+                        model.isCalIncludeOption =  var.isCalIncludeOption();
+                        setCalKaSermOption( var.isCalIncludeOption());
+                        isCalIncludeOption = var.isCalIncludeOption();
 
                         h.group1_item_2.setText(Util.dobbleToStringNumber(var.KaAHan));
                         h.group1_item_3.setText(Util.dobbleToStringNumber(var.KaYa));
@@ -476,5 +479,15 @@ public class PBProdDetailCalculateFmentE  extends Fragment implements View.OnCli
                 "?PlotID=" + plotID +
                 "&ImeiCode=" + ServiceInstance.GetDeviceID(context));
 
+    }
+
+    public void setCalKaSermOption(boolean isSetOption){
+        if (isSetOption) {
+            h.btnOption.setBackgroundResource(R.drawable.radio_cal_pink_check);
+            isCalIncludeOption = true;
+        } else {
+            h.btnOption.setBackgroundResource(R.drawable.radio_cal_pink);
+            isCalIncludeOption = false;
+        }
     }
 }

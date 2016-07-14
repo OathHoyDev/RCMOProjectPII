@@ -27,17 +27,25 @@ public class mVarPlanC {
     public double Raka;
 
     public double AttraDokbia;
+    public boolean isCalIncludeOption ;
 
-
-/*
-    public double getKaNardPlangTDin() {
-        return KaNardPlangTDin;
+    public boolean isCalIncludeOption() {
+        return isCalIncludeOption;
     }
 
-    public void setKaNardPlangTDin(double kaNardPlangTDin) {
-        KaNardPlangTDin = kaNardPlangTDin;
+    public void setCalIncludeOption(boolean calIncludeOption) {
+        isCalIncludeOption = calIncludeOption;
     }
-*/
+
+    /*
+        public double getKaNardPlangTDin() {
+            return KaNardPlangTDin;
+        }
+
+        public void setKaNardPlangTDin(double kaNardPlangTDin) {
+            KaNardPlangTDin = kaNardPlangTDin;
+        }
+    */
     public double getKaRang() {
         return KaRang;
     }

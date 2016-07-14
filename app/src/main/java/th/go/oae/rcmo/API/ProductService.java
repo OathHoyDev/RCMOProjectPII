@@ -152,7 +152,7 @@ public class ProductService {
         varA.setRaka(aModel.predictPrice);
         varA.setPonPalid(aModel.PonPalid);
         varA.setKaChaoTDin(aModel.KaChaoTDin);
-
+        varA.setCalIncludeOption(aModel.isCalIncludeOption);
 
         //jsonPlanA = TextUtils.htmlEncode(jsonPlanA);
        String json =(new Gson().toJson(varA));
@@ -192,6 +192,7 @@ public class ProductService {
         var.setRaka(model.predictPrice);
         var.setPonPalid(model.PonPalid);
         var.setKaChaoTDin(model.KaChaoTDin);
+        var.setCalIncludeOption(model.isCalIncludeOption);
 
 
         //jsonPlanA = TextUtils.htmlEncode(jsonPlanA);
@@ -232,6 +233,7 @@ public class ProductService {
         var.setRaka(model.predictPrice);
         var.setPonPalid(model.PonPalid);
         var.setKaChaoTDin(model.KaChaoTDin);
+        var.setCalIncludeOption(model.isCalIncludeOption);
 
 
 
@@ -270,6 +272,7 @@ public class ProductService {
 
         var.RermLeang = model.RermLeang;
         var.RakaReamLeang =  model.RakaReamLeang;
+        var.setCalIncludeOption(model.isCalIncludeOption);
 
 
         //jsonPlanA = TextUtils.htmlEncode(jsonPlanA);
@@ -305,6 +308,7 @@ public class ProductService {
 
         var.RermLeang = model.RermLeang;
         var.RakaReamLeang =  model.RakaReamLeang;
+        var.setCalIncludeOption(model.isCalIncludeOption);
 
 
         //jsonPlanA = TextUtils.htmlEncode(jsonPlanA);
@@ -343,6 +347,7 @@ public class ProductService {
 
         var.RermLeang =model.RermLeang;
         var.RakaReamLeang =model.RakaReamLeang;
+        var.setCalIncludeOption(model.isCalIncludeOption);
 
 
         //jsonPlanA = TextUtils.htmlEncode(jsonPlanA);
@@ -381,6 +386,7 @@ public class ProductService {
         var.RayaWera     = model.RayaWera;
         var.RermLeang       = model.RermLeang;
         var.NumnukRermLeang = model.NumnukRermLeang;
+        var.setCalIncludeOption(model.isCalIncludeOption);
 
 
         //jsonPlanA = TextUtils.htmlEncode(jsonPlanA);
@@ -428,6 +434,7 @@ public class ProductService {
 
         var.KaSermOuppakorn = model.KaSermOuppakorn;
         var.KaSiaOkardOuppakorn = model.KaSiaOkardOuppakorn;
+        var.setCalIncludeOption(model.isCalIncludeOption);
 
 
 
@@ -497,7 +504,7 @@ public class ProductService {
         var.NamnakPla4 = model.NamnakPla4;
         var.RakaPla4 = model.RakaPla4;
 
-
+        var.setCalIncludeOption(model.isCalIncludeOption);
 
         //jsonPlanA = TextUtils.htmlEncode(jsonPlanA);
         String json =(new Gson().toJson(var));
@@ -560,7 +567,7 @@ public class ProductService {
         var.NamnakPla4 = model.NamnakPla4;
         var.RakaPla4 = model.RakaPla4;
 
-
+        var.setCalIncludeOption(model.isCalIncludeOption);
 
         //jsonPlanA = TextUtils.htmlEncode(jsonPlanA);
         String json =(new Gson().toJson(var));
@@ -610,7 +617,7 @@ public class ProductService {
         var.KaChaoTDin           =  model.KaChaoTDin;
         var.Raka                =  model.RakaTkai;
         var.JumuanMaeKo          =  model.JumuanMaeKo;
-
+        var.setCalIncludeOption(model.isCalIncludeOption);
 
         //jsonPlanA = TextUtils.htmlEncode(jsonPlanA);
         String json =(new Gson().toJson(var));

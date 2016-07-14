@@ -503,6 +503,10 @@ public class PBProdDetailCalculateFmentH extends Fragment implements View.OnClic
                         model.RermLeang       = var.RermLeang;
                         model.NumnukRermLeang = var.NumnukRermLeang;
 
+                        model.isCalIncludeOption =  var.isCalIncludeOption();
+                        setCalKaSermOption( var.isCalIncludeOption());
+                        isCalIncludeOption = var.isCalIncludeOption();
+
 
                         h.group1_item_1.setText(Util.dobbleToStringNumber(var.JumnuanTKai));
                         h.group1_item_2.setText(Util.dobbleToStringNumber(var.KaPan));
@@ -542,5 +546,15 @@ public class PBProdDetailCalculateFmentH extends Fragment implements View.OnClic
                 "?PlotID=" + plotID +
                 "&ImeiCode=" + ServiceInstance.GetDeviceID(context));
 
+    }
+
+    public void setCalKaSermOption(boolean isSetOption){
+        if (isSetOption) {
+            h.btnOption.setBackgroundResource(R.drawable.radio_cal_pink_check);
+            isCalIncludeOption = true;
+        } else {
+            h.btnOption.setBackgroundResource(R.drawable.radio_cal_pink);
+            isCalIncludeOption = false;
+        }
     }
 }

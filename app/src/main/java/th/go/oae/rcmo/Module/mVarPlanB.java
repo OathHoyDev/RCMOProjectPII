@@ -25,7 +25,7 @@ public class mVarPlanB {
     public double KaSiaOkardOuppakorn ;
     public double PonPalid;
     public double Raka;
-
+    public boolean isCalIncludeOption ;
     public double AttraDokbia;
 
     public double getYear() {
@@ -35,15 +35,24 @@ public class mVarPlanB {
     public void setYear(double year) {
         Year = year;
     }
-/*
-    public double getKaNardPlangTDin() {
-        return KaNardPlangTDin;
+
+    public boolean isCalIncludeOption() {
+        return isCalIncludeOption;
     }
 
-    public void setKaNardPlangTDin(double kaNardPlangTDin) {
-        KaNardPlangTDin = kaNardPlangTDin;
+    public void setCalIncludeOption(boolean calIncludeOption) {
+        isCalIncludeOption = calIncludeOption;
     }
-*/
+
+    /*
+            public double getKaNardPlangTDin() {
+                return KaNardPlangTDin;
+            }
+
+            public void setKaNardPlangTDin(double kaNardPlangTDin) {
+                KaNardPlangTDin = kaNardPlangTDin;
+            }
+        */
     public double getKaRang() {
         return KaRang;
     }

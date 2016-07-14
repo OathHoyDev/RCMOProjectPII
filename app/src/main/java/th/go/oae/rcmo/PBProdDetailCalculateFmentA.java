@@ -557,6 +557,11 @@ public class PBProdDetailCalculateFmentA extends Fragment implements View.OnClic
                         aModel.Meter            = Util.strToDoubleDefaultZero(plotDetail.getPlotMeter());
 
 
+                        aModel.isCalIncludeOption =  varA.isCalIncludeOption();
+                        setCalKaSermOption( varA.isCalIncludeOption());
+                        isCalIncludeOption = varA.isCalIncludeOption();
+
+
                         h.group1_item_2.setText(Util.dobbleToStringNumber(varA.KaTreamDin));
                         h.group1_item_3.setText(Util.dobbleToStringNumber(varA.KaPluk));
                         h.group1_item_4.setText(Util.dobbleToStringNumber(varA.KaDoolae));
@@ -599,6 +604,16 @@ public class PBProdDetailCalculateFmentA extends Fragment implements View.OnClic
     }
 
 
+    public void setCalKaSermOption(boolean isSetOption){
+        if (isSetOption) {
+            h.btnOption.setBackgroundResource(R.drawable.radio_cal_green_check);
+            isCalIncludeOption = true;
+        } else {
+
+            h.btnOption.setBackgroundResource(R.drawable.radio_cal_green);
+            isCalIncludeOption = false;
+        }
+    }
 
 
 }

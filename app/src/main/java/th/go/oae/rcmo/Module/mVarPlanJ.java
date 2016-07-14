@@ -50,6 +50,16 @@ public class mVarPlanJ {
     public double KaSermOuppakorn;
     public double KaSiaOkardOuppakorn;
 
+    public boolean isCalIncludeOption ;
+
+    public boolean isCalIncludeOption() {
+        return isCalIncludeOption;
+    }
+
+    public void setCalIncludeOption(boolean calIncludeOption) {
+        isCalIncludeOption = calIncludeOption;
+    }
+
     public int getTuaOrKilo() {
         return TuaOrKilo;
     }

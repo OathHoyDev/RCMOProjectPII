@@ -547,6 +547,9 @@ public class PBProdDetailCalculateFmentC extends Fragment implements View.OnClic
                         model.Wa               = Util.strToDoubleDefaultZero(plotDetail.getPlotWa());
                         model.Meter            = Util.strToDoubleDefaultZero(plotDetail.getPlotMeter());
 
+                        model.isCalIncludeOption =  var.isCalIncludeOption();
+                        setCalKaSermOption( var.isCalIncludeOption());
+                        isCalIncludeOption = var.isCalIncludeOption();
 
                         h.group1_item_2.setText(Util.dobbleToStringNumber(var.KaTreamDin));
                         h.group1_item_3.setText(Util.dobbleToStringNumber(var.KaPluk));
@@ -587,5 +590,16 @@ public class PBProdDetailCalculateFmentC extends Fragment implements View.OnClic
                 "?PlotID=" + plotID +
                 "&ImeiCode=" + ServiceInstance.GetDeviceID(context));
 
+    }
+
+    public void setCalKaSermOption(boolean isSetOption){
+        if (isSetOption) {
+            h.btnOption.setBackgroundResource(R.drawable.radio_cal_green_check);
+            isCalIncludeOption = true;
+        } else {
+
+            h.btnOption.setBackgroundResource(R.drawable.radio_cal_green);
+            isCalIncludeOption = false;
+        }
     }
 }

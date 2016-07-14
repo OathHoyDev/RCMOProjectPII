@@ -1049,6 +1049,10 @@ public class PBProdDetailCalculateFmentK extends Fragment implements View.OnClic
                         model.NamnakPla4 = var.getNamnakPla4();
                         model.RakaPla4 = var.getRakaPla4();
 
+                        model.isCalIncludeOption =  var.isCalIncludeOption();
+                        setCalKaSermOption( var.isCalIncludeOption());
+                        isCalIncludeOption = var.isCalIncludeOption();
+
                         h.kanardKachang.setText(Util.dobbleToStringNumber(var.KanardKachang));
                         h.jumnounKachang.setText(Util.dobbleToStringNumber(var.JumnounKachang));
 
@@ -1167,5 +1171,15 @@ public class PBProdDetailCalculateFmentK extends Fragment implements View.OnClic
         });
         dialog.show();
 
+    }
+
+    public void setCalKaSermOption(boolean isSetOption){
+        if (isSetOption) {
+            h.btnOption.setBackgroundResource(R.drawable.radio_cal_blue_check);
+            isCalIncludeOption = true;
+        } else {
+            h.btnOption.setBackgroundResource(R.drawable.radio_cal_blue);
+            isCalIncludeOption = false;
+        }
     }
 }

@@ -27,6 +27,10 @@ public class mVarPlanA {
 
     public double AttraDokbia;
 
+
+
+    public boolean isCalIncludeOption ;
+
     /*
     public double getKaNardPlangTDin() {
         return KaNardPlangTDin;
@@ -36,6 +40,15 @@ public class mVarPlanA {
         KaNardPlangTDin = kaNardPlangTDin;
     }
 */
+
+    public boolean isCalIncludeOption() {
+        return isCalIncludeOption;
+    }
+
+    public void setCalIncludeOption(boolean calIncludeOption) {
+        isCalIncludeOption = calIncludeOption;
+    }
+
     public double getKaRang() {
         return KaRang;
     }

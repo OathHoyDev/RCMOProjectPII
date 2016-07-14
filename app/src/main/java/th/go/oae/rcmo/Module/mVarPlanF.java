@@ -25,6 +25,16 @@ public class mVarPlanF {
     public double RaYaWeRaLeang;
     public double KaSiaOkardLongtoon;
 
+    public boolean isCalIncludeOption ;
+
+    public boolean isCalIncludeOption() {
+        return isCalIncludeOption;
+    }
+
+    public void setCalIncludeOption(boolean calIncludeOption) {
+        isCalIncludeOption = calIncludeOption;
+    }
+
     public double getKaiTDaiTangTaeRoem() {
         return KaiTDaiTangTaeRoem;
     }

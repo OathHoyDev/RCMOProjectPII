@@ -21,6 +21,15 @@ public class mVarPlanE {
     public double RakaTKai ;
     public double RaYaWeRaLeang;
     public double KaSiaOkardLongtoon;
+    public boolean isCalIncludeOption ;
+
+    public boolean isCalIncludeOption() {
+        return isCalIncludeOption;
+    }
+
+    public void setCalIncludeOption(boolean calIncludeOption) {
+        isCalIncludeOption = calIncludeOption;
+    }
 
     public double getRermLeang() {
         return RermLeang;

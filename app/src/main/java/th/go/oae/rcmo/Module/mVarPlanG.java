@@ -56,6 +56,15 @@ public class mVarPlanG {
     public double MoonkaKayTungmod ;
 
     public double TontoonTungmod ;
+    public boolean isCalIncludeOption ;
+
+    public boolean isCalIncludeOption() {
+        return isCalIncludeOption;
+    }
+
+    public void setCalIncludeOption(boolean calIncludeOption) {
+        isCalIncludeOption = calIncludeOption;
+    }
 
     public double getKaRang() {
         return KaRang;

@@ -652,6 +652,9 @@ public class PBProdDetailCalculateFmentG extends Fragment implements View.OnClic
                         model.RakaTkai             =  var.Raka;
                         model.JumuanMaeKo          =  var.JumuanMaeKo;
 
+                        model.isCalIncludeOption =  var.isCalIncludeOption();
+                        setCalKaSermOption( var.isCalIncludeOption());
+                        isCalIncludeOption = var.isCalIncludeOption();
 
                         h.group0_item_1.setText(Util.dobbleToStringNumber(var.ParimanNumnom));
 
@@ -706,5 +709,15 @@ public class PBProdDetailCalculateFmentG extends Fragment implements View.OnClic
                 "?PlotID=" + plotID +
                 "&ImeiCode=" + ServiceInstance.GetDeviceID(context));
 
+    }
+
+    public void setCalKaSermOption(boolean isSetOption){
+        if (isSetOption) {
+            h.btnOption.setBackgroundResource(R.drawable.radio_cal_pink_check);
+            isCalIncludeOption = true;
+        } else {
+            h.btnOption.setBackgroundResource(R.drawable.radio_cal_pink);
+            isCalIncludeOption = false;
+        }
     }
 }

@@ -26,6 +26,16 @@ public class mVarPlanH {
     public double NumnukChalia ;
     public double NumnukTungmod ;
 
+    public boolean isCalIncludeOption ;
+
+    public boolean isCalIncludeOption() {
+        return isCalIncludeOption;
+    }
+
+    public void setCalIncludeOption(boolean calIncludeOption) {
+        isCalIncludeOption = calIncludeOption;
+    }
+
     public double getRermLeang() {
         return RermLeang;
     }

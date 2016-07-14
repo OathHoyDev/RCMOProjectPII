@@ -483,6 +483,10 @@ public class PBProdDetailCalculateFmentI extends Fragment implements View.OnClic
                         aModel.KaSermOuppakorn = varI.getKaSermOuppakorn();
                         aModel.KaSiaOkardOuppakorn = varI.getKaSiaOkardOuppakorn();
 
+                        aModel.isCalIncludeOption =  varI.isCalIncludeOption();
+                        setCalKaSermOption( varI.isCalIncludeOption());
+                        isCalIncludeOption = varI.isCalIncludeOption();
+
                         h.rai.setText(Util.dobbleToStringNumber(varI.Rai));
                         h.ngan.setText(Util.dobbleToStringNumber(varI.Ngan));
                         h.tarangwa.setText(Util.dobbleToStringNumber(varI.TarangWa));
@@ -589,6 +593,17 @@ public class PBProdDetailCalculateFmentI extends Fragment implements View.OnClic
         });
         dialog.show();
 
+    }
+
+
+    public void setCalKaSermOption(boolean isSetOption){
+        if (isSetOption) {
+            h.btnOption.setBackgroundResource(R.drawable.radio_cal_blue_check);
+            isCalIncludeOption = true;
+        } else {
+            h.btnOption.setBackgroundResource(R.drawable.radio_cal_blue);
+            isCalIncludeOption = false;
+        }
     }
 
 }

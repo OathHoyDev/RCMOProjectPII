@@ -1091,6 +1091,10 @@ if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())
                         aModel.NamnakPla4 = varJ.getNamnakPla4();
                         aModel.RakaPla4 = varJ.getRakaPla4();
 
+                        aModel.isCalIncludeOption =  varJ.isCalIncludeOption();
+                        setCalKaSermOption( varJ.isCalIncludeOption());
+                        isCalIncludeOption = varJ.isCalIncludeOption();
+
                         h.rai.setText(Util.dobbleToStringNumber(varJ.Rai));
                         h.ngan.setText(Util.dobbleToStringNumber(varJ.Ngan));
                         h.tarangwa.setText(Util.dobbleToStringNumber(varJ.TarangWa));
@@ -1250,6 +1254,16 @@ if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())
         });
         dialog.show();
 
+    }
+
+    public void setCalKaSermOption(boolean isSetOption){
+        if (isSetOption) {
+            h.btnOption.setBackgroundResource(R.drawable.radio_cal_blue_check);
+            isCalIncludeOption = true;
+        } else {
+            h.btnOption.setBackgroundResource(R.drawable.radio_cal_blue);
+            isCalIncludeOption = false;
+        }
     }
 
 }
