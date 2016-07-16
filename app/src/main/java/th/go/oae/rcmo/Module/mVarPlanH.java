@@ -6,8 +6,8 @@ package th.go.oae.rcmo.Module;
 public class mVarPlanH {
 
 
-    public double RermLeang ;
-    public double NumnukRermLeang ;
+   // public double RermLeang ;
+  //  public double NumnukRermLeang ;
     public double JumnuanTKai;
     public double KaPan;
     public double KaAHanKon;
@@ -17,13 +17,13 @@ public class mVarPlanH {
     public double KaNamKaFai ;
     public double KaWassaduSinPleung;
     public double KaChoaTDin ;
-    public double NumnukTPuem ;
     public double RakaChalia;
-    public double Raka ;
+   // public double Raka ;
     public double RayaWera ;
     public double KaSiaOkardLongtoon ;
-
     public double NumnukChalia ;
+
+    public double NumnukTPuem ;
     public double NumnukTungmod ;
 
     public boolean isCalIncludeOption ;
@@ -35,7 +35,7 @@ public class mVarPlanH {
     public void setCalIncludeOption(boolean calIncludeOption) {
         isCalIncludeOption = calIncludeOption;
     }
-
+/*
     public double getRermLeang() {
         return RermLeang;
     }
@@ -51,7 +51,7 @@ public class mVarPlanH {
     public void setNumnukRermLeang(double numnukRermLeang) {
         NumnukRermLeang = numnukRermLeang;
     }
-
+*/
     public double getJumnuanTKai() {
         return JumnuanTKai;
     }
@@ -155,7 +155,7 @@ public class mVarPlanH {
     public void setRakaChalia(double rakaChalia) {
         RakaChalia = rakaChalia;
     }
-
+/*
     public double getRaka() {
         return Raka;
     }
@@ -163,7 +163,7 @@ public class mVarPlanH {
     public void setRaka(double raka) {
         Raka = raka;
     }
-
+*/
     public double getRayaWera() {
         return RayaWera;
     }

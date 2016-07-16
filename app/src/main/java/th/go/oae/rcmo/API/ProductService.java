@@ -306,8 +306,8 @@ public class ProductService {
         var.RakaTKai =  model.RakaTKai ;
         var.RaYaWeRaLeang = model.RaYaWeRaLeang;
 
-        var.RermLeang = model.RermLeang;
-        var.RakaReamLeang =  model.RakaReamLeang;
+       // var.RermLeang = model.RermLeang;
+        //var.RakaReamLeang =  model.RakaReamLeang;
         var.setCalIncludeOption(model.isCalIncludeOption);
 
 
@@ -345,8 +345,8 @@ public class ProductService {
         var.PonPloyDai =   model.PonPloyDai;
         var.RaYaWeRaLeang = model.RaYaWeRaLeang;
 
-        var.RermLeang =model.RermLeang;
-        var.RakaReamLeang =model.RakaReamLeang;
+        //var.RermLeang =model.RermLeang;
+      //  var.RakaReamLeang =model.RakaReamLeang;
         var.setCalIncludeOption(model.isCalIncludeOption);
 
 
@@ -384,8 +384,8 @@ public class ProductService {
         var.NumnukChalia = model.NumnukChalia;
         var.RakaChalia   = model.RakaChalia;
         var.RayaWera     = model.RayaWera;
-        var.RermLeang       = model.RermLeang;
-        var.NumnukRermLeang = model.NumnukRermLeang;
+       // var.RermLeang       = model.RermLeang;
+      //  var.NumnukRermLeang = model.NumnukRermLeang;
         var.setCalIncludeOption(model.isCalIncludeOption);
 
 
@@ -616,7 +616,7 @@ public class ProductService {
         var.PerKaChaiJay           =  model.PerKaChaiJay;
         var.KaChaoTDin           =  model.KaChaoTDin;
         var.Raka                =  model.RakaTkai;
-        var.JumuanMaeKo          =  model.JumuanMaeKo;
+       // var.JumuanMaeKo          =  model.JumuanMaeKo;
         var.setCalIncludeOption(model.isCalIncludeOption);
 
         //jsonPlanA = TextUtils.htmlEncode(jsonPlanA);

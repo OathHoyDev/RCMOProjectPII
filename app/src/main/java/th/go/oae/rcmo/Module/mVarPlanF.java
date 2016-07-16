@@ -6,9 +6,9 @@ package th.go.oae.rcmo.Module;
 public class mVarPlanF {
 
 
-    public double RermLeang ;
-    public double RakaReamLeang ;
-    public double KaPan;
+    //public double RermLeang ;
+   // public double RakaReamLeang ;
+   // public double KaPan;
     public double KaAHan;
     public double KaYa;
     public double KaRangGgan ;
@@ -23,7 +23,7 @@ public class mVarPlanF {
     public double RakaTKai ;
     public double PonPloyDai;
     public double RaYaWeRaLeang;
-    public double KaSiaOkardLongtoon;
+   // public double KaSiaOkardLongtoon;
 
     public boolean isCalIncludeOption ;
 
@@ -43,6 +43,7 @@ public class mVarPlanF {
         KaiTDaiTangTaeRoem = kaiTDaiTangTaeRoem;
     }
 
+    /*
     public double getPonPloyDai() {
         return PonPloyDai;
     }
@@ -74,6 +75,7 @@ public class mVarPlanF {
     public void setKaPan(double kaPan) {
         KaPan = kaPan;
     }
+    */
 
     public double getKaAHan() {
         return KaAHan;
@@ -155,6 +157,7 @@ public class mVarPlanF {
         RaYaWeRaLeang = raYaWeRaLeang;
     }
 
+    /*
     public double getKaSiaOkardLongtoon() {
         return KaSiaOkardLongtoon;
     }
@@ -162,4 +165,5 @@ public class mVarPlanF {
     public void setKaSiaOkardLongtoon(double kaSiaOkardLongtoon) {
         KaSiaOkardLongtoon = kaSiaOkardLongtoon;
     }
+    */
 }

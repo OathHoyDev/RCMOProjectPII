@@ -500,8 +500,8 @@ public class PBProdDetailCalculateFmentH extends Fragment implements View.OnClic
                         model.NumnukChalia = var.NumnukChalia;
                         model.RakaChalia   = var.RakaChalia;
                         model.RayaWera     = var.RayaWera;
-                        model.RermLeang       = var.RermLeang;
-                        model.NumnukRermLeang = var.NumnukRermLeang;
+                        model.RermLeang       =Util.strToDoubleDefaultZero(plotDetail.getAnimalNumber());;
+                        model.NumnukRermLeang = Util.strToDoubleDefaultZero(plotDetail.getAnimalWeight());
 
                         model.isCalIncludeOption =  var.isCalIncludeOption();
                         setCalKaSermOption( var.isCalIncludeOption());
@@ -523,8 +523,8 @@ public class PBProdDetailCalculateFmentH extends Fragment implements View.OnClic
                         h.group3_item_1.setText(Util.dobbleToStringNumber(var.RakaChalia));
                         h.group4_item_1.setText(Util.dobbleToStringNumber(var.RayaWera));
 
-                        h.txStartUnit.setText(Util.dobbleToStringNumberWithClearDigit(var.RermLeang));
-                        h.txStartNumnakReam.setText(Util.dobbleToStringNumberWithClearDigit(var.NumnukRermLeang));
+                        h.txStartUnit.setText(Util.strToDobbleToStrFormat(plotDetail.getAnimalNumber()));
+                        h.txStartNumnakReam.setText(Util.strToDobbleToStrFormat(plotDetail.getAnimalWeight()));
 
 
                         formulaModel.calculate();

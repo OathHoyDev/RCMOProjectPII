@@ -650,7 +650,7 @@ public class PBProdDetailCalculateFmentG extends Fragment implements View.OnClic
                         model.PerKaChaiJay           =  var.PerKaChaiJay;
                         model.KaChaoTDin           =  var.KaChaoTDin;
                         model.RakaTkai             =  var.Raka;
-                        model.JumuanMaeKo          =  var.JumuanMaeKo;
+                        model.JumuanMaeKo          =  Util.strToDoubleDefaultZero(plotDetail.getAnimalNumber());
 
                         model.isCalIncludeOption =  var.isCalIncludeOption();
                         setCalKaSermOption( var.isCalIncludeOption());
@@ -688,7 +688,7 @@ public class PBProdDetailCalculateFmentG extends Fragment implements View.OnClic
 
                         h.group5_item_1.setText(Util.dobbleToStringNumber(var.Raka));
 
-                        h.txStartUnit.setText(Util.dobbleToStringNumber(var.JumuanMaeKo));
+                        h.txStartUnit.setText(Util.strToDobbleToStrFormat(plotDetail.getAnimalNumber()));
 
 
                         formulaModel.calculate();

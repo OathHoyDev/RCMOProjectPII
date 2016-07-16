@@ -6,22 +6,16 @@ package th.go.oae.rcmo.Module;
 public class mVarPlanG {
 
 
-    public double JumuanMaeKo ;
+   // public double JumuanMaeKo ;
     public double ParimanNumnom ;
-    public double KumnuanAnimanl;
+   // public double KumnuanAnimanl;
     //public double JumnuanKo;
     public double KoRakRakGerd;
     public double Ko1_2;
     public double Ko2;
     public double MaeKoReedNom;
-    public double MoonkaAnimalTuangNumnuk ;
-
-    public double KumnuanTontoonNumnomChaLia;
-    public double KumnuanTontoonPunPae ;
-    public double KaRang;
     public double KaReedNom ;
     public double KaRangReang;
-    public double Kawassadu ;
     public double KaPasomPan ;
     public double KaAHan ;
     public double KaAHanYab ;
@@ -29,6 +23,24 @@ public class mVarPlanG {
     public double KaNamKaFai ;
     public double KaNamMan ;
     public double KaWassaduSinPleung ;
+    public double KaSomsamOuppakorn ;
+    public double KaChaoTDin ;
+    public double KaKonsong;
+    public double KaChaiJay ;
+    public double Raka;
+
+
+
+    //public double MoonkaAnimalTuangNumnuk ;
+
+  //  public double KumnuanTontoonNumnomChaLia;
+   // public double KumnuanTontoonPunPae ;
+   // public double KaRang;
+
+
+   // public double Kawassadu ;
+
+
 
     public double PerKaNamKaFai;
     public double PerKaNamMan;
@@ -37,25 +49,23 @@ public class mVarPlanG {
     public double PerKaChaiJay;
 
 
-    public double KaSomsamOuppakorn ;
-    public double KaKonsong;
-    public double KaChaiJay ;
-    public double KaSiaOkardLongtoon ;
-    public double KumnuanTontoonKongTee ;
 
-    public double KaChaoTDin ;
-    public double KaSermRongRaun;
-    public double KaSermMaeKo ;
-    public double KaSiaOkardRongRaun ;
-    public double KaSiaOkardMaeKo ;
+   // public double KaSiaOkardLongtoon ;
+    //public double KumnuanTontoonKongTee ;
 
-    public double TontoonPalidNumnom ;
-    public double Raka;
-    public double KumraiKadtoon ;
-    public double NamnomDib ;
-    public double MoonkaKayTungmod ;
 
-    public double TontoonTungmod ;
+   // public double KaSermRongRaun;
+   // public double KaSermMaeKo ;
+   // public double KaSiaOkardRongRaun ;
+   // public double KaSiaOkardMaeKo ;
+
+   // public double TontoonPalidNumnom ;
+
+   //public double KumraiKadtoon ;
+   // public double NamnomDib ;
+   //public double MoonkaKayTungmod ;
+//
+   // public double TontoonTungmod ;
     public boolean isCalIncludeOption ;
 
     public boolean isCalIncludeOption() {
@@ -66,6 +76,7 @@ public class mVarPlanG {
         isCalIncludeOption = calIncludeOption;
     }
 
+    /*
     public double getKaRang() {
         return KaRang;
     }
@@ -73,6 +84,7 @@ public class mVarPlanG {
     public void setKaRang(double kaRang) {
         KaRang = kaRang;
     }
+    */
 
     public double getPerKaNamKaFai() {
         return PerKaNamKaFai;
@@ -114,6 +126,7 @@ public class mVarPlanG {
         PerKaChaiJay = perKaChaiJay;
     }
 
+    /*
     public double getJumuanMaeKo() {
         return JumuanMaeKo;
     }
@@ -121,7 +134,7 @@ public class mVarPlanG {
     public void setJumuanMaeKo(double jumuanMaeKo) {
         JumuanMaeKo = jumuanMaeKo;
     }
-
+*/
     public double getParimanNumnom() {
         return ParimanNumnom;
     }
@@ -129,7 +142,7 @@ public class mVarPlanG {
     public void setParimanNumnom(double parimanNumnom) {
         ParimanNumnom = parimanNumnom;
     }
-
+/*
     public double getKumnuanAnimanl() {
         return KumnuanAnimanl;
     }
@@ -137,6 +150,7 @@ public class mVarPlanG {
     public void setKumnuanAnimanl(double kumnuanAnimanl) {
         KumnuanAnimanl = kumnuanAnimanl;
     }
+    */
 
     public double getKoRakRakGerd() {
         return KoRakRakGerd;
@@ -169,7 +183,7 @@ public class mVarPlanG {
     public void setMaeKoReedNom(double maeKoReedNom) {
         MaeKoReedNom = maeKoReedNom;
     }
-
+/*
     public double getMoonkaAnimalTuangNumnuk() {
         return MoonkaAnimalTuangNumnuk;
     }
@@ -193,7 +207,7 @@ public class mVarPlanG {
     public void setKumnuanTontoonPunPae(double kumnuanTontoonPunPae) {
         KumnuanTontoonPunPae = kumnuanTontoonPunPae;
     }
-
+*/
     public double getKaReedNom() {
         return KaReedNom;
     }
@@ -209,7 +223,7 @@ public class mVarPlanG {
     public void setKaRangReang(double kaRangReang) {
         KaRangReang = kaRangReang;
     }
-
+/*
     public double getKawassadu() {
         return Kawassadu;
     }
@@ -217,7 +231,7 @@ public class mVarPlanG {
     public void setKawassadu(double kawassadu) {
         Kawassadu = kawassadu;
     }
-
+*/
     public double getKaPasomPan() {
         return KaPasomPan;
     }
@@ -297,7 +311,21 @@ public class mVarPlanG {
     public void setKaChaiJay(double kaChaiJay) {
         KaChaiJay = kaChaiJay;
     }
+    public double getKaChaoTDin() {
+        return KaChaoTDin;
+    }
 
+    public void setKaChaoTDin(double kaChaoTDin) {
+        KaChaoTDin = kaChaoTDin;
+    }
+    public double getRaka() {
+        return Raka;
+    }
+
+    public void setRaka(double raka) {
+        Raka = raka;
+    }
+/*
     public double getKaSiaOkardLongtoon() {
         return KaSiaOkardLongtoon;
     }
@@ -312,14 +340,6 @@ public class mVarPlanG {
 
     public void setKumnuanTontoonKongTee(double kumnuanTontoonKongTee) {
         KumnuanTontoonKongTee = kumnuanTontoonKongTee;
-    }
-
-    public double getKaChaoTDin() {
-        return KaChaoTDin;
-    }
-
-    public void setKaChaoTDin(double kaChaoTDin) {
-        KaChaoTDin = kaChaoTDin;
     }
 
     public double getKaSermRongRaun() {
@@ -362,13 +382,7 @@ public class mVarPlanG {
         TontoonPalidNumnom = tontoonPalidNumnom;
     }
 
-    public double getRaka() {
-        return Raka;
-    }
 
-    public void setRaka(double raka) {
-        Raka = raka;
-    }
 
     public double getKumraiKadtoon() {
         return KumraiKadtoon;
@@ -401,4 +415,5 @@ public class mVarPlanG {
     public void setTontoonTungmod(double tontoonTungmod) {
         TontoonTungmod = tontoonTungmod;
     }
+    */
 }

@@ -439,8 +439,8 @@ public class PBProdDetailCalculateFmentE  extends Fragment implements View.OnCli
                         model.RakaTKai = var.RakaTKai;
                         model.RaYaWeRaLeang = var.RaYaWeRaLeang;
 
-                        model.RermLeang =var.RermLeang;
-                        model.RakaReamLeang =var.RakaReamLeang;
+                        model.RermLeang =Util.strToDoubleDefaultZero(plotDetail.getAnimalNumber());
+                        model.RakaReamLeang =Util.strToDoubleDefaultZero(plotDetail.getAnimalPrice());
 
                         model.isCalIncludeOption =  var.isCalIncludeOption();
                         setCalKaSermOption( var.isCalIncludeOption());
@@ -458,8 +458,9 @@ public class PBProdDetailCalculateFmentE  extends Fragment implements View.OnCli
                         h.group3_item_1.setText(Util.dobbleToStringNumber(var.RakaTKai));
                         h.group3_item_2.setText(Util.dobbleToStringNumber(var.RaYaWeRaLeang));
 
-                        h.txStartUnit.setText(Util.dobbleToStringNumberWithClearDigit(var.RermLeang));
-                        h.txStartPrice.setText(Util.dobbleToStringNumberWithClearDigit(var.RakaReamLeang));
+
+                        h.txStartUnit.setText(Util.strToDobbleToStrFormat(plotDetail.getAnimalNumber()));
+                        h.txStartPrice.setText(Util.strToDobbleToStrFormat(plotDetail.getAnimalPrice()));
 
                         formulaModel.calculate();
 
