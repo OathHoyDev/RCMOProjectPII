@@ -296,9 +296,10 @@ public class PBProdDetailCalculateFmentK extends Fragment implements View.OnClic
             initVariableDataFromDB();
             havePlotId = true;
         } else {
-            h.kanardKachang.setText(userPlotModel.getCoopMeter());
-            h.jumnounKachang.setText(userPlotModel.getCoopNumber());
-            h.lookPla.setText(userPlotModel.getFisheryNumber());
+
+            h.kanardKachang.setText(Util.dobbleToStringNumberWithClearDigit(Util.strToDoubleDefaultZero(userPlotModel.getCoopMeter())));
+            h.jumnounKachang.setText(Util.dobbleToStringNumberWithClearDigit(Util.strToDoubleDefaultZero(userPlotModel.getCoopNumber())));
+            h.lookPla.setText( Util.dobbleToStringNumberWithClearDigit(Util.strToDoubleDefaultZero(userPlotModel.getFisheryNumber())));
         }
 
 

@@ -409,11 +409,11 @@ public class ProductService {
     public static String genJsonPlanVariable(FormulaIModel model){
         mVarPlanI var = new mVarPlanI();
 
-        var.Rai = model.Rai;
-        var.Ngan = model.Ngan;
-        var.TarangWa = model.TarangWa;
+        //var.Rai = model.Rai;
+    //    var.Ngan = model.Ngan;
+      //  var.TarangWa = model.TarangWa;
 
-        var.rookKung = model.rookKung;
+     //   var.rookKung = model.rookKung;
 
         var.RakaTuaLa = model.RakaTuaLa;
         var.KaAHan = model.KaAHan;
@@ -432,8 +432,8 @@ public class ProductService {
         var.RakaChalia = model.RakaChalia;
         var.RayaWelaTeeLeang = model.RayaWelaTeeLeang;
 
-        var.KaSermOuppakorn = model.KaSermOuppakorn;
-        var.KaSiaOkardOuppakorn = model.KaSiaOkardOuppakorn;
+       // var.KaSermOuppakorn = model.KaSermOuppakorn;
+       // var.KaSiaOkardOuppakorn = model.KaSiaOkardOuppakorn;
         var.setCalIncludeOption(model.isCalIncludeOption);
 
 

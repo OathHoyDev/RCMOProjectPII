@@ -457,11 +457,11 @@ public class PBProdDetailCalculateFmentI extends Fragment implements View.OnClic
                     if (!plotDetail.getVarValue().equals("")) {
                         mVarPlanI varI = new Gson().fromJson(plotDetail.getVarValue(), mVarPlanI.class);
 
-                        aModel.Rai = varI.getRai();
-                        aModel.Ngan = varI.getNgan();
-                        aModel.TarangWa = varI.getTarangWa();
+                        aModel.Rai = Util.strToDoubleDefaultZero(plotDetail.getPondRai());
+                        aModel.Ngan = Util.strToDoubleDefaultZero(plotDetail.getPondNgan());
+                        aModel.TarangWa = Util.strToDoubleDefaultZero(plotDetail.getPondWa());;
 
-                        aModel.rookKung = varI.getRookKung();
+                        aModel.rookKung = Util.strToDoubleDefaultZero(plotDetail.getFisheryNumber());
 
                         aModel.RakaTuaLa = varI.getRakaTuaLa();
                         aModel.KaAHan = varI.getKaAHan();
@@ -480,17 +480,17 @@ public class PBProdDetailCalculateFmentI extends Fragment implements View.OnClic
                         aModel.RakaChalia = varI.getRakaChalia();
                         aModel.RayaWelaTeeLeang = varI.getRayaWelaTeeLeang();
 
-                        aModel.KaSermOuppakorn = varI.getKaSermOuppakorn();
-                        aModel.KaSiaOkardOuppakorn = varI.getKaSiaOkardOuppakorn();
+                       // aModel.KaSermOuppakorn = varI.getKaSermOuppakorn();
+                      //  aModel.KaSiaOkardOuppakorn = varI.getKaSiaOkardOuppakorn();
 
                         aModel.isCalIncludeOption =  varI.isCalIncludeOption();
                         setCalKaSermOption( varI.isCalIncludeOption());
                         isCalIncludeOption = varI.isCalIncludeOption();
 
-                        h.rai.setText(Util.dobbleToStringNumber(varI.Rai));
-                        h.ngan.setText(Util.dobbleToStringNumber(varI.Ngan));
-                        h.tarangwa.setText(Util.dobbleToStringNumber(varI.TarangWa));
-                        h.rookKung.setText(Util.dobbleToStringNumber(varI.rookKung));
+                        h.rai.setText(Util.strToDobbleToStrFormat(plotDetail.getPondRai()));
+                        h.ngan.setText(Util.strToDobbleToStrFormat(plotDetail.getPondNgan()));
+                        h.tarangwa.setText(Util.strToDobbleToStrFormat(plotDetail.getPondWa()));
+                        h.rookKung.setText(Util.strToDobbleToStrFormat(plotDetail.getFisheryNumber()));
 
                         h.group1_item_1.setText(Util.dobbleToStringNumber(varI.RakaTuaLa));
                         h.group1_item_3.setText(Util.dobbleToStringNumber(varI.KaAHan));
