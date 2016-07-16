@@ -53,6 +53,7 @@ public class PBProdDetailCalculateFmentE  extends Fragment implements View.OnCli
     th.go.oae.rcmo.Module.mGetPlotDetail.mRespBody mGetPlotDetail = new mGetPlotDetail.mRespBody();
     private boolean havePlotId = false;
 
+
     public PBProdDetailCalculateFmentE() {
     }
 
