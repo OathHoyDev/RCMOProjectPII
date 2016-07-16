@@ -151,7 +151,7 @@ public class ProductService {
         varA.setKaYaplab(aModel.KaYaplab);
         varA.setRaka(aModel.predictPrice);
         varA.setPonPalid(aModel.PonPalid);
-        varA.setKaChaoTDin(aModel.KaChaoTDin);
+        varA.setKaChoaTDin(aModel.KaChaoTDin);
         varA.setCalIncludeOption(aModel.isCalIncludeOption);
 
         //jsonPlanA = TextUtils.htmlEncode(jsonPlanA);
@@ -173,7 +173,7 @@ public class ProductService {
 
     public static String genJsonPlanVariable(FormulaBModel model){
         mVarPlanB var = new mVarPlanB();
-        var.setYear(model.Year);
+        var.setJumNoun(model.Year);
         var.setAttraDokbia(model.AttraDokbia);
         var.setKaDoolae(model.KaDoolae);
         var.setKaGebGeaw(model.KaGebGeaw);
@@ -191,7 +191,7 @@ public class ProductService {
         var.setKaYaplab(model.KaYaplab);
         var.setRaka(model.predictPrice);
         var.setPonPalid(model.PonPalid);
-        var.setKaChaoTDin(model.KaChaoTDin);
+        var.setKaChoaTDin(model.KaChaoTDin);
         var.setCalIncludeOption(model.isCalIncludeOption);
 
 
@@ -232,7 +232,7 @@ public class ProductService {
         var.setKaYaplab(model.KaYaplab);
         var.setRaka(model.predictPrice);
         var.setPonPalid(model.PonPalid);
-        var.setKaChaoTDin(model.KaChaoTDin);
+        var.setKaChoaTDin(model.KaChaoTDin);
         var.setCalIncludeOption(model.isCalIncludeOption);
 
 
@@ -270,8 +270,8 @@ public class ProductService {
         var.RakaTKai =  model.RakaTKai ;
         var.RaYaWeRaLeang = model.RaYaWeRaLeang;
 
-        var.RermLeang = model.RermLeang;
-        var.RakaReamLeang =  model.RakaReamLeang;
+        //var.RermLeang = model.RermLeang;
+       // var.RakaReamLeang =  model.RakaReamLeang;
         var.setCalIncludeOption(model.isCalIncludeOption);
 
 

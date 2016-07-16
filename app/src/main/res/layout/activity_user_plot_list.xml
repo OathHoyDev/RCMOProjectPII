@@ -61,6 +61,11 @@
             android:divider="@null"
             android:id="@+id/listviewPlotUser"></ListView>
 -->
+        <android.support.v4.widget.SwipeRefreshLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/swipeContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
         <com.mobeta.android.dslv.DragSortListView
             android:id="@+id/listviewPlotDragUser"
             android:layout_width="fill_parent"
@@ -79,6 +84,7 @@
             dslv:sort_enabled="true"
             dslv:track_drag_sort="false"
             dslv:use_default_controller="true" />
+        </android.support.v4.widget.SwipeRefreshLayout>
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -187,7 +193,8 @@
         <ProgressBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"/>
+            android:layout_centerInParent="true"
+            />
 
     </RelativeLayout>
 </RelativeLayout>

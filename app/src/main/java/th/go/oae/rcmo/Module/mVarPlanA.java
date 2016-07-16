@@ -9,7 +9,7 @@ public class mVarPlanA {
     public double KaRang ;
     public double KaTreamDin;
     public double KaPluk;
-    public double KaChaoTDin;
+    public double KaChoaTDin;
     public double KaDoolae ;
     public double KaGebGeaw ;
     public double KaWassadu;
@@ -73,12 +73,12 @@ public class mVarPlanA {
         KaPluk = kaPluk;
     }
 
-    public double getKaChaoTDin() {
-        return KaChaoTDin;
+    public double getKaChoaTDin() {
+        return KaChoaTDin;
     }
 
-    public void setKaChaoTDin(double kaChaoTDin) {
-        KaChaoTDin = kaChaoTDin;
+    public void setKaChoaTDin(double kaChoaTDin) {
+        KaChoaTDin = kaChoaTDin;
     }
 
     public double getKaDoolae() {

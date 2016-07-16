@@ -109,7 +109,11 @@ public class StepThreeActivity extends Activity {
             inputRai.addTextChangedListener(new StepIIITextWatcher(inputRai, h, ""));
             inputNgan.setFilters(new InputFilter[]{ new InputFilterMinMax(0, 4)});
             inputWa.setFilters(new InputFilter[]{ new InputFilterMinMax(0, 100)});
+
+
             inputMeter.setFilters(new InputFilter[]{ new InputFilterMinMax(0, 400)});
+            inputMeter.setText("0");
+            inputMeter.setVisibility(View.GONE);
 
             String imgName = ServiceInstance.productIMGMap.get(productionInfo.getPrdID());
             if(imgName!=null) {

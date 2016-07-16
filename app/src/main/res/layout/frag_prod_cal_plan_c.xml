@@ -127,6 +127,7 @@
 
                 <com.neopixl.pixlui.components.textview.TextView
                     android:id="@+id/meter"
+                    android:visibility="gone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
@@ -138,7 +139,7 @@
                     android:layout_toEndOf="@+id/view4" />
 
                 <com.neopixl.pixlui.components.textview.TextView
-
+                    android:visibility="gone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="2dp"
