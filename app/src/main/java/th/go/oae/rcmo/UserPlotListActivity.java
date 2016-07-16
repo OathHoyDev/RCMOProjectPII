@@ -12,6 +12,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -50,12 +51,18 @@ public class UserPlotListActivity extends Activity {
     public static List<mUserPlotList.mRespBody> userPlotRespBodyList = new ArrayList<>();
     Resources resources;
     String userId = "0";
+    private SwipeRefreshLayout swipeContainer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_plot_list);
         SharedPreferences sp = getSharedPreferences(ServiceInstance.PREF_NAME, Context.MODE_PRIVATE);
         userId = sp.getString(ServiceInstance.sp_userId, "0");
+
+
+
+
         setUI();
         setAction();
 
@@ -112,6 +119,19 @@ public class UserPlotListActivity extends Activity {
         }else{
             displayNotFoundPlotAnimation();
         }
+
+        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                fetchTimelineAsync(userId);
+            }
+        });
+
+        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
     }
 
     private void setAction() {
@@ -201,6 +221,17 @@ public class UserPlotListActivity extends Activity {
               //  userPlotList.remove(getItem(which));
             }
         };
+
+        public void clear() {
+            userPlotList.clear();
+            notifyDataSetChanged();
+        }
+
+        // Add a list of items
+        public void addAll(List<mUserPlotList.mRespBody> list) {
+            userPlotList.addAll(list);
+            notifyDataSetChanged();
+        }
 
         public void remove(mUserPlotList.mRespBody obj) {
 
@@ -780,6 +811,55 @@ private void displayNotFoundPlotAnimation() {
             }
         }).API_Request(true, RequestServices.ws_getPlotDetail +
                 "?PlotID=" + userPlotModel.getPlotID() +
+                "&ImeiCode=" + ServiceInstance.GetDeviceID(UserPlotListActivity.this));
+
+    }
+
+    public void fetchTimelineAsync1(String userId) {
+        // Send the network request to fetch the updated data
+        // `client` here is an instance of Android Async HTTP
+
+                // Now we call setRefreshing(false) to signal refresh has finished
+                swipeContainer.setRefreshing(false);
+
+
+
+    }
+
+
+
+    private void fetchTimelineAsync(final String userId) {
+
+
+        new ResponseAPI(this, new ResponseAPI.OnCallbackAPIListener() {
+            @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
+            @Override
+            public void callbackSuccess(Object obj) {
+
+                mUserPlotList mPlotList = (mUserPlotList) obj;
+                final List<mUserPlotList.mRespBody> userPlotBodyLists = mPlotList.getRespBody();
+
+                if (userPlotBodyLists.size() != 0) {
+                   if(adapter!=null){
+                       adapter.clear();
+                       adapter.addAll(userPlotBodyLists);
+
+                   }
+
+                }
+
+                swipeContainer.setRefreshing(false);
+
+            }
+
+            @Override
+            public void callbackError(int code, String errorMsg) {
+                List<mUserPlotList.mRespBody>  userPlotList = new ArrayList<mUserPlotList.mRespBody>();
+                UserPlotListActivity.userPlotRespBodyList  = userPlotList;
+                swipeContainer.setRefreshing(false);
+            }
+        }).API_Request(false, RequestServices.ws_getPlotList +
+                "?UserID=" + userId + "&PlotID="+
                 "&ImeiCode=" + ServiceInstance.GetDeviceID(UserPlotListActivity.this));
 
     }

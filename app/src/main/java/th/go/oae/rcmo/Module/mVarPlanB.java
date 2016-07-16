@@ -5,12 +5,13 @@ package th.go.oae.rcmo.Module;
  */
 public class mVarPlanB {
 
-    public double Year ;
+   // public double Year ;
+    public double JumNoun;
     //public double KaNardPlangTDin ;
     public double KaRang ;
     public double KaTreamDin;
     public double KaPluk;
-    public double KaChaoTDin;
+    public double KaChoaTDin;
     public double KaDoolae ;
     public double KaGebGeaw ;
     public double KaWassadu;
@@ -28,12 +29,12 @@ public class mVarPlanB {
     public boolean isCalIncludeOption ;
     public double AttraDokbia;
 
-    public double getYear() {
-        return Year;
+    public double getJumNoun() {
+        return JumNoun;
     }
 
-    public void setYear(double year) {
-        Year = year;
+    public void setJumNoun(double jumNoun) {
+        JumNoun = jumNoun;
     }
 
     public boolean isCalIncludeOption() {
@@ -77,12 +78,12 @@ public class mVarPlanB {
         KaPluk = kaPluk;
     }
 
-    public double getKaChaoTDin() {
-        return KaChaoTDin;
+    public double getKaChoaTDin() {
+        return KaChoaTDin;
     }
 
-    public void setKaChaoTDin(double kaChaoTDin) {
-        KaChaoTDin = kaChaoTDin;
+    public void setKaChoaTDin(double kaChoaTDin) {
+        KaChoaTDin = kaChoaTDin;
     }
 
     public double getKaDoolae() {

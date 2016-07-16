@@ -538,7 +538,7 @@ public class PBProdDetailCalculateFmentC extends Fragment implements View.OnClic
                         model.KaPuy = var.getKaPuy();
                         model.KaYaplab = var.getKaYaplab();
                         model.KaWassaduUn = var.getKaWassaduUn();
-                        model.KaChaoTDin = var.getKaChaoTDin();
+                        model.KaChaoTDin = var.getKaChoaTDin();
                         model.PonPalid = var.getPonPalid();
                         model.predictPrice = var.getRaka();
                         model.AttraDokbia = var.getAttraDokbia();
@@ -559,7 +559,7 @@ public class PBProdDetailCalculateFmentC extends Fragment implements View.OnClic
                         h.group1_item_8.setText(Util.dobbleToStringNumber(var.KaPuy));
                         h.group1_item_9.setText(Util.dobbleToStringNumber(var.KaYaplab));
                         h.group1_item_10.setText(Util.dobbleToStringNumber(var.KaWassaduUn));
-                        h.group1_item_12.setText(Util.dobbleToStringNumber(var.KaChaoTDin));
+                        h.group1_item_12.setText(Util.dobbleToStringNumber(var.KaChoaTDin));
                         h.group2_item_1.setText(Util.dobbleToStringNumber(var.PonPalid));
                         h.group3_item_1.setText(Util.dobbleToStringNumber(var.getRaka()));
                         h.group4_item_1.setText(Util.dobbleToStringNumber(var.AttraDokbia));

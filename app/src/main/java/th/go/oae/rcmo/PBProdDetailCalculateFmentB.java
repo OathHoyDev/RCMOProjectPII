@@ -553,7 +553,7 @@ public class PBProdDetailCalculateFmentB extends Fragment implements View.OnClic
                     if (!plotDetail.getVarValue().equals("")) {
                         mVarPlanB var = new Gson().fromJson(plotDetail.getVarValue(), mVarPlanB.class);
 
-                        model.Year = var.getYear();
+                        model.Year = var.getJumNoun();
                         model.KaTreamDin = var.getKaTreamDin();
                         model.KaPluk = var.getKaPluk();
                         model.KaDoolae = var.getKaDoolae();
@@ -562,7 +562,7 @@ public class PBProdDetailCalculateFmentB extends Fragment implements View.OnClic
                         model.KaPuy = var.getKaPuy();
                         model.KaYaplab = var.getKaYaplab();
                         model.KaWassaduUn = var.getKaWassaduUn();
-                        model.KaChaoTDin = var.getKaChaoTDin();
+                        model.KaChaoTDin = var.getKaChoaTDin();
                         model.PonPalid = var.getPonPalid();
                         model.predictPrice = var.getRaka();
                         model.AttraDokbia = var.getAttraDokbia();
@@ -575,7 +575,7 @@ public class PBProdDetailCalculateFmentB extends Fragment implements View.OnClic
                         setCalKaSermOption( var.isCalIncludeOption());
                         isCalIncludeOption = var.isCalIncludeOption();
 
-                        h.group0_item_1.setText(Util.dobbleToStringNumber(var.Year));
+                        h.group0_item_1.setText(Util.dobbleToStringNumber(var.JumNoun));
 
                         h.group1_item_2.setText(Util.dobbleToStringNumber(var.KaTreamDin));
                         h.group1_item_3.setText(Util.dobbleToStringNumber(var.KaPluk));
@@ -585,7 +585,7 @@ public class PBProdDetailCalculateFmentB extends Fragment implements View.OnClic
                         h.group1_item_8.setText(Util.dobbleToStringNumber(var.KaPuy));
                         h.group1_item_9.setText(Util.dobbleToStringNumber(var.KaYaplab));
                         h.group1_item_10.setText(Util.dobbleToStringNumber(var.KaWassaduUn));
-                        h.group1_item_12.setText(Util.dobbleToStringNumber(var.KaChaoTDin));
+                        h.group1_item_12.setText(Util.dobbleToStringNumber(var.KaChoaTDin));
                         h.group2_item_1.setText(Util.dobbleToStringNumber(var.PonPalid));
                         h.group3_item_1.setText(Util.dobbleToStringNumber(var.getRaka()));
                         h.group4_item_1.setText(Util.dobbleToStringNumber(var.AttraDokbia));

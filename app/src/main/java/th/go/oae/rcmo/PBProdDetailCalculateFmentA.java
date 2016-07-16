@@ -88,6 +88,7 @@ public class PBProdDetailCalculateFmentA extends Fragment implements View.OnClic
         h.meter = (TextView) view.findViewById(R.id.meter);
 
 
+
         h.group1_items = (LinearLayout) view.findViewById(R.id.group1_items);
         h.group1_header = (TextView) view.findViewById(R.id.group1_header);
         h.group1_header_arrow = (ImageView) view.findViewById(R.id.group1_header_arrow);
@@ -547,7 +548,7 @@ public class PBProdDetailCalculateFmentA extends Fragment implements View.OnClic
                         aModel.KaPuy            = varA.getKaPuy();
                         aModel.KaYaplab         = varA.getKaYaplab();
                         aModel.KaWassaduUn      = varA.getKaWassaduUn();
-                        aModel.KaChaoTDin       = varA.getKaChaoTDin();
+                        aModel.KaChaoTDin       = varA.getKaChoaTDin();
                         aModel.PonPalid         = varA.getPonPalid();
                         aModel.predictPrice     = varA.getRaka();
                         aModel.AttraDokbia      = varA.getAttraDokbia();
@@ -570,7 +571,7 @@ public class PBProdDetailCalculateFmentA extends Fragment implements View.OnClic
                         h.group1_item_8.setText(Util.dobbleToStringNumber(varA.KaPuy));
                         h.group1_item_9.setText(Util.dobbleToStringNumber(varA.KaYaplab));
                         h.group1_item_10.setText(Util.dobbleToStringNumber(varA.KaWassaduUn));
-                        h.group1_item_12.setText(Util.dobbleToStringNumber(varA.KaChaoTDin));
+                        h.group1_item_12.setText(Util.dobbleToStringNumber(varA.KaChoaTDin));
                         h.group2_item_1.setText(Util.dobbleToStringNumber(varA.PonPalid));
                         h.group3_item_1.setText(Util.dobbleToStringNumber(varA.getRaka()));
                         h.group4_item_1.setText(Util.dobbleToStringNumber(varA.AttraDokbia));

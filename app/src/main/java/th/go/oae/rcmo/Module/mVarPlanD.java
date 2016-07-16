@@ -6,8 +6,8 @@ package th.go.oae.rcmo.Module;
 public class mVarPlanD {
 
 
-    public double RermLeang ;
-    public double RakaReamLeang ;
+   // public double RermLeang ;
+  //  public double RakaReamLeang ;
     public double KaPan;
     public double KaAHan;
     public double KaYa;
@@ -34,7 +34,7 @@ public class mVarPlanD {
     public void setCalIncludeOption(boolean calIncludeOption) {
         isCalIncludeOption = calIncludeOption;
     }
-
+/*
     public double getRermLeang() {
         return RermLeang;
     }
@@ -50,7 +50,7 @@ public class mVarPlanD {
     public void setRakaReamLeang(double rakaReamLeang) {
         RakaReamLeang = rakaReamLeang;
     }
-
+*/
     public double getKaPan() {
         return KaPan;
     }

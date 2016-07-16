@@ -160,7 +160,7 @@
 
 
             <com.neopixl.pixlui.components.edittext.EditText
-
+                android:visibility="gone"
                 android:id="@+id/edit_meter"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -181,6 +181,7 @@
                 pixlui:typeface="Quark-Bold.otf" />
 
             <com.neopixl.pixlui.components.textview.TextView
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="5dp"
