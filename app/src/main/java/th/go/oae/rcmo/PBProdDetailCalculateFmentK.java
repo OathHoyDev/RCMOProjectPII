@@ -1005,94 +1005,91 @@ public class PBProdDetailCalculateFmentK extends Fragment implements View.OnClic
                     if (!plotDetail.getVarValue().equals("")) {
 
                         mVarPlanK var = new Gson().fromJson(plotDetail.getVarValue(), mVarPlanK.class);
-                        calType = var.getCalType();
-                        model.CalType = var.getCalType();
-                        model.TuaOrKilo = var.getTuaOrKilo();
-                        model.CustomSize = var.getCustomSize();
-
-                        model.KanardKaChang = var.getKanardKachang();
-                        model.JumnounKachang = var.getJumnounKachang();
+                        calType = Util.strToIntegerDefaultZero(var.getCalType());
+                        model.CalType = Util.strToIntegerDefaultZero(var.getCalType());
+                        model.TuaOrKilo = Util.strToIntegerDefaultZero(var.getCalType());
 
 
-                        model.LookPla = var.getLookPla();
+                        model.KanardKaChang = Util.strToDoubleDefaultZero(plotDetail.getCoopMeter());
+                        model.JumnounKachang = Util.strToDoubleDefaultZero(plotDetail.getCoopNumber());
+                        model.LookPla = Util.strToDoubleDefaultZero(plotDetail.getFisheryNumber());
 
-                        model.Raka = var.getRaka();
-                        model.KaAHan = var.getKaAHan();
-                        model.KaRangNganLeang = var.getKaRangNganLeang();
-                        model.KaRangNganJub = var.getKaRangNganJub();
-                        model.KaYa = var.getKaYa();
-                        model.KaSanKMe = var.getKaSanKMe();
-                        model.KaNamman = var.getKaNamman();
-                        model.KaFaifa = var.getKaFaifa();
+                        model.Raka =  Util.strToDoubleDefaultZero(var.getRaka());
+                        model.KaAHan =  Util.strToDoubleDefaultZero(var.getKaAHan());
+                        model.KaRangNganLeang =  Util.strToDoubleDefaultZero(var.getKaRangNganLeang());
+                        model.KaRangNganJub =  Util.strToDoubleDefaultZero(var.getKaRangNganJub());
+                        model.KaYa =  Util.strToDoubleDefaultZero(var.getKaYa());
+                        model.KaSanKMe =  Util.strToDoubleDefaultZero(var.getKaSanKMe());
+                        model.KaNamman =  Util.strToDoubleDefaultZero(var.getKaNamman());
+                        model.KaFaifa = Util.strToDoubleDefaultZero( var.getKaFaifa());
 
-                        model.KaSomSam = var.getKaSomSam();
-                        model.KaChaijai = var.getKaChaijai();
+                        model.KaSomSam =  Util.strToDoubleDefaultZero(var.getKaSomSam());
+                        model.KaChaijai =  Util.strToDoubleDefaultZero(var.getKaChaijai());
 
-                        model.RayaWela = var.getRayaWela();
+                        model.RayaWela =  Util.strToDoubleDefaultZero(var.getRayaWela());
 
-                        model.NamnakTKai = var.getNamnakTKai();
-                        model.RakaTKai = var.getRakaTKai();
-                        model.KanardPlaChalia = var.getKanardPlaChalia();
+                        model.NamnakTKai =  Util.strToDoubleDefaultZero(var.getNamnakTKai());
+                        model.RakaTKai =  Util.strToDoubleDefaultZero(var.getRakaTKai());
+                        model.KanardPlaChalia =  Util.strToDoubleDefaultZero(var.getKanardPlaChalia());
 
-                        model.KanardPla1 = var.getKanardPla1();
-                        model.NamnakPla1 = var.getNamnakPla1();
-                        model.RakaPla1 = var.getRakaPla1();
+                        model.KanardPla1 =  Util.strToDoubleDefaultZero(var.getKanardPla1());
+                        model.NamnakPla1 =  Util.strToDoubleDefaultZero(var.getNamnakPla1());
+                        model.RakaPla1 =  Util.strToDoubleDefaultZero(var.getRakaPla1());
 
-                        model.KanardPla2 = var.getKanardPla2();
-                        model.NamnakPla2 = var.getNamnakPla2();
-                        model.RakaPla2 = var.getRakaPla2();
+                        model.KanardPla2 =  Util.strToDoubleDefaultZero(var.getKanardPla2());
+                        model.NamnakPla2 =  Util.strToDoubleDefaultZero(var.getNamnakPla2());
+                        model.RakaPla2 =  Util.strToDoubleDefaultZero(var.getRakaPla2());
 
-                        model.KanardPla3 = var.getKanardPla3();
-                        model.NamnakPla3 = var.getNamnakPla3();
-                        model.RakaPla3 = var.getRakaPla3();
+                        model.KanardPla3 =  Util.strToDoubleDefaultZero(var.getKanardPla3());
+                        model.NamnakPla3 =  Util.strToDoubleDefaultZero(var.getNamnakPla3());
+                        model.RakaPla3 =  Util.strToDoubleDefaultZero(var.getRakaPla3());
 
-                        model.KanardPla4 = var.getKanardPla4();
-                        model.NamnakPla4 = var.getNamnakPla4();
-                        model.RakaPla4 = var.getRakaPla4();
+                        model.KanardPla4 =  Util.strToDoubleDefaultZero(var.getKanardPla4());
+                        model.NamnakPla4 =  Util.strToDoubleDefaultZero(var.getNamnakPla4());
+                        model.RakaPla4 =  Util.strToDoubleDefaultZero(var.getRakaPla4());
 
                         model.isCalIncludeOption =  var.isCalIncludeOption();
                         setCalKaSermOption( var.isCalIncludeOption());
                         isCalIncludeOption = var.isCalIncludeOption();
 
-                        h.kanardKachang.setText(Util.dobbleToStringNumber(var.KanardKachang));
-                        h.jumnounKachang.setText(Util.dobbleToStringNumber(var.JumnounKachang));
+                        h.kanardKachang.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(plotDetail.getCoopMeter())));
+                        h.jumnounKachang.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(plotDetail.getCoopNumber())));
+                        h.lookPla.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(plotDetail.getFisheryNumber())));
 
-                        h.lookPla.setText(Util.dobbleToStringNumber(var.LookPla));
+                        h.group1_item_1.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.Raka)));
 
-                        h.group1_item_1.setText(Util.dobbleToStringNumber(var.Raka));
+                        h.group1_item_3.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaAHan)));
+                        h.group1_item_4.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaYa)));
+                        h.group1_item_5.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaSanKMe)));
+                        h.group1_item_6.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaNamman)));
+                        h.group1_item_7.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaFaifa)));
 
-                        h.group1_item_3.setText(Util.dobbleToStringNumber(var.KaAHan));
-                        h.group1_item_4.setText(Util.dobbleToStringNumber(var.KaYa));
-                        h.group1_item_5.setText(Util.dobbleToStringNumber(var.KaSanKMe));
-                        h.group1_item_6.setText(Util.dobbleToStringNumber(var.KaNamman));
-                        h.group1_item_7.setText(Util.dobbleToStringNumber(var.KaFaifa));
+                        h.group1_item_9.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaRangNganLeang)));
+                        h.group1_item_10.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaRangNganJub)));
+                        h.group1_item_11.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaSomSam)));
+                        h.group1_item_12.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaChaijai)));
 
-                        h.group1_item_9.setText(Util.dobbleToStringNumber(var.KaRangNganLeang));
-                        h.group1_item_10.setText(Util.dobbleToStringNumber(var.KaRangNganJub));
-                        h.group1_item_11.setText(Util.dobbleToStringNumber(var.KaSomSam));
-                        h.group1_item_12.setText(Util.dobbleToStringNumber(var.KaChaijai));
+                        h.group2_item_1.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.RayaWela)));
 
-                        h.group2_item_1.setText(Util.dobbleToStringNumber(var.RayaWela));
+                        h.group3_item_1.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.NamnakTKai)));
+                        h.group3_item_3.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.RakaTKai)));
+                        h.group3_item_4.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KanardPlaChalia)));
 
-                        h.group3_item_1.setText(Util.dobbleToStringNumber(var.NamnakTKai));
-                        h.group3_item_3.setText(Util.dobbleToStringNumber(var.RakaTKai));
-                        h.group3_item_4.setText(Util.dobbleToStringNumber(var.KanardPlaChalia));
+                        h.group4_item_1_1.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KanardPla1)));
+                        h.group4_item_1_2.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.RakaPla1)));
+                        h.group4_item_1_3.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.NamnakPla1)));
 
-                        h.group4_item_1_1.setText(Util.dobbleToStringNumber(var.KanardPla1));
-                        h.group4_item_1_2.setText(Util.dobbleToStringNumber(var.RakaPla1));
-                        h.group4_item_1_3.setText(Util.dobbleToStringNumber(var.NamnakPla1));
+                        h.group4_item_2_1.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KanardPla2)));
+                        h.group4_item_2_2.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.RakaPla2)));
+                        h.group4_item_2_3.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.NamnakPla2)));
 
-                        h.group4_item_2_1.setText(Util.dobbleToStringNumber(var.KanardPla2));
-                        h.group4_item_2_2.setText(Util.dobbleToStringNumber(var.RakaPla2));
-                        h.group4_item_2_3.setText(Util.dobbleToStringNumber(var.NamnakPla2));
+                        h.group4_item_3_1.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KanardPla3)));
+                        h.group4_item_3_2.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.RakaPla3)));
+                        h.group4_item_3_3.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.NamnakPla3)));
 
-                        h.group4_item_3_1.setText(Util.dobbleToStringNumber(var.KanardPla3));
-                        h.group4_item_3_2.setText(Util.dobbleToStringNumber(var.RakaPla3));
-                        h.group4_item_3_3.setText(Util.dobbleToStringNumber(var.NamnakPla3));
-
-                        h.group4_item_4_1.setText(Util.dobbleToStringNumber(var.KanardPla4));
-                        h.group4_item_4_2.setText(Util.dobbleToStringNumber(var.RakaPla4));
-                        h.group4_item_4_3.setText(Util.dobbleToStringNumber(var.NamnakPla4));
+                        h.group4_item_4_1.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KanardPla4)));
+                        h.group4_item_4_2.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.RakaPla4)));
+                        h.group4_item_4_3.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.NamnakPla4)));
 
                         formulaModel.calculate();
 

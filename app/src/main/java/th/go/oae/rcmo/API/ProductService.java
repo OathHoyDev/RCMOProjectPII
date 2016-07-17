@@ -509,46 +509,46 @@ public class ProductService {
     public static String genJsonPlanVariable(FormulaKModel model){
         mVarPlanK var = new mVarPlanK();
 
-        var.CalType = model.CalType;
-        var.TuaOrKilo = model.TuaOrKilo;
-        var.CustomSize = model.CustomSize;
+        var.CalType = String.valueOf(model.CalType);
+       // var.TuaOrKilo = model.TuaOrKilo;
+      //  var.CustomSize = model.CustomSize;
 
-        var.JumnounKachang = model.JumnounKachang;
-        var.KanardKachang = model.KanardKaChang;
-        var.LookPla = model.LookPla;
+      //  var.JumnounKachang = model.JumnounKachang;
+      //  var.KanardKachang = model.KanardKaChang;
+       // var.LookPla = model.LookPla;
 
-        var.Raka = model.Raka;
-        var.KaAHan = model.KaAHan;
-        var.KaRangNganLeang = model.KaRangNganLeang;
-        var.KaRangNganJub = model.KaRangNganJub;
-        var.KaYa = model.KaYa;
-        var.KaSanKMe = model.KaSanKMe;
-        var.KaNamman = model.KaNamman;
-        var.KaFaifa = model.KaFaifa;
-        var.KaSomSam = model.KaSomSam;
-        var.KaChaijai = model.KaChaijai;
+        var.Raka = Util.dobbleToStringNumber(model.Raka);
+        var.KaAHan = Util.dobbleToStringNumber(model.KaAHan);
+        var.KaRangNganLeang = Util.dobbleToStringNumber(model.KaRangNganLeang);
+        var.KaRangNganJub = Util.dobbleToStringNumber(model.KaRangNganJub);
+        var.KaYa = Util.dobbleToStringNumber(model.KaYa);
+        var.KaSanKMe = Util.dobbleToStringNumber(model.KaSanKMe);
+        var.KaNamman = Util.dobbleToStringNumber(model.KaNamman);
+        var.KaFaifa = Util.dobbleToStringNumber(model.KaFaifa);
+        var.KaSomSam = Util.dobbleToStringNumber(model.KaSomSam);
+        var.KaChaijai = Util.dobbleToStringNumber(model.KaChaijai);
       //  var.KaChoaTDin = model.
-        var.RayaWela = model.RayaWela;
+        var.RayaWela = Util.dobbleToStringNumber(model.RayaWela);
 
-        var.NamnakTKai = model.NamnakTKai;
-        var.RakaTKai = model.RakaTKai;
-        var.KanardPlaChalia = Util.verifyDoubleDefaultZero(model.KanardPlaChalia);
+        var.NamnakTKai = Util.dobbleToStringNumber(model.NamnakTKai);
+        var.RakaTKai = Util.dobbleToStringNumber(model.RakaTKai);
+        var.KanardPlaChalia = Util.dobbleToStringNumber(Util.verifyDoubleDefaultZero(model.KanardPlaChalia));
 
-        var.KanardPla1 = model.KanardPla1;
-        var.NamnakPla1 = model.NamnakPla1;
-        var.RakaPla1 = model.RakaPla1;
+        var.KanardPla1 = Util.dobbleToStringNumber(model.KanardPla1);
+        var.NamnakPla1 = Util.dobbleToStringNumber(model.NamnakPla1);
+        var.RakaPla1 = Util.dobbleToStringNumber(model.RakaPla1);
 
-        var.KanardPla2 = model.KanardPla2;
-        var.NamnakPla2 = model.NamnakPla2;
-        var.RakaPla2 = model.RakaPla2;
+        var.KanardPla2 = Util.dobbleToStringNumber(model.KanardPla2);
+        var.NamnakPla2 = Util.dobbleToStringNumber(model.NamnakPla2);
+        var.RakaPla2 = Util.dobbleToStringNumber(model.RakaPla2);
 
-        var.KanardPla3 = model.KanardPla3;
-        var.NamnakPla3 = model.NamnakPla3;
-        var.RakaPla3 = model.RakaPla3;
+        var.KanardPla3 = Util.dobbleToStringNumber(model.KanardPla3);
+        var.NamnakPla3 = Util.dobbleToStringNumber(model.NamnakPla3);
+        var.RakaPla3 = Util.dobbleToStringNumber(model.RakaPla3);
 
-        var.KanardPla4 = model.KanardPla4;
-        var.NamnakPla4 = model.NamnakPla4;
-        var.RakaPla4 = model.RakaPla4;
+        var.KanardPla4 = Util.dobbleToStringNumber(model.KanardPla4);
+        var.NamnakPla4 = Util.dobbleToStringNumber(model.NamnakPla4);
+        var.RakaPla4 = Util.dobbleToStringNumber(model.RakaPla4);
 
         var.setCalIncludeOption(model.isCalIncludeOption);
 
