@@ -487,19 +487,19 @@ public class PBProdDetailCalculateFmentH extends Fragment implements View.OnClic
                         mVarPlanH var = new Gson().fromJson(plotDetail.getVarValue(), mVarPlanH.class);
 
 
-                        model.JumnuanTKai = var.JumnuanTKai;
-                        model.KaPan       = var.KaPan;
-                        model.KaAHanKon   = var.KaAHanKon;
-                        model.KaAKanYab   = var.KaAKanYab;
-                        model.KaNamKaFai  = var.KaNamKaFai;
-                        model.KaYa        = var.KaYa;
-                        model.KaRang      = var.KaRang;
-                        model.KaNamKaFai  = var.KaNamKaFai;
-                        model.KaChoaTDin  = var.KaChoaTDin;
-                        model.KaSiaOkardLongtoon  = var.KaSiaOkardLongtoon;
-                        model.NumnukChalia = var.NumnukChalia;
-                        model.RakaChalia   = var.RakaChalia;
-                        model.RayaWera     = var.RayaWera;
+                        model.JumnuanTKai = Util.strToDoubleDefaultZero(var.JumnuanTKai);
+                        model.KaPan       = Util.strToDoubleDefaultZero(var.KaPan);
+                        model.KaAHanKon   = Util.strToDoubleDefaultZero(var.KaAHanKon);
+                        model.KaAKanYab   = Util.strToDoubleDefaultZero(var.KaAKanYab);
+                        model.KaNamKaFai  = Util.strToDoubleDefaultZero(var.KaNamKaFai);
+                        model.KaYa        = Util.strToDoubleDefaultZero(var.KaYa);
+                        model.KaRang      = Util.strToDoubleDefaultZero(var.KaRang);
+                        model.KaNamKaFai  = Util.strToDoubleDefaultZero(var.KaNamKaFai);
+                        model.KaChoaTDin  = Util.strToDoubleDefaultZero(var.KaChoaTDin);
+                        model.KaSiaOkardLongtoon  = Util.strToDoubleDefaultZero(var.KaSiaOkardLongtoon);
+                        model.NumnukChalia = Util.strToDoubleDefaultZero(var.NumnukChalia);
+                        model.RakaChalia   = Util.strToDoubleDefaultZero(var.RakaChalia);
+                        model.RayaWera     = Util.strToDoubleDefaultZero(var.RayaWera);
                         model.RermLeang       =Util.strToDoubleDefaultZero(plotDetail.getAnimalNumber());;
                         model.NumnukRermLeang = Util.strToDoubleDefaultZero(plotDetail.getAnimalWeight());
 
@@ -508,20 +508,20 @@ public class PBProdDetailCalculateFmentH extends Fragment implements View.OnClic
                         isCalIncludeOption = var.isCalIncludeOption();
 
 
-                        h.group1_item_1.setText(Util.dobbleToStringNumber(var.JumnuanTKai));
-                        h.group1_item_2.setText(Util.dobbleToStringNumber(var.KaPan));
-                        h.group1_item_3.setText(Util.dobbleToStringNumber(var.KaAHanKon));
-                        h.group1_item_4.setText(Util.dobbleToStringNumber(var.KaAKanYab));
-                        h.group1_item_5.setText(Util.dobbleToStringNumber(var.getKaYa()));
-                        h.group1_item_6.setText(Util.dobbleToStringNumber(var.KaRang));
-                        h.group1_item_7.setText(Util.dobbleToStringNumber(var.KaNamKaFai));
-                        h.group1_item_8.setText(Util.dobbleToStringNumber(var.KaWassaduSinPleung));
-                        h.group1_item_9.setText(Util.dobbleToStringNumber(var.KaChoaTDin));
-                        h.group1_item_10.setText(Util.dobbleToStringNumber(var.KaSiaOkardLongtoon));
+                        h.group1_item_1.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.JumnuanTKai)));
+                        h.group1_item_2.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaPan)));
+                        h.group1_item_3.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaAHanKon)));
+                        h.group1_item_4.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaAKanYab)));
+                        h.group1_item_5.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.getKaYa())));
+                        h.group1_item_6.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaRang)));
+                        h.group1_item_7.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaNamKaFai)));
+                        h.group1_item_8.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaWassaduSinPleung)));
+                        h.group1_item_9.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaChoaTDin)));
+                        h.group1_item_10.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaSiaOkardLongtoon)));
 
-                        h.group2_item_1.setText(Util.dobbleToStringNumber(var.NumnukChalia));
-                        h.group3_item_1.setText(Util.dobbleToStringNumber(var.RakaChalia));
-                        h.group4_item_1.setText(Util.dobbleToStringNumber(var.RayaWera));
+                        h.group2_item_1.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.NumnukChalia)));
+                        h.group3_item_1.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.RakaChalia)));
+                        h.group4_item_1.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.RayaWera)));
 
                         h.txStartUnit.setText(Util.strToDobbleToStrFormat(plotDetail.getAnimalNumber()));
                         h.txStartNumnakReam.setText(Util.strToDobbleToStrFormat(plotDetail.getAnimalWeight()));

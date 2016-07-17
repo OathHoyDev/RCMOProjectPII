@@ -5,32 +5,23 @@ package th.go.oae.rcmo.Module;
  */
 public class mVarPlanI {
 
-   // public double Rai;
-//    public double TarangWa;
-
-  //  public double rookKung;
-
-    public double RakaTuaLa;
-    public double KaAHan;
-    public double KaYa;
-    public double KaSankemee;
-    public double KaNamMan;
-    public double KaFai;
-    public double KaRokRain;
-    public double KaLeang;
-    public double KaJub;
-    public double KaSomsamOuppakorn;
-    public double KaChaiJay;
-    public double KaChaoTDin;
-
-    public double PonPalidKung;
-    public double RakaChalia;
-    public double RayaWelaTeeLeang;
-    
-  //  public double KaSermOuppakorn;
-  //  public double KaSiaOkardOuppakorn;
-
+    public String RakaTuaLa;
+    public String KaAHan;
+    public String KaYa;
+    public String KaSankemee;
+    public String KaNamMan;
+    public String KaFai;
+    public String KaRokRain;
+    public String KaLeang;
+    public String KaJub;
+    public String KaSomsamOuppakorn;
+    public String KaChaiJay;
+    public String KaChaoTDin;
+    public String PonPalidKung;
+    public String RakaChalia;
+    public String RayaWelaTeeLeang;
     public boolean isCalIncludeOption ;
+
 
     public boolean isCalIncludeOption() {
         return isCalIncludeOption;
@@ -39,175 +30,124 @@ public class mVarPlanI {
     public void setCalIncludeOption(boolean calIncludeOption) {
         isCalIncludeOption = calIncludeOption;
     }
-/*
-    public double getRai() {
-        return Rai;
-    }
 
-    public void setRai(double rai) {
-        Rai = rai;
-    }
-
-    public double getNgan() {
-        return Ngan;
-    }
-
-    public void setNgan(double ngan) {
-        Ngan = ngan;
-    }
-
-    public double getTarangWa() {
-        return TarangWa;
-    }
-
-    public void setTarangWa(double tarangWa) {
-        TarangWa = tarangWa;
-    }
-
-    public double getRookKung() {
-        return rookKung;
-    }
-
-    public void setRookKung(double rookKung) {
-        this.rookKung = rookKung;
-    }
-
-    */
-
-    public double getRakaTuaLa() {
+    public String getRakaTuaLa() {
         return RakaTuaLa;
     }
 
-    public void setRakaTuaLa(double rakaTuaLa) {
+    public void setRakaTuaLa(String rakaTuaLa) {
         RakaTuaLa = rakaTuaLa;
     }
 
-    public double getKaAHan() {
+    public String getKaAHan() {
         return KaAHan;
     }
 
-    public void setKaAHan(double kaAHan) {
+    public void setKaAHan(String kaAHan) {
         KaAHan = kaAHan;
     }
 
-    public double getKaYa() {
+    public String getKaYa() {
         return KaYa;
     }
 
-    public void setKaYa(double kaYa) {
+    public void setKaYa(String kaYa) {
         KaYa = kaYa;
     }
 
-    public double getKaSankemee() {
+    public String getKaSankemee() {
         return KaSankemee;
     }
 
-    public void setKaSankemee(double kaSankemee) {
+    public void setKaSankemee(String kaSankemee) {
         KaSankemee = kaSankemee;
     }
 
-    public double getKaNamMan() {
+    public String getKaNamMan() {
         return KaNamMan;
     }
 
-    public void setKaNamMan(double kaNamMan) {
+    public void setKaNamMan(String kaNamMan) {
         KaNamMan = kaNamMan;
     }
 
-    public double getKaFai() {
+    public String getKaFai() {
         return KaFai;
     }
 
-    public void setKaFai(double kaFai) {
+    public void setKaFai(String kaFai) {
         KaFai = kaFai;
     }
 
-    public double getKaRokRain() {
+    public String getKaRokRain() {
         return KaRokRain;
     }
 
-    public void setKaRokRain(double kaRokRain) {
+    public void setKaRokRain(String kaRokRain) {
         KaRokRain = kaRokRain;
     }
 
-    public double getKaLeang() {
+    public String getKaLeang() {
         return KaLeang;
     }
 
-    public void setKaLeang(double kaLeang) {
+    public void setKaLeang(String kaLeang) {
         KaLeang = kaLeang;
     }
 
-    public double getKaJub() {
+    public String getKaJub() {
         return KaJub;
     }
 
-    public void setKaJub(double kaJub) {
+    public void setKaJub(String kaJub) {
         KaJub = kaJub;
     }
 
-    public double getKaSomsamOuppakorn() {
+    public String getKaSomsamOuppakorn() {
         return KaSomsamOuppakorn;
     }
 
-    public void setKaSomsamOuppakorn(double kaSomsamOuppakorn) {
+    public void setKaSomsamOuppakorn(String kaSomsamOuppakorn) {
         KaSomsamOuppakorn = kaSomsamOuppakorn;
     }
 
-    public double getKaChaiJay() {
+    public String getKaChaiJay() {
         return KaChaiJay;
     }
 
-    public void setKaChaiJay(double kaChaiJay) {
+    public void setKaChaiJay(String kaChaiJay) {
         KaChaiJay = kaChaiJay;
     }
 
-    public double getKaChaoTDin() {
+    public String getKaChaoTDin() {
         return KaChaoTDin;
     }
 
-    public void setKaChaoTDin(double kaChaoTDin) {
+    public void setKaChaoTDin(String kaChaoTDin) {
         KaChaoTDin = kaChaoTDin;
     }
 
-    public double getPonPalidKung() {
+    public String getPonPalidKung() {
         return PonPalidKung;
     }
 
-    public void setPonPalidKung(double ponPalidKung) {
+    public void setPonPalidKung(String ponPalidKung) {
         PonPalidKung = ponPalidKung;
     }
 
-    public double getRakaChalia() {
+    public String getRakaChalia() {
         return RakaChalia;
     }
 
-    public void setRakaChalia(double rakaChalia) {
+    public void setRakaChalia(String rakaChalia) {
         RakaChalia = rakaChalia;
     }
 
-    public double getRayaWelaTeeLeang() {
+    public String getRayaWelaTeeLeang() {
         return RayaWelaTeeLeang;
     }
 
-    public void setRayaWelaTeeLeang(double rayaWelaTeeLeang) {
+    public void setRayaWelaTeeLeang(String rayaWelaTeeLeang) {
         RayaWelaTeeLeang = rayaWelaTeeLeang;
     }
-/*
-    public double getKaSermOuppakorn() {
-        return KaSermOuppakorn;
-    }
-
-    public void setKaSermOuppakorn(double kaSermOuppakorn) {
-        KaSermOuppakorn = kaSermOuppakorn;
-    }
-
-    public double getKaSiaOkardOuppakorn() {
-        return KaSiaOkardOuppakorn;
-    }
-
-    public void setKaSiaOkardOuppakorn(double kaSiaOkardOuppakorn) {
-        KaSiaOkardOuppakorn = kaSiaOkardOuppakorn;
-    }
-    */
 }

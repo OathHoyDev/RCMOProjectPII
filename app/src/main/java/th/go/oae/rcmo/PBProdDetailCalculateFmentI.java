@@ -463,22 +463,22 @@ public class PBProdDetailCalculateFmentI extends Fragment implements View.OnClic
 
                         aModel.rookKung = Util.strToDoubleDefaultZero(plotDetail.getFisheryNumber());
 
-                        aModel.RakaTuaLa = varI.getRakaTuaLa();
-                        aModel.KaAHan = varI.getKaAHan();
-                        aModel.KaYa = varI.getKaYa();
-                        aModel.KaSankemee = varI.getKaSankemee();
-                        aModel.KaNamMan = varI.getKaNamMan();
-                        aModel.KaFai = varI.getKaFai();
-                        aModel.KaRokRain = varI.getKaRokRain();
-                        aModel.KaLeang = varI.getKaLeang();
-                        aModel.KaJub = varI.getKaJub();
-                        aModel.KaSomsamOuppakorn = varI.getKaSomsamOuppakorn();
-                        aModel.KaChaiJay = varI.getKaChaiJay();
-                        aModel.KaChaoTDin = varI.getKaChaoTDin();
+                        aModel.RakaTuaLa = Util.strToDoubleDefaultZero(varI.getRakaTuaLa());
+                        aModel.KaAHan = Util.strToDoubleDefaultZero(varI.getKaAHan());
+                        aModel.KaYa = Util.strToDoubleDefaultZero(varI.getKaYa());
+                        aModel.KaSankemee = Util.strToDoubleDefaultZero(varI.getKaSankemee());
+                        aModel.KaNamMan = Util.strToDoubleDefaultZero(varI.getKaNamMan());
+                        aModel.KaFai = Util.strToDoubleDefaultZero(varI.getKaFai());
+                        aModel.KaRokRain = Util.strToDoubleDefaultZero(varI.getKaRokRain());
+                        aModel.KaLeang = Util.strToDoubleDefaultZero(varI.getKaLeang());
+                        aModel.KaJub = Util.strToDoubleDefaultZero(varI.getKaJub());
+                        aModel.KaSomsamOuppakorn = Util.strToDoubleDefaultZero(varI.getKaSomsamOuppakorn());
+                        aModel.KaChaiJay = Util.strToDoubleDefaultZero(varI.getKaChaiJay());
+                        aModel.KaChaoTDin = Util.strToDoubleDefaultZero(varI.getKaChaoTDin());
 
-                        aModel.PonPalidKung = varI.getPonPalidKung();
-                        aModel.RakaChalia = varI.getRakaChalia();
-                        aModel.RayaWelaTeeLeang = varI.getRayaWelaTeeLeang();
+                        aModel.PonPalidKung = Util.strToDoubleDefaultZero(varI.getPonPalidKung());
+                        aModel.RakaChalia = Util.strToDoubleDefaultZero(varI.getRakaChalia());
+                        aModel.RayaWelaTeeLeang = Util.strToDoubleDefaultZero(varI.getRayaWelaTeeLeang());
 
                        // aModel.KaSermOuppakorn = varI.getKaSermOuppakorn();
                       //  aModel.KaSiaOkardOuppakorn = varI.getKaSiaOkardOuppakorn();
@@ -492,23 +492,23 @@ public class PBProdDetailCalculateFmentI extends Fragment implements View.OnClic
                         h.tarangwa.setText(Util.strToDobbleToStrFormat(plotDetail.getPondWa()));
                         h.rookKung.setText(Util.strToDobbleToStrFormat(plotDetail.getFisheryNumber()));
 
-                        h.group1_item_1.setText(Util.dobbleToStringNumber(varI.RakaTuaLa));
-                        h.group1_item_3.setText(Util.dobbleToStringNumber(varI.KaAHan));
-                        h.group1_item_4.setText(Util.dobbleToStringNumber(varI.KaYa));
-                        h.group1_item_5.setText(Util.dobbleToStringNumber(varI.KaSankemee));
-                        h.group1_item_6.setText(Util.dobbleToStringNumber(varI.KaNamMan));
-                        h.group1_item_7.setText(Util.dobbleToStringNumber(varI.KaFai));
-                        h.group1_item_8.setText(Util.dobbleToStringNumber(varI.KaRokRain));
+                        h.group1_item_1.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(varI.RakaTuaLa)));
+                        h.group1_item_3.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(varI.KaAHan)));
+                        h.group1_item_4.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(varI.KaYa)));
+                        h.group1_item_5.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(varI.KaSankemee)));
+                        h.group1_item_6.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(varI.KaNamMan)));
+                        h.group1_item_7.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(varI.KaFai)));
+                        h.group1_item_8.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(varI.KaRokRain)));
 
-                        h.group1_item_10.setText(Util.dobbleToStringNumber(varI.KaLeang));
-                        h.group1_item_11.setText(Util.dobbleToStringNumber(varI.KaJub));
-                        h.group1_item_12.setText(Util.dobbleToStringNumber(varI.KaSomsamOuppakorn));
-                        h.group1_item_13.setText(Util.dobbleToStringNumber(varI.KaChaiJay));
-                        h.group1_item_14.setText(Util.dobbleToStringNumber(varI.KaChaoTDin));
+                        h.group1_item_10.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(varI.KaLeang)));
+                        h.group1_item_11.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(varI.KaJub)));
+                        h.group1_item_12.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(varI.KaSomsamOuppakorn)));
+                        h.group1_item_13.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(varI.KaChaiJay)));
+                        h.group1_item_14.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(varI.KaChaoTDin)));
 
-                        h.group2_item_1.setText(Util.dobbleToStringNumber(varI.PonPalidKung));
-                        h.group2_item_2.setText(Util.dobbleToStringNumber(varI.RakaChalia));
-                        h.group2_item_5.setText(Util.dobbleToStringNumber(varI.RayaWelaTeeLeang));
+                        h.group2_item_1.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(varI.PonPalidKung)));
+                        h.group2_item_2.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(varI.RakaChalia)));
+                        h.group2_item_5.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(varI.RayaWelaTeeLeang)));
 
 
                         formulaModel.calculate();

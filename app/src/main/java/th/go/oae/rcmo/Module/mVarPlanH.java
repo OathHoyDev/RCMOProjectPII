@@ -6,25 +6,23 @@ package th.go.oae.rcmo.Module;
 public class mVarPlanH {
 
 
-   // public double RermLeang ;
-  //  public double NumnukRermLeang ;
-    public double JumnuanTKai;
-    public double KaPan;
-    public double KaAHanKon;
-    public double KaAKanYab;
-    public double KaRang;
-    public double KaYa;
-    public double KaNamKaFai ;
-    public double KaWassaduSinPleung;
-    public double KaChoaTDin ;
-    public double RakaChalia;
-   // public double Raka ;
-    public double RayaWera ;
-    public double KaSiaOkardLongtoon ;
-    public double NumnukChalia ;
 
-    public double NumnukTPuem ;
-    public double NumnukTungmod ;
+    public String JumnuanTKai;
+    public String KaPan;
+    public String KaAHanKon;
+    public String KaAKanYab;
+    public String KaRang;
+    public String KaYa;
+    public String KaNamKaFai ;
+    public String KaWassaduSinPleung;
+    public String KaChoaTDin ;
+    public String RakaChalia;
+    public String RayaWera ;
+    public String KaSiaOkardLongtoon ;
+    public String NumnukChalia ;
+
+    public String NumnukTPuem ;
+    public String NumnukTungmod ;
 
     public boolean isCalIncludeOption ;
 
@@ -35,148 +33,124 @@ public class mVarPlanH {
     public void setCalIncludeOption(boolean calIncludeOption) {
         isCalIncludeOption = calIncludeOption;
     }
-/*
-    public double getRermLeang() {
-        return RermLeang;
-    }
 
-    public void setRermLeang(double rermLeang) {
-        RermLeang = rermLeang;
-    }
-
-    public double getNumnukRermLeang() {
-        return NumnukRermLeang;
-    }
-
-    public void setNumnukRermLeang(double numnukRermLeang) {
-        NumnukRermLeang = numnukRermLeang;
-    }
-*/
-    public double getJumnuanTKai() {
+    public String getJumnuanTKai() {
         return JumnuanTKai;
     }
 
-    public void setJumnuanTKai(double jumnuanTKai) {
+    public void setJumnuanTKai(String jumnuanTKai) {
         JumnuanTKai = jumnuanTKai;
     }
 
-    public double getKaPan() {
+    public String getKaPan() {
         return KaPan;
     }
 
-    public void setKaPan(double kaPan) {
+    public void setKaPan(String kaPan) {
         KaPan = kaPan;
     }
 
-    public double getKaAHanKon() {
+    public String getKaAHanKon() {
         return KaAHanKon;
     }
 
-    public void setKaAHanKon(double kaAHanKon) {
+    public void setKaAHanKon(String kaAHanKon) {
         KaAHanKon = kaAHanKon;
     }
 
-    public double getKaAKanYab() {
+    public String getKaAKanYab() {
         return KaAKanYab;
     }
 
-    public void setKaAKanYab(double kaAKanYab) {
+    public void setKaAKanYab(String kaAKanYab) {
         KaAKanYab = kaAKanYab;
     }
 
-    public double getKaRang() {
+    public String getKaRang() {
         return KaRang;
     }
 
-    public void setKaRang(double kaRang) {
+    public void setKaRang(String kaRang) {
         KaRang = kaRang;
     }
 
-    public double getKaYa() {
+    public String getKaYa() {
         return KaYa;
     }
 
-    public void setKaYa(double kaYa) {
+    public void setKaYa(String kaYa) {
         KaYa = kaYa;
     }
 
-    public double getKaNamKaFai() {
+    public String getKaNamKaFai() {
         return KaNamKaFai;
     }
 
-    public void setKaNamKaFai(double kaNamKaFai) {
+    public void setKaNamKaFai(String kaNamKaFai) {
         KaNamKaFai = kaNamKaFai;
     }
 
-    public double getKaWassaduSinPleung() {
+    public String getKaWassaduSinPleung() {
         return KaWassaduSinPleung;
     }
 
-    public void setKaWassaduSinPleung(double kaWassaduSinPleung) {
+    public void setKaWassaduSinPleung(String kaWassaduSinPleung) {
         KaWassaduSinPleung = kaWassaduSinPleung;
     }
 
-    public double getKaChoaTDin() {
+    public String getKaChoaTDin() {
         return KaChoaTDin;
     }
 
-    public void setKaChoaTDin(double kaChoaTDin) {
+    public void setKaChoaTDin(String kaChoaTDin) {
         KaChoaTDin = kaChoaTDin;
     }
 
-    public double getNumnukChalia() {
-        return NumnukChalia;
-    }
-
-    public void setNumnukChalia(double numnukChalia) {
-        NumnukChalia = numnukChalia;
-    }
-
-    public double getNumnukTungmod() {
-        return NumnukTungmod;
-    }
-
-    public void setNumnukTungmod(double numnukTungmod) {
-        NumnukTungmod = numnukTungmod;
-    }
-
-    public double getNumnukTPuem() {
-        return NumnukTPuem;
-    }
-
-    public void setNumnukTPuem(double numnukTPuem) {
-        NumnukTPuem = numnukTPuem;
-    }
-
-    public double getRakaChalia() {
+    public String getRakaChalia() {
         return RakaChalia;
     }
 
-    public void setRakaChalia(double rakaChalia) {
+    public void setRakaChalia(String rakaChalia) {
         RakaChalia = rakaChalia;
     }
-/*
-    public double getRaka() {
-        return Raka;
-    }
 
-    public void setRaka(double raka) {
-        Raka = raka;
-    }
-*/
-    public double getRayaWera() {
+    public String getRayaWera() {
         return RayaWera;
     }
 
-    public void setRayaWera(double rayaWera) {
+    public void setRayaWera(String rayaWera) {
         RayaWera = rayaWera;
     }
 
-    public double getKaSiaOkardLongtoon() {
+    public String getKaSiaOkardLongtoon() {
         return KaSiaOkardLongtoon;
     }
 
-    public void setKaSiaOkardLongtoon(double kaSiaOkardLongtoon) {
+    public void setKaSiaOkardLongtoon(String kaSiaOkardLongtoon) {
         KaSiaOkardLongtoon = kaSiaOkardLongtoon;
+    }
+
+    public String getNumnukChalia() {
+        return NumnukChalia;
+    }
+
+    public void setNumnukChalia(String numnukChalia) {
+        NumnukChalia = numnukChalia;
+    }
+
+    public String getNumnukTPuem() {
+        return NumnukTPuem;
+    }
+
+    public void setNumnukTPuem(String numnukTPuem) {
+        NumnukTPuem = numnukTPuem;
+    }
+
+    public String getNumnukTungmod() {
+        return NumnukTungmod;
+    }
+
+    public void setNumnukTungmod(String numnukTungmod) {
+        NumnukTungmod = numnukTungmod;
     }
 }
