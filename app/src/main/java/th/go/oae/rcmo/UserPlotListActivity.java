@@ -850,7 +850,7 @@ private void displayNotFoundPlotAnimation() {
                         userPlotListView = (DragSortListView) findViewById(R.id.listviewPlotDragUser);
 
                         ((LinearLayout) findViewById(R.id.ani_add_plot)).setVisibility(View.GONE);
-                        adapter = new UserPlotAdapter(userPlotRespBodyList);
+                        adapter = new UserPlotAdapter(userPlotBodyLists);
                         userPlotListView.setAdapter(adapter);
                         userPlotListView.setDropListener(adapter.onDrop);
                         userPlotListView.setRemoveListener(adapter.onRemove);
