@@ -840,12 +840,36 @@ private void displayNotFoundPlotAnimation() {
                 final List<mUserPlotList.mRespBody> userPlotBodyLists = mPlotList.getRespBody();
 
                 if (userPlotBodyLists.size() != 0) {
-                   if(adapter!=null){
-                       adapter.clear();
-                       adapter.addAll(userPlotBodyLists);
+                    if (adapter != null) {
+                        Log.d(TAG, "Clear userPlotBodyLists And AddAll");
+                        adapter.clear();
+                        adapter.addAll(userPlotBodyLists);
 
-                   }
+                    } else {
+                        Log.d(TAG, "adapter Is Null");
+                        userPlotListView = (DragSortListView) findViewById(R.id.listviewPlotDragUser);
 
+                        ((LinearLayout) findViewById(R.id.ani_add_plot)).setVisibility(View.GONE);
+                        adapter = new UserPlotAdapter(userPlotRespBodyList);
+                        userPlotListView.setAdapter(adapter);
+                        userPlotListView.setDropListener(adapter.onDrop);
+                        userPlotListView.setRemoveListener(adapter.onRemove);
+
+                        DragSortController controller = new DragSortController(userPlotListView);
+                        controller.setDragHandleId(R.id.layoutPlotRow);
+                        controller.setRemoveEnabled(false);
+                        controller.setSortEnabled(true);
+                        controller.setDragInitMode(2);
+                        controller.setBackgroundColor(ContextCompat.getColor(UserPlotListActivity.this, R.color.RcmoDarkTranBG));
+
+                        userPlotListView.setFloatViewManager(controller);
+                        userPlotListView.setOnTouchListener(controller);
+                        userPlotListView.setDragEnabled(true);
+
+                    }
+
+                } else {
+                    displayNotFoundPlotAnimation();
                 }
 
                 swipeContainer.setRefreshing(false);
