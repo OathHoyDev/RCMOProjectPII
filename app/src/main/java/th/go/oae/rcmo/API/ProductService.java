@@ -134,24 +134,24 @@ public class ProductService {
 
     public static String genJsonPlanVariable(FormulaAModel aModel){
         mVarPlanA  varA = new mVarPlanA();
-        varA.setAttraDokbia(aModel.AttraDokbia);
-        varA.setKaDoolae(aModel.KaDoolae);
-        varA.setKaGebGeaw(aModel.KaGebGeaw);
+        varA.setAttraDokbia(Util.dobbleToStringNumber(aModel.AttraDokbia));
+        varA.setKaDoolae(Util.dobbleToStringNumber(aModel.KaDoolae));
+        varA.setKaGebGeaw(Util.dobbleToStringNumber(aModel.KaGebGeaw));
        // varA.setKaNardPlangTDin(aModel.KaNardPlangTDin);
-        varA.setKaPan(aModel.KaPan);
-        varA.setKaPluk(aModel.KaPluk);
-        varA.setKaPuy(aModel.KaPuy);
-        varA.setKaRang(aModel.KaRang);
-        varA.setKaSermOuppakorn(aModel.KaSermOuppakorn);
-        varA.setKaSiaOkardLongtoon(aModel.KaSiaOkardLongtoon);
-        varA.setKaSiaOkardOuppakorn(aModel.KaSiaOkardOuppakorn);
-        varA.setKaTreamDin(aModel.KaTreamDin);
-        varA.setKaWassadu(aModel.KaWassadu);
-        varA.setKaWassaduUn(aModel.KaWassaduUn);
-        varA.setKaYaplab(aModel.KaYaplab);
-        varA.setRaka(aModel.predictPrice);
-        varA.setPonPalid(aModel.PonPalid);
-        varA.setKaChoaTDin(aModel.KaChaoTDin);
+        varA.setKaPan(Util.dobbleToStringNumber(aModel.KaPan));
+        varA.setKaPluk(Util.dobbleToStringNumber(aModel.KaPluk));
+        varA.setKaPuy(Util.dobbleToStringNumber(aModel.KaPuy));
+        varA.setKaRang(Util.dobbleToStringNumber(aModel.KaRang));
+        varA.setKaSermOuppakorn(Util.dobbleToStringNumber(aModel.KaSermOuppakorn));
+        varA.setKaSiaOkardLongtoon(Util.dobbleToStringNumber(aModel.KaSiaOkardLongtoon));
+        varA.setKaSiaOkardOuppakorn(Util.dobbleToStringNumber(aModel.KaSiaOkardOuppakorn));
+        varA.setKaTreamDin(Util.dobbleToStringNumber(aModel.KaTreamDin));
+        varA.setKaWassadu(Util.dobbleToStringNumber(aModel.KaWassadu));
+        varA.setKaWassaduUn(Util.dobbleToStringNumber(aModel.KaWassaduUn));
+        varA.setKaYaplab(Util.dobbleToStringNumber(aModel.KaYaplab));
+        varA.setRaka(Util.dobbleToStringNumber(aModel.predictPrice));
+        varA.setPonPalid(Util.dobbleToStringNumber(aModel.PonPalid));
+        varA.setKaChoaTDin(Util.dobbleToStringNumber(aModel.KaChaoTDin));
         varA.setCalIncludeOption(aModel.isCalIncludeOption);
 
         //jsonPlanA = TextUtils.htmlEncode(jsonPlanA);
@@ -173,25 +173,25 @@ public class ProductService {
 
     public static String genJsonPlanVariable(FormulaBModel model){
         mVarPlanB var = new mVarPlanB();
-        var.setJumNoun(model.Year);
-        var.setAttraDokbia(model.AttraDokbia);
-        var.setKaDoolae(model.KaDoolae);
-        var.setKaGebGeaw(model.KaGebGeaw);
+        var.setJumNoun(Util.dobbleToStringNumber(model.Year));
+        var.setAttraDokbia(Util.dobbleToStringNumber(model.AttraDokbia));
+        var.setKaDoolae(Util.dobbleToStringNumber(model.KaDoolae));
+        var.setKaGebGeaw(Util.dobbleToStringNumber(model.KaGebGeaw));
        // var.setKaNardPlangTDin(model.KaNardPlangTDin);
-        var.setKaPan(model.KaPan);
-        var.setKaPluk(model.KaPluk);
-        var.setKaPuy(model.KaPuy);
-        var.setKaRang(model.KaRang);
-        var.setKaSermOuppakorn(model.KaSermOuppakorn);
-        var.setKaSiaOkardLongtoon(model.KaSiaOkardLongtoon);
-        var.setKaSiaOkardOuppakorn(model.KaSiaOkardOuppakorn);
-        var.setKaTreamDin(model.KaTreamDin);
-        var.setKaWassadu(model.KaWassadu);
-        var.setKaWassaduUn(model.KaWassaduUn);
-        var.setKaYaplab(model.KaYaplab);
-        var.setRaka(model.predictPrice);
-        var.setPonPalid(model.PonPalid);
-        var.setKaChoaTDin(model.KaChaoTDin);
+        var.setKaPan(Util.dobbleToStringNumber(model.KaPan));
+        var.setKaPluk(Util.dobbleToStringNumber(model.KaPluk));
+        var.setKaPuy(Util.dobbleToStringNumber(model.KaPuy));
+        var.setKaRang(Util.dobbleToStringNumber(model.KaRang));
+        var.setKaSermOuppakorn(Util.dobbleToStringNumber(model.KaSermOuppakorn));
+        var.setKaSiaOkardLongtoon(Util.dobbleToStringNumber(model.KaSiaOkardLongtoon));
+        var.setKaSiaOkardOuppakorn(Util.dobbleToStringNumber(model.KaSiaOkardOuppakorn));
+        var.setKaTreamDin(Util.dobbleToStringNumber(model.KaTreamDin));
+        var.setKaWassadu(Util.dobbleToStringNumber(model.KaWassadu));
+        var.setKaWassaduUn(Util.dobbleToStringNumber(model.KaWassaduUn));
+        var.setKaYaplab(Util.dobbleToStringNumber(model.KaYaplab));
+        var.setRaka(Util.dobbleToStringNumber(model.predictPrice));
+        var.setPonPalid(Util.dobbleToStringNumber(model.PonPalid));
+        var.setKaChoaTDin(Util.dobbleToStringNumber(model.KaChaoTDin));
         var.setCalIncludeOption(model.isCalIncludeOption);
 
 
@@ -215,24 +215,24 @@ public class ProductService {
     public static String genJsonPlanVariable(FormulaCModel model){
         mVarPlanC var = new mVarPlanC();
 
-        var.setAttraDokbia(model.AttraDokbia);
-        var.setKaDoolae(model.KaDoolae);
-        var.setKaGebGeaw(model.KaGebGeaw);
+        var.setAttraDokbia(Util.dobbleToStringNumber(model.AttraDokbia));
+        var.setKaDoolae(Util.dobbleToStringNumber(model.KaDoolae));
+        var.setKaGebGeaw(Util.dobbleToStringNumber(model.KaGebGeaw));
         //var.setKaNardPlangTDin(model.KaNardPlangTDin);
-        var.setKaPan(model.KaPan);
-        var.setKaPluk(model.KaPluk);
-        var.setKaPuy(model.KaPuy);
-        var.setKaRang(model.KaRang);
-        var.setKaSermOuppakorn(model.KaSermOuppakorn);
-        var.setKaSiaOkardLongtoon(model.KaSiaOkardLongtoon);
-        var.setKaSiaOkardOuppakorn(model.KaSiaOkardOuppakorn);
-        var.setKaTreamDin(model.KaTreamDin);
-        var.setKaWassadu(model.KaWassadu);
-        var.setKaWassaduUn(model.KaWassaduUn);
-        var.setKaYaplab(model.KaYaplab);
-        var.setRaka(model.predictPrice);
-        var.setPonPalid(model.PonPalid);
-        var.setKaChoaTDin(model.KaChaoTDin);
+        var.setKaPan(Util.dobbleToStringNumber(model.KaPan));
+        var.setKaPluk(Util.dobbleToStringNumber(model.KaPluk));
+        var.setKaPuy(Util.dobbleToStringNumber(model.KaPuy));
+        var.setKaRang(Util.dobbleToStringNumber(model.KaRang));
+        var.setKaSermOuppakorn(Util.dobbleToStringNumber(model.KaSermOuppakorn));
+        var.setKaSiaOkardLongtoon(Util.dobbleToStringNumber(model.KaSiaOkardLongtoon));
+        var.setKaSiaOkardOuppakorn(Util.dobbleToStringNumber(model.KaSiaOkardOuppakorn));
+        var.setKaTreamDin(Util.dobbleToStringNumber(model.KaTreamDin));
+        var.setKaWassadu(Util.dobbleToStringNumber(model.KaWassadu));
+        var.setKaWassaduUn(Util.dobbleToStringNumber(model.KaWassaduUn));
+        var.setKaYaplab(Util.dobbleToStringNumber(model.KaYaplab));
+        var.setRaka(Util.dobbleToStringNumber(model.predictPrice));
+        var.setPonPalid(Util.dobbleToStringNumber(model.PonPalid));
+        var.setKaChoaTDin(Util.dobbleToStringNumber(model.KaChaoTDin));
         var.setCalIncludeOption(model.isCalIncludeOption);
 
 
@@ -256,19 +256,19 @@ public class ProductService {
 
     public static String genJsonPlanVariable(FormulaDModel model){
         mVarPlanD var = new mVarPlanD();
-        var.KaAHan      = model.KaAHan;
-        var.KaYa        = model.KaYa;
-        var.KaRangGgan  =  model.KaRangGgan;
-        var.KaNamKaFai  = model.KaNamKaFai;
-        var.KaNamMan    = model.KaNamMan ;
-        var.KaWassaduSinPleung =  model.KaWassaduSinPleung ;
-        var.KaSomRongRaun = model.KaSomRongRaun ;
-        var.KaChoaTDin = model.KaChoaTDin  ;
+        var.KaAHan      = Util.dobbleToStringNumber(model.KaAHan);
+        var.KaYa        = Util.dobbleToStringNumber(model.KaYa);
+        var.KaRangGgan  =  Util.dobbleToStringNumber(model.KaRangGgan);
+        var.KaNamKaFai  = Util.dobbleToStringNumber(model.KaNamKaFai);
+        var.KaNamMan    = Util.dobbleToStringNumber(model.KaNamMan);
+        var.KaWassaduSinPleung =  Util.dobbleToStringNumber(model.KaWassaduSinPleung) ;
+        var.KaSomRongRaun = Util.dobbleToStringNumber(model.KaSomRongRaun) ;
+        var.KaChoaTDin = Util.dobbleToStringNumber(model.KaChoaTDin);
 
-        var.NamNakChaLia = model.NamNakChaLia ;
-        var.JumNounTuaTKai = model.JumNounTuaTKai;
-        var.RakaTKai =  model.RakaTKai ;
-        var.RaYaWeRaLeang = model.RaYaWeRaLeang;
+        var.NamNakChaLia = Util.dobbleToStringNumber(model.NamNakChaLia);
+        var.JumNounTuaTKai = Util.dobbleToStringNumber(model.JumNounTuaTKai);
+        var.RakaTKai =  Util.dobbleToStringNumber(model.RakaTKai);
+        var.RaYaWeRaLeang = Util.dobbleToStringNumber(model.RaYaWeRaLeang);
 
         //var.RermLeang = model.RermLeang;
        // var.RakaReamLeang =  model.RakaReamLeang;
@@ -294,17 +294,17 @@ public class ProductService {
 
     public static String genJsonPlanVariable(FormulaEModel model){
         mVarPlanE var = new mVarPlanE();
-        var.KaAHan      = model.KaAHan;
-        var.KaYa        = model.KaYa;
-        var.KaRangGgan  =  model.KaRangGgan;
-        var.KaNamKaFai  = model.KaNamKaFai;
-        var.KaNamMan    = model.KaNamMan ;
-        var.KaWassaduSinPleung =  model.KaWassaduSinPleung ;
-        var.KaSomRongRaun = model.KaSomRongRaun ;
-        var.KaChoaTDin = model.KaChoaTDin  ;
+        var.KaAHan      = Util.dobbleToStringNumber(model.KaAHan);
+        var.KaYa        = Util.dobbleToStringNumber(model.KaYa);
+        var.KaRangGgan  =  Util.dobbleToStringNumber(model.KaRangGgan);
+        var.KaNamKaFai  = Util.dobbleToStringNumber(model.KaNamKaFai);
+        var.KaNamMan    = Util.dobbleToStringNumber(model.KaNamMan);
+        var.KaWassaduSinPleung =  Util.dobbleToStringNumber(model.KaWassaduSinPleung);
+        var.KaSomRongRaun = Util.dobbleToStringNumber(model.KaSomRongRaun);
+        var.KaChoaTDin = Util.dobbleToStringNumber(model.KaChoaTDin);
 
-        var.RakaTKai =  model.RakaTKai ;
-        var.RaYaWeRaLeang = model.RaYaWeRaLeang;
+        var.RakaTKai =  Util.dobbleToStringNumber(model.RakaTKai) ;
+        var.RaYaWeRaLeang = Util.dobbleToStringNumber(model.RaYaWeRaLeang);
 
        // var.RermLeang = model.RermLeang;
         //var.RakaReamLeang =  model.RakaReamLeang;
@@ -331,19 +331,19 @@ public class ProductService {
 
     public static String genJsonPlanVariable(FormulaFModel model){
         mVarPlanF var = new mVarPlanF();
-        var.KaAHan = model.KaAHan;
-        var.KaYa   = model.KaYa;
-        var.KaRangGgan = model.KaRangGgan;
-        var.KaNamKaFai = model.KaNamKaFai;
-        var.KaNamMan = model.KaNamMan;
-        var.KaWassaduSinPleung = model.KaWassaduSinPleung;
-        var.KaSomRongRaun =model.KaSomRongRaun;
-        var.KaChoaTDin = model.KaChoaTDin;
+        var.KaAHan = Util.dobbleToStringNumber(model.KaAHan);
+        var.KaYa   = Util.dobbleToStringNumber(model.KaYa);
+        var.KaRangGgan = Util.dobbleToStringNumber(model.KaRangGgan);
+        var.KaNamKaFai = Util.dobbleToStringNumber(model.KaNamKaFai);
+        var.KaNamMan = Util.dobbleToStringNumber(model.KaNamMan);
+        var.KaWassaduSinPleung = Util.dobbleToStringNumber(model.KaWassaduSinPleung);
+        var.KaSomRongRaun =Util.dobbleToStringNumber(model.KaSomRongRaun);
+        var.KaChoaTDin = Util.dobbleToStringNumber(model.KaChoaTDin);
 
-        var.KaiTDaiTangTaeRoem = model.KaiTDaiTangTaeRoem;
-        var.RakaTKai = model.RakaTKai;
-        var.PonPloyDai =   model.PonPloyDai;
-        var.RaYaWeRaLeang = model.RaYaWeRaLeang;
+        var.KaiTDaiTangTaeRoem = Util.dobbleToStringNumber(model.KaiTDaiTangTaeRoem);
+        var.RakaTKai = Util.dobbleToStringNumber(model.RakaTKai);
+        var.PonPloyDai =   Util.dobbleToStringNumber(model.PonPloyDai);
+        var.RaYaWeRaLeang = Util.dobbleToStringNumber(model.RaYaWeRaLeang);
 
         //var.RermLeang =model.RermLeang;
       //  var.RakaReamLeang =model.RakaReamLeang;
@@ -371,19 +371,19 @@ public class ProductService {
     public static String genJsonPlanVariable(FormulaHModel model){
         mVarPlanH var = new mVarPlanH();
 
-        var.JumnuanTKai = model.JumnuanTKai;
-        var.KaPan       = model.KaPan;
-        var.KaAHanKon   = model.KaAHanKon;
-        var.KaAKanYab   = model.KaAKanYab;
-        var.KaNamKaFai  = model.KaNamKaFai;
-        var.KaYa        = model.KaYa;
-        var.KaRang      = model.KaRang;
-        var.KaNamKaFai  = model.KaNamKaFai;
-        var.KaChoaTDin  = model.KaChoaTDin;
-        var.KaSiaOkardLongtoon  = model.KaSiaOkardLongtoon;
-        var.NumnukChalia = model.NumnukChalia;
-        var.RakaChalia   = model.RakaChalia;
-        var.RayaWera     = model.RayaWera;
+        var.JumnuanTKai = Util.dobbleToStringNumber(model.JumnuanTKai);
+        var.KaPan       = Util.dobbleToStringNumber(model.KaPan);
+        var.KaAHanKon   = Util.dobbleToStringNumber(model.KaAHanKon);
+        var.KaAKanYab   = Util.dobbleToStringNumber(model.KaAKanYab);
+        var.KaNamKaFai  = Util.dobbleToStringNumber(model.KaNamKaFai);
+        var.KaYa        = Util.dobbleToStringNumber(model.KaYa);
+        var.KaRang      = Util.dobbleToStringNumber(model.KaRang);
+        var.KaNamKaFai  = Util.dobbleToStringNumber(model.KaNamKaFai);
+        var.KaChoaTDin  = Util.dobbleToStringNumber(model.KaChoaTDin);
+        var.KaSiaOkardLongtoon  = Util.dobbleToStringNumber(model.KaSiaOkardLongtoon);
+        var.NumnukChalia = Util.dobbleToStringNumber(model.NumnukChalia);
+        var.RakaChalia   = Util.dobbleToStringNumber(model.RakaChalia);
+        var.RayaWera     = Util.dobbleToStringNumber(model.RayaWera);
        // var.RermLeang       = model.RermLeang;
       //  var.NumnukRermLeang = model.NumnukRermLeang;
         var.setCalIncludeOption(model.isCalIncludeOption);
@@ -409,31 +409,24 @@ public class ProductService {
     public static String genJsonPlanVariable(FormulaIModel model){
         mVarPlanI var = new mVarPlanI();
 
-        //var.Rai = model.Rai;
-    //    var.Ngan = model.Ngan;
-      //  var.TarangWa = model.TarangWa;
 
-     //   var.rookKung = model.rookKung;
+        var.RakaTuaLa = Util.dobbleToStringNumber(model.RakaTuaLa);
+        var.KaAHan = Util.dobbleToStringNumber(model.KaAHan);
+        var.KaYa = Util.dobbleToStringNumber(model.KaYa);
+        var.KaSankemee = Util.dobbleToStringNumber(model.KaSankemee);
+        var.KaNamMan = Util.dobbleToStringNumber(model.KaNamMan);
+        var.KaFai = Util.dobbleToStringNumber(model.KaFai);
+        var.KaRokRain = Util.dobbleToStringNumber(model.KaRokRain);
+        var.KaLeang = Util.dobbleToStringNumber(model.KaLeang);
+        var.KaJub = Util.dobbleToStringNumber(model.KaJub);
+        var.KaSomsamOuppakorn = Util.dobbleToStringNumber(model.KaSomsamOuppakorn);
+        var.KaChaiJay = Util.dobbleToStringNumber(model.KaChaiJay);
+        var.KaChaoTDin = Util.dobbleToStringNumber(model.KaChaoTDin);
 
-        var.RakaTuaLa = model.RakaTuaLa;
-        var.KaAHan = model.KaAHan;
-        var.KaYa = model.KaYa;
-        var.KaSankemee = model.KaSankemee;
-        var.KaNamMan = model.KaNamMan;
-        var.KaFai = model.KaFai;
-        var.KaRokRain = model.KaRokRain;
-        var.KaLeang = model.KaLeang;
-        var.KaJub = model.KaJub;
-        var.KaSomsamOuppakorn = model.KaSomsamOuppakorn;
-        var.KaChaiJay = model.KaChaiJay;
-        var.KaChaoTDin = model.KaChaoTDin;
+        var.PonPalidKung = Util.dobbleToStringNumber(model.PonPalidKung);
+        var.RakaChalia = Util.dobbleToStringNumber(model.RakaChalia);
+        var.RayaWelaTeeLeang = Util.dobbleToStringNumber(model.RayaWelaTeeLeang);
 
-        var.PonPalidKung = model.PonPalidKung;
-        var.RakaChalia = model.RakaChalia;
-        var.RayaWelaTeeLeang = model.RayaWelaTeeLeang;
-
-       // var.KaSermOuppakorn = model.KaSermOuppakorn;
-       // var.KaSiaOkardOuppakorn = model.KaSiaOkardOuppakorn;
         var.setCalIncludeOption(model.isCalIncludeOption);
 
 
@@ -459,50 +452,40 @@ public class ProductService {
         mVarPlanJ var = new mVarPlanJ();
 
 
-        var.CalType = model.CalType;
-        var.TuaOrKilo = model.TuaOrKilo;
-        var.CustomSize = model.CustomSize;
+        var.CalType = String.valueOf(model.CalType);
+        var.Raka = Util.dobbleToStringNumber(model.Raka);
+        var.KaAHan = Util.dobbleToStringNumber(model.KaAHan);
+        var.KaRangNganLeang =Util.dobbleToStringNumber( model.KaRangNganLeang);
+        var.KaRangNganJub = Util.dobbleToStringNumber(model.KaRangNganJub);
+        var.KaYa = Util.dobbleToStringNumber(model.KaYa);
+        var.KaSanKMe = Util.dobbleToStringNumber(model.KaSanKMe);
+        var.KaNamman = Util.dobbleToStringNumber(model.KaNamman);
+        var.KaFaifa = Util.dobbleToStringNumber(model.KaFaifa);
+        var.KaLoklen = Util.dobbleToStringNumber(model.KaLoklen);
+        var.KaSomSam = Util.dobbleToStringNumber(model.KaSomSam);
+        var.KaChaijai = Util.dobbleToStringNumber(model.KaChaijai);
+        var.KaChoaTDin = Util.dobbleToStringNumber(model.KaChoaTDin);
+        var.RayaWela = Util.dobbleToStringNumber(model.RayaWela);
 
-        var.Rai = model.Rai;
-        var.Ngan = model.Ngan;
-        var.TarangWa = model.TarangWa;
-        var.TarangMeter = model.TarangMeter;
-
-        var.RookPla = model.LookPla;
-
-        var.Raka = model.Raka;
-        var.KaAHan = model.KaAHan;
-        var.KaRangNganLeang = model.KaRangNganLeang;
-        var.KaRangNganJub = model.KaRangNganJub;
-        var.KaYa = model.KaYa;
-        var.KaSanKMe = model.KaSanKMe;
-        var.KaNamman = model.KaNamman;
-        var.KaFaifa = model.KaFaifa;
-        var.KaLoklen = model.KaLoklen;
-        var.KaSomSam = model.KaSomSam;
-        var.KaChaijai = model.KaChaijai;
-        var.KaChoaTDin = model.KaChoaTDin;
-        var.RayaWela = model.RayaWela;
-
-        var.NamnakTKai = model.NamnakTKai;
-        var.RakaTKai = model.RakaTKai;
+        var.NamnakTKai = Util.dobbleToStringNumber(model.NamnakTKai);
+        var.RakaTKai =Util.dobbleToStringNumber( model.RakaTKai);
         //var.KanardPlaChalia = model.KanardPlaChalia;
 
-        var.KanardPla1 = model.KanardPla1;
-        var.NamnakPla1 = model.NamnakPla1;
-        var.RakaPla1 = model.RakaPla1;
+        var.KanardPla1 =Util.dobbleToStringNumber( model.KanardPla1);
+        var.NamnakPla1 = Util.dobbleToStringNumber(model.NamnakPla1);
+        var.RakaPla1 = Util.dobbleToStringNumber(model.RakaPla1);
 
-        var.KanardPla2 = model.KanardPla2;
-        var.NamnakPla2 = model.NamnakPla2;
-        var.RakaPla2 = model.RakaPla2;
+        var.KanardPla2 = Util.dobbleToStringNumber(model.KanardPla2);
+        var.NamnakPla2 = Util.dobbleToStringNumber(model.NamnakPla2);
+        var.RakaPla2 = Util.dobbleToStringNumber(model.RakaPla2);
 
-        var.KanardPla3 = model.KanardPla3;
-        var.NamnakPla3 = model.NamnakPla3;
-        var.RakaPla3 = model.RakaPla3;
+        var.KanardPla3 = Util.dobbleToStringNumber(model.KanardPla3);
+        var.NamnakPla3 = Util.dobbleToStringNumber(model.NamnakPla3);
+        var.RakaPla3 = Util.dobbleToStringNumber(model.RakaPla3);
 
-        var.KanardPla4 = model.KanardPla4;
-        var.NamnakPla4 = model.NamnakPla4;
-        var.RakaPla4 = model.RakaPla4;
+        var.KanardPla4 =Util.dobbleToStringNumber( model.KanardPla4);
+        var.NamnakPla4 = Util.dobbleToStringNumber(model.NamnakPla4);
+        var.RakaPla4 = Util.dobbleToStringNumber(model.RakaPla4);
 
         var.setCalIncludeOption(model.isCalIncludeOption);
 
@@ -589,33 +572,33 @@ public class ProductService {
     public static String genJsonPlanVariable(FormulaGModel model){
         mVarPlanG var = new mVarPlanG();
 
-        var.ParimanNumnom =  model.ParimanNumnom;
+        var.ParimanNumnom =  Util.dobbleToStringNumber(model.ParimanNumnom);
 
-        var.KoRakRakGerd        =  model.KoRakRakGerd;
-        var.Ko1_2               =  model.Ko1_2;
-        var.Ko2                 =  model.Ko2;
-        var.MaeKoReedNom        =  model.MaeKoReedNom;
+        var.KoRakRakGerd        =  Util.dobbleToStringNumber(model.KoRakRakGerd);
+        var.Ko1_2               =  Util.dobbleToStringNumber(model.Ko1_2);
+        var.Ko2                 =  Util.dobbleToStringNumber(model.Ko2);
+        var.MaeKoReedNom        =  Util.dobbleToStringNumber(model.MaeKoReedNom);
 
-        var.KaReedNom           =  model.KaReedNom;
-        var.KaRangReang         =  model.KaRangReang;
+        var.KaReedNom           =  Util.dobbleToStringNumber(model.KaReedNom);
+        var.KaRangReang         =  Util.dobbleToStringNumber(model.KaRangReang);
 
-        var.KaPasomPan          =  model.KaPasomPan;
-        var.KaAHan              =  model.KaAHan;
-        var.KaAHanYab           =  model.KaAHanYab;
-        var.KaYa                =  model.KaYa;
-        var.KaNamKaFai          =  model.KaNamKaFai;
-        var.KaNamMan            =  model.KaNamMan;
-        var.KaWassaduSinPleung  =  model.KaWassaduSinPleung;
-        var.KaSomsamOuppakorn   =  model.KaSomsamOuppakorn;
-        var.KaKonsong           =  model.KaKonsong;
-        var.KaChaiJay           =  model.KaChaiJay;
-        var.PerKaNamKaFai          =  model.PerKaNamKaFai;
-        var.PerKaNamMan            =  model.PerKaNamMan;
-        var.PerKaWassaduSinPleung  =  model.PerKaWassaduSinPleung;
-        var.PerKaSomsamOuppakorn   =  model.PerKaSomsamOuppakorn;
-        var.PerKaChaiJay           =  model.PerKaChaiJay;
-        var.KaChaoTDin           =  model.KaChaoTDin;
-        var.Raka                =  model.RakaTkai;
+        var.KaPasomPan          =  Util.dobbleToStringNumber(model.KaPasomPan);
+        var.KaAHan              =  Util.dobbleToStringNumber(model.KaAHan);
+        var.KaAHanYab           =  Util.dobbleToStringNumber(model.KaAHanYab);
+        var.KaYa                =  Util.dobbleToStringNumber(model.KaYa);
+        var.KaNamKaFai          =  Util.dobbleToStringNumber(model.KaNamKaFai);
+        var.KaNamMan            =  Util.dobbleToStringNumber(model.KaNamMan);
+        var.KaWassaduSinPleung  =  Util.dobbleToStringNumber(model.KaWassaduSinPleung);
+        var.KaSomsamOuppakorn   =  Util.dobbleToStringNumber(model.KaSomsamOuppakorn);
+        var.KaKonsong           =  Util.dobbleToStringNumber(model.KaKonsong);
+        var.KaChaiJay           =  Util.dobbleToStringNumber(model.KaChaiJay);
+        var.PerKaNamKaFai          =  Util.dobbleToStringNumber(model.PerKaNamKaFai);
+        var.PerKaNamMan            =  Util.dobbleToStringNumber(model.PerKaNamMan);
+        var.PerKaWassaduSinPleung  =  Util.dobbleToStringNumber(model.PerKaWassaduSinPleung);
+        var.PerKaSomsamOuppakorn   =  Util.dobbleToStringNumber(model.PerKaSomsamOuppakorn);
+        var.PerKaChaiJay           =  Util.dobbleToStringNumber(model.PerKaChaiJay);
+        var.KaChaoTDin           =  Util.dobbleToStringNumber(model.KaChaoTDin);
+        var.Raka                =  Util.dobbleToStringNumber(model.RakaTkai);
        // var.JumuanMaeKo          =  model.JumuanMaeKo;
         var.setCalIncludeOption(model.isCalIncludeOption);
 

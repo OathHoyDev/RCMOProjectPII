@@ -623,70 +623,70 @@ public class PBProdDetailCalculateFmentG extends Fragment implements View.OnClic
 
 
 
-                        model.ParimanNumnom =  var.ParimanNumnom;
+                        model.ParimanNumnom =  Util.strToDoubleDefaultZero(var.ParimanNumnom);
 
-                        model.KoRakRakGerd        =  var.KoRakRakGerd;
-                        model.Ko1_2               =  var.Ko1_2;
-                        model.Ko2                 =  var.Ko2;
-                        model.MaeKoReedNom        =  var.MaeKoReedNom;
+                        model.KoRakRakGerd        =  Util.strToDoubleDefaultZero(var.KoRakRakGerd);
+                        model.Ko1_2               =  Util.strToDoubleDefaultZero(var.Ko1_2);
+                        model.Ko2                 =  Util.strToDoubleDefaultZero(var.Ko2);
+                        model.MaeKoReedNom        =  Util.strToDoubleDefaultZero(var.MaeKoReedNom);
 
-                        model.KaReedNom           =  var.KaReedNom;
-                        model.KaRangReang         =  var.KaRangReang;
+                        model.KaReedNom           =  Util.strToDoubleDefaultZero(var.KaReedNom);
+                        model.KaRangReang         =  Util.strToDoubleDefaultZero(var.KaRangReang);
 
-                        model.KaPasomPan          =  var.KaPasomPan;
-                        model.KaAHan              =  var.KaAHan;
-                        model.KaAHanYab           =  var.KaAHanYab;
-                        model.KaYa                =  var.KaYa;
-                        model.KaNamKaFai          =  var.KaNamKaFai;
-                        model.KaNamMan            =  var.KaNamMan;
-                        model.KaWassaduSinPleung  =  var.KaWassaduSinPleung;
-                        model.KaSomsamOuppakorn   =  var.KaSomsamOuppakorn;
-                        model.KaKonsong           =  var.KaKonsong;
-                        model.KaChaiJay           =  var.KaChaiJay;
-                        model.PerKaNamKaFai          =  var.PerKaNamKaFai;
-                        model.PerKaNamMan            =  var.PerKaNamMan;
-                        model.PerKaWassaduSinPleung  =  var.PerKaWassaduSinPleung;
-                        model.PerKaSomsamOuppakorn   =  var.PerKaSomsamOuppakorn;
-                        model.PerKaChaiJay           =  var.PerKaChaiJay;
-                        model.KaChaoTDin           =  var.KaChaoTDin;
-                        model.RakaTkai             =  var.Raka;
+                        model.KaPasomPan          =  Util.strToDoubleDefaultZero(var.KaPasomPan);
+                        model.KaAHan              =  Util.strToDoubleDefaultZero(var.KaAHan);
+                        model.KaAHanYab           =  Util.strToDoubleDefaultZero(var.KaAHanYab);
+                        model.KaYa                =  Util.strToDoubleDefaultZero(var.KaYa);
+                        model.KaNamKaFai          =  Util.strToDoubleDefaultZero(var.KaNamKaFai);
+                        model.KaNamMan            =  Util.strToDoubleDefaultZero(var.KaNamMan);
+                        model.KaWassaduSinPleung  =  Util.strToDoubleDefaultZero(var.KaWassaduSinPleung);
+                        model.KaSomsamOuppakorn   =  Util.strToDoubleDefaultZero(var.KaSomsamOuppakorn);
+                        model.KaKonsong           =  Util.strToDoubleDefaultZero(var.KaKonsong);
+                        model.KaChaiJay           =  Util.strToDoubleDefaultZero(var.KaChaiJay);
+                        model.PerKaNamKaFai          =  Util.strToDoubleDefaultZero(var.PerKaNamKaFai);
+                        model.PerKaNamMan            =  Util.strToDoubleDefaultZero(var.PerKaNamMan);
+                        model.PerKaWassaduSinPleung  =  Util.strToDoubleDefaultZero(var.PerKaWassaduSinPleung);
+                        model.PerKaSomsamOuppakorn   =  Util.strToDoubleDefaultZero(var.PerKaSomsamOuppakorn);
+                        model.PerKaChaiJay           =  Util.strToDoubleDefaultZero(var.PerKaChaiJay);
+                        model.KaChaoTDin           =  Util.strToDoubleDefaultZero(var.KaChaoTDin);
+                        model.RakaTkai             =  Util.strToDoubleDefaultZero(var.Raka);
                         model.JumuanMaeKo          =  Util.strToDoubleDefaultZero(plotDetail.getAnimalNumber());
 
                         model.isCalIncludeOption =  var.isCalIncludeOption();
                         setCalKaSermOption( var.isCalIncludeOption());
                         isCalIncludeOption = var.isCalIncludeOption();
 
-                        h.group0_item_1.setText(Util.dobbleToStringNumber(var.ParimanNumnom));
+                        h.group0_item_1.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.ParimanNumnom)));
 
-                        h.group1_item_1.setText(Util.dobbleToStringNumber(var.KoRakRakGerd));
-                        h.group1_item_2.setText(Util.dobbleToStringNumber(var.Ko1_2));
-                        h.group1_item_3.setText(Util.dobbleToStringNumber(var.Ko2));
-                        h.group1_item_4.setText(Util.dobbleToStringNumber(var.MaeKoReedNom));
+                        h.group1_item_1.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KoRakRakGerd)));
+                        h.group1_item_2.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.Ko1_2)));
+                        h.group1_item_3.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.Ko2)));
+                        h.group1_item_4.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.MaeKoReedNom)));
 
 
-                        h.group2_item_2.setText(Util.dobbleToStringNumber(var.KaReedNom));
-                        h.group2_item_3.setText(Util.dobbleToStringNumber(var.KaRangReang));
+                        h.group2_item_2.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaReedNom)));
+                        h.group2_item_3.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaRangReang)));
 
-                        h.group2_item_5.setText(Util.dobbleToStringNumber(var.KaPasomPan));
-                        h.group2_item_6.setText(Util.dobbleToStringNumber(var.KaAHan));
-                        h.group2_item_7.setText(Util.dobbleToStringNumber(var.KaAHanYab));
-                        h.group2_item_8.setText(Util.dobbleToStringNumber(var.KaYa));
-                        h.group2_item_9.setText(Util.dobbleToStringNumber(var.KaNamKaFai));
-                        h.group2_item_10.setText(Util.dobbleToStringNumber(var.KaNamMan));
-                        h.group2_item_11.setText(Util.dobbleToStringNumber(var.KaWassaduSinPleung));
-                        h.group2_item_12.setText(Util.dobbleToStringNumber(var.KaSomsamOuppakorn));
-                        h.group2_item_13.setText(Util.dobbleToStringNumber(var.KaKonsong));
-                        h.group2_item_14.setText(Util.dobbleToStringNumber(var.KaChaiJay));
+                        h.group2_item_5.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaPasomPan)));
+                        h.group2_item_6.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaAHan)));
+                        h.group2_item_7.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaAHanYab)));
+                        h.group2_item_8.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaYa)));
+                        h.group2_item_9.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaNamKaFai)));
+                        h.group2_item_10.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaNamMan)));
+                        h.group2_item_11.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaWassaduSinPleung)));
+                        h.group2_item_12.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaSomsamOuppakorn)));
+                        h.group2_item_13.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaKonsong)));
+                        h.group2_item_14.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaChaiJay)));
 
-                        h.group3_item_1.setText(Util.dobbleToStringNumber(var.PerKaNamKaFai));
-                        h.group3_item_2.setText(Util.dobbleToStringNumber(var.PerKaNamMan));
-                        h.group3_item_3.setText(Util.dobbleToStringNumber(var.PerKaWassaduSinPleung));
-                        h.group3_item_4.setText(Util.dobbleToStringNumber(var.PerKaSomsamOuppakorn));
-                        h.group3_item_5.setText(Util.dobbleToStringNumber(var.PerKaChaiJay));
+                        h.group3_item_1.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.PerKaNamKaFai)));
+                        h.group3_item_2.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.PerKaNamMan)));
+                        h.group3_item_3.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.PerKaWassaduSinPleung)));
+                        h.group3_item_4.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.PerKaSomsamOuppakorn)));
+                        h.group3_item_5.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.PerKaChaiJay)));
 
-                        h.group4_item_1.setText(Util.dobbleToStringNumber(var.KaChaoTDin));
+                        h.group4_item_1.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaChaoTDin)));
 
-                        h.group5_item_1.setText(Util.dobbleToStringNumber(var.Raka));
+                        h.group5_item_1.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.Raka)));
 
                         h.txStartUnit.setText(Util.strToDobbleToStrFormat(plotDetail.getAnimalNumber()));
 

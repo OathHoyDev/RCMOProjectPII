@@ -444,19 +444,19 @@ public class PBProdDetailCalculateFmentD extends Fragment implements View.OnClic
                     if (!plotDetail.getVarValue().equals("")) {
                         mVarPlanD var = new Gson().fromJson(plotDetail.getVarValue(), mVarPlanD.class);
 
-                        model.KaAHan = var.KaAHan;
-                        model.KaYa   = var.KaYa;
-                        model.KaRangGgan = var.KaRangGgan;
-                        model.KaNamKaFai = var.KaNamKaFai;
-                        model.KaNamMan = var.KaNamMan;
-                        model.KaWassaduSinPleung = var.KaWassaduSinPleung;
-                        model.KaSomRongRaun =var.KaSomRongRaun;
-                        model.KaChoaTDin = var.KaChoaTDin;
+                        model.KaAHan = Util.strToDoubleDefaultZero(var.KaAHan);
+                        model.KaYa   = Util.strToDoubleDefaultZero(var.KaYa);
+                        model.KaRangGgan = Util.strToDoubleDefaultZero(var.KaRangGgan);
+                        model.KaNamKaFai = Util.strToDoubleDefaultZero(var.KaNamKaFai);
+                        model.KaNamMan = Util.strToDoubleDefaultZero(var.KaNamMan);
+                        model.KaWassaduSinPleung = Util.strToDoubleDefaultZero(var.KaWassaduSinPleung);
+                        model.KaSomRongRaun = Util.strToDoubleDefaultZero(var.KaSomRongRaun);
+                        model.KaChoaTDin = Util.strToDoubleDefaultZero(var.KaChoaTDin);
 
-                        model.NamNakChaLia = var.NamNakChaLia;
-                        model.JumNounTuaTKai =var.JumNounTuaTKai;
-                        model.RakaTKai = var.RakaTKai;
-                        model.RaYaWeRaLeang = var.RaYaWeRaLeang;
+                        model.NamNakChaLia = Util.strToDoubleDefaultZero(var.NamNakChaLia);
+                        model.JumNounTuaTKai =Util.strToDoubleDefaultZero(var.JumNounTuaTKai);
+                        model.RakaTKai = Util.strToDoubleDefaultZero(var.RakaTKai);
+                        model.RaYaWeRaLeang = Util.strToDoubleDefaultZero(var.RaYaWeRaLeang);
 
                         model.RermLeang =Util.strToDoubleDefaultZero(plotDetail.getAnimalNumber());
                         model.RakaReamLeang =Util.strToDoubleDefaultZero(plotDetail.getAnimalPrice());
@@ -465,19 +465,19 @@ public class PBProdDetailCalculateFmentD extends Fragment implements View.OnClic
                         setCalKaSermOption( var.isCalIncludeOption());
                         isCalIncludeOption = var.isCalIncludeOption();
 
-                        h.group1_item_2.setText(Util.dobbleToStringNumber(var.KaAHan));
-                        h.group1_item_3.setText(Util.dobbleToStringNumber(var.KaYa));
-                        h.group1_item_4.setText(Util.dobbleToStringNumber(var.KaRangGgan));
-                        h.group1_item_5.setText(Util.dobbleToStringNumber(var.KaNamKaFai));
-                        h.group1_item_6.setText(Util.dobbleToStringNumber(var.KaNamMan));
-                        h.group1_item_7.setText(Util.dobbleToStringNumber(var.KaWassaduSinPleung));
-                        h.group1_item_8.setText(Util.dobbleToStringNumber(var.KaSomRongRaun));
-                        h.group1_item_9.setText(Util.dobbleToStringNumber(var.KaChoaTDin));
+                        h.group1_item_2.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaAHan)));
+                        h.group1_item_3.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaYa)));
+                        h.group1_item_4.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaRangGgan)));
+                        h.group1_item_5.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaNamKaFai)));
+                        h.group1_item_6.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaNamMan)));
+                        h.group1_item_7.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaWassaduSinPleung)));
+                        h.group1_item_8.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaSomRongRaun)));
+                        h.group1_item_9.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaChoaTDin)));
 
-                        h.group3_item_1.setText(Util.dobbleToStringNumber(var.NamNakChaLia));
-                        h.group3_item_2.setText(Util.dobbleToStringNumber(var.JumNounTuaTKai));
-                        h.group3_item_4.setText(Util.dobbleToStringNumber(var.RakaTKai));
-                        h.group3_item_5.setText(Util.dobbleToStringNumber(var.RaYaWeRaLeang));
+                        h.group3_item_1.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.NamNakChaLia)));
+                        h.group3_item_2.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.JumNounTuaTKai)));
+                        h.group3_item_4.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.RakaTKai)));
+                        h.group3_item_5.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.RaYaWeRaLeang)));
 
                         h.txStartUnit.setText(Util.strToDobbleToStrFormat(plotDetail.getAnimalNumber()));
                         h.txStartPrice.setText(Util.strToDobbleToStrFormat(plotDetail.getAnimalPrice()));

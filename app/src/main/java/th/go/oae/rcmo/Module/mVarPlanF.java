@@ -9,20 +9,20 @@ public class mVarPlanF {
     //public double RermLeang ;
    // public double RakaReamLeang ;
    // public double KaPan;
-    public double KaAHan;
-    public double KaYa;
-    public double KaRangGgan ;
-    public double KaNamKaFai ;
-    public double KaNamMan;
-    public double KaWassaduSinPleung;
-    public double KaSomRongRaun ;
-    public double KaChoaTDin ;
+    public String KaAHan;
+    public String KaYa;
+    public String KaRangGgan ;
+    public String KaNamKaFai ;
+    public String KaNamMan;
+    public String KaWassaduSinPleung;
+    public String KaSomRongRaun ;
+    public String KaChoaTDin ;
 
 
-    public double KaiTDaiTangTaeRoem ;
-    public double RakaTKai ;
-    public double PonPloyDai;
-    public double RaYaWeRaLeang;
+    public String KaiTDaiTangTaeRoem ;
+    public String RakaTKai ;
+    public String PonPloyDai;
+    public String RaYaWeRaLeang;
    // public double KaSiaOkardLongtoon;
 
     public boolean isCalIncludeOption ;
@@ -35,135 +35,99 @@ public class mVarPlanF {
         isCalIncludeOption = calIncludeOption;
     }
 
-    public double getKaiTDaiTangTaeRoem() {
-        return KaiTDaiTangTaeRoem;
-    }
-
-    public void setKaiTDaiTangTaeRoem(double kaiTDaiTangTaeRoem) {
-        KaiTDaiTangTaeRoem = kaiTDaiTangTaeRoem;
-    }
-
-    /*
-    public double getPonPloyDai() {
-        return PonPloyDai;
-    }
-
-    public void setPonPloyDai(double ponPloyDai) {
-        PonPloyDai = ponPloyDai;
-    }
-
-    public double getRermLeang() {
-        return RermLeang;
-    }
-
-    public void setRermLeang(double rermLeang) {
-        RermLeang = rermLeang;
-    }
-
-    public double getRakaReamLeang() {
-        return RakaReamLeang;
-    }
-
-    public void setRakaReamLeang(double rakaReamLeang) {
-        RakaReamLeang = rakaReamLeang;
-    }
-
-    public double getKaPan() {
-        return KaPan;
-    }
-
-    public void setKaPan(double kaPan) {
-        KaPan = kaPan;
-    }
-    */
-
-    public double getKaAHan() {
+    public String getKaAHan() {
         return KaAHan;
     }
 
-    public void setKaAHan(double kaAHan) {
+    public void setKaAHan(String kaAHan) {
         KaAHan = kaAHan;
     }
 
-    public double getKaYa() {
+    public String getKaYa() {
         return KaYa;
     }
 
-    public void setKaYa(double kaYa) {
+    public void setKaYa(String kaYa) {
         KaYa = kaYa;
     }
 
-    public double getKaRangGgan() {
+    public String getKaRangGgan() {
         return KaRangGgan;
     }
 
-    public void setKaRangGgan(double kaRangGgan) {
+    public void setKaRangGgan(String kaRangGgan) {
         KaRangGgan = kaRangGgan;
     }
 
-    public double getKaNamKaFai() {
+    public String getKaNamKaFai() {
         return KaNamKaFai;
     }
 
-    public void setKaNamKaFai(double kaNamKaFai) {
+    public void setKaNamKaFai(String kaNamKaFai) {
         KaNamKaFai = kaNamKaFai;
     }
 
-    public double getKaNamMan() {
+    public String getKaNamMan() {
         return KaNamMan;
     }
 
-    public void setKaNamMan(double kaNamMan) {
+    public void setKaNamMan(String kaNamMan) {
         KaNamMan = kaNamMan;
     }
 
-    public double getKaWassaduSinPleung() {
+    public String getKaWassaduSinPleung() {
         return KaWassaduSinPleung;
     }
 
-    public void setKaWassaduSinPleung(double kaWassaduSinPleung) {
+    public void setKaWassaduSinPleung(String kaWassaduSinPleung) {
         KaWassaduSinPleung = kaWassaduSinPleung;
     }
 
-    public double getKaSomRongRaun() {
+    public String getKaSomRongRaun() {
         return KaSomRongRaun;
     }
 
-    public void setKaSomRongRaun(double kaSomRongRaun) {
+    public void setKaSomRongRaun(String kaSomRongRaun) {
         KaSomRongRaun = kaSomRongRaun;
     }
 
-    public double getKaChoaTDin() {
+    public String getKaChoaTDin() {
         return KaChoaTDin;
     }
 
-    public void setKaChoaTDin(double kaChoaTDin) {
+    public void setKaChoaTDin(String kaChoaTDin) {
         KaChoaTDin = kaChoaTDin;
     }
 
-    public double getRakaTKai() {
+    public String getKaiTDaiTangTaeRoem() {
+        return KaiTDaiTangTaeRoem;
+    }
+
+    public void setKaiTDaiTangTaeRoem(String kaiTDaiTangTaeRoem) {
+        KaiTDaiTangTaeRoem = kaiTDaiTangTaeRoem;
+    }
+
+    public String getRakaTKai() {
         return RakaTKai;
     }
 
-    public void setRakaTKai(double rakaTKai) {
+    public void setRakaTKai(String rakaTKai) {
         RakaTKai = rakaTKai;
     }
 
-    public double getRaYaWeRaLeang() {
+    public String getPonPloyDai() {
+        return PonPloyDai;
+    }
+
+    public void setPonPloyDai(String ponPloyDai) {
+        PonPloyDai = ponPloyDai;
+    }
+
+    public String getRaYaWeRaLeang() {
         return RaYaWeRaLeang;
     }
 
-    public void setRaYaWeRaLeang(double raYaWeRaLeang) {
+    public void setRaYaWeRaLeang(String raYaWeRaLeang) {
         RaYaWeRaLeang = raYaWeRaLeang;
     }
-
-    /*
-    public double getKaSiaOkardLongtoon() {
-        return KaSiaOkardLongtoon;
-    }
-
-    public void setKaSiaOkardLongtoon(double kaSiaOkardLongtoon) {
-        KaSiaOkardLongtoon = kaSiaOkardLongtoon;
-    }
-    */
 }

@@ -7,26 +7,26 @@ public class mVarPlanC {
 
 
     //public double KaNardPlangTDin ;
-    public double KaRang ;
-    public double KaTreamDin;
-    public double KaPluk;
-    public double KaChoaTDin;
-    public double KaDoolae ;
-    public double KaGebGeaw ;
-    public double KaWassadu;
-    public double KaPan;
+    public String KaRang ;
+    public String KaTreamDin;
+    public String KaPluk;
+    public String KaChoaTDin;
+    public String KaDoolae ;
+    public String KaGebGeaw ;
+    public String KaWassadu;
+    public String KaPan;
 
-    public double KaPuy ;
-    public double KaYaplab ;
-    public double KaWassaduUn;
-    public double KaSiaOkardLongtoon;
+    public String KaPuy ;
+    public String KaYaplab ;
+    public String KaWassaduUn;
+    public String KaSiaOkardLongtoon;
 
-    public double KaSermOuppakorn ;
-    public double KaSiaOkardOuppakorn ;
-    public double PonPalid;
-    public double Raka;
+    public String KaSermOuppakorn ;
+    public String KaSiaOkardOuppakorn ;
+    public String PonPalid;
+    public String Raka;
 
-    public double AttraDokbia;
+    public String AttraDokbia;
     public boolean isCalIncludeOption ;
 
     public boolean isCalIncludeOption() {
@@ -37,148 +37,139 @@ public class mVarPlanC {
         isCalIncludeOption = calIncludeOption;
     }
 
-    /*
-        public double getKaNardPlangTDin() {
-            return KaNardPlangTDin;
-        }
-
-        public void setKaNardPlangTDin(double kaNardPlangTDin) {
-            KaNardPlangTDin = kaNardPlangTDin;
-        }
-    */
-    public double getKaRang() {
+    public String getKaRang() {
         return KaRang;
     }
 
-    public void setKaRang(double kaRang) {
+    public void setKaRang(String kaRang) {
         KaRang = kaRang;
     }
 
-    public double getKaTreamDin() {
+    public String getKaTreamDin() {
         return KaTreamDin;
     }
 
-    public void setKaTreamDin(double kaTreamDin) {
+    public void setKaTreamDin(String kaTreamDin) {
         KaTreamDin = kaTreamDin;
     }
 
-    public double getKaPluk() {
+    public String getKaPluk() {
         return KaPluk;
     }
 
-    public void setKaPluk(double kaPluk) {
+    public void setKaPluk(String kaPluk) {
         KaPluk = kaPluk;
     }
 
-    public double getKaChoaTDin() {
+    public String getKaChoaTDin() {
         return KaChoaTDin;
     }
 
-    public void setKaChoaTDin(double kaChoaTDin) {
+    public void setKaChoaTDin(String kaChoaTDin) {
         KaChoaTDin = kaChoaTDin;
     }
 
-    public double getKaDoolae() {
+    public String getKaDoolae() {
         return KaDoolae;
     }
 
-    public void setKaDoolae(double kaDoolae) {
+    public void setKaDoolae(String kaDoolae) {
         KaDoolae = kaDoolae;
     }
 
-    public double getKaGebGeaw() {
+    public String getKaGebGeaw() {
         return KaGebGeaw;
     }
 
-    public void setKaGebGeaw(double kaGebGeaw) {
+    public void setKaGebGeaw(String kaGebGeaw) {
         KaGebGeaw = kaGebGeaw;
     }
 
-    public double getKaWassadu() {
+    public String getKaWassadu() {
         return KaWassadu;
     }
 
-    public void setKaWassadu(double kaWassadu) {
+    public void setKaWassadu(String kaWassadu) {
         KaWassadu = kaWassadu;
     }
 
-    public double getKaPan() {
+    public String getKaPan() {
         return KaPan;
     }
 
-    public void setKaPan(double kaPan) {
+    public void setKaPan(String kaPan) {
         KaPan = kaPan;
     }
 
-    public double getKaPuy() {
+    public String getKaPuy() {
         return KaPuy;
     }
 
-    public void setKaPuy(double kaPuy) {
+    public void setKaPuy(String kaPuy) {
         KaPuy = kaPuy;
     }
 
-    public double getKaYaplab() {
+    public String getKaYaplab() {
         return KaYaplab;
     }
 
-    public void setKaYaplab(double kaYaplab) {
+    public void setKaYaplab(String kaYaplab) {
         KaYaplab = kaYaplab;
     }
 
-    public double getKaWassaduUn() {
+    public String getKaWassaduUn() {
         return KaWassaduUn;
     }
 
-    public void setKaWassaduUn(double kaWassaduUn) {
+    public void setKaWassaduUn(String kaWassaduUn) {
         KaWassaduUn = kaWassaduUn;
     }
 
-    public double getKaSiaOkardLongtoon() {
+    public String getKaSiaOkardLongtoon() {
         return KaSiaOkardLongtoon;
     }
 
-    public void setKaSiaOkardLongtoon(double kaSiaOkardLongtoon) {
+    public void setKaSiaOkardLongtoon(String kaSiaOkardLongtoon) {
         KaSiaOkardLongtoon = kaSiaOkardLongtoon;
     }
 
-    public double getKaSermOuppakorn() {
+    public String getKaSermOuppakorn() {
         return KaSermOuppakorn;
     }
 
-    public void setKaSermOuppakorn(double kaSermOuppakorn) {
+    public void setKaSermOuppakorn(String kaSermOuppakorn) {
         KaSermOuppakorn = kaSermOuppakorn;
     }
 
-    public double getKaSiaOkardOuppakorn() {
+    public String getKaSiaOkardOuppakorn() {
         return KaSiaOkardOuppakorn;
     }
 
-    public void setKaSiaOkardOuppakorn(double kaSiaOkardOuppakorn) {
+    public void setKaSiaOkardOuppakorn(String kaSiaOkardOuppakorn) {
         KaSiaOkardOuppakorn = kaSiaOkardOuppakorn;
     }
 
-    public double getPonPalid() {
+    public String getPonPalid() {
         return PonPalid;
     }
 
-    public void setPonPalid(double ponPalid) {
+    public void setPonPalid(String ponPalid) {
         PonPalid = ponPalid;
     }
 
-    public double getRaka() {
+    public String getRaka() {
         return Raka;
     }
 
-    public void setRaka(double raka) {
+    public void setRaka(String raka) {
         Raka = raka;
     }
 
-    public double getAttraDokbia() {
+    public String getAttraDokbia() {
         return AttraDokbia;
     }
 
-    public void setAttraDokbia(double attraDokbia) {
+    public void setAttraDokbia(String attraDokbia) {
         AttraDokbia = attraDokbia;
     }
 }
