@@ -56,6 +56,22 @@ public class StepTwoActivity extends Activity {
 
     }
 
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.i("Step 2", "On Start .....");
+        if(productInfoLists!=null && plantGroupLists!=null && riceProductGroupLists!=null ) {
+            if (productInfoLists.size() == 0 && plantGroupLists.size() == 0 && riceProductGroupLists.size() == 0) {
+                Log.i("Step 2", "Not found data on memory go to start page .....");
+                Intent intent = new Intent(StepTwoActivity.this, SplashActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                finish();
+            }
+        }
+    }
+
     private void setUI() {
         LinearLayout mainLayout  =     (LinearLayout)findViewById(R.id.layoutStepTwo);
         TextView titleText       =      (TextView)findViewById(R.id.titleLable);
@@ -488,6 +504,12 @@ public class StepTwoActivity extends Activity {
                 "?PrdGrpID=" + prdGrpIDStr + "&PlantGrpID="+plantGrpIDStr+
                 "&PrdID=" );
 
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.i("Step 2", "On Stop .....");
     }
 
 

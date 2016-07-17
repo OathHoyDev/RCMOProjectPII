@@ -72,6 +72,17 @@ public class UserPlotListActivity extends Activity {
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        Log.i(TAG, "On Start .....");
+    }
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.i(TAG, "On Stop .....");
+    }
+
+    @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if(keyCode == KeyEvent.KEYCODE_BACK){
             new DialogChoice(UserPlotListActivity.this, new DialogChoice.OnSelectChoiceListener() {

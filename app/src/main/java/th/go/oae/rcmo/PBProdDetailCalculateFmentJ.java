@@ -1143,8 +1143,8 @@ if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())
                         h.group4_item_4_2.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(varJ.RakaPla4)));
                         h.group4_item_4_3.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(varJ.NamnakPla4)));
 
-                        userPlotModel.setFisheryNumType(String.valueOf(varJ.getCalType()));
-                      if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(varJ.getCalType())){
+                        userPlotModel.setFisheryNumType(plotDetail.getFisheryNumType());
+                      if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(plotDetail.getFisheryNumType())){
                           h.rookPla.setText(Util.strToDobbleToStrFormat(plotDetail.getFisheryWeight()));
                           userPlotModel.setFisheryWeight(plotDetail.getFisheryWeight());
                       }else{
@@ -1159,16 +1159,19 @@ if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())
 
 
                     }else{
-                        h.rai.setText(plotDetail.getPondRai());
-                        h.ngan.setText(plotDetail.getPondNgan());
-                        h.tarangwa.setText(plotDetail.getPondWa());
-                        h.tarangwa.setText(plotDetail.getPondMeter());
-                        h.rookPla.setText(plotDetail.getFisheryNumber());
-                        userPlotModel.setFisheryNumType(plotDetail.getFisheryType());
+                        h.rai.setText(Util.strToDobbleToStrFormat(plotDetail.getPondRai()));
+                        h.ngan.setText(Util.strToDobbleToStrFormat(plotDetail.getPondNgan()));
+                        h.tarangwa.setText(Util.strToDobbleToStrFormat(plotDetail.getPondWa()));
+                        h.tarangMeter.setText(Util.strToDobbleToStrFormat(plotDetail.getPondMeter()));
 
-                        if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(plotDetail.getFisheryType())){
+                        //h.rookPla.setText(plotDetail.getFisheryNumber());
+                        userPlotModel.setFisheryNumType(plotDetail.getFisheryNumType());
+
+                        if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(plotDetail.getFisheryNumType())){
+                            h.rookPla.setText(Util.strToDobbleToStrFormat(plotDetail.getFisheryWeight()));
                             userPlotModel.setFisheryWeight(plotDetail.getFisheryWeight());
                         }else{
+                            h.rookPla.setText(Util.strToDobbleToStrFormat(plotDetail.getFisheryNumber()));
                             userPlotModel.setFisheryNumber(plotDetail.getFisheryNumber());
                         }
                     }

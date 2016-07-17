@@ -344,7 +344,8 @@ public class ProductDetailMapFragment extends Fragment {
         if ("".equalsIgnoreCase(var.getSuitValue())) {
             txSuggessPlot.setText("ไม่พบข้อมูลความเหมาะสม");
         } else {
-            txSuggessPlot.setText(var.getSuitValue());
+          // txSuggessPlot.setText(var.getSuitValue());
+            txSuggessPlot.setText(var.getSuitLabel());
         }
 
         switch (var.getSuitLevel()) {

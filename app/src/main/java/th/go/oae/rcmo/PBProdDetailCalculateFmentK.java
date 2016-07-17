@@ -1052,9 +1052,9 @@ public class PBProdDetailCalculateFmentK extends Fragment implements View.OnClic
                         setCalKaSermOption( var.isCalIncludeOption());
                         isCalIncludeOption = var.isCalIncludeOption();
 
-                        h.kanardKachang.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(plotDetail.getCoopMeter())));
-                        h.jumnounKachang.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(plotDetail.getCoopNumber())));
-                        h.lookPla.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(plotDetail.getFisheryNumber())));
+                        h.kanardKachang.setText(Util.strToDobbleToStrFormat(plotDetail.getCoopMeter()));
+                        h.jumnounKachang.setText(Util.strToDobbleToStrFormat(plotDetail.getCoopNumber()));
+                        h.lookPla.setText(Util.strToDobbleToStrFormat(plotDetail.getFisheryNumber()));
 
                         h.group1_item_1.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.Raka)));
 
@@ -1097,9 +1097,10 @@ public class PBProdDetailCalculateFmentK extends Fragment implements View.OnClic
 
 
                     }else{
-                        h.kanardKachang.setText(plotDetail.getCoopMeter());
-                        h.jumnounKachang.setText(plotDetail.getCoopNumber());
-                        h.lookPla.setText(plotDetail.getFisheryNumber());
+                        h.kanardKachang.setText(Util.strToDobbleToStrFormat(plotDetail.getCoopMeter()));
+                        h.jumnounKachang.setText(Util.strToDobbleToStrFormat(plotDetail.getCoopNumber()));
+                        h.lookPla.setText(Util.strToDobbleToStrFormat(plotDetail.getFisheryNumber()));
+
 
                     }
                 }

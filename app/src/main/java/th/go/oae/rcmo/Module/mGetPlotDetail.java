@@ -45,6 +45,8 @@ public class mGetPlotDetail {
         String PlotNgan;
         String PlotWa;
         String PlotMeter;
+        String FisheryNumType;
+
 
         public String getPlotNgan() {
             return PlotNgan;
@@ -268,6 +270,14 @@ public class mGetPlotDetail {
 
         public void setCoopMeter(String coopMeter) {
             CoopMeter = coopMeter;
+        }
+
+        public String getFisheryNumType() {
+            return FisheryNumType;
+        }
+
+        public void setFisheryNumType(String fisheryNumType) {
+            FisheryNumType = fisheryNumType;
         }
 
         @Override

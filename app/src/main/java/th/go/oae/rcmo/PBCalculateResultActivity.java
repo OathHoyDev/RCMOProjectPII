@@ -275,7 +275,9 @@ if(userPlotModel.getPrdID().equals("40")
         || userPlotModel.getPrdID().equals("43")
         || userPlotModel.getPrdID().equals("44")
         || userPlotModel.getPrdID().equals("49")
-        || "D".equalsIgnoreCase(calculateResultModel.formularCode)) {
+        || "D".equalsIgnoreCase(calculateResultModel.formularCode)
+        || "J".equalsIgnoreCase(calculateResultModel.formularCode)
+        || "K".equalsIgnoreCase(calculateResultModel.formularCode)) {
    recommandpriceLabel.setVisibility(View.INVISIBLE);
     recommandPrice.setVisibility(View.INVISIBLE);
 }else{
