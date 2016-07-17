@@ -849,6 +849,7 @@ private void displayNotFoundPlotAnimation() {
                         Log.d(TAG, "adapter Is Null");
                         userPlotListView = (DragSortListView) findViewById(R.id.listviewPlotDragUser);
 
+
                         ((LinearLayout) findViewById(R.id.ani_add_plot)).setVisibility(View.GONE);
                         adapter = new UserPlotAdapter(userPlotBodyLists);
                         userPlotListView.setAdapter(adapter);
@@ -878,8 +879,16 @@ private void displayNotFoundPlotAnimation() {
 
             @Override
             public void callbackError(int code, String errorMsg) {
+                Log.d(TAG, "Not found data");
                 List<mUserPlotList.mRespBody>  userPlotList = new ArrayList<mUserPlotList.mRespBody>();
                 UserPlotListActivity.userPlotRespBodyList  = userPlotList;
+                ImageView arrowImg = (ImageView)  findViewById(R.id.ani_arrow);
+                if(! (View.VISIBLE == arrowImg.getVisibility())){
+                    arrowImg.setVisibility(View.VISIBLE);
+                    findViewById(R.id.ani_circle).setVisibility(View.VISIBLE);
+                    displayNotFoundPlotAnimation();
+                }
+
                 swipeContainer.setRefreshing(false);
             }
         }).API_Request(false, RequestServices.ws_getPlotList +
