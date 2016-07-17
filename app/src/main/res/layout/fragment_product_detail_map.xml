@@ -16,16 +16,16 @@
         android:layout_height="match_parent">
 
         <ImageButton
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:id="@+id/btnMapStyle"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="70dp"
             android:background="@drawable/btn_sate"/>
 
         <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:id="@+id/btnCenterMarker"
             android:layout_marginTop="10dp"
             android:background="@drawable/btn_my_pin"
@@ -138,7 +138,8 @@
                     android:layout_marginTop="@dimen/margin_large"
                     android:text="บันทึก"
                     android:id="@+id/btnSaveChangeLocation"
-                    android:gravity="center_vertical|center_horizontal" />
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textColor="@color/RcmoWhiteBG" />
             </LinearLayout>
 
         </RelativeLayout>
@@ -181,7 +182,7 @@
                     pixlui:typeface="Quark-Bold.otf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text=""
                     android:id="@+id/txAddress"
                     android:layout_alignParentBottom="false"
@@ -211,8 +212,8 @@
         </FrameLayout>
 
         <Button
-            android:layout_width="100dp"
-            android:layout_height="50dp"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
             android:id="@+id/btnSuggession"
             android:layout_alignTop="@+id/btnMapStyle"
             android:layout_alignParentEnd="true"

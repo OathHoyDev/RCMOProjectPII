@@ -56,6 +56,9 @@ import th.go.oae.rcmo.Util.CalculateConstant;
 import th.go.oae.rcmo.Util.GPSTracker;
 import th.go.oae.rcmo.Util.ServiceInstance;
 import th.go.oae.rcmo.View.DialogChoice;
+import th.go.oae.rcmo.View.dialog_amphoe;
+import th.go.oae.rcmo.View.dialog_province;
+import th.go.oae.rcmo.View.dialog_tambon;
 
 
 /**
@@ -102,6 +105,7 @@ public class ProductDetailMapFragment extends Fragment {
     LayoutInflater inflater;
 
     boolean isPopup = false;
+    boolean isClickBtn = false;
 
     String TAG = "ProductDetailMapFragment";
 
@@ -276,7 +280,7 @@ public class ProductDetailMapFragment extends Fragment {
             }
         });
 
-        map.getUiSettings().setZoomControlsEnabled(true);
+        //map.getUiSettings().setZoomControlsEnabled(true);
         map.getUiSettings().setMyLocationButtonEnabled(false);
         map.setPadding(0, 250, 0, 400);
 
@@ -296,7 +300,12 @@ public class ProductDetailMapFragment extends Fragment {
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(latitude, longitude), 12);
         map.animateCamera(cameraUpdate);
 
-        pinPlotLocation(latitude, longitude);
+        if ("".equalsIgnoreCase(userPlotModel.getTamCode())) {
+            MarkerOptions marker = new MarkerOptions().position(new LatLng(latitude, longitude));
+            map.addMarker(marker);
+        }else {
+            pinPlotLocation(latitude, longitude);
+        }
     }
 
     private void pinPlotLocation(double latitude, double longitude) {
@@ -320,12 +329,20 @@ public class ProductDetailMapFragment extends Fragment {
         com.neopixl.pixlui.components.textview.TextView txAddress = (com.neopixl.pixlui.components.textview.TextView) fragmentView.findViewById(R.id.txAddress);
         ImageView suggessStar = (ImageView) fragmentView.findViewById(R.id.suggessStar);
 
+        TextView provinceTextView = (TextView) fragmentView.findViewById(R.id.inputprovice);
+        TextView amphoeTextView = (TextView) fragmentView.findViewById(R.id.inputAmphoe);
+        TextView tumbonTextView = (TextView) fragmentView.findViewById(R.id.inputTumbon);
+
+        provinceTextView.setText(var.getProvNameTH());
+        amphoeTextView.setText(var.getAmpNameTH());
+        tumbonTextView.setText(var.getTamNameTH());
+
         String address = "จ." + var.getProvNameTH() + " อ." + var.getAmpNameTH() + " ต." + var.getTamNameTH();
 
         txAddress.setText(address);
 
         if ("".equalsIgnoreCase(var.getSuitValue())) {
-            txSuggessPlot.setText("ไม่พบข้อมูล");
+            txSuggessPlot.setText("ไม่พบข้อมูลความเหมาะสม");
         } else {
             txSuggessPlot.setText(var.getSuitValue());
         }
@@ -368,12 +385,12 @@ public class ProductDetailMapFragment extends Fragment {
         ImageView suggessStar = (ImageView) fragmentView.findViewById(R.id.suggessStar);
 
         txAddress.setText("ไม่ได้กำหนดตำแหน่งแปลงที่ดิน");
-        txSuggessPlot.setText("ไม่พบข้อมูล");
+        txSuggessPlot.setText("ไม่พบข้อมูลความเหมาะสม");
 
         suggessStar.setImageResource(R.drawable.ic_0star);
 
 
-        suggession = "ไม่พบข้อมูล\n\n";
+        suggession = "ไม่พบข้อมูลความเหมาะสม\n\n";
         recommend = "";
         recommendProduct = "";
 
@@ -386,6 +403,8 @@ public class ProductDetailMapFragment extends Fragment {
         fragmentView.findViewById(R.id.btnSuggession).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                isClickBtn = true;
 
                 Button btnSuggession = (Button) v.findViewById(R.id.btnSuggession);
 
@@ -413,41 +432,38 @@ public class ProductDetailMapFragment extends Fragment {
                     int popupWidth = (int) (width * 0.95);
                     int popupHeight = (int) (height * 0.8);
 
-                    //ViewGroup.LayoutParams suggessParam = suggess_layout.getLayoutParams();
-                    //suggessParam.height = (int) (popupHeight * 0.9);
-
                     popupWindow = new PopupWindow(
                             popupView, popupWidth, popupHeight);
 
                     popupWindow.setOutsideTouchable(true);
 
-//                    popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
-//
-//                        @Override
-//                        public void onDismiss() {
-//                            isPopup = false;
-//                            fadeView.setVisibility(View.GONE);
-//                            popupWindow.dismiss();
-//                        }
-//                    });
+                    popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+                        @Override
+                        public void onDismiss() {
 
-                    fadeView.setVisibility(View.VISIBLE);
-                    popupWindow.showAsDropDown(btnSuggession, Gravity.TOP | Gravity.RIGHT, 0);
-                    isPopup = true;
+                            isPopup = false;
+                            popupWindow.dismiss();
 
-                } else {
 
-                    if (isPopup) {
-                        fadeView.setVisibility(View.GONE);
-                        popupWindow.dismiss();
-                        popupWindow = null;
+                        }
+                    });
+
+                }
+
+                if (isPopup){
+                    if (isClickBtn) {
+                        isClickBtn = false;
                         isPopup = false;
-                    } else {
-                        fadeView.setVisibility(View.VISIBLE);
+                    }else{
                         popupWindow.showAsDropDown(btnSuggession, Gravity.TOP | Gravity.RIGHT, 0);
                         isPopup = true;
                     }
+                }else{
+                    popupWindow.showAsDropDown(btnSuggession, Gravity.TOP | Gravity.RIGHT, 0);
+                    isPopup = true;
                 }
+
+
             }
         });
 
@@ -827,7 +843,29 @@ public class ProductDetailMapFragment extends Fragment {
 
                 if (provinceBodyLists.size() != 0) {
                     provinceBodyLists.add(0, defaultProvince);
-                    popUpProvinceListDialog(provinceBodyLists);
+                    //popUpProvinceListDialog(provinceBodyLists);
+
+                    new dialog_province(context,"จังหวัด",provinceBodyLists, new dialog_province.OnSelectChoice() {
+                        @Override
+                        public void selectChoice(mProvince.mRespBody choice) {
+                            selectedprovince = choice;
+                            android.widget.TextView provinceTextView = (android.widget.TextView) fragmentView.findViewById(R.id.inputprovice);
+                            android.widget.TextView amphoeTextView = (android.widget.TextView) fragmentView.findViewById(R.id.inputAmphoe);
+                            android.widget.TextView tumbonTextView = (android.widget.TextView) fragmentView.findViewById(R.id.inputTumbon);
+                            selectedAmphoe = null;
+                            selectedTumbon = null;
+                            if(selectedprovince.getProvCode().equals("0")){
+                                selectedprovince = null;
+                                provinceTextView.setText("");
+                            }else{
+                                provinceTextView.setText(selectedprovince.getProvNameTH());
+                            }
+                            amphoeTextView.setText("");
+                            tumbonTextView.setText("");
+
+                        }
+                    });
+
                 }
             }
 
@@ -860,7 +898,28 @@ public class ProductDetailMapFragment extends Fragment {
 
                 if (amphoeBodyLists.size() != 0) {
                     amphoeBodyLists.add(0, defaultAmphoe);
-                    popUpAmphoeListDialog(amphoeBodyLists);
+                    //popUpAmphoeListDialog(amphoeBodyLists);
+
+                    new dialog_amphoe(context,"อำเภอ",amphoeBodyLists, new dialog_amphoe.OnSelectChoice() {
+                        @Override
+                        public void selectChoice(mAmphoe.mRespBody choice) {
+                            selectedAmphoe = choice;
+                            android.widget.TextView amphoeTextView = (android.widget.TextView) fragmentView.findViewById(R.id.inputAmphoe);
+                            android.widget.TextView tumbonTextView = (android.widget.TextView) fragmentView.findViewById(R.id.inputTumbon);
+
+                            selectedTumbon = null;
+
+
+                            if(selectedAmphoe.getAmpCode().equals("0")) {
+                                selectedAmphoe = null;
+                                amphoeTextView.setText("");
+                            }else{
+                                amphoeTextView.setText(selectedAmphoe.getAmpNameTH());
+                            }
+                            tumbonTextView.setText("");
+
+                        }
+                    });
                 }
             }
 
@@ -895,7 +954,23 @@ public class ProductDetailMapFragment extends Fragment {
 
                 if (tumbonBodyLists.size() != 0) {
                     tumbonBodyLists.add(0, defaultTumbon);
-                    popUpTumbonListDialog(tumbonBodyLists);
+                    //popUpTumbonListDialog(tumbonBodyLists);
+
+                    new dialog_tambon(context,"ตำบล", tumbonBodyLists, new dialog_tambon.OnSelectChoice() {
+                        @Override
+                        public void selectChoice(mTumbon.mRespBody choice) {
+                            selectedTumbon = choice;
+
+                            android.widget.TextView tumbonTextView = (android.widget.TextView) fragmentView.findViewById(R.id.inputTumbon);
+                            if(selectedTumbon.getTamCode().equals("0")){
+                                selectedTumbon = null;
+                                tumbonTextView.setText("");
+                            }else{
+                                tumbonTextView.setText(selectedTumbon.getTamNameTH());
+                            }
+                        }
+                    });
+
                 }
             }
 
@@ -931,6 +1006,7 @@ public class ProductDetailMapFragment extends Fragment {
                 longitude = tumbon.getLongitude();
 
                 suitFlag = "1";
+
                 showMap(Double.parseDouble(latitude), Double.parseDouble(longitude));
                 API_getPlotSuit(latitude, longitude, suitFlag);
             }
