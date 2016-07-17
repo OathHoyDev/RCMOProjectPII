@@ -51,7 +51,7 @@ public class PBProductDetailActivity extends AppCompatActivity {
 
 
         tabLayout.setupWithViewPager(pager);
-        tabLayout.setBackgroundResource(R.color.RcmoWhiteBG);
+        tabLayout.setBackgroundResource(R.color.RcmoTran);
     //    pager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         pager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout) {
             @Override
@@ -68,7 +68,7 @@ public class PBProductDetailActivity extends AppCompatActivity {
 
             @Override
             public void onPageScrollStateChanged(int state) {
-                tabLayout.setBackgroundResource(R.color.RcmoWhiteBG);
+                tabLayout.setBackgroundResource(R.color.RcmoTran);
                // Toast toast = Toast.makeText( PBProductDetailActivity.this, "onPageScrollStateChanged", Toast.LENGTH_SHORT);
                 //toast.show();
             }

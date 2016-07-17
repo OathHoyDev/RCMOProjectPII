@@ -263,6 +263,9 @@ public class ProductDetailMapFragment extends Fragment {
             @Override
             public void onMapClick(LatLng latLng) {
 
+                latitude = String.valueOf(latLng.latitude);
+                longitude = String.valueOf(latLng.longitude);
+
                 map.clear();
                 pinPlotLocation(Double.parseDouble(latitude), Double.parseDouble(longitude));
 
@@ -407,7 +410,7 @@ public class ProductDetailMapFragment extends Fragment {
                     Display display = getActivity().getWindowManager().getDefaultDisplay();
                     int width = display.getWidth();
                     int height = display.getHeight();
-                    int popupWidth = (int) (width * 0.9);
+                    int popupWidth = (int) (width * 0.95);
                     int popupHeight = (int) (height * 0.8);
 
                     //ViewGroup.LayoutParams suggessParam = suggess_layout.getLayoutParams();
