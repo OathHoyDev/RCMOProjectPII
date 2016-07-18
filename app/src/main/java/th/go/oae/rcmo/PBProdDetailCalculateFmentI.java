@@ -95,7 +95,7 @@ public class PBProdDetailCalculateFmentI extends Fragment implements View.OnClic
         h.productIconImg = (ImageView) view.findViewById(R.id.productIconImg);
         h.rai = (TextView) view.findViewById(R.id.rai);
         h.ngan = (TextView) view.findViewById(R.id.ngan);
-        h.tarangwa = (TextView) view.findViewById(R.id.tarangwa);
+        h.wa = (TextView) view.findViewById(R.id.wa);
         h.rookKung = (TextView) view.findViewById(R.id.rookKung);
 
         h.group1_items = (LinearLayout) view.findViewById(R.id.group1_items);
@@ -114,6 +114,9 @@ public class PBProdDetailCalculateFmentI extends Fragment implements View.OnClic
         h.calBtn = (TextView) view.findViewById(R.id.calBtn);
         h.calBtn.setOnClickListener(this);
 
+        h.raiLabel = (TextView) view.findViewById(R.id.raiLabel);
+        h.nganLabel = (TextView) view.findViewById(R.id.nganLabel);
+        h.waLabel = (TextView) view.findViewById(R.id.waLabel);
 
         h.btnOption = (Button) view.findViewById(R.id.btnOption);
         h.btnOption.setOnClickListener(this);
@@ -152,7 +155,7 @@ public class PBProdDetailCalculateFmentI extends Fragment implements View.OnClic
 
         h.rai.addTextChangedListener(new PlanITextWatcher(h.rai, h, "calRayDaiChalia"));
         h.ngan.addTextChangedListener(new PlanITextWatcher(h.ngan, h, "calRayDaiChalia"));
-        h.tarangwa.addTextChangedListener(new PlanITextWatcher(h.tarangwa, h, "calRayDaiChalia"));
+        h.wa.addTextChangedListener(new PlanITextWatcher(h.wa, h, "calRayDaiChalia"));
 
         h.group1_item_1.addTextChangedListener(new PlanITextWatcher(h.group1_item_1, h, "calRakaPan"));
         h.group1_item_2.addTextChangedListener(new PlanITextWatcher(h.group1_item_2, h, "calKaSiaOkardLongtoon"));
@@ -190,8 +193,12 @@ public class PBProdDetailCalculateFmentI extends Fragment implements View.OnClic
         } else {
             h.rai.setText(Util.dobbleToStringNumberWithClearDigit(Util.strToDoubleDefaultZero(userPlotModel.getPondRai())));
             h.ngan.setText(Util.dobbleToStringNumberWithClearDigit(Util.strToDoubleDefaultZero(userPlotModel.getPondNgan())));
-            h.tarangwa.setText(Util.dobbleToStringNumberWithClearDigit(Util.strToDoubleDefaultZero(userPlotModel.getPondWa())));
+            h.wa.setText(Util.dobbleToStringNumberWithClearDigit(Util.strToDoubleDefaultZero(userPlotModel.getPondWa())));
             h.rookKung.setText(Util.dobbleToStringNumberWithClearDigit(Util.strToDoubleDefaultZero(userPlotModel.getFisheryNumber())));
+
+            checkVisibility( Util.strToDoubleDefaultZero(userPlotModel.getPondRai())
+                    ,Util.strToDoubleDefaultZero(userPlotModel.getPondNgan())
+                    ,Util.strToDoubleDefaultZero(userPlotModel.getPondWa()));
         }
 
         if (isCalIncludeOption) {
@@ -321,7 +328,7 @@ public class PBProdDetailCalculateFmentI extends Fragment implements View.OnClic
 
         aModel.Rai = Util.strToDoubleDefaultZero(h.rai.getText().toString());
         aModel.Ngan = Util.strToDoubleDefaultZero(h.ngan.getText().toString());
-        aModel.TarangWa = Util.strToDoubleDefaultZero(h.tarangwa.getText().toString());
+        aModel.TarangWa = Util.strToDoubleDefaultZero(h.wa.getText().toString());
         aModel.rookKung = Util.strToDoubleDefaultZero(h.rookKung.getText().toString());
 
         aModel.RakaTuaLa = Util.strToDoubleDefaultZero(h.group1_item_1.getText().toString());
@@ -351,7 +358,7 @@ public class PBProdDetailCalculateFmentI extends Fragment implements View.OnClic
     public static class ViewHolder {
 
         // Header
-        public TextView rai, ngan, tarangwa, rookKung;
+        public TextView rai, ngan, wa, rookKung;
         private ImageView productIconImg;
 
         // Group 1
@@ -374,6 +381,8 @@ public class PBProdDetailCalculateFmentI extends Fragment implements View.OnClic
         private Button btnOption;
 
         private RelativeLayout headerLayout;
+
+        private TextView raiLabel,nganLabel,waLabel;
     }
 
     private void API_getPlotDetail(String plodID) {
@@ -489,7 +498,7 @@ public class PBProdDetailCalculateFmentI extends Fragment implements View.OnClic
 
                         h.rai.setText(Util.strToDobbleToStrFormat(plotDetail.getPondRai()));
                         h.ngan.setText(Util.strToDobbleToStrFormat(plotDetail.getPondNgan()));
-                        h.tarangwa.setText(Util.strToDobbleToStrFormat(plotDetail.getPondWa()));
+                        h.wa.setText(Util.strToDobbleToStrFormat(plotDetail.getPondWa()));
                         h.rookKung.setText(Util.strToDobbleToStrFormat(plotDetail.getFisheryNumber()));
 
                         h.group1_item_1.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(varI.RakaTuaLa)));
@@ -515,11 +524,15 @@ public class PBProdDetailCalculateFmentI extends Fragment implements View.OnClic
 
                         setUpCalUI(formulaModel);
                     }else{
-                        h.rai.setText(plotDetail.getPondRai());
-                        h.ngan.setText(plotDetail.getPondNgan());
-                        h.tarangwa.setText(plotDetail.getPondWa());
-                        h.rookKung.setText(plotDetail.getFisheryNumber());
+                        h.rai.setText(Util.strToDobbleToStrFormat(plotDetail.getPondRai()));
+                        h.ngan.setText(Util.strToDobbleToStrFormat(plotDetail.getPondNgan()));
+                        h.wa.setText(Util.strToDobbleToStrFormat(plotDetail.getPondWa()));
+                        h.rookKung.setText(Util.strToDobbleToStrFormat(plotDetail.getFisheryNumber()));
                     }
+
+                    checkVisibility( Util.strToDoubleDefaultZero(plotDetail.getPondRai())
+                            ,Util.strToDoubleDefaultZero(plotDetail.getPondNgan())
+                            ,Util.strToDoubleDefaultZero(plotDetail.getPondWa()));
                 }
             }
 
@@ -559,27 +572,32 @@ public class PBProdDetailCalculateFmentI extends Fragment implements View.OnClic
 
         rai.setText(Util.clearStrNumberFormat(h.rai.getText().toString()));
         ngan.setText( Util.clearStrNumberFormat(h.ngan.getText().toString()));
-        sqaWa.setText(Util.clearStrNumberFormat(h.tarangwa.getText().toString()));
+        sqaWa.setText(Util.clearStrNumberFormat(h.wa.getText().toString()));
         unit.setText(Util.clearStrNumberFormat(h.rookKung.getText().toString()));
 
         h.rai = (TextView) view.findViewById(R.id.rai);
         h.ngan = (TextView) view.findViewById(R.id.ngan);
-        h.tarangwa = (TextView) view.findViewById(R.id.tarangwa);
+        h.wa = (TextView) view.findViewById(R.id.wa);
         h.rookKung = (TextView) view.findViewById(R.id.rookKung);
 
         btn_ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                h.rai.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(rai.getText().toString())));
-                h.ngan.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(ngan.getText().toString())));
-                h.tarangwa.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(sqaWa.getText().toString())));
-                h.rookKung.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(unit.getText().toString())));
+                h.rai.setText(Util.strToDobbleToStrFormat(rai.getText().toString()));
+                h.ngan.setText(Util.strToDobbleToStrFormat(ngan.getText().toString()));
+                h.wa.setText(Util.strToDobbleToStrFormat(sqaWa.getText().toString()));
+                h.rookKung.setText(Util.strToDobbleToStrFormat(unit.getText().toString()));
                 //userPlotModel.setPlotRai(String.valueOf(Util.strToDoubleDefaultZero(inputRai.getText().toString())));
 
                 userPlotModel.setPondRai(Util.clearStrNumberFormat(h.rai.getText().toString()));
                 userPlotModel.setPondNgan(Util.clearStrNumberFormat(h.ngan.getText().toString()));
-                userPlotModel.setPondWa(Util.clearStrNumberFormat(h.tarangwa.getText().toString()));
+                userPlotModel.setPondWa(Util.clearStrNumberFormat(h.wa.getText().toString()));
                 userPlotModel.setFisheryNumber(Util.clearStrNumberFormat(h.rookKung.getText().toString()));
+
+                checkVisibility( Util.strToDoubleDefaultZero(rai.getText().toString())
+                        ,Util.strToDoubleDefaultZero(ngan.getText().toString())
+                        ,Util.strToDoubleDefaultZero(sqaWa.getText().toString()));
+
                 dialog.dismiss();
             }
         });
@@ -605,5 +623,36 @@ public class PBProdDetailCalculateFmentI extends Fragment implements View.OnClic
             isCalIncludeOption = false;
         }
     }
+
+    private void  checkVisibility(double rai ,double ngan,double wa){
+        Log.d("checkVisibility","Rai = "+rai);
+        Log.d("checkVisibility","ngan = "+ngan);
+        Log.d("checkVisibility","wa = "+wa);
+
+        if(rai == 0){
+            h.rai.setVisibility(View.INVISIBLE);
+            h.raiLabel.setVisibility(View.GONE);
+        }else{
+            h.rai.setVisibility(View.VISIBLE);
+            h.raiLabel.setVisibility(View.VISIBLE);
+        }
+
+        if(ngan == 0){
+            h.ngan.setVisibility(View.GONE);
+            h.nganLabel.setVisibility(View.GONE);
+        }else{
+            h.ngan.setVisibility(View.VISIBLE);
+            h.nganLabel.setVisibility(View.VISIBLE);
+        }
+
+        if(wa == 0){
+            h.wa.setVisibility(View.GONE);
+            h.waLabel.setVisibility(View.GONE);
+        }else{
+            h.wa.setVisibility(View.VISIBLE);
+            h.waLabel.setVisibility(View.VISIBLE);
+        }
+    }
+
 
 }

@@ -108,17 +108,16 @@ public class PBProdDetailCalculateFmentJ extends Fragment implements View.OnClic
     }
 
 
-
     private void setHolder() {
 
         //public static final String FISHERY_TYPE_KC = "2";
         //public static final String FISHERY_TYPE_BO = "1";
         //public static final String FISHERY_NUM_TYPE_TUA = "1";
         //public static final String FISHERY_NUM_TYPE_KK  = "2";
-if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())) {
-    ((TextView) view.findViewById(R.id.unit_type)).setText("กก.");
-    ((TextView) view.findViewById(R.id.price_unit_type)).setText("บาท/กก.");
-}
+        if (ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())) {
+            ((TextView) view.findViewById(R.id.unit_type)).setText("กก.");
+            ((TextView) view.findViewById(R.id.price_unit_type)).setText("บาท/กก.");
+        }
         h.group1_item_1 = (EditText) view.findViewById(R.id.group1_item_1);
         h.group1_item_2 = (TextView) view.findViewById(R.id.group1_item_2);
         h.group1_item_3 = (EditText) view.findViewById(R.id.group1_item_3);
@@ -136,10 +135,10 @@ if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())
 
         h.group2_item_1 = (EditText) view.findViewById(R.id.group2_item_1);
         h.group2_item_2 = (TextView) view.findViewById(R.id.group2_item_2);
-       // h.group2_item_3 = (TextView) view.findViewById(R.id.group2_item_3);
-       // h.group2_item_4 = (TextView) view.findViewById(R.id.group2_item_4);
+        // h.group2_item_3 = (TextView) view.findViewById(R.id.group2_item_3);
+        // h.group2_item_4 = (TextView) view.findViewById(R.id.group2_item_4);
 
-       //h.group2_3_item = (LinearLayout) view.findViewById(R.id.group2_3_item);
+        //h.group2_3_item = (LinearLayout) view.findViewById(R.id.group2_3_item);
         //h.group2_4_item = (LinearLayout) view.findViewById(R.id.group2_4_item);
 
         h.group3_header_check = (ImageView) view.findViewById(R.id.group3_header_check);
@@ -194,8 +193,8 @@ if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())
         h.productIconImg = (ImageView) view.findViewById(R.id.productIconImg);
         h.rai = (TextView) view.findViewById(R.id.rai);
         h.ngan = (TextView) view.findViewById(R.id.ngan);
-        h.tarangwa = (TextView) view.findViewById(R.id.tarangwa);
-        h.tarangMeter = (TextView) view.findViewById(R.id.tarangMeter);
+        h.wa = (TextView) view.findViewById(R.id.wa);
+        h.meter = (TextView) view.findViewById(R.id.meter);
         h.rookPla = (TextView) view.findViewById(R.id.rookPla);
 
         h.group1_items = (LinearLayout) view.findViewById(R.id.group1_items);
@@ -239,8 +238,13 @@ if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())
         h.group4_3_header.setVisibility(View.GONE);
         h.group4_4_header.setVisibility(View.GONE);
 
-      //  h.group2_3_item.setVisibility(View.GONE);
-       // h.group2_4_item.setVisibility(View.GONE);
+        h.raiLabel = (TextView) view.findViewById(R.id.raiLabel);
+        h.nganLabel = (TextView) view.findViewById(R.id.nganLabel);
+        h.waLabel = (TextView) view.findViewById(R.id.waLabel);
+        h.meterLabel = (TextView) view.findViewById(R.id.meterLabel);
+
+        //  h.group2_3_item.setVisibility(View.GONE);
+        // h.group2_4_item.setVisibility(View.GONE);
     }
 
     private void setAction() {
@@ -248,8 +252,8 @@ if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())
         h.rookPla.addTextChangedListener(new PlanJTextWatcher(h.rookPla, h, "calRakaPan"));
         h.rai.addTextChangedListener(new PlanJTextWatcher(h.rai, h, "calNamnakTKai"));
         h.ngan.addTextChangedListener(new PlanJTextWatcher(h.ngan, h, "calNamnakTKai"));
-        h.tarangwa.addTextChangedListener(new PlanJTextWatcher(h.tarangwa, h, "calNamnakTKai"));
-        h.tarangMeter.addTextChangedListener(new PlanJTextWatcher(h.tarangMeter, h, "calNamnakTKai"));
+        h.wa.addTextChangedListener(new PlanJTextWatcher(h.wa, h, "calNamnakTKai"));
+        h.meter.addTextChangedListener(new PlanJTextWatcher(h.meter, h, "calNamnakTKai"));
 
         h.group1_item_1.addTextChangedListener(new PlanJTextWatcher(h.group1_item_1, h, "calRakaPan"));
         h.group1_item_2.addTextChangedListener(new PlanJTextWatcher(h.group1_item_2, h, "calKaSiaOkardLongtoon"));
@@ -320,8 +324,13 @@ if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())
         } else {
             h.rai.setText(Util.dobbleToStringNumberWithClearDigit(Util.strToDoubleDefaultZero(userPlotModel.getPondRai())));
             h.ngan.setText(Util.dobbleToStringNumberWithClearDigit(Util.strToDoubleDefaultZero(userPlotModel.getPondNgan())));
-            h.tarangwa.setText(Util.dobbleToStringNumberWithClearDigit(Util.strToDoubleDefaultZero(userPlotModel.getPondWa())));
-            h.tarangMeter.setText(Util.dobbleToStringNumberWithClearDigit(Util.strToDoubleDefaultZero(userPlotModel.getPondMeter())));
+            h.wa.setText(Util.dobbleToStringNumberWithClearDigit(Util.strToDoubleDefaultZero(userPlotModel.getPondWa())));
+            h.meter.setText(Util.dobbleToStringNumberWithClearDigit(Util.strToDoubleDefaultZero(userPlotModel.getPondMeter())));
+
+            checkVisibility( Util.strToDoubleDefaultZero(userPlotModel.getPondRai())
+                    ,Util.strToDoubleDefaultZero(userPlotModel.getPondNgan())
+                    ,Util.strToDoubleDefaultZero(userPlotModel.getPondWa())
+                    ,Util.strToDoubleDefaultZero(userPlotModel.getPondMeter()));
 
             if( ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())) {
                 h.rookPla.setText(Util.dobbleToStringNumberWithClearDigit(Util.strToDoubleDefaultZero(userPlotModel.getFisheryWeight())));
@@ -388,6 +397,8 @@ if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())
             }
 
         }
+
+
 
     }
 
@@ -857,8 +868,8 @@ if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())
 
         aModel.Rai = Util.strToDoubleDefaultZero(h.rai.getText().toString());
         aModel.Ngan = Util.strToDoubleDefaultZero(h.ngan.getText().toString());
-        aModel.TarangWa = Util.strToDoubleDefaultZero(h.tarangwa.getText().toString());
-        aModel.TarangMeter = Util.strToDoubleDefaultZero(h.tarangMeter.getText().toString());
+        aModel.TarangWa = Util.strToDoubleDefaultZero(h.wa.getText().toString());
+        aModel.TarangMeter = Util.strToDoubleDefaultZero(h.meter.getText().toString());
         aModel.LookPla = Util.strToDoubleDefaultZero(h.rookPla.getText().toString());
 
         aModel.Raka = Util.strToDoubleDefaultZero(h.group1_item_1.getText().toString());
@@ -905,7 +916,7 @@ if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())
     public static class ViewHolder {
 
         // Header
-        public TextView rai, ngan, tarangwa, tarangMeter , rookPla;
+        public TextView rai, ngan, wa, meter , rookPla;
         public ImageView productIconImg;
 
         // Group 1
@@ -961,6 +972,8 @@ if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())
         public  TextView group4_size_avg_item,group4_price_avg_item;
 
         public RelativeLayout headerLayout;
+
+        private TextView raiLabel,nganLabel,waLabel,meterLabel;
     }
 
     private void API_getPlotDetail(String plodID) {
@@ -1097,8 +1110,8 @@ if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())
 
                         h.rai.setText(Util.strToDobbleToStrFormat(plotDetail.getPondRai()));
                         h.ngan.setText(Util.strToDobbleToStrFormat(plotDetail.getPondNgan()));
-                        h.tarangwa.setText(Util.strToDobbleToStrFormat(plotDetail.getPondWa()));
-                        h.tarangMeter.setText(Util.strToDobbleToStrFormat(plotDetail.getPondMeter()));
+                        h.wa.setText(Util.strToDobbleToStrFormat(plotDetail.getPondWa()));
+                        h.meter.setText(Util.strToDobbleToStrFormat(plotDetail.getPondMeter()));
 
 
 
@@ -1161,8 +1174,8 @@ if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())
                     }else{
                         h.rai.setText(Util.strToDobbleToStrFormat(plotDetail.getPondRai()));
                         h.ngan.setText(Util.strToDobbleToStrFormat(plotDetail.getPondNgan()));
-                        h.tarangwa.setText(Util.strToDobbleToStrFormat(plotDetail.getPondWa()));
-                        h.tarangMeter.setText(Util.strToDobbleToStrFormat(plotDetail.getPondMeter()));
+                        h.wa.setText(Util.strToDobbleToStrFormat(plotDetail.getPondWa()));
+                        h.meter.setText(Util.strToDobbleToStrFormat(plotDetail.getPondMeter()));
 
                         //h.rookPla.setText(plotDetail.getFisheryNumber());
                         userPlotModel.setFisheryNumType(plotDetail.getFisheryNumType());
@@ -1175,6 +1188,11 @@ if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())
                             userPlotModel.setFisheryNumber(plotDetail.getFisheryNumber());
                         }
                     }
+
+                    checkVisibility( Util.strToDoubleDefaultZero(plotDetail.getPondRai())
+                            ,Util.strToDoubleDefaultZero(plotDetail.getPondNgan())
+                            ,Util.strToDoubleDefaultZero(plotDetail.getPondWa())
+                            ,Util.strToDoubleDefaultZero(plotDetail.getPondMeter()));
                 }
             }
 
@@ -1218,14 +1236,14 @@ if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())
 
         rai.setText(Util.clearStrNumberFormat(h.rai.getText().toString()));
         ngan.setText(Util.clearStrNumberFormat(h.ngan.getText().toString()));
-        sqaWa.setText(Util.clearStrNumberFormat(h.tarangwa.getText().toString()));
-        sqM.setText(Util.clearStrNumberFormat(h.tarangMeter.getText().toString()));
+        sqaWa.setText(Util.clearStrNumberFormat(h.wa.getText().toString()));
+        sqM.setText(Util.clearStrNumberFormat(h.meter.getText().toString()));
         unit.setText(Util.clearStrNumberFormat(h.rookPla.getText().toString()));
 
         h.rai = (TextView) view.findViewById(R.id.rai);
         h.ngan = (TextView) view.findViewById(R.id.ngan);
-        h.tarangwa = (TextView) view.findViewById(R.id.tarangwa);
-        h.tarangMeter = (TextView) view.findViewById(R.id.tarangMeter);
+        h.wa = (TextView) view.findViewById(R.id.wa);
+        h.meter = (TextView) view.findViewById(R.id.meter);
         h.rookPla = (TextView) view.findViewById(R.id.rookPla);
 
         btn_ok.setOnClickListener(new View.OnClickListener() {
@@ -1233,15 +1251,20 @@ if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())
             public void onClick(View view) {
                 h.rai.setText(Util.dobbleToStringNumberWithClearDigit(Util.strToDoubleDefaultZero(rai.getText().toString())));
                 h.ngan.setText(Util.dobbleToStringNumberWithClearDigit(Util.strToDoubleDefaultZero(ngan.getText().toString())));
-                h.tarangwa.setText(Util.dobbleToStringNumberWithClearDigit(Util.strToDoubleDefaultZero(sqaWa.getText().toString())));
-                h.tarangMeter.setText(Util.dobbleToStringNumberWithClearDigit(Util.strToDoubleDefaultZero(sqM.getText().toString())));
+                h.wa.setText(Util.dobbleToStringNumberWithClearDigit(Util.strToDoubleDefaultZero(sqaWa.getText().toString())));
+                h.meter.setText(Util.dobbleToStringNumberWithClearDigit(Util.strToDoubleDefaultZero(sqM.getText().toString())));
                 h.rookPla.setText(Util.dobbleToStringNumberWithClearDigit(Util.strToDoubleDefaultZero(unit.getText().toString())));
                 //userPlotModel.setPlotRai(String.valueOf(Util.strToDoubleDefaultZero(inputRai.getText().toString())));
 
+                checkVisibility( Util.strToDoubleDefaultZero(rai.getText().toString())
+                        ,Util.strToDoubleDefaultZero(ngan.getText().toString())
+                        ,Util.strToDoubleDefaultZero(sqaWa.getText().toString())
+                        ,Util.strToDoubleDefaultZero(sqM.getText().toString()));
+
                 userPlotModel.setPondRai(Util.clearStrNumberFormat(h.rai.getText().toString()));
                 userPlotModel.setPondNgan(Util.clearStrNumberFormat(h.ngan.getText().toString()));
-                userPlotModel.setPondWa(Util.clearStrNumberFormat(h.tarangwa.getText().toString()));
-                userPlotModel.setPondMeter(Util.clearStrNumberFormat(h.tarangMeter.getText().toString()));
+                userPlotModel.setPondWa(Util.clearStrNumberFormat(h.wa.getText().toString()));
+                userPlotModel.setPondMeter(Util.clearStrNumberFormat(h.meter.getText().toString()));
 
                 if (ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())) {
                     userPlotModel.setFisheryWeight(Util.clearStrNumberFormat(h.rookPla.getText().toString()));
@@ -1274,5 +1297,46 @@ if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())
             isCalIncludeOption = false;
         }
     }
+
+
+    private void  checkVisibility(double rai ,double ngan,double wa,double meter){
+        Log.d("checkVisibility","Rai = "+rai);
+        Log.d("checkVisibility","ngan = "+ngan);
+        Log.d("checkVisibility","wa = "+wa);
+        Log.d("checkVisibility","meter = "+meter);
+
+        if(rai == 0){
+            h.rai.setVisibility(View.INVISIBLE);
+            h.raiLabel.setVisibility(View.GONE);
+        }else{
+            h.rai.setVisibility(View.VISIBLE);
+            h.raiLabel.setVisibility(View.VISIBLE);
+        }
+
+        if(ngan == 0){
+            h.ngan.setVisibility(View.GONE);
+            h.nganLabel.setVisibility(View.GONE);
+        }else{
+            h.ngan.setVisibility(View.VISIBLE);
+            h.nganLabel.setVisibility(View.VISIBLE);
+        }
+
+        if(wa == 0){
+            h.wa.setVisibility(View.GONE);
+            h.waLabel.setVisibility(View.GONE);
+        }else{
+            h.wa.setVisibility(View.VISIBLE);
+            h.waLabel.setVisibility(View.VISIBLE);
+        }
+
+        if(meter == 0){
+            h.meter.setVisibility(View.GONE);
+            h.meterLabel.setVisibility(View.GONE);
+        }else{
+            h.meter.setVisibility(View.VISIBLE);
+            h.meterLabel.setVisibility(View.VISIBLE);
+        }
+    }
+
 
 }

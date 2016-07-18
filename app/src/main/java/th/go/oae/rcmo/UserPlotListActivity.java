@@ -74,12 +74,21 @@ public class UserPlotListActivity extends Activity {
     @Override
     protected void onStart() {
         super.onStart();
-        Log.i(TAG, "On Start .....");
+        Log.d(TAG, "On Start .....");
+        if(userPlotRespBodyList!=null) {
+            if (userPlotRespBodyList.size() == 0 ) {
+                Log.d(TAG, "Not found data on memory go to start page .....");
+                Intent intent = new Intent(UserPlotListActivity.this, SplashActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                finish();
+            }
+        }
     }
     @Override
     protected void onStop() {
         super.onStop();
-        Log.i(TAG, "On Stop .....");
+        Log.d(TAG, "On Stop .....");
     }
 
     @Override

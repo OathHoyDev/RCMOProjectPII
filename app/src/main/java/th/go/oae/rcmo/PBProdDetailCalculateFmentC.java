@@ -116,6 +116,9 @@ public class PBProdDetailCalculateFmentC extends Fragment implements View.OnClic
         h.btnOption.setOnClickListener(this);
 
 
+        h.raiLabel = (TextView) view.findViewById(R.id.raiLabel);
+        h.nganLabel = (TextView) view.findViewById(R.id.nganLabel);
+        h.waLabel = (TextView) view.findViewById(R.id.waLabel);
 //=========================== Setup data ==========================================/
 
         userPlotModel = PBProductDetailActivity.userPlotModel;
@@ -230,6 +233,10 @@ public class PBProdDetailCalculateFmentC extends Fragment implements View.OnClic
             h.ngan.setText(Util.strToDobbleToStrFormat(userPlotModel.getPlotNgan()));
             h.wa.setText(Util.strToDobbleToStrFormat(userPlotModel.getPlotWa()));
             h.meter.setText(Util.strToDobbleToStrFormat(userPlotModel.getPlotMeter()));
+
+            checkVisibility( Util.strToDoubleDefaultZero(userPlotModel.getPlotRai())
+                    ,Util.strToDoubleDefaultZero(userPlotModel.getPlotNgan())
+                    ,Util.strToDoubleDefaultZero(userPlotModel.getPlotWa()));
 
 
         }
@@ -393,6 +400,8 @@ public class PBProdDetailCalculateFmentC extends Fragment implements View.OnClic
 
         private RelativeLayout headerLayout;
 
+        private TextView raiLabel,nganLabel,waLabel;
+
     }
 
 
@@ -496,6 +505,11 @@ public class PBProdDetailCalculateFmentC extends Fragment implements View.OnClic
                 userPlotModel.setPlotNgan (Util.clearStrNumberFormat(ngan.getText().toString()));
                 userPlotModel.setPlotWa   (Util.clearStrNumberFormat(wa.getText().toString()));
                 userPlotModel.setPlotMeter(Util.clearStrNumberFormat(meter.getText().toString()));
+
+                checkVisibility( Util.strToDoubleDefaultZero(rai.getText().toString())
+                        ,Util.strToDoubleDefaultZero((ngan.getText().toString()))
+                        ,Util.strToDoubleDefaultZero(wa.getText().toString()));
+
                 dialog.dismiss();
             }
         });
@@ -579,6 +593,10 @@ public class PBProdDetailCalculateFmentC extends Fragment implements View.OnClic
                         h.wa.setText(Util.strToDobbleToStrFormat(plotDetail.getPlotWa()));
                         h.meter.setText(Util.strToDobbleToStrFormat(plotDetail.getPlotMeter()));
                     }
+
+                    checkVisibility( Util.strToDoubleDefaultZero(plotDetail.getPlotRai())
+                            ,Util.strToDoubleDefaultZero(plotDetail.getPlotNgan())
+                            ,Util.strToDoubleDefaultZero(plotDetail.getPlotWa()));
                 }
             }
 
@@ -600,6 +618,35 @@ public class PBProdDetailCalculateFmentC extends Fragment implements View.OnClic
 
             h.btnOption.setBackgroundResource(R.drawable.radio_cal_green);
             isCalIncludeOption = false;
+        }
+    }
+    private void  checkVisibility(double rai ,double ngan,double wa){
+        Log.d("checkVisibility","Rai = "+rai);
+        Log.d("checkVisibility","ngan = "+ngan);
+        Log.d("checkVisibility","wa = "+wa);
+
+        if(rai == 0){
+            h.rai.setVisibility(View.INVISIBLE);
+            h.raiLabel.setVisibility(View.GONE);
+        }else{
+            h.rai.setVisibility(View.VISIBLE);
+            h.raiLabel.setVisibility(View.VISIBLE);
+        }
+
+        if(ngan == 0){
+            h.ngan.setVisibility(View.GONE);
+            h.nganLabel.setVisibility(View.GONE);
+        }else{
+            h.ngan.setVisibility(View.VISIBLE);
+            h.nganLabel.setVisibility(View.VISIBLE);
+        }
+
+        if(wa == 0){
+            h.wa.setVisibility(View.GONE);
+            h.waLabel.setVisibility(View.GONE);
+        }else{
+            h.wa.setVisibility(View.VISIBLE);
+            h.waLabel.setVisibility(View.VISIBLE);
         }
     }
 }
