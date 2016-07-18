@@ -368,81 +368,81 @@ public class PBProdDetailCalculateFmentK extends Fragment implements View.OnClic
 
 
         if (v.getId() == R.id.calBtn) {
+            if (validateInputData()) {
+                if (calType == 0) {
 
-            if (calType == 0){
+                    new DialogChoice(context).ShowOneChoice("กรุณาระบุประเภทการขาย", "");
 
-                new DialogChoice(context).ShowOneChoice("กรุณาระบุประเภทการขาย", "");
-
-            }else {
+                } else {
 
 
-                bindingData(formulaModel);
-                formulaModel.calculate();
+                    bindingData(formulaModel);
+                    formulaModel.calculate();
 
-                setUpCalUI(formulaModel);
+                    setUpCalUI(formulaModel);
 
-                CalculateResultModel calculateResultModel = new CalculateResultModel();
+                    CalculateResultModel calculateResultModel = new CalculateResultModel();
 
-                if (calType == 1) {
-                  //  Util.showDialogAndDismiss(context, "คำนวนสำเร็จ : " + formulaModel.KumraiKadtoonMix);
-                    calculateResultModel.unit_t1 = "บาท/กระชัง" ;
-                    calculateResultModel.value_t1 = formulaModel.KumraiKadtoonMixTorKaChang ;
+                    if (calType == 1) {
+                        //  Util.showDialogAndDismiss(context, "คำนวนสำเร็จ : " + formulaModel.KumraiKadtoonMix);
+                        calculateResultModel.unit_t1 = "บาท/กระชัง";
+                        calculateResultModel.value_t1 = formulaModel.KumraiKadtoonMixTorKaChang;
 
-                    calculateResultModel.unit_t2 = "บาท/กก." ;
-                    calculateResultModel.value_t2 = formulaModel.KumraiKadtoonMixTorKilo ;
+                        calculateResultModel.unit_t2 = "บาท/กก.";
+                        calculateResultModel.value_t2 = formulaModel.KumraiKadtoonMixTorKilo;
 
-                    calculateResultModel.calculateResult = formulaModel.KumraiKadtoonMix;
-                } else if (calType == 2) {
-                  //  Util.showDialogAndDismiss(context, "คำนวนสำเร็จ : " + formulaModel.KumraiKadtoonSize);
-                    calculateResultModel.unit_t1 = "บาท/กระชัง" ;
-                    calculateResultModel.value_t1 = formulaModel.KumraiKadtoonSizeTorKaChang ;
-                    calculateResultModel.unit_t2 = "บาท/กก." ;
-                    calculateResultModel.value_t2 = formulaModel.KumraiKadtoonSizeTorKilo ;
+                        calculateResultModel.calculateResult = formulaModel.KumraiKadtoonMix;
+                    } else if (calType == 2) {
+                        //  Util.showDialogAndDismiss(context, "คำนวนสำเร็จ : " + formulaModel.KumraiKadtoonSize);
+                        calculateResultModel.unit_t1 = "บาท/กระชัง";
+                        calculateResultModel.value_t1 = formulaModel.KumraiKadtoonSizeTorKaChang;
+                        calculateResultModel.unit_t2 = "บาท/กก.";
+                        calculateResultModel.value_t2 = formulaModel.KumraiKadtoonSizeTorKilo;
 
-                    calculateResultModel.calculateResult = formulaModel.KumraiKadtoonSize;
+                        calculateResultModel.calculateResult = formulaModel.KumraiKadtoonSize;
+                    }
+
+                    calculateResultModel.formularCode = "K";
+
+                    calculateResultModel.productName = userPlotModel.getPrdValue();
+                    calculateResultModel.mPlotSuit = PBProductDetailActivity.mPlotSuit;
+                    calculateResultModel.compareStdResult = 0;
+
+                    DialogCalculateResult.userPlotModel = userPlotModel;
+                    DialogCalculateResult.calculateResultModel = calculateResultModel;
+                    userPlotModel.setFisheryNumType("1");
+                    userPlotModel.setVarValue(ProductService.genJsonPlanVariable(formulaModel));
+
+                    List resultArrayResult = new ArrayList();
+
+                    if (calType == 1) {
+                        String[] type = {"ขายแบบคละขนาด", "", ""};
+                        resultArrayResult.add(type);
+                        String[] tontoonCal_1 = {"ต้นทุนทั้งหมด", String.format("%,.2f", formulaModel.costTontoonMix), "บาท/รุ่น"};
+                        resultArrayResult.add(tontoonCal_1);
+                        String[] tontoonCal_2 = {"", String.format("%,.2f", formulaModel.costTontoonMixTorRai), "บาท/กระชัง"};
+                        resultArrayResult.add(tontoonCal_2);
+                        String[] raydai_1 = {"", String.format("%,.2f", formulaModel.costTontoonMixTorKilo), "บาท/กก."};
+                        resultArrayResult.add(raydai_1);
+                    } else if (calType == 2) {
+                        String[] type = {"ขายแบบแยกขนาด", "", ""};
+                        resultArrayResult.add(type);
+                        String[] tontoonCal_1 = {"ต้นทุนทั้งหมด", String.format("%,.2f", formulaModel.costTontoonSize), "บาท/รุ่น"};
+                        resultArrayResult.add(tontoonCal_1);
+                        String[] tontoonCal_2 = {"", String.format("%,.2f", formulaModel.costTontoonSizeTorKilo), "บาท/กระชัง"};
+                        resultArrayResult.add(tontoonCal_2);
+                        String[] raydai_1 = {"", String.format("%,.2f", formulaModel.costTontoonSizeTorRai), "บาท/กก."};
+                        resultArrayResult.add(raydai_1);
+                    }
+
+
+                    DialogCalculateResult.calculateResultModel.resultList = resultArrayResult;
+
+                    new DialogCalculateResult(context).Show();
+
                 }
-
-                calculateResultModel.formularCode = "K";
-
-                calculateResultModel.productName = userPlotModel.getPrdValue();
-                calculateResultModel.mPlotSuit = PBProductDetailActivity.mPlotSuit;
-                calculateResultModel.compareStdResult = 0;
-
-                DialogCalculateResult.userPlotModel = userPlotModel;
-                DialogCalculateResult.calculateResultModel = calculateResultModel;
-                userPlotModel.setFisheryNumType("1");
-                userPlotModel.setVarValue(ProductService.genJsonPlanVariable(formulaModel));
-
-                List resultArrayResult = new ArrayList();
-
-                if (calType == 1) {
-                    String[] type = {"ขายแบบคละขนาด", "", ""};
-                    resultArrayResult.add(type);
-                    String[] tontoonCal_1 = {"ต้นทุนทั้งหมด", String.format("%,.2f", formulaModel.costTontoonMix), "บาท/รุ่น"};
-                    resultArrayResult.add(tontoonCal_1);
-                    String[] tontoonCal_2 = {"", String.format("%,.2f", formulaModel.costTontoonMixTorRai), "บาท/กระชัง"};
-                    resultArrayResult.add(tontoonCal_2);
-                    String[] raydai_1 = {"", String.format("%,.2f", formulaModel.costTontoonMixTorKilo), "บาท/กก."};
-                    resultArrayResult.add(raydai_1);
-                } else if (calType == 2) {
-                    String[] type = {"ขายแบบแยกขนาด", "", ""};
-                    resultArrayResult.add(type);
-                    String[] tontoonCal_1 = {"ต้นทุนทั้งหมด", String.format("%,.2f", formulaModel.costTontoonSize), "บาท/รุ่น"};
-                    resultArrayResult.add(tontoonCal_1);
-                    String[] tontoonCal_2 = {"", String.format("%,.2f", formulaModel.costTontoonSizeTorKilo), "บาท/กระชัง"};
-                    resultArrayResult.add(tontoonCal_2);
-                    String[] raydai_1 = {"", String.format("%,.2f", formulaModel.costTontoonSizeTorRai), "บาท/กก."};
-                    resultArrayResult.add(raydai_1);
-                }
-
-
-                DialogCalculateResult.calculateResultModel.resultList = resultArrayResult;
-
-                new DialogCalculateResult(context).Show();
 
             }
-
-
         }else if(v.getId() == R.id.btnOption) {
 
             if(isCalIncludeOption){
@@ -1052,9 +1052,9 @@ public class PBProdDetailCalculateFmentK extends Fragment implements View.OnClic
                         setCalKaSermOption( var.isCalIncludeOption());
                         isCalIncludeOption = var.isCalIncludeOption();
 
-                        h.kanardKachang.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(plotDetail.getCoopMeter())));
-                        h.jumnounKachang.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(plotDetail.getCoopNumber())));
-                        h.lookPla.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(plotDetail.getFisheryNumber())));
+                        h.kanardKachang.setText(Util.strToDobbleToStrFormat(plotDetail.getCoopMeter()));
+                        h.jumnounKachang.setText(Util.strToDobbleToStrFormat(plotDetail.getCoopNumber()));
+                        h.lookPla.setText(Util.strToDobbleToStrFormat(plotDetail.getFisheryNumber()));
 
                         h.group1_item_1.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.Raka)));
 
@@ -1097,9 +1097,10 @@ public class PBProdDetailCalculateFmentK extends Fragment implements View.OnClic
 
 
                     }else{
-                        h.kanardKachang.setText(plotDetail.getCoopMeter());
-                        h.jumnounKachang.setText(plotDetail.getCoopNumber());
-                        h.lookPla.setText(plotDetail.getFisheryNumber());
+                        h.kanardKachang.setText(Util.strToDobbleToStrFormat(plotDetail.getCoopMeter()));
+                        h.jumnounKachang.setText(Util.strToDobbleToStrFormat(plotDetail.getCoopNumber()));
+                        h.lookPla.setText(Util.strToDobbleToStrFormat(plotDetail.getFisheryNumber()));
+
 
                     }
                 }
@@ -1178,6 +1179,32 @@ public class PBProdDetailCalculateFmentK extends Fragment implements View.OnClic
         } else {
             h.btnOption.setBackgroundResource(R.drawable.radio_cal_blue);
             isCalIncludeOption = false;
+        }
+    }
+
+    private boolean validateInputData() {
+
+        double value =
+                Util.strToDoubleDefaultZero(h.group1_item_1.getText().toString()) +
+                        Util.strToDoubleDefaultZero(h.group1_item_3.getText().toString()) +
+                        Util.strToDoubleDefaultZero(h.group1_item_4.getText().toString()) +
+                        Util.strToDoubleDefaultZero(h.group1_item_5.getText().toString()) +
+                        Util.strToDoubleDefaultZero(h.group1_item_6.getText().toString()) +
+                        Util.strToDoubleDefaultZero(h.group1_item_7.getText().toString()) +
+
+                        Util.strToDoubleDefaultZero(h.group1_item_9.getText().toString()) +
+                        Util.strToDoubleDefaultZero(h.group1_item_10.getText().toString()) +
+                        Util.strToDoubleDefaultZero(h.group1_item_11.getText().toString()) +
+                        Util.strToDoubleDefaultZero(h.group1_item_12.getText().toString()) +
+
+                        Util.strToDoubleDefaultZero(h.group2_item_1.getText().toString());
+
+
+        if (value == 0) {
+            new DialogChoice(context).ShowOneChoice("", "กรุณากรอกข้อมูล เพื่อคำนวณต้นทุน");
+            return false;
+        } else {
+            return true;
         }
     }
 }

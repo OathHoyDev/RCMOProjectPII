@@ -38,6 +38,8 @@ import th.go.oae.rcmo.Util.PlanBTextWatcher;
 import th.go.oae.rcmo.Util.ServiceInstance;
 import th.go.oae.rcmo.Util.Util;
 import th.go.oae.rcmo.View.DialogCalculateResult;
+import th.go.oae.rcmo.View.DialogChoice;
+
 /**
  * Created by Taweesin on 27/6/2559.
  */
@@ -123,7 +125,9 @@ public class PBProdDetailCalculateFmentB extends Fragment implements View.OnClic
         h.btnOption = (Button) view.findViewById(R.id.btnOption);
         h.btnOption.setOnClickListener(this);
 
-
+        h.raiLabel = (TextView) view.findViewById(R.id.raiLabel);
+        h.nganLabel = (TextView) view.findViewById(R.id.nganLabel);
+        h.waLabel = (TextView) view.findViewById(R.id.waLabel);
 
 //=========================== Setup data ==========================================/
 
@@ -250,6 +254,10 @@ public class PBProdDetailCalculateFmentB extends Fragment implements View.OnClic
             h.wa.setText(Util.strToDobbleToStrFormat(userPlotModel.getPlotWa()));
             h.meter.setText(Util.strToDobbleToStrFormat(userPlotModel.getPlotMeter()));
 
+            checkVisibility( Util.strToDoubleDefaultZero(userPlotModel.getPlotRai())
+                    ,Util.strToDoubleDefaultZero(userPlotModel.getPlotNgan())
+                    ,Util.strToDoubleDefaultZero(userPlotModel.getPlotWa()));
+
         }
 
         if (isCalIncludeOption) {
@@ -268,51 +276,51 @@ public class PBProdDetailCalculateFmentB extends Fragment implements View.OnClic
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.calBtn) {
+            if(validateInputData()) {
+                bindingData(formulaModel);
+                formulaModel.calculate();
+                setUpCalUI(formulaModel);
+                //   Util.showDialogAndDismiss(context, "คำนวนสำเร็จ" + formulaModel.calProfitLoss);
 
-            bindingData(formulaModel);
-            formulaModel.calculate();
-            setUpCalUI(formulaModel);
-            //   Util.showDialogAndDismiss(context, "คำนวนสำเร็จ" + formulaModel.calProfitLoss);
+                CalculateResultModel calculateResultModel = new CalculateResultModel();
+                calculateResultModel.formularCode = "B";
+                calculateResultModel.calculateResult = formulaModel.calProfitLoss;
+                calculateResultModel.unit_t1 = "บาท/ไร่";
+                calculateResultModel.value_t1 = formulaModel.calProfitLossPerRai;
+                calculateResultModel.productName = userPlotModel.getPrdValue();
+                calculateResultModel.mPlotSuit = PBProductDetailActivity.mPlotSuit;
+                calculateResultModel.compareStdResult = formulaModel.calSumCost - formulaModel.TontumMattratarn;
 
-            CalculateResultModel calculateResultModel = new CalculateResultModel();
-            calculateResultModel.formularCode = "B";
-            calculateResultModel.calculateResult = formulaModel.calProfitLoss;
-            calculateResultModel.unit_t1 = "บาท/ไร่" ;
-            calculateResultModel.value_t1 = formulaModel.calProfitLossPerRai ;
-            calculateResultModel.productName = userPlotModel.getPrdValue();
-            calculateResultModel.mPlotSuit = PBProductDetailActivity.mPlotSuit;
-            calculateResultModel.compareStdResult = formulaModel.calSumCost - formulaModel.TontumMattratarn;
+                DialogCalculateResult.userPlotModel = userPlotModel;
+                DialogCalculateResult.calculateResultModel = calculateResultModel;
 
-            DialogCalculateResult.userPlotModel = userPlotModel;
-            DialogCalculateResult.calculateResultModel = calculateResultModel;
-
-            //  String str = new StringEntity(ProductService.genJsonPlanAVariable(formulaModel), HTTP.UTF_8);
-
-
-            userPlotModel.setVarValue(ProductService.genJsonPlanVariable(formulaModel));
+                //  String str = new StringEntity(ProductService.genJsonPlanAVariable(formulaModel), HTTP.UTF_8);
 
 
-            List resultArrayResult = new ArrayList();
+                userPlotModel.setVarValue(ProductService.genJsonPlanVariable(formulaModel));
 
-            String[] tontoonCal_1 = {"ต้นทุนรวมเกษตรกร", String.format("%,.2f", formulaModel.calSumCost), "บาท"};
-            resultArrayResult.add(tontoonCal_1);
 
-            String[] tontoonCal_2 = {"", String.format("%,.2f", formulaModel.calSumCostPerRai), "บาท/ไร่"};
-            resultArrayResult.add(tontoonCal_2);
+                List resultArrayResult = new ArrayList();
 
-            String[] raydai_1 = {"รายได้", String.format("%,.2f", formulaModel.calIncome), "บาท"};
-            resultArrayResult.add(raydai_1);
+                String[] tontoonCal_1 = {"ต้นทุนรวมเกษตรกร", String.format("%,.2f", formulaModel.calSumCost), "บาท"};
+                resultArrayResult.add(tontoonCal_1);
 
-            String[] raydai_2 = {"", String.format("%,.2f", formulaModel.calIncomePerRai), "บาท/ไร่"};
-            resultArrayResult.add(raydai_2);
+                String[] tontoonCal_2 = {"", String.format("%,.2f", formulaModel.calSumCostPerRai), "บาท/ไร่"};
+                resultArrayResult.add(tontoonCal_2);
 
-            String[] tontoon = {"ต้นทุนเฉลี่ย", String.format("%,.2f", formulaModel.TontumMattratarn), "บาท"};
-            resultArrayResult.add(tontoon);
+                String[] raydai_1 = {"รายได้", String.format("%,.2f", formulaModel.calIncome), "บาท"};
+                resultArrayResult.add(raydai_1);
 
-            DialogCalculateResult.calculateResultModel.resultList = resultArrayResult;
+                String[] raydai_2 = {"", String.format("%,.2f", formulaModel.calIncomePerRai), "บาท/ไร่"};
+                resultArrayResult.add(raydai_2);
 
-            new DialogCalculateResult(context).Show();
+                String[] tontoon = {"ต้นทุนเฉลี่ย", String.format("%,.2f", formulaModel.TontumMattratarn), "บาท"};
+                resultArrayResult.add(tontoon);
 
+                DialogCalculateResult.calculateResultModel.resultList = resultArrayResult;
+
+                new DialogCalculateResult(context).Show();
+            }
         } else if (v.getId() == R.id.group0_header) {
 
             if (h.group0_items.getVisibility() == View.GONE) {
@@ -419,6 +427,8 @@ public class PBProdDetailCalculateFmentB extends Fragment implements View.OnClic
 
         private RelativeLayout headerLayout;
 
+        private TextView raiLabel,nganLabel,waLabel;
+
 
     }
 
@@ -518,6 +528,10 @@ public class PBProdDetailCalculateFmentB extends Fragment implements View.OnClic
                 userPlotModel.setPlotNgan (Util.clearStrNumberFormat(ngan.getText().toString()));
                 userPlotModel.setPlotWa   (Util.clearStrNumberFormat(wa.getText().toString()));
                 userPlotModel.setPlotMeter(Util.clearStrNumberFormat(meter.getText().toString()));
+
+                checkVisibility( Util.strToDoubleDefaultZero(rai.getText().toString())
+                        ,Util.strToDoubleDefaultZero((ngan.getText().toString()))
+                        ,Util.strToDoubleDefaultZero(wa.getText().toString()));
                 dialog.dismiss();
             }
         });
@@ -606,7 +620,13 @@ public class PBProdDetailCalculateFmentB extends Fragment implements View.OnClic
                         h.wa.setText(Util.strToDobbleToStrFormat(plotDetail.getPlotWa()));
                         h.meter.setText(Util.strToDobbleToStrFormat(plotDetail.getPlotMeter()));
                     }
+
+                    checkVisibility( Util.strToDoubleDefaultZero(plotDetail.getPlotRai())
+                            ,Util.strToDoubleDefaultZero(plotDetail.getPlotNgan())
+                            ,Util.strToDoubleDefaultZero(plotDetail.getPlotWa()));
                 }
+
+
             }
 
             @Override
@@ -627,6 +647,59 @@ public class PBProdDetailCalculateFmentB extends Fragment implements View.OnClic
 
             h.btnOption.setBackgroundResource(R.drawable.radio_cal_green);
             isCalIncludeOption = false;
+        }
+    }
+
+    private void  checkVisibility(double rai ,double ngan,double wa){
+        Log.d("checkVisibility","Rai = "+rai);
+        Log.d("checkVisibility","ngan = "+ngan);
+        Log.d("checkVisibility","wa = "+wa);
+
+        if(rai == 0){
+            h.rai.setVisibility(View.INVISIBLE);
+            h.raiLabel.setVisibility(View.GONE);
+        }else{
+            h.rai.setVisibility(View.VISIBLE);
+            h.raiLabel.setVisibility(View.VISIBLE);
+        }
+
+        if(ngan == 0){
+            h.ngan.setVisibility(View.GONE);
+            h.nganLabel.setVisibility(View.GONE);
+        }else{
+            h.ngan.setVisibility(View.VISIBLE);
+            h.nganLabel.setVisibility(View.VISIBLE);
+        }
+
+        if(wa == 0){
+            h.wa.setVisibility(View.GONE);
+            h.waLabel.setVisibility(View.GONE);
+        }else{
+            h.wa.setVisibility(View.VISIBLE);
+            h.waLabel.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private boolean validateInputData(){
+
+        double value = Util.strToDoubleDefaultZero(h.group1_item_2.getText().toString()) +
+                Util.strToDoubleDefaultZero(h.group1_item_3.getText().toString()) +
+                Util.strToDoubleDefaultZero(h.group1_item_4.getText().toString()) +
+                Util.strToDoubleDefaultZero(h.group1_item_5.getText().toString()) +
+                Util.strToDoubleDefaultZero(h.group1_item_7.getText().toString()) +
+                Util.strToDoubleDefaultZero(h.group1_item_8.getText().toString()) +
+                Util.strToDoubleDefaultZero(h.group1_item_9.getText().toString()) +
+                Util.strToDoubleDefaultZero(h.group1_item_10.getText().toString()) +
+                Util.strToDoubleDefaultZero(h.group1_item_12.getText().toString()) +
+                Util.strToDoubleDefaultZero(h.group2_item_1.getText().toString()) +
+                Util.strToDoubleDefaultZero(h.group3_item_1.getText().toString()) +
+                Util.strToDoubleDefaultZero(h.group4_item_1.getText().toString());
+
+        if(value == 0){
+            new DialogChoice(context).ShowOneChoice("", "กรุณากรอกข้อมูล เพื่อคำนวณต้นทุน");
+            return false;
+        }else{
+            return true;
         }
     }
 }

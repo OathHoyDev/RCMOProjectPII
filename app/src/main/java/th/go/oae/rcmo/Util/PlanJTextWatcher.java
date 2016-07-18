@@ -119,8 +119,8 @@ public class PlanJTextWatcher implements TextWatcher {
         if(name.contains("calNamnakTKai")){
             double allrai =  (  (Util.strToDoubleDefaultZero(h.rai.getText().toString())*4*400)
                                +(Util.strToDoubleDefaultZero(h.ngan.getText().toString())*400)
-                               +(Util.strToDoubleDefaultZero(h.tarangwa.getText().toString())*4)
-                               +Util.strToDoubleDefaultZero(h.tarangMeter.getText().toString())
+                               +(Util.strToDoubleDefaultZero(h.wa.getText().toString())*4)
+                               +Util.strToDoubleDefaultZero(h.meter.getText().toString())
                             )/1600;
 
             value = Util.round(Util.strToDoubleDefaultZero(h.group3_item_1.getText().toString())/allrai,2);

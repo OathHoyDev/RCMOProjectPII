@@ -94,6 +94,8 @@ public class PBProductDetailActivity extends AppCompatActivity {
         Typeface typeface = Typeface.createFromAsset(PBProductDetailActivity.this.getAssets(), "fonts/Quark-Bold.otf");
 
         tabLayout.removeAllTabs();
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        tabLayout.setTabMode(TabLayout.MODE_FIXED);
         ViewGroup slidingTabStrip = (ViewGroup) tabLayout.getChildAt(0);
         for (int i = 0, count = adapter.getCount(); i < count; i++) {
             TabLayout.Tab tab = tabLayout.newTab();

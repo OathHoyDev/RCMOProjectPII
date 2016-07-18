@@ -82,18 +82,18 @@ public class PBProdDetailCalculateFmentJ extends Fragment implements View.OnClic
 
         if (!userPlotModel.getPlotID().equals("") && !userPlotModel.getPlotID().equals("0")) {
             initVariableDataFromDB();
-        }else{
-            formulaModel.Rai           =  Util.strToDoubleDefaultZero( userPlotModel.getPondRai());
-            formulaModel.Ngan          =  Util.strToDoubleDefaultZero(userPlotModel.getPondNgan());
-            formulaModel.TarangWa      =  Util.strToDoubleDefaultZero( userPlotModel.getPondWa());
-            formulaModel.TarangMeter      =  Util.strToDoubleDefaultZero( userPlotModel.getPondMeter());
+        } else {
+            formulaModel.Rai = Util.strToDoubleDefaultZero(userPlotModel.getPondRai());
+            formulaModel.Ngan = Util.strToDoubleDefaultZero(userPlotModel.getPondNgan());
+            formulaModel.TarangWa = Util.strToDoubleDefaultZero(userPlotModel.getPondWa());
+            formulaModel.TarangMeter = Util.strToDoubleDefaultZero(userPlotModel.getPondMeter());
 
-            if( ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())) {
+            if (ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())) {
                 formulaModel.LookPla = Util.strToDoubleDefaultZero(userPlotModel.getFisheryWeight());
-            }else{
+            } else {
                 formulaModel.LookPla = Util.strToDoubleDefaultZero(userPlotModel.getFisheryNumber());
             }
-            tuaOrKilo =userPlotModel.getFisheryNumType();
+            tuaOrKilo = userPlotModel.getFisheryNumType();
             formulaModel.TuaOrKilo = Integer.valueOf(userPlotModel.getFisheryNumType());
             formulaModel.calculate();
             setUpCalUI(formulaModel);
@@ -108,17 +108,16 @@ public class PBProdDetailCalculateFmentJ extends Fragment implements View.OnClic
     }
 
 
-
     private void setHolder() {
 
         //public static final String FISHERY_TYPE_KC = "2";
         //public static final String FISHERY_TYPE_BO = "1";
         //public static final String FISHERY_NUM_TYPE_TUA = "1";
         //public static final String FISHERY_NUM_TYPE_KK  = "2";
-if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())) {
-    ((TextView) view.findViewById(R.id.unit_type)).setText("กก.");
-    ((TextView) view.findViewById(R.id.price_unit_type)).setText("บาท/กก.");
-}
+        if (ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())) {
+            ((TextView) view.findViewById(R.id.unit_type)).setText("กก.");
+            ((TextView) view.findViewById(R.id.price_unit_type)).setText("บาท/กก.");
+        }
         h.group1_item_1 = (EditText) view.findViewById(R.id.group1_item_1);
         h.group1_item_2 = (TextView) view.findViewById(R.id.group1_item_2);
         h.group1_item_3 = (EditText) view.findViewById(R.id.group1_item_3);
@@ -136,10 +135,10 @@ if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())
 
         h.group2_item_1 = (EditText) view.findViewById(R.id.group2_item_1);
         h.group2_item_2 = (TextView) view.findViewById(R.id.group2_item_2);
-       // h.group2_item_3 = (TextView) view.findViewById(R.id.group2_item_3);
-       // h.group2_item_4 = (TextView) view.findViewById(R.id.group2_item_4);
+        // h.group2_item_3 = (TextView) view.findViewById(R.id.group2_item_3);
+        // h.group2_item_4 = (TextView) view.findViewById(R.id.group2_item_4);
 
-       //h.group2_3_item = (LinearLayout) view.findViewById(R.id.group2_3_item);
+        //h.group2_3_item = (LinearLayout) view.findViewById(R.id.group2_3_item);
         //h.group2_4_item = (LinearLayout) view.findViewById(R.id.group2_4_item);
 
         h.group3_header_check = (ImageView) view.findViewById(R.id.group3_header_check);
@@ -194,8 +193,8 @@ if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())
         h.productIconImg = (ImageView) view.findViewById(R.id.productIconImg);
         h.rai = (TextView) view.findViewById(R.id.rai);
         h.ngan = (TextView) view.findViewById(R.id.ngan);
-        h.tarangwa = (TextView) view.findViewById(R.id.tarangwa);
-        h.tarangMeter = (TextView) view.findViewById(R.id.tarangMeter);
+        h.wa = (TextView) view.findViewById(R.id.wa);
+        h.meter = (TextView) view.findViewById(R.id.meter);
         h.rookPla = (TextView) view.findViewById(R.id.rookPla);
 
         h.group1_items = (LinearLayout) view.findViewById(R.id.group1_items);
@@ -239,8 +238,13 @@ if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())
         h.group4_3_header.setVisibility(View.GONE);
         h.group4_4_header.setVisibility(View.GONE);
 
-      //  h.group2_3_item.setVisibility(View.GONE);
-       // h.group2_4_item.setVisibility(View.GONE);
+        h.raiLabel = (TextView) view.findViewById(R.id.raiLabel);
+        h.nganLabel = (TextView) view.findViewById(R.id.nganLabel);
+        h.waLabel = (TextView) view.findViewById(R.id.waLabel);
+        h.meterLabel = (TextView) view.findViewById(R.id.meterLabel);
+
+        //  h.group2_3_item.setVisibility(View.GONE);
+        // h.group2_4_item.setVisibility(View.GONE);
     }
 
     private void setAction() {
@@ -248,8 +252,8 @@ if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())
         h.rookPla.addTextChangedListener(new PlanJTextWatcher(h.rookPla, h, "calRakaPan"));
         h.rai.addTextChangedListener(new PlanJTextWatcher(h.rai, h, "calNamnakTKai"));
         h.ngan.addTextChangedListener(new PlanJTextWatcher(h.ngan, h, "calNamnakTKai"));
-        h.tarangwa.addTextChangedListener(new PlanJTextWatcher(h.tarangwa, h, "calNamnakTKai"));
-        h.tarangMeter.addTextChangedListener(new PlanJTextWatcher(h.tarangMeter, h, "calNamnakTKai"));
+        h.wa.addTextChangedListener(new PlanJTextWatcher(h.wa, h, "calNamnakTKai"));
+        h.meter.addTextChangedListener(new PlanJTextWatcher(h.meter, h, "calNamnakTKai"));
 
         h.group1_item_1.addTextChangedListener(new PlanJTextWatcher(h.group1_item_1, h, "calRakaPan"));
         h.group1_item_2.addTextChangedListener(new PlanJTextWatcher(h.group1_item_2, h, "calKaSiaOkardLongtoon"));
@@ -269,8 +273,8 @@ if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())
 
         h.group2_item_1.addTextChangedListener(new PlanJTextWatcher(h.group2_item_1, h, "calKaRang"));
         h.group2_item_2.addTextChangedListener(new PlanJTextWatcher(h.group2_item_2, h, ""));
-       // h.group2_item_3.addTextChangedListener(new PlanJTextWatcher(h.group2_item_3, h, ""));
-       // h.group2_item_4.addTextChangedListener(new PlanJTextWatcher(h.group2_item_4, h, ""));
+        // h.group2_item_3.addTextChangedListener(new PlanJTextWatcher(h.group2_item_3, h, ""));
+        // h.group2_item_4.addTextChangedListener(new PlanJTextWatcher(h.group2_item_4, h, ""));
 
         h.group3_item_1.addTextChangedListener(new PlanJTextWatcher(h.group3_item_1, h, "calNamnakTKai,calRaidai"));
         h.group3_item_2.addTextChangedListener(new PlanJTextWatcher(h.group3_item_2, h, ""));
@@ -299,11 +303,10 @@ if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())
         h.group4_item_4_4.addTextChangedListener(new PlanJTextWatcher(h.group4_item_4_4, h, ""));
 
 
-       // h.group2_item_5.addTextChangedListener(new PlanITextWatcher(h.group2_item_5, h, "calKaRang"));
+        // h.group2_item_5.addTextChangedListener(new PlanITextWatcher(h.group2_item_5, h, "calKaRang"));
 
         //  calAllEgg
     }
-
 
 
     private void setUI() {
@@ -320,17 +323,21 @@ if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())
         } else {
             h.rai.setText(Util.dobbleToStringNumberWithClearDigit(Util.strToDoubleDefaultZero(userPlotModel.getPondRai())));
             h.ngan.setText(Util.dobbleToStringNumberWithClearDigit(Util.strToDoubleDefaultZero(userPlotModel.getPondNgan())));
-            h.tarangwa.setText(Util.dobbleToStringNumberWithClearDigit(Util.strToDoubleDefaultZero(userPlotModel.getPondWa())));
-            h.tarangMeter.setText(Util.dobbleToStringNumberWithClearDigit(Util.strToDoubleDefaultZero(userPlotModel.getPondMeter())));
+            h.wa.setText(Util.dobbleToStringNumberWithClearDigit(Util.strToDoubleDefaultZero(userPlotModel.getPondWa())));
+            h.meter.setText(Util.dobbleToStringNumberWithClearDigit(Util.strToDoubleDefaultZero(userPlotModel.getPondMeter())));
 
-            if( ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())) {
+            checkVisibility(Util.strToDoubleDefaultZero(userPlotModel.getPondRai())
+                    , Util.strToDoubleDefaultZero(userPlotModel.getPondNgan())
+                    , Util.strToDoubleDefaultZero(userPlotModel.getPondWa())
+                    , Util.strToDoubleDefaultZero(userPlotModel.getPondMeter()));
+
+            if (ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())) {
                 h.rookPla.setText(Util.dobbleToStringNumberWithClearDigit(Util.strToDoubleDefaultZero(userPlotModel.getFisheryWeight())));
-            }else{
+            } else {
                 h.rookPla.setText(Util.dobbleToStringNumberWithClearDigit(Util.strToDoubleDefaultZero(userPlotModel.getFisheryNumber())));
             }
 
         }
-
 
 
         if (isCalIncludeOption) {
@@ -344,29 +351,29 @@ if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())
             formulaModel.isCalIncludeOption = isCalIncludeOption;
         }
 
-        if (formulaModel.CalType == 1){
+        if (formulaModel.CalType == 1) {
             h.group3_header_check.setImageBitmap(BitMapHelper.
-                    decodeSampledBitmapFromResource(getResources(),getResources().getIdentifier("radio_cal_blue_check", "drawable", context.getPackageName()), 20, 20));
+                    decodeSampledBitmapFromResource(getResources(), getResources().getIdentifier("radio_cal_blue_check", "drawable", context.getPackageName()), 20, 20));
             h.group3_header.setBackgroundResource(R.drawable.blue_cut_top_conner);
             h.group4_header_check.setImageBitmap(BitMapHelper.
-                    decodeSampledBitmapFromResource(getResources(),getResources().getIdentifier("radio_cal_blue", "drawable", context.getPackageName()), 20, 20));
+                    decodeSampledBitmapFromResource(getResources(), getResources().getIdentifier("radio_cal_blue", "drawable", context.getPackageName()), 20, 20));
             h.group4_header.setBackgroundResource(R.drawable.gray_cut_top_conner);
 
-            if(h.group3_items.getVisibility() == View.GONE ){
+            if (h.group3_items.getVisibility() == View.GONE) {
                 h.group3_items.setVisibility(View.VISIBLE);
                 h.group3_header_arrow.setImageBitmap(BitMapHelper.
-                        decodeSampledBitmapFromResource(getResources(),getResources().getIdentifier("arrow_hide", "drawable", context.getPackageName()), 30, 30));
+                        decodeSampledBitmapFromResource(getResources(), getResources().getIdentifier("arrow_hide", "drawable", context.getPackageName()), 30, 30));
             }
 
-        }else if(formulaModel.CalType == 2){
+        } else if (formulaModel.CalType == 2) {
             h.group4_header_check.setImageBitmap(BitMapHelper.
-                    decodeSampledBitmapFromResource(getResources(),getResources().getIdentifier("radio_cal_blue_check", "drawable", context.getPackageName()), 20, 20));
+                    decodeSampledBitmapFromResource(getResources(), getResources().getIdentifier("radio_cal_blue_check", "drawable", context.getPackageName()), 20, 20));
             h.group4_header.setBackgroundResource(R.drawable.blue_cut_top_conner);
             h.group3_header_check.setImageBitmap(BitMapHelper.
-                    decodeSampledBitmapFromResource(getResources(),getResources().getIdentifier("radio_cal_blue", "drawable", context.getPackageName()), 20, 20));
+                    decodeSampledBitmapFromResource(getResources(), getResources().getIdentifier("radio_cal_blue", "drawable", context.getPackageName()), 20, 20));
             h.group3_header.setBackgroundResource(R.drawable.gray_cut_top_conner);
 
-            switch (formulaModel.CustomSize){
+            switch (formulaModel.CustomSize) {
                 case 1:
                     h.group4_1_header.setVisibility(View.VISIBLE);
                     break;
@@ -389,6 +396,7 @@ if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())
 
         }
 
+
     }
 
 
@@ -397,168 +405,168 @@ if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())
 
 
         if (v.getId() == R.id.calBtn) {
+            if (validateInputData()) {
+                if (calType == 0) {
 
-            if (calType == 0){
+                    new DialogChoice(context).ShowOneChoice("กรุณาระบุประเภทการขาย", "");
 
-                new DialogChoice(context).ShowOneChoice("กรุณาระบุประเภทการขาย", "");
-
-            }else {
+                } else {
 
 
-                bindingData(formulaModel);
-                formulaModel.calculate();
+                    bindingData(formulaModel);
+                    formulaModel.calculate();
 
-                setUpCalUI(formulaModel);
+                    setUpCalUI(formulaModel);
 
-                CalculateResultModel calculateResultModel = new CalculateResultModel();
+                    CalculateResultModel calculateResultModel = new CalculateResultModel();
 
-                if (calType == 1) {
-                   // Util.showDialogAndDismiss(context, "คำนวนสำเร็จ : " + formulaModel.KumraiKadtoonMix);
-                    calculateResultModel.unit_t1 = "บาท/กก." ;
-                    calculateResultModel.value_t1 = formulaModel.KumraiKadtoonMixTorKilo ;
-                    calculateResultModel.calculateResult = formulaModel.KumraiKadtoonMix;
-                } else if (calType == 2) {
-                   // Util.showDialogAndDismiss(context, "คำนวนสำเร็จ : " + formulaModel.KumraiKadtoonSize);
-                    calculateResultModel.unit_t1 = "บาท/กก." ;
-                    calculateResultModel.value_t1 = formulaModel.KumraiKadtoonSizeTorKilo ;
-                    calculateResultModel.calculateResult = formulaModel.KumraiKadtoonSize;
+                    if (calType == 1) {
+                        // Util.showDialogAndDismiss(context, "คำนวนสำเร็จ : " + formulaModel.KumraiKadtoonMix);
+                        calculateResultModel.unit_t1 = "บาท/กก.";
+                        calculateResultModel.value_t1 = formulaModel.KumraiKadtoonMixTorKilo;
+                        calculateResultModel.calculateResult = formulaModel.KumraiKadtoonMix;
+                    } else if (calType == 2) {
+                        // Util.showDialogAndDismiss(context, "คำนวนสำเร็จ : " + formulaModel.KumraiKadtoonSize);
+                        calculateResultModel.unit_t1 = "บาท/กก.";
+                        calculateResultModel.value_t1 = formulaModel.KumraiKadtoonSizeTorKilo;
+                        calculateResultModel.calculateResult = formulaModel.KumraiKadtoonSize;
+                    }
+
+                    calculateResultModel.formularCode = "J";
+
+                    calculateResultModel.productName = userPlotModel.getPrdValue();
+                    calculateResultModel.mPlotSuit = PBProductDetailActivity.mPlotSuit;
+                    calculateResultModel.compareStdResult = 0;
+
+                    DialogCalculateResult.userPlotModel = userPlotModel;
+                    DialogCalculateResult.calculateResultModel = calculateResultModel;
+
+                    userPlotModel.setVarValue(ProductService.genJsonPlanVariable(formulaModel));
+
+                    List resultArrayResult = new ArrayList();
+
+                    if (calType == 1) {
+                        String[] type = {"ขายแบบคละขนาด", "", ""};
+                        resultArrayResult.add(type);
+                        String[] tontoonCal_1 = {"ต้นทุนทั้งหมด", String.format("%,.2f", formulaModel.costTontoonMix), "บาท"};
+                        resultArrayResult.add(tontoonCal_1);
+                        String[] tontoonCal_2 = {"", String.format("%,.2f", formulaModel.costTontoonMixTorKilo), "บาท/กก."};
+                        resultArrayResult.add(tontoonCal_2);
+                        String[] raydai_1 = {"", String.format("%,.2f", formulaModel.costTontoonMixTorRai), "บาท/ไร่"};
+                        resultArrayResult.add(raydai_1);
+                    } else if (calType == 2) {
+                        String[] type = {"ขายแบบแยกขนาด", "", ""};
+                        resultArrayResult.add(type);
+                        String[] tontoonCal_1 = {"ต้นทุนทั้งหมด", String.format("%,.2f", formulaModel.costTontoonSize), "บาท"};
+                        resultArrayResult.add(tontoonCal_1);
+                        String[] tontoonCal_2 = {"", String.format("%,.2f", formulaModel.costTontoonSizeTorKilo), "บาท/กก."};
+                        resultArrayResult.add(tontoonCal_2);
+                        String[] raydai_1 = {"", String.format("%,.2f", formulaModel.costTontoonSizeTorRai), "บาท/ไร่"};
+                        resultArrayResult.add(raydai_1);
+                    }
+
+
+                    DialogCalculateResult.calculateResultModel.resultList = resultArrayResult;
+
+                    new DialogCalculateResult(context).Show();
+
                 }
-
-                calculateResultModel.formularCode = "J";
-
-                calculateResultModel.productName = userPlotModel.getPrdValue();
-                calculateResultModel.mPlotSuit = PBProductDetailActivity.mPlotSuit;
-                calculateResultModel.compareStdResult = 0;
-
-                DialogCalculateResult.userPlotModel = userPlotModel;
-                DialogCalculateResult.calculateResultModel = calculateResultModel;
-
-                userPlotModel.setVarValue(ProductService.genJsonPlanVariable(formulaModel));
-
-                List resultArrayResult = new ArrayList();
-
-                if (calType == 1) {
-                    String[] type = {"ขายแบบคละขนาด", "", ""};
-                    resultArrayResult.add(type);
-                    String[] tontoonCal_1 = {"ต้นทุนทั้งหมด", String.format("%,.2f", formulaModel.costTontoonMix), "บาท"};
-                    resultArrayResult.add(tontoonCal_1);
-                    String[] tontoonCal_2 = {"", String.format("%,.2f", formulaModel.costTontoonMixTorKilo), "บาท/กก."};
-                    resultArrayResult.add(tontoonCal_2);
-                    String[] raydai_1 = {"", String.format("%,.2f", formulaModel.costTontoonMixTorRai), "บาท/ไร่"};
-                    resultArrayResult.add(raydai_1);
-                } else if (calType == 2) {
-                    String[] type = {"ขายแบบแยกขนาด", "", ""};
-                    resultArrayResult.add(type);
-                    String[] tontoonCal_1 = {"ต้นทุนทั้งหมด", String.format("%,.2f", formulaModel.costTontoonSize), "บาท"};
-                    resultArrayResult.add(tontoonCal_1);
-                    String[] tontoonCal_2 = {"", String.format("%,.2f", formulaModel.costTontoonSizeTorKilo), "บาท/กก."};
-                    resultArrayResult.add(tontoonCal_2);
-                    String[] raydai_1 = {"", String.format("%,.2f", formulaModel.costTontoonSizeTorRai), "บาท/ไร่"};
-                    resultArrayResult.add(raydai_1);
-                }
-
-
-                DialogCalculateResult.calculateResultModel.resultList = resultArrayResult;
-
-                new DialogCalculateResult(context).Show();
 
             }
+        } else if (v.getId() == R.id.btnOption) {
 
-
-        }else if(v.getId() == R.id.btnOption) {
-
-            if(isCalIncludeOption){
+            if (isCalIncludeOption) {
                 h.btnOption.setBackgroundResource(R.drawable.radio_cal_blue);
                 isCalIncludeOption = false;
-                formulaModel.isCalIncludeOption =false;
-              //  h.group2_3_item.setVisibility(View.GONE);
-              //  h.group2_4_item.setVisibility(View.GONE);
-            }else{
+                formulaModel.isCalIncludeOption = false;
+                //  h.group2_3_item.setVisibility(View.GONE);
+                //  h.group2_4_item.setVisibility(View.GONE);
+            } else {
                 h.btnOption.setBackgroundResource(R.drawable.radio_cal_blue_check);
                 isCalIncludeOption = true;
                 formulaModel.isCalIncludeOption = true;
-               // h.group2_3_item.setVisibility(View.VISIBLE);
-               // h.group2_4_item.setVisibility(View.VISIBLE);
+                // h.group2_3_item.setVisibility(View.VISIBLE);
+                // h.group2_4_item.setVisibility(View.VISIBLE);
             }
 
             formulaModel.isCalIncludeOption = isCalIncludeOption;
 
-        }else if(v.getId() == R.id.group1_header){
+        } else if (v.getId() == R.id.group1_header) {
 
-            if(h.group1_items.getVisibility() == View.GONE ){
+            if (h.group1_items.getVisibility() == View.GONE) {
                 h.group1_items.setVisibility(View.VISIBLE);
                 h.group1_header_arrow.setImageBitmap(BitMapHelper.
-                        decodeSampledBitmapFromResource(getResources(),getResources().getIdentifier("arrow_hide", "drawable", context.getPackageName()), 30, 30));
-            }else{
+                        decodeSampledBitmapFromResource(getResources(), getResources().getIdentifier("arrow_hide", "drawable", context.getPackageName()), 30, 30));
+            } else {
                 h.group1_header_arrow.setImageBitmap(BitMapHelper.
-                        decodeSampledBitmapFromResource(getResources(),getResources().getIdentifier("arrow_show", "drawable", context.getPackageName()), 30, 30));
+                        decodeSampledBitmapFromResource(getResources(), getResources().getIdentifier("arrow_show", "drawable", context.getPackageName()), 30, 30));
 
                 h.group1_items.setVisibility(View.GONE);
 
             }
-        }else if(v.getId() == R.id.group2_header){
+        } else if (v.getId() == R.id.group2_header) {
 
-            if(h.group2_items.getVisibility() == View.GONE ){
+            if (h.group2_items.getVisibility() == View.GONE) {
                 h.group2_items.setVisibility(View.VISIBLE);
                 h.group2_header_arrow.setImageBitmap(BitMapHelper.
-                        decodeSampledBitmapFromResource(getResources(),getResources().getIdentifier("arrow_hide", "drawable", context.getPackageName()), 30, 30));
-            }else{
+                        decodeSampledBitmapFromResource(getResources(), getResources().getIdentifier("arrow_hide", "drawable", context.getPackageName()), 30, 30));
+            } else {
                 h.group2_header_arrow.setImageBitmap(BitMapHelper.
-                        decodeSampledBitmapFromResource(getResources(),getResources().getIdentifier("arrow_show", "drawable", context.getPackageName()), 30, 30));
+                        decodeSampledBitmapFromResource(getResources(), getResources().getIdentifier("arrow_show", "drawable", context.getPackageName()), 30, 30));
 
                 h.group2_items.setVisibility(View.GONE);
 
             }
-        }else if(v.getId() == R.id.group3_header){
+        } else if (v.getId() == R.id.group3_header) {
 
-            if(h.group3_items.getVisibility() == View.GONE ){
+            if (h.group3_items.getVisibility() == View.GONE) {
                 h.group3_items.setVisibility(View.VISIBLE);
                 h.group3_header_arrow.setImageBitmap(BitMapHelper.
-                        decodeSampledBitmapFromResource(getResources(),getResources().getIdentifier("arrow_hide", "drawable", context.getPackageName()), 30, 30));
-            }else{
+                        decodeSampledBitmapFromResource(getResources(), getResources().getIdentifier("arrow_hide", "drawable", context.getPackageName()), 30, 30));
+            } else {
                 h.group3_header_arrow.setImageBitmap(BitMapHelper.
-                        decodeSampledBitmapFromResource(getResources(),getResources().getIdentifier("arrow_show", "drawable", context.getPackageName()), 30, 30));
+                        decodeSampledBitmapFromResource(getResources(), getResources().getIdentifier("arrow_show", "drawable", context.getPackageName()), 30, 30));
 
                 h.group3_items.setVisibility(View.GONE);
 
             }
-        }else if(v.getId() == R.id.group4_header){
+        } else if (v.getId() == R.id.group4_header) {
 
-            if(h.group4_items.getVisibility() == View.GONE ){
+            if (h.group4_items.getVisibility() == View.GONE) {
                 h.group4_items.setVisibility(View.VISIBLE);
                 h.group4_header_arrow.setImageBitmap(BitMapHelper.
-                        decodeSampledBitmapFromResource(getResources(),getResources().getIdentifier("arrow_hide", "drawable", context.getPackageName()), 30, 30));
-            }else{
+                        decodeSampledBitmapFromResource(getResources(), getResources().getIdentifier("arrow_hide", "drawable", context.getPackageName()), 30, 30));
+            } else {
                 h.group4_header_arrow.setImageBitmap(BitMapHelper.
-                        decodeSampledBitmapFromResource(getResources(),getResources().getIdentifier("arrow_show", "drawable", context.getPackageName()), 30, 30));
+                        decodeSampledBitmapFromResource(getResources(), getResources().getIdentifier("arrow_show", "drawable", context.getPackageName()), 30, 30));
 
                 h.group4_items.setVisibility(View.GONE);
 
             }
-        }else if(v.getId() == R.id.group3_header_check) {
+        } else if (v.getId() == R.id.group3_header_check) {
             calType = 1;
             h.group3_header_check.setImageBitmap(BitMapHelper.
-                    decodeSampledBitmapFromResource(getResources(),getResources().getIdentifier("radio_cal_blue_check", "drawable", context.getPackageName()), 20, 20));
+                    decodeSampledBitmapFromResource(getResources(), getResources().getIdentifier("radio_cal_blue_check", "drawable", context.getPackageName()), 20, 20));
             h.group3_header.setBackgroundResource(R.drawable.blue_cut_top_conner);
             h.group4_header_check.setImageBitmap(BitMapHelper.
-                    decodeSampledBitmapFromResource(getResources(),getResources().getIdentifier("radio_cal_blue", "drawable", context.getPackageName()), 20, 20));
+                    decodeSampledBitmapFromResource(getResources(), getResources().getIdentifier("radio_cal_blue", "drawable", context.getPackageName()), 20, 20));
             h.group4_header.setBackgroundResource(R.drawable.gray_cut_top_conner);
             formulaModel.CalType = 1;
 
-        }else if(v.getId() == R.id.group4_header_check) {
+        } else if (v.getId() == R.id.group4_header_check) {
             calType = 2;
             h.group4_header_check.setImageBitmap(BitMapHelper.
-                    decodeSampledBitmapFromResource(getResources(),getResources().getIdentifier("radio_cal_blue_check", "drawable", context.getPackageName()), 20, 20));
+                    decodeSampledBitmapFromResource(getResources(), getResources().getIdentifier("radio_cal_blue_check", "drawable", context.getPackageName()), 20, 20));
             h.group4_header.setBackgroundResource(R.drawable.blue_cut_top_conner);
             h.group3_header_check.setImageBitmap(BitMapHelper.
-                    decodeSampledBitmapFromResource(getResources(),getResources().getIdentifier("radio_cal_blue", "drawable", context.getPackageName()), 20, 20));
+                    decodeSampledBitmapFromResource(getResources(), getResources().getIdentifier("radio_cal_blue", "drawable", context.getPackageName()), 20, 20));
             h.group3_header.setBackgroundResource(R.drawable.gray_cut_top_conner);
 
             formulaModel.CalType = 2;
 
-        }else if(v.getId() == R.id.delete_group4_1){
+        } else if (v.getId() == R.id.delete_group4_1) {
 
-            switch (customSize){
+            switch (customSize) {
                 case 1:
 
                     h.group4_1_header.setVisibility(View.GONE);
@@ -636,9 +644,9 @@ if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())
 
                     break;
             }
-        }else if(v.getId() == R.id.delete_group4_2){
+        } else if (v.getId() == R.id.delete_group4_2) {
 
-            switch (customSize){
+            switch (customSize) {
                 case 2:
 
                     h.group4_item_2_1.setText("");
@@ -693,7 +701,7 @@ if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())
                     break;
             }
 
-        }else if(v.getId() == R.id.delete_group4_3){
+        } else if (v.getId() == R.id.delete_group4_3) {
 
             if (customSize == 3) {
 
@@ -706,7 +714,7 @@ if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())
 
                 customSize = 2;
 
-            }else {
+            } else {
 
                 h.group4_item_3_1.setText(h.group4_item_4_1.getText());
                 h.group4_item_3_2.setText(h.group4_item_4_2.getText());
@@ -723,7 +731,7 @@ if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())
                 h.group4_4_header.setVisibility(View.GONE);
             }
 
-        }else if(v.getId() == R.id.delete_group4_4){
+        } else if (v.getId() == R.id.delete_group4_4) {
 
             customSize = 3;
 
@@ -734,7 +742,7 @@ if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())
             h.group4_item_4_3.setText("");
             h.group4_item_4_4.setText("");
 
-        }else if (v.getId() == R.id.group4_add_item_btn){
+        } else if (v.getId() == R.id.group4_add_item_btn) {
 
             if (customSize <= 4) {
 
@@ -757,7 +765,8 @@ if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())
                 customSize += 1;
             }
 
-        }if (v.getId() == R.id.headerLayout){
+        }
+        if (v.getId() == R.id.headerLayout) {
 
             popUpEditDialog();
 
@@ -765,8 +774,8 @@ if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())
 
     }
 
-    private void deleteCustomSize(int size){
-        if(size < customSize){
+    private void deleteCustomSize(int size) {
+        if (size < customSize) {
             int difSize = customSize - size;
 
 
@@ -777,7 +786,7 @@ if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())
         API_getPlotDetailANDBlinding(userPlotModel.getPlotID(), formulaModel);
     }
 
-    private void setUpCalUI(FormulaJModel model){
+    private void setUpCalUI(FormulaJModel model) {
 
         //h.group1_item_9.setText(Util.dobbleToStringNumber(model.calKaRang));
         h.group1_item_2.setText(Util.dobbleToStringNumber(model.calKaPan));
@@ -785,39 +794,38 @@ if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())
         h.group2_item_2.setText(Util.dobbleToStringNumber(model.calKaSiaOkardLongtoon));
 
 
-       // h.group2_item_3.setText(Util.dobbleToStringNumber(aModel.calRayDaiTungmod));
-       // h.group2_item_4.setText(Util.dobbleToStringNumber(aModel.calRayDaiChalia));
-       // h.group2_item_6.setText(Util.dobbleToStringNumber(aModel.calKaSiaOkardLongtoon));
+        // h.group2_item_3.setText(Util.dobbleToStringNumber(aModel.calRayDaiTungmod));
+        // h.group2_item_4.setText(Util.dobbleToStringNumber(aModel.calRayDaiChalia));
+        // h.group2_item_6.setText(Util.dobbleToStringNumber(aModel.calKaSiaOkardLongtoon));
 
 
-
-        if (model.CalType == 1){
+        if (model.CalType == 1) {
             h.group3_header_check.setImageBitmap(BitMapHelper.
-                    decodeSampledBitmapFromResource(getResources(),getResources().getIdentifier("radio_cal_blue_check", "drawable", context.getPackageName()), 20, 20));
+                    decodeSampledBitmapFromResource(getResources(), getResources().getIdentifier("radio_cal_blue_check", "drawable", context.getPackageName()), 20, 20));
             h.group3_header.setBackgroundResource(R.drawable.blue_cut_top_conner);
             h.group4_header_check.setImageBitmap(BitMapHelper.
-                    decodeSampledBitmapFromResource(getResources(),getResources().getIdentifier("radio_cal_blue", "drawable", context.getPackageName()), 20, 20));
+                    decodeSampledBitmapFromResource(getResources(), getResources().getIdentifier("radio_cal_blue", "drawable", context.getPackageName()), 20, 20));
             h.group4_header.setBackgroundResource(R.drawable.gray_cut_top_conner);
 
-            if(h.group3_items.getVisibility() == View.GONE ){
+            if (h.group3_items.getVisibility() == View.GONE) {
                 h.group3_items.setVisibility(View.VISIBLE);
                 h.group3_header_arrow.setImageBitmap(BitMapHelper.
-                        decodeSampledBitmapFromResource(getResources(),getResources().getIdentifier("arrow_hide", "drawable", context.getPackageName()), 30, 30));
+                        decodeSampledBitmapFromResource(getResources(), getResources().getIdentifier("arrow_hide", "drawable", context.getPackageName()), 30, 30));
             }
 
 
             h.group3_item_2.setText(Util.dobbleToStringNumber(model.calNamnakTKai));
             h.group3_item_5.setText(Util.dobbleToStringNumber(model.calRaidai));
 
-        }else if(model.CalType == 2){
+        } else if (model.CalType == 2) {
             h.group4_header_check.setImageBitmap(BitMapHelper.
-                    decodeSampledBitmapFromResource(getResources(),getResources().getIdentifier("radio_cal_blue_check", "drawable", context.getPackageName()), 20, 20));
+                    decodeSampledBitmapFromResource(getResources(), getResources().getIdentifier("radio_cal_blue_check", "drawable", context.getPackageName()), 20, 20));
             h.group4_header.setBackgroundResource(R.drawable.blue_cut_top_conner);
             h.group3_header_check.setImageBitmap(BitMapHelper.
-                    decodeSampledBitmapFromResource(getResources(),getResources().getIdentifier("radio_cal_blue", "drawable", context.getPackageName()), 20, 20));
+                    decodeSampledBitmapFromResource(getResources(), getResources().getIdentifier("radio_cal_blue", "drawable", context.getPackageName()), 20, 20));
             h.group3_header.setBackgroundResource(R.drawable.gray_cut_top_conner);
 
-            switch (model.CustomSize){
+            switch (model.CustomSize) {
                 case 1:
                     h.group4_1_header.setVisibility(View.VISIBLE);
                     h.group4_item_1_4.setText(Util.dobbleToStringNumber(model.calRakaTKai1));
@@ -857,8 +865,8 @@ if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())
 
         aModel.Rai = Util.strToDoubleDefaultZero(h.rai.getText().toString());
         aModel.Ngan = Util.strToDoubleDefaultZero(h.ngan.getText().toString());
-        aModel.TarangWa = Util.strToDoubleDefaultZero(h.tarangwa.getText().toString());
-        aModel.TarangMeter = Util.strToDoubleDefaultZero(h.tarangMeter.getText().toString());
+        aModel.TarangWa = Util.strToDoubleDefaultZero(h.wa.getText().toString());
+        aModel.TarangMeter = Util.strToDoubleDefaultZero(h.meter.getText().toString());
         aModel.LookPla = Util.strToDoubleDefaultZero(h.rookPla.getText().toString());
 
         aModel.Raka = Util.strToDoubleDefaultZero(h.group1_item_1.getText().toString());
@@ -898,69 +906,68 @@ if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())
         aModel.NamnakPla4 = Util.strToDoubleDefaultZero(h.group4_item_4_3.getText().toString());
 
 
-
-
     }
 
     public static class ViewHolder {
 
         // Header
-        public TextView rai, ngan, tarangwa, tarangMeter , rookPla;
+        public TextView rai, ngan, wa, meter, rookPla;
         public ImageView productIconImg;
 
         // Group 1
         public EditText group1_item_1, group1_item_3, group1_item_4, group1_item_5, group1_item_6, group1_item_7, group1_item_8;
-        public TextView group1_item_9,group1_item_2;
-        public EditText group1_item_10, group1_item_11, group1_item_12, group1_item_13 , group1_item_14;
+        public TextView group1_item_9, group1_item_2;
+        public EditText group1_item_10, group1_item_11, group1_item_12, group1_item_13, group1_item_14;
 
         // Group 2
         public EditText group2_item_1;
         public TextView group2_item_2;
-       // public TextView group2_item_3;
-       // public TextView group2_item_4;
+        // public TextView group2_item_3;
+        // public TextView group2_item_4;
 
-       // public LinearLayout group2_3_item, group2_4_item;
+        // public LinearLayout group2_3_item, group2_4_item;
 
         // Group 3
-        public EditText group3_item_1, group3_item_3 ,group3_item_4;
+        public EditText group3_item_1, group3_item_3, group3_item_4;
         public TextView group3_item_2, group3_item_5;
         public ImageView group3_header_check;
 
         // Group 4
         private TextView group4_add_item_btn;
-        private  ImageView group4_header_check;
+        private ImageView group4_header_check;
 
-        public EditText group4_item_1_1 , group4_item_1_2 , group4_item_1_3;
+        public EditText group4_item_1_1, group4_item_1_2, group4_item_1_3;
         public TextView group4_item_1_4;
         private TextView delete_group4_1;
 
-        public EditText group4_item_2_1 , group4_item_2_2 , group4_item_2_3;
+        public EditText group4_item_2_1, group4_item_2_2, group4_item_2_3;
         public TextView group4_item_2_4;
         public TextView delete_group4_2;
 
-        public EditText group4_item_3_1 , group4_item_3_2 , group4_item_3_3;
+        public EditText group4_item_3_1, group4_item_3_2, group4_item_3_3;
         public TextView group4_item_3_4;
         public TextView delete_group4_3;
 
-        public EditText group4_item_4_1 , group4_item_4_2 , group4_item_4_3;
+        public EditText group4_item_4_1, group4_item_4_2, group4_item_4_3;
         public TextView group4_item_4_4;
         public TextView delete_group4_4;
 
-        public LinearLayout group4_1_header , group4_2_header , group4_3_header , group4_4_header;
+        public LinearLayout group4_1_header, group4_2_header, group4_3_header, group4_4_header;
 
 
+        public TextView calBtn, group1_header, group2_header, group3_header, group4_header;
 
-        public TextView calBtn, group1_header, group2_header , group3_header , group4_header;
+        public LinearLayout group1_items, group2_items, group3_items, group4_items;
 
-        public LinearLayout group1_items, group2_items , group3_items , group4_items;
-
-        public ImageView group1_header_arrow, group2_header_arrow , group3_header_arrow , group4_header_arrow;
+        public ImageView group1_header_arrow, group2_header_arrow, group3_header_arrow, group4_header_arrow;
 
         public Button btnOption;
 
-        public  TextView group4_size_avg_item,group4_price_avg_item;
+        public TextView group4_size_avg_item, group4_price_avg_item;
 
         public RelativeLayout headerLayout;
+
+        private TextView raiLabel, nganLabel, waLabel, meterLabel;
     }
 
     private void API_getPlotDetail(String plodID) {
@@ -1009,8 +1016,8 @@ if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())
                     mGetVariable.mRespBody var = mVariableBodyLists.get(0);
                     formulaModel.KaSermOuppakorn = Util.strToDoubleDefaultZero(var.getDP());
                     formulaModel.KaSiaOkardOuppakorn = Util.strToDoubleDefaultZero(var.getOP());
-                  //  h.group2_item_3.setText(String.valueOf(formulaModel.KaSermOuppakorn * formulaModel.NueaTeeBor));
-                  //  h.group2_item_4.setText(String.valueOf(formulaModel.KaSiaOkardOuppakorn * formulaModel.NueaTeeBor));
+                    //  h.group2_item_3.setText(String.valueOf(formulaModel.KaSermOuppakorn * formulaModel.NueaTeeBor));
+                    //  h.group2_item_4.setText(String.valueOf(formulaModel.KaSiaOkardOuppakorn * formulaModel.NueaTeeBor));
                 }
             }
 
@@ -1051,8 +1058,8 @@ if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())
 
 
                         aModel.Rai = Util.strToDoubleDefaultZero(plotDetail.getPondRai());
-                        aModel.Ngan =  Util.strToDoubleDefaultZero(plotDetail.getPondNgan());
-                        aModel.TarangWa =  Util.strToDoubleDefaultZero(plotDetail.getPondWa());
+                        aModel.Ngan = Util.strToDoubleDefaultZero(plotDetail.getPondNgan());
+                        aModel.TarangWa = Util.strToDoubleDefaultZero(plotDetail.getPondWa());
                         aModel.TarangMeter = Util.strToDoubleDefaultZero(plotDetail.getPondMeter());
 
                         aModel.LookPla = Util.strToDoubleDefaultZero(plotDetail.getFisheryNumber());
@@ -1062,13 +1069,13 @@ if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())
                         aModel.KaRangNganLeang = Util.strToDoubleDefaultZero(varJ.getKaRangNganLeang());
                         aModel.KaRangNganJub = Util.strToDoubleDefaultZero(varJ.getKaRangNganJub());
                         aModel.KaYa = Util.strToDoubleDefaultZero(varJ.getKaYa());
-                        aModel.KaSanKMe =Util.strToDoubleDefaultZero( varJ.getKaSanKMe());
-                        aModel.KaNamman =Util.strToDoubleDefaultZero( varJ.getKaNamman());
+                        aModel.KaSanKMe = Util.strToDoubleDefaultZero(varJ.getKaSanKMe());
+                        aModel.KaNamman = Util.strToDoubleDefaultZero(varJ.getKaNamman());
                         aModel.KaFaifa = Util.strToDoubleDefaultZero(varJ.getKaFaifa());
                         aModel.KaLoklen = Util.strToDoubleDefaultZero(varJ.getKaLoklen());
                         aModel.KaSomSam = Util.strToDoubleDefaultZero(varJ.getKaSomSam());
                         aModel.KaChaijai = Util.strToDoubleDefaultZero(varJ.getKaChaijai());
-                        aModel.KaChoaTDin =Util.strToDoubleDefaultZero( varJ.getKaChoaTDin());
+                        aModel.KaChoaTDin = Util.strToDoubleDefaultZero(varJ.getKaChoaTDin());
                         aModel.RayaWela = Util.strToDoubleDefaultZero(varJ.getRayaWela());
 
                         aModel.NamnakTKai = Util.strToDoubleDefaultZero(varJ.getNamnakTKai());
@@ -1076,7 +1083,7 @@ if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())
                         //aModel.KanardPlaChalia = varJ.getKanardPlaChalia();
 
                         aModel.KanardPla1 = Util.strToDoubleDefaultZero(varJ.getKanardPla1());
-                        aModel.NamnakPla1 =Util.strToDoubleDefaultZero( varJ.getNamnakPla1());
+                        aModel.NamnakPla1 = Util.strToDoubleDefaultZero(varJ.getNamnakPla1());
                         aModel.RakaPla1 = Util.strToDoubleDefaultZero(varJ.getRakaPla1());
 
                         aModel.KanardPla2 = Util.strToDoubleDefaultZero(varJ.getKanardPla2());
@@ -1091,19 +1098,14 @@ if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())
                         aModel.NamnakPla4 = Util.strToDoubleDefaultZero(varJ.getNamnakPla4());
                         aModel.RakaPla4 = Util.strToDoubleDefaultZero(varJ.getRakaPla4());
 
-                        aModel.isCalIncludeOption =  varJ.isCalIncludeOption();
-                        setCalKaSermOption( varJ.isCalIncludeOption());
+                        aModel.isCalIncludeOption = varJ.isCalIncludeOption();
+                        setCalKaSermOption(varJ.isCalIncludeOption());
                         isCalIncludeOption = varJ.isCalIncludeOption();
 
                         h.rai.setText(Util.strToDobbleToStrFormat(plotDetail.getPondRai()));
                         h.ngan.setText(Util.strToDobbleToStrFormat(plotDetail.getPondNgan()));
-                        h.tarangwa.setText(Util.strToDobbleToStrFormat(plotDetail.getPondWa()));
-                        h.tarangMeter.setText(Util.strToDobbleToStrFormat(plotDetail.getPondMeter()));
-
-
-
-
-
+                        h.wa.setText(Util.strToDobbleToStrFormat(plotDetail.getPondWa()));
+                        h.meter.setText(Util.strToDobbleToStrFormat(plotDetail.getPondMeter()));
 
 
                         h.group1_item_1.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(varJ.Raka)));
@@ -1143,35 +1145,43 @@ if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())
                         h.group4_item_4_2.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(varJ.RakaPla4)));
                         h.group4_item_4_3.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(varJ.NamnakPla4)));
 
-                        userPlotModel.setFisheryNumType(String.valueOf(varJ.getCalType()));
-                      if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(varJ.getCalType())){
-                          h.rookPla.setText(Util.strToDobbleToStrFormat(plotDetail.getFisheryWeight()));
-                          userPlotModel.setFisheryWeight(plotDetail.getFisheryWeight());
-                      }else{
+                        userPlotModel.setFisheryNumType(plotDetail.getFisheryNumType());
+                        if (ServiceInstance.FISHERY_NUM_TYPE_KK.equals(plotDetail.getFisheryNumType())) {
+                            h.rookPla.setText(Util.strToDobbleToStrFormat(plotDetail.getFisheryWeight()));
+                            userPlotModel.setFisheryWeight(plotDetail.getFisheryWeight());
+                        } else {
                             h.rookPla.setText(Util.strToDobbleToStrFormat(plotDetail.getFisheryNumber()));
                             userPlotModel.setFisheryNumber(plotDetail.getFisheryNumber());
-                      }
-                       // userPlotModel.setFisheryNumber(plotDetail.getFisheryNumber());
+                        }
+                        // userPlotModel.setFisheryNumber(plotDetail.getFisheryNumber());
 
                         formulaModel.calculate();
 
                         setUpCalUI(formulaModel);
 
 
-                    }else{
-                        h.rai.setText(plotDetail.getPondRai());
-                        h.ngan.setText(plotDetail.getPondNgan());
-                        h.tarangwa.setText(plotDetail.getPondWa());
-                        h.tarangwa.setText(plotDetail.getPondMeter());
-                        h.rookPla.setText(plotDetail.getFisheryNumber());
-                        userPlotModel.setFisheryNumType(plotDetail.getFisheryType());
+                    } else {
+                        h.rai.setText(Util.strToDobbleToStrFormat(plotDetail.getPondRai()));
+                        h.ngan.setText(Util.strToDobbleToStrFormat(plotDetail.getPondNgan()));
+                        h.wa.setText(Util.strToDobbleToStrFormat(plotDetail.getPondWa()));
+                        h.meter.setText(Util.strToDobbleToStrFormat(plotDetail.getPondMeter()));
 
-                        if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(plotDetail.getFisheryType())){
+                        //h.rookPla.setText(plotDetail.getFisheryNumber());
+                        userPlotModel.setFisheryNumType(plotDetail.getFisheryNumType());
+
+                        if (ServiceInstance.FISHERY_NUM_TYPE_KK.equals(plotDetail.getFisheryNumType())) {
+                            h.rookPla.setText(Util.strToDobbleToStrFormat(plotDetail.getFisheryWeight()));
                             userPlotModel.setFisheryWeight(plotDetail.getFisheryWeight());
-                        }else{
+                        } else {
+                            h.rookPla.setText(Util.strToDobbleToStrFormat(plotDetail.getFisheryNumber()));
                             userPlotModel.setFisheryNumber(plotDetail.getFisheryNumber());
                         }
                     }
+
+                    checkVisibility(Util.strToDoubleDefaultZero(plotDetail.getPondRai())
+                            , Util.strToDoubleDefaultZero(plotDetail.getPondNgan())
+                            , Util.strToDoubleDefaultZero(plotDetail.getPondWa())
+                            , Util.strToDoubleDefaultZero(plotDetail.getPondMeter()));
                 }
             }
 
@@ -1193,7 +1203,7 @@ if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())
         dialog.setContentView(R.layout.dialog_edit_fish);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 
-       LinearLayout bo_layout = (LinearLayout)dialog.findViewById(R.id.bo_layout);
+        LinearLayout bo_layout = (LinearLayout) dialog.findViewById(R.id.bo_layout);
 
 
         android.widget.TextView btn_cancel = (android.widget.TextView) dialog.findViewById(R.id.cancel);
@@ -1215,14 +1225,14 @@ if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())
 
         rai.setText(Util.clearStrNumberFormat(h.rai.getText().toString()));
         ngan.setText(Util.clearStrNumberFormat(h.ngan.getText().toString()));
-        sqaWa.setText(Util.clearStrNumberFormat(h.tarangwa.getText().toString()));
-        sqM.setText(Util.clearStrNumberFormat(h.tarangMeter.getText().toString()));
+        sqaWa.setText(Util.clearStrNumberFormat(h.wa.getText().toString()));
+        sqM.setText(Util.clearStrNumberFormat(h.meter.getText().toString()));
         unit.setText(Util.clearStrNumberFormat(h.rookPla.getText().toString()));
 
         h.rai = (TextView) view.findViewById(R.id.rai);
         h.ngan = (TextView) view.findViewById(R.id.ngan);
-        h.tarangwa = (TextView) view.findViewById(R.id.tarangwa);
-        h.tarangMeter = (TextView) view.findViewById(R.id.tarangMeter);
+        h.wa = (TextView) view.findViewById(R.id.wa);
+        h.meter = (TextView) view.findViewById(R.id.meter);
         h.rookPla = (TextView) view.findViewById(R.id.rookPla);
 
         btn_ok.setOnClickListener(new View.OnClickListener() {
@@ -1230,15 +1240,20 @@ if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())
             public void onClick(View view) {
                 h.rai.setText(Util.dobbleToStringNumberWithClearDigit(Util.strToDoubleDefaultZero(rai.getText().toString())));
                 h.ngan.setText(Util.dobbleToStringNumberWithClearDigit(Util.strToDoubleDefaultZero(ngan.getText().toString())));
-                h.tarangwa.setText(Util.dobbleToStringNumberWithClearDigit(Util.strToDoubleDefaultZero(sqaWa.getText().toString())));
-                h.tarangMeter.setText(Util.dobbleToStringNumberWithClearDigit(Util.strToDoubleDefaultZero(sqM.getText().toString())));
+                h.wa.setText(Util.dobbleToStringNumberWithClearDigit(Util.strToDoubleDefaultZero(sqaWa.getText().toString())));
+                h.meter.setText(Util.dobbleToStringNumberWithClearDigit(Util.strToDoubleDefaultZero(sqM.getText().toString())));
                 h.rookPla.setText(Util.dobbleToStringNumberWithClearDigit(Util.strToDoubleDefaultZero(unit.getText().toString())));
                 //userPlotModel.setPlotRai(String.valueOf(Util.strToDoubleDefaultZero(inputRai.getText().toString())));
 
+                checkVisibility(Util.strToDoubleDefaultZero(rai.getText().toString())
+                        , Util.strToDoubleDefaultZero(ngan.getText().toString())
+                        , Util.strToDoubleDefaultZero(sqaWa.getText().toString())
+                        , Util.strToDoubleDefaultZero(sqM.getText().toString()));
+
                 userPlotModel.setPondRai(Util.clearStrNumberFormat(h.rai.getText().toString()));
                 userPlotModel.setPondNgan(Util.clearStrNumberFormat(h.ngan.getText().toString()));
-                userPlotModel.setPondWa(Util.clearStrNumberFormat(h.tarangwa.getText().toString()));
-                userPlotModel.setPondMeter(Util.clearStrNumberFormat(h.tarangMeter.getText().toString()));
+                userPlotModel.setPondWa(Util.clearStrNumberFormat(h.wa.getText().toString()));
+                userPlotModel.setPondMeter(Util.clearStrNumberFormat(h.meter.getText().toString()));
 
                 if (ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())) {
                     userPlotModel.setFisheryWeight(Util.clearStrNumberFormat(h.rookPla.getText().toString()));
@@ -1248,7 +1263,6 @@ if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())
                 dialog.dismiss();
             }
         });
-
 
 
         btn_cancel.setOnClickListener(new View.OnClickListener() {
@@ -1262,13 +1276,81 @@ if(ServiceInstance.FISHERY_NUM_TYPE_KK.equals(userPlotModel.getFisheryNumType())
 
     }
 
-    public void setCalKaSermOption(boolean isSetOption){
+    public void setCalKaSermOption(boolean isSetOption) {
         if (isSetOption) {
             h.btnOption.setBackgroundResource(R.drawable.radio_cal_blue_check);
             isCalIncludeOption = true;
         } else {
             h.btnOption.setBackgroundResource(R.drawable.radio_cal_blue);
             isCalIncludeOption = false;
+        }
+    }
+
+
+    private void checkVisibility(double rai, double ngan, double wa, double meter) {
+        Log.d("checkVisibility", "Rai = " + rai);
+        Log.d("checkVisibility", "ngan = " + ngan);
+        Log.d("checkVisibility", "wa = " + wa);
+        Log.d("checkVisibility", "meter = " + meter);
+
+        if (rai == 0) {
+            h.rai.setVisibility(View.INVISIBLE);
+            h.raiLabel.setVisibility(View.GONE);
+        } else {
+            h.rai.setVisibility(View.VISIBLE);
+            h.raiLabel.setVisibility(View.VISIBLE);
+        }
+
+        if (ngan == 0) {
+            h.ngan.setVisibility(View.GONE);
+            h.nganLabel.setVisibility(View.GONE);
+        } else {
+            h.ngan.setVisibility(View.VISIBLE);
+            h.nganLabel.setVisibility(View.VISIBLE);
+        }
+
+        if (wa == 0) {
+            h.wa.setVisibility(View.GONE);
+            h.waLabel.setVisibility(View.GONE);
+        } else {
+            h.wa.setVisibility(View.VISIBLE);
+            h.waLabel.setVisibility(View.VISIBLE);
+        }
+
+        if (meter == 0) {
+            h.meter.setVisibility(View.GONE);
+            h.meterLabel.setVisibility(View.GONE);
+        } else {
+            h.meter.setVisibility(View.VISIBLE);
+            h.meterLabel.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private boolean validateInputData() {
+
+        double value =
+                Util.strToDoubleDefaultZero(h.group1_item_1.getText().toString()) +
+                        Util.strToDoubleDefaultZero(h.group1_item_3.getText().toString()) +
+                        Util.strToDoubleDefaultZero(h.group1_item_4.getText().toString()) +
+                        Util.strToDoubleDefaultZero(h.group1_item_5.getText().toString()) +
+                        Util.strToDoubleDefaultZero(h.group1_item_6.getText().toString()) +
+                        Util.strToDoubleDefaultZero(h.group1_item_7.getText().toString()) +
+                        Util.strToDoubleDefaultZero(h.group1_item_8.getText().toString()) +
+                        Util.strToDoubleDefaultZero(h.group1_item_10.getText().toString()) +
+                        Util.strToDoubleDefaultZero(h.group1_item_11.getText().toString()) +
+                        Util.strToDoubleDefaultZero(h.group1_item_12.getText().toString()) +
+                        Util.strToDoubleDefaultZero(h.group1_item_13.getText().toString()) +
+                        Util.strToDoubleDefaultZero(h.group1_item_14.getText().toString()) +
+
+
+                        Util.strToDoubleDefaultZero(h.group2_item_1.getText().toString());
+
+
+        if (value == 0) {
+            new DialogChoice(context).ShowOneChoice("", "กรุณากรอกข้อมูล เพื่อคำนวณต้นทุน");
+            return false;
+        } else {
+            return true;
         }
     }
 

@@ -106,7 +106,7 @@ public class PlanITextWatcher implements TextWatcher {
 
         if(name.contains("calRayDaiChalia")){
 
-            double allrai =  ((Util.strToDoubleDefaultZero(h.rai.getText().toString())*4*400)+(Util.strToDoubleDefaultZero(h.ngan.getText().toString())*400)+(Util.strToDoubleDefaultZero(h.tarangwa.getText().toString())*4))/1600;
+            double allrai =  ((Util.strToDoubleDefaultZero(h.rai.getText().toString())*4*400)+(Util.strToDoubleDefaultZero(h.ngan.getText().toString())*400)+(Util.strToDoubleDefaultZero(h.wa.getText().toString())*4))/1600;
 
             value = Util.round(Util.strToDoubleDefaultZero(h.group2_item_3.getText().toString())/allrai,2);
             value = Util.verifyDoubleDefaultZero(value);

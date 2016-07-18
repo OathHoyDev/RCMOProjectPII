@@ -341,7 +341,8 @@ public class ProductDetailMapFragment extends Fragment {
         if ("".equalsIgnoreCase(var.getSuitValue())) {
             txSuggessPlot.setText("ไม่พบข้อมูลความเหมาะสม");
         } else {
-            txSuggessPlot.setText(var.getSuitValue());
+          // txSuggessPlot.setText(var.getSuitValue());
+            txSuggessPlot.setText(var.getSuitLabel());
         }
 
         switch (var.getSuitLevel()) {
@@ -525,16 +526,18 @@ public class ProductDetailMapFragment extends Fragment {
         fragmentView.findViewById(R.id.inputAmphoe).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                API_getAmphoe(selectedprovince.getProvCode());
+                if (selectedprovince != null) {
+                    API_getAmphoe(selectedprovince.getProvCode());
+                }
             }
         });
 
         fragmentView.findViewById(R.id.inputTumbon).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                API_getTumbonList(selectedprovince.getProvCode(), selectedAmphoe.getAmpCode());
+                if (selectedprovince != null && selectedAmphoe != null) {
+                    API_getTumbonList(selectedprovince.getProvCode(), selectedAmphoe.getAmpCode());
+                }
             }
         });
 

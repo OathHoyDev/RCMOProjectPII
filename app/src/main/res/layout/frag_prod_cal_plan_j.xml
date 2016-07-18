@@ -4,8 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/RcmoWhiteBG"
-    android:orientation="vertical">
-    android:paddingTop="40dp"
+    android:orientation="vertical"
+    android:paddingTop="40dp">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -52,111 +53,100 @@
                 android:id="@+id/rai"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="false"
-                android:layout_alignParentLeft="true"
-                android:layout_below="@+id/start"
-                android:layout_marginTop="5dp"
+                android:layout_marginLeft="2dp"
                 android:text="0"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/RcmoFishBG"
-                android:textColorHint="@color/RcmoFishBG"
-                pixlui:typeface="Quark-Bold.otf" />
+                pixlui:typeface="Quark-Bold.otf"
+                android:layout_centerVertical="true"
+                android:layout_alignParentStart="true" />
 
             <com.neopixl.pixlui.components.textview.TextView
-                android:id="@+id/raiUnit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="false"
-                android:layout_alignParentLeft="false"
-                android:layout_below="@+id/start"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="5dp"
+                android:layout_alignTop="@+id/rai"
+                android:layout_marginLeft="2dp"
+                android:layout_toEndOf="@+id/rai"
                 android:layout_toRightOf="@+id/rai"
                 android:text="ไร่"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/RcmoGrayBG"
-                pixlui:typeface="Quark-Bold.otf" />
+                pixlui:typeface="Quark-Bold.otf"
+                android:id="@+id/raiLabel" />
 
             <com.neopixl.pixlui.components.textview.TextView
                 android:id="@+id/ngan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="false"
-                android:layout_alignParentLeft="false"
-                android:layout_below="@+id/start"
                 android:layout_marginLeft="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_toRightOf="@+id/raiUnit"
                 android:text="0"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/RcmoFishBG"
-                android:textColorHint="@color/RcmoFishBG"
-                pixlui:typeface="Quark-Bold.otf" />
+                pixlui:typeface="Quark-Bold.otf"
+                android:layout_alignTop="@+id/nganLabel"
+                android:layout_toEndOf="@+id/raiLabel" />
 
             <com.neopixl.pixlui.components.textview.TextView
-                android:id="@+id/nganUnit"
+                android:id="@+id/nganLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="false"
-                android:layout_alignParentLeft="false"
-                android:layout_below="@+id/start"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_toRightOf="@+id/ngan"
+                android:layout_marginLeft="2dp"
                 android:text="งาน"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/RcmoGrayBG"
-                pixlui:typeface="Quark-Bold.otf" />
-
-            <com.neopixl.pixlui.components.textview.TextView
-                android:id="@+id/tarangwa"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
-                android:text="0"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@color/RcmoFishBG"
-                android:textColorHint="@color/RcmoFishBG"
                 pixlui:typeface="Quark-Bold.otf"
-                android:layout_below="@+id/rai"
-                android:layout_alignParentStart="true" />
+                android:layout_alignTop="@+id/raiLabel"
+                android:layout_toEndOf="@+id/ngan" />
 
             <com.neopixl.pixlui.components.textview.TextView
-                android:id="@+id/tarangwaUnit"
+                android:id="@+id/wa"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
+                android:text="0"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/RcmoFishBG"
+                pixlui:typeface="Quark-Bold.otf"
+                android:layout_alignTop="@+id/nganLabel"
+                android:layout_toEndOf="@+id/nganLabel" />
+
+            <com.neopixl.pixlui.components.textview.TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
                 android:text="ตร.วา"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/RcmoGrayBG"
                 pixlui:typeface="Quark-Bold.otf"
-                android:layout_alignTop="@+id/tarangwa"
-                android:layout_toEndOf="@+id/tarangwa" /> />
+                android:layout_alignTop="@+id/wa"
+                android:layout_toEndOf="@+id/wa"
+                android:id="@+id/waLabel" />
+
 
             <com.neopixl.pixlui.components.textview.TextView
-                android:id="@+id/tarangMeter"
+                android:id="@+id/meter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:text="0"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/RcmoFishBG"
-                android:textColorHint="@color/RcmoFishBG"
                 pixlui:typeface="Quark-Bold.otf"
-                android:layout_alignTop="@+id/tarangwaUnit"
-                android:layout_toEndOf="@+id/tarangwaUnit" />
+                android:layout_alignTop="@+id/waLabel"
+                android:layout_toEndOf="@+id/waLabel" />
 
             <com.neopixl.pixlui.components.textview.TextView
-                android:id="@+id/tarangMeterUnit"
+                android:id="@+id/meterLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:text="ตร.ม."
+                android:layout_marginLeft="2dp"
+                android:text="ตร.ม"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/RcmoGrayBG"
                 pixlui:typeface="Quark-Bold.otf"
-                android:layout_alignTop="@+id/tarangMeter"
-                android:layout_toEndOf="@+id/tarangMeter" />
+                android:layout_alignTop="@+id/meter"
+                android:layout_toEndOf="@+id/meter" />
 
             <com.neopixl.pixlui.components.textview.TextView
                 android:id="@+id/rookPlaTx"
@@ -166,7 +156,7 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/RcmoGrayBG"
                 pixlui:typeface="Quark-Bold.otf"
-                android:layout_below="@+id/tarangwa"
+                android:layout_below="@+id/rai"
                 />
 
             <com.neopixl.pixlui.components.textview.TextView

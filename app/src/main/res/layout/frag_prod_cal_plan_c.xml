@@ -73,7 +73,7 @@
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textColor="@color/RcmoGrayBG"
                     pixlui:typeface="Quark-Bold.otf"
-                    android:id="@+id/view3" />
+                    android:id="@+id/raiLabel" />
 
                 <com.neopixl.pixlui.components.textview.TextView
                     android:id="@+id/ngan"
@@ -84,11 +84,11 @@
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textColor="@color/RcmoPlantBG"
                     pixlui:typeface="Quark-Bold.otf"
-                    android:layout_alignTop="@+id/textView4"
-                    android:layout_toEndOf="@+id/view3" />
+                    android:layout_alignTop="@+id/nganLabel"
+                    android:layout_toEndOf="@+id/raiLabel" />
 
                 <com.neopixl.pixlui.components.textview.TextView
-                    android:id="@+id/textView4"
+                    android:id="@+id/nganLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="2dp"
@@ -96,7 +96,7 @@
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textColor="@color/RcmoGrayBG"
                     pixlui:typeface="Quark-Bold.otf"
-                    android:layout_alignTop="@+id/view3"
+                    android:layout_alignTop="@+id/raiLabel"
                     android:layout_toEndOf="@+id/ngan" />
 
                 <com.neopixl.pixlui.components.textview.TextView
@@ -108,8 +108,8 @@
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textColor="@color/RcmoPlantBG"
                     pixlui:typeface="Quark-Bold.otf"
-                    android:layout_alignTop="@+id/textView4"
-                    android:layout_toEndOf="@+id/textView4" />
+                    android:layout_alignTop="@+id/nganLabel"
+                    android:layout_toEndOf="@+id/nganLabel" />
 
                 <com.neopixl.pixlui.components.textview.TextView
 
@@ -122,7 +122,7 @@
                     pixlui:typeface="Quark-Bold.otf"
                     android:layout_alignTop="@+id/wa"
                     android:layout_toEndOf="@+id/wa"
-                    android:id="@+id/view4" />
+                    android:id="@+id/waLabel" />
 
 
                 <com.neopixl.pixlui.components.textview.TextView
@@ -135,8 +135,8 @@
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textColor="@color/RcmoPlantBG"
                     pixlui:typeface="Quark-Bold.otf"
-                    android:layout_alignTop="@+id/view4"
-                    android:layout_toEndOf="@+id/view4" />
+                    android:layout_alignTop="@+id/waLabel"
+                    android:layout_toEndOf="@+id/waLabel" />
 
                 <com.neopixl.pixlui.components.textview.TextView
                     android:visibility="gone"
