@@ -39,6 +39,7 @@ import th.go.oae.rcmo.Util.PlanGTextWatcher;
 import th.go.oae.rcmo.Util.ServiceInstance;
 import th.go.oae.rcmo.Util.Util;
 import th.go.oae.rcmo.View.DialogCalculateResult;
+import th.go.oae.rcmo.View.DialogChoice;
 
 /**
  * Created by Taweesin on 27/6/2559.
@@ -318,41 +319,43 @@ public class PBProdDetailCalculateFmentG extends Fragment implements View.OnClic
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.calBtn) {
-            //formulaModel = new FormulaDModel();
-            bindingData(formulaModel);
-            formulaModel.calculate();
-            setUpCalUI(formulaModel);
+            if(validateInputData()) {
+                //formulaModel = new FormulaDModel();
+                bindingData(formulaModel);
+                formulaModel.calculate();
+                setUpCalUI(formulaModel);
 
-            CalculateResultModel calculateResultModel = new CalculateResultModel();
-            calculateResultModel.formularCode = "G";
-            calculateResultModel.calculateResult = formulaModel.calProfitLoss;
-            calculateResultModel.productName = userPlotModel.getPrdValue();
-            calculateResultModel.unit_t1 = "" ;
-            calculateResultModel.value_t1 = 0 ;
-            calculateResultModel.mPlotSuit = PBProductDetailActivity.mPlotSuit;
-            calculateResultModel.compareStdResult = 0;
+                CalculateResultModel calculateResultModel = new CalculateResultModel();
+                calculateResultModel.formularCode = "G";
+                calculateResultModel.calculateResult = formulaModel.calProfitLoss;
+                calculateResultModel.productName = userPlotModel.getPrdValue();
+                calculateResultModel.unit_t1 = "";
+                calculateResultModel.value_t1 = 0;
+                calculateResultModel.mPlotSuit = PBProductDetailActivity.mPlotSuit;
+                calculateResultModel.compareStdResult = 0;
 
-            DialogCalculateResult.userPlotModel = userPlotModel;
-            DialogCalculateResult.calculateResultModel = calculateResultModel;
-            userPlotModel.setVarValue(ProductService.genJsonPlanVariable(formulaModel));
-            List resultArrayResult = new ArrayList();
+                DialogCalculateResult.userPlotModel = userPlotModel;
+                DialogCalculateResult.calculateResultModel = calculateResultModel;
+                userPlotModel.setVarValue(ProductService.genJsonPlanVariable(formulaModel));
+                List resultArrayResult = new ArrayList();
 
-            String [] tontoonCal_1 = {"ต้นทุนทั้งหมด" , String.format("%,.2f", formulaModel.calCost) , "บาท"};
-            resultArrayResult.add(tontoonCal_1);
-            ;
-            String [] tontoonCal_3 = {"" , String.format("%,.2f", formulaModel.costTontunPalitNamnomPerKg) , "บาท/กก."};
-            resultArrayResult.add(tontoonCal_3);
+                String[] tontoonCal_1 = {"ต้นทุนทั้งหมด", String.format("%,.2f", formulaModel.calCost), "บาท"};
+                resultArrayResult.add(tontoonCal_1);
+                ;
+                String[] tontoonCal_3 = {"", String.format("%,.2f", formulaModel.costTontunPalitNamnomPerKg), "บาท/กก."};
+                resultArrayResult.add(tontoonCal_3);
 
-            String [] tontoonCal_4 = {"ปริมาณน้ำนมดิบที่รีดได้เฉลี่ย" , String.format("%,.2f", formulaModel.calNamnomTReedCharia) , "กก./ตัว/วัน"};
-            resultArrayResult.add(tontoonCal_4);
+                String[] tontoonCal_4 = {"ปริมาณน้ำนมดิบที่รีดได้เฉลี่ย", String.format("%,.2f", formulaModel.calNamnomTReedCharia), "กก./ตัว/วัน"};
+                resultArrayResult.add(tontoonCal_4);
 
-            String [] tontoonCal_5 = {"ราคาที่เกษตรกรขายได้" , String.format("%,.2f", formulaModel.RakaTkai) , "บาท/กก."};
-            resultArrayResult.add(tontoonCal_5);
+                String[] tontoonCal_5 = {"ราคาที่เกษตรกรขายได้", String.format("%,.2f", formulaModel.RakaTkai), "บาท/กก."};
+                resultArrayResult.add(tontoonCal_5);
 
 
-            DialogCalculateResult.calculateResultModel.resultList = resultArrayResult;
+                DialogCalculateResult.calculateResultModel.resultList = resultArrayResult;
 
-            new DialogCalculateResult(context).Show();
+                new DialogCalculateResult(context).Show();
+            }
 
         } else if (v.getId() == R.id.group0_header) {
 
@@ -718,6 +721,52 @@ public class PBProdDetailCalculateFmentG extends Fragment implements View.OnClic
         } else {
             h.btnOption.setBackgroundResource(R.drawable.radio_cal_pink);
             isCalIncludeOption = false;
+        }
+    }
+
+    private boolean validateInputData(){
+
+        double value =
+                Util.strToDoubleDefaultZero(h.group0_item_1.getText().toString()) +
+
+                        Util.strToDoubleDefaultZero(h.group1_item_1.getText().toString()) +
+                        Util.strToDoubleDefaultZero(h.group1_item_2.getText().toString()) +
+                        Util.strToDoubleDefaultZero(h.group1_item_3.getText().toString()) +
+                        Util.strToDoubleDefaultZero(h.group1_item_4.getText().toString()) +
+
+
+                        Util.strToDoubleDefaultZero(h.group2_item_2.getText().toString()) +
+                        Util.strToDoubleDefaultZero(h.group2_item_3.getText().toString()) +
+                        Util.strToDoubleDefaultZero(h.group2_item_5.getText().toString()) +
+                        Util.strToDoubleDefaultZero(h.group2_item_6.getText().toString()) +
+                        Util.strToDoubleDefaultZero(h.group2_item_7.getText().toString()) +
+                        Util.strToDoubleDefaultZero(h.group2_item_8.getText().toString()) +
+                        Util.strToDoubleDefaultZero(h.group2_item_9.getText().toString()) +
+                        Util.strToDoubleDefaultZero(h.group2_item_10.getText().toString()) +
+                        Util.strToDoubleDefaultZero(h.group2_item_11.getText().toString()) +
+                        Util.strToDoubleDefaultZero(h.group2_item_12.getText().toString()) +
+                        Util.strToDoubleDefaultZero(h.group2_item_13.getText().toString()) +
+                        Util.strToDoubleDefaultZero(h.group2_item_14.getText().toString()) +
+
+                        Util.strToDoubleDefaultZero(h.group3_item_1.getText().toString()) +
+                        Util.strToDoubleDefaultZero(h.group3_item_2.getText().toString()) +
+                        Util.strToDoubleDefaultZero(h.group3_item_3.getText().toString()) +
+                        Util.strToDoubleDefaultZero(h.group3_item_4.getText().toString()) +
+                        Util.strToDoubleDefaultZero(h.group3_item_5.getText().toString()) +
+
+                        Util.strToDoubleDefaultZero(h.group4_item_1.getText().toString()) +
+                        Util.strToDoubleDefaultZero(h.group4_item_2.getText().toString()) +
+
+                        Util.strToDoubleDefaultZero(h.group5_item_1.getText().toString()) ;
+
+
+
+
+        if(value == 0){
+            new DialogChoice(context).ShowOneChoice("", "กรุณากรอกข้อมูล เพื่อคำนวณต้นทุน");
+            return false;
+        }else{
+            return true;
         }
     }
 }

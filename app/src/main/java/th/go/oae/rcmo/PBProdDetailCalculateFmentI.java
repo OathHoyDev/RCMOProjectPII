@@ -40,6 +40,7 @@ import th.go.oae.rcmo.Util.PlanITextWatcher;
 import th.go.oae.rcmo.Util.ServiceInstance;
 import th.go.oae.rcmo.Util.Util;
 import th.go.oae.rcmo.View.DialogCalculateResult;
+import th.go.oae.rcmo.View.DialogChoice;
 
 /**
  * Created by Taweesin on 27/6/2559.
@@ -222,42 +223,43 @@ public class PBProdDetailCalculateFmentI extends Fragment implements View.OnClic
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.calBtn) {
-            bindingData(formulaModel);
-            formulaModel.calculate();
-            setUpCalUI(formulaModel);
-          //  Util.showDialogAndDismiss(context,"คำนวนสำเร็จ : "+formulaModel.KumraiKadtoon);
+            if(validateInputData()) {
+                bindingData(formulaModel);
+                formulaModel.calculate();
+                setUpCalUI(formulaModel);
+                //  Util.showDialogAndDismiss(context,"คำนวนสำเร็จ : "+formulaModel.KumraiKadtoon);
 
-            CalculateResultModel calculateResultModel = new CalculateResultModel();
-            calculateResultModel.formularCode = "I";
-            calculateResultModel.calculateResult = formulaModel.KumraiKadtoon;
-            calculateResultModel.productName = userPlotModel.getPrdValue();
-            calculateResultModel.unit_t1 = "บาท/ไร่." ;
-            calculateResultModel.value_t1 = formulaModel.KumraiKadtoonTorRai ;
-            calculateResultModel.unit_t2 = "บาท/กก." ;
-            calculateResultModel.value_t2 = formulaModel.KumraiKadtoonTorKilo ;
-            calculateResultModel.mPlotSuit = PBProductDetailActivity.mPlotSuit;
-            calculateResultModel.compareStdResult = 0;
+                CalculateResultModel calculateResultModel = new CalculateResultModel();
+                calculateResultModel.formularCode = "I";
+                calculateResultModel.calculateResult = formulaModel.KumraiKadtoon;
+                calculateResultModel.productName = userPlotModel.getPrdValue();
+                calculateResultModel.unit_t1 = "บาท/ไร่.";
+                calculateResultModel.value_t1 = formulaModel.KumraiKadtoonTorRai;
+                calculateResultModel.unit_t2 = "บาท/กก.";
+                calculateResultModel.value_t2 = formulaModel.KumraiKadtoonTorKilo;
+                calculateResultModel.mPlotSuit = PBProductDetailActivity.mPlotSuit;
+                calculateResultModel.compareStdResult = 0;
 
-            DialogCalculateResult.userPlotModel = userPlotModel;
-            DialogCalculateResult.calculateResultModel = calculateResultModel;
+                DialogCalculateResult.userPlotModel = userPlotModel;
+                DialogCalculateResult.calculateResultModel = calculateResultModel;
 
-            userPlotModel.setVarValue(ProductService.genJsonPlanVariable(formulaModel));
-            userPlotModel.setFisheryNumType("1");
-            List resultArrayResult = new ArrayList();
+                userPlotModel.setVarValue(ProductService.genJsonPlanVariable(formulaModel));
+                userPlotModel.setFisheryNumType("1");
+                List resultArrayResult = new ArrayList();
 
-            String [] tontoonCal_1 = {"ต้นทุนทั้งหมด" , String.format("%,.2f", formulaModel.TontoonTungmod) , "บาท"};
-            resultArrayResult.add(tontoonCal_1);
+                String[] tontoonCal_1 = {"ต้นทุนทั้งหมด", String.format("%,.2f", formulaModel.TontoonTungmod), "บาท"};
+                resultArrayResult.add(tontoonCal_1);
 
-            String [] tontoonCal_2 = {"" , String.format("%,.2f", formulaModel.TontoonTorKilo) , "บาท/กก."};
-            resultArrayResult.add(tontoonCal_2);
+                String[] tontoonCal_2 = {"", String.format("%,.2f", formulaModel.TontoonTorKilo), "บาท/กก."};
+                resultArrayResult.add(tontoonCal_2);
 
-            String [] raydai_1 = {"" , String.format("%,.2f", formulaModel.TontoonTorRai) , "บาท/ไร่"};
-            resultArrayResult.add(raydai_1);
+                String[] raydai_1 = {"", String.format("%,.2f", formulaModel.TontoonTorRai), "บาท/ไร่"};
+                resultArrayResult.add(raydai_1);
 
-            DialogCalculateResult.calculateResultModel.resultList = resultArrayResult;
+                DialogCalculateResult.calculateResultModel.resultList = resultArrayResult;
 
-            new DialogCalculateResult(context).Show();
-
+                new DialogCalculateResult(context).Show();
+            }
         }else if(v.getId() == R.id.btnOption) {
 
             if(isCalIncludeOption){
@@ -653,6 +655,36 @@ public class PBProdDetailCalculateFmentI extends Fragment implements View.OnClic
             h.waLabel.setVisibility(View.VISIBLE);
         }
     }
+    private boolean validateInputData(){
 
+        double value =
+                Util.strToDoubleDefaultZero(h.group1_item_1.getText().toString()) +
+                        Util.strToDoubleDefaultZero(h.group1_item_3.getText().toString()) +
+                        Util.strToDoubleDefaultZero(h.group1_item_4.getText().toString()) +
+                        Util.strToDoubleDefaultZero(h.group1_item_5.getText().toString()) +
+                        Util.strToDoubleDefaultZero(h.group1_item_6.getText().toString()) +
+                        Util.strToDoubleDefaultZero(h.group1_item_7.getText().toString()) +
+                        Util.strToDoubleDefaultZero(h.group1_item_8.getText().toString()) +
+                        Util.strToDoubleDefaultZero(h.group1_item_10.getText().toString()) +
+                        Util.strToDoubleDefaultZero(h.group1_item_11.getText().toString()) +
+                        Util.strToDoubleDefaultZero(h.group1_item_12.getText().toString()) +
+                        Util.strToDoubleDefaultZero(h.group1_item_13.getText().toString()) +
+                        Util.strToDoubleDefaultZero(h.group1_item_14.getText().toString()) +
+
+
+                        Util.strToDoubleDefaultZero(h.group2_item_1.getText().toString()) +
+                        Util.strToDoubleDefaultZero(h.group2_item_2.getText().toString()) +
+                        Util.strToDoubleDefaultZero(h.group2_item_3.getText().toString()) +
+                        Util.strToDoubleDefaultZero(h.group2_item_4.getText().toString()) +
+                        Util.strToDoubleDefaultZero(h.group2_item_5.getText().toString()) ;
+
+
+        if(value == 0){
+            new DialogChoice(context).ShowOneChoice("", "กรุณากรอกข้อมูล เพื่อคำนวณต้นทุน");
+            return false;
+        }else{
+            return true;
+        }
+    }
 
 }
