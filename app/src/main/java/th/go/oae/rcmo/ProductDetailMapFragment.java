@@ -92,8 +92,8 @@ public class ProductDetailMapFragment extends Fragment {
     private String plodID;
     private String userID;
 
-    private String latitude;
-    private String longitude;
+    private String latitude = "";
+    private String longitude = "";
 
     String suggession;
     String recommend;
@@ -245,9 +245,6 @@ public class ProductDetailMapFragment extends Fragment {
                 break;
         }
 
-        fadeView = (FrameLayout) fragmentView.findViewById(R.id.fadeLayout);
-        fadeView.setVisibility(View.GONE);
-
         mapView = (MapView) fragmentView.findViewById(R.id.map);
         mapView.onCreate(savedInstanceState);
 
@@ -267,8 +264,8 @@ public class ProductDetailMapFragment extends Fragment {
             @Override
             public void onMapClick(LatLng latLng) {
 
-                latitude = String.valueOf(latLng.latitude);
-                longitude = String.valueOf(latLng.longitude);
+//                latitude = String.valueOf(latLng.latitude);
+//                longitude = String.valueOf(latLng.longitude);
 
                 map.clear();
                 pinPlotLocation(Double.parseDouble(latitude), Double.parseDouble(longitude));
@@ -437,27 +434,22 @@ public class ProductDetailMapFragment extends Fragment {
 
                     popupWindow.setOutsideTouchable(true);
 
-                    popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
-                        @Override
-                        public void onDismiss() {
-
-                            isPopup = false;
-                            popupWindow.dismiss();
-
-
-                        }
-                    });
+//                    popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+//                        @Override
+//                        public void onDismiss() {
+//
+//                            isPopup = false;
+//                            popupWindow.dismiss();
+//
+//
+//                        }
+//                    });
 
                 }
 
                 if (isPopup){
-                    if (isClickBtn) {
-                        isClickBtn = false;
-                        isPopup = false;
-                    }else{
-                        popupWindow.showAsDropDown(btnSuggession, Gravity.TOP | Gravity.RIGHT, 0);
-                        isPopup = true;
-                    }
+                    isPopup = false;
+                    popupWindow.dismiss();
                 }else{
                     popupWindow.showAsDropDown(btnSuggession, Gravity.TOP | Gravity.RIGHT, 0);
                     isPopup = true;
