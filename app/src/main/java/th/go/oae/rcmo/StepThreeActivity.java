@@ -44,6 +44,7 @@ import th.go.oae.rcmo.Util.ServiceInstance;
 import th.go.oae.rcmo.Util.StepIIITextWatcher;
 import th.go.oae.rcmo.Util.Util;
 import th.go.oae.rcmo.View.DialogChoice;
+import th.go.oae.rcmo.View.ProgressAction;
 import th.go.oae.rcmo.View.dialog_amphoe;
 import th.go.oae.rcmo.View.dialog_province;
 import th.go.oae.rcmo.View.dialog_tambon;
@@ -314,6 +315,7 @@ public class StepThreeActivity extends Activity {
         findViewById(R.id.btnCal).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ProgressAction.show(StepThreeActivity.this);
                 userPlotModel = new UserPlotModel();
                 userPlotModel.setPrdGrpID(String.valueOf(productionInfo.getPrdGrpID()));
                 userPlotModel.setPrdID(String.valueOf(productionInfo.getPrdID()));
@@ -409,6 +411,7 @@ public class StepThreeActivity extends Activity {
         findViewById(R.id.inputprovice).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                ProgressAction.show(StepThreeActivity.this);
                 API_getProvince();
 
             }
@@ -417,6 +420,7 @@ public class StepThreeActivity extends Activity {
             @Override
             public void onClick(View view) {
                 if (selectedprovince != null) {
+                    ProgressAction.show(StepThreeActivity.this);
                     API_getAmphoe(selectedprovince.getProvCode());
                 }
 
@@ -427,6 +431,7 @@ public class StepThreeActivity extends Activity {
             @Override
             public void onClick(View view) {
                 if (selectedprovince != null && selectedAmphoe != null) {
+                    ProgressAction.show(StepThreeActivity.this);
                     API_getTumbon(selectedprovince.getProvCode(), selectedAmphoe.getAmpCode());
                 }
 
@@ -699,12 +704,15 @@ public class StepThreeActivity extends Activity {
 
                     }
                 });
+
+                ProgressAction.gone(StepThreeActivity.this);
             }
         }
 
         @Override
         public void callbackError(int code, String errorMsg) {
             Log.d("Error", errorMsg);
+            ProgressAction.gone(StepThreeActivity.this);
         }
     }).API_Request(true, RequestServices.ws_getProvince +
             "?ProvCode="
@@ -752,12 +760,15 @@ public class StepThreeActivity extends Activity {
 
                         }
                     });
+
+                    ProgressAction.gone(StepThreeActivity.this);
                 }
             }
 
             @Override
             public void callbackError(int code, String errorMsg) {
                 Log.d("Error", errorMsg);
+                ProgressAction.gone(StepThreeActivity.this);
             }
         }).API_Request(true, RequestServices.ws_getAmphoe +
                 "?AmpCode=" +
@@ -801,12 +812,15 @@ public class StepThreeActivity extends Activity {
                             }
                         }
                     });
+
+                    ProgressAction.gone(StepThreeActivity.this);
                 }
             }
 
             @Override
             public void callbackError(int code, String errorMsg) {
                 Log.d("Error", errorMsg);
+                ProgressAction.gone(StepThreeActivity.this);
             }
         }).API_Request(true, RequestServices.ws_getTambon +
                 "?TamCode=" +
@@ -1426,10 +1440,20 @@ public class StepThreeActivity extends Activity {
                 ,labelPricePerUnit,labelWeightPerUnit;
        com.neopixl.pixlui.components.edittext.EditText inputPricePerUnit ,inputWeightPerUnit,inputNumberOfStart;
     }
+    @Override
+    public void onResume() {
+        super.onResume();  // Always call the superclass method first
+        Log.d(TAG,"onResume  ProgressAction.gone ... ");
+        ProgressAction.gone(StepThreeActivity.this);
+        // Release the Camera because we don't need it when paused
+        // and other activities might need to use it.
 
+    }
 
 }
 
+
+//
 
 
 /*

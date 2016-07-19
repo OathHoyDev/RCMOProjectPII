@@ -56,6 +56,7 @@ import th.go.oae.rcmo.Util.CalculateConstant;
 import th.go.oae.rcmo.Util.GPSTracker;
 import th.go.oae.rcmo.Util.ServiceInstance;
 import th.go.oae.rcmo.View.DialogChoice;
+import th.go.oae.rcmo.View.ProgressAction;
 import th.go.oae.rcmo.View.dialog_amphoe;
 import th.go.oae.rcmo.View.dialog_province;
 import th.go.oae.rcmo.View.dialog_tambon;
@@ -392,6 +393,8 @@ public class ProductDetailMapFragment extends Fragment {
         recommend = "";
         recommendProduct = "";
 
+        PBProductDetailActivity.mPlotSuit = null;
+
 
     }
 
@@ -518,7 +521,7 @@ public class ProductDetailMapFragment extends Fragment {
         fragmentView.findViewById(R.id.inputprovice).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                ProgressAction.show(context);
                 API_getProvince();
             }
         });
@@ -527,6 +530,7 @@ public class ProductDetailMapFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (selectedprovince != null) {
+                    ProgressAction.show(context);
                     API_getAmphoe(selectedprovince.getProvCode());
                 }
             }
@@ -536,6 +540,7 @@ public class ProductDetailMapFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (selectedprovince != null && selectedAmphoe != null) {
+                    ProgressAction.show(context);
                     API_getTumbonList(selectedprovince.getProvCode(), selectedAmphoe.getAmpCode());
                 }
             }
@@ -860,13 +865,14 @@ public class ProductDetailMapFragment extends Fragment {
 
                         }
                     });
-
+                    ProgressAction.gone(context);
                 }
             }
 
             @Override
             public void callbackError(int code, String errorMsg) {
                 Log.d("Error", errorMsg);
+                ProgressAction.gone(context);
             }
         }).API_Request(true, RequestServices.ws_getProvince +
                 "?ProvCode="
@@ -915,12 +921,15 @@ public class ProductDetailMapFragment extends Fragment {
 
                         }
                     });
+
+                    ProgressAction.gone(context);
                 }
             }
 
             @Override
             public void callbackError(int code, String errorMsg) {
                 Log.d("Error", errorMsg);
+                ProgressAction.gone(context);
             }
         }).API_Request(true, RequestServices.ws_getAmphoe +
                 "?AmpCode=" +
@@ -966,12 +975,15 @@ public class ProductDetailMapFragment extends Fragment {
                         }
                     });
 
+                    ProgressAction.gone(context);
+
                 }
             }
 
             @Override
             public void callbackError(int code, String errorMsg) {
                 Log.d("Error", errorMsg);
+                ProgressAction.gone(context);
             }
         }).API_Request(true, RequestServices.ws_getTambon +
                 "?TamCode=" +
