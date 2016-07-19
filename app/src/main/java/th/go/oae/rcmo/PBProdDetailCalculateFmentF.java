@@ -467,19 +467,19 @@ public class PBProdDetailCalculateFmentF extends Fragment implements View.OnClic
                         setCalKaSermOption( var.isCalIncludeOption());
                         isCalIncludeOption = var.isCalIncludeOption();
 
-                        h.group1_item_2.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaAHan)));
-                        h.group1_item_3.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaYa)));
-                        h.group1_item_4.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaRangGgan)));
-                        h.group1_item_5.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaNamKaFai)));
-                        h.group1_item_6.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaNamMan)));
-                        h.group1_item_7.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaWassaduSinPleung)));
-                        h.group1_item_8.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaSomRongRaun)));
-                        h.group1_item_9.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaChoaTDin)));
+                        h.group1_item_2.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.KaAHan)));
+                        h.group1_item_3.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.KaYa)));
+                        h.group1_item_4.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.KaRangGgan)));
+                        h.group1_item_5.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.KaNamKaFai)));
+                        h.group1_item_6.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.KaNamMan)));
+                        h.group1_item_7.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.KaWassaduSinPleung)));
+                        h.group1_item_8.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.KaSomRongRaun)));
+                        h.group1_item_9.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.KaChoaTDin)));
 
-                        h.group3_item_1.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaiTDaiTangTaeRoem)));
-                        h.group3_item_2.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.RakaTKai)));
-                        h.group3_item_3.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.PonPloyDai)));
-                        h.group3_item_4.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.RaYaWeRaLeang)));
+                        h.group3_item_1.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.KaiTDaiTangTaeRoem)));
+                        h.group3_item_2.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.RakaTKai)));
+                        h.group3_item_3.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.PonPloyDai)));
+                        h.group3_item_4.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.RaYaWeRaLeang)));
 
                         h.txStartUnit.setText(Util.strToDobbleToStrFormat(plotDetail.getAnimalNumber()));
                         h.txStartPrice.setText(Util.strToDobbleToStrFormat(plotDetail.getAnimalPrice()));

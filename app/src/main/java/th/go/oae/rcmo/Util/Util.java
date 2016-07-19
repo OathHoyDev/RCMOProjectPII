@@ -94,6 +94,7 @@ public class Util {
     }
 
 
+
     public static int strToIntegerDefaultZero(String input){
         int value = 0;
         try {
@@ -114,6 +115,14 @@ public class Util {
         return String.format("%,.2f", input);
     }
 
+    public static String dobbleToStringNumberToDisplay(double input){
+        if(input == 0){
+            return "";
+        }else {
+            return String.format("%,.2f", input);
+        }
+    }
+
     public static String dobbleToStringNumberWithClearDigit(double input){
       //String  format =   String.format("%,.2f", input);
         DecimalFormat formatter = (DecimalFormat) NumberFormat.getInstance(Locale.US);
@@ -123,8 +132,22 @@ public class Util {
 
     }
 
+    private static String dobbleToStringNumberWithClearDigitToDisplay(double input){
+        //String  format =   String.format("%,.2f", input);
+       if(input == 0){
+          return "";
+       }else{
+           return dobbleToStringNumberWithClearDigit(input);
+       }
+
+    }
+
     public static String strToDobbleToStrFormat(String input){
       return dobbleToStringNumberWithClearDigit(strToDoubleDefaultZero(input));
+    }
+
+    public static String strToDobbleToStrFormatToDisolay(String input){
+        return dobbleToStringNumberWithClearDigitToDisplay(strToDoubleDefaultZero(input));
     }
 
 

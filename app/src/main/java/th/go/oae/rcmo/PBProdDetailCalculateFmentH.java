@@ -510,20 +510,20 @@ public class PBProdDetailCalculateFmentH extends Fragment implements View.OnClic
                         isCalIncludeOption = var.isCalIncludeOption();
 
 
-                        h.group1_item_1.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.JumnuanTKai)));
-                        h.group1_item_2.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaPan)));
-                        h.group1_item_3.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaAHanKon)));
-                        h.group1_item_4.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaAKanYab)));
-                        h.group1_item_5.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.getKaYa())));
-                        h.group1_item_6.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaRang)));
-                        h.group1_item_7.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaNamKaFai)));
-                        h.group1_item_8.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaWassaduSinPleung)));
-                        h.group1_item_9.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaChoaTDin)));
-                        h.group1_item_10.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaSiaOkardLongtoon)));
+                        h.group1_item_1.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.JumnuanTKai)));
+                        h.group1_item_2.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.KaPan)));
+                        h.group1_item_3.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.KaAHanKon)));
+                        h.group1_item_4.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.KaAKanYab)));
+                        h.group1_item_5.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.getKaYa())));
+                        h.group1_item_6.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.KaRang)));
+                        h.group1_item_7.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.KaNamKaFai)));
+                        h.group1_item_8.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.KaWassaduSinPleung)));
+                        h.group1_item_9.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.KaChoaTDin)));
+                        h.group1_item_10.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.KaSiaOkardLongtoon)));
 
-                        h.group2_item_1.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.NumnukChalia)));
-                        h.group3_item_1.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.RakaChalia)));
-                        h.group4_item_1.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.RayaWera)));
+                        h.group2_item_1.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.NumnukChalia)));
+                        h.group3_item_1.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.RakaChalia)));
+                        h.group4_item_1.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.RayaWera)));
 
                         h.txStartUnit.setText(Util.strToDobbleToStrFormat(plotDetail.getAnimalNumber()));
                         h.txStartNumnakReam.setText(Util.strToDobbleToStrFormat(plotDetail.getAnimalWeight()));

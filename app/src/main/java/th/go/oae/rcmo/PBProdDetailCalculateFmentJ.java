@@ -1108,42 +1108,42 @@ public class PBProdDetailCalculateFmentJ extends Fragment implements View.OnClic
                         h.meter.setText(Util.strToDobbleToStrFormat(plotDetail.getPondMeter()));
 
 
-                        h.group1_item_1.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(varJ.Raka)));
+                        h.group1_item_1.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(varJ.Raka)));
 
-                        h.group1_item_3.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(varJ.KaAHan)));
-                        h.group1_item_4.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(varJ.KaYa)));
-                        h.group1_item_5.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(varJ.KaSanKMe)));
-                        h.group1_item_6.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(varJ.KaNamman)));
-                        h.group1_item_7.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(varJ.KaFaifa)));
-                        h.group1_item_8.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(varJ.KaLoklen)));
+                        h.group1_item_3.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(varJ.KaAHan)));
+                        h.group1_item_4.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(varJ.KaYa)));
+                        h.group1_item_5.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(varJ.KaSanKMe)));
+                        h.group1_item_6.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(varJ.KaNamman)));
+                        h.group1_item_7.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(varJ.KaFaifa)));
+                        h.group1_item_8.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(varJ.KaLoklen)));
 
-                        h.group1_item_10.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(varJ.KaRangNganLeang)));
-                        h.group1_item_11.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(varJ.KaRangNganJub)));
-                        h.group1_item_12.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(varJ.KaSomSam)));
-                        h.group1_item_13.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(varJ.KaChaijai)));
-                        h.group1_item_14.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(varJ.KaChoaTDin)));
+                        h.group1_item_10.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(varJ.KaRangNganLeang)));
+                        h.group1_item_11.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(varJ.KaRangNganJub)));
+                        h.group1_item_12.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(varJ.KaSomSam)));
+                        h.group1_item_13.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(varJ.KaChaijai)));
+                        h.group1_item_14.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(varJ.KaChoaTDin)));
 
-                        h.group2_item_1.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(varJ.RayaWela)));
+                        h.group2_item_1.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(varJ.RayaWela)));
 
-                        h.group3_item_1.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(varJ.NamnakTKai)));
-                        h.group3_item_3.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(varJ.RakaTKai)));
-                        h.group3_item_4.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(varJ.KanardPlaChalia)));
+                        h.group3_item_1.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(varJ.NamnakTKai)));
+                        h.group3_item_3.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(varJ.RakaTKai)));
+                        h.group3_item_4.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(varJ.KanardPlaChalia)));
 
-                        h.group4_item_1_1.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(varJ.KanardPla1)));
-                        h.group4_item_1_2.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(varJ.RakaPla1)));
-                        h.group4_item_1_3.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(varJ.NamnakPla1)));
+                        h.group4_item_1_1.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(varJ.KanardPla1)));
+                        h.group4_item_1_2.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(varJ.RakaPla1)));
+                        h.group4_item_1_3.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(varJ.NamnakPla1)));
 
-                        h.group4_item_2_1.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(varJ.KanardPla2)));
-                        h.group4_item_2_2.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(varJ.RakaPla2)));
-                        h.group4_item_2_3.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(varJ.NamnakPla2)));
+                        h.group4_item_2_1.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(varJ.KanardPla2)));
+                        h.group4_item_2_2.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(varJ.RakaPla2)));
+                        h.group4_item_2_3.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(varJ.NamnakPla2)));
 
-                        h.group4_item_3_1.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(varJ.KanardPla3)));
-                        h.group4_item_3_2.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(varJ.RakaPla3)));
-                        h.group4_item_3_3.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(varJ.NamnakPla3)));
+                        h.group4_item_3_1.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(varJ.KanardPla3)));
+                        h.group4_item_3_2.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(varJ.RakaPla3)));
+                        h.group4_item_3_3.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(varJ.NamnakPla3)));
 
-                        h.group4_item_4_1.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(varJ.KanardPla4)));
-                        h.group4_item_4_2.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(varJ.RakaPla4)));
-                        h.group4_item_4_3.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(varJ.NamnakPla4)));
+                        h.group4_item_4_1.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(varJ.KanardPla4)));
+                        h.group4_item_4_2.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(varJ.RakaPla4)));
+                        h.group4_item_4_3.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(varJ.NamnakPla4)));
 
                         userPlotModel.setFisheryNumType(plotDetail.getFisheryNumType());
                         if (ServiceInstance.FISHERY_NUM_TYPE_KK.equals(plotDetail.getFisheryNumType())) {

@@ -583,33 +583,33 @@ public class PBProdDetailCalculateFmentA extends Fragment implements View.OnClic
                         isCalIncludeOption = varA.isCalIncludeOption();
 
 
-                        h.group1_item_2.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(varA.KaTreamDin)));
-                        h.group1_item_3.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(varA.KaPluk)));
-                        h.group1_item_4.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(varA.KaDoolae)));
-                        h.group1_item_5.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(varA.KaGebGeaw)));
-                        h.group1_item_7.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(varA.KaPan)));
-                        h.group1_item_8.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(varA.KaPuy)));
-                        h.group1_item_9.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(varA.KaYaplab)));
-                        h.group1_item_10.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(varA.KaWassaduUn)));
-                        h.group1_item_12.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(varA.KaChoaTDin)));
-                        h.group2_item_1.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(varA.PonPalid)));
-                        h.group3_item_1.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(varA.getRaka())));
-                        h.group4_item_1.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(varA.AttraDokbia)));
+                        h.group1_item_2.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(varA.KaTreamDin)));
+                        h.group1_item_3.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(varA.KaPluk)));
+                        h.group1_item_4.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(varA.KaDoolae)));
+                        h.group1_item_5.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(varA.KaGebGeaw)));
+                        h.group1_item_7.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(varA.KaPan)));
+                        h.group1_item_8.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(varA.KaPuy)));
+                        h.group1_item_9.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(varA.KaYaplab)));
+                        h.group1_item_10.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(varA.KaWassaduUn)));
+                        h.group1_item_12.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(varA.KaChoaTDin)));
+                        h.group2_item_1.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(varA.PonPalid)));
+                        h.group3_item_1.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(varA.getRaka())));
+                        h.group4_item_1.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(varA.AttraDokbia)));
 
 
-                        h.rai.setText(Util.strToDobbleToStrFormat(plotDetail.getPlotRai()));
-                        h.ngan.setText(Util.strToDobbleToStrFormat(plotDetail.getPlotNgan()));
-                        h.wa.setText(Util.strToDobbleToStrFormat(plotDetail.getPlotWa()));
-                        h.meter.setText(Util.strToDobbleToStrFormat(plotDetail.getPlotMeter()));
+                        h.rai.setText(Util.strToDobbleToStrFormatToDisolay(plotDetail.getPlotRai()));
+                        h.ngan.setText(Util.strToDobbleToStrFormatToDisolay(plotDetail.getPlotNgan()));
+                        h.wa.setText(Util.strToDobbleToStrFormatToDisolay(plotDetail.getPlotWa()));
+                        h.meter.setText(Util.strToDobbleToStrFormatToDisolay(plotDetail.getPlotMeter()));
 
                         formulaModel.calculate();
 
                         setUpCalUI(formulaModel);
                     }else{
-                        h.rai.setText(Util.strToDobbleToStrFormat(plotDetail.getPlotRai()));
-                        h.ngan.setText(Util.strToDobbleToStrFormat(plotDetail.getPlotNgan()));
-                        h.wa.setText(Util.strToDobbleToStrFormat(plotDetail.getPlotWa()));
-                        h.meter.setText(Util.strToDobbleToStrFormat(plotDetail.getPlotMeter()));
+                        h.rai.setText(Util.strToDobbleToStrFormatToDisolay(plotDetail.getPlotRai()));
+                        h.ngan.setText(Util.strToDobbleToStrFormatToDisolay(plotDetail.getPlotNgan()));
+                        h.wa.setText(Util.strToDobbleToStrFormatToDisolay(plotDetail.getPlotWa()));
+                        h.meter.setText(Util.strToDobbleToStrFormatToDisolay(plotDetail.getPlotMeter()));
                     }
 
                     checkVisibility( Util.strToDoubleDefaultZero(plotDetail.getPlotRai())

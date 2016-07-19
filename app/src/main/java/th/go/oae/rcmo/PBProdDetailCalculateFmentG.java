@@ -659,37 +659,37 @@ public class PBProdDetailCalculateFmentG extends Fragment implements View.OnClic
                         setCalKaSermOption( var.isCalIncludeOption());
                         isCalIncludeOption = var.isCalIncludeOption();
 
-                        h.group0_item_1.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.ParimanNumnom)));
+                        h.group0_item_1.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.ParimanNumnom)));
 
-                        h.group1_item_1.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KoRakRakGerd)));
-                        h.group1_item_2.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.Ko1_2)));
-                        h.group1_item_3.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.Ko2)));
-                        h.group1_item_4.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.MaeKoReedNom)));
+                        h.group1_item_1.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.KoRakRakGerd)));
+                        h.group1_item_2.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.Ko1_2)));
+                        h.group1_item_3.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.Ko2)));
+                        h.group1_item_4.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.MaeKoReedNom)));
 
 
-                        h.group2_item_2.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaReedNom)));
-                        h.group2_item_3.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaRangReang)));
+                        h.group2_item_2.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.KaReedNom)));
+                        h.group2_item_3.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.KaRangReang)));
 
-                        h.group2_item_5.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaPasomPan)));
-                        h.group2_item_6.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaAHan)));
-                        h.group2_item_7.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaAHanYab)));
-                        h.group2_item_8.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaYa)));
-                        h.group2_item_9.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaNamKaFai)));
-                        h.group2_item_10.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaNamMan)));
-                        h.group2_item_11.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaWassaduSinPleung)));
-                        h.group2_item_12.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaSomsamOuppakorn)));
-                        h.group2_item_13.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaKonsong)));
-                        h.group2_item_14.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaChaiJay)));
+                        h.group2_item_5.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.KaPasomPan)));
+                        h.group2_item_6.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.KaAHan)));
+                        h.group2_item_7.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.KaAHanYab)));
+                        h.group2_item_8.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.KaYa)));
+                        h.group2_item_9.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.KaNamKaFai)));
+                        h.group2_item_10.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.KaNamMan)));
+                        h.group2_item_11.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.KaWassaduSinPleung)));
+                        h.group2_item_12.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.KaSomsamOuppakorn)));
+                        h.group2_item_13.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.KaKonsong)));
+                        h.group2_item_14.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.KaChaiJay)));
 
-                        h.group3_item_1.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.PerKaNamKaFai)));
-                        h.group3_item_2.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.PerKaNamMan)));
-                        h.group3_item_3.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.PerKaWassaduSinPleung)));
-                        h.group3_item_4.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.PerKaSomsamOuppakorn)));
-                        h.group3_item_5.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.PerKaChaiJay)));
+                        h.group3_item_1.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.PerKaNamKaFai)));
+                        h.group3_item_2.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.PerKaNamMan)));
+                        h.group3_item_3.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.PerKaWassaduSinPleung)));
+                        h.group3_item_4.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.PerKaSomsamOuppakorn)));
+                        h.group3_item_5.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.PerKaChaiJay)));
 
-                        h.group4_item_1.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.KaChaoTDin)));
+                        h.group4_item_1.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.KaChaoTDin)));
 
-                        h.group5_item_1.setText(Util.dobbleToStringNumber(Util.strToDoubleDefaultZero(var.Raka)));
+                        h.group5_item_1.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.Raka)));
 
                         h.txStartUnit.setText(Util.strToDobbleToStrFormat(plotDetail.getAnimalNumber()));
 
