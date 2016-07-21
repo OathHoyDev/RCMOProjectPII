@@ -37,14 +37,22 @@
             android:id="@+id/btnProfile"
             android:layout_margin="10dp"/>
 
-
+        <ImageView
+            android:id="@+id/imgGotoOtherApp"
+            android:layout_width="@dimen/size_howto"
+            android:layout_height="@dimen/size_howto"
+            android:layout_toLeftOf="@+id/btnHowto"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/btn_goto_other_app" />
     <ImageView
         android:layout_width="@dimen/size_howto"
         android:layout_height="@dimen/size_howto"
         android:src="@drawable/btn_howto"
         android:layout_alignParentRight="true"
         android:id="@+id/btnHowto"
-        android:layout_margin="10dp"/>
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="5dp"/>
 
 
 </RelativeLayout>

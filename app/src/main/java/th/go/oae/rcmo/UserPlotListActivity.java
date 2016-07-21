@@ -189,7 +189,16 @@ public class UserPlotListActivity extends Activity {
             }
         });
 
-
+        //goto other app
+        findViewById(R.id.imgGotoOtherApp).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+                // finish();
+                new DialogChoice(UserPlotListActivity.this)
+                        .ShowAppLink();
+            }
+        });
     }
 
 
@@ -302,7 +311,7 @@ public class UserPlotListActivity extends Activity {
                 h.btnDelete       =  (TextView) convertView.findViewById(R.id.btnDeleete);
                 h.btnCopy          =  (TextView) convertView.findViewById(R.id.btnCopy);
                 h.layoutPlotRow    =  (LinearLayout) convertView.findViewById(R.id.layoutPlotRow);
-                h.pinImg           = (ImageView)convertView.findViewById(R.id.pinImg);
+                //h.pinImg           = (ImageView)convertView.findViewById(R.id.pinImg);
                 h.params           = (LinearLayout.LayoutParams)h.layoutPlotRow.getLayoutParams();
                 h.editableLayout   =(LinearLayout)convertView.findViewById(R.id.editableLayout);
                 h.baseLine         = (LinearLayout)convertView.findViewById(R.id.baseLine);
@@ -379,7 +388,7 @@ public class UserPlotListActivity extends Activity {
 
 
             String imgName = ServiceInstance.productIMGMap.get(respBody.getPrdID());
-            h.pinImg.setImageBitmap(BitMapHelper.decodeSampledBitmapFromResource( getResources(), R.drawable.pin, 20,20));
+            //h.pinImg.setImageBitmap(BitMapHelper.decodeSampledBitmapFromResource( getResources(), R.drawable.pin, 20,20));
             if(imgName!=null) {
               //  h.prodImg.setImageResource(getResources().getIdentifier(imgName, "drawable", getPackageName()));
 
@@ -504,7 +513,7 @@ public class UserPlotListActivity extends Activity {
 
     static class ViewHolder {
         private  TextView labelAddress,labelPlotSize,labelProductName,labelProfit,labelDate,btnProfit,btnDelete,btnCopy,labelBath;
-        private  ImageView imgProduct,prodImg,pinImg;
+        private  ImageView imgProduct,prodImg;
         private  LinearLayout prodBg,layoutPlotRow,editableLayout ,baseLine;
         private  LinearLayout.LayoutParams params;
         private  String userId;

@@ -29,7 +29,7 @@ public class SplashActivity extends Activity {
     //Long delay_time;
     //Long time = 3000L;
     boolean IsConnected;
-    private final int SPLASH_DISPLAY_LENGTH = 1000;
+    private final int SPLASH_DISPLAY_LENGTH = 3000;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

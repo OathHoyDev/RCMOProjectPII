@@ -5,12 +5,15 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import com.neopixl.pixlui.components.edittext.EditText;
@@ -23,6 +26,7 @@ import th.go.oae.rcmo.Module.mLogin;
 import th.go.oae.rcmo.Module.mUserPlotList;
 import th.go.oae.rcmo.Util.BitMapHelper;
 import th.go.oae.rcmo.Util.ServiceInstance;
+import th.go.oae.rcmo.Util.Util;
 import th.go.oae.rcmo.View.DialogChoice;
 
 public class LoginActivity extends Activity {
@@ -34,7 +38,7 @@ public class LoginActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         //findViewById(R.id.mainLoginLayout).setBackgroundResource(R.drawable.bg_blue);
-       findViewById(R.id.mainLoginLayout).setBackground(new BitmapDrawable(BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.bg_total, 300, 400)));
+       //findViewById(R.id.mainLoginLayout).setBackground(new BitmapDrawable(BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.bg_total, 300, 400)));
         inputUsername = (EditText) findViewById(R.id.inputUsername);
         inputPassword = (EditText) findViewById(R.id.inputPassword);
 
@@ -52,6 +56,14 @@ public class LoginActivity extends Activity {
         SharedPreferences sp = getSharedPreferences(ServiceInstance.PREF_NAME, Context.MODE_PRIVATE);
         inputUsername.setText(sp.getString(ServiceInstance.sp_userName,""));
 
+        final ImageView farmer_login = (ImageView) findViewById(R.id.farmer_login);
+
+        final AnimationDrawable farmer_ani = (AnimationDrawable) farmer_login.getBackground();
+        //farmer_ani.start();
+        if(!farmer_ani.isRunning()){
+            farmer_ani.start();
+        }
+/*
         final ImageView imageSwitcher = (ImageView)findViewById(R.id.logoLogin);
         imageSwitcher.postDelayed(new Runnable() {
             int i = 0;
@@ -64,7 +76,7 @@ public class LoginActivity extends Activity {
             }
         }, 1000);
 
-
+*/
 
     }
 
@@ -112,7 +124,15 @@ public class LoginActivity extends Activity {
         findViewById(R.id.btn_cal).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this, StepOneActivity.class));
+
+                ((ImageView)findViewById(R.id.btn_cal)).startAnimation(AnimationUtils.loadAnimation(LoginActivity.this, R.anim.fade_out));
+                Util.delay(1000, new Util.DelayCallback() {
+                    @Override
+                    public void afterDelay() {
+                        startActivity(new Intent(LoginActivity.this, StepOneActivity.class));
+                    }
+                });
+
 
             }
         });

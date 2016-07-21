@@ -1,42 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:pixlui="http://schemas.android.com/apk/com.neopixl.pixlui"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainLoginLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/mainLoginLayout"
-
+    android:background="@drawable/bg_p2"
     tools:context="th.go.oae.rcmo.LoginActivity">
 
 
-
     <com.neopixl.pixlui.components.textview.TextView
-        pixlui:typeface="Quark-Bold.otf"
+        android:id="@+id/titleLable"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text=""
         android:layout_alignParentTop="true"
         android:gravity="center|top"
         android:padding="15dp"
-        android:id="@+id/titleLable"
+        android:text=""
         android:textColor="@color/RcmoNormalLightText"
-        android:textSize="25sp" />
+        android:textSize="25sp"
+        pixlui:typeface="Quark-Bold.otf" />
 
     <ImageView
-        android:layout_width="@dimen/size_howto"
-        android:layout_height="@dimen/size_howto"
-        android:src="@drawable/btn_goto_other_app"
-        android:layout_alignParentLeft="true"
         android:id="@+id/imgGotoOtherApp"
-        android:layout_margin="10dp"/>
-
-    <ImageView
         android:layout_width="@dimen/size_howto"
         android:layout_height="@dimen/size_howto"
+        android:layout_alignParentLeft="true"
+        android:layout_margin="10dp"
+        android:src="@drawable/btn_goto_other_app" />
+
+    <ImageView
         android:id="@+id/btnHowto"
-        android:src="@drawable/btn_howto"
+        android:layout_width="@dimen/size_howto"
+        android:layout_height="@dimen/size_howto"
         android:layout_alignParentRight="true"
-        android:layout_margin="10dp"/>
+        android:layout_margin="10dp"
+        android:src="@drawable/btn_howto" />
 
 
     <LinearLayout
@@ -48,157 +47,163 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
             android:layout_centerHorizontal="true"
+            android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical">
 
 
             <ImageView
-                android:layout_width="wrap_content"
+                android:id="@+id/logoLogin"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1.3"
+                android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:padding="10dp"
-                android:id="@+id/logoLogin"
-                android:layout_marginTop="25dp"
-               />
+                android:src="@drawable/woodtitle" />
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
+                android:layout_marginBottom="25dp"
+                android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
-                android:layout_marginLeft="50dp">
+                android:layout_weight="1"
+                android:gravity="center">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:background="@drawable/white_trans_cut_conner"
-                    android:padding="20dp">
+                    android:orientation="vertical"
+
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="30dp"
+                    android:paddingRight="30dp"
+                    android:paddingTop="10dp">
 
                     <com.neopixl.pixlui.components.textview.TextView
-                        pixlui:typeface="Quark-Bold.otf"
+                        android:id="@+id/AppVersion"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:text="dev v. 0.28"
-                        android:textColor="@color/RcmoWhiteBG"
                         android:gravity="center"
+                        android:text="dev v. 1.00"
+                        android:textColor="@color/RcmoWhiteBG"
                         android:textSize="@dimen/textsize_xxsmall"
-                        android:id="@+id/AppVersion"/>
+                        android:textStyle="bold"
+                        pixlui:typeface="Quark-Bold.otf" />
+
 
                     <com.neopixl.pixlui.components.textview.TextView
-                        pixlui:typeface="Quark-Bold.otf"
+                        android:id="@+id/btn_cal2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="15dp"
-                        android:textStyle="bold"
                         android:layout_marginTop="10dp"
+                        android:background="@drawable/action_orange_cut_conner"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:paddingLeft="15dp"
                         android:text="คำนวณ"
                         android:textColor="@color/RcmoWhiteBG"
-                        android:background="@drawable/action_orange_cut_conner"
-                        android:gravity="center"
-                        android:padding="5dp"
                         android:textSize="@dimen/textsize_normal"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:id="@+id/btn_cal"/>
+                        android:textStyle="bold"
+                        android:visibility="gone"
+                        pixlui:typeface="Quark-Bold.otf" />
 
                     <com.neopixl.pixlui.components.edittext.EditText
-                        pixlui:typeface="Quark-Light.otf"
+                        android:id="@+id/inputUsername"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="15dp"
-                        android:textStyle="bold"
                         android:layout_marginTop="@dimen/margin_xlarge"
-                        android:hint="บัญชีผู้ใช้"
-                        android:textColor="@color/RcmoNormalDarkText"
-                        android:textColorHint="@color/RcmoHintText"
-                        android:imeOptions="actionNext"
                         android:background="@drawable/white_cut_top_conner"
                         android:gravity="center"
-                        android:padding="5dp"
+                        android:hint="บัญชีผู้ใช้"
+                        android:imeOptions="actionNext"
                         android:inputType="text"
-                        android:textSize="@dimen/textsize_normal"
-                        android:textCursorDrawable="@drawable/text_cursor"
-                        android:id="@+id/inputUsername"/>
-
-                    <com.neopixl.pixlui.components.edittext.EditText
-                        pixlui:typeface="Quark-Light.otf"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:padding="5dp"
                         android:paddingLeft="15dp"
-                        android:textStyle="bold"
-                        android:layout_marginTop="@dimen/margin_normal"
-                        android:hint="รหัสผ่าน"
                         android:textColor="@color/RcmoNormalDarkText"
                         android:textColorHint="@color/RcmoHintText"
-                        android:imeOptions="actionDone"
-                        android:background="@drawable/white_cut_conner_valid"
-                        android:gravity="center"
-                        android:padding="5dp"
-                        android:inputType="textPassword"
-                        android:textSize="@dimen/textsize_normal"
                         android:textCursorDrawable="@drawable/text_cursor"
-                        android:id="@+id/inputPassword"/>
+                        android:textSize="@dimen/textsize_normal"
+                        android:textStyle="bold"
+                        pixlui:typeface="Quark-Light.otf" />
 
-                    <com.neopixl.pixlui.components.textview.TextView
-                        pixlui:typeface="Quark-Bold.otf"
+                    <com.neopixl.pixlui.components.edittext.EditText
+                        android:id="@+id/inputPassword"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="15dp"
-                        android:textStyle="bold"
                         android:layout_marginTop="@dimen/margin_normal"
-                        android:text="เข้าสู่ระบบ"
-                        android:textColor="@color/RcmoWhiteBG"
-                        android:background="@drawable/action_orange_cut_bottom_conner"
+                        android:background="@drawable/white_cut_conner_valid"
                         android:gravity="center"
+                        android:hint="รหัสผ่าน"
+                        android:imeOptions="actionDone"
+                        android:inputType="textPassword"
                         android:padding="5dp"
+                        android:paddingLeft="15dp"
+                        android:textColor="@color/RcmoNormalDarkText"
+                        android:textColorHint="@color/RcmoHintText"
+                        android:textCursorDrawable="@drawable/text_cursor"
                         android:textSize="@dimen/textsize_normal"
+                        android:textStyle="bold"
+                        pixlui:typeface="Quark-Light.otf" />
+
+                    <com.neopixl.pixlui.components.textview.TextView
+                        android:id="@+id/btnLogin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_normal"
+                        android:background="@drawable/action_orange_cut_bottom_conner"
                         android:clickable="true"
                         android:focusable="true"
-                        android:id="@+id/btnLogin"/>
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:paddingLeft="15dp"
+                        android:text="เข้าสู่ระบบ"
+                        android:textColor="@color/RcmoWhiteBG"
+                        android:textSize="@dimen/textsize_normal"
+                        android:textStyle="bold"
+                        pixlui:typeface="Quark-Bold.otf" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp">
+                        android:layout_marginTop="0dp">
 
 
                         <com.neopixl.pixlui.components.textview.TextView
-                            pixlui:typeface="Quark-Bold.otf"
+                            android:id="@+id/textLinkRegister"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:paddingLeft="15dp"
-                            android:textStyle="bold"
                             android:layout_marginTop="@dimen/margin_normal"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:padding="5dp"
+                            android:paddingLeft="15dp"
                             android:text="@string/register_text_btn"
                             android:textColor="@color/RcmoWhiteBG"
-                            android:gravity="center"
-                            android:padding="5dp"
                             android:textSize="@dimen/textsize_normal"
-                            android:id="@+id/textLinkRegister"/>
+                            android:textStyle="bold"
+                            pixlui:typeface="Quark-Bold.otf" />
 
 
                         <com.neopixl.pixlui.components.textview.TextView
-                            pixlui:typeface="Quark-Bold.otf"
+                            android:id="@+id/textLinkForgetPass"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:paddingLeft="15dp"
-                            android:textStyle="bold"
                             android:layout_marginTop="@dimen/margin_normal"
-                            android:text="@string/forgot_pass_text_btn"
-                            android:textColor="@color/RcmoWhiteBG"
+                            android:layout_weight="1"
                             android:gravity="center"
                             android:padding="5dp"
+                            android:paddingLeft="15dp"
+                            android:text="@string/forgot_pass_text_btn"
+                            android:textColor="@color/RcmoWhiteBG"
                             android:textSize="@dimen/textsize_normal"
-                            android:id="@+id/textLinkForgetPass"/>
+                            android:textStyle="bold"
+                            pixlui:typeface="Quark-Bold.otf" />
 
                     </LinearLayout>
                 </LinearLayout>
@@ -210,10 +215,50 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="4">
+            android:layout_weight="2"
+            android:gravity="bottom">
+
+            <ImageView
+                android:id="@+id/footer_bg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:adjustViewBounds="true"
+                android:src="@drawable/bg_grass"
+
+                />
+
 
         </LinearLayout>
 
 
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/farmer_login"
+        android:layout_width="180dp"
+        android:layout_height="190dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="15dp"
+        android:background="@drawable/ani_farmer_login"/>
+    <ImageView
+
+        android:id="@+id/btn_cal"
+        android:layout_width="172dp"
+        android:layout_height="42dp"
+        android:layout_toEndOf="@+id/farmer_login"
+        android:layout_alignTop="@+id/farmer_login"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="-20dp"
+
+        android:background="@drawable/btn_cal"/>
+
+    <LinearLayout
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp">
+        </LinearLayout>
+        />
 </RelativeLayout>
