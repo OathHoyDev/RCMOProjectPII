@@ -33,7 +33,7 @@
             android:layout_gravity="center"
             android:padding="4dp"
             android:gravity="center"
-            android:text="สำนักงานเศรษฐกิจการเกษตร"
+            android:text="สำนักงานเศรษฐกิจการเกษตร."
             android:id="@+id/back"
             android:textColor="@color/RcmoNormalLightText"
             android:textSize="@dimen/textsize_xxxlarge"
