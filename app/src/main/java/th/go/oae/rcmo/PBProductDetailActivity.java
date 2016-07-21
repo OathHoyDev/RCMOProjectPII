@@ -23,7 +23,7 @@ import th.go.oae.rcmo.Module.mGetPlotSuit;
 import th.go.oae.rcmo.View.DialogChoice;
 
 public class PBProductDetailActivity extends AppCompatActivity {
-    public static ViewPager  pager;
+    public static ViewPager pager;
     TabLayout tabLayout;
     public static UserPlotModel userPlotModel = new UserPlotModel();
     public static List<STDVarModel> stdVarModelList = new ArrayList<STDVarModel>();
@@ -69,6 +69,9 @@ public class PBProductDetailActivity extends AppCompatActivity {
             @Override
             public void onPageScrollStateChanged(int state) {
                 tabLayout.setBackgroundResource(R.color.RcmoTran);
+               if( ProductDetailMapFragment.popupWindow != null && ProductDetailMapFragment.popupWindow.isShowing()){
+                   ProductDetailMapFragment.popupWindow.dismiss();
+               }
                // Toast toast = Toast.makeText( PBProductDetailActivity.this, "onPageScrollStateChanged", Toast.LENGTH_SHORT);
                 //toast.show();
             }
