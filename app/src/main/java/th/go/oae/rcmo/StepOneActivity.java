@@ -44,67 +44,7 @@ if(ServiceInstance.isTablet(StepOneActivity.this)){
     }
 
     private  void setUI(){
-        findViewById(R.id.mainStepOneLayout).setBackground(new BitmapDrawable(BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.bg_total, 300, 400)));
-        ((ImageView) findViewById(R.id.plantImg)).setImageBitmap(BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.p1_1, R.dimen.iccircle_img_width, R.dimen.iccircle_bg_height));
-        ((ImageView)findViewById(R.id.animalImg)).setImageBitmap(BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.m10, R.dimen.iccircle_img_width, R.dimen.iccircle_bg_height));
-        ((ImageView) findViewById(R.id.fishImg)).setImageBitmap (BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.f4, R.dimen.iccircle_img_width, R.dimen.iccircle_bg_height));
 
-        final android.widget.RelativeLayout plant  =  (android.widget.RelativeLayout)findViewById(R.id.grPlantBg);
-        final android.widget.RelativeLayout animal =  (android.widget.RelativeLayout)findViewById(R.id.grAnimalBg);
-        final android.widget.RelativeLayout fish   =  (android.widget.RelativeLayout)findViewById(R.id.grFishBg);
-
-        final ImageView lineCircle = (ImageView)findViewById(R.id.lineCircle);
-
-        final TextView plantLabel  = (TextView)findViewById(R.id.ic_label_g1);
-        final TextView animalLabel  = (TextView)findViewById(R.id.ic_label_g2);
-        final TextView fishLabel   = (TextView)findViewById(R.id.ic_label_47);
-
-
-        final Animation fade
-                = AnimationUtils.loadAnimation(this, R.anim.fade);
-        final  Animation mainMoveIn
-                = AnimationUtils.loadAnimation(this, R.anim.move_in);
-        final  Animation moveInCircle
-                = AnimationUtils.loadAnimation(this, R.anim.move_in);
-        final  Animation moveInAnimal
-                = AnimationUtils.loadAnimation(this, R.anim.move_in2);
-        final  Animation moveInPlant
-                = AnimationUtils.loadAnimation(this, R.anim.move_in);
-
-
-        lineCircle.setVisibility(View.INVISIBLE);
-        Animation.AnimationListener animation1Listener = new Animation.AnimationListener() {
-
-            @Override
-            public void onAnimationStart(Animation animation) {
-                // TODO Auto-generated method stub
-
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-                // TODO Auto-generated method stub
-
-            }
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                lineCircle.setVisibility(View.VISIBLE);
-                lineCircle.startAnimation(moveInCircle);
-
-            }
-        };
-
-
-        plant.startAnimation(moveInPlant);
-        animal.startAnimation(moveInAnimal);
-
-        mainMoveIn.setAnimationListener(animation1Listener);
-        fish.startAnimation(mainMoveIn);
-
-        plantLabel.startAnimation(fade);
-        animalLabel.startAnimation(fade);
-        fishLabel.startAnimation(fade);
 
     }
 
@@ -116,30 +56,6 @@ if(ServiceInstance.isTablet(StepOneActivity.this)){
             }
         });
 
-        findViewById(R.id.ic_bg_g1).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final ImageView img =  ((ImageView) findViewById(R.id.bringPlantImage));
-                API_GoToStepTwoActivity(img,1);
-            }
-        });
-
-        findViewById(R.id.ic_bg_g2).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final ImageView img =  ((ImageView) findViewById(R.id.bringAnimalImage));
-                API_GoToStepTwoActivity(img,2);
-
-            }
-        });
-
-        findViewById(R.id.ic_bg_g3).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final ImageView img =  ((ImageView) findViewById(R.id.bringFishImage));
-                API_GoToStepTwoActivity(img,3);
-            }
-        });
 
         //tutorial
         findViewById(R.id.btnHowto).setOnClickListener(new View.OnClickListener() {
@@ -227,50 +143,5 @@ if(ServiceInstance.isTablet(StepOneActivity.this)){
     }
 
 
-    public void API_GoToStepTwoActivity(final ImageView img,final int groupId) {
 
-      //  img.setImageBitmap (BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.bring1, 90, 90));
-
-        final int ms = 200; // Delay in seconds
-
-        Util.delay(ms, new Util.DelayCallback() {
-            @Override
-            public void afterDelay() {
-                img.setImageBitmap (BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.bring1, 90, 90));
-                Util.delay(ms, new Util.DelayCallback() {
-                    @Override
-                    public void afterDelay() {
-                        img.setImageBitmap (BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.bring2, 100, 100));
-
-                        Util.delay(ms, new Util.DelayCallback() {
-                            @Override
-                            public void afterDelay() {
-                                img.setImageBitmap (BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.bring3, 120, 120));
-
-                                Util.delay(ms, new Util.DelayCallback() {
-                                    @Override
-                                    public void afterDelay() {
-
-                                        img.setImageBitmap (BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.bring2, 100, 100));
-                                        Util.delay(ms, new Util.DelayCallback() {
-                                            @Override
-                                            public void afterDelay() {
-
-                                                img.setImageBitmap (BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.bring1, 90, 90));
-                                                if(groupId == 1){
-                                                    API_GetPlantGroup(1);
-                                                }else{
-                                                    API_GetProduct(groupId,0);
-                                                }
-                                            }
-                                        });
-                                    }
-                                });
-                            }
-                        });
-                    }
-                });
-            }
-        });
-    }
 }

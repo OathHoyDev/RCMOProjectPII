@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/bg_total"
 
     >
 
@@ -20,7 +21,7 @@
             android:layout_alignParentTop="true"
             android:gravity="center|top"
             android:padding="12dp"
-            android:text="กลุ่มสินค้า"
+            android:text="ระบุแปลงที่ดิน"
             android:textColor="@color/RcmoNormalLightText"
             android:textSize="@dimen/textsize_xxxlarge"
             pixlui:typeface="Quark-Bold.otf" />
@@ -107,215 +108,240 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <ImageView
-            android:id="@+id/lineCircle"
-            android:layout_width="200dp"
-            android:layout_height="300dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="60dp"
-            android:adjustViewBounds="true"
-            android:background="@drawable/circle" />
-
-        <LinearLayout
-            android:id="@+id/linearLayout"
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_weight="1"
+            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
+            android:layout_height="match_parent">
 
-            android:layout_gravity="left"
-            android:layout_marginTop="5dp"
-            android:gravity="left|center"
-            android:orientation="horizontal">
-
-            <RelativeLayout
-                android:id="@+id/grPlantBg"
-                android:layout_width="wrap_content"
+            <ImageView
+                android:id="@+id/bg_province"
+                android:layout_width="125dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:gravity="center">
+                android:adjustViewBounds="true"
+                android:src="@drawable/bg_province" />
 
-                <ImageView
-                    android:id="@+id/bringPlantImage"
-                    android:layout_width="130dp"
-                    android:layout_height="130dp"
-                    android:scaleType="centerInside" />
+            <ImageView
+                android:id="@+id/bg_amphoe"
+                android:layout_width="139.5dp"
+                android:layout_marginTop="59dp"
+                android:layout_marginLeft="43dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/bg_amphoe" />
 
-                <LinearLayout
-                    android:id="@+id/ic_bg_g1"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:background="@drawable/action_plant_ic_gr_circle"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:gravity="center"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    android:orientation="vertical">
 
-                    <ImageView
-                        android:id="@+id/plantImg"
-                        android:layout_width="@dimen/iccircle_img_width"
-                        android:layout_height="@dimen/iccircle_img_height"
+            <ImageView
+                android:id="@+id/bg_tambon"
+                android:layout_width="141dp"
+                android:layout_marginTop="190dp"
+                android:layout_marginLeft="43dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/bg_tambon" />
 
-                        />
-                </LinearLayout>
-            </RelativeLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
+            <ImageView
+                android:id="@+id/bg_current_location"
+                android:layout_width="125dp"
+                android:layout_marginTop="230dp"
                 android:layout_marginLeft="0dp"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/bg_current_location" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_marginTop="20dp"
+                android:id="@+id/layout_click_province"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:gravity="center">
 
                 <com.neopixl.pixlui.components.textview.TextView
-                    android:id="@+id/ic_label_g1"
-                    android:layout_width="match_parent"
+                    android:id="@+id/label_province"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="กลุ่มพืช"
+                    android:layout_alignParentLeft="true"
+                    android:text="จังหวัด"
+                    android:textStyle="bold"
+                    android:textColor="@color/PIIRcmoPinkBG"
+                    android:textSize="@dimen/textsize_xxxlarge"
+                    pixlui:typeface="Quark-Bold.otf" />
+                <com.neopixl.pixlui.components.textview.TextView
+                    android:id="@+id/input_province"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:text="น่าน"
+                    android:textStyle="bold"
                     android:textColor="@color/RcmoNormalLightText"
-                    android:textSize="22sp"
+                    android:textSize="@dimen/textsize_normal"
                     pixlui:typeface="Quark-Bold.otf" />
             </LinearLayout>
 
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/linearLayout"
-            android:layout_gravity="left"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="10dp"
-            android:gravity="left|center"
-            android:orientation="horizontal">
-
-            <RelativeLayout
-                android:id="@+id/grAnimalBg"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="110dp"
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_marginTop="95dp"
+                android:id="@+id/layout_click_amphoe"
+                android:layout_marginLeft="70dp"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
                 android:gravity="center">
 
-                <ImageView
-                    android:id="@+id/bringAnimalImage"
-                    android:layout_width="130dp"
-                    android:layout_height="130dp"
-                    android:scaleType="centerInside"
-
-                    />
-
-                <LinearLayout
-                    android:id="@+id/ic_bg_g2"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    android:background="@drawable/action_animal_ic_gr_circle"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:id="@+id/animalImg"
-                        android:layout_width="@dimen/iccircle_img_width"
-                        android:layout_height="@dimen/iccircle_img_height"
-
-                        />
-                </LinearLayout>
-            </RelativeLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:gravity="center"
-                android:orientation="vertical">
+                <com.neopixl.pixlui.components.textview.TextView
+                    android:id="@+id/label_amphoe"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:text="อำเภอ"
+                    android:textStyle="bold"
+                    android:textColor="@color/PIIRcmoPinkBG"
+                    android:textSize="@dimen/textsize_xxxlarge"
+                    pixlui:typeface="Quark-Bold.otf" />
 
                 <com.neopixl.pixlui.components.textview.TextView
-                    android:id="@+id/ic_label_g2"
-                    android:layout_width="match_parent"
+                    android:id="@+id/input_amphoe"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="กลุ่มสัตว์"
+                    android:layout_alignParentLeft="true"
+                    android:text="ปัว"
+                    android:textStyle="bold"
                     android:textColor="@color/RcmoNormalLightText"
-                    android:textSize="22sp"
+                    android:textSize="@dimen/textsize_normal"
                     pixlui:typeface="Quark-Bold.otf" />
             </LinearLayout>
 
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/linearLayout"
-            android:layout_gravity="left"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="150dp"
-            android:gravity="left|center"
-            android:orientation="horizontal">
-
-            <RelativeLayout
-                android:id="@+id/grFishBg"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:gravity="center">
-
-                <ImageView
-                    android:id="@+id/bringFishImage"
-                    android:layout_width="130dp"
-                    android:layout_height="130dp"
-                    android:scaleType="centerInside" />
-
-                <LinearLayout
-                    android:id="@+id/ic_bg_g3"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    android:background="@drawable/action_fish_ic_gr_circle"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:id="@+id/fishImg"
-                        android:layout_width="@dimen/iccircle_img_width"
-                        android:layout_height="@dimen/iccircle_img_height"
-
-                        />
-                </LinearLayout>
-
-            </RelativeLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:orientation="vertical"
+                android:layout_marginTop="185dp"
+                android:id="@+id/layout_click_tumbon"
+                android:layout_marginLeft="70dp"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:gravity="center">
+
+                <com.neopixl.pixlui.components.textview.TextView
+                    android:id="@+id/label_tumbon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:text="ตำบล"
+                    android:textStyle="bold"
+                    android:textColor="@color/PIIRcmoPinkBG"
+                    android:textSize="@dimen/textsize_xxxlarge"
+                    pixlui:typeface="Quark-Bold.otf" />
+
+                <com.neopixl.pixlui.components.textview.TextView
+                    android:id="@+id/input_tumbon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:text="วรนคร"
+                    android:textStyle="bold"
+                    android:textColor="@color/RcmoNormalLightText"
+                    android:textSize="@dimen/textsize_normal"
+                    pixlui:typeface="Quark-Bold.otf" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_marginTop="260dp"
+                android:id="@+id/layout_click_location"
                 android:layout_marginLeft="0dp"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/img_label_location"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/icon_current_location" />
 
                 <com.neopixl.pixlui.components.textview.TextView
-                    android:id="@+id/ic_label_47"
-                    android:layout_width="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:id="@+id/input_location"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="กลุ่มประมง"
+                    android:layout_alignParentLeft="true"
+                    android:text="ตำแหน่งคุณ"
+                    android:textStyle="bold"
                     android:textColor="@color/RcmoNormalLightText"
-                    android:textSize="22sp"
+                    android:textSize="@dimen/textsize_normal"
                     pixlui:typeface="Quark-Bold.otf" />
             </LinearLayout>
 
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:id="@+id/layout_search"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="40dp"
+            android:paddingRight="10dp"
+            android:gravity="top">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:gravity="center|left"
+                android:background="@drawable/white_cut_conner"
+                android:layout_margin="5dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:layout_height="30dp"
+                    android:src="@drawable/icon_search"
+                    android:padding="5dp"/>
+
+                <com.neopixl.pixlui.components.edittext.EditText
+                    pixlui:typeface="Quark-Bold.otf"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|left"
+                    android:padding="5dp"
+                    android:background="@null"
+                    android:inputType="text"
+                    android:imeOptions="actionSearch"
+                    android:hint="ค้นหา"
+                    android:textSize="@dimen/textsize_normal"
+                    android:id="@+id/input_search"
+                    android:textColorHint="@color/RcmoHintText"
+                    android:textColor="@color/RcmoGrayBG" />
+
+
+
+            </LinearLayout>
+
         </LinearLayout>
+
+
+    </LinearLayout>
+
+        <com.neopixl.pixlui.components.textview.TextView
+            android:id="@+id/label_main_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="15dp"
+            android:text="กำหนดตำแหน่งแปลงของคุณ"
+            android:textStyle="bold"
+            android:textColor="@color/RcmoWhiteBG"
+            android:textSize="21dp"
+            pixlui:typeface="Quark-Bold.otf" />
     </RelativeLayout>
+
 
 </LinearLayout><!--
         <LinearLayout
