@@ -4,8 +4,8 @@
     android:id="@+id/mainStepOneLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@drawable/bg_total"
+    android:orientation="vertical"
 
     >
 
@@ -108,237 +108,397 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <RelativeLayout
-            android:layout_weight="1"
-            android:layout_marginTop="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:id="@+id/bg_province"
-                android:layout_width="125dp"
-                android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:src="@drawable/bg_province" />
-
-            <ImageView
-                android:id="@+id/bg_amphoe"
-                android:layout_width="139.5dp"
-                android:layout_marginTop="59dp"
-                android:layout_marginLeft="43dp"
-                android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:src="@drawable/bg_amphoe" />
-
-
-            <ImageView
-                android:id="@+id/bg_tambon"
-                android:layout_width="141dp"
-                android:layout_marginTop="190dp"
-                android:layout_marginLeft="43dp"
-                android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:src="@drawable/bg_tambon" />
-
-            <ImageView
-                android:id="@+id/bg_current_location"
-                android:layout_width="125dp"
-                android:layout_marginTop="230dp"
-                android:layout_marginLeft="0dp"
-                android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:src="@drawable/bg_current_location" />
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_marginTop="20dp"
-                android:id="@+id/layout_click_province"
-                android:layout_width="90dp"
-                android:layout_height="90dp"
-                android:gravity="center">
-
-                <com.neopixl.pixlui.components.textview.TextView
-                    android:id="@+id/label_province"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:text="จังหวัด"
-                    android:textStyle="bold"
-                    android:textColor="@color/PIIRcmoPinkBG"
-                    android:textSize="@dimen/textsize_xxxlarge"
-                    pixlui:typeface="Quark-Bold.otf" />
-                <com.neopixl.pixlui.components.textview.TextView
-                    android:id="@+id/input_province"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:text="น่าน"
-                    android:textStyle="bold"
-                    android:textColor="@color/RcmoNormalLightText"
-                    android:textSize="@dimen/textsize_normal"
-                    pixlui:typeface="Quark-Bold.otf" />
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_marginTop="95dp"
-                android:id="@+id/layout_click_amphoe"
-                android:layout_marginLeft="70dp"
-                android:layout_width="90dp"
-                android:layout_height="90dp"
-                android:gravity="center">
-
-                <com.neopixl.pixlui.components.textview.TextView
-                    android:id="@+id/label_amphoe"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:text="อำเภอ"
-                    android:textStyle="bold"
-                    android:textColor="@color/PIIRcmoPinkBG"
-                    android:textSize="@dimen/textsize_xxxlarge"
-                    pixlui:typeface="Quark-Bold.otf" />
-
-                <com.neopixl.pixlui.components.textview.TextView
-                    android:id="@+id/input_amphoe"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:text="ปัว"
-                    android:textStyle="bold"
-                    android:textColor="@color/RcmoNormalLightText"
-                    android:textSize="@dimen/textsize_normal"
-                    pixlui:typeface="Quark-Bold.otf" />
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_marginTop="185dp"
-                android:id="@+id/layout_click_tumbon"
-                android:layout_marginLeft="70dp"
-                android:layout_width="90dp"
-                android:layout_height="90dp"
-                android:gravity="center">
-
-                <com.neopixl.pixlui.components.textview.TextView
-                    android:id="@+id/label_tumbon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:text="ตำบล"
-                    android:textStyle="bold"
-                    android:textColor="@color/PIIRcmoPinkBG"
-                    android:textSize="@dimen/textsize_xxxlarge"
-                    pixlui:typeface="Quark-Bold.otf" />
-
-                <com.neopixl.pixlui.components.textview.TextView
-                    android:id="@+id/input_tumbon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:text="วรนคร"
-                    android:textStyle="bold"
-                    android:textColor="@color/RcmoNormalLightText"
-                    android:textSize="@dimen/textsize_normal"
-                    pixlui:typeface="Quark-Bold.otf" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_marginTop="260dp"
-                android:id="@+id/layout_click_location"
-                android:layout_marginLeft="0dp"
-                android:layout_width="90dp"
-                android:layout_height="90dp"
-                android:gravity="center">
-
-                <ImageView
-                    android:id="@+id/img_label_location"
-                    android:layout_width="40dp"
-                    android:layout_height="wrap_content"
-                    android:adjustViewBounds="true"
-                    android:src="@drawable/icon_current_location" />
-
-                <com.neopixl.pixlui.components.textview.TextView
-                    android:layout_marginTop="5dp"
-                    android:id="@+id/input_location"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:text="ตำแหน่งคุณ"
-                    android:textStyle="bold"
-                    android:textColor="@color/RcmoNormalLightText"
-                    android:textSize="@dimen/textsize_normal"
-                    pixlui:typeface="Quark-Bold.otf" />
-            </LinearLayout>
-
-        </RelativeLayout>
 
         <LinearLayout
-            android:layout_weight="1"
-            android:id="@+id/layout_search"
-            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingTop="40dp"
-            android:paddingRight="10dp"
-            android:gravity="top">
+            android:orientation="horizontal">
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:gravity="center|left"
-                android:background="@drawable/white_cut_conner"
-                android:layout_margin="5dp">
+                android:layout_height="match_parent"
+                android:layout_marginTop="0dp"
+                android:layout_weight="1">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:adjustViewBounds="true"
-                    android:layout_height="30dp"
-                    android:src="@drawable/icon_search"
-                    android:padding="5dp"/>
-
-                <com.neopixl.pixlui.components.edittext.EditText
-                    pixlui:typeface="Quark-Bold.otf"
-                    android:layout_width="match_parent"
+                    android:id="@+id/bg_province"
+                    android:layout_width="125dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/bg_province" />
+
+                <RelativeLayout
+                    android:id="@+id/layout_province_active"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:id="@+id/bg_province_active"
+                        android:layout_width="125dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/bg_province_active" />
+
+                    <com.neopixl.pixlui.components.textview.TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignTop="@+id/bg_province_active"
+                        android:layout_marginRight="120dp"
+                        android:layout_marginTop="50dp"
+                        android:text="จังหวัด"
+                        android:textColor="@color/RcmoWhiteBG"
+                        android:textSize="@dimen/textsize_xxxlarge"
+                        android:textStyle="bold"
+                        pixlui:typeface="Quark-Bold.otf" />
+                </RelativeLayout>
+
+                <ImageView
+
+                    android:id="@+id/bg_amphoe"
+                    android:layout_width="139.5dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="43dp"
+                    android:layout_marginTop="79dp"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/bg_amphoe" />
+
+                <RelativeLayout
+                    android:id="@+id/layout_amphoe_active"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone">
+
+                    <ImageView
+
+                        android:id="@+id/bg_amphoe_active"
+                        android:layout_width="139.5dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="70dp"
+                        android:layout_marginTop="69dp"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/bg_amphoe_active" />
+
+                    <com.neopixl.pixlui.components.textview.TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignTop="@+id/bg_amphoe_active"
+                        android:layout_marginRight="35dp"
+                        android:layout_marginTop="60dp"
+                        android:text="อำเภอ"
+                        android:textColor="@color/RcmoWhiteBG"
+                        android:textSize="@dimen/textsize_xxxlarge"
+                        android:textStyle="bold"
+                        pixlui:typeface="Quark-Bold.otf" />
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/bg_tambon"
+                    android:layout_width="141dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="43dp"
+                    android:layout_marginTop="210dp"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/bg_tambon" />
+
+
+                <RelativeLayout
+                    android:id="@+id/layout_tambon_active"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone">
+
+                    <ImageView
+
+                        android:id="@+id/bg_tambon_active"
+                        android:layout_width="141dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="70dp"
+                        android:layout_marginTop="215dp"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/bg_tambon_active" />
+
+                    <com.neopixl.pixlui.components.textview.TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignTop="@+id/bg_tambon_active"
+                        android:layout_marginRight="35dp"
+                        android:layout_marginTop="35dp"
+                        android:text="ตำบล"
+                        android:textColor="@color/RcmoWhiteBG"
+                        android:textSize="@dimen/textsize_xxxlarge"
+                        android:textStyle="bold"
+                        pixlui:typeface="Quark-Bold.otf" />
+                </RelativeLayout>
+
+
+                <ImageView
+                    android:id="@+id/bg_current_location"
+                    android:layout_width="125dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="250dp"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/bg_current_location" />
+
+                <RelativeLayout
+                    android:id="@+id/layout_location_active"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone">
+
+                    <ImageView
+
+                        android:id="@+id/bg_location_active"
+                        android:layout_width="125dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="270dp"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/bg_current_location_active" />
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+
+                        android:layout_alignTop="@+id/bg_location_active"
+                        android:layout_marginRight="120dp"
+                        android:layout_marginTop="50dp"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/icon_current_location_active" />
+
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_click_province"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:layout_marginTop="40dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <com.neopixl.pixlui.components.textview.TextView
+                        android:id="@+id/label_province"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:text="จังหวัด"
+                        android:textColor="@color/PIIRcmoPinkBG"
+                        android:textSize="@dimen/textsize_xxxlarge"
+                        android:textStyle="bold"
+                        pixlui:typeface="Quark-Bold.otf" />
+
+                    <com.neopixl.pixlui.components.textview.TextView
+                        android:id="@+id/input_province"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:text="น่าน"
+                        android:textColor="@color/RcmoNormalLightText"
+                        android:textSize="@dimen/textsize_normal"
+                        android:textStyle="bold"
+                        pixlui:typeface="Quark-Bold.otf" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/layout_click_amphoe"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:layout_marginLeft="70dp"
+                    android:layout_marginTop="115dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <com.neopixl.pixlui.components.textview.TextView
+                        android:id="@+id/label_amphoe"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:text="อำเภอ"
+                        android:textColor="@color/PIIRcmoPinkBG"
+                        android:textSize="@dimen/textsize_xxxlarge"
+                        android:textStyle="bold"
+                        pixlui:typeface="Quark-Bold.otf" />
+
+                    <com.neopixl.pixlui.components.textview.TextView
+                        android:id="@+id/input_amphoe"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:text="ปัว"
+                        android:textColor="@color/RcmoNormalLightText"
+                        android:textSize="@dimen/textsize_normal"
+                        android:textStyle="bold"
+                        pixlui:typeface="Quark-Bold.otf" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/layout_click_tambon"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:layout_marginLeft="70dp"
+                    android:layout_marginTop="205dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <com.neopixl.pixlui.components.textview.TextView
+                        android:id="@+id/label_tumbon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:text="ตำบล"
+                        android:textColor="@color/PIIRcmoPinkBG"
+                        android:textSize="@dimen/textsize_xxxlarge"
+                        android:textStyle="bold"
+                        pixlui:typeface="Quark-Bold.otf" />
+
+                    <com.neopixl.pixlui.components.textview.TextView
+                        android:id="@+id/input_tambon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:text="วรนคร"
+                        android:textColor="@color/RcmoNormalLightText"
+                        android:textSize="@dimen/textsize_normal"
+                        android:textStyle="bold"
+                        pixlui:typeface="Quark-Bold.otf" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_click_location"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="280dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/img_label_location"
+                        android:layout_width="40dp"
+                        android:layout_height="wrap_content"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/icon_current_location" />
+
+                    <com.neopixl.pixlui.components.textview.TextView
+                        android:id="@+id/input_location"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginTop="5dp"
+                        android:text="ตำแหน่งคุณ"
+                        android:textColor="@color/RcmoNormalLightText"
+                        android:textSize="@dimen/textsize_normal"
+                        android:textStyle="bold"
+                        pixlui:typeface="Quark-Bold.otf" />
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_search"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="top|right"
+                android:orientation="vertical"
+                android:paddingRight="10dp"
+                android:paddingTop="40dp"
+                android:visibility="invisible">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/white_cut_conner"
                     android:gravity="center|left"
-                    android:padding="5dp"
-                    android:background="@null"
-                    android:inputType="text"
-                    android:imeOptions="actionSearch"
-                    android:hint="ค้นหา"
-                    android:textSize="@dimen/textsize_normal"
-                    android:id="@+id/input_search"
-                    android:textColorHint="@color/RcmoHintText"
-                    android:textColor="@color/RcmoGrayBG" />
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:adjustViewBounds="true"
+                        android:padding="5dp"
+                        android:src="@drawable/icon_search" />
+
+                    <com.neopixl.pixlui.components.edittext.EditText
+                        android:id="@+id/input_search"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@null"
+                        android:gravity="center|left"
+                        android:hint="ค้นหา"
+                        android:imeOptions="actionSearch"
+                        android:inputType="text"
+                        android:padding="5dp"
+                        android:textColor="@color/RcmoGrayBG"
+                        android:textColorHint="@color/RcmoHintText"
+
+                        android:textSize="@dimen/textsize_normal"
+                        pixlui:typeface="Quark-Bold.otf" />
 
 
+                </LinearLayout>
 
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ListView
+                        android:id="@+id/listview"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="120dp"
+                        android:layout_marginRight="5dp"
+
+
+                        android:divider="@null"
+                        android:dividerHeight="0dp"
+                        android:paddingLeft="35dp">
+
+                    </ListView>
+
+                    <RelativeLayout
+                        android:id="@+id/progress"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="120dp"
+                        android:visibility="gone">
+
+
+                        <ProgressBar
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true" />
+
+                    </RelativeLayout>
+                </RelativeLayout>
             </LinearLayout>
 
+
         </LinearLayout>
-
-
-    </LinearLayout>
 
         <com.neopixl.pixlui.components.textview.TextView
             android:id="@+id/label_main_search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="15dp"
             android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp"
             android:text="กำหนดตำแหน่งแปลงของคุณ"
-            android:textStyle="bold"
             android:textColor="@color/RcmoWhiteBG"
             android:textSize="21dp"
+            android:textStyle="bold"
+            android:visibility="invisible"
             pixlui:typeface="Quark-Bold.otf" />
     </RelativeLayout>
 

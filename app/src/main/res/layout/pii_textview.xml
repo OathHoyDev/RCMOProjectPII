@@ -1,0 +1,30 @@
+<RelativeLayout
+    xmlns:pixlui="http://schemas.android.com/apk/com.neopixl.pixlui"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:id="@+id/layout_main"
+    android:layout_height="match_parent">
+
+
+
+    <com.neopixl.pixlui.components.textview.TextView
+        pixlui:typeface="Quark-Bold.otf"
+        android:id="@+id/choice"
+        android:singleLine="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="marquee"
+        android:gravity="left"
+        android:padding="10dp"
+        android:textSize="@dimen/textsize_normal"
+        android:text="test"
+        android:textColor="@color/RcmoWhiteBG"
+        android:textAlignment="inherit"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:id="@+id/line"
+        android:background="@color/RcmoLightTranBG"></LinearLayout>
+    </RelativeLayout>
