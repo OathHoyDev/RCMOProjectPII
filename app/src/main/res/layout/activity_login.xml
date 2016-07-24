@@ -5,7 +5,7 @@
     android:id="@+id/mainLoginLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_p2"
+    android:background="@drawable/bg_blue"
     tools:context="th.go.oae.rcmo.LoginActivity">
 
 
@@ -48,7 +48,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerHorizontal="true"
-            android:layout_weight="1"
+            android:layout_weight="1.1"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -57,7 +57,7 @@
                 android:id="@+id/logoLogin"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_weight="1.1"
                 android:adjustViewBounds="true"
                 android:padding="10dp"
                 android:src="@drawable/woodtitle" />

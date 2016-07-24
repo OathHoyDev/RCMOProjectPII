@@ -10,6 +10,7 @@ import com.google.gson.Gson;
 
 import th.go.oae.rcmo.Module.mAmphoe;
 import th.go.oae.rcmo.Module.mCopyPlot;
+import th.go.oae.rcmo.Module.mCurrentLocation;
 import th.go.oae.rcmo.Module.mDeletePlot;
 import th.go.oae.rcmo.Module.mGetPlotDetail;
 import th.go.oae.rcmo.Module.mGetPlotSuit;
@@ -105,6 +106,8 @@ public class ResponseAPI {
                                             object = new Gson().fromJson(html, mGetVariable.class);
                                         } else if (url_ws.contains(RequestServices.ws_getPlotSuit)) {
                                             object = new Gson().fromJson(html, mGetPlotSuit.class);
+                                        }else if (url_ws.contains(RequestServices.ws_getCurrentLocation)) {
+                                            object = new Gson().fromJson(html, mCurrentLocation.class);
                                         }
                                         onCallbackAPIListener.callbackSuccess(object);
                                     } else {

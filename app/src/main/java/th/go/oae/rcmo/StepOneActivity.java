@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.animation.AnimationUtils;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -27,15 +29,16 @@ import java.util.List;
 import th.go.oae.rcmo.API.RequestServices;
 import th.go.oae.rcmo.API.ResponseAPI;
 import th.go.oae.rcmo.Module.mAmphoe;
+import th.go.oae.rcmo.Module.mCurrentLocation;
 import th.go.oae.rcmo.Module.mPlantGroup;
 import th.go.oae.rcmo.Module.mProduct;
 import th.go.oae.rcmo.Module.mProvince;
 import th.go.oae.rcmo.Module.mTumbon;
+import th.go.oae.rcmo.Util.GPSTracker;
 import th.go.oae.rcmo.Util.ServiceInstance;
+import th.go.oae.rcmo.Util.Util;
 import th.go.oae.rcmo.View.DialogChoice;
 import th.go.oae.rcmo.View.ProgressAction;
-import th.go.oae.rcmo.View.dialog_amphoe;
-import th.go.oae.rcmo.View.dialog_tambon;
 
 
 public class StepOneActivity extends Activity {
@@ -51,21 +54,23 @@ public class StepOneActivity extends Activity {
 
     List<mTumbon.mRespBody> tambons = new ArrayList<>();
     List<mTumbon.mRespBody> orgTambons = new ArrayList<>();
+
+    mCurrentLocation.mRespBody currentLocation = null;
+
     EditText input_search;
     ListView listview;
     ViewHolder h = new ViewHolder();
 
+    boolean goNextStep = false;
+
 
 
     static class ViewHolder {
-        private  TextView input_province ,input_amphoe,input_tambon,input_location,label_main_search;
-        private  ImageView bg_province,bg_amphoe,bg_tambon,bg_location;
+        private  TextView input_province ,input_amphoe,input_tambon,input_location;
+                //label_main_search;
+        private  ImageView bg_province,bg_amphoe,bg_tambon,bg_location,img_label_location,step2;
         private LinearLayout layout_click_province,layout_click_amphoe,layout_click_tambon,layout_click_location,layout_search;
         private RelativeLayout layout_province_active,layout_amphoe_active,layout_tambon_active,layout_location_active;
-        //private  LinearLayout.LayoutParams params;
-        //private  String userId;
-
-
     }
 
     @Override
@@ -89,7 +94,10 @@ public class StepOneActivity extends Activity {
         h.bg_tambon = (ImageView) findViewById(R.id.bg_tambon);
         h.bg_location = (ImageView) findViewById(R.id.bg_amphoe);
 
-        h.label_main_search = (TextView) findViewById(R.id.label_main_search);
+        h.img_label_location = (ImageView) findViewById(R.id.img_label_location);
+        h.step2 = (ImageView) findViewById(R.id.step2);
+
+      //  h.label_main_search = (TextView) findViewById(R.id.label_main_search);
         h.input_province = (TextView) findViewById(R.id.input_province);
         h.input_amphoe = (TextView) findViewById(R.id.input_amphoe);
         h.input_tambon = (TextView) findViewById(R.id.input_tambon);
@@ -129,7 +137,7 @@ public class StepOneActivity extends Activity {
         });
 
         //province
-        findViewById(R.id.layout_click_province).setOnClickListener(new View.OnClickListener() {
+        h.layout_click_province.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 displayProvinceSearch();
@@ -138,12 +146,44 @@ public class StepOneActivity extends Activity {
         });
 
         //amphoe
-        findViewById(R.id.layout_click_amphoe).setOnClickListener(new View.OnClickListener() {
+        h.layout_click_amphoe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(selectedprovince!=null) {
                     displayAmphoeSearch();
                 }
+
+            }
+        });
+
+        //tambon
+        h.layout_click_tambon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(selectedprovince!=null && selectedAmphoe != null) {
+                    displayTambonSearch();
+                }
+
+            }
+        });
+
+        //currentLocation
+        h.layout_click_location.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    displayCurrentLocation();
+
+            }
+        });
+
+        //nextStep
+        h.step2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(goNextStep){
+                    Util.showDialogAndDismiss(StepOneActivity.this,"Go Next Step");
+                }
+
 
             }
         });
@@ -339,6 +379,62 @@ public class StepOneActivity extends Activity {
 
     }
 
+    private void API_getCurrentLocation(String latitude, String longitude) {
+        /**
+         1.latitude (บังคับใส่)
+         2.longitude (บังคับใส่)
+         */
+        new ResponseAPI(this, new ResponseAPI.OnCallbackAPIListener() {
+            @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
+            @Override
+            public void callbackSuccess(Object obj) {
+
+                mCurrentLocation currentLocationInfo = (mCurrentLocation) obj;
+
+                final List<mCurrentLocation.mRespBody> currentLocationBodyLists = currentLocationInfo.getRespBody();
+
+                if (currentLocationBodyLists.size() != 0) {
+                 //  ProveNameTH
+                    currentLocation = currentLocationBodyLists.get(0);
+                    if(currentLocation.getProvNameTH()  == null || currentLocation.getProvNameTH().equals("")) {
+                        currentLocation.setProvNameTH(currentLocation.getProveNameTH());
+                    }
+                    selectedprovince = new mProvince.mRespBody();
+                    selectedprovince.setProvCode(currentLocation.getProvCode());
+                    selectedprovince.setProvNameTH(currentLocation.getProvNameTH());
+
+                    selectedAmphoe = new mAmphoe.mRespBody();
+                    selectedAmphoe.setProvCode(currentLocation.getProvCode());
+                    selectedAmphoe.setAmpCode(currentLocation.getAmpCode());
+                    selectedAmphoe.setAmpNameTH(currentLocation.getAmpNameTH());
+
+                    selectedTumbon = new mTumbon.mRespBody();
+                    selectedTumbon.setProvCode(currentLocation.getProvCode());
+                    selectedTumbon.setAmpCode(currentLocation.getAmpCode());
+                    selectedTumbon.setTamCode(currentLocation.getTamCode());
+                    selectedTumbon.setTamNameTH(currentLocation.getTamNameTH());
+
+                    // amphoeBodyLists.add(0, defaultAmphoe);
+                   // orgAmphoes = amphoeBodyLists;
+                   // amphoes = orgAmphoes;
+                   // setAmphoeUI();
+
+                    ProgressAction.gone(StepOneActivity.this);
+                    setSelectedLocationUI();
+                }
+            }
+
+            @Override
+            public void callbackError(int code, String errorMsg) {
+                Log.d("Error", errorMsg);
+                ProgressAction.gone(StepOneActivity.this);
+            }
+        }).API_Request(true, RequestServices.ws_getCurrentLocation +
+                "?Latitude=" + latitude +
+                "&Longitude=" + longitude
+        );
+    }
+
     //============== Adapter Class ==============================
     class ProvinceAdapter extends BaseAdapter {
 
@@ -450,6 +546,7 @@ public class StepOneActivity extends Activity {
 
     private void displayProvinceSearch(){
         setSelectedProvince(false);
+        prepareNextStep(false);
         if(orgProvinces!=null && orgProvinces.size()>0) {
             provinces = orgProvinces;
             Log.d("Step1","Use orgProvinces old object");
@@ -474,10 +571,12 @@ public class StepOneActivity extends Activity {
                 h.input_province.setText("");
             }else{
                 h.input_province.setText(selectedprovince.getProvNameTH());
+                amphoes.clear();
+                tambons.clear();
 
             }
 
-            h.label_main_search.setVisibility(View.GONE);
+        //    h.label_main_search.setVisibility(View.GONE);
             h.layout_search.setVisibility(View.GONE);
 
             h.layout_province_active.setVisibility(View.GONE);
@@ -488,8 +587,10 @@ public class StepOneActivity extends Activity {
         } else {
 
             selectedprovince = null;
-            h.label_main_search.setVisibility(View.VISIBLE);
+          //  h.label_main_search.setVisibility(View.VISIBLE);
             h.layout_search.setVisibility(View.VISIBLE);
+
+            h.layout_search.startAnimation(AnimationUtils.loadAnimation(this, R.anim.move_in));
 
             h.layout_province_active.setVisibility(View.VISIBLE);
             h.layout_click_province.setVisibility(View.GONE);
@@ -561,6 +662,7 @@ public class StepOneActivity extends Activity {
 
     private void displayAmphoeSearch(){
         setSelectedAmphoe(false);
+        prepareNextStep(false);
         if(orgAmphoes!=null && orgAmphoes.size()>0) {
             amphoes = orgAmphoes;
             Log.d("Step1","Use orgAmphoes old object");
@@ -582,11 +684,12 @@ public class StepOneActivity extends Activity {
                 selectedAmphoe = null;
                 h.input_amphoe.setText("");
             }else{
+                tambons.clear();
                 h.input_amphoe.setText(selectedAmphoe.getAmpNameTH());
             }
             h.input_tambon.setText("");
 
-            h.label_main_search.setVisibility(View.GONE);
+          //  h.label_main_search.setVisibility(View.GONE);
             h.layout_search.setVisibility(View.GONE);
 
             h.layout_amphoe_active.setVisibility(View.GONE);
@@ -597,8 +700,9 @@ public class StepOneActivity extends Activity {
 
         } else {
             selectedAmphoe = null;
-            h.label_main_search.setVisibility(View.VISIBLE);
+            //h.label_main_search.setVisibility(View.VISIBLE);
             h.layout_search.setVisibility(View.VISIBLE);
+            h.layout_search.startAnimation(AnimationUtils.loadAnimation(this, R.anim.move_in));
 
             h.layout_amphoe_active.setVisibility(View.VISIBLE);
             h.layout_click_amphoe.setVisibility(View.GONE);
@@ -662,7 +766,8 @@ public class StepOneActivity extends Activity {
 
     //Tambon Method
     private void displayTambonSearch(){
-        setSelectedAmphoe(false);
+        setSelectedTambon(false);
+        prepareNextStep(false);
         if(orgTambons!=null && orgTambons.size()>0) {
             tambons = orgTambons;
             Log.d("Step1","Use orgTambons old object");
@@ -677,12 +782,21 @@ public class StepOneActivity extends Activity {
 
     private void setSelectedTambon(boolean selected) {
         if (selected) {
+          //  h.label_main_search.setVisibility(View.GONE);
+            h.layout_search.setVisibility(View.GONE);
+
             h.input_tambon.setText(selectedTumbon.getTamNameTH());
             h.layout_tambon_active.setVisibility(View.GONE);
             h.layout_click_tambon.setVisibility(View.VISIBLE);
             h.bg_tambon.setVisibility(View.VISIBLE);
+            prepareNextStep(true);
         } else {
             selectedTumbon = null;
+
+           // h.label_main_search.setVisibility(View.VISIBLE);
+            h.layout_search.setVisibility(View.VISIBLE);
+            h.layout_search.startAnimation(AnimationUtils.loadAnimation(this, R.anim.move_in));
+
             h.layout_tambon_active.setVisibility(View.VISIBLE);
             h.layout_click_tambon.setVisibility(View.GONE);
             h.bg_tambon.setVisibility(View.GONE);
@@ -742,19 +856,127 @@ public class StepOneActivity extends Activity {
 
 
 //=======================
+private void displayCurrentLocation() {
+    setSelectedLocation(false);
+   // h.label_main_search.setVisibility(View.GONE);
+    h.layout_search.setVisibility(View.GONE);
+    if (currentLocation != null ) {
+        //provinces = orgProvinces;
+        Log.d("Step1", "Use currentLocation old object");
+        selectedprovince = new mProvince.mRespBody();
+        selectedprovince.setProvCode(currentLocation.getProvCode());
+        selectedprovince.setProvNameTH(currentLocation.getProvNameTH());
+
+        selectedAmphoe = new mAmphoe.mRespBody();
+        selectedAmphoe.setProvCode(currentLocation.getProvCode());
+        selectedAmphoe.setAmpCode(currentLocation.getAmpCode());
+        selectedAmphoe.setAmpNameTH(currentLocation.getAmpNameTH());
+
+        selectedTumbon = new mTumbon.mRespBody();
+        selectedTumbon.setProvCode(currentLocation.getProvCode());
+        selectedTumbon.setAmpCode(currentLocation.getAmpCode());
+        selectedTumbon.setTamCode(currentLocation.getTamCode());
+        selectedTumbon.setTamNameTH(currentLocation.getTamNameTH());
+
+        setSelectedLocationUI();
+    } else {
+        ProgressAction.show(StepOneActivity.this);
+        Log.d("Step1", "init orgProvinces object");
+        String latitude = "0";
+        String longitude = "0";
+        LocationManager locationManager = (LocationManager) StepOneActivity.this.getSystemService(Context.LOCATION_SERVICE);
+
+        if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            GPSTracker gps = new GPSTracker(StepOneActivity.this);
+
+            if (gps.canGetLocation()) {
+
+                double lat = 0;
+                double lon = 0;
+
+                lat = gps.getLatitude();
+                lon = gps.getLongitude();
+
+                latitude = String.valueOf(lat);
+                longitude = String.valueOf(lon);
+            }
+
+            API_getCurrentLocation(latitude, longitude);
+
+        }
+    }
+}
     private void setSelectedLocation(boolean selected) {
-        // h.input_location.setText(selectedTumbon.getTamNameTH());
+
         if (selected) {
+
             h.layout_location_active.setVisibility(View.GONE);
             h.layout_click_location.setVisibility(View.VISIBLE);
             h.bg_location.setVisibility(View.VISIBLE);
+            h.img_label_location.startAnimation(AnimationUtils.loadAnimation(StepOneActivity.this, R.anim.clockwise));
+            prepareNextStep(true);
+
         } else {
+
+
+            provinces.clear();
+            amphoes.clear();
+            tambons.clear();
+
+            h.layout_province_active.setVisibility(View.GONE);
+            h.layout_click_province.setVisibility(View.VISIBLE);
+            h.bg_province.setVisibility(View.VISIBLE);
+
+            h.layout_amphoe_active.setVisibility(View.GONE);
+            h.layout_click_amphoe.setVisibility(View.VISIBLE);
+            h.bg_amphoe.setVisibility(View.VISIBLE);
+
+            h.layout_tambon_active.setVisibility(View.GONE);
+            h.layout_click_tambon.setVisibility(View.VISIBLE);
+            h.bg_tambon.setVisibility(View.VISIBLE);
+
             h.layout_location_active.setVisibility(View.VISIBLE);
             h.layout_click_location.setVisibility(View.GONE);
             h.bg_location.setVisibility(View.GONE);
         }
-        //Util.showDialogAndDismiss(StepOneActivity.this,selectedAmphoe.getProvNameTH());
+
     }
 
+    private void setSelectedLocationUI() {
+        h.input_province.setText(currentLocation.getProvNameTH());
+        h.input_amphoe.setText(currentLocation.getAmpNameTH());
+        h.input_tambon.setText(currentLocation.getTamNameTH());
+        setSelectedLocation(true);
+    }
+
+
+    private void prepareNextStep (boolean nextStepEnable) {
+        if (nextStepEnable) {
+            if(!goNextStep) {
+                h.step2.setImageResource(R.drawable.step_next);
+            }
+
+            goNextStep = true;
+
+            h.step2.postDelayed(new Runnable() {
+                int i = 0;
+
+                public void run() {
+                    h.step2.setImageResource(
+                            i++ % 2 == 0 ?
+                                    R.drawable.step_next_edge :
+                                    R.drawable.step_next);
+                    if (i < 4) {
+                        h.step2.postDelayed(this, 500);
+                    }
+                }
+            }, 500);
+        }else{
+            if(goNextStep){
+                h.step2.setImageResource(R.drawable.step2);
+            }
+            goNextStep = false;
+        }
+    }
 
 }

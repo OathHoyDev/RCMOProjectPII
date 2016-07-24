@@ -24,4 +24,5 @@ public class RequestServices {
     public static String ws_getPlotDetail = url+"getPlotDetail";
     public static String ws_getVariable = url+"getVariable";
     public static String ws_getPlotSuit = url+"getPlotSuit";
+    public static String ws_getCurrentLocation = url+"getCurrentLocation";
 }
