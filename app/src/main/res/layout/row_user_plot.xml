@@ -13,7 +13,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
-        android:background="@drawable/white_cut_conner"
+        android:background="@drawable/userlist_cut_conner"
         android:orientation="vertical"
         android:padding="10dp">
 
