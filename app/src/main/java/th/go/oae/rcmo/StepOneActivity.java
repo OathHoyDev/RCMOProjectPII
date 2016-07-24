@@ -860,6 +860,7 @@ private void displayCurrentLocation() {
     setSelectedLocation(false);
    // h.label_main_search.setVisibility(View.GONE);
     h.layout_search.setVisibility(View.GONE);
+    /*
     if (currentLocation != null ) {
         //provinces = orgProvinces;
         Log.d("Step1", "Use currentLocation old object");
@@ -905,6 +906,33 @@ private void displayCurrentLocation() {
 
         }
     }
+
+    */
+    ProgressAction.show(StepOneActivity.this);
+    Log.d("Step1", "init currentLocation object");
+    String latitude = "0";
+    String longitude = "0";
+    LocationManager locationManager = (LocationManager) StepOneActivity.this.getSystemService(Context.LOCATION_SERVICE);
+
+    if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+        GPSTracker gps = new GPSTracker(StepOneActivity.this);
+
+        if (gps.canGetLocation()) {
+
+            double lat = 0;
+            double lon = 0;
+
+            lat = gps.getLatitude();
+            lon = gps.getLongitude();
+
+            latitude = String.valueOf(lat);
+            longitude = String.valueOf(lon);
+        }
+
+        API_getCurrentLocation(latitude, longitude);
+
+    }
+
 }
     private void setSelectedLocation(boolean selected) {
 
