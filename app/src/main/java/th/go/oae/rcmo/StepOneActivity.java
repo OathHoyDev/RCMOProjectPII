@@ -419,7 +419,7 @@ public class StepOneActivity extends Activity {
                    // amphoes = orgAmphoes;
                    // setAmphoeUI();
 
-                    ProgressAction.gone(StepOneActivity.this);
+                   //ProgressAction.gone(StepOneActivity.this);
                     setSelectedLocationUI();
                 }
             }
@@ -938,9 +938,9 @@ private void displayCurrentLocation() {
 
         if (selected) {
 
-            h.layout_location_active.setVisibility(View.GONE);
-            h.layout_click_location.setVisibility(View.VISIBLE);
-            h.bg_location.setVisibility(View.VISIBLE);
+          //  h.layout_location_active.setVisibility(View.GONE);
+           // h.layout_click_location.setVisibility(View.VISIBLE);
+        //    h.bg_location.setVisibility(View.VISIBLE);
             h.img_label_location.startAnimation(AnimationUtils.loadAnimation(StepOneActivity.this, R.anim.clockwise));
             prepareNextStep(true);
 
@@ -963,9 +963,9 @@ private void displayCurrentLocation() {
             h.layout_click_tambon.setVisibility(View.VISIBLE);
             h.bg_tambon.setVisibility(View.VISIBLE);
 
-            h.layout_location_active.setVisibility(View.VISIBLE);
-            h.layout_click_location.setVisibility(View.GONE);
-            h.bg_location.setVisibility(View.GONE);
+          //  h.layout_location_active.setVisibility(View.VISIBLE);
+         //   h.layout_click_location.setVisibility(View.GONE);
+         //   h.bg_location.setVisibility(View.GONE);
         }
 
     }
