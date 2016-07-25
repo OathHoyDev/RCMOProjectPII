@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="th.go.oae.rcmo">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -35,7 +36,9 @@
         android:label="RCMO"
         android:largeHeap="true"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:replace= "icon, label"
+        >
         <activity
             android:name=".SplashActivity"
             android:screenOrientation="portrait">
