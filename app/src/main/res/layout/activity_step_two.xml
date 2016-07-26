@@ -1,134 +1,426 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:pixlui="http://schemas.android.com/apk/com.neopixl.pixlui"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:id="@+id/layoutStepTwo"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/layoutStepTwo">
-
-
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
-        <com.neopixl.pixlui.components.textview.TextView
-            pixlui:typeface="Quark-Bold.otf"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="ชนิดพืช"
-            android:layout_alignParentTop="true"
-            android:gravity="center|top"
-            android:padding="12dp"
-            android:id="@+id/titleLable"
-            android:textColor="@color/RcmoNormalLightText"
-            android:textSize="@dimen/textsize_xxxlarge" />
-
-
-        <com.neopixl.pixlui.components.textview.TextView
-            pixlui:typeface="Quark-Bold.otf"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="&lt; กลับ"
-            android:layout_alignParentLeft="true"
-            android:id="@+id/backBtn"
-            android:layout_marginTop="15dp"
-            android:layout_marginLeft="10dp"
-            android:textColor="@color/RcmoNormalLightText"
-            android:textSize="@dimen/textsize_xxlarge" />
-
-
-        <ImageView
-            android:layout_width="@dimen/size_howto"
-            android:layout_height="@dimen/size_howto"
-            android:src="@drawable/btn_howto"
-            android:layout_alignParentRight="true"
-            android:id="@+id/btnHowto"
-            android:layout_margin="10dp"/>
-
-
-    </RelativeLayout>
-
+    android:background="@drawable/bg_blue"
+    android:orientation="vertical">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/RcmoStepTabTranBG"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        >
         <RelativeLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
+            android:layout_height="wrap_content">
+
+            <com.neopixl.pixlui.components.textview.TextView
+                android:id="@+id/titleLable"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:gravity="center|top"
+                android:padding="12dp"
+                android:text="เลือกสินค้า"
+                android:textColor="@color/RcmoNormalLightText"
+                android:textSize="@dimen/textsize_xxxlarge"
+                pixlui:typeface="Quark-Bold.otf" />
+
+
+            <com.neopixl.pixlui.components.textview.TextView
+                android:id="@+id/backBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:text="&lt; กลับ"
+                android:textColor="@color/RcmoNormalLightText"
+                android:textSize="@dimen/textsize_xxlarge"
+                pixlui:typeface="Quark-Bold.otf" />
+
+
+            <ImageView
+                android:id="@+id/btnHowto"
+                android:layout_width="@dimen/size_howto"
+                android:layout_height="@dimen/size_howto"
+                android:layout_alignParentRight="true"
+                android:layout_margin="10dp"
+                android:src="@drawable/btn_howto" />
+
+
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/RcmoStepTabTranBG"
+            android:orientation="vertical"
 
             >
 
-
-            <View
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="@color/RcmoLineTabBG"
-                android:id="@+id/vertical_divider2"
-                android:layout_centerVertical="true"
-                android:layout_alignParentStart="true" />
-            <ImageView
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/step1_ac"
-                android:src="@drawable/step1_ac"
-                android:layout_centerVertical="true"
-                android:layout_alignParentStart="true" />
-            <ImageView
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/step2"
-                android:src="@drawable/step2_ac"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true" />
+                android:layout_height="60dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:orientation="horizontal"
+
+                >
+
+
+                <View
+                    android:id="@+id/vertical_divider2"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:background="@color/RcmoLineTabBG" />
+
+                <ImageView
+                    android:id="@+id/step1_ac"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/step1_ac" />
+
+                <ImageView
+                    android:id="@+id/step2"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/step2_ac" />
+
+                <ImageView
+                    android:id="@+id/step3"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/step_next" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <ImageView
-                android:layout_width="80dp"
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:layout_alignParentBottom="true"
+                android:adjustViewBounds="true"
+                android:background="@drawable/bottom_total" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/step3"
-                android:src="@drawable/step3"
-                android:layout_centerVertical="true"
-                android:layout_alignParentEnd="true" />
+                android:layout_marginTop="10dp">
+
+                <com.neopixl.pixlui.components.textview.TextView
+                    android:id="@+id/prodHierarchy"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:text="เลือกสินค้าที่เหมาะสมกับแปลงของคุณ"
+                    android:textColor="@color/RcmoNormalLightText"
+                    android:textSize="@dimen/textsize_xxlarge"
+                    pixlui:typeface="Quark-Bold.otf" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="40dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/plantBtn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/plant_cut_conner"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/plant_btn_img"
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/ico_check" />
+
+                        <com.neopixl.pixlui.components.textview.TextView
+                            android:id="@+id/plant_btn_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:gravity="center"
+                            android:padding="2dp"
+                            android:text="กลุ่มพืช"
+                            android:textColor="@color/RcmoNormalLightText"
+                            android:textSize="@dimen/textsize_large"
+                            pixlui:typeface="Quark-Bold.otf" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/animalBtn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/animal_cut_conner"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/animal_btn_img"
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/ico_check" />
+
+                        <com.neopixl.pixlui.components.textview.TextView
+                            android:id="@+id/animal_btn_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:gravity="center"
+                            android:padding="2dp"
+                            android:text="กลุ่มปศุสัตว์"
+                            android:textColor="@color/RcmoNormalLightText"
+                            android:textSize="@dimen/textsize_large"
+                            pixlui:typeface="Quark-Bold.otf" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/fishBtn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/fish_cut_conner"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/fish_btn_img"
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/ico_check" />
+
+                        <com.neopixl.pixlui.components.textview.TextView
+                            android:id="@+id/fish_btn_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:gravity="center"
+                            android:padding="2dp"
+                            android:text="กลุ่มประมง"
+                            android:textColor="@color/RcmoNormalLightText"
+                            android:textSize="@dimen/textsize_large"
+                            pixlui:typeface="Quark-Bold.otf" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_zoomInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="185dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/white_trans_cut_conner"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="1.2"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+
+                        <com.neopixl.pixlui.components.textview.TextView
+                            android:id="@+id/product_name_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:gravity="center"
+                            android:padding="5dp"
+                            android:text="ข้าวโพดเลี้ยงสัตว์"
+                            android:textColor="@color/RcmoNormalLightText"
+                            android:textSize="@dimen/textsize_large"
+                            pixlui:typeface="Quark-Bold.otf" />
+
+                        <ImageView
+                            android:layout_marginTop="10dp"
+                            android:id="@+id/product_img"
+                            android:layout_width="wrap_content"
+                            android:layout_height="110dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/p1_2" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <com.neopixl.pixlui.components.textview.TextView
+                            android:id="@+id/but_point_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:gravity="center"
+                            android:padding="5dp"
+                            android:text="จำนวนจุดรับซื้อใกล้เคียง"
+                            android:textColor="@color/RcmoNormalLightText"
+                            android:textSize="@dimen/textsize_large"
+                            pixlui:typeface="Quark-Bold.otf" />
+
+                        <LinearLayout
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:background="@drawable/light_orange_cut_conner">
+                            <com.neopixl.pixlui.components.textview.TextView
+                                android:id="@+id/num_of_market"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:clickable="true"
+                                android:gravity="center"
+                                android:padding="5dp"
+                                android:text="50"
+                                android:textColor="@color/RcmoNormalLightText"
+                                android:textSize="35dp"
+                                pixlui:typeface="Quark-Bold.otf" />
+                        </LinearLayout>
+
+                        <com.neopixl.pixlui.components.textview.TextView
+                            android:layout_marginTop="5dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:gravity="center"
+                            android:padding="5dp"
+                            android:text="ระดับความเหมะสม"
+                            android:textColor="@color/RcmoNormalLightText"
+                            android:textSize="@dimen/textsize_large"
+                            pixlui:typeface="Quark-Bold.otf" />
+
+
+                        <LinearLayout
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <ImageView
+
+                                android:id="@+id/star1"
+                                android:layout_width="wrap_content"
+                                android:layout_marginRight="4dp"
+                                android:layout_height="25dp"
+                                android:adjustViewBounds="true"
+                                android:src="@drawable/start_3d" />
+                            <ImageView
+
+                                android:id="@+id/star2"
+                                android:layout_width="wrap_content"
+                                android:layout_marginRight="4dp"
+                                android:layout_height="25dp"
+                                android:adjustViewBounds="true"
+                                android:src="@drawable/start_3d" />
+                            <ImageView
+
+                                android:id="@+id/star3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="25dp"
+                                android:adjustViewBounds="true"
+                                android:src="@drawable/start_3d_no" />
+
+                            </LinearLayout>
+
+                        <com.neopixl.pixlui.components.textview.TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:gravity="center"
+                            android:padding="5dp"
+                            android:text="เหมาะสมมาก"
+                            android:textColor="@color/RcmoNormalLightText"
+                            android:textSize="@dimen/textsize_normal"
+                            pixlui:typeface="Quark-Bold.otf" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_coverFlow"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/white_trans_cut_conner"
+                    android:orientation="horizontal">
+
+                    <me.crosswall.lib.coverflow.core.PagerContainer
+                        android:id="@+id/pager_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        >
+
+                        <android.support.v4.view.ViewPager
+                            android:id="@+id/overlap_pager"
+                            android:layout_width="100dp"
+                            android:layout_height="120dp"
+                            android:layout_gravity="center" />
+
+
+                    </me.crosswall.lib.coverflow.core.PagerContainer>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
 
         </RelativeLayout>
 
     </LinearLayout>
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_margin="20dp"
-        android:layout_height="match_parent">
-        <com.neopixl.pixlui.components.textview.TextView
-            pixlui:typeface="Quark-Bold.otf"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:layout_alignParentLeft="true"
-            android:id="@+id/prodHierarchy"
-            android:layout_marginTop="5dp"
-            android:clickable="true"
-            android:layout_marginBottom="5dp"
-            android:layout_marginLeft="10dp"
-            android:textColor="@color/RcmoNormalLightText"
-            android:textSize="@dimen/iccircle_label_text_size" />
-    <GridView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/prodGridView"
-        android:numColumns="3"
-        android:layout_gravity="center_vertical"
-        android:gravity="center"/>
-
-    </LinearLayout>
-
-
-</LinearLayout>
+</RelativeLayout>
 
 

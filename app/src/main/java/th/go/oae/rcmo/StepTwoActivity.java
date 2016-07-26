@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,12 +16,18 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
+
 import com.neopixl.pixlui.components.textview.TextView;
 import java.util.ArrayList;
 import java.util.List;
+
+import me.crosswall.lib.coverflow.CoverFlow;
+import me.crosswall.lib.coverflow.core.PagerContainer;
 import th.go.oae.rcmo.API.RequestServices;
 import th.go.oae.rcmo.API.ResponseAPI;
 import th.go.oae.rcmo.Model.ProductModel;
+import th.go.oae.rcmo.Model.UserModel;
 import th.go.oae.rcmo.Module.mPlantGroup;
 import th.go.oae.rcmo.Module.mProduct;
 import th.go.oae.rcmo.Module.mRiceProduct;
@@ -52,11 +60,152 @@ public class StepTwoActivity extends Activity {
         }
 
         setUI();
-        setAction();
+      //  setAction();
 
     }
 
+    private  void setUI(){
+       initCarousels();
+    }
 
+    private void initCarousels(){
+        PagerContainer container = (PagerContainer) findViewById(R.id.pager_container);
+        UserModel model = new UserModel();
+        model.userID ="A";
+        model.userLogin = "ic_p_1_1";
+
+        final  List<UserModel> modelL = new ArrayList<>();
+        modelL.add(model);
+
+        model = new UserModel();
+        model.userID ="B";
+        model.userLogin = "ic_p_1_2";
+
+        modelL.add(model);
+
+        model = new UserModel();
+        model.userID ="C";
+        model.userLogin = "ic_p_1_3";
+
+        modelL.add(model);
+
+        model = new UserModel();
+        model.userID ="D";
+        model.userLogin = "ic_p_1_4";
+
+        modelL.add(model);
+
+        model = new UserModel();
+        model.userID ="E";
+        model.userLogin = "ic_p_1_5";
+
+        model = new UserModel();
+        model.userID ="H";
+        model.userLogin = "ic_p_1_6";
+
+        modelL.add(model);
+
+        model = new UserModel();
+        model.userID ="I";
+        model.userLogin = "ic_p_1_7";
+
+        modelL.add(model);
+
+        model = new UserModel();
+        model.userID ="J";
+        model.userLogin = "ic_p_1_8";
+
+        modelL.add(model);
+
+
+        ViewPager pager = container.getViewPager();
+        pager.setAdapter(new MyPagerAdapter(modelL));
+        pager.setClipChildren(false);
+        //
+        pager.setOffscreenPageLimit(modelL.size());
+
+      //  boolean showTransformer = getIntent().getBooleanExtra("showTransformer",false);
+        pager.setCurrentItem(3);
+
+        //if(showTransformer){
+
+            new CoverFlow.Builder()
+                    .with(pager)
+                    .scale(0.25f)
+                    .pagerMargin(-100f)
+                    .spaceSize(50f)
+                    .build();
+
+        //}else{
+            pager.setPageMargin(30);
+       // }
+        pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+
+            private int index = 0;
+
+            @Override
+            public void onPageSelected(int position) {
+                index = position;
+
+            }
+
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                //int width = bindingPager.getWidth();
+                // bindingPager.scrollTo((int) (width * position + width * positionOffset), 0);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+                if (state == ViewPager.SCROLL_STATE_IDLE) {
+                    // bindingPager.setCurrentItem(index);
+                   // Toast.makeText(StepTwoActivity.this,  modelL.get(index).userID,
+                          //  Toast.LENGTH_LONG).show();
+                }
+
+            }
+        });
+    }
+
+    private class MyPagerAdapter extends PagerAdapter {
+        List<UserModel> userModelList = new ArrayList<UserModel>();
+
+        public MyPagerAdapter(List<UserModel> userModelList) {
+            this.userModelList = userModelList;
+        }
+
+        @Override
+        public Object instantiateItem(ViewGroup container, int position) {
+            UserModel userInfo = userModelList.get(position);
+            // View view = LayoutInflater.from(NormalActivity.this).inflate(R.layout.item_cover,null);
+            // ImageView imageView = (ImageView) view.findViewById(R.id.image_cover);
+
+            View rootView = getLayoutInflater().inflate(R.layout.row_carousels, container, false);
+            // ImageView imageView = (ImageView) rootView.findViewById(R.id.imageView);
+            //  imageView.setImageDrawable(getResources().getDrawable(DemoData.covers[position]));
+            //   imageView.setImageBitmap(BitMapHelper.decodeSampledBitmapFromResource(getResources(), getResources().getIdentifier(userInfo.userLogin, "drawable", getPackageName()), 100, 100));
+
+            //imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            container.addView(rootView);
+            return rootView;
+        }
+
+        @Override
+        public void destroyItem(ViewGroup container, int position, Object object) {
+            container.removeView((View)object);
+        }
+
+        @Override
+        public int getCount() {
+            return userModelList.size();
+        }
+
+        @Override
+        public boolean isViewFromObject(View view, Object object) {
+            return (view == object);
+        }
+    }
+/*
     @Override
     protected void onStart() {
         super.onStart();
@@ -420,7 +569,6 @@ public class StepTwoActivity extends Activity {
     }
 
 
-/*====================== API ============================*/
 
     private void API_GetRiceProduct(final int subId,final int subOfSubId,final String hierarchyStr) {
         Log.d("TAG", "-->API_GetRiceProduct");
@@ -428,10 +576,6 @@ public class StepTwoActivity extends Activity {
         Log.d("TAG", "SubsubId-->"+subOfSubId);
         Log.d("TAG", "hierarchyStr-->"+hierarchyStr);
 
-         /*
-          1.RiceTypeID (ไม่บังคับใส่)
-          2.PrdID (ไม่บังคับ)
-        */
 
 
         new ResponseAPI(this, new ResponseAPI.OnCallbackAPIListener() {
@@ -458,18 +602,15 @@ public class StepTwoActivity extends Activity {
                 "?RiceTypeID=" + subId+"&PrdID=" );
 
     }
-
+*/
+    /*
     private void API_GetProduct(final int prdGrpID, int plantGrpID, final String hierarchyStr) {
         Log.d("TAG", "-->API_GetProduct");
         Log.d("TAG", "prdGrpID-->"+prdGrpID);
         Log.d("TAG", "plantGrpID-->"+plantGrpID);
         Log.d("TAG", "hierarchyStr-->"+hierarchyStr);
 
-         /*
-        1.PrdGrpID (ไม่บังคับใส่)
-        2.PlantGrpID (บังคับกรณี PrdGrpID = 1)
-        3.PrdID (ไม่บังคับ)
-        */
+
         String prdGrpIDStr = "";
         String plantGrpIDStr = "";
 
@@ -512,5 +653,5 @@ public class StepTwoActivity extends Activity {
         Log.i("Step 2", "On Stop .....");
     }
 
-
+*/
 }

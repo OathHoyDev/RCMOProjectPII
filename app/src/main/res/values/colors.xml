@@ -34,6 +34,7 @@
 
     <color name="RcmoBlackBG">#000000</color>
     <color name="RcmoOrangeBG">#f9a131</color>
+    <color name="RcmoLightOrangeBG">#fec465</color>
     <color name="RcmoProfitBG">#60c3ac</color>
     <color name="RcmoTranWhiteDABG">#FFFFFF</color>
 
