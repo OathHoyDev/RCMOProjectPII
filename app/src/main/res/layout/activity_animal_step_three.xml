@@ -263,6 +263,7 @@
                 <com.neopixl.pixlui.components.textview.TextView
                     pixlui:typeface="Quark-Bold.otf"
                     android:layout_width="match_parent"
+                    android:visibility="gone"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_xnormal"
                     android:textStyle="bold"
@@ -273,7 +274,7 @@
                 </com.neopixl.pixlui.components.textview.TextView>
                 <com.neopixl.pixlui.components.textview.TextView
                     pixlui:typeface="Quark-Bold.otf"
-
+                    android:visibility="gone"
                     android:drawableRight="@drawable/arrow_dropdown"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -316,6 +317,7 @@
                         android:gravity="center"
                         android:padding="5dp"
                         android:layout_marginRight="1dp"
+                        android:visibility="gone"
                         android:inputType="text"
                         android:textCursorDrawable="@drawable/text_cursor"
                         android:textSize="@dimen/textsize_normal"
@@ -329,6 +331,7 @@
                         android:layout_marginLeft="1dp"
                         android:paddingLeft="15dp"
                         android:layout_weight="1"
+                        android:visibility="gone"
                         android:textStyle="bold"
                         android:layout_marginTop="@dimen/margin_normal"
                         android:hint="ตำบล"

@@ -25,6 +25,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import th.go.oae.rcmo.API.RequestServices;
 import th.go.oae.rcmo.API.ResponseAPI;
 import th.go.oae.rcmo.Adapter.DialogAmphoeAdapter;
@@ -50,18 +51,16 @@ import th.go.oae.rcmo.View.dialog_province;
 import th.go.oae.rcmo.View.dialog_tambon;
 
 public class StepThreeActivity extends Activity {
-     mProvince.mRespBody  selectedprovince = null;
-     mAmphoe.mRespBody    selectedAmphoe    = null;
-     mTumbon.mRespBody    selectedTumbon   = null;
+    public static mProvince.mRespBody selectedprovince = null;
+    public static mAmphoe.mRespBody selectedAmphoe = null;
+    public static mTumbon.mRespBody selectedTumbon = null;
     public static ProductModel productionInfo = null;
     UserPlotModel userPlotModel = new UserPlotModel();
     String TAG = "StepThreeActivity_TAG";
-    boolean kcSelected =true , tuaSelected = true;
-    String userId ="" ;
-    String plotId ="";
+    boolean kcSelected = true, tuaSelected = true;
+    String userId = "";
+    String plotId = "";
     boolean saved = false;
-
-
 
 
     @Override
@@ -72,11 +71,12 @@ public class StepThreeActivity extends Activity {
         SharedPreferences sp = getSharedPreferences(ServiceInstance.PREF_NAME, Context.MODE_PRIVATE);
         userId = sp.getString(ServiceInstance.sp_userId, "0");
 
+
         userPlotModel.setPrdGrpID(String.valueOf(productionInfo.getPrdGrpID()));
         userPlotModel.setPrdID(String.valueOf(productionInfo.getPrdID()));
-        userPlotModel.setPrdGrpID( String.valueOf(productionInfo.getPrdGrpID()));
+        userPlotModel.setPrdGrpID(String.valueOf(productionInfo.getPrdGrpID()));
         userPlotModel.setUserID(userId);
-        saved  = false;
+        saved = false;
 
         setUI();
         setAction();
@@ -86,72 +86,70 @@ public class StepThreeActivity extends Activity {
 
     private void setUI() {
         int groupId = Integer.valueOf(userPlotModel.getPrdGrpID());
-       this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-        if(groupId == 1){
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+        if (groupId == 1) {
             setContentView(R.layout.activity_plant_step_three);
             findViewById(R.id.mainLayoutPlantStepThree).setBackground(new BitmapDrawable(BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.bg_plant, 300, 400)));
             //Get Object
             Holder h = new Holder();
-            h.prodImg      = (ImageView) findViewById(R.id.prodImg);
-            h.prodBg      =  (LinearLayout)findViewById(R.id.gridDrawBg);
-            h.labelProductName      = (com.neopixl.pixlui.components.textview.TextView) findViewById(R.id.labelProductName);
+            h.prodImg = (ImageView) findViewById(R.id.prodImg);
+            h.prodBg = (LinearLayout) findViewById(R.id.gridDrawBg);
+            h.labelProductName = (com.neopixl.pixlui.components.textview.TextView) findViewById(R.id.labelProductName);
             h.labelProductHierarchy = (com.neopixl.pixlui.components.textview.TextView) findViewById(R.id.labelProductHierarchy);
 
 
             //Set Dynamic Ui
             h.labelProductName.setText(productionInfo.getPrdName());
-            h.labelProductHierarchy.setText(ServiceInstance.genProdHierarchy("กลุ่มพืช",productionInfo.getProdHierarchy()));
+            h.labelProductHierarchy.setText(ServiceInstance.genProdHierarchy("กลุ่มพืช", productionInfo.getProdHierarchy()));
 
-            EditText inputRai   =  (EditText)findViewById(R.id.inputRai);
-            EditText inputNgan  =  (EditText)findViewById(R.id.inputNgan);
-            EditText inputWa    =  (EditText)findViewById(R.id.inputWa);
-            EditText inputMeter =  (EditText)findViewById(R.id.inputMeter);
+            EditText inputRai = (EditText) findViewById(R.id.inputRai);
+            EditText inputNgan = (EditText) findViewById(R.id.inputNgan);
+            EditText inputWa = (EditText) findViewById(R.id.inputWa);
+            EditText inputMeter = (EditText) findViewById(R.id.inputMeter);
 
             inputRai.addTextChangedListener(new StepIIITextWatcher(inputRai, h, ""));
-            inputNgan.setFilters(new InputFilter[]{ new InputFilterMinMax(0, 4)});
-            inputWa.setFilters(new InputFilter[]{ new InputFilterMinMax(0, 100)});
+            inputNgan.setFilters(new InputFilter[]{new InputFilterMinMax(0, 4)});
+            inputWa.setFilters(new InputFilter[]{new InputFilterMinMax(0, 100)});
 
 
-            inputMeter.setFilters(new InputFilter[]{ new InputFilterMinMax(0, 400)});
+            inputMeter.setFilters(new InputFilter[]{new InputFilterMinMax(0, 400)});
             inputMeter.setText("0");
             inputMeter.setVisibility(View.GONE);
 
             String imgName = ServiceInstance.productIMGMap.get(productionInfo.getPrdID());
-            if(imgName!=null) {
+            if (imgName != null) {
                 h.prodImg.setImageResource(getResources().getIdentifier(imgName, "drawable", getPackageName()));
             }
 
             h.prodBg.setBackgroundResource(R.drawable.plant_ic_circle_bg);
 
-        }else if(groupId == 2){
+        } else if (groupId == 2) {
             setContentView(R.layout.activity_animal_step_three);
             findViewById(R.id.mainLayoutAnimalStepThree).setBackground(new BitmapDrawable(BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.bg_meat, 300, 400)));
 
             Holder h = new Holder();
-            h.prodImg      = (ImageView) findViewById(R.id.prodImg);
-            h.prodBg      =  (LinearLayout)findViewById(R.id.gridDrawBg);
-            h.labelProductName      = (com.neopixl.pixlui.components.textview.TextView) findViewById(R.id.labelProductName);
+            h.prodImg = (ImageView) findViewById(R.id.prodImg);
+            h.prodBg = (LinearLayout) findViewById(R.id.gridDrawBg);
+            h.labelProductName = (com.neopixl.pixlui.components.textview.TextView) findViewById(R.id.labelProductName);
             h.labelProductHierarchy = (com.neopixl.pixlui.components.textview.TextView) findViewById(R.id.labelProductHierarchy);
 
 
             //Set Dynamic Ui
             h.labelProductName.setText(productionInfo.getPrdName());
-            h.labelProductHierarchy.setText(ServiceInstance.genProdHierarchy("กลุ่มปศุสัตว์",productionInfo.getProdHierarchy()));
+            h.labelProductHierarchy.setText(ServiceInstance.genProdHierarchy("กลุ่มปศุสัตว์", productionInfo.getProdHierarchy()));
 
             String imgName = ServiceInstance.productIMGMap.get(productionInfo.getPrdID());
-            if(imgName!=null) {
+            if (imgName != null) {
                 h.prodImg.setImageResource(getResources().getIdentifier(imgName, "drawable", getPackageName()));
             }
 
             h.prodBg.setBackgroundResource(R.drawable.animal_ic_circle_bg);
 
 
-
-
-            if(   userPlotModel.getPrdID().equals("39")
+            if (userPlotModel.getPrdID().equals("39")
                     || userPlotModel.getPrdID().equals("40")
                     || userPlotModel.getPrdID().equals("41")
-                    || userPlotModel.getPrdID().equals("42")){
+                    || userPlotModel.getPrdID().equals("42")) {
                 h.labelWeightPerUnit = (com.neopixl.pixlui.components.textview.TextView) findViewById(R.id.labelWeightPerUnit);
                 h.inputWeightPerUnit = (com.neopixl.pixlui.components.edittext.EditText) findViewById(R.id.inputWeightPerUnit);
 
@@ -159,11 +157,11 @@ public class StepThreeActivity extends Activity {
                 h.inputWeightPerUnit.setVisibility(View.GONE);
 
 
-            }else if(userPlotModel.getPrdID().equals("43")){
+            } else if (userPlotModel.getPrdID().equals("43")) {
                 h.labelNumberOfStart = (com.neopixl.pixlui.components.textview.TextView) findViewById(R.id.labelnumberOfStart);
                 h.inputNumberOfStart = (com.neopixl.pixlui.components.edittext.EditText) findViewById(R.id.inputNumberOfStart);
-                h.labelPricePerUnit  = (com.neopixl.pixlui.components.textview.TextView) findViewById(R.id.labelPricePerUnit);
-                h.inputPricePerUnit  = (com.neopixl.pixlui.components.edittext.EditText) findViewById(R.id.inputPricePerUnit);
+                h.labelPricePerUnit = (com.neopixl.pixlui.components.textview.TextView) findViewById(R.id.labelPricePerUnit);
+                h.inputPricePerUnit = (com.neopixl.pixlui.components.edittext.EditText) findViewById(R.id.inputPricePerUnit);
                 h.labelWeightPerUnit = (com.neopixl.pixlui.components.textview.TextView) findViewById(R.id.labelWeightPerUnit);
                 h.inputWeightPerUnit = (com.neopixl.pixlui.components.edittext.EditText) findViewById(R.id.inputWeightPerUnit);
 
@@ -175,7 +173,7 @@ public class StepThreeActivity extends Activity {
                 h.inputWeightPerUnit.setVisibility(View.GONE);
 
 
-            }else if(userPlotModel.getPrdID().equals("44")){
+            } else if (userPlotModel.getPrdID().equals("44")) {
                 h.labelPricePerUnit = (com.neopixl.pixlui.components.textview.TextView) findViewById(R.id.labelPricePerUnit);
                 h.inputPricePerUnit = (com.neopixl.pixlui.components.edittext.EditText) findViewById(R.id.inputPricePerUnit);
 
@@ -185,31 +183,31 @@ public class StepThreeActivity extends Activity {
             }
 
 
-        }else if(groupId==3){
+        } else if (groupId == 3) {
             setContentView(R.layout.activity_fish_step_three);
             findViewById(R.id.mainLayoutFishStepThree).setBackground(new BitmapDrawable(BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.bg_fish, 300, 400)));
             Holder h = new Holder();
-            h.prodImg      = (ImageView) findViewById(R.id.prodImg);
-            h.prodBg      =  (LinearLayout)findViewById(R.id.gridDrawBg);
-            h.labelProductName      = (com.neopixl.pixlui.components.textview.TextView) findViewById(R.id.labelProductName);
+            h.prodImg = (ImageView) findViewById(R.id.prodImg);
+            h.prodBg = (LinearLayout) findViewById(R.id.gridDrawBg);
+            h.labelProductName = (com.neopixl.pixlui.components.textview.TextView) findViewById(R.id.labelProductName);
             h.labelProductHierarchy = (com.neopixl.pixlui.components.textview.TextView) findViewById(R.id.labelProductHierarchy);
 
 
             //Set Dynamic Ui
             h.labelProductName.setText(productionInfo.getPrdName());
-            h.labelProductHierarchy.setText(ServiceInstance.genProdHierarchy("กลุ่มประมง",productionInfo.getProdHierarchy()));
+            h.labelProductHierarchy.setText(ServiceInstance.genProdHierarchy("กลุ่มประมง", productionInfo.getProdHierarchy()));
 
             String imgName = ServiceInstance.productIMGMap.get(productionInfo.getPrdID());
-            if(imgName!=null) {
+            if (imgName != null) {
                 h.prodImg.setImageResource(getResources().getIdentifier(imgName, "drawable", getPackageName()));
             }
 
             h.prodBg.setBackgroundResource(R.drawable.fish_ic_circle_bg);
 
-            if(userPlotModel.getPrdID().equals("49")){
+            if (userPlotModel.getPrdID().equals("49")) {
 
-                h.fishKcLayout  = (LinearLayout) findViewById(R.id.kc_layout);
-                h.fishBoLayout  = (LinearLayout) findViewById(R.id.bo_layout);
+                h.fishKcLayout = (LinearLayout) findViewById(R.id.kc_layout);
+                h.fishBoLayout = (LinearLayout) findViewById(R.id.bo_layout);
 
                 h.fishKcLayout.setVisibility(View.GONE);
                 h.fishBoLayout.setVisibility(View.GONE);
@@ -224,17 +222,14 @@ public class StepThreeActivity extends Activity {
                 va_inputNuberOfva.addTextChangedListener(new StepIIITextWatcher(va_inputNuberOfva, h, ""));
 
                 EditText va_inputNgan = (EditText) findViewById(R.id.va_inputNgan);
-                va_inputNgan.setFilters(new InputFilter[]{ new InputFilterMinMax(0, 4)});
-
+                va_inputNgan.setFilters(new InputFilter[]{new InputFilterMinMax(0, 4)});
 
 
                 EditText va_inputSqWa = (EditText) findViewById(R.id.va_inputSqWa);
-                va_inputSqWa.setFilters(new InputFilter[]{ new InputFilterMinMax(0, 100)});
+                va_inputSqWa.setFilters(new InputFilter[]{new InputFilterMinMax(0, 100)});
 
 
-
-
-            }else {
+            } else {
                 //kc
                 EditText kc_inputSqMPerKC = (EditText) findViewById(R.id.kc_inputSqMPerKC);
                 kc_inputSqMPerKC.addTextChangedListener(new StepIIITextWatcher(kc_inputSqMPerKC, h, ""));
@@ -251,29 +246,27 @@ public class StepThreeActivity extends Activity {
                 bo_inputRai.addTextChangedListener(new StepIIITextWatcher(bo_inputRai, h, ""));
 
                 EditText bo_inputNgan = (EditText) findViewById(R.id.bo_inputNgan);
-                bo_inputNgan.setFilters(new InputFilter[]{ new InputFilterMinMax(0, 4)});
+                bo_inputNgan.setFilters(new InputFilter[]{new InputFilterMinMax(0, 4)});
 
                 EditText bo_inputSqWa = (EditText) findViewById(R.id.bo_inputSqWa);
-                bo_inputSqWa.setFilters(new InputFilter[]{ new InputFilterMinMax(0, 100)});
+                bo_inputSqWa.setFilters(new InputFilter[]{new InputFilterMinMax(0, 100)});
 
                 EditText bo_inputSqMeter = (EditText) findViewById(R.id.bo_inputSqMeter);
-                bo_inputSqMeter.setFilters(new InputFilter[]{ new InputFilterMinMax(0, 400)});
+                bo_inputSqMeter.setFilters(new InputFilter[]{new InputFilterMinMax(0, 400)});
 
                 EditText bo_inputNuberOfUnit = (EditText) findViewById(R.id.bo_inputNuberOfUnit);
                 bo_inputNuberOfUnit.addTextChangedListener(new StepIIITextWatcher(bo_inputNuberOfUnit, h, ""));
 
 
-
-
-                h.fishBoLayout  = (LinearLayout) findViewById(R.id.bo_layout);
-                h.fishVaLayout  = (LinearLayout) findViewById(R.id.va_layout);
+                h.fishBoLayout = (LinearLayout) findViewById(R.id.bo_layout);
+                h.fishVaLayout = (LinearLayout) findViewById(R.id.va_layout);
 
                 h.fishBoLayout.setVisibility(View.GONE);
                 h.fishVaLayout.setVisibility(View.GONE);
 
             }
 
-        }else{
+        } else {
             startActivity(new Intent(StepThreeActivity.this, LoginActivity.class));
             finish();
 
@@ -287,13 +280,13 @@ public class StepThreeActivity extends Activity {
             @Override
             public void onClick(View v) {
 
-                if(productionInfo.getPrdGrpID()==1) {
+                if (productionInfo.getPrdGrpID() == 1) {
                     new DialogChoice(StepThreeActivity.this)
                             .ShowTutorial("g11");
-                }else if(productionInfo.getPrdGrpID()==2){
+                } else if (productionInfo.getPrdGrpID() == 2) {
                     new DialogChoice(StepThreeActivity.this)
                             .ShowTutorial("g12");
-                }else{
+                } else {
                     new DialogChoice(StepThreeActivity.this)
                             .ShowTutorial("g13");
                 }
@@ -303,9 +296,9 @@ public class StepThreeActivity extends Activity {
             @Override
             public void onClick(View v) {
 
-                if(!(userPlotModel.getUserID().equals("0")) && saved ){
+                if (!(userPlotModel.getUserID().equals("0")) && saved) {
                     API_GetUserPlot(userPlotModel.getUserID());
-                }else{
+                } else {
                     finish();
 
                 }
@@ -337,10 +330,10 @@ public class StepThreeActivity extends Activity {
                     prepareFishDataForInsert();
                 }
 
-                if(isValidate) {
+                if (isValidate) {
                     API_getVariable();
 
-                }else{
+                } else {
 
                 }
             }
@@ -438,9 +431,9 @@ public class StepThreeActivity extends Activity {
             }
         });
 
-        if("3".equals(userPlotModel.getPrdGrpID())){
+        if ("3".equals(userPlotModel.getPrdGrpID())) {
 
-            if(!userPlotModel.getPrdID().equals("49")) {
+            if (!userPlotModel.getPrdID().equals("49")) {
 
 
                 findViewById(R.id.layout_imgKcChoice).setOnClickListener(new View.OnClickListener() {
@@ -475,44 +468,41 @@ public class StepThreeActivity extends Activity {
                 });
 
 
+                findViewById(R.id.layout_boimgTuaChoice).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Log.d(TAG, "bo_tuaSelected __>" + tuaSelected);
+                        if (!tuaSelected) {
 
-                    findViewById(R.id.layout_boimgTuaChoice).setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            Log.d(TAG, "bo_tuaSelected __>" +tuaSelected);
-                            if (!tuaSelected) {
-
-                                ((ImageView) findViewById(R.id.bo_imgTuaSelected)).setImageResource(R.drawable.radio_select);
-                                ((ImageView) findViewById(R.id.bo_imgkkSelected)).setImageResource(R.drawable.radio_not_select);
-                                EditText inputUnit = (EditText)findViewById(R.id.bo_inputNuberOfUnit);
-                                //inputUnit.setRawInputType(InputType.TYPE_CLASS_NUMBER);
-                                inputUnit.setHint("ตัว");
-                                tuaSelected = true;
-                            }
+                            ((ImageView) findViewById(R.id.bo_imgTuaSelected)).setImageResource(R.drawable.radio_select);
+                            ((ImageView) findViewById(R.id.bo_imgkkSelected)).setImageResource(R.drawable.radio_not_select);
+                            EditText inputUnit = (EditText) findViewById(R.id.bo_inputNuberOfUnit);
+                            //inputUnit.setRawInputType(InputType.TYPE_CLASS_NUMBER);
+                            inputUnit.setHint("ตัว");
+                            tuaSelected = true;
                         }
-                    });
+                    }
+                });
 
 
-                    findViewById(R.id.layout_boimgKkChoice).setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            Log.d(TAG, "bo_tuaSelected __>" +tuaSelected);
-                            if (tuaSelected) {
+                findViewById(R.id.layout_boimgKkChoice).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Log.d(TAG, "bo_tuaSelected __>" + tuaSelected);
+                        if (tuaSelected) {
 
 
-                                ((ImageView) findViewById(R.id.bo_imgkkSelected)).setImageResource(R.drawable.radio_select);
-                                ((ImageView) findViewById(R.id.bo_imgTuaSelected)).setImageResource(R.drawable.radio_not_select);
-                                EditText inputUnit = (EditText)findViewById(R.id.bo_inputNuberOfUnit);
-                                inputUnit.setHint("กิโลกรัม");
-                                //inputUnit.setRawInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
-                                tuaSelected = false;
-                            }
+                            ((ImageView) findViewById(R.id.bo_imgkkSelected)).setImageResource(R.drawable.radio_select);
+                            ((ImageView) findViewById(R.id.bo_imgTuaSelected)).setImageResource(R.drawable.radio_not_select);
+                            EditText inputUnit = (EditText) findViewById(R.id.bo_inputNuberOfUnit);
+                            inputUnit.setHint("กิโลกรัม");
+                            //inputUnit.setRawInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
+                            tuaSelected = false;
                         }
-                    });
+                    }
+                });
 
-            }else {
-
-
+            } else {
 
 
             }
@@ -552,10 +542,10 @@ public class StepThreeActivity extends Activity {
 
                 selectedAmphoe = null;
                 selectedTumbon = null;
-                if(provinceRespList.get(position).getProvCode().equals("0")){
+                if (provinceRespList.get(position).getProvCode().equals("0")) {
                     selectedprovince = null;
                     provinceTextView.setText("");
-                }else{
+                } else {
                     selectedprovince = provinceRespList.get(position);
                     provinceTextView.setText(selectedprovince.getProvNameTH());
 
@@ -601,10 +591,10 @@ public class StepThreeActivity extends Activity {
 
                 selectedTumbon = null;
 
-                if(amphoeRespList.get(position).getAmpCode().equals("0")) {
+                if (amphoeRespList.get(position).getAmpCode().equals("0")) {
                     selectedAmphoe = null;
                     amphoeTextView.setText("");
-                }else{
+                } else {
                     selectedAmphoe = amphoeRespList.get(position);
                     amphoeTextView.setText(selectedAmphoe.getAmpNameTH());
                 }
@@ -643,12 +633,12 @@ public class StepThreeActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-             //   TextView amphoeTextView = (TextView) findViewById(R.id.inputAmphoe);
+                //   TextView amphoeTextView = (TextView) findViewById(R.id.inputAmphoe);
                 TextView tumbonTextView = (TextView) findViewById(R.id.inputTumbon);
-                if(tunbonRespList.get(position).getTamCode().equals("0")){
+                if (tunbonRespList.get(position).getTamCode().equals("0")) {
                     selectedTumbon = null;
                     tumbonTextView.setText("");
-                }else{
+                } else {
                     selectedTumbon = tunbonRespList.get(position);
                     tumbonTextView.setText(selectedTumbon.getTamNameTH());
                 }
@@ -662,63 +652,63 @@ public class StepThreeActivity extends Activity {
     }
 
 
-//====================== API =============================================
+    //====================== API =============================================
     private void API_getProvince() {
-    /**
-     1.ProvCode (ไม่บังคับใส่)
-     */
-    new ResponseAPI(this, new ResponseAPI.OnCallbackAPIListener() {
-        @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
-        @Override
-        public void callbackSuccess(Object obj) {
+        /**
+         1.ProvCode (ไม่บังคับใส่)
+         */
+        new ResponseAPI(this, new ResponseAPI.OnCallbackAPIListener() {
+            @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
+            @Override
+            public void callbackSuccess(Object obj) {
 
-            mProvince provinceInfo = (mProvince) obj;
+                mProvince provinceInfo = (mProvince) obj;
 
-            final List<mProvince.mRespBody> provinceBodyLists = provinceInfo.getRespBody();
-            mProvince.mRespBody defaultProvince = new mProvince.mRespBody();
-            defaultProvince.setProvCode("0");
-            defaultProvince.setProvNameTH("ไม่ระบุ");
+                final List<mProvince.mRespBody> provinceBodyLists = provinceInfo.getRespBody();
+                mProvince.mRespBody defaultProvince = new mProvince.mRespBody();
+                defaultProvince.setProvCode("0");
+                defaultProvince.setProvNameTH("ไม่ระบุ");
 
 
-            if (provinceBodyLists.size() != 0) {
-                provinceBodyLists.add(0,defaultProvince);
-               // popUpProvinceListDialog(provinceBodyLists);
+                if (provinceBodyLists.size() != 0) {
+                    provinceBodyLists.add(0, defaultProvince);
+                    // popUpProvinceListDialog(provinceBodyLists);
 
-                new dialog_province(StepThreeActivity.this,"จังหวัด",provinceBodyLists, new dialog_province.OnSelectChoice() {
-                    @Override
-                    public void selectChoice(mProvince.mRespBody choice) {
-                        selectedprovince = choice;
-                        TextView provinceTextView = (TextView) findViewById(R.id.inputprovice);
-                        TextView amphoeTextView = (TextView) findViewById(R.id.inputAmphoe);
-                        TextView tumbonTextView = (TextView) findViewById(R.id.inputTumbon);
-                        selectedAmphoe = null;
-                        selectedTumbon = null;
-                        if(selectedprovince.getProvCode().equals("0")){
-                            selectedprovince = null;
-                            provinceTextView.setText("");
-                        }else{
-                            provinceTextView.setText(selectedprovince.getProvNameTH());
+                    new dialog_province(StepThreeActivity.this, "จังหวัด", provinceBodyLists, new dialog_province.OnSelectChoice() {
+                        @Override
+                        public void selectChoice(mProvince.mRespBody choice) {
+                            selectedprovince = choice;
+                            TextView provinceTextView = (TextView) findViewById(R.id.inputprovice);
+                            TextView amphoeTextView = (TextView) findViewById(R.id.inputAmphoe);
+                            TextView tumbonTextView = (TextView) findViewById(R.id.inputTumbon);
+                            selectedAmphoe = null;
+                            selectedTumbon = null;
+                            if (selectedprovince.getProvCode().equals("0")) {
+                                selectedprovince = null;
+                                provinceTextView.setText("");
+                            } else {
+                                provinceTextView.setText(selectedprovince.getProvNameTH());
+                            }
+                            amphoeTextView.setText("");
+                            tumbonTextView.setText("");
+
                         }
-                        amphoeTextView.setText("");
-                        tumbonTextView.setText("");
+                    });
 
-                    }
-                });
+                    ProgressAction.gone(StepThreeActivity.this);
+                }
+            }
 
+            @Override
+            public void callbackError(int code, String errorMsg) {
+                Log.d("Error", errorMsg);
                 ProgressAction.gone(StepThreeActivity.this);
             }
-        }
+        }).API_Request(true, RequestServices.ws_getProvince +
+                "?ProvCode="
+        );
 
-        @Override
-        public void callbackError(int code, String errorMsg) {
-            Log.d("Error", errorMsg);
-            ProgressAction.gone(StepThreeActivity.this);
-        }
-    }).API_Request(true, RequestServices.ws_getProvince +
-            "?ProvCode="
-    );
-
-}
+    }
 
     private void API_getAmphoe(String provinceId) {
         /**
@@ -738,9 +728,9 @@ public class StepThreeActivity extends Activity {
                 defaultAmphoe.setAmpNameTH("ไม่ระบุ");
 
                 if (amphoeBodyLists.size() != 0) {
-                    amphoeBodyLists.add(0,defaultAmphoe);
-                   // popUpAmphoeListDialog(amphoeBodyLists);
-                    new dialog_amphoe(StepThreeActivity.this,"อำเภอ",amphoeBodyLists, new dialog_amphoe.OnSelectChoice() {
+                    amphoeBodyLists.add(0, defaultAmphoe);
+                    // popUpAmphoeListDialog(amphoeBodyLists);
+                    new dialog_amphoe(StepThreeActivity.this, "อำเภอ", amphoeBodyLists, new dialog_amphoe.OnSelectChoice() {
                         @Override
                         public void selectChoice(mAmphoe.mRespBody choice) {
                             selectedAmphoe = choice;
@@ -750,10 +740,10 @@ public class StepThreeActivity extends Activity {
                             selectedTumbon = null;
 
 
-                            if(selectedAmphoe.getAmpCode().equals("0")) {
+                            if (selectedAmphoe.getAmpCode().equals("0")) {
                                 selectedAmphoe = null;
                                 amphoeTextView.setText("");
-                            }else{
+                            } else {
                                 amphoeTextView.setText(selectedAmphoe.getAmpNameTH());
                             }
                             tumbonTextView.setText("");
@@ -796,18 +786,18 @@ public class StepThreeActivity extends Activity {
                 defaultTumbon.setTamNameTH("ไม่ระบุ");
 
                 if (tumbonBodyLists.size() != 0) {
-                    tumbonBodyLists.add(0,defaultTumbon);
-                  //  popUpTumbonListDialog(tumbonBodyLists);
-                    new dialog_tambon(StepThreeActivity.this,"ตำบล", tumbonBodyLists, new dialog_tambon.OnSelectChoice() {
+                    tumbonBodyLists.add(0, defaultTumbon);
+                    //  popUpTumbonListDialog(tumbonBodyLists);
+                    new dialog_tambon(StepThreeActivity.this, "ตำบล", tumbonBodyLists, new dialog_tambon.OnSelectChoice() {
                         @Override
                         public void selectChoice(mTumbon.mRespBody choice) {
                             selectedTumbon = choice;
 
                             TextView tumbonTextView = (TextView) findViewById(R.id.inputTumbon);
-                            if(selectedTumbon.getTamCode().equals("0")){
+                            if (selectedTumbon.getTamCode().equals("0")) {
                                 selectedTumbon = null;
                                 tumbonTextView.setText("");
-                            }else{
+                            } else {
                                 tumbonTextView.setText(selectedTumbon.getTamNameTH());
                             }
                         }
@@ -871,14 +861,16 @@ public class StepThreeActivity extends Activity {
                 mSavePlotDetail savePlotDetailInfo = (mSavePlotDetail) obj;
                 List<mSavePlotDetail.mRespBody> savePlotDetailBodyLists = savePlotDetailInfo.getRespBody();
 
-                Log.d(TAG,"---- >Size"+savePlotDetailBodyLists.size());
+                Log.d(TAG, "---- >Size" + savePlotDetailBodyLists.size());
                 if (savePlotDetailBodyLists.size() != 0) {
 
-                    plotId =  String.valueOf(savePlotDetailBodyLists.get(0).getPlotID());
-                    if(plotId==null){plotId="";}
-                    Log.d(TAG,"Response plotId : "+plotId);
+                    plotId = String.valueOf(savePlotDetailBodyLists.get(0).getPlotID());
+                    if (plotId == null) {
+                        plotId = "";
+                    }
+                    Log.d(TAG, "Response plotId : " + plotId);
                     saved = true;
-                    Util.showDialogAndDismiss(StepThreeActivity.this,"บันทึกข้อมูลสำเร็จ");
+                    Util.showDialogAndDismiss(StepThreeActivity.this, "บันทึกข้อมูลสำเร็จ");
                 }
 
             }
@@ -890,34 +882,34 @@ public class StepThreeActivity extends Activity {
         }).API_Request(true, RequestServices.ws_savePlotDetail +
 
                 "?SaveFlag=" + saveFlag +
-                "&UserID=" +userPlotInfo.getUserID()+
-                "&PlotID=" +userPlotInfo.getPlotID()+
+                "&UserID=" + userPlotInfo.getUserID() +
+                "&PlotID=" + userPlotInfo.getPlotID() +
                 "&PrdID=" + userPlotInfo.getPrdID() +
                 "&PrdGrpID=" + userPlotInfo.getPrdGrpID() +
-                "&PlotRai=" +userPlotInfo.getPlotRai() +
-                "&PlotNgan=" +userPlotInfo.getPlotNgan() +
-                "&PlotWa=" +userPlotInfo.getPlotWa() +
-                "&PlotMeter=" +userPlotInfo.getPlotMeter() +
-                "&PondRai=" +userPlotInfo.getPondRai()+
-                "&PondNgan=" +userPlotInfo.getPondNgan()+
-                "&PondWa=" +userPlotInfo.getPondWa()+
-                "&PondMeter=" +userPlotInfo.getPondMeter()+
-                "&CoopMeter=" +userPlotInfo.getCoopMeter()+
-                "&CoopNumber=" +userPlotInfo.getCoopNumber()+
-                "&TamCode=" +userPlotInfo.getTamCode()+
-                "&AmpCode=" +userPlotInfo.getAmpCode()+
-                "&ProvCode=" +userPlotInfo.getProvCode()+
-                "&AnimalNumber=" +userPlotInfo.getAnimalNumber()+
-                "&AnimalWeight=" +userPlotInfo.getAnimalWeight()+
-                "&AnimalPrice=" +userPlotInfo.getAnimalPrice()+
-                "&FisheryType=" +userPlotInfo.getFisheryType()+
-                "&FisheryNumType=" +userPlotInfo.getFisheryNumType()+
-                "&FisheryNumber=" +userPlotInfo.getFisheryNumber()+
-                "&FisheryWeight=" +userPlotInfo.getFisheryWeight()+
-                "&ImeiCode=" +ServiceInstance.GetDeviceID(StepThreeActivity.this)+
-                "&VarName=" +userPlotInfo.getVarName()+
-                "&VarValue=" +userPlotInfo.getVarValue()+
-                "&CalResult="+userPlotInfo.getCalResult()
+                "&PlotRai=" + userPlotInfo.getPlotRai() +
+                "&PlotNgan=" + userPlotInfo.getPlotNgan() +
+                "&PlotWa=" + userPlotInfo.getPlotWa() +
+                "&PlotMeter=" + userPlotInfo.getPlotMeter() +
+                "&PondRai=" + userPlotInfo.getPondRai() +
+                "&PondNgan=" + userPlotInfo.getPondNgan() +
+                "&PondWa=" + userPlotInfo.getPondWa() +
+                "&PondMeter=" + userPlotInfo.getPondMeter() +
+                "&CoopMeter=" + userPlotInfo.getCoopMeter() +
+                "&CoopNumber=" + userPlotInfo.getCoopNumber() +
+                "&TamCode=" + userPlotInfo.getTamCode() +
+                "&AmpCode=" + userPlotInfo.getAmpCode() +
+                "&ProvCode=" + userPlotInfo.getProvCode() +
+                "&AnimalNumber=" + userPlotInfo.getAnimalNumber() +
+                "&AnimalWeight=" + userPlotInfo.getAnimalWeight() +
+                "&AnimalPrice=" + userPlotInfo.getAnimalPrice() +
+                "&FisheryType=" + userPlotInfo.getFisheryType() +
+                "&FisheryNumType=" + userPlotInfo.getFisheryNumType() +
+                "&FisheryNumber=" + userPlotInfo.getFisheryNumber() +
+                "&FisheryWeight=" + userPlotInfo.getFisheryWeight() +
+                "&ImeiCode=" + ServiceInstance.GetDeviceID(StepThreeActivity.this) +
+                "&VarName=" + userPlotInfo.getVarName() +
+                "&VarValue=" + userPlotInfo.getVarValue() +
+                "&CalResult=" + userPlotInfo.getCalResult()
         );
     }
 
@@ -994,20 +986,19 @@ public class StepThreeActivity extends Activity {
 
     }
 
-    private void upsertUserPlot(){
+    private void upsertUserPlot() {
 
         // API_GetUserPlot(userId,prdId,prdGrpId,plotId);
 
-            if ("".equals(userPlotModel.getPlotID())) {
-                Log.d(TAG, "Go to save plot Module ");
-                API_SavePlotDetail("1", userPlotModel);
-            } else {
+        if ("".equals(userPlotModel.getPlotID())) {
+            Log.d(TAG, "Go to save plot Module ");
+            API_SavePlotDetail("1", userPlotModel);
+        } else {
 
-                Log.d(TAG, "Go to update plot Module ");
-                API_SavePlotDetail("2", userPlotModel);
+            Log.d(TAG, "Go to update plot Module ");
+            API_SavePlotDetail("2", userPlotModel);
 
-            }
-
+        }
 
 
     }
@@ -1032,30 +1023,30 @@ public class StepThreeActivity extends Activity {
 
     //======================== Prepare data && validate ===============================
 
-    private boolean isValidPlantInputData (){
+    private boolean isValidPlantInputData() {
         boolean isValid = true;
         EditText inputRai = (EditText) findViewById(R.id.inputRai);
 
         String errorMsg = "";
-        if(inputRai.getText() == null || inputRai.getText().toString().equals("")){
+        if (inputRai.getText() == null || inputRai.getText().toString().equals("")) {
             errorMsg += "- ขนาดแปลงที่ดิน\n";
             isValid = false;
         }
 
 
-        if(selectedprovince!=null){
-            if(selectedAmphoe!=null){
-                if(selectedTumbon == null){
-                    errorMsg+= "- ตำบล \n";
+        if (selectedprovince != null) {
+            if (selectedAmphoe != null) {
+                if (selectedTumbon == null) {
+                    errorMsg += "- ตำบล \n";
                     isValid = false;
                 }
-            }else{
-                errorMsg+=  "- อำเภอ \n- ตำบล";
+            } else {
+                errorMsg += "- อำเภอ \n- ตำบล";
                 isValid = false;
             }
         }
 
-        if(!isValid){
+        if (!isValid) {
             new DialogChoice(StepThreeActivity.this).ShowOneChoice("กรุณากรอกข้อมูล", errorMsg);
         }
 
@@ -1064,109 +1055,108 @@ public class StepThreeActivity extends Activity {
 
     }
 
-    private boolean isValidAnimalInputData () {
+    private boolean isValidAnimalInputData() {
         boolean isValid = true;
 
-        Log.d(TAG,"Province : "+selectedprovince);
-        Log.d(TAG,"Amphoe : "+selectedAmphoe);
-        Log.d(TAG,"Tumbon : "+selectedTumbon);
+        Log.d(TAG, "Province : " + selectedprovince);
+        Log.d(TAG, "Amphoe : " + selectedAmphoe);
+        Log.d(TAG, "Tumbon : " + selectedTumbon);
 
-        if(   userPlotModel.getPrdID().equals("39")
+        if (userPlotModel.getPrdID().equals("39")
                 || userPlotModel.getPrdID().equals("40")
                 || userPlotModel.getPrdID().equals("41")
-                || userPlotModel.getPrdID().equals("42")){
+                || userPlotModel.getPrdID().equals("42")) {
 
             EditText inputNumberOfStart = (EditText) findViewById(R.id.inputNumberOfStart);
             EditText inputPricePerUnit = (EditText) findViewById(R.id.inputPricePerUnit);
 
             String errorMsg = "";
             if (inputNumberOfStart.getText() == null || inputNumberOfStart.getText().toString().equals("")) {
-                errorMsg+= "- จำนวนเมื่อเริ่มเลี้ยง \n";
+                errorMsg += "- จำนวนเมื่อเริ่มเลี้ยง \n";
                 isValid = false;
             }
 
-            if (inputPricePerUnit.getText() == null || inputPricePerUnit.getText().toString().equals("")){
-                errorMsg+= "- ราคาเมื่อเริ่มเลียง \n";
+            if (inputPricePerUnit.getText() == null || inputPricePerUnit.getText().toString().equals("")) {
+                errorMsg += "- ราคาเมื่อเริ่มเลียง \n";
                 isValid = false;
             }
 
-            if(selectedprovince!=null){
-                if(selectedAmphoe!=null){
-                    if(selectedTumbon == null){
-                        errorMsg+= "- ตำบล \n";
+            if (selectedprovince != null) {
+                if (selectedAmphoe != null) {
+                    if (selectedTumbon == null) {
+                        errorMsg += "- ตำบล \n";
                         isValid = false;
                     }
-                }else{
-                    errorMsg+=  "- อำเภอ \n- ตำบล";
+                } else {
+                    errorMsg += "- อำเภอ \n- ตำบล";
                     isValid = false;
                 }
             }
 
 
-            if(!isValid){
+            if (!isValid) {
                 new DialogChoice(StepThreeActivity.this).ShowOneChoice("กรุณากรอกข้อมูล", errorMsg);
             }
 
-        }else if( userPlotModel.getPrdID().equals("43")){
+        } else if (userPlotModel.getPrdID().equals("43")) {
             EditText inputNumberOfStart = (EditText) findViewById(R.id.inputNumberOfStart);
             String errorMsg = "";
             if (inputNumberOfStart.getText() == null || inputNumberOfStart.getText().toString().equals("")) {
-                errorMsg+="- จำนวนแม่โครีดนม\n";
+                errorMsg += "- จำนวนแม่โครีดนม\n";
                 isValid = false;
             }
 
-            if(selectedprovince!=null){
-                if(selectedAmphoe!=null){
-                    if(selectedTumbon == null){
-                        errorMsg+= "- ตำบล \n";
+            if (selectedprovince != null) {
+                if (selectedAmphoe != null) {
+                    if (selectedTumbon == null) {
+                        errorMsg += "- ตำบล \n";
                         isValid = false;
                     }
-                }else{
-                    errorMsg+=  "- อำเภอ \n- ตำบล";
+                } else {
+                    errorMsg += "- อำเภอ \n- ตำบล";
                     isValid = false;
                 }
             }
 
-            if(!isValid){
+            if (!isValid) {
                 new DialogChoice(StepThreeActivity.this).ShowOneChoice("กรุณากรอกข้อมูล", errorMsg);
             }
 
 
-
-        }else if( userPlotModel.getPrdID().equals("44")){
+        } else if (userPlotModel.getPrdID().equals("44")) {
             EditText inputNumberOfStart = (EditText) findViewById(R.id.inputNumberOfStart);
             EditText inputWeightPerUnit = (EditText) findViewById(R.id.inputWeightPerUnit);
 
             String errorMsg = "";
             if (inputNumberOfStart.getText() == null || inputNumberOfStart.getText().toString().equals("")) {
-                errorMsg+= "- จำนวนเมื่อเริ่มเลี้ยง \n";
+                errorMsg += "- จำนวนเมื่อเริ่มเลี้ยง \n";
                 isValid = false;
             }
 
-            if (inputWeightPerUnit.getText() == null || inputWeightPerUnit.getText().toString().equals("")){
-                errorMsg+= "- น้ำหนักเฉลี่ยเมื่อเลียง \n ";
+            if (inputWeightPerUnit.getText() == null || inputWeightPerUnit.getText().toString().equals("")) {
+                errorMsg += "- น้ำหนักเฉลี่ยเมื่อเลียง \n ";
                 isValid = false;
             }
 
 
-            if(selectedprovince!=null){
-                if(selectedAmphoe!=null){
-                    if(selectedTumbon == null){
-                        errorMsg+= "- ตำบล \n";
+            if (selectedprovince != null) {
+                if (selectedAmphoe != null) {
+                    if (selectedTumbon == null) {
+                        errorMsg += "- ตำบล \n";
                         isValid = false;
                     }
 
-                }else{
-                    errorMsg+=  "- อำเภอ \n- ตำบล";
+                } else {
+                    errorMsg += "- อำเภอ \n- ตำบล";
                     isValid = false;
                 }
             }
 
-            if(!isValid){
+            if (!isValid) {
                 new DialogChoice(StepThreeActivity.this).ShowOneChoice("กรุณากรอกข้อมูล", errorMsg);
             }
 
-        }else{
+        } else {
             isValid = false;
         }
 
@@ -1179,37 +1169,37 @@ public class StepThreeActivity extends Activity {
 
         if (userPlotModel.getPrdID().equals("49")) {
 
-            EditText va_inputRai       = (EditText) findViewById(R.id.va_inputRai);
-            EditText va_inputNgan      = (EditText) findViewById(R.id.va_inputNgan);
-            EditText va_inputSqWa      = (EditText) findViewById(R.id.va_inputSqWa);
+            EditText va_inputRai = (EditText) findViewById(R.id.va_inputRai);
+            EditText va_inputNgan = (EditText) findViewById(R.id.va_inputNgan);
+            EditText va_inputSqWa = (EditText) findViewById(R.id.va_inputSqWa);
             EditText va_inputNuberOfva = (EditText) findViewById(R.id.va_inputNuberOfva);
             String errorMsg = "";
-            if (       (va_inputRai.getText() == null || va_inputRai.getText().toString().equals(""))
-                  &&   (va_inputNgan.getText() == null || va_inputNgan.getText().toString().equals(""))
-                  &&   (va_inputSqWa.getText() == null || va_inputSqWa.getText().toString().equals(""))
-                    )  {
-                errorMsg+= "- ขนาดแปลงที่ดิน \n";
+            if ((va_inputRai.getText() == null || va_inputRai.getText().toString().equals(""))
+                    && (va_inputNgan.getText() == null || va_inputNgan.getText().toString().equals(""))
+                    && (va_inputSqWa.getText() == null || va_inputSqWa.getText().toString().equals(""))
+                    ) {
+                errorMsg += "- ขนาดแปลงที่ดิน \n";
                 isValid = false;
             }
 
             if (va_inputNuberOfva.getText() == null || va_inputNuberOfva.getText().toString().equals("")) {
-                errorMsg+= "- จำนวนลูกกุ้งที่ปล่อย \n";
+                errorMsg += "- จำนวนลูกกุ้งที่ปล่อย \n";
                 isValid = false;
             }
 
-            if(selectedprovince!=null){
-                if(selectedAmphoe!=null){
-                    if(selectedTumbon == null){
-                        errorMsg+= "- ตำบล \n";
+            if (selectedprovince != null) {
+                if (selectedAmphoe != null) {
+                    if (selectedTumbon == null) {
+                        errorMsg += "- ตำบล \n";
                         isValid = false;
                     }
-                }else{
-                    errorMsg+=  "- อำเภอ \n- ตำบล";
+                } else {
+                    errorMsg += "- อำเภอ \n- ตำบล";
                     isValid = false;
                 }
             }
 
-            if(!isValid){
+            if (!isValid) {
                 new DialogChoice(StepThreeActivity.this).ShowOneChoice("กรุณากรอกข้อมูล", errorMsg);
             }
 
@@ -1225,71 +1215,71 @@ public class StepThreeActivity extends Activity {
 
                 if (kc_inputSqMPerKC.getText() == null || kc_inputSqMPerKC.getText().toString().equals("")) {
 
-                    errorMsg+= "- ขนาดแปลงที่ดิน \n";
+                    errorMsg += "- ขนาดแปลงที่ดิน \n";
                     isValid = false;
                 }
                 if (kc_inputNumberOfKC.getText() == null || kc_inputNumberOfKC.getText().toString().equals("")) {
-                    errorMsg+= "- จำนวนกระชังที่เลี้ยงในรุ่นนี้ \n";
+                    errorMsg += "- จำนวนกระชังที่เลี้ยงในรุ่นนี้ \n";
                     isValid = false;
                 }
                 if (kc_inputFishPerKC.getText() == null || kc_inputFishPerKC.getText().toString().equals("")) {
-                    errorMsg+= "- จำนวนลูกปลาที่ปล่อย ต่อ 1 กระชัง";
+                    errorMsg += "- จำนวนลูกปลาที่ปล่อย ต่อ 1 กระชัง";
                     isValid = false;
                 }
 
-                if(selectedprovince!=null){
-                    if(selectedAmphoe!=null){
-                        if(selectedTumbon == null){
-                            errorMsg+= "- ตำบล \n";
+                if (selectedprovince != null) {
+                    if (selectedAmphoe != null) {
+                        if (selectedTumbon == null) {
+                            errorMsg += "- ตำบล \n";
                             isValid = false;
                         }
-                    }else{
-                        errorMsg+=  "- อำเภอ \n- ตำบล";
+                    } else {
+                        errorMsg += "- อำเภอ \n- ตำบล";
                         isValid = false;
                     }
                 }
 
-                if(!isValid){
+                if (!isValid) {
                     new DialogChoice(StepThreeActivity.this).ShowOneChoice("กรุณากรอกข้อมูล", errorMsg);
                 }
 
 
             } else {
 
-                EditText bo_inputRai       = (EditText) findViewById(R.id.bo_inputRai);
-                EditText bo_inputNgan      = (EditText) findViewById(R.id.bo_inputNgan);
-                EditText bo_inputSqWa      = (EditText) findViewById(R.id.bo_inputSqWa);
-                EditText bo_inputSqMeter     = (EditText) findViewById(R.id.bo_inputSqMeter);
+                EditText bo_inputRai = (EditText) findViewById(R.id.bo_inputRai);
+                EditText bo_inputNgan = (EditText) findViewById(R.id.bo_inputNgan);
+                EditText bo_inputSqWa = (EditText) findViewById(R.id.bo_inputSqWa);
+                EditText bo_inputSqMeter = (EditText) findViewById(R.id.bo_inputSqMeter);
 
                 EditText bo_inputNuberOfUnit = (EditText) findViewById(R.id.bo_inputNuberOfUnit);
 
-                if (       (bo_inputRai.getText() == null || bo_inputRai.getText().toString().equals(""))
-                        &&   (bo_inputNgan.getText() == null || bo_inputNgan.getText().toString().equals(""))
-                        &&   (bo_inputSqWa.getText() == null || bo_inputSqWa.getText().toString().equals(""))
-                        &&   (bo_inputSqMeter.getText() == null || bo_inputSqMeter.getText().toString().equals(""))
-                        )  {
+                if ((bo_inputRai.getText() == null || bo_inputRai.getText().toString().equals(""))
+                        && (bo_inputNgan.getText() == null || bo_inputNgan.getText().toString().equals(""))
+                        && (bo_inputSqWa.getText() == null || bo_inputSqWa.getText().toString().equals(""))
+                        && (bo_inputSqMeter.getText() == null || bo_inputSqMeter.getText().toString().equals(""))
+                        ) {
 
-                    errorMsg+= "- ขนาดแปลงที่ดิน \n";
+                    errorMsg += "- ขนาดแปลงที่ดิน \n";
                     isValid = false;
                 }
                 if (bo_inputNuberOfUnit.getText() == null || bo_inputNuberOfUnit.getText().toString().equals("")) {
-                    errorMsg+= "- จำนวนลูกปลาที่ปล่อย ";
+                    errorMsg += "- จำนวนลูกปลาที่ปล่อย ";
                     isValid = false;
                 }
 
-                if(selectedprovince!=null){
-                    if(selectedAmphoe!=null){
-                        if(selectedTumbon == null){
-                            errorMsg+= "- ตำบล \n";
+                if (selectedprovince != null) {
+                    if (selectedAmphoe != null) {
+                        if (selectedTumbon == null) {
+                            errorMsg += "- ตำบล \n";
                             isValid = false;
                         }
-                    }else{
-                        errorMsg+=  "- อำเภอ \n- ตำบล";
+                    } else {
+                        errorMsg += "- อำเภอ \n- ตำบล";
                         isValid = false;
                     }
                 }
 
-                if(!isValid){
+                if (!isValid) {
                     new DialogChoice(StepThreeActivity.this).ShowOneChoice("กรุณากรอกข้อมูล", errorMsg);
                 }
 
@@ -1301,16 +1291,22 @@ public class StepThreeActivity extends Activity {
 
     }
 
-    private void preparePlantDataForInsert(){
+    private void preparePlantDataForInsert() {
 
-        if(selectedTumbon!=null)   { userPlotModel.setTamCode(selectedTumbon.getTamCode());}
-        if(selectedAmphoe!=null)   { userPlotModel.setAmpCode(selectedAmphoe.getAmpCode());}
-        if(selectedprovince!=null) {userPlotModel.setProvCode(selectedprovince.getProvCode());}
+        if (selectedTumbon != null) {
+            userPlotModel.setTamCode(selectedTumbon.getTamCode());
+        }
+        if (selectedAmphoe != null) {
+            userPlotModel.setAmpCode(selectedAmphoe.getAmpCode());
+        }
+        if (selectedprovince != null) {
+            userPlotModel.setProvCode(selectedprovince.getProvCode());
+        }
 
-        EditText inputRai   =  (EditText)findViewById(R.id.inputRai);
-        EditText inputNgan  =  (EditText)findViewById(R.id.inputNgan);
-        EditText inputWa    =  (EditText)findViewById(R.id.inputWa);
-        EditText inputMeter =  (EditText)findViewById(R.id.inputMeter);
+        EditText inputRai = (EditText) findViewById(R.id.inputRai);
+        EditText inputNgan = (EditText) findViewById(R.id.inputNgan);
+        EditText inputWa = (EditText) findViewById(R.id.inputWa);
+        EditText inputMeter = (EditText) findViewById(R.id.inputMeter);
 
         userPlotModel.setPlotRai(Util.clearStrNumberFormat(inputRai.getText().toString()));
         userPlotModel.setPlotNgan(inputNgan.getText().toString());
@@ -1319,44 +1315,56 @@ public class StepThreeActivity extends Activity {
 
     }
 
-    private void prepareAnimalDataForInsert(){
+    private void prepareAnimalDataForInsert() {
 
-        if(selectedTumbon!=null)   { userPlotModel.setTamCode(selectedTumbon.getTamCode());}
-        if(selectedAmphoe!=null)   { userPlotModel.setAmpCode(selectedAmphoe.getAmpCode());}
-        if(selectedprovince!=null) {userPlotModel.setProvCode(selectedprovince.getProvCode());}
+        if (selectedTumbon != null) {
+            userPlotModel.setTamCode(selectedTumbon.getTamCode());
+        }
+        if (selectedAmphoe != null) {
+            userPlotModel.setAmpCode(selectedAmphoe.getAmpCode());
+        }
+        if (selectedprovince != null) {
+            userPlotModel.setProvCode(selectedprovince.getProvCode());
+        }
 
-        if(   userPlotModel.getPrdID().equals("39")
+        if (userPlotModel.getPrdID().equals("39")
                 || userPlotModel.getPrdID().equals("40")
                 || userPlotModel.getPrdID().equals("41")
-                || userPlotModel.getPrdID().equals("42")){
+                || userPlotModel.getPrdID().equals("42")) {
 
 
-            userPlotModel.setAnimalNumber(((EditText)findViewById(R.id.inputNumberOfStart)).getText().toString());
-            userPlotModel.setAnimalPrice(((EditText)findViewById(R.id.inputPricePerUnit)).getText().toString());
+            userPlotModel.setAnimalNumber(((EditText) findViewById(R.id.inputNumberOfStart)).getText().toString());
+            userPlotModel.setAnimalPrice(((EditText) findViewById(R.id.inputPricePerUnit)).getText().toString());
 
-        }else if(userPlotModel.getPrdID().equals("43")){
+        } else if (userPlotModel.getPrdID().equals("43")) {
 
-            userPlotModel.setAnimalNumber(((EditText)findViewById(R.id.inputNumberOfStart)).getText().toString());
+            userPlotModel.setAnimalNumber(((EditText) findViewById(R.id.inputNumberOfStart)).getText().toString());
 
-        }else if(userPlotModel.getPrdID().equals("44")){
+        } else if (userPlotModel.getPrdID().equals("44")) {
 
-            userPlotModel.setAnimalNumber(((EditText)findViewById(R.id.inputNumberOfStart)).getText().toString());
-            userPlotModel.setAnimalWeight(((EditText)findViewById(R.id.inputWeightPerUnit)).getText().toString());
+            userPlotModel.setAnimalNumber(((EditText) findViewById(R.id.inputNumberOfStart)).getText().toString());
+            userPlotModel.setAnimalWeight(((EditText) findViewById(R.id.inputWeightPerUnit)).getText().toString());
         }
 
     }
 
-    private void prepareFishDataForInsert(){
-        if(selectedTumbon!=null)   { userPlotModel.setTamCode(selectedTumbon.getTamCode());}
-        if(selectedAmphoe!=null)   { userPlotModel.setAmpCode(selectedAmphoe.getAmpCode());}
-        if(selectedprovince!=null) {userPlotModel.setProvCode(selectedprovince.getProvCode());}
+    private void prepareFishDataForInsert() {
+        if (selectedTumbon != null) {
+            userPlotModel.setTamCode(selectedTumbon.getTamCode());
+        }
+        if (selectedAmphoe != null) {
+            userPlotModel.setAmpCode(selectedAmphoe.getAmpCode());
+        }
+        if (selectedprovince != null) {
+            userPlotModel.setProvCode(selectedprovince.getProvCode());
+        }
 
 
         if (userPlotModel.getPrdID().equals("49")) {
 
-            EditText va_inputRai       = (EditText) findViewById(R.id.va_inputRai);
-            EditText va_inputNgan      = (EditText) findViewById(R.id.va_inputNgan);
-            EditText va_inputSqWa      = (EditText) findViewById(R.id.va_inputSqWa);
+            EditText va_inputRai = (EditText) findViewById(R.id.va_inputRai);
+            EditText va_inputNgan = (EditText) findViewById(R.id.va_inputNgan);
+            EditText va_inputSqWa = (EditText) findViewById(R.id.va_inputSqWa);
             EditText va_inputNuberOfva = (EditText) findViewById(R.id.va_inputNuberOfva);
 
 //StringUtil.strToDoubleDefaultZero();
@@ -1374,18 +1382,17 @@ public class StepThreeActivity extends Activity {
             this.userPlotModel.setFisheryType(ServiceInstance.FISHERY_TYPE_BO);
 
 
-
         } else {
             // kc is a : kachang(กระชัง) in thai
             // bo is a : (บ่อ) in thai
             // va is a : แวนนาโม(กุ้ง)
-            Log.d("Test","KaChang Flag"+kcSelected);
+            Log.d("Test", "KaChang Flag" + kcSelected);
             if (kcSelected) {
                 EditText kc_inputSqMPerKC = (EditText) findViewById(R.id.kc_inputSqMPerKC);
                 EditText kc_inputNumberOfKC = (EditText) findViewById(R.id.kc_inputNuberOfKC);
                 EditText kc_inputFishPerKC = (EditText) findViewById(R.id.kc_inputFishPerKC);
 
-                Log.d(TAG,"CoopMeter : "+kc_inputSqMPerKC.getText().toString());
+                Log.d(TAG, "CoopMeter : " + kc_inputSqMPerKC.getText().toString());
 
                 this.userPlotModel.setCoopMeter(Util.clearStrNumberFormat(kc_inputSqMPerKC.getText().toString()));
 
@@ -1399,10 +1406,10 @@ public class StepThreeActivity extends Activity {
 
             } else {
 
-                EditText bo_inputRai       = (EditText) findViewById(R.id.bo_inputRai);
-                EditText bo_inputNgan      = (EditText) findViewById(R.id.bo_inputNgan);
-                EditText bo_inputSqWa      = (EditText) findViewById(R.id.bo_inputSqWa);
-                EditText bo_inputSqMeter     = (EditText) findViewById(R.id.bo_inputSqMeter);
+                EditText bo_inputRai = (EditText) findViewById(R.id.bo_inputRai);
+                EditText bo_inputNgan = (EditText) findViewById(R.id.bo_inputNgan);
+                EditText bo_inputSqWa = (EditText) findViewById(R.id.bo_inputSqWa);
+                EditText bo_inputSqMeter = (EditText) findViewById(R.id.bo_inputSqMeter);
 
                 EditText bo_inputNuberOfUnit = (EditText) findViewById(R.id.bo_inputNuberOfUnit);
 
@@ -1415,11 +1422,11 @@ public class StepThreeActivity extends Activity {
 
                 this.userPlotModel.setPondMeter(Util.clearStrNumberFormat((bo_inputSqMeter.getText().toString())));
 
-                if(tuaSelected) {
+                if (tuaSelected) {
                     this.userPlotModel.setFisheryNumType(ServiceInstance.FISHERY_NUM_TYPE_TUA);
                     this.userPlotModel.setFisheryNumber(Util.clearStrNumberFormat(bo_inputNuberOfUnit.getText().toString()));
                     this.userPlotModel.setFisheryWeight("");
-                }else{
+                } else {
                     this.userPlotModel.setFisheryNumType(ServiceInstance.FISHERY_NUM_TYPE_KK);
                     this.userPlotModel.setFisheryWeight(Util.clearStrNumberFormat(bo_inputNuberOfUnit.getText().toString()));
                     this.userPlotModel.setFisheryNumber("");
@@ -1427,23 +1434,23 @@ public class StepThreeActivity extends Activity {
                 }
                 this.userPlotModel.setFisheryType(ServiceInstance.FISHERY_TYPE_BO);
 
-                }
             }
+        }
 
     }
 
-   public class Holder{
+    public class Holder {
 
-        ImageView prodImg ;
-        LinearLayout prodBg,fishBoLayout,fishKcLayout,fishVaLayout;
-        com.neopixl.pixlui.components.textview.TextView labelProductName,labelProductHierarchy,labelNumberOfStart
-                ,labelPricePerUnit,labelWeightPerUnit;
-       com.neopixl.pixlui.components.edittext.EditText inputPricePerUnit ,inputWeightPerUnit,inputNumberOfStart;
+        ImageView prodImg;
+        LinearLayout prodBg, fishBoLayout, fishKcLayout, fishVaLayout;
+        com.neopixl.pixlui.components.textview.TextView labelProductName, labelProductHierarchy, labelNumberOfStart, labelPricePerUnit, labelWeightPerUnit;
+        com.neopixl.pixlui.components.edittext.EditText inputPricePerUnit, inputWeightPerUnit, inputNumberOfStart;
     }
+
     @Override
     public void onResume() {
         super.onResume();  // Always call the superclass method first
-        Log.d(TAG,"onResume  ProgressAction.gone ... ");
+        Log.d(TAG, "onResume  ProgressAction.gone ... ");
         ProgressAction.gone(StepThreeActivity.this);
         // Release the Camera because we don't need it when paused
         // and other activities might need to use it.

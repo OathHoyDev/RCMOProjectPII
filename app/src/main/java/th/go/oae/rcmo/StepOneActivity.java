@@ -36,7 +36,6 @@ import th.go.oae.rcmo.Module.mProvince;
 import th.go.oae.rcmo.Module.mTumbon;
 import th.go.oae.rcmo.Util.GPSTracker;
 import th.go.oae.rcmo.Util.ServiceInstance;
-import th.go.oae.rcmo.Util.Util;
 import th.go.oae.rcmo.View.DialogChoice;
 import th.go.oae.rcmo.View.ProgressAction;
 
@@ -181,11 +180,17 @@ public class StepOneActivity extends Activity {
             @Override
             public void onClick(View v) {
                 if(goNextStep){
-                    startActivity(new Intent(StepOneActivity.this, StepTwoActivity.class)
+                    StepTwoActivity.selectedprovince = selectedprovince;
+                    StepTwoActivity.selectedAmphoe   = selectedAmphoe;
+                    StepTwoActivity.selectedTumbon   = selectedTumbon;
+
+                    startActivity(new Intent(StepOneActivity.this, StepTwoActivity.class));
+                    /*
                             .putExtra("provCode", selectedprovince.getProvCode())
                             .putExtra("amphoeCode", selectedAmphoe.getAmpCode())
                             .putExtra("tambonCode", selectedTumbon.getTamCode()));
                    // Util.showDialogAndDismiss(StepOneActivity.this,"Go Next Step");
+                   */
                 }
 
 

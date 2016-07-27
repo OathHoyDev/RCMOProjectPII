@@ -75,6 +75,7 @@ public class UserPlotListActivity extends Activity {
     protected void onStart() {
         super.onStart();
         Log.d(TAG, "On Start .....");
+        /*
         if(userPlotRespBodyList!=null) {
             if (userPlotRespBodyList.size() == 0 ) {
                 Log.d(TAG, "Not found data on memory go to start page .....");
@@ -83,7 +84,9 @@ public class UserPlotListActivity extends Activity {
                 startActivity(intent);
                 finish();
             }
+
         }
+        */
     }
     @Override
     protected void onStop() {

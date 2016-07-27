@@ -715,6 +715,7 @@
 
                 <com.neopixl.pixlui.components.textview.TextView
                     android:id="@+id/labelLocation"
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_normal"
@@ -726,7 +727,7 @@
 
                 <com.neopixl.pixlui.components.textview.TextView
                     android:id="@+id/inputprovice"
-
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_normal"
@@ -754,6 +755,7 @@
 
                     <com.neopixl.pixlui.components.textview.TextView
                         android:id="@+id/inputAmphoe"
+                        android:visibility="gone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="1dp"
@@ -777,6 +779,7 @@
 
                     <com.neopixl.pixlui.components.textview.TextView
                         android:id="@+id/inputTumbon"
+                        android:visibility="gone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="1dp"

@@ -112,13 +112,25 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="140dp"
                 android:layout_alignParentBottom="true"
                 android:adjustViewBounds="true"
-                android:background="@drawable/bottom_total" />
+                android:background="@drawable/bottom_total"
+                android:id="@+id/imageView4" />
+            <ImageView
+                android:id="@+id/upBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:layout_marginTop="40dp"
 
+                android:adjustViewBounds="true"
+                android:src="@drawable/up"
+
+                android:layout_below="@+id/linearLayout6"
+                android:layout_centerHorizontal="true" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -139,7 +151,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:id="@+id/linearLayout6">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -152,6 +165,7 @@
                     <LinearLayout
                         android:id="@+id/plantBtn"
                         android:layout_width="match_parent"
+                        android:clickable="true"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="5dp"
                         android:layout_weight="1"
@@ -170,7 +184,6 @@
                             android:id="@+id/plant_btn_label"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:clickable="true"
                             android:gravity="center"
                             android:padding="2dp"
                             android:text="กลุ่มพืช"
@@ -188,6 +201,7 @@
                         android:layout_weight="1"
                         android:background="@drawable/animal_cut_conner"
                         android:gravity="center"
+                        android:clickable="true"
                         android:orientation="horizontal">
 
                         <ImageView
@@ -201,7 +215,6 @@
                             android:id="@+id/animal_btn_label"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:clickable="true"
                             android:gravity="center"
                             android:padding="2dp"
                             android:text="กลุ่มปศุสัตว์"
@@ -213,6 +226,7 @@
 
                     <LinearLayout
                         android:id="@+id/fishBtn"
+                        android:clickable="true"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -231,7 +245,6 @@
                             android:id="@+id/fish_btn_label"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:clickable="true"
                             android:gravity="center"
                             android:padding="2dp"
                             android:text="กลุ่มประมง"
@@ -278,9 +291,9 @@
                         <ImageView
                             android:layout_marginTop="10dp"
                             android:id="@+id/product_img"
-                            android:layout_width="wrap_content"
+                            android:layout_width="110dp"
                             android:layout_height="110dp"
-                            android:adjustViewBounds="true"
+
                             android:src="@drawable/p1_2" />
                     </LinearLayout>
 
@@ -304,26 +317,34 @@
                             android:textSize="@dimen/textsize_large"
                             pixlui:typeface="Quark-Bold.otf" />
 
-                        <LinearLayout
+                        <RelativeLayout
                             android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
-                            android:gravity="center"
-                            android:orientation="vertical"
                             android:background="@drawable/light_orange_cut_conner">
                             <com.neopixl.pixlui.components.textview.TextView
                                 android:id="@+id/num_of_market"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:clickable="true"
-                                android:gravity="center"
                                 android:padding="5dp"
-                                android:text="50"
+                                android:text="0"
                                 android:textColor="@color/RcmoNormalLightText"
                                 android:textSize="35dp"
-                                pixlui:typeface="Quark-Bold.otf" />
-                        </LinearLayout>
+                                pixlui:typeface="Quark-Bold.otf"
+                                android:layout_centerHorizontal="true" />
+
+                            <ImageView
+
+                                android:id="@+id/ic_market"
+                                android:layout_width="15dp"
+                                android:layout_margin="4dp"
+                                android:layout_height="15dp"
+                                android:adjustViewBounds="true"
+                                android:src="@drawable/ic_market"
+                                android:layout_alignParentBottom="true"
+                                android:layout_alignParentEnd="true" />
+                        </RelativeLayout>
 
                         <com.neopixl.pixlui.components.textview.TextView
                             android:layout_marginTop="5dp"
@@ -352,7 +373,7 @@
                                 android:layout_marginRight="4dp"
                                 android:layout_height="25dp"
                                 android:adjustViewBounds="true"
-                                android:src="@drawable/start_3d" />
+                                android:src="@drawable/start_3d_no" />
                             <ImageView
 
                                 android:id="@+id/star2"
@@ -360,7 +381,7 @@
                                 android:layout_marginRight="4dp"
                                 android:layout_height="25dp"
                                 android:adjustViewBounds="true"
-                                android:src="@drawable/start_3d" />
+                                android:src="@drawable/start_3d_no" />
                             <ImageView
 
                                 android:id="@+id/star3"
@@ -372,13 +393,13 @@
                             </LinearLayout>
 
                         <com.neopixl.pixlui.components.textview.TextView
-
+                            android:id="@+id/match_value_label"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:clickable="true"
                             android:gravity="center"
                             android:padding="5dp"
-                            android:text="เหมาะสมมาก"
+                            android:text=""
                             android:textColor="@color/RcmoNormalLightText"
                             android:textSize="@dimen/textsize_normal"
                             pixlui:typeface="Quark-Bold.otf" />
@@ -421,6 +442,21 @@
         </RelativeLayout>
 
     </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#66000000"
+        android:id="@+id/progress"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            />
+
+    </RelativeLayout>
 </RelativeLayout>
 
 
