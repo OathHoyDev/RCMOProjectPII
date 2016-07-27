@@ -181,7 +181,11 @@ public class StepOneActivity extends Activity {
             @Override
             public void onClick(View v) {
                 if(goNextStep){
-                    Util.showDialogAndDismiss(StepOneActivity.this,"Go Next Step");
+                    startActivity(new Intent(StepOneActivity.this, StepTwoActivity.class)
+                            .putExtra("provCode", selectedprovince.getProvCode())
+                            .putExtra("amphoeCode", selectedAmphoe.getAmpCode())
+                            .putExtra("tambonCode", selectedTumbon.getTamCode()));
+                   // Util.showDialogAndDismiss(StepOneActivity.this,"Go Next Step");
                 }
 
 
