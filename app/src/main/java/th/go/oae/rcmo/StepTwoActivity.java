@@ -16,9 +16,11 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.neopixl.pixlui.components.textview.TextView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +30,7 @@ import th.go.oae.rcmo.API.RequestServices;
 import th.go.oae.rcmo.API.ResponseAPI;
 import th.go.oae.rcmo.Model.ProductModel;
 import th.go.oae.rcmo.Model.UserModel;
+import th.go.oae.rcmo.Module.mGetProductSuit;
 import th.go.oae.rcmo.Module.mPlantGroup;
 import th.go.oae.rcmo.Module.mProduct;
 import th.go.oae.rcmo.Module.mRiceProduct;
@@ -37,108 +40,115 @@ import th.go.oae.rcmo.View.DialogChoice;
 
 
 public class StepTwoActivity extends Activity {
-    public static List<mProduct.mRespBody> productInfoLists =  new ArrayList<>();
-    public static List<mPlantGroup.mRespBody> plantGroupLists =  new ArrayList<>();
-    public static List<mRiceProduct.mRespBody> riceProductGroupLists =  new ArrayList<>();
-    int groupId =0;
-    String prodHierarchyStr = "";
-    GridView  productGridView;
-    int gplantGroupId = 0;
+   // public static List<mProduct.mRespBody> productInfoLists = new ArrayList<>();
+    //public static List<mPlantGroup.mRespBody> plantGroupLists = new ArrayList<>();
+    public static List<mGetProductSuit.mRespBody> productSuitLists = new ArrayList<>();
+    String provID;
+    String amphoeID;
+    String tambonID;
+    ViewPager pager = null;
+
+    static class ViewHolder {
+        private TextView input_province, input_amphoe, input_tambon, input_location;
+        //label_main_search;
+        private ImageView bg_province, bg_amphoe, bg_tambon, bg_location, img_label_location, step2;
+        private LinearLayout layout_click_province, layout_click_amphoe, layout_click_tambon, layout_click_location, layout_search;
+        private RelativeLayout layout_province_active, layout_amphoe_active, layout_tambon_active, layout_location_active;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        gplantGroupId = 0;
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_step_two);
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
-            groupId = bundle.getInt(ServiceInstance.INTENT_GROUP_ID);
-            prodHierarchyStr = bundle.getString(ServiceInstance.INTENT_PROD_HIERARCHY);
-            if(prodHierarchyStr == null){prodHierarchyStr="";}
-
+            provID = bundle.getString("provCode");
+            amphoeID = bundle.getString("amphoeCode");
+            tambonID = bundle.getString("tambonCode");
+        } else {
+            provID = "0";
+            amphoeID = "0";
+            tambonID = "0";
         }
 
         setUI();
-      //  setAction();
+        //  setAction();
 
     }
 
-    private  void setUI(){
-       initCarousels();
+    private void setUI() {
+       API_GetProductSuit(provID,amphoeID,tambonID,0,0,0);
     }
 
-    private void initCarousels(){
+    /*
+       UserModel model = new UserModel();
+       model.userID = "A";
+       model.userLogin = "ic_p_1_1";
+
+       final List<UserModel> modelL = new ArrayList<>();
+       modelL.add(model);
+
+       model = new UserModel();
+       model.userID = "B";
+       model.userLogin = "ic_p_1_2";
+
+       modelL.add(model);
+
+       model = new UserModel();
+       model.userID = "C";
+       model.userLogin = "ic_p_1_3";
+
+       modelL.add(model);
+
+       model = new UserModel();
+       model.userID = "D";
+       model.userLogin = "ic_p_1_4";
+
+       modelL.add(model);
+
+       model = new UserModel();
+       model.userID = "E";
+       model.userLogin = "ic_p_1_5";
+
+       model = new UserModel();
+       model.userID = "H";
+       model.userLogin = "ic_p_1_6";
+
+       modelL.add(model);
+
+       model = new UserModel();
+       model.userID = "I";
+       model.userLogin = "ic_p_1_7";
+
+       modelL.add(model);
+
+       model = new UserModel();
+       model.userID = "J";
+       model.userLogin = "ic_p_1_8";
+
+       modelL.add(model);
+*/
+    private void initCarousels(List<mGetProductSuit.mRespBody> prodInfoList) {
         PagerContainer container = (PagerContainer) findViewById(R.id.pager_container);
-        UserModel model = new UserModel();
-        model.userID ="A";
-        model.userLogin = "ic_p_1_1";
-
-        final  List<UserModel> modelL = new ArrayList<>();
-        modelL.add(model);
-
-        model = new UserModel();
-        model.userID ="B";
-        model.userLogin = "ic_p_1_2";
-
-        modelL.add(model);
-
-        model = new UserModel();
-        model.userID ="C";
-        model.userLogin = "ic_p_1_3";
-
-        modelL.add(model);
-
-        model = new UserModel();
-        model.userID ="D";
-        model.userLogin = "ic_p_1_4";
-
-        modelL.add(model);
-
-        model = new UserModel();
-        model.userID ="E";
-        model.userLogin = "ic_p_1_5";
-
-        model = new UserModel();
-        model.userID ="H";
-        model.userLogin = "ic_p_1_6";
-
-        modelL.add(model);
-
-        model = new UserModel();
-        model.userID ="I";
-        model.userLogin = "ic_p_1_7";
-
-        modelL.add(model);
-
-        model = new UserModel();
-        model.userID ="J";
-        model.userLogin = "ic_p_1_8";
-
-        modelL.add(model);
 
 
-        ViewPager pager = container.getViewPager();
-        pager.setAdapter(new MyPagerAdapter(modelL));
+        pager = container.getViewPager();
+        pager.setAdapter(new MyPagerAdapter(prodInfoList));
         pager.setClipChildren(false);
-        //
-        pager.setOffscreenPageLimit(modelL.size());
-
-      //  boolean showTransformer = getIntent().getBooleanExtra("showTransformer",false);
+        pager.setOffscreenPageLimit(prodInfoList.size());
         pager.setCurrentItem(3);
 
-        //if(showTransformer){
+        new CoverFlow.Builder()
+                .with(pager)
+                .scale(0.25f)
+                .pagerMargin(-100f)
+                .spaceSize(50f)
+                .build();
 
-            new CoverFlow.Builder()
-                    .with(pager)
-                    .scale(0.25f)
-                    .pagerMargin(-100f)
-                    .spaceSize(50f)
-                    .build();
+        pager.setPageMargin(30);
 
-        //}else{
-            pager.setPageMargin(30);
-       // }
         pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
             private int index = 0;
@@ -151,16 +161,13 @@ public class StepTwoActivity extends Activity {
 
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                //int width = bindingPager.getWidth();
-                // bindingPager.scrollTo((int) (width * position + width * positionOffset), 0);
+
             }
 
             @Override
             public void onPageScrollStateChanged(int state) {
                 if (state == ViewPager.SCROLL_STATE_IDLE) {
-                    // bindingPager.setCurrentItem(index);
-                   // Toast.makeText(StepTwoActivity.this,  modelL.get(index).userID,
-                          //  Toast.LENGTH_LONG).show();
+
                 }
 
             }
@@ -168,42 +175,93 @@ public class StepTwoActivity extends Activity {
     }
 
     private class MyPagerAdapter extends PagerAdapter {
-        List<UserModel> userModelList = new ArrayList<UserModel>();
+        List<mGetProductSuit.mRespBody> productList = new ArrayList<mGetProductSuit.mRespBody>();
 
-        public MyPagerAdapter(List<UserModel> userModelList) {
-            this.userModelList = userModelList;
+        public MyPagerAdapter(List<mGetProductSuit.mRespBody> products) {
+            this.productList = products;
         }
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
-            UserModel userInfo = userModelList.get(position);
-            // View view = LayoutInflater.from(NormalActivity.this).inflate(R.layout.item_cover,null);
-            // ImageView imageView = (ImageView) view.findViewById(R.id.image_cover);
+            mGetProductSuit.mRespBody prod = productList.get(position);
 
-            View rootView = getLayoutInflater().inflate(R.layout.row_carousels, container, false);
-            // ImageView imageView = (ImageView) rootView.findViewById(R.id.imageView);
-            //  imageView.setImageDrawable(getResources().getDrawable(DemoData.covers[position]));
-            //   imageView.setImageBitmap(BitMapHelper.decodeSampledBitmapFromResource(getResources(), getResources().getIdentifier(userInfo.userLogin, "drawable", getPackageName()), 100, 100));
+            Log.d("Test","Size : "+productList.size());
+            Log.d("Test","ID : "+prod.getPrdID());
+            Log.d("Test","Group : "+prod.getPrdGrpID());
 
-            //imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            View         rootView     = getLayoutInflater().inflate(R.layout.row_carousels, container, false);
+            ImageView    imageView    = (ImageView) rootView.findViewById(R.id.prodImg);
+            LinearLayout row_product  = (LinearLayout) rootView.findViewById(R.id.row_product);
+            String imgName = ServiceInstance.productIMGMap.get(prod.getPrdID());
+
+            if (imgName != null) {
+                imageView.setImageResource(getResources().getIdentifier(imgName, "drawable", getPackageName()));
+            }
+
+            if (prod.getPrdGrpID()==1) {
+                row_product.setBackgroundResource(R.drawable.plant_ic_circle_bg);
+            } else if (prod.getPrdGrpID()==2) {
+                row_product.setBackgroundResource(R.drawable.animal_ic_circle_bg);
+            } else {
+                row_product.setBackgroundResource(R.drawable.fish_ic_circle_bg);
+            }
+
             container.addView(rootView);
             return rootView;
         }
 
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
-            container.removeView((View)object);
+            container.removeView((View) object);
         }
 
         @Override
         public int getCount() {
-            return userModelList.size();
+            return productList.size();
         }
 
         @Override
         public boolean isViewFromObject(View view, Object object) {
             return (view == object);
         }
+    }
+
+
+    private void API_GetProductSuit(String provId, String amphoeId, String tambonId, int plantFlg, int animalFlg, int fishFlg) {
+        /*
+        1.TamCode (บังคับ)
+        2.AmpCode (บังคับ)
+        3.ProvCode ( บังคับ)
+        4.PlantFlag
+        5.AnimalFlag
+        6.FisheryFlag
+         */
+
+        new ResponseAPI(this, new ResponseAPI.OnCallbackAPIListener() {
+            @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
+            @Override
+            public void callbackSuccess(Object obj) {
+
+                mGetProductSuit productSuit = (mGetProductSuit) obj;
+                productSuitLists = productSuit.getRespBody();
+                if (productSuitLists.size() != 0) {
+                     initCarousels(productSuitLists);
+                }
+            }
+
+            @Override
+            public void callbackError(int code, String errorMsg) {
+                Log.d("Erroo", errorMsg);
+            }
+        }).API_Request(true, RequestServices.ws_getProductSuit +
+                "?TamCode=" + tambonId
+                + "&AmpCode=" + amphoeId
+                + "&ProvCode=" + provId
+                + "&PlantFlag=" + plantFlg
+                + "&AnimalFlag=" + animalFlg
+                + "&FisheryFlag=" + fishFlg
+        );
+
     }
 /*
     @Override

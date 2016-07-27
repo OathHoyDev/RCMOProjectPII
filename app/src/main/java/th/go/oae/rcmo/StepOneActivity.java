@@ -209,7 +209,7 @@ public class StepOneActivity extends Activity {
 
                 if (productLists.size() != 0) {
                     productLists.get(0).toString();
-                    StepTwoActivity.plantGroupLists = productLists;
+                  //  StepTwoActivity.plantGroupLists = productLists;
                     startActivity(new Intent(StepOneActivity.this, StepTwoActivity.class)
                             .putExtra(ServiceInstance.INTENT_GROUP_ID, 1));
 
@@ -250,7 +250,7 @@ public class StepOneActivity extends Activity {
 
                 if (productLists.size() != 0) {
                     productLists.get(0).toString();
-                    StepTwoActivity.productInfoLists = productLists;
+                   // StepTwoActivity.productInfoLists = productLists;
                     startActivity(new Intent(StepOneActivity.this, StepTwoActivity.class)
                             .putExtra(ServiceInstance.INTENT_GROUP_ID, prdGrpID));
                 }

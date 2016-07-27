@@ -14,6 +14,7 @@ import th.go.oae.rcmo.Module.mCurrentLocation;
 import th.go.oae.rcmo.Module.mDeletePlot;
 import th.go.oae.rcmo.Module.mGetPlotDetail;
 import th.go.oae.rcmo.Module.mGetPlotSuit;
+import th.go.oae.rcmo.Module.mGetProductSuit;
 import th.go.oae.rcmo.Module.mGetRegister;
 import th.go.oae.rcmo.Module.mGetVariable;
 import th.go.oae.rcmo.Module.mLogin;
@@ -78,7 +79,11 @@ public class ResponseAPI {
                                             object = new Gson().fromJson(html, mRegister.class);
                                         } else if (url_ws.contains(RequestServices.ws_getPlotList)) {
                                             object = new Gson().fromJson(html, mUserPlotList.class);
+                                        }else if (url_ws.contains(RequestServices.ws_getProductSuit)) {
+                                            Log.i(RequestServices.TAG, "ws_getProductSuit : " + url_ws);
+                                            object = new Gson().fromJson(html, mGetProductSuit.class);
                                         } else if (url_ws.contains(RequestServices.ws_getProduct)) {
+                                            Log.i(RequestServices.TAG, "ws_getProduct : " + url_ws);
                                             object = new Gson().fromJson(html, mProduct.class);
                                         } else if (url_ws.contains(RequestServices.ws_getRiceProduct)) {
                                             object = new Gson().fromJson(html, mRiceProduct.class);
