@@ -22,6 +22,7 @@ import th.go.oae.rcmo.Util.ServiceInstance;
 import th.go.oae.rcmo.View.DialogChoice;
 
 public class RegisterActivity extends Activity {
+    String callBy =null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +36,10 @@ public class RegisterActivity extends Activity {
         Holder.inputName = (EditText) findViewById(R.id.inputName);
         Holder.inputPassword = (EditText) findViewById(R.id.inputPassword);
         Holder.inputConfirmPassword = (EditText) findViewById(R.id.inputConfirmPassword);
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            callBy = bundle.getString("callBy",null);
+        }
 
         setUI();
         setAction();
@@ -212,7 +217,11 @@ public class RegisterActivity extends Activity {
                         @Override
                         public void run() {
                             dialog.dismiss();
-                            API_GetUserPlot(userID);
+                            if(callBy == null) {
+                                API_GetUserPlot(userID);
+                            }else{
+                                finish();
+                            }
                         }
                     };
                     handler.postDelayed(runnable, 2000);

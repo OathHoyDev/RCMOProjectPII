@@ -32,6 +32,7 @@ import th.go.oae.rcmo.View.DialogChoice;
 public class LoginActivity extends Activity {
     EditText inputUsername, inputPassword;
     ProgressBar progress;
+    String callBy =null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +46,11 @@ public class LoginActivity extends Activity {
 
         inputUsername.requestFocus();
          getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            callBy = bundle.getString("callBy",null);
+        }
 
         setUI();
         setAction();
@@ -125,11 +131,16 @@ public class LoginActivity extends Activity {
             @Override
             public void onClick(View v) {
 
+
                 ((ImageView)findViewById(R.id.btn_cal)).startAnimation(AnimationUtils.loadAnimation(LoginActivity.this, R.anim.fade_out));
                 Util.delay(1000, new Util.DelayCallback() {
                     @Override
                     public void afterDelay() {
-                        startActivity(new Intent(LoginActivity.this, StepOneActivity.class));
+                        if(callBy == null) {
+                            startActivity(new Intent(LoginActivity.this, StepOneActivity.class));
+                        }else{
+                            finish();
+                        }
                     }
                 });
 
@@ -209,7 +220,11 @@ public class LoginActivity extends Activity {
                     editor.putString(ServiceInstance.sp_userId, loginBodyLists.get(0).getUserID());
                     editor.commit();
 
-                    API_GetUserPlot(loginBodyLists.get(0).getUserID());
+                    if(callBy == null) {
+                        API_GetUserPlot(loginBodyLists.get(0).getUserID());
+                    }else{
+                        finish();
+                    }
                 }
 
             }

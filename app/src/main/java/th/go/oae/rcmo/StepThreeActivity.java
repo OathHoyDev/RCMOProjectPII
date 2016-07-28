@@ -308,7 +308,7 @@ public class StepThreeActivity extends Activity {
         findViewById(R.id.btnCal).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ProgressAction.show(StepThreeActivity.this);
+
                 userPlotModel = new UserPlotModel();
                 userPlotModel.setPrdGrpID(String.valueOf(productionInfo.getPrdGrpID()));
                 userPlotModel.setPrdID(String.valueOf(productionInfo.getPrdID()));
@@ -331,6 +331,7 @@ public class StepThreeActivity extends Activity {
                 }
 
                 if (isValidate) {
+                    ProgressAction.show(StepThreeActivity.this);
                     API_getVariable();
 
                 } else {
@@ -346,11 +347,29 @@ public class StepThreeActivity extends Activity {
             @Override
             public void onClick(View view) {
 
+
+                SharedPreferences sp = getSharedPreferences(ServiceInstance.PREF_NAME, Context.MODE_PRIVATE);
+                userId = sp.getString(ServiceInstance.sp_userId, "0");
                 userPlotModel.setUserID(userId);
                 if (userPlotModel.getUserID() == null || userPlotModel.getUserID().equals("0") || userPlotModel.getUserID().equals("")) {
                     //new DialogChoice(StepThreeActivity.this)
                      //       .ShowOneChoice("ไม่สามารถบันทึกข้อมูล", "- กรุณา Login ก่อนทำการบันทึกข้อมูล");
-                    new DialogChoice(StepThreeActivity.this).ShowLogInNoti();
+                  //  new DialogChoice(StepThreeActivity.this).ShowLogInNoti();
+
+                    new DialogChoice(StepThreeActivity.this, new DialogChoice.OnSelectChoiceListener() {
+                        @Override
+                        public void OnSelect(int choice) {
+                            if(choice == DialogChoice.LOGIN){
+                                ProgressAction.show(StepThreeActivity.this);
+                                startActivity(new Intent(StepThreeActivity.this, LoginActivity.class)
+                                .putExtra("callBy", StepThreeActivity.class.getName()));
+                            }else  if(choice == DialogChoice.REGISTER){
+                                ProgressAction.show(StepThreeActivity.this);
+                                startActivity(new Intent(StepThreeActivity.this, RegisterActivity.class)
+                                        .putExtra("callBy", StepThreeActivity.class.getName()));
+                            }
+                        }
+                    }).ShowLogInNoti();
                    // ShowLogInNoti
 
                 } else {

@@ -8,11 +8,13 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import th.go.oae.rcmo.R;
+import th.go.oae.rcmo.StepTwoActivity;
 import th.go.oae.rcmo.Util.BitMapHelper;
 import th.go.oae.rcmo.Util.ServiceInstance;
 import th.go.oae.rcmo.Util.Util;
@@ -22,6 +24,8 @@ public class DialogChoice {
 
     public static int OK =0;
     public static int CANCEL =1;
+    public static int LOGIN=3;
+    public static int REGISTER =4;
     Context context;
     OnSelectChoiceListener onSelectChoiceListener;
 
@@ -288,25 +292,53 @@ public class DialogChoice {
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 
         //dialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
-        //LinearLayout tutoraioBg = (LinearLayout)dialog.findViewById(R.id.tutorail_bg);
-        //TextView tutorail_close = (TextView)dialog.findViewById(R.id.tutorail_close);
 
-        //  tutoraioBg.setBackground(new BitmapDrawable(BitMapHelper.decodeSampledBitmapFromResource(context.getResources(), context.getResources().getIdentifier(tutorailBg, "drawable", context.getPackageName()), 300, 400)));
+       final LinearLayout layout_btn = (LinearLayout)dialog.findViewById(R.id.layout_btn);
+
+        Util.delay(500, new Util.DelayCallback() {
+            @Override
+            public void afterDelay() {
+                layout_btn.setVisibility(View.VISIBLE);
+                layout_btn.startAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_in));
+            }
+        });
 
 
-       // tutoraioBg.setOnClickListener(new View.OnClickListener() {
-         //   @Override
-         //   public void onClick(View view) {
-             //   dialog.dismiss();
-      //      }
-      //  });
+        final ImageView imageSwitcher = (ImageView)dialog.findViewById(R.id.farmerImg);
+        imageSwitcher.postDelayed(new Runnable() {
+            int i = 0;
+            public void run() {
+                imageSwitcher.setImageResource(
+                        i++ % 2 == 0 ?
+                                R.drawable.farmer4 :
+                                R.drawable.farmer_3);
+                imageSwitcher.postDelayed(this, 500);
+            }
+        }, 500);
 
-      //  tutorail_close.setOnClickListener(new View.OnClickListener() {
-      //      @Override
-         //  public void onClick(View view) {
-         //       dialog.dismiss();
-          //  }
-       // });
+
+        TextView registerBtn = (TextView)dialog.findViewById(R.id.registerBtn);
+        TextView loginBtn = (TextView)dialog.findViewById(R.id.loginBtn);
+
+        registerBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(onSelectChoiceListener!=null) {
+                    onSelectChoiceListener.OnSelect(REGISTER);
+                }
+               dialog.dismiss();
+           }
+        });
+
+        loginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(onSelectChoiceListener!=null) {
+                    onSelectChoiceListener.OnSelect(LOGIN);
+                }
+                dialog.dismiss();
+            }
+        });
 
        dialog.show();
 

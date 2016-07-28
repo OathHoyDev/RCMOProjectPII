@@ -42,6 +42,7 @@ import th.go.oae.rcmo.Util.CalculateConstant;
 import th.go.oae.rcmo.Util.ServiceInstance;
 import th.go.oae.rcmo.Util.Util;
 import th.go.oae.rcmo.View.DialogChoice;
+import th.go.oae.rcmo.View.ProgressAction;
 
 public class PBCalculateResultActivity extends Activity {
     String TAG = "PBCalculateResultActivity";
@@ -121,8 +122,22 @@ public class PBCalculateResultActivity extends Activity {
                 String userId = sp.getString(ServiceInstance.sp_userId, "0");
                 userPlotModel.setUserID(userId);
                 if (userPlotModel.getUserID() == null || userPlotModel.getUserID().equals("0") || userPlotModel.getUserID().equals("")) {
-                    new DialogChoice(PBCalculateResultActivity.this)
-                            .ShowOneChoice("ไม่สามารถบันทึกข้อมูล", "- กรุณา Login ก่อนทำการบันทึกข้อมูล");
+                  //  new DialogChoice(PBCalculateResultActivity.this)
+                    //        .ShowOneChoice("ไม่สามารถบันทึกข้อมูล", "- กรุณา Login ก่อนทำการบันทึกข้อมูล");
+                    new DialogChoice(PBCalculateResultActivity.this, new DialogChoice.OnSelectChoiceListener() {
+                        @Override
+                        public void OnSelect(int choice) {
+                            if(choice == DialogChoice.LOGIN){
+                                ProgressAction.show(PBCalculateResultActivity.this);
+                                startActivity(new Intent(PBCalculateResultActivity.this, LoginActivity.class)
+                                        .putExtra("callBy", StepThreeActivity.class.getName()));
+                            }else  if(choice == DialogChoice.REGISTER){
+                                ProgressAction.show(PBCalculateResultActivity.this);
+                                startActivity(new Intent(PBCalculateResultActivity.this, RegisterActivity.class)
+                                        .putExtra("callBy", PBCalculateResultActivity.class.getName()));
+                            }
+                        }
+                    }).ShowLogInNoti();
 
                 } else {
 
@@ -778,6 +793,16 @@ if(userPlotModel.getPrdID().equals("40")
             // Several error may come out with file handling or OOM
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();  // Always call the superclass method first
+        Log.d(TAG, "onResume  ProgressAction.gone ... ");
+        ProgressAction.gone(PBCalculateResultActivity.this);
+        // Release the Camera because we don't need it when paused
+        // and other activities might need to use it.
+
     }
 }
 
