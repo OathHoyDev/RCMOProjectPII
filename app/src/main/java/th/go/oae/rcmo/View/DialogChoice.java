@@ -280,6 +280,39 @@ public class DialogChoice {
 
     }
 
+    public void ShowLogInNoti(){
+        final android.app.Dialog dialog = new android.app.Dialog(context);
+
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_noti_login);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+        //dialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
+        //LinearLayout tutoraioBg = (LinearLayout)dialog.findViewById(R.id.tutorail_bg);
+        //TextView tutorail_close = (TextView)dialog.findViewById(R.id.tutorail_close);
+
+        //  tutoraioBg.setBackground(new BitmapDrawable(BitMapHelper.decodeSampledBitmapFromResource(context.getResources(), context.getResources().getIdentifier(tutorailBg, "drawable", context.getPackageName()), 300, 400)));
+
+
+       // tutoraioBg.setOnClickListener(new View.OnClickListener() {
+         //   @Override
+         //   public void onClick(View view) {
+             //   dialog.dismiss();
+      //      }
+      //  });
+
+      //  tutorail_close.setOnClickListener(new View.OnClickListener() {
+      //      @Override
+         //  public void onClick(View view) {
+         //       dialog.dismiss();
+          //  }
+       // });
+
+       dialog.show();
+
+
+    }
+
 
         /*
         btn_cancel.setOnClickListener(new View.OnClickListener() {

@@ -348,8 +348,10 @@ public class StepThreeActivity extends Activity {
 
                 userPlotModel.setUserID(userId);
                 if (userPlotModel.getUserID() == null || userPlotModel.getUserID().equals("0") || userPlotModel.getUserID().equals("")) {
-                    new DialogChoice(StepThreeActivity.this)
-                            .ShowOneChoice("ไม่สามารถบันทึกข้อมูล", "- กรุณา Login ก่อนทำการบันทึกข้อมูล");
+                    //new DialogChoice(StepThreeActivity.this)
+                     //       .ShowOneChoice("ไม่สามารถบันทึกข้อมูล", "- กรุณา Login ก่อนทำการบันทึกข้อมูล");
+                    new DialogChoice(StepThreeActivity.this).ShowLogInNoti();
+                   // ShowLogInNoti
 
                 } else {
                     boolean isValidate = false;
