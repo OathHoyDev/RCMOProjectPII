@@ -1470,12 +1470,9 @@ public class StepThreeActivity extends Activity {
 
     @Override
     public void onResume() {
-        super.onResume();  // Always call the superclass method first
+        super.onResume();
         Log.d(TAG, "onResume  ProgressAction.gone ... ");
         ProgressAction.gone(StepThreeActivity.this);
-        // Release the Camera because we don't need it when paused
-        // and other activities might need to use it.
-
     }
 
 }

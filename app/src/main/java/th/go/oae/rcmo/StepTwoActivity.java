@@ -137,6 +137,7 @@ public class StepTwoActivity extends Activity {
             public void onClick(View v) {
 
                 if(selectedProduct != null){
+                    ProgressAction.show(StepTwoActivity.this);
                     ProductModel prodInfo = new ProductModel(selectedProduct.getPrdID()
                             , selectedProduct.getPrdName()
                             , selectedProduct.getPrdGrpID(),
@@ -150,6 +151,9 @@ public class StepTwoActivity extends Activity {
                     StepThreeActivity.selectedTumbon   = selectedTumbon;
                     startActivity(new Intent(StepTwoActivity.this, StepThreeActivity.class));
 
+                }else{
+                    new DialogChoice(StepTwoActivity.this)
+                           .ShowOneChoice("", "กรุณาเลือกสินค้าก่อนกดปุ่ม'ถัดไป'");
                 }
             }
         });
@@ -175,6 +179,7 @@ public class StepTwoActivity extends Activity {
             public void onClick(View v) {
                if(isPlantSelected){
                    isPlantSelected = false;
+                   checkResetSelectProduct();
                }else{
                    isPlantSelected = true;
                }
@@ -189,6 +194,7 @@ public class StepTwoActivity extends Activity {
             public void onClick(View v) {
                 if(isAnimalSelected){
                     isAnimalSelected = false;
+                    checkResetSelectProduct();
                 }else{
                     isAnimalSelected = true;
                 }
@@ -204,6 +210,7 @@ public class StepTwoActivity extends Activity {
             public void onClick(View v) {
                 if(isFishSelected){
                     isFishSelected = false;
+                    checkResetSelectProduct();
                 }else{
                     isFishSelected = true;
                 }
@@ -286,6 +293,12 @@ public class StepTwoActivity extends Activity {
         });
        // initView(true);
         ProgressAction.gone(StepTwoActivity.this);
+    }
+
+    private void checkResetSelectProduct(){
+        if(!(isPlantSelected || isAnimalSelected || isFishSelected)){
+               selectedProduct = null;
+        }
     }
 
 
@@ -491,410 +504,10 @@ public class StepTwoActivity extends Activity {
         );
 
     }
-/*
     @Override
-    protected void onStart() {
-        super.onStart();
-        Log.i("Step 2", "On Start .....");
-        if(productInfoLists!=null && plantGroupLists!=null && riceProductGroupLists!=null ) {
-            if (productInfoLists.size() == 0 && plantGroupLists.size() == 0 && riceProductGroupLists.size() == 0) {
-                Log.i("Step 2", "Not found data on memory go to start page .....");
-                Intent intent = new Intent(StepTwoActivity.this, SplashActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
-                finish();
-            }
-        }
-    }
-
-    private void setUI() {
-        LinearLayout mainLayout  =     (LinearLayout)findViewById(R.id.layoutStepTwo);
-        TextView titleText       =      (TextView)findViewById(R.id.titleLable);
-        TextView prodHierarchy   =      (TextView)findViewById(R.id.prodHierarchy);
-
-        if(groupId == 1){
-
-            //prodHierarchy.setText(prodHierarchyStr);
-            titleText.setText("ชนิดพืช");
-            prodHierarchy.setText(prodHierarchyStr);
-            //mainLayout.setBackgroundResource(R.drawable.bg_plant);
-            mainLayout.setBackground(new BitmapDrawable(BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.bg_plant, 300, 400)));
-        }else if(groupId == 2){
-
-            prodHierarchy.setText("");
-            titleText.setText("ชนิดปศุสัตว์");
-            //mainLayout.setBackgroundResource(R.drawable.bg_meat);
-            mainLayout.setBackground(new BitmapDrawable(BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.bg_meat, 300, 400)));
-        }else if(groupId == 3){
-
-            prodHierarchy.setText("");
-            titleText.setText("ชนิดประมง");
-           //mainLayout.setBackgroundResource(R.drawable.bg_fish);
-            mainLayout.setBackground(new BitmapDrawable(BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.bg_fish, 300, 400)));
-        }
-       // ((ImageView) findViewById(R.id.step1_ac)).setImageBitmap(BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.step1_ac, 400, 400));
-       // ((ImageView)findViewById(R.id.step2)).setImageBitmap(BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.step2_ac, R.dimen.img_3step_width, R.dimen.img_3step_height));
-        //((ImageView) findViewById(R.id.step3)).setImageBitmap (BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.step3, R.dimen.img_3step_width, R.dimen.img_3step_height));
-
-        productGridView = (GridView) findViewById(R.id.prodGridView);
-
-        if(productInfoLists!=null && productInfoLists.size()>0){
-
-            // Case Animal Fish
-            productGridView.setAdapter(new ProductUIAdapter(productInfoLists));
-            productInfoLists = null;
-        }else if(plantGroupLists!=null && plantGroupLists.size()>0){
-
-            //Case plant group
-            productGridView.setAdapter(new PlantProductUIAdapter(plantGroupLists));
-            plantGroupLists=null;
-
-        }else if(riceProductGroupLists!=null && riceProductGroupLists.size()>0){
-
-            //Case rice product group
-            productGridView.setAdapter(new RiceProductUIAdapter(riceProductGroupLists));
-            riceProductGroupLists=null;
-        }
-
-
-    }
-
-
-
-    class ProductUIAdapter extends BaseAdapter {
-        List<mProduct.mRespBody> productList;
-
-        ProductUIAdapter(List<mProduct.mRespBody> productInfoLists) {
-            this.productList = productInfoLists;
-        }
-
-        @Override
-        public int getCount() {
-            return this.productList.size();
-        }
-
-        @Override
-        public mProduct.mRespBody getItem(int position) {
-            return this.productList.get(position);
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return 0;
-        }
-
-        public void removeItem(int position) {
-            this.productList.remove(position);
-        }
-
-        @Override
-        public View getView(final int position, View convertView, ViewGroup parent) {
-            Holder h = new Holder();
-            if (convertView == null) {
-                LayoutInflater inflater = StepTwoActivity.this.getLayoutInflater();
-                convertView = inflater.inflate(R.layout.column_product_grid, parent, false);
-
-                h.prodImg = (ImageView) convertView.findViewById(R.id.prodImg);
-                h.productLabel = (TextView) convertView.findViewById(R.id.productLabel);
-                h.prodBg = (LinearLayout) convertView.findViewById(R.id.gridDrawBg);
-
-                convertView.setTag(h);
-            } else {
-                h = (Holder) convertView.getTag();
-            }
-
-
-            final mProduct.mRespBody productBodyResp = getItem(position);
-
-            final int pid = productBodyResp.getPrdID();
-            final int productGroupId = productBodyResp.getPrdGrpID();
-            final String productName = productBodyResp.getPrdName();
-
-
-            h.productLabel.setText(productBodyResp.getPrdName());
-
-            String imgName = ServiceInstance.productIMGMap.get(productBodyResp.getPrdID());
-
-            if (imgName != null) {
-                // h.prodImg.setImageResource(getResources().getIdentifier(imgName, "drawable", getPackageName()));
-                h.prodImg.setImageBitmap(BitMapHelper.decodeSampledBitmapFromResource(getResources(), getResources().getIdentifier(imgName, "drawable", getPackageName()), R.dimen.iccircle_img_width, R.dimen.iccircle_img_height));
-
-            }
-            if (productGroupId == 1) {
-                h.prodBg.setBackgroundResource(R.drawable.action_plant_ic_circle);
-            } else if (productGroupId == 2) {
-                h.prodBg.setBackgroundResource(R.drawable.action_animal_ic_circle);
-            } else {
-                h.prodBg.setBackgroundResource(R.drawable.action_fish_ic_circle);
-            }
-
-
-            convertView.findViewById(R.id.gridDrawBg).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (productGroupId == 1 && (pid == 1 || pid == 2)) {
-
-                        API_GetRiceProduct(pid, 0, prodHierarchyStr + "< " + productName);
-                    } else {
-                        //int prdID, String prdName, int prdGrpID, int plantGrpID, int riceTypeID,String plantHierarchy
-                        StepThreeActivity.productionInfo = new ProductModel(productBodyResp.getPrdID()
-                                , productBodyResp.getPrdName()
-                                , productBodyResp.getPrdGrpID()
-                                , gplantGroupId
-                                , 0
-                                , prodHierarchyStr);
-
-                        startActivity(new Intent(StepTwoActivity.this, StepThreeActivity.class));
-
-                    }
-                }
-            });
-
-
-            return convertView;
-        }
-    }
-
-    class PlantProductUIAdapter extends BaseAdapter {
-        List<mPlantGroup.mRespBody> productList;
-
-        PlantProductUIAdapter(List<mPlantGroup.mRespBody> productInfoLists) {
-            this.productList = productInfoLists;
-        }
-
-        @Override
-        public int getCount() {
-            return this.productList.size();
-        }
-
-        @Override
-        public mPlantGroup.mRespBody getItem(int position) {
-            return this.productList.get(position);
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return 0;
-        }
-
-        public void removeItem(int position) {
-            this.productList.remove(position);
-        }
-
-        @Override
-        public View getView(final int position, View convertView, ViewGroup parent) {
-            Holder h = new Holder();
-            if (convertView == null) {
-                LayoutInflater inflater = StepTwoActivity.this.getLayoutInflater();
-                convertView = inflater.inflate(R.layout.column_product_grid, parent, false);
-                h.prodImg = (ImageView) convertView.findViewById(R.id.prodImg);
-                h.productLabel = (TextView) convertView.findViewById(R.id.productLabel);
-                h.prodBg = (LinearLayout) convertView.findViewById(R.id.gridDrawBg);
-                convertView.setTag(h);
-            } else {
-                h = (Holder) convertView.getTag();
-            }
-
-
-            mPlantGroup.mRespBody productBodyResp = getItem(position);
-            final int plantGroupId = productBodyResp.getPlantGrpID();
-            final String prodName = productBodyResp.getPlantGrpName();
-            gplantGroupId = plantGroupId;
-
-
-            h.productLabel.setText(productBodyResp.getPlantGrpName());
-
-            String imgName = ServiceInstance.productIMGMap.get(productBodyResp.getPlantGrpID() + 1000);
-
-            if (imgName != null) {
-                // h.prodImg.setImageResource(getResources().getIdentifier(imgName, "drawable", getPackageName()));
-                h.prodImg.setImageBitmap(BitMapHelper.decodeSampledBitmapFromResource(getResources(), getResources().getIdentifier(imgName, "drawable", getPackageName()), R.dimen.iccircle_img_width, R.dimen.iccircle_img_height));
-            }
-
-
-            h.prodBg.setBackgroundResource(R.drawable.action_plant_ic_circle);
-
-            convertView.findViewById(R.id.gridDrawBg).setOnClickListener(new View.OnClickListener() {
-
-
-                @Override
-                public void onClick(View v) {
-
-                    API_GetProduct(1, plantGroupId, "< " + prodName + " ");
-                }
-            });
-
-            return convertView;
-        }
-    }
-
-    class RiceProductUIAdapter extends BaseAdapter {
-        List<mRiceProduct.mRespBody> productList;
-
-        RiceProductUIAdapter(List<mRiceProduct.mRespBody> productInfoLists){
-            this.productList =productInfoLists;
-        }
-        @Override
-        public int getCount() {
-            return  this.productList.size();
-        }
-
-        @Override
-        public mRiceProduct.mRespBody getItem(int position) {
-            return this.productList.get(position);
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return 0;
-        }
-
-        public void removeItem(int position) {
-            this.productList.remove(position);
-        }
-
-        @Override
-        public View getView(final int position, View convertView, ViewGroup parent) {
-            Holder h = new Holder();
-            if(convertView==null){
-                LayoutInflater inflater = StepTwoActivity.this.getLayoutInflater();
-                convertView = inflater.inflate(R.layout.column_product_grid, parent, false);
-
-                h.prodImg      = (ImageView) convertView.findViewById(R.id.prodImg);
-                h.productLabel = (TextView) convertView.findViewById(R.id.productLabel);
-                h.prodBg      =  (LinearLayout)convertView.findViewById(R.id.gridDrawBg);
-                convertView.setTag(h);
-            }else{
-                h = (Holder) convertView.getTag();
-            }
-
-
-           final mRiceProduct.mRespBody productBodyResp = getItem(position);
-           final int pid = productBodyResp.getPrdID();
-
-
-            h.productLabel.setText(productBodyResp.getPrdName());
-
-            String imgName = ServiceInstance.productIMGMap.get(productBodyResp.getPrdID());
-
-            if(imgName!=null) {
-                //h.prodImg.setImageResource(getResources().getIdentifier(imgName, "drawable", getPackageName()));
-                h.prodImg.setImageBitmap(BitMapHelper.decodeSampledBitmapFromResource(getResources(),getResources().getIdentifier(imgName, "drawable", getPackageName()), R.dimen.iccircle_img_width, R.dimen.iccircle_img_height));
-            }
-
-
-            h.prodBg.setBackgroundResource(R.drawable.action_plant_ic_circle);
-
-//int prdID, String prdName, int prdGrpID, int plantGrpID, int riceTypeID,String plantHierarchy
-            convertView.findViewById(R.id.gridDrawBg).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    StepThreeActivity.productionInfo =new ProductModel( productBodyResp.getPrdID()
-                                                                       ,productBodyResp.getPrdName()
-                                                                       ,1
-                                                                       ,gplantGroupId
-                                                                       ,productBodyResp.getRiceTypeID()
-                                                                       ,prodHierarchyStr);
-                    startActivity(new Intent(StepTwoActivity.this, StepThreeActivity.class));
-                }
-            });
-
-            return convertView;
-        }
-    }
-
-    static class  Holder{
-        private TextView productLabel;
-        private ImageView prodImg;
-        private LinearLayout prodBg;
-
-
-    }
-
-
-
-    private void API_GetRiceProduct(final int subId,final int subOfSubId,final String hierarchyStr) {
-        Log.d("TAG", "-->API_GetRiceProduct");
-        Log.d("TAG", "subId-->"+subId);
-        Log.d("TAG", "SubsubId-->"+subOfSubId);
-        Log.d("TAG", "hierarchyStr-->"+hierarchyStr);
-
-
-
-        new ResponseAPI(this, new ResponseAPI.OnCallbackAPIListener() {
-            @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
-            @Override
-            public void callbackSuccess(Object obj) {
-
-                mRiceProduct mProdist = (mRiceProduct) obj;
-                List<mRiceProduct.mRespBody> productLists = mProdist.getRespBody();
-                if (productLists.size() != 0) {
-
-                    productLists.get(0).toString();
-                    StepTwoActivity.riceProductGroupLists = productLists;
-                    startActivity(new Intent(StepTwoActivity.this, StepTwoActivity.class)
-                            .putExtra(ServiceInstance.INTENT_GROUP_ID,1)
-                            .putExtra(ServiceInstance.INTENT_PROD_HIERARCHY,hierarchyStr));
-                }
-            }
-            @Override
-            public void callbackError(int code, String errorMsg) {
-                Log.d("Erroo",errorMsg);
-            }
-        }).API_Request(true, RequestServices.ws_getRiceProduct +
-                "?RiceTypeID=" + subId+"&PrdID=" );
-
-    }
-*/
-    /*
-    private void API_GetProduct(final int prdGrpID, int plantGrpID, final String hierarchyStr) {
-        Log.d("TAG", "-->API_GetProduct");
-        Log.d("TAG", "prdGrpID-->"+prdGrpID);
-        Log.d("TAG", "plantGrpID-->"+plantGrpID);
-        Log.d("TAG", "hierarchyStr-->"+hierarchyStr);
-
-
-        String prdGrpIDStr = "";
-        String plantGrpIDStr = "";
-
-        if(prdGrpID == 1){
-            plantGrpIDStr = String.valueOf(plantGrpID);
-        }
-
-        prdGrpIDStr = String.valueOf(prdGrpID);
-
-        new ResponseAPI(this, new ResponseAPI.OnCallbackAPIListener() {
-            @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
-            @Override
-            public void callbackSuccess(Object obj) {
-
-                mProduct mProdist = (mProduct) obj;
-                List<mProduct.mRespBody> productLists = mProdist.getRespBody();
-
-                if (productLists.size() != 0) {
-
-                    productLists.get(0).toString();
-                    StepTwoActivity.productInfoLists = productLists;
-                    startActivity(new Intent(StepTwoActivity.this, StepTwoActivity.class)
-                            .putExtra(ServiceInstance.INTENT_GROUP_ID,prdGrpID)
-                            .putExtra(ServiceInstance.INTENT_PROD_HIERARCHY,hierarchyStr));
-                }
-            }
-            @Override
-            public void callbackError(int code, String errorMsg) {
-                Log.d("Erroo",errorMsg);
-            }
-        }).API_Request(true, RequestServices.ws_getProduct +
-                "?PrdGrpID=" + prdGrpIDStr + "&PlantGrpID="+plantGrpIDStr+
-                "&PrdID=" );
-
-    }
-
-    @Override
-    protected void onStop() {
+    public void onStop() {
         super.onStop();
-        Log.i("Step 2", "On Stop .....");
+        Log.d("StepTwoActivity", "onResume  ProgressAction.gone ... ");
+        ProgressAction.gone(StepTwoActivity.this);
     }
-
-*/
 }

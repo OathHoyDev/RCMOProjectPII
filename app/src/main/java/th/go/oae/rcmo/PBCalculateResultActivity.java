@@ -80,6 +80,7 @@ public class PBCalculateResultActivity extends Activity {
             public void onClick(View v) {
 
                 if(!(userPlotModel.getUserID().equals("0")) && saved ){
+                    ProgressAction.show(PBCalculateResultActivity.this);
                     API_GetUserPlot(userPlotModel.getUserID());
                 }else{
                     if((userPlotModel.getUserID().equals("0")||userPlotModel.getUserID().equals("") )){
@@ -735,7 +736,7 @@ if(userPlotModel.getPrdID().equals("40")
                 h.name = (TextView) convertView.findViewById(R.id.name);
                 h.value = (TextView) convertView.findViewById(R.id.value);
                 h.unit = (TextView) convertView.findViewById(R.id.unit);
-
+                h.layout_name = (LinearLayout) convertView.findViewById(R.id.layout_name);
                 convertView.setTag(h);
             } else {
                 h = (ViewHolder) convertView.getTag();
@@ -743,7 +744,13 @@ if(userPlotModel.getPrdID().equals("40")
 
             String[] calResult = resultList.get(position);
 
-            h.name.setText(calResult[0]);
+
+            if(calResult[0] == null || "".equals(calResult[0])) {
+                h.layout_name.setVisibility(View.GONE);
+            }else{
+                h.layout_name.setVisibility(View.VISIBLE);
+                h.name.setText(calResult[0]);
+            }
             h.value.setText(calResult[1]);
             h.unit.setText(calResult[2]);
 
@@ -760,6 +767,7 @@ if(userPlotModel.getPrdID().equals("40")
 
     static class ViewHolder {
         private TextView name, value, unit;
+        private LinearLayout layout_name;
 
 
     }
@@ -796,8 +804,8 @@ if(userPlotModel.getPrdID().equals("40")
     }
 
     @Override
-    public void onResume() {
-        super.onResume();  // Always call the superclass method first
+    public void onStop() {
+        super.onStop();  // Always call the superclass method first
         Log.d(TAG, "onResume  ProgressAction.gone ... ");
         ProgressAction.gone(PBCalculateResultActivity.this);
         // Release the Camera because we don't need it when paused

@@ -990,7 +990,7 @@ private void displayCurrentLocation() {
     private void prepareNextStep (boolean nextStepEnable) {
         if (nextStepEnable) {
             if(!goNextStep) {
-                h.step2.setImageResource(R.drawable.step_next);
+                h.step2.setImageResource(R.drawable.step2);
             }
 
             goNextStep = true;
@@ -1002,7 +1002,7 @@ private void displayCurrentLocation() {
                     h.step2.setImageResource(
                             i++ % 2 == 0 ?
                                     R.drawable.step_next_edge :
-                                    R.drawable.step_next);
+                                    R.drawable.action_next_step);
                     if (i < 4) {
                         h.step2.postDelayed(this, 500);
                     }
