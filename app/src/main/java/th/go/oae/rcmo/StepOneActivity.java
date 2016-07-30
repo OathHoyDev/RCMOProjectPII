@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -921,6 +922,7 @@ private void displayCurrentLocation() {
     Log.d("Step1", "init currentLocation object");
     String latitude = "0";
     String longitude = "0";
+
     LocationManager locationManager = (LocationManager) StepOneActivity.this.getSystemService(Context.LOCATION_SERVICE);
 
     if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
@@ -937,10 +939,26 @@ private void displayCurrentLocation() {
             latitude = String.valueOf(lat);
             longitude = String.valueOf(lon);
         }
-
         API_getCurrentLocation(latitude, longitude);
 
+    }else{
+
+        new DialogChoice(StepOneActivity.this, new DialogChoice.OnSelectChoiceListener() {
+            @Override
+            public void OnSelect(int choice) {
+
+                if (choice == DialogChoice.OK) {
+                    Log.d("StepOneActivity","Open ACTION_LOCATION_SOURCE_SETTINGS");
+                    Intent myIntent = new Intent( Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                    StepOneActivity.this.startActivity(myIntent);
+
+                }
+            }
+        }).ShowTwoChoice("", "ต้องการเปิดใช้งาน Location Service");
+
+
     }
+
 
 }
     private void setSelectedLocation(boolean selected) {
