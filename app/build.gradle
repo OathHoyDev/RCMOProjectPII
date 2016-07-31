@@ -42,6 +42,10 @@ dependencies {
     compile 'asia.ivity.android:drag-sort-listview:1.0'
     compile 'com.android.support:support-v13:23.4.0'
     compile 'com.github.crosswall:Android-Coverflow:release-v1.0.3'
+    repositories {
+        mavenCentral()
+    }
+    compile 'com.sothree.slidinguppanel:library:3.3.0'
 
 
 }

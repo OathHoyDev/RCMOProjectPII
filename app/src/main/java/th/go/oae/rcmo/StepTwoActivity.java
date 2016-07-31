@@ -4,25 +4,34 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.neopixl.pixlui.components.textview.TextView;
+import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import me.crosswall.lib.coverflow.CoverFlow;
@@ -63,6 +72,8 @@ public class StepTwoActivity extends Activity {
     ProductSuitListAdapter productSuitAdapter = null;
     ViewPager pager = null;
     ViewHolder h = new ViewHolder();
+    private SlidingUpPanelLayout mLayout;
+    private static final String TAG = "DemoActivity";
 
     static class ViewHolder {
         private TextView num_of_market,match_value_label,product_name_label,plant_btn_label,animal_btn_label,fish_btn_label;
@@ -115,7 +126,85 @@ public class StepTwoActivity extends Activity {
 
         setUI();
         setAction();
+        setSlideView();
+    }
 
+    private void setSlideView(){
+        ListView lv = (ListView) findViewById(R.id.list);
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(StepTwoActivity.this, "onItemClick", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        List<String> your_array_list = Arrays.asList(
+                "ทดสอบ Slide View1",
+                "ทดสอบ Slide View2",
+                "ทดสอบ Slide View3",
+                "ทดสอบ Slide View4",
+                "ทดสอบ Slide View5",
+                "ทดสอบ Slide View6",
+                "ทดสอบ Slide View7",
+                "ทดสอบ Slide View8",
+                "ทดสอบ Slide View9",
+                "ทดสอบ Slide View10"
+        );
+
+        // This is the array adapter, it takes the context of the activity as a
+        // first parameter, the type of list view as a second parameter and your
+        // array as a third parameter.
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
+                this,
+                android.R.layout.simple_list_item_1,
+                your_array_list );
+
+        lv.setAdapter(arrayAdapter);
+
+        mLayout = (SlidingUpPanelLayout) findViewById(R.id.sliding_layout);
+        mLayout.addPanelSlideListener(new SlidingUpPanelLayout.PanelSlideListener() {
+            @Override
+            public void onPanelSlide(View panel, float slideOffset) {
+                Log.i(TAG, "onPanelSlide, offset " + slideOffset);
+            }
+
+            @Override
+            public void onPanelStateChanged(View panel, SlidingUpPanelLayout.PanelState previousState, SlidingUpPanelLayout.PanelState newState) {
+                Log.i(TAG, "onPanelStateChanged " + newState);
+                if(SlidingUpPanelLayout.PanelState.EXPANDED.equals(newState)){
+                    findViewById(R.id.upBtn).setVisibility(View.INVISIBLE);
+                    findViewById(R.id.downBtn).setVisibility(View.VISIBLE);
+
+                }
+                if(SlidingUpPanelLayout.PanelState.COLLAPSED.equals(newState)){
+                    findViewById(R.id.upBtn).setVisibility(View.VISIBLE);
+                    findViewById(R.id.downBtn).setVisibility(View.INVISIBLE);
+
+                }
+            }
+        });
+        mLayout.setFadeOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
+            }
+        });
+
+        //android.widget.TextView t = (android.widget.TextView) findViewById(R.id.name);
+        //t.setText(Html.fromHtml("<![CDATA[<b>The Awesome Sliding Up Panel</b><br/> Brought to you by<br/><a href=\"http://umanoapp.com\">http://umanoapp.com</a>]]>"));
+        //Button f = (Button) findViewById(R.id.follow);
+        //f.setText(Html.fromHtml("<![CDATA[<b>The Awesome Sliding Up Panel</b><br/> Brought to you by<br/><a href=\"http://umanoapp.com\">http://umanoapp.com</a>]]>"));
+        //f.setMovementMethod(LinkMovementMethod.getInstance());
+        /*
+        f.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse("http://www.twitter.com/umanoapp"));
+                startActivity(i);
+            }
+        });
+        */
     }
 
     private void setUI() {
