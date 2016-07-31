@@ -431,8 +431,8 @@ public class UserPlotListActivity extends Activity {
 
             // on calculate
             h.editableLayout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+                    @Override
+                    public void onClick(View v) {
                     Log.d("On Calculate"," position : "+position);
                     tmpTayoutPlotRowh.setBackgroundResource(R.drawable.gray_cut_conner_2);
                     temBaseLine.setBackgroundResource(R.color.RcmoDarkTran3BG);

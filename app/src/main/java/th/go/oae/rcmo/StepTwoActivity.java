@@ -3,62 +3,44 @@ package th.go.oae.rcmo;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.drawable.BitmapDrawable;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.text.Html;
-import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
-
 import com.neopixl.pixlui.components.textview.TextView;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
-
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
-
 import me.crosswall.lib.coverflow.CoverFlow;
 import me.crosswall.lib.coverflow.core.PagerContainer;
 import th.go.oae.rcmo.API.RequestServices;
 import th.go.oae.rcmo.API.ResponseAPI;
 import th.go.oae.rcmo.Model.ProductModel;
-import th.go.oae.rcmo.Model.UserModel;
 import th.go.oae.rcmo.Module.mAmphoe;
 import th.go.oae.rcmo.Module.mGetProductSuit;
-import th.go.oae.rcmo.Module.mPlantGroup;
-import th.go.oae.rcmo.Module.mProduct;
 import th.go.oae.rcmo.Module.mProvince;
-import th.go.oae.rcmo.Module.mRiceProduct;
 import th.go.oae.rcmo.Module.mTumbon;
-import th.go.oae.rcmo.Util.BitMapHelper;
 import th.go.oae.rcmo.Util.ServiceInstance;
 import th.go.oae.rcmo.View.DialogChoice;
 import th.go.oae.rcmo.View.ProgressAction;
 
 
 public class StepTwoActivity extends Activity {
-   // public static List<mProduct.mRespBody> productInfoLists = new ArrayList<>();
-    //public static List<mPlantGroup.mRespBody> plantGroupLists = new ArrayList<>();
     public static List<mGetProductSuit.mRespBody> orgProductSuitLists = new ArrayList<>();
     public static List<mGetProductSuit.mRespBody> productSuitLists = new ArrayList<>();
-
+    public static List<mGetProductSuit.mRespBody> productSuitCompareLists = new ArrayList<>();
     public static mGetProductSuit.mRespBody selectedProduct = null;
     public static mProvince.mRespBody  selectedprovince = null;
     public static mAmphoe.mRespBody    selectedAmphoe    = null;
@@ -69,18 +51,22 @@ public class StepTwoActivity extends Activity {
     boolean isPlantSelected =true;
     boolean isAnimalSelected = true;
     boolean isFishSelected =true;
+    HashMap map = new HashMap();
     ProductSuitListAdapter productSuitAdapter = null;
     ViewPager pager = null;
     ViewHolder h = new ViewHolder();
     private SlidingUpPanelLayout mLayout;
-    private static final String TAG = "DemoActivity";
+    int currentGrdId = 0;
+    private static final String TAG = "StepTwoActivity";
+
+    CompareProductListAdaptor compareProductListAdaptor = null;
 
     static class ViewHolder {
         private TextView num_of_market,match_value_label,product_name_label,plant_btn_label,animal_btn_label,fish_btn_label;
-        //label_main_search;
         private ImageView star1, star2, star3,product_img,plant_btn_img,animal_btn_img,fish_btn_img,upBtn;
         private LinearLayout layout_zoomInfo,layout_coverFlow,plantBtn,animalBtn,fishBtn;
-       // private RelativeLayout layout_province_active, layout_amphoe_active, layout_tambon_active, layout_location_active;
+        private ListView productList ;
+
     }
 
 
@@ -123,89 +109,14 @@ public class StepTwoActivity extends Activity {
         h.animalBtn  =(LinearLayout) findViewById(R.id.animalBtn);
         h.fishBtn    = (LinearLayout) findViewById(R.id.fishBtn);
 
+        h.productList = (ListView) findViewById(R.id.list);
+
 
         setUI();
         setAction();
-        setSlideView();
+
     }
 
-    private void setSlideView(){
-        ListView lv = (ListView) findViewById(R.id.list);
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(StepTwoActivity.this, "onItemClick", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        List<String> your_array_list = Arrays.asList(
-                "ทดสอบ Slide View1",
-                "ทดสอบ Slide View2",
-                "ทดสอบ Slide View3",
-                "ทดสอบ Slide View4",
-                "ทดสอบ Slide View5",
-                "ทดสอบ Slide View6",
-                "ทดสอบ Slide View7",
-                "ทดสอบ Slide View8",
-                "ทดสอบ Slide View9",
-                "ทดสอบ Slide View10"
-        );
-
-        // This is the array adapter, it takes the context of the activity as a
-        // first parameter, the type of list view as a second parameter and your
-        // array as a third parameter.
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
-                this,
-                android.R.layout.simple_list_item_1,
-                your_array_list );
-
-        lv.setAdapter(arrayAdapter);
-
-        mLayout = (SlidingUpPanelLayout) findViewById(R.id.sliding_layout);
-        mLayout.addPanelSlideListener(new SlidingUpPanelLayout.PanelSlideListener() {
-            @Override
-            public void onPanelSlide(View panel, float slideOffset) {
-                Log.i(TAG, "onPanelSlide, offset " + slideOffset);
-            }
-
-            @Override
-            public void onPanelStateChanged(View panel, SlidingUpPanelLayout.PanelState previousState, SlidingUpPanelLayout.PanelState newState) {
-                Log.i(TAG, "onPanelStateChanged " + newState);
-                if(SlidingUpPanelLayout.PanelState.EXPANDED.equals(newState)){
-                    findViewById(R.id.upBtn).setVisibility(View.INVISIBLE);
-                    findViewById(R.id.downBtn).setVisibility(View.VISIBLE);
-
-                }
-                if(SlidingUpPanelLayout.PanelState.COLLAPSED.equals(newState)){
-                    findViewById(R.id.upBtn).setVisibility(View.VISIBLE);
-                    findViewById(R.id.downBtn).setVisibility(View.INVISIBLE);
-
-                }
-            }
-        });
-        mLayout.setFadeOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
-            }
-        });
-
-        //android.widget.TextView t = (android.widget.TextView) findViewById(R.id.name);
-        //t.setText(Html.fromHtml("<![CDATA[<b>The Awesome Sliding Up Panel</b><br/> Brought to you by<br/><a href=\"http://umanoapp.com\">http://umanoapp.com</a>]]>"));
-        //Button f = (Button) findViewById(R.id.follow);
-        //f.setText(Html.fromHtml("<![CDATA[<b>The Awesome Sliding Up Panel</b><br/> Brought to you by<br/><a href=\"http://umanoapp.com\">http://umanoapp.com</a>]]>"));
-        //f.setMovementMethod(LinkMovementMethod.getInstance());
-        /*
-        f.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(Intent.ACTION_VIEW);
-                i.setData(Uri.parse("http://www.twitter.com/umanoapp"));
-                startActivity(i);
-            }
-        });
-        */
-    }
 
     private void setUI() {
         initView(false);
@@ -312,7 +223,6 @@ public class StepTwoActivity extends Activity {
 
     }
 
-
     private void initView(boolean isVisible){
         if(isVisible) {
             h.layout_coverFlow.setVisibility(View.VISIBLE);
@@ -324,7 +234,6 @@ public class StepTwoActivity extends Activity {
             h.upBtn.setVisibility(View.GONE);
         }
     }
-
 
     private void initCarousels(List<mGetProductSuit.mRespBody> prodInfoList) {
         PagerContainer container = (PagerContainer) findViewById(R.id.pager_container);
@@ -340,6 +249,8 @@ public class StepTwoActivity extends Activity {
             }
             selectedProduct = prodInfoList.get(pager.getCurrentItem());
             setZoomProductSuitInfo(selectedProduct);
+            filterProductGroupProductToCompare(selectedProduct.getPrdGrpID());
+           // compareProductList.resetProductList(setListProductToCompareView(selectedProduct.getPrdGrpID()));
 
         }else if((productSuitLists.size()==0)){
             initView(false);
@@ -374,8 +285,16 @@ public class StepTwoActivity extends Activity {
             @Override
             public void onPageScrollStateChanged(int state) {
                 if (state == ViewPager.SCROLL_STATE_IDLE) {
+
+                    int oldGroup = selectedProduct.getPrdGrpID();
+                    int newGroup = productSuitLists.get(index).getPrdGrpID();
+
                     selectedProduct = productSuitLists.get(index);
                     setZoomProductSuitInfo(selectedProduct);
+
+                    if(oldGroup!=newGroup) {
+                        filterProductGroupProductToCompare(selectedProduct.getPrdGrpID());
+                    }
                 }
 
             }
@@ -384,19 +303,102 @@ public class StepTwoActivity extends Activity {
         ProgressAction.gone(StepTwoActivity.this);
     }
 
+    private void initSlideView(List productToCompareList){
+
+        findViewById(R.id.compareBtn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(StepTwoActivity.this, "compareBtn", Toast.LENGTH_SHORT).show();
+
+
+            }
+        });
+        compareProductListAdaptor = new CompareProductListAdaptor(productToCompareList);
+        h.productList.setAdapter(compareProductListAdaptor);
+
+/*
+
+        h.productList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(StepTwoActivity.this, "onItemClick", Toast.LENGTH_SHORT).show();
+            }
+        });
+        ListView lv = (ListView) findViewById(R.id.list);
+       lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(StepTwoActivity.this, "onItemClick", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        List<String> your_array_list = Arrays.asList(
+                "ทดสอบ Slide View1",
+                "ทดสอบ Slide View2",
+                "ทดสอบ Slide View3",
+                "ทดสอบ Slide View4",
+                "ทดสอบ Slide View5",
+                "ทดสอบ Slide View6",
+                "ทดสอบ Slide View7",
+                "ทดสอบ Slide View8",
+                "ทดสอบ Slide View9",
+                "ทดสอบ Slide View10"
+        );
+
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
+                this,
+                android.R.layout.simple_list_item_1,
+                your_array_list );
+
+        lv.setAdapter(arrayAdapter);
+*/
+        mLayout = (SlidingUpPanelLayout) findViewById(R.id.sliding_layout);
+        mLayout.addPanelSlideListener(new SlidingUpPanelLayout.PanelSlideListener() {
+            @Override
+            public void onPanelSlide(View panel, float slideOffset) {
+                Log.i(TAG, "onPanelSlide, offset " + slideOffset);
+            }
+
+            @Override
+            public void onPanelStateChanged(View panel, SlidingUpPanelLayout.PanelState previousState, SlidingUpPanelLayout.PanelState newState) {
+                Log.i(TAG, "onPanelStateChanged " + newState);
+                if(SlidingUpPanelLayout.PanelState.EXPANDED.equals(newState)){
+                    findViewById(R.id.upBtn).setVisibility(View.INVISIBLE);
+                    findViewById(R.id.downBtn).setVisibility(View.VISIBLE);
+
+                }
+                if(SlidingUpPanelLayout.PanelState.COLLAPSED.equals(newState)){
+                    findViewById(R.id.upBtn).setVisibility(View.VISIBLE);
+                    findViewById(R.id.downBtn).setVisibility(View.INVISIBLE);
+
+                }
+            }
+        });
+        mLayout.setFadeOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                /mLayout.setPanelState(SlidingUpPanelLayout.PanelState.EXPANDED);
+            }
+        });
+
+
+    }
+
     private void checkResetSelectProduct(){
         if(!(isPlantSelected || isAnimalSelected || isFishSelected)){
                selectedProduct = null;
+                filterProductGroupProductToCompare(99);
         }
     }
 
-
     private void setZoomProductSuitInfo(mGetProductSuit.mRespBody productSuitInfo){
+        /*
         Log.i("---> ","getPrdName-"+productSuitInfo.getPrdName());
         Log.i("---> ","getSuitLabel-"+productSuitInfo.getSuitLabel());
         Log.i("---> ","getSuitLevel-"+productSuitInfo.getSuitLevel());
         Log.i("---> ","Label-"+productSuitInfo.getMarketCount());
-
+*/
 
 
         h.product_name_label.setText(productSuitInfo.getPrdName());
@@ -441,7 +443,6 @@ public class StepTwoActivity extends Activity {
 
     }
 
-
     private class ProductSuitListAdapter extends PagerAdapter {
         List<mGetProductSuit.mRespBody> productList = new ArrayList<mGetProductSuit.mRespBody>();
 
@@ -449,10 +450,12 @@ public class StepTwoActivity extends Activity {
             this.productList = products;
         }
 
+
         public void setAdapterList(List<mGetProductSuit.mRespBody> products){
             this.productList = products;
             notifyDataSetChanged();
         }
+
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
@@ -522,7 +525,6 @@ public class StepTwoActivity extends Activity {
         }
     }
 
-
     private void filterProductGroup(){
         int grdId =0;
         productSuitLists = new ArrayList<>();
@@ -548,12 +550,26 @@ public class StepTwoActivity extends Activity {
             }
             selectedProduct = productSuitLists.get(pager.getCurrentItem());
             setZoomProductSuitInfo(selectedProduct);
+           filterProductGroupProductToCompare(selectedProduct.getPrdGrpID());
 
         }else if((productSuitLists.size()==0)){
             initView(false);
         }
 
 
+    }
+
+    private void filterProductGroupProductToCompare(int flag){
+        productSuitCompareLists  = new ArrayList<>();
+       // productSuitCompareLists.clear();
+        Log.i(TAG," Select group Flag = "+flag);
+        for(mGetProductSuit.mRespBody tempProd : orgProductSuitLists){
+            if(flag == tempProd.getPrdGrpID()){
+                productSuitCompareLists.add(tempProd);
+            }
+        }
+        compareProductListAdaptor.resetProductList(productSuitCompareLists);
+       // return productSuitCompareLists;
     }
 
     private void API_GetProductSuit(String provId, String amphoeId, String tambonId, int plantFlg, int animalFlg, int fishFlg) {
@@ -574,8 +590,11 @@ public class StepTwoActivity extends Activity {
                 mGetProductSuit productSuit = (mGetProductSuit) obj;
                 orgProductSuitLists = productSuit.getRespBody();
                 productSuitLists = orgProductSuitLists;
+                productSuitCompareLists = orgProductSuitLists;
                 if (productSuitLists.size() != 0) {
+                     initSlideView(productSuitCompareLists);
                      initCarousels(productSuitLists);
+
                 }
             }
 
@@ -593,6 +612,124 @@ public class StepTwoActivity extends Activity {
         );
 
     }
+
+     class PCViewHolder {
+        private TextView pc_product_name_label;
+        private ImageView pc_row_prodImg,pc_row_star1, pc_row_star2, pc_row_star3;
+        private LinearLayout pc_row_product,row_layout;
+
+        private  LinearLayout pc_row_product_active;
+    }
+
+    class CompareProductListAdaptor extends BaseAdapter {
+        List<mGetProductSuit.mRespBody> resultList;
+
+        CompareProductListAdaptor(List<mGetProductSuit.mRespBody> resultList) {
+            this.resultList = resultList;
+        }
+
+        public  void resetProductList (List<mGetProductSuit.mRespBody> newresultList){
+            //resultList.clear();
+
+
+            resultList = newresultList;
+            Log.i(TAG,"R-->newresultList Size "+newresultList.size());
+            notifyDataSetChanged();
+            map.clear();
+
+        }
+
+        @Override
+        public int getCount() {
+            return resultList.size();
+        }
+
+        @Override
+        public mGetProductSuit.mRespBody getItem(int position) {
+
+            return resultList.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return 0;
+        }
+
+
+        @Override
+        public View getView(final int position, View convertView, ViewGroup parent) {
+
+            PCViewHolder pch = new PCViewHolder();
+
+            if (convertView == null) {
+                LayoutInflater inflater = StepTwoActivity.this.getLayoutInflater();
+                convertView = inflater.inflate(R.layout.row_prod_to_compare, parent, false);
+
+                pch.pc_product_name_label = (TextView) convertView.findViewById(R.id.pc_product_name_label);
+                pch.pc_row_prodImg = (ImageView) convertView.findViewById(R.id.pc_row_prodImg);
+                pch.pc_row_star1 = (ImageView) convertView.findViewById(R.id.pc_row_star1);
+                pch.pc_row_star2 = (ImageView) convertView.findViewById(R.id.pc_row_star2);
+                pch.pc_row_star3 = (ImageView) convertView.findViewById(R.id.pc_row_star3);
+                pch.pc_row_product = (LinearLayout) convertView.findViewById(R.id.pc_row_product);
+                pch.row_layout = (LinearLayout) convertView.findViewById(R.id.row_layout);
+                pch.pc_row_product_active =  (LinearLayout) convertView.findViewById(R.id.pc_row_product_active);
+                convertView.setTag(pch);
+            } else {
+                pch = (PCViewHolder) convertView.getTag();
+            }
+
+          final  mGetProductSuit.mRespBody prodList = resultList.get(position);
+
+
+            if(map.get(prodList.getPrdID())==null){
+                pch.pc_row_product_active.setVisibility(View.GONE);
+            }else{
+                pch.pc_row_product_active.setVisibility(View.VISIBLE);
+            }
+
+            pch.pc_product_name_label.setText(prodList.getPrdName());
+            setStar(prodList.getSuitLevel(), pch.pc_row_star1, pch.pc_row_star2, pch.pc_row_star3);
+
+            String imgName = ServiceInstance.productIMGMap.get(prodList.getPrdID());
+
+            if (imgName != null) {
+                pch.pc_row_prodImg.setImageResource(getResources().getIdentifier(imgName, "drawable", getPackageName()));
+            }
+
+            if (prodList.getPrdGrpID()==1) {
+                pch.pc_row_product.setBackgroundResource(R.drawable.plant_ic_circle_bg);
+            } else if (prodList.getPrdGrpID()==2) {
+                pch.pc_row_product.setBackgroundResource(R.drawable.animal_ic_circle_bg);
+            } else {
+                pch.pc_row_product.setBackgroundResource(R.drawable.fish_ic_circle_bg);
+            }
+            final  LinearLayout  activeLayout =  pch.pc_row_product_active;
+            pch.row_layout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.i(TAG,"pc_row_product_active-->setOnLongClickListener ");
+
+
+                    if( activeLayout.getVisibility() == View.GONE) {
+                        if( map.size()<3 ){
+                            map.put(prodList.getPrdID(),prodList);
+                            activeLayout.setVisibility(View.VISIBLE);
+                        }
+
+                    }else{
+                        map.remove(prodList.getPrdID());
+                        activeLayout.setVisibility(View.GONE);
+
+                    }
+
+                }
+            });
+            return convertView;
+        }
+
+    }
+
+
     @Override
     public void onStop() {
         super.onStop();

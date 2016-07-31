@@ -18,7 +18,7 @@
         sothree:umanoAnchorPoint="1"
         sothree:umanoDragView="@+id/dragView"
         sothree:umanoOverlay="true"
-        sothree:umanoPanelHeight="68dp"
+        sothree:umanoPanelHeight="55dp"
         sothree:umanoParallaxOffset="0dp"
         sothree:umanoScrollableView="@+id/list"
 
@@ -458,21 +458,21 @@
             android:id="@+id/dragView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="-68dp"
-            android:clickable="true"
+            android:clickable="false"
             android:focusable="false"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="68dp"
+                android:layout_height="55dp"
+                android:clickable="true"
                 android:gravity="top|center"
                 android:orientation="horizontal">
 
                 <ImageView
                     android:id="@+id/upBtn"
                     android:layout_width="wrap_content"
-                    android:layout_height="25dp"
+                    android:layout_height="20dp"
                     android:layout_below="@+id/linearLayout6"
                     android:layout_centerHorizontal="true"
 
@@ -485,26 +485,95 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/bg_blue"
+                android:clickable="true"
                 android:gravity="top|center"
                 android:orientation="vertical">
 
                 <ImageView
                     android:id="@+id/downBtn"
                     android:layout_width="wrap_content"
-                    android:layout_height="25dp"
+                    android:layout_height="20dp"
                     android:layout_below="@+id/linearLayout6"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="10dp"
                     android:adjustViewBounds="true"
 
                     android:src="@drawable/down"
                     android:visibility="invisible" />
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="20dp"
+                    android:clickable="true"
+                    android:gravity="bottom"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="left|bottom"
+                        android:orientation="vertical"
+                        android:paddingRight="10dp">
+
+                        <com.neopixl.pixlui.components.textview.TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:gravity="center"
+                            android:padding="0dp"
+                            android:text="ต้นทุนของคุณเทียบกับผลผลิตอื่นๆ"
+                            android:textColor="@color/RcmoNormalLightText"
+                            android:textSize="@dimen/textsize_large"
+                            pixlui:typeface="Quark-Bold.otf" />
+
+                        <com.neopixl.pixlui.components.textview.TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:gravity="center"
+                            android:padding="0dp"
+                            android:text="(เลือกได้สูงสุด 3 ชนิด)"
+                            android:textColor="@color/RcmoNormalLightText"
+                            android:textSize="@dimen/textsize_small"
+                            pixlui:typeface="Quark-Light.otf" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:gravity="right|bottom"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/compareBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:adjustViewBounds="true"
+                            android:clickable="true"
+                            android:src="@drawable/action_comepare_btn" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
                 <ListView
                     android:id="@+id/list"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"></ListView>
+                    android:layout_marginBottom="50dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/frame"></ListView>
 
             </LinearLayout>
 
