@@ -22,6 +22,7 @@ import com.neopixl.pixlui.components.textview.TextView;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import me.crosswall.lib.coverflow.CoverFlow;
 import me.crosswall.lib.coverflow.core.PagerContainer;
@@ -51,7 +52,7 @@ public class StepTwoActivity extends Activity {
     boolean isPlantSelected =true;
     boolean isAnimalSelected = true;
     boolean isFishSelected =true;
-    HashMap map = new HashMap();
+    HashMap map = new LinkedHashMap();
     ProductSuitListAdapter productSuitAdapter = null;
     ViewPager pager = null;
     ViewHolder h = new ViewHolder();
