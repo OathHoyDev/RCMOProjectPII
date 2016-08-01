@@ -309,7 +309,8 @@ public class StepTwoActivity extends Activity {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(StepTwoActivity.this, "compareBtn", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(StepTwoActivity.this, CompareProductActivity.class));
+               // Toast.makeText(StepTwoActivity.this, "compareBtn", Toast.LENGTH_SHORT).show();
 
 
             }

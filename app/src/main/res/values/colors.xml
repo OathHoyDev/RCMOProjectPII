@@ -70,6 +70,10 @@
 
     <color name="PIIRcmoPinkBG">#e44c76</color>
 
+    <color name="PIIRcmoResultRowBG">#e7f5fa</color>
+
+    <color name="PIIRcmoColumnTranBG">#404cb748</color>
+
 
 
     <!-- tran code %
