@@ -93,7 +93,13 @@ public class Util {
         return value;
     }
 
+  public static String defualtNullStringZero(String input){
+      if(input == null || "".equals(input)){
+          input = "0";
+      }
 
+      return input;
+  }
 
     public static int strToIntegerDefaultZero(String input){
         int value = 0;

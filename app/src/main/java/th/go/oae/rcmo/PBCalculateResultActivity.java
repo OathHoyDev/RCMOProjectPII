@@ -469,9 +469,9 @@ if(userPlotModel.getPrdID().equals("40")
         param.put("PondMeter",userPlotInfo.getPondMeter());
         param.put("CoopMeter",userPlotInfo.getCoopMeter());
         param.put("CoopNumber",userPlotInfo.getCoopNumber());
-        param.put("TamCode",userPlotInfo.getTamCode());
-        param.put("AmpCode",userPlotInfo.getAmpCode());
-        param.put("ProvCode",userPlotInfo.getProvCode());
+        param.put("TamCode",Util.defualtNullStringZero(userPlotInfo.getTamCode()));
+        param.put("AmpCode",Util.defualtNullStringZero(userPlotInfo.getAmpCode()));
+        param.put("ProvCode",Util.defualtNullStringZero(userPlotInfo.getProvCode()));
         param.put("AnimalNumber",userPlotInfo.getAnimalNumber());
         param.put("AnimalWeight",userPlotInfo.getAnimalWeight());
         param.put("AnimalPrice",userPlotInfo.getAnimalPrice());

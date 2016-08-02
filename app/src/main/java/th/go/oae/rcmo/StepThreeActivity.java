@@ -920,9 +920,9 @@ public class StepThreeActivity extends Activity {
                 "&PondMeter=" + userPlotInfo.getPondMeter() +
                 "&CoopMeter=" + userPlotInfo.getCoopMeter() +
                 "&CoopNumber=" + userPlotInfo.getCoopNumber() +
-                "&TamCode=" + userPlotInfo.getTamCode() +
-                "&AmpCode=" + userPlotInfo.getAmpCode() +
-                "&ProvCode=" + userPlotInfo.getProvCode() +
+                "&TamCode=" + Util.defualtNullStringZero(userPlotInfo.getTamCode()) +
+                "&AmpCode=" + Util.defualtNullStringZero(userPlotInfo.getAmpCode()) +
+                "&ProvCode=" + Util.defualtNullStringZero(userPlotInfo.getProvCode()) +
                 "&AnimalNumber=" + userPlotInfo.getAnimalNumber() +
                 "&AnimalWeight=" + userPlotInfo.getAnimalWeight() +
                 "&AnimalPrice=" + userPlotInfo.getAnimalPrice() +
