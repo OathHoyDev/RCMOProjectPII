@@ -9,6 +9,7 @@ import com.androidquery.callback.AjaxStatus;
 import com.google.gson.Gson;
 
 import th.go.oae.rcmo.Module.mAmphoe;
+import th.go.oae.rcmo.Module.mCompareStatus;
 import th.go.oae.rcmo.Module.mCopyPlot;
 import th.go.oae.rcmo.Module.mCurrentLocation;
 import th.go.oae.rcmo.Module.mDeletePlot;
@@ -80,6 +81,8 @@ public class ResponseAPI {
                                             object = new Gson().fromJson(html, mRegister.class);
                                         } else if (url_ws.contains(RequestServices.ws_getPlotList)) {
                                             object = new Gson().fromJson(html, mUserPlotList.class);
+                                        }else if (url_ws.contains(RequestServices.ws_getCompareStatus)) {
+                                            object = new Gson().fromJson(html, mCompareStatus.class);
                                         }else if (url_ws.contains(RequestServices.ws_getProductCompare)) {
                                             object = new Gson().fromJson(html, mProductCompare.class);
                                         }else if (url_ws.contains(RequestServices.ws_getProductSuit)) {

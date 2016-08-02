@@ -32,6 +32,7 @@ import th.go.oae.rcmo.API.RequestServices;
 import th.go.oae.rcmo.API.ResponseAPI;
 import th.go.oae.rcmo.Model.ProductModel;
 import th.go.oae.rcmo.Module.mAmphoe;
+import th.go.oae.rcmo.Module.mCompareStatus;
 import th.go.oae.rcmo.Module.mGetProductSuit;
 import th.go.oae.rcmo.Module.mProvince;
 import th.go.oae.rcmo.Module.mTumbon;
@@ -57,6 +58,7 @@ public class StepTwoActivity extends Activity {
     Map<Integer,mGetProductSuit.mRespBody> map = new LinkedHashMap();
     ProductSuitListAdapter productSuitAdapter = null;
     ViewPager pager = null;
+    Map<Integer,Integer> mapCompare = new HashMap<Integer,Integer>();
     ViewHolder h = new ViewHolder();
     private SlidingUpPanelLayout mLayout;
     int currentGrdId = 0;
@@ -128,7 +130,8 @@ public class StepTwoActivity extends Activity {
     private void setUI() {
         initView(false);
         ProgressAction.show(StepTwoActivity.this);
-        API_GetProductSuit(provID,amphoeID,tambonID,0,0,0);
+        API_GetCompareStatus();
+
     }
 
     private void setAction() {
@@ -255,7 +258,7 @@ public class StepTwoActivity extends Activity {
         if(isVisible) {
             h.layout_coverFlow.setVisibility(View.VISIBLE);
             h.layout_zoomInfo.setVisibility(View.VISIBLE);
-            h.upBtn.setVisibility(View.VISIBLE);
+          //  h.upBtn.setVisibility(View.VISIBLE);
         }else{
             h.layout_coverFlow.setVisibility(View.INVISIBLE);
             h.layout_zoomInfo.setVisibility(View.INVISIBLE);
@@ -278,6 +281,7 @@ public class StepTwoActivity extends Activity {
             selectedProduct = prodInfoList.get(pager.getCurrentItem());
             setZoomProductSuitInfo(selectedProduct);
             filterProductGroupProductToCompare(selectedProduct.getPrdGrpID());
+            checkDisplayCompareBtn();
            // compareProductList.resetProductList(setListProductToCompareView(selectedProduct.getPrdGrpID()));
 
         }else if((productSuitLists.size()==0)){
@@ -302,7 +306,22 @@ public class StepTwoActivity extends Activity {
                 index = position;
                 //selectedProduct = productSuitLists.get(index);
                // setZoomProductSuitInfo(selectedProduct);
+                int oldGroup = 0;
+                if( selectedProduct != null) {
+                     oldGroup = selectedProduct.getPrdGrpID();
+                }
+                int newGroup = productSuitLists.get(index).getPrdGrpID();
 
+                selectedProduct = productSuitLists.get(index);
+                setZoomProductSuitInfo(selectedProduct);
+
+                if(oldGroup!=newGroup) {
+                    Log.i(TAG,"Old Group :"+oldGroup);
+                    Log.i(TAG,"New Group :"+newGroup);
+                    //initView(true);
+                    filterProductGroupProductToCompare(selectedProduct.getPrdGrpID());
+                    checkDisplayCompareBtn();
+                }
                 displaySound(h.chg_prd_sound);
             }
 
@@ -315,21 +334,22 @@ public class StepTwoActivity extends Activity {
             public void onPageScrollStateChanged(int state) {
                 if (state == ViewPager.SCROLL_STATE_IDLE) {
 
-                    int oldGroup = selectedProduct.getPrdGrpID();
-                    int newGroup = productSuitLists.get(index).getPrdGrpID();
-
-                    selectedProduct = productSuitLists.get(index);
-                    setZoomProductSuitInfo(selectedProduct);
-
-                    if(oldGroup!=newGroup) {
-                        filterProductGroupProductToCompare(selectedProduct.getPrdGrpID());
-                    }
                 }
 
             }
         });
-       // initView(true);
+       initView(true);
         ProgressAction.gone(StepTwoActivity.this);
+    }
+
+    private void checkDisplayCompareBtn(){
+        if(mapCompare.get(selectedProduct.getPrdGrpID())==0){
+            h.upBtn.setVisibility(View.INVISIBLE);
+            mLayout.setEnabled(false);
+        }else {
+            h.upBtn.setVisibility(View.VISIBLE);
+            mLayout.setEnabled(true);
+        }
     }
 
     private void initSlideView(List productToCompareList){
@@ -364,8 +384,11 @@ public class StepTwoActivity extends Activity {
 
                 if(SlidingUpPanelLayout.PanelState.COLLAPSED.equals(newState)){
 
-                    findViewById(R.id.upBtn).setVisibility(View.VISIBLE);
-                    findViewById(R.id.downBtn).setVisibility(View.INVISIBLE);
+
+                        findViewById(R.id.upBtn).setVisibility(View.VISIBLE);
+                        findViewById(R.id.downBtn).setVisibility(View.INVISIBLE);
+
+
 
                 }
                 if(SlidingUpPanelLayout.PanelState.COLLAPSED.equals(previousState)){
@@ -427,7 +450,7 @@ public class StepTwoActivity extends Activity {
 
         setStar(productSuitInfo.getSuitLevel(),h.star1,h.star2,h.star3);
 
-        initView(true);
+       // initView(true);
 
     }
 
@@ -558,9 +581,11 @@ public class StepTwoActivity extends Activity {
             if(productSuitLists.size()>=5) {
                 pager.setCurrentItem(3);
             }
+            initView(true);
             selectedProduct = productSuitLists.get(pager.getCurrentItem());
             setZoomProductSuitInfo(selectedProduct);
            filterProductGroupProductToCompare(selectedProduct.getPrdGrpID());
+            checkDisplayCompareBtn();
 
         }else if((productSuitLists.size()==0)){
             initView(false);
@@ -620,6 +645,39 @@ public class StepTwoActivity extends Activity {
                 + "&PlantFlag=" + plantFlg
                 + "&AnimalFlag=" + animalFlg
                 + "&FisheryFlag=" + fishFlg
+        );
+
+    }
+
+    private void API_GetCompareStatus() {
+
+
+        new ResponseAPI(this, new ResponseAPI.OnCallbackAPIListener() {
+            @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
+            @Override
+            public void callbackSuccess(Object obj) {
+
+                mCompareStatus compareStatus = (mCompareStatus) obj;
+                List<mCompareStatus.mRespBody> compareStatusLists = compareStatus.getRespBody();
+
+                if (compareStatusLists.size() != 0) {
+                    for (mCompareStatus.mRespBody tmpList : compareStatusLists) {
+
+                        mapCompare.put(tmpList.getPrdGrpID(), tmpList.getCompareStatus());
+
+                        //Log.i(TAG, "Compare status obj :" + tmpList.toString());
+                    }
+                }
+
+                API_GetProductSuit(provID, amphoeID, tambonID, 0, 0, 0);
+            }
+
+            @Override
+            public void callbackError(int code, String errorMsg) {
+                Log.d("Error", errorMsg);
+                ProgressAction.gone(StepTwoActivity.this);
+            }
+        }).API_Request(true, RequestServices.ws_getCompareStatus
         );
 
     }
