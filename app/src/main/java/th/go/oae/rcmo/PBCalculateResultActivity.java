@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -52,12 +53,14 @@ public class PBCalculateResultActivity extends Activity {
 
     public static UserPlotModel userPlotModel;
     public static CalculateResultModel calculateResultModel;
-
+    MediaPlayer mp = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pbcalculate_result);
+
+        mp = MediaPlayer.create(PBCalculateResultActivity.this, R.raw.login_noti);
         SharedPreferences sp = getSharedPreferences(ServiceInstance.PREF_NAME, Context.MODE_PRIVATE);
         String userId = sp.getString(ServiceInstance.sp_userId, "0");
         userPlotModel.setUserID(userId);
@@ -138,7 +141,7 @@ public class PBCalculateResultActivity extends Activity {
                                         .putExtra("callBy", PBCalculateResultActivity.class.getName()));
                             }
                         }
-                    }).ShowLogInNoti();
+                    }).ShowLogInNoti(mp);
 
                 } else {
 

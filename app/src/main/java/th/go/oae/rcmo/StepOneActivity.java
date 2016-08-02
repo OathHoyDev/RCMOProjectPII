@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.location.LocationManager;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -71,6 +72,7 @@ public class StepOneActivity extends Activity {
         private  ImageView bg_province,bg_amphoe,bg_tambon,bg_location,img_label_location,step2;
         private LinearLayout layout_click_province,layout_click_amphoe,layout_click_tambon,layout_click_location,layout_search;
         private RelativeLayout layout_province_active,layout_amphoe_active,layout_tambon_active,layout_location_active;
+        private MediaPlayer selected_sound;
     }
 
     @Override
@@ -114,7 +116,7 @@ public class StepOneActivity extends Activity {
         h.layout_tambon_active = (RelativeLayout) findViewById(R.id.layout_tambon_active);
         h.layout_location_active = (RelativeLayout) findViewById(R.id.layout_location_active);
 
-
+        h.selected_sound = MediaPlayer.create(StepOneActivity.this, R.raw.step1);
     }
 
     private void setAction() {
@@ -595,7 +597,7 @@ public class StepOneActivity extends Activity {
 
             displayAmphoeSearch();
         } else {
-
+            displaySound(h.selected_sound);
             selectedprovince = null;
           //  h.label_main_search.setVisibility(View.VISIBLE);
             h.layout_search.setVisibility(View.VISIBLE);
@@ -709,6 +711,7 @@ public class StepOneActivity extends Activity {
             displayTambonSearch();
 
         } else {
+            displaySound(h.selected_sound);
             selectedAmphoe = null;
             //h.label_main_search.setVisibility(View.VISIBLE);
             h.layout_search.setVisibility(View.VISIBLE);
@@ -802,7 +805,7 @@ public class StepOneActivity extends Activity {
             prepareNextStep(true);
         } else {
             selectedTumbon = null;
-
+            displaySound(h.selected_sound);
            // h.label_main_search.setVisibility(View.VISIBLE);
             h.layout_search.setVisibility(View.VISIBLE);
             h.layout_search.startAnimation(AnimationUtils.loadAnimation(this, R.anim.move_in));
@@ -973,7 +976,7 @@ private void displayCurrentLocation() {
 
         } else {
 
-
+            displaySound(h.selected_sound);
             provinces.clear();
             amphoes.clear();
             tambons.clear();
@@ -1034,4 +1037,14 @@ private void displayCurrentLocation() {
         }
     }
 
+
+    private void displaySound(MediaPlayer sound){
+
+        if(sound !=null) {
+            if (sound.isPlaying()) {
+                sound.stop();
+            }
+            sound.start();
+        }
+    }
 }

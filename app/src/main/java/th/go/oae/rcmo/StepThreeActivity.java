@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.InputFilter;
@@ -62,6 +63,7 @@ public class StepThreeActivity extends Activity {
     String plotId = "";
     boolean saved = false;
 
+    MediaPlayer mp = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +73,7 @@ public class StepThreeActivity extends Activity {
         SharedPreferences sp = getSharedPreferences(ServiceInstance.PREF_NAME, Context.MODE_PRIVATE);
         userId = sp.getString(ServiceInstance.sp_userId, "0");
 
+        mp = MediaPlayer.create(StepThreeActivity.this, R.raw.login_noti);
 
         userPlotModel.setPrdGrpID(String.valueOf(productionInfo.getPrdGrpID()));
         userPlotModel.setPrdID(String.valueOf(productionInfo.getPrdID()));
@@ -369,7 +372,7 @@ public class StepThreeActivity extends Activity {
                                         .putExtra("callBy", StepThreeActivity.class.getName()));
                             }
                         }
-                    }).ShowLogInNoti();
+                    }).ShowLogInNoti(mp);
                    // ShowLogInNoti
 
                 } else {

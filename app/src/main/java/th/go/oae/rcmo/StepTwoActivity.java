@@ -3,6 +3,7 @@ package th.go.oae.rcmo;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -12,18 +13,19 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.Toast;
 import com.neopixl.pixlui.components.textview.TextView;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 import me.crosswall.lib.coverflow.CoverFlow;
 import me.crosswall.lib.coverflow.core.PagerContainer;
 import th.go.oae.rcmo.API.RequestServices;
@@ -52,13 +54,14 @@ public class StepTwoActivity extends Activity {
     boolean isPlantSelected =true;
     boolean isAnimalSelected = true;
     boolean isFishSelected =true;
-    HashMap map = new LinkedHashMap();
+    Map<Integer,mGetProductSuit.mRespBody> map = new LinkedHashMap();
     ProductSuitListAdapter productSuitAdapter = null;
     ViewPager pager = null;
     ViewHolder h = new ViewHolder();
     private SlidingUpPanelLayout mLayout;
     int currentGrdId = 0;
     private static final String TAG = "StepTwoActivity";
+
 
     CompareProductListAdaptor compareProductListAdaptor = null;
 
@@ -67,7 +70,7 @@ public class StepTwoActivity extends Activity {
         private ImageView star1, star2, star3,product_img,plant_btn_img,animal_btn_img,fish_btn_img,upBtn;
         private LinearLayout layout_zoomInfo,layout_coverFlow,plantBtn,animalBtn,fishBtn;
         private ListView productList ;
-
+        private MediaPlayer chg_prd_sound  , slide_up_down_sound ;
     }
 
 
@@ -112,12 +115,15 @@ public class StepTwoActivity extends Activity {
 
         h.productList = (ListView) findViewById(R.id.list);
 
+        h.chg_prd_sound = MediaPlayer.create(StepTwoActivity.this, R.raw.step2_chg_prod);
+        h.slide_up_down_sound = MediaPlayer.create(StepTwoActivity.this, R.raw.step2_sli_compare);
+
+
 
         setUI();
         setAction();
 
     }
-
 
     private void setUI() {
         initView(false);
@@ -220,6 +226,27 @@ public class StepTwoActivity extends Activity {
             }
         });
 
+        findViewById(R.id.compareBtn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+
+                Intent i =new Intent(StepTwoActivity.this, CompareProductActivity.class);
+
+                i.putExtra("prodId1"    , String.valueOf(selectedProduct.getPrdID()));
+                i.putExtra("prodGroupId", String.valueOf(selectedProduct.getPrdGrpID()));
+
+                int index = 2;
+                for ( Integer key : map.keySet() ) {
+                    i.putExtra("prodId"+index, String.valueOf(key));
+                    index++;
+                }
+                startActivity(i);
+
+
+            }
+        });
 
 
     }
@@ -276,6 +303,7 @@ public class StepTwoActivity extends Activity {
                 //selectedProduct = productSuitLists.get(index);
                // setZoomProductSuitInfo(selectedProduct);
 
+                displaySound(h.chg_prd_sound);
             }
 
             @Override
@@ -306,75 +334,46 @@ public class StepTwoActivity extends Activity {
 
     private void initSlideView(List productToCompareList){
 
-        findViewById(R.id.compareBtn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                startActivity(new Intent(StepTwoActivity.this, CompareProductActivity.class));
-               // Toast.makeText(StepTwoActivity.this, "compareBtn", Toast.LENGTH_SHORT).show();
-
-
-            }
-        });
         compareProductListAdaptor = new CompareProductListAdaptor(productToCompareList);
         h.productList.setAdapter(compareProductListAdaptor);
 
-/*
 
-        h.productList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(StepTwoActivity.this, "onItemClick", Toast.LENGTH_SHORT).show();
-            }
-        });
-        ListView lv = (ListView) findViewById(R.id.list);
-       lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(StepTwoActivity.this, "onItemClick", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        List<String> your_array_list = Arrays.asList(
-                "ทดสอบ Slide View1",
-                "ทดสอบ Slide View2",
-                "ทดสอบ Slide View3",
-                "ทดสอบ Slide View4",
-                "ทดสอบ Slide View5",
-                "ทดสอบ Slide View6",
-                "ทดสอบ Slide View7",
-                "ทดสอบ Slide View8",
-                "ทดสอบ Slide View9",
-                "ทดสอบ Slide View10"
-        );
-
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
-                this,
-                android.R.layout.simple_list_item_1,
-                your_array_list );
-
-        lv.setAdapter(arrayAdapter);
-*/
         mLayout = (SlidingUpPanelLayout) findViewById(R.id.sliding_layout);
         mLayout.addPanelSlideListener(new SlidingUpPanelLayout.PanelSlideListener() {
             @Override
             public void onPanelSlide(View panel, float slideOffset) {
                 Log.i(TAG, "onPanelSlide, offset " + slideOffset);
+
             }
 
             @Override
             public void onPanelStateChanged(View panel, SlidingUpPanelLayout.PanelState previousState, SlidingUpPanelLayout.PanelState newState) {
+
                 Log.i(TAG, "onPanelStateChanged " + newState);
                 if(SlidingUpPanelLayout.PanelState.EXPANDED.equals(newState)){
                     findViewById(R.id.upBtn).setVisibility(View.INVISIBLE);
                     findViewById(R.id.downBtn).setVisibility(View.VISIBLE);
 
                 }
+                if(SlidingUpPanelLayout.PanelState.EXPANDED.equals(previousState)){
+
+                    displaySound(h.slide_up_down_sound);
+
+                }
+
                 if(SlidingUpPanelLayout.PanelState.COLLAPSED.equals(newState)){
+
                     findViewById(R.id.upBtn).setVisibility(View.VISIBLE);
                     findViewById(R.id.downBtn).setVisibility(View.INVISIBLE);
 
                 }
+                if(SlidingUpPanelLayout.PanelState.COLLAPSED.equals(previousState)){
+                    displaySound(h.slide_up_down_sound);
+
+                }
+
+
             }
         });
         mLayout.setFadeOnClickListener(new View.OnClickListener() {
@@ -385,6 +384,15 @@ public class StepTwoActivity extends Activity {
         });
 
 
+    }
+
+    private void displaySound(MediaPlayer sound) {
+        if (sound != null) {
+            if (sound.isPlaying()) {
+                sound.stop();
+            }
+            sound.start();
+        }
     }
 
     private void checkResetSelectProduct(){
@@ -602,7 +610,8 @@ public class StepTwoActivity extends Activity {
 
             @Override
             public void callbackError(int code, String errorMsg) {
-                Log.d("Erroo", errorMsg);
+                Log.d("Error", errorMsg);
+                ProgressAction.gone(StepTwoActivity.this);
             }
         }).API_Request(true, RequestServices.ws_getProductSuit +
                 "?TamCode=" + tambonId
