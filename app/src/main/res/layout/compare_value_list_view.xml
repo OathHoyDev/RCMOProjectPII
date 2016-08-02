@@ -10,7 +10,7 @@
         android:orientation="vertical"
         android:id="@+id/layout_compare_value"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:gravity="center"
         android:background="@color/PIIRcmoResultRowBG">
 
@@ -18,7 +18,6 @@
             android:id="@+id/label_compare_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:clickable="true"
             android:gravity="center"
             android:padding="5dp"
             android:text="ต้นทุน ต่อไร่"
