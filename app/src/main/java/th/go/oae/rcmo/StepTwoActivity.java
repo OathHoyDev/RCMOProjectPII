@@ -411,9 +411,7 @@ public class StepTwoActivity extends Activity {
 
     private void displaySound(MediaPlayer sound) {
         if (sound != null) {
-            if (sound.isPlaying()) {
-                sound.stop();
-            }
+
             sound.start();
         }
     }
