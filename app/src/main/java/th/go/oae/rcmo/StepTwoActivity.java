@@ -3,6 +3,7 @@ package th.go.oae.rcmo;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -12,17 +13,19 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.Toast;
 import com.neopixl.pixlui.components.textview.TextView;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 import me.crosswall.lib.coverflow.CoverFlow;
 import me.crosswall.lib.coverflow.core.PagerContainer;
 import th.go.oae.rcmo.API.RequestServices;
@@ -30,6 +33,7 @@ import th.go.oae.rcmo.API.ResponseAPI;
 import th.go.oae.rcmo.Model.ProductModel;
 import th.go.oae.rcmo.Model.UserPlotModel;
 import th.go.oae.rcmo.Module.mAmphoe;
+import th.go.oae.rcmo.Module.mCompareStatus;
 import th.go.oae.rcmo.Module.mGetProductSuit;
 import th.go.oae.rcmo.Module.mProvince;
 import th.go.oae.rcmo.Module.mTumbon;
@@ -52,13 +56,15 @@ public class StepTwoActivity extends Activity {
     boolean isPlantSelected =true;
     boolean isAnimalSelected = true;
     boolean isFishSelected =true;
-    HashMap map = new HashMap();
+    Map<Integer,mGetProductSuit.mRespBody> map = new LinkedHashMap();
     ProductSuitListAdapter productSuitAdapter = null;
     ViewPager pager = null;
+    Map<Integer,Integer> mapCompare = new HashMap<Integer,Integer>();
     ViewHolder h = new ViewHolder();
     private SlidingUpPanelLayout mLayout;
     int currentGrdId = 0;
     private static final String TAG = "StepTwoActivity";
+
 
     CompareProductListAdaptor compareProductListAdaptor = null;
 
@@ -67,7 +73,7 @@ public class StepTwoActivity extends Activity {
         private ImageView star1, star2, star3,product_img,plant_btn_img,animal_btn_img,fish_btn_img,upBtn;
         private LinearLayout layout_zoomInfo,layout_coverFlow,plantBtn,animalBtn,fishBtn;
         private ListView productList ;
-
+        private MediaPlayer chg_prd_sound  , slide_up_down_sound ;
     }
 
 
@@ -112,17 +118,21 @@ public class StepTwoActivity extends Activity {
 
         h.productList = (ListView) findViewById(R.id.list);
 
+        h.chg_prd_sound = MediaPlayer.create(StepTwoActivity.this, R.raw.step2_chg_prod);
+        h.slide_up_down_sound = MediaPlayer.create(StepTwoActivity.this, R.raw.step2_sli_compare);
+
+
 
         setUI();
         setAction();
 
     }
 
-
     private void setUI() {
         initView(false);
         ProgressAction.show(StepTwoActivity.this);
-        API_GetProductSuit(provID,amphoeID,tambonID,0,0,0);
+        API_GetCompareStatus();
+
     }
 
     private void setAction() {
@@ -220,6 +230,27 @@ public class StepTwoActivity extends Activity {
             }
         });
 
+        findViewById(R.id.compareBtn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+
+                Intent i =new Intent(StepTwoActivity.this, CompareProductActivity.class);
+
+                i.putExtra("prodId1"    , String.valueOf(selectedProduct.getPrdID()));
+                i.putExtra("prodGroupId", String.valueOf(selectedProduct.getPrdGrpID()));
+
+                int index = 2;
+                for ( Integer key : map.keySet() ) {
+                    i.putExtra("prodId"+index, String.valueOf(key));
+                    index++;
+                }
+                startActivity(i);
+
+
+            }
+        });
         findViewById(R.id.ic_market).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -248,7 +279,7 @@ public class StepTwoActivity extends Activity {
         if(isVisible) {
             h.layout_coverFlow.setVisibility(View.VISIBLE);
             h.layout_zoomInfo.setVisibility(View.VISIBLE);
-            h.upBtn.setVisibility(View.VISIBLE);
+          //  h.upBtn.setVisibility(View.VISIBLE);
         }else{
             h.layout_coverFlow.setVisibility(View.INVISIBLE);
             h.layout_zoomInfo.setVisibility(View.INVISIBLE);
@@ -271,6 +302,7 @@ public class StepTwoActivity extends Activity {
             selectedProduct = prodInfoList.get(pager.getCurrentItem());
             setZoomProductSuitInfo(selectedProduct);
             filterProductGroupProductToCompare(selectedProduct.getPrdGrpID());
+            checkDisplayCompareBtn();
            // compareProductList.resetProductList(setListProductToCompareView(selectedProduct.getPrdGrpID()));
 
         }else if((productSuitLists.size()==0)){
@@ -295,7 +327,23 @@ public class StepTwoActivity extends Activity {
                 index = position;
                 //selectedProduct = productSuitLists.get(index);
                // setZoomProductSuitInfo(selectedProduct);
+                int oldGroup = 0;
+                if( selectedProduct != null) {
+                     oldGroup = selectedProduct.getPrdGrpID();
+                }
+                int newGroup = productSuitLists.get(index).getPrdGrpID();
 
+                selectedProduct = productSuitLists.get(index);
+                setZoomProductSuitInfo(selectedProduct);
+
+                if(oldGroup!=newGroup) {
+                    Log.i(TAG,"Old Group :"+oldGroup);
+                    Log.i(TAG,"New Group :"+newGroup);
+                    //initView(true);
+                    filterProductGroupProductToCompare(selectedProduct.getPrdGrpID());
+                    checkDisplayCompareBtn();
+                }
+                displaySound(h.chg_prd_sound);
             }
 
             @Override
@@ -307,93 +355,69 @@ public class StepTwoActivity extends Activity {
             public void onPageScrollStateChanged(int state) {
                 if (state == ViewPager.SCROLL_STATE_IDLE) {
 
-                    int oldGroup = selectedProduct.getPrdGrpID();
-                    int newGroup = productSuitLists.get(index).getPrdGrpID();
-
-                    selectedProduct = productSuitLists.get(index);
-                    setZoomProductSuitInfo(selectedProduct);
-
-                    if(oldGroup!=newGroup) {
-                        filterProductGroupProductToCompare(selectedProduct.getPrdGrpID());
-                    }
                 }
 
             }
         });
-       // initView(true);
+       initView(true);
         ProgressAction.gone(StepTwoActivity.this);
+    }
+
+    private void checkDisplayCompareBtn(){
+        if(mapCompare.get(selectedProduct.getPrdGrpID())==0){
+            h.upBtn.setVisibility(View.INVISIBLE);
+            mLayout.setEnabled(false);
+        }else {
+            h.upBtn.setVisibility(View.VISIBLE);
+            mLayout.setEnabled(true);
+        }
     }
 
     private void initSlideView(List productToCompareList){
 
-        findViewById(R.id.compareBtn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                Toast.makeText(StepTwoActivity.this, "compareBtn", Toast.LENGTH_SHORT).show();
-
-
-            }
-        });
         compareProductListAdaptor = new CompareProductListAdaptor(productToCompareList);
         h.productList.setAdapter(compareProductListAdaptor);
 
-/*
 
-        h.productList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(StepTwoActivity.this, "onItemClick", Toast.LENGTH_SHORT).show();
-            }
-        });
-        ListView lv = (ListView) findViewById(R.id.list);
-       lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(StepTwoActivity.this, "onItemClick", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        List<String> your_array_list = Arrays.asList(
-                "ทดสอบ Slide View1",
-                "ทดสอบ Slide View2",
-                "ทดสอบ Slide View3",
-                "ทดสอบ Slide View4",
-                "ทดสอบ Slide View5",
-                "ทดสอบ Slide View6",
-                "ทดสอบ Slide View7",
-                "ทดสอบ Slide View8",
-                "ทดสอบ Slide View9",
-                "ทดสอบ Slide View10"
-        );
-
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
-                this,
-                android.R.layout.simple_list_item_1,
-                your_array_list );
-
-        lv.setAdapter(arrayAdapter);
-*/
         mLayout = (SlidingUpPanelLayout) findViewById(R.id.sliding_layout);
         mLayout.addPanelSlideListener(new SlidingUpPanelLayout.PanelSlideListener() {
             @Override
             public void onPanelSlide(View panel, float slideOffset) {
                 Log.i(TAG, "onPanelSlide, offset " + slideOffset);
+
             }
 
             @Override
             public void onPanelStateChanged(View panel, SlidingUpPanelLayout.PanelState previousState, SlidingUpPanelLayout.PanelState newState) {
+
                 Log.i(TAG, "onPanelStateChanged " + newState);
                 if(SlidingUpPanelLayout.PanelState.EXPANDED.equals(newState)){
                     findViewById(R.id.upBtn).setVisibility(View.INVISIBLE);
                     findViewById(R.id.downBtn).setVisibility(View.VISIBLE);
 
                 }
-                if(SlidingUpPanelLayout.PanelState.COLLAPSED.equals(newState)){
-                    findViewById(R.id.upBtn).setVisibility(View.VISIBLE);
-                    findViewById(R.id.downBtn).setVisibility(View.INVISIBLE);
+                if(SlidingUpPanelLayout.PanelState.EXPANDED.equals(previousState)){
+
+                    displaySound(h.slide_up_down_sound);
 
                 }
+
+                if(SlidingUpPanelLayout.PanelState.COLLAPSED.equals(newState)){
+
+
+                        findViewById(R.id.upBtn).setVisibility(View.VISIBLE);
+                        findViewById(R.id.downBtn).setVisibility(View.INVISIBLE);
+
+
+
+                }
+                if(SlidingUpPanelLayout.PanelState.COLLAPSED.equals(previousState)){
+                    displaySound(h.slide_up_down_sound);
+
+                }
+
+
             }
         });
         mLayout.setFadeOnClickListener(new View.OnClickListener() {
@@ -404,6 +428,13 @@ public class StepTwoActivity extends Activity {
         });
 
 
+    }
+
+    private void displaySound(MediaPlayer sound) {
+        if (sound != null) {
+
+            sound.start();
+        }
     }
 
     private void checkResetSelectProduct(){
@@ -438,7 +469,7 @@ public class StepTwoActivity extends Activity {
 
         setStar(productSuitInfo.getSuitLevel(),h.star1,h.star2,h.star3);
 
-        initView(true);
+       // initView(true);
 
     }
 
@@ -569,9 +600,11 @@ public class StepTwoActivity extends Activity {
             if(productSuitLists.size()>=5) {
                 pager.setCurrentItem(3);
             }
+            initView(true);
             selectedProduct = productSuitLists.get(pager.getCurrentItem());
             setZoomProductSuitInfo(selectedProduct);
            filterProductGroupProductToCompare(selectedProduct.getPrdGrpID());
+            checkDisplayCompareBtn();
 
         }else if((productSuitLists.size()==0)){
             initView(false);
@@ -621,7 +654,8 @@ public class StepTwoActivity extends Activity {
 
             @Override
             public void callbackError(int code, String errorMsg) {
-                Log.d("Erroo", errorMsg);
+                Log.d("Error", errorMsg);
+                ProgressAction.gone(StepTwoActivity.this);
             }
         }).API_Request(true, RequestServices.ws_getProductSuit +
                 "?TamCode=" + tambonId
@@ -630,6 +664,39 @@ public class StepTwoActivity extends Activity {
                 + "&PlantFlag=" + plantFlg
                 + "&AnimalFlag=" + animalFlg
                 + "&FisheryFlag=" + fishFlg
+        );
+
+    }
+
+    private void API_GetCompareStatus() {
+
+
+        new ResponseAPI(this, new ResponseAPI.OnCallbackAPIListener() {
+            @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
+            @Override
+            public void callbackSuccess(Object obj) {
+
+                mCompareStatus compareStatus = (mCompareStatus) obj;
+                List<mCompareStatus.mRespBody> compareStatusLists = compareStatus.getRespBody();
+
+                if (compareStatusLists.size() != 0) {
+                    for (mCompareStatus.mRespBody tmpList : compareStatusLists) {
+
+                        mapCompare.put(tmpList.getPrdGrpID(), tmpList.getCompareStatus());
+
+                        //Log.i(TAG, "Compare status obj :" + tmpList.toString());
+                    }
+                }
+
+                API_GetProductSuit(provID, amphoeID, tambonID, 0, 0, 0);
+            }
+
+            @Override
+            public void callbackError(int code, String errorMsg) {
+                Log.d("Error", errorMsg);
+                ProgressAction.gone(StepTwoActivity.this);
+            }
+        }).API_Request(true, RequestServices.ws_getCompareStatus
         );
 
     }

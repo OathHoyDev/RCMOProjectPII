@@ -26,6 +26,8 @@ public class RequestServices {
     public static String ws_getPlotSuit = url+"getPlotSuit";
     public static String ws_getCurrentLocation = url+"getCurrentLocation";
     public static String ws_getProductSuit = url+"getProductSuit";
+    public static String ws_getProductCompare = url+"getProductCompare";
+    public static String ws_getCompareStatus = url+"getCompareStatus";
     public static String ws_getMarketList = url+"getMarketList";
 
 }

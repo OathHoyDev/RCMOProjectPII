@@ -9,6 +9,7 @@ import com.androidquery.callback.AjaxStatus;
 import com.google.gson.Gson;
 
 import th.go.oae.rcmo.Module.mAmphoe;
+import th.go.oae.rcmo.Module.mCompareStatus;
 import th.go.oae.rcmo.Module.mCopyPlot;
 import th.go.oae.rcmo.Module.mCurrentLocation;
 import th.go.oae.rcmo.Module.mDeletePlot;
@@ -21,6 +22,7 @@ import th.go.oae.rcmo.Module.mGetVariable;
 import th.go.oae.rcmo.Module.mLogin;
 import th.go.oae.rcmo.Module.mPlantGroup;
 import th.go.oae.rcmo.Module.mProduct;
+import th.go.oae.rcmo.Module.mProductCompare;
 import th.go.oae.rcmo.Module.mProvince;
 import th.go.oae.rcmo.Module.mRegister;
 import th.go.oae.rcmo.Module.mRiceProduct;
@@ -80,11 +82,13 @@ public class ResponseAPI {
                                             object = new Gson().fromJson(html, mRegister.class);
                                         } else if (url_ws.contains(RequestServices.ws_getPlotList)) {
                                             object = new Gson().fromJson(html, mUserPlotList.class);
+                                        }else if (url_ws.contains(RequestServices.ws_getCompareStatus)) {
+                                            object = new Gson().fromJson(html, mCompareStatus.class);
+                                        }else if (url_ws.contains(RequestServices.ws_getProductCompare)) {
+                                            object = new Gson().fromJson(html, mProductCompare.class);
                                         }else if (url_ws.contains(RequestServices.ws_getProductSuit)) {
-                                            Log.i(RequestServices.TAG, "ws_getProductSuit : " + url_ws);
                                             object = new Gson().fromJson(html, mGetProductSuit.class);
                                         } else if (url_ws.contains(RequestServices.ws_getProduct)) {
-                                            Log.i(RequestServices.TAG, "ws_getProduct : " + url_ws);
                                             object = new Gson().fromJson(html, mProduct.class);
                                         } else if (url_ws.contains(RequestServices.ws_getRiceProduct)) {
                                             object = new Gson().fromJson(html, mRiceProduct.class);

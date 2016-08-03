@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
+import android.media.MediaPlayer;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
@@ -287,6 +288,9 @@ public class DialogChoice {
     public void ShowLogInNoti(){
         final android.app.Dialog dialog = new android.app.Dialog(context);
 
+        MediaPlayer mp = MediaPlayer.create(context.getApplicationContext(), R.raw.login_noti);
+        mp.start();
+
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dialog_noti_login);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
@@ -340,11 +344,77 @@ public class DialogChoice {
             }
         });
 
+
        dialog.show();
 
 
     }
 
+    public void ShowLogInNoti(MediaPlayer mp){
+        final android.app.Dialog dialog = new android.app.Dialog(context);
+        if (mp != null) {
+            mp.start();
+        }
+
+
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_noti_login);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+        //dialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
+
+        final LinearLayout layout_btn = (LinearLayout)dialog.findViewById(R.id.layout_btn);
+
+        Util.delay(500, new Util.DelayCallback() {
+            @Override
+            public void afterDelay() {
+                layout_btn.setVisibility(View.VISIBLE);
+                layout_btn.startAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_in));
+            }
+        });
+
+
+        final ImageView imageSwitcher = (ImageView)dialog.findViewById(R.id.farmerImg);
+        imageSwitcher.postDelayed(new Runnable() {
+            int i = 0;
+            public void run() {
+                imageSwitcher.setImageResource(
+                        i++ % 2 == 0 ?
+                                R.drawable.farmer4 :
+                                R.drawable.farmer_3);
+                imageSwitcher.postDelayed(this, 500);
+            }
+        }, 500);
+
+
+        TextView registerBtn = (TextView)dialog.findViewById(R.id.registerBtn);
+        TextView loginBtn = (TextView)dialog.findViewById(R.id.loginBtn);
+
+        registerBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(onSelectChoiceListener!=null) {
+                    onSelectChoiceListener.OnSelect(REGISTER);
+                }
+                dialog.dismiss();
+            }
+        });
+
+        loginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(onSelectChoiceListener!=null) {
+                    onSelectChoiceListener.OnSelect(LOGIN);
+                }
+                dialog.dismiss();
+            }
+        });
+
+
+        dialog.show();
+
+
+    }
 
         /*
         btn_cancel.setOnClickListener(new View.OnClickListener() {

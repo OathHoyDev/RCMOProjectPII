@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -52,12 +53,14 @@ public class PBCalculateResultActivity extends Activity {
 
     public static UserPlotModel userPlotModel;
     public static CalculateResultModel calculateResultModel;
-
+    MediaPlayer mp = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pbcalculate_result);
+
+        mp = MediaPlayer.create(PBCalculateResultActivity.this, R.raw.login_noti);
         SharedPreferences sp = getSharedPreferences(ServiceInstance.PREF_NAME, Context.MODE_PRIVATE);
         String userId = sp.getString(ServiceInstance.sp_userId, "0");
         userPlotModel.setUserID(userId);
@@ -138,7 +141,7 @@ public class PBCalculateResultActivity extends Activity {
                                         .putExtra("callBy", PBCalculateResultActivity.class.getName()));
                             }
                         }
-                    }).ShowLogInNoti();
+                    }).ShowLogInNoti(mp);
 
                 } else {
 
@@ -466,9 +469,9 @@ if(userPlotModel.getPrdID().equals("40")
         param.put("PondMeter",userPlotInfo.getPondMeter());
         param.put("CoopMeter",userPlotInfo.getCoopMeter());
         param.put("CoopNumber",userPlotInfo.getCoopNumber());
-        param.put("TamCode",userPlotInfo.getTamCode());
-        param.put("AmpCode",userPlotInfo.getAmpCode());
-        param.put("ProvCode",userPlotInfo.getProvCode());
+        param.put("TamCode",Util.defualtNullStringZero(userPlotInfo.getTamCode()));
+        param.put("AmpCode",Util.defualtNullStringZero(userPlotInfo.getAmpCode()));
+        param.put("ProvCode",Util.defualtNullStringZero(userPlotInfo.getProvCode()));
         param.put("AnimalNumber",userPlotInfo.getAnimalNumber());
         param.put("AnimalWeight",userPlotInfo.getAnimalWeight());
         param.put("AnimalPrice",userPlotInfo.getAnimalPrice());

@@ -70,6 +70,10 @@
 
     <color name="PIIRcmoPinkBG">#e44c76</color>
 
+    <color name="PIIRcmoResultRowBG">#e7f5fa</color>
+
+    <color name="RcmoClmnTranBG">#664cb748</color>
+
     <color name="RcmoMarketMapBG">#0083cb</color>
     <color name="RcmoMarketMapBarBG">#73b1e1</color>
     <color name="RcmoMarketMapListBG">#f4fbfe</color>
