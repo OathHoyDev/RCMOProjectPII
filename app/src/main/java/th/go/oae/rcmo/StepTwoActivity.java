@@ -31,6 +31,7 @@ import me.crosswall.lib.coverflow.core.PagerContainer;
 import th.go.oae.rcmo.API.RequestServices;
 import th.go.oae.rcmo.API.ResponseAPI;
 import th.go.oae.rcmo.Model.ProductModel;
+import th.go.oae.rcmo.Model.UserPlotModel;
 import th.go.oae.rcmo.Module.mAmphoe;
 import th.go.oae.rcmo.Module.mCompareStatus;
 import th.go.oae.rcmo.Module.mGetProductSuit;
@@ -250,6 +251,26 @@ public class StepTwoActivity extends Activity {
 
             }
         });
+        findViewById(R.id.ic_market).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(selectedProduct != null) {
+                    StepTwoMapActivity.userPlotModel = new UserPlotModel();
+                    StepTwoMapActivity.userPlotModel.setPrdID(String.valueOf(selectedProduct.getPrdID()));
+                    StepTwoMapActivity.userPlotModel.setPrdValue(selectedProduct.getPrdName());
+                    StepTwoMapActivity.userPlotModel.setProvCode(provID);
+                    StepTwoMapActivity.userPlotModel.setAmpCode(amphoeID);
+                    StepTwoMapActivity.userPlotModel.setTamCode(tambonID);
+                    startActivity(new Intent(StepTwoActivity.this, StepTwoMapActivity.class));
+
+
+                }
+
+
+            }
+        });
+
 
 
     }
