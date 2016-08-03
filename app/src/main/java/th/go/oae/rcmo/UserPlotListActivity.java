@@ -202,6 +202,7 @@ public class UserPlotListActivity extends Activity {
                         .ShowAppLink();
             }
         });
+
     }
 
 
@@ -319,6 +320,8 @@ public class UserPlotListActivity extends Activity {
                 h.editableLayout   =(LinearLayout)convertView.findViewById(R.id.editableLayout);
                 h.baseLine         = (LinearLayout)convertView.findViewById(R.id.baseLine);
                 h.labelBath       =  (TextView) convertView.findViewById(R.id.labelBath);
+
+                h.marketImg     = (ImageView) convertView.findViewById(R.id.market);
 
                 convertView.setTag(h);
             }else{
@@ -510,13 +513,24 @@ public class UserPlotListActivity extends Activity {
                 }
             });
 
+            h.marketImg.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    mUserPlotList.mRespBody respBody =  userPlotList.get(position);
+
+                    UserPlotModel userPlotModel = prepareDataForCalculate(respBody);
+                    API_getPlotDetailForMarketMap(userPlotModel);
+                }
+            });
+
             return convertView;
         }
     }
 
     static class ViewHolder {
         private  TextView labelAddress,labelPlotSize,labelProductName,labelProfit,labelDate,btnProfit,btnDelete,btnCopy,labelBath;
-        private  ImageView imgProduct,prodImg;
+        private  ImageView imgProduct,prodImg,marketImg;
         private  LinearLayout prodBg,layoutPlotRow,editableLayout ,baseLine;
         private  LinearLayout.LayoutParams params;
         private  String userId;
@@ -846,6 +860,45 @@ private void displayNotFoundPlotAnimation() {
                 "&ImeiCode=" + ServiceInstance.GetDeviceID(UserPlotListActivity.this));
 
     }
+
+    private void API_getPlotDetailForMarketMap(final UserPlotModel userPlotModel) {
+        /**
+         1.TamCode (ไม่บังคับใส่)
+         2.AmpCode (บังคับใส่)
+         3.ProvCode (บังคับใส่)
+         */
+        new ResponseAPI(UserPlotListActivity.this, new ResponseAPI.OnCallbackAPIListener() {
+            @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
+            @Override
+            public void callbackSuccess(Object obj) {
+
+                mGetPlotDetail mPlotDetail = (mGetPlotDetail) obj;
+                List<mGetPlotDetail.mRespBody> mPlotDetailBodyLists = mPlotDetail.getRespBody();
+
+                if (mPlotDetailBodyLists.size() != 0) {
+                    mGetPlotDetail.mRespBody plotDetail = mPlotDetailBodyLists.get(0);
+                    if(plotDetail.getProvCode()!=null && !plotDetail.getProvCode().equals("") && !plotDetail.getProvCode().equals("0")){
+                        userPlotModel.setProvCode(plotDetail.getProvCode());
+                        userPlotModel.setAmpCode(plotDetail.getAmpCode());
+                        userPlotModel.setTamCode(plotDetail.getTamCode());
+                    }
+                    StepTwoMapActivity.userPlotModel = new UserPlotModel();
+                    StepTwoMapActivity.userPlotModel = userPlotModel;
+                    startActivity(new Intent(UserPlotListActivity.this, StepTwoMapActivity.class));
+                }
+            }
+
+            @Override
+            public void callbackError(int code, String errorMsg) {
+                Log.d("Error", errorMsg);
+            }
+        }).API_Request(true, RequestServices.ws_getPlotDetail +
+                "?PlotID=" + userPlotModel.getPlotID() +
+                "&ImeiCode=" + ServiceInstance.GetDeviceID(UserPlotListActivity.this));
+
+    }
+
+
 
     public void fetchTimelineAsync1(String userId) {
         // Send the network request to fetch the updated data

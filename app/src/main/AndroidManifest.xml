@@ -12,6 +12,8 @@
         android:name="com.androidsrc.gcmsample.permission.C2D_MESSAGE"
         android:protectionLevel="signature" />
 
+    <uses-library android:name="com.google.android.maps" />
+
     <uses-permission android:name="com.androidsrc.gcmsample.permission.C2D_MESSAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -90,6 +92,9 @@
             android:configChanges="orientation|keyboardHidden|screenSize"/>
         <activity
             android:name=".StepTwoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".StepTwoMapActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".StepThreeActivity"
