@@ -20,7 +20,7 @@
             android:paddingTop="10dp"
             android:text="ราคาล่าสุด"
             android:id="@+id/title"
-            android:textSize="@dimen/textsize_xlarge"
+            android:textSize="@dimen/textsize_normal"
             android:textColor="@color/RcmoWhiteBG" />
 
         <com.neopixl.pixlui.components.textview.TextView
@@ -33,7 +33,7 @@
             android:paddingBottom="10dp"
             android:text="จุดรับซื้อ"
             android:id="@+id/titleProduct"
-            android:textSize="@dimen/textsize_xlarge"
+            android:textSize="@dimen/textsize_normal"
             android:textColor="@color/RcmoWhiteBG"
             android:layout_below="@+id/title" />
 
