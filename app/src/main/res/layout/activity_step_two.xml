@@ -326,9 +326,11 @@
                                 pixlui:typeface="Quark-Bold.otf" />
 
                             <RelativeLayout
+                                android:id="@+id/market_map_btn"
                                 android:layout_width="match_parent"
                                 android:layout_height="45dp"
                                 android:layout_marginLeft="15dp"
+                                android:clickable="true"
                                 android:layout_marginRight="15dp"
                                 android:background="@drawable/light_orange_cut_conner">
 

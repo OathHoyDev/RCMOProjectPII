@@ -23,7 +23,7 @@
                 android:layout_alignParentTop="true"
                 android:gravity="center|top"
                 android:padding="12dp"
-                android:text="เปรัยบเทียบข้อมูล"
+                android:text="เปรียบเทียบข้อมูล"
                 android:textColor="@color/RcmoNormalLightText"
                 android:textSize="@dimen/textsize_xxxlarge"
                 pixlui:typeface="Quark-Bold.otf" />
