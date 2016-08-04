@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="100dp">
+
+    <com.neopixl.pixlui.components.imageview.ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:background="@drawable/ic_triangle_arrow_down"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:pixlui="http://schemas.android.com/apk/com.neopixl.pixlui"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:orientation="vertical"
+        android:background="@drawable/white_cut_conner"
+        android:gravity="center">
+
+        <com.neopixl.pixlui.components.textview.TextView
+            android:id="@+id/marketName"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="MarketName"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/RcmoPlantBG"
+            pixlui:typeface="Quark-Bold.otf"
+            android:gravity="center" />
+
+        <com.neopixl.pixlui.components.textview.TextView
+            android:id="@+id/txSuggession"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:text="MarketPrice"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@android:color/black"
+            pixlui:typeface="Quark-Bold.otf"
+            android:gravity="center" />
+
+    </LinearLayout>
+</RelativeLayout>
+
