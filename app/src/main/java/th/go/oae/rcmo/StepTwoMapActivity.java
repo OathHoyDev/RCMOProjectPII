@@ -85,7 +85,7 @@ public class StepTwoMapActivity extends FragmentActivity {
 
     List<mGetMarketPrice.mRespBody> marketPriceList = new ArrayList<mGetMarketPrice.mRespBody>();
 
-    private List<MarkerOptions> markerList = new ArrayList<MarkerOptions>();
+    private List<Marker> markerList = new ArrayList<Marker>();
 
     static class ViewHolder {
         private ListView marketList;
@@ -110,7 +110,7 @@ public class StepTwoMapActivity extends FragmentActivity {
         double maxLat = 0;
         double maxLon = 0;
 
-        markerList = new ArrayList<MarkerOptions>();
+        markerList = new ArrayList<Marker>();
 
         for (Iterator itr = marketList.iterator(); itr.hasNext(); ) {
 
@@ -158,17 +158,20 @@ public class StepTwoMapActivity extends FragmentActivity {
 
         bm = Bitmap.createScaledBitmap(bm, newWidth, newHeight, false);
 
-        MarkerOptions marker = new MarkerOptions().position(new LatLng(Double.parseDouble(marketObj.getLatitude()), Double.parseDouble(marketObj.getLongitude())));
-        marker.icon(BitmapDescriptorFactory.fromBitmap(bm));
-        marker.title(marketObj.getMarketName());
+
+
+        MarkerOptions markerOption = new MarkerOptions().position(new LatLng(Double.parseDouble(marketObj.getLatitude()), Double.parseDouble(marketObj.getLongitude())));
+        markerOption.icon(BitmapDescriptorFactory.fromBitmap(bm));
+        markerOption.title(marketObj.getMarketName());
 
         if (marketObj.getPriceValue() == ""){
-            marker.snippet("0 บาท");
+            markerOption.snippet("0 บาท");
         }else {
-            marker.snippet(marketObj.getPriceValue() + " บาท");
+            markerOption.snippet(marketObj.getPriceValue() + " บาท");
         }
 
-        map.addMarker(marker);
+        Marker marker = map.addMarker(markerOption);
+
 
         markerList.add(marker);
     }
@@ -298,7 +301,7 @@ public class StepTwoMapActivity extends FragmentActivity {
 
             @Override
             public void onMapLongClick(LatLng latLng) {
-                for(MarkerOptions marker : markerList) {
+                for(Marker marker : markerList) {
                     if(Math.abs(marker.getPosition().latitude - latLng.latitude) < 0.05 && Math.abs(marker.getPosition().longitude - latLng.longitude) < 0.05) {
                         //Toast.makeText(StepTwoMapActivity.this, "got clicked", Toast.LENGTH_SHORT).show(); //do some stuff
                         break;
@@ -401,6 +404,14 @@ public class StepTwoMapActivity extends FragmentActivity {
                                         Double.parseDouble(marketObj.getLatitude()),
                                         Double.parseDouble(marketObj.getLongitude())), 10);
                         map.animateCamera(cameraUpdate);
+
+                        for(Marker marker : markerList) {
+                            if(Math.abs(marker.getPosition().latitude - Double.parseDouble(marketObj.getLatitude())) < 0.05 && Math.abs(marker.getPosition().longitude - Double.parseDouble(marketObj.getLongitude())) < 0.05) {
+                                //Toast.makeText(StepTwoMapActivity.this, "got clicked", Toast.LENGTH_SHORT).show(); //do some stuff
+                                marker.showInfoWindow();
+                                break;
+                            }
+                        }
                     }
                 }
             });
