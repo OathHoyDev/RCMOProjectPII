@@ -344,6 +344,8 @@ public class StepTwoActivity extends Activity {
                     //initView(true);
                     filterProductGroupProductToCompare(selectedProduct.getPrdGrpID());
                     checkDisplayCompareBtn();
+                }else{
+                    compareProductListAdaptor.resetProductList(productSuitCompareLists);
                 }
                 displaySound(h.chg_prd_sound);
             }
@@ -802,7 +804,7 @@ public class StepTwoActivity extends Activity {
             } else {
                 pch.pc_row_product.setBackgroundResource(R.drawable.fish_ic_circle_bg);
             }
-            
+
                final  LinearLayout  activeLayout =  pch.pc_row_product_active;
                 pch.row_layout.setOnClickListener(new View.OnClickListener() {
                     @Override
