@@ -14,6 +14,8 @@ import android.widget.ListView;
 
 import com.neopixl.pixlui.components.textview.TextView;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import th.go.oae.rcmo.API.RequestServices;
 import th.go.oae.rcmo.API.ResponseAPI;
@@ -62,6 +64,8 @@ public class CompareProductActivity extends Activity {
             prodId3 =b.getString("prodId3","");
             prodId4 =b.getString("prodId4","");
             prodGroupId =b.getString("prodGroupId","");
+
+            Log.d("CompareProductActivity","prodId seq :"+prodId1+" , "+prodId2+" , "+prodId3+" , "+prodId4 );
         }
 
 
@@ -211,11 +215,24 @@ public class CompareProductActivity extends Activity {
                     mProductCompare.mRespBody pcRespBody =  productComparRespList.get(0);
                     List<mProductCompare.mProductValue> prodValList =  pcRespBody.getProductValue();
 
+                    HashMap<String,mProductCompare.mProductValue> hMap = new HashMap<String, mProductCompare.mProductValue>();
+                    for(mProductCompare.mProductValue prodVal : prodValList ){
+                        hMap.put(prodVal.getPrdID(),prodVal);
+                    }
+
+                    List<mProductCompare.mProductValue> sortProdValList = new ArrayList<mProductCompare.mProductValue>();
+
+                    if(hMap.get(prodId1)!=null) {sortProdValList.add(hMap.get(prodId1));}
+                    if(hMap.get(prodId2)!=null) {sortProdValList.add(hMap.get(prodId2));}
+                    if(hMap.get(prodId3)!=null) {sortProdValList.add(hMap.get(prodId3));}
+                    if(hMap.get(prodId4)!=null) {sortProdValList.add(hMap.get(prodId4));}
+
+
                     h.list_label.setAdapter(new CompareProductHeaderAdapter(CompareProductActivity.this, pcRespBody.getParamName()));
                     int i =1;
                     int groupId = Util.strToIntegerDefaultZero(prodGroupId);
 
-                    for(mProductCompare.mProductValue prodVal : prodValList ){
+                    for(mProductCompare.mProductValue prodVal : sortProdValList ){
 
                         if(i == 1){
                             h.c_column_2.setVisibility(View.VISIBLE);
