@@ -251,7 +251,7 @@ public class StepTwoActivity extends Activity {
 
             }
         });
-        findViewById(R.id.ic_market).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.market_map_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -296,9 +296,11 @@ public class StepTwoActivity extends Activity {
         pager.setClipChildren(false);
         pager.setOffscreenPageLimit(prodInfoList.size());
         if(prodInfoList.size()>0) {
+            /*
             if(prodInfoList.size()>=5) {
                 pager.setCurrentItem(3);
             }
+            */
             selectedProduct = prodInfoList.get(pager.getCurrentItem());
             setZoomProductSuitInfo(selectedProduct);
             filterProductGroupProductToCompare(selectedProduct.getPrdGrpID());
@@ -342,6 +344,8 @@ public class StepTwoActivity extends Activity {
                     //initView(true);
                     filterProductGroupProductToCompare(selectedProduct.getPrdGrpID());
                     checkDisplayCompareBtn();
+                }else{
+                    compareProductListAdaptor.resetProductList(productSuitCompareLists);
                 }
                 displaySound(h.chg_prd_sound);
             }
@@ -597,9 +601,11 @@ public class StepTwoActivity extends Activity {
          pager.setAdapter(new ProductSuitListAdapter(productSuitLists));
         pager.setOffscreenPageLimit(productSuitLists.size());
         if(productSuitLists.size()>0) {
+            /*
             if(productSuitLists.size()>=5) {
                 pager.setCurrentItem(3);
             }
+            */
             initView(true);
             selectedProduct = productSuitLists.get(pager.getCurrentItem());
             setZoomProductSuitInfo(selectedProduct);
@@ -703,10 +709,10 @@ public class StepTwoActivity extends Activity {
 
      class PCViewHolder {
         private TextView pc_product_name_label;
-        private ImageView pc_row_prodImg,pc_row_star1, pc_row_star2, pc_row_star3;
+        private ImageView pc_row_prodImg,pc_row_prodImg_selected,pc_row_star1, pc_row_star2, pc_row_star3;
         private LinearLayout pc_row_product,row_layout;
 
-        private  LinearLayout pc_row_product_active;
+        private  LinearLayout pc_row_product_active,pc_row_product_selected;
     }
 
     class CompareProductListAdaptor extends BaseAdapter {
@@ -755,12 +761,14 @@ public class StepTwoActivity extends Activity {
 
                 pch.pc_product_name_label = (TextView) convertView.findViewById(R.id.pc_product_name_label);
                 pch.pc_row_prodImg = (ImageView) convertView.findViewById(R.id.pc_row_prodImg);
+                pch.pc_row_prodImg_selected = (ImageView) convertView.findViewById(R.id.pc_row_prodImg_selected);
                 pch.pc_row_star1 = (ImageView) convertView.findViewById(R.id.pc_row_star1);
                 pch.pc_row_star2 = (ImageView) convertView.findViewById(R.id.pc_row_star2);
                 pch.pc_row_star3 = (ImageView) convertView.findViewById(R.id.pc_row_star3);
                 pch.pc_row_product = (LinearLayout) convertView.findViewById(R.id.pc_row_product);
                 pch.row_layout = (LinearLayout) convertView.findViewById(R.id.row_layout);
                 pch.pc_row_product_active =  (LinearLayout) convertView.findViewById(R.id.pc_row_product_active);
+                pch.pc_row_product_selected = (LinearLayout) convertView.findViewById(R.id.pc_row_product_selected);
                 convertView.setTag(pch);
             } else {
                 pch = (PCViewHolder) convertView.getTag();
@@ -769,6 +777,11 @@ public class StepTwoActivity extends Activity {
           final  mGetProductSuit.mRespBody prodList = resultList.get(position);
 
 
+            if (selectedProduct.getPrdID() == prodList.getPrdID()) {
+                pch.pc_row_product_selected.setVisibility(View.VISIBLE);
+            }else{
+                pch.pc_row_product_selected.setVisibility(View.GONE);
+            }
             if(map.get(prodList.getPrdID())==null){
                 pch.pc_row_product_active.setVisibility(View.GONE);
             }else{
@@ -791,27 +804,29 @@ public class StepTwoActivity extends Activity {
             } else {
                 pch.pc_row_product.setBackgroundResource(R.drawable.fish_ic_circle_bg);
             }
-            final  LinearLayout  activeLayout =  pch.pc_row_product_active;
-            pch.row_layout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Log.i(TAG,"pc_row_product_active-->setOnLongClickListener ");
+
+               final  LinearLayout  activeLayout =  pch.pc_row_product_active;
+                pch.row_layout.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Log.i(TAG, "pc_row_product_active-->setOnLongClickListener ");
 
 
-                    if( activeLayout.getVisibility() == View.GONE) {
-                        if( map.size()<3 ){
-                            map.put(prodList.getPrdID(),prodList);
-                            activeLayout.setVisibility(View.VISIBLE);
+                        if (activeLayout.getVisibility() == View.GONE) {
+                            if (map.size() < 3 && selectedProduct.getPrdID() != prodList.getPrdID()) {
+                                map.put(prodList.getPrdID(), prodList);
+                                activeLayout.setVisibility(View.VISIBLE);
+                            }
+
+                        } else {
+                            map.remove(prodList.getPrdID());
+                            activeLayout.setVisibility(View.GONE);
+
                         }
 
-                    }else{
-                        map.remove(prodList.getPrdID());
-                        activeLayout.setVisibility(View.GONE);
-
                     }
+                });
 
-                }
-            });
             return convertView;
         }
 

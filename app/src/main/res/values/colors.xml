@@ -23,7 +23,7 @@
     <color name="RcmoWhiteBG">#ffffff</color>
     <color name="RcmoLightTranBG">#22FFFFFF</color>
     <color name="RcmoDarkTranBG">#4d939598</color>
-
+    <color name="PIIRcmoDarkTranBG">#b3939598</color>
     <color name="RcmoDarkTran3BG">#66FFFFFF</color>
     <color name="RcmoDarkTran2BG">#99FFFFFF</color>
 
