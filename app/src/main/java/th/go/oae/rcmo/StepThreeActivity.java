@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.InputFilter;
@@ -62,6 +63,7 @@ public class StepThreeActivity extends Activity {
     String plotId = "";
     boolean saved = false;
 
+    MediaPlayer mp = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +73,7 @@ public class StepThreeActivity extends Activity {
         SharedPreferences sp = getSharedPreferences(ServiceInstance.PREF_NAME, Context.MODE_PRIVATE);
         userId = sp.getString(ServiceInstance.sp_userId, "0");
 
+        mp = MediaPlayer.create(StepThreeActivity.this, R.raw.login_noti);
 
         userPlotModel.setPrdGrpID(String.valueOf(productionInfo.getPrdGrpID()));
         userPlotModel.setPrdID(String.valueOf(productionInfo.getPrdID()));
@@ -369,7 +372,7 @@ public class StepThreeActivity extends Activity {
                                         .putExtra("callBy", StepThreeActivity.class.getName()));
                             }
                         }
-                    }).ShowLogInNoti();
+                    }).ShowLogInNoti(mp);
                    // ShowLogInNoti
 
                 } else {
@@ -917,9 +920,9 @@ public class StepThreeActivity extends Activity {
                 "&PondMeter=" + userPlotInfo.getPondMeter() +
                 "&CoopMeter=" + userPlotInfo.getCoopMeter() +
                 "&CoopNumber=" + userPlotInfo.getCoopNumber() +
-                "&TamCode=" + userPlotInfo.getTamCode() +
-                "&AmpCode=" + userPlotInfo.getAmpCode() +
-                "&ProvCode=" + userPlotInfo.getProvCode() +
+                "&TamCode=" + Util.defualtNullStringZero(userPlotInfo.getTamCode()) +
+                "&AmpCode=" + Util.defualtNullStringZero(userPlotInfo.getAmpCode()) +
+                "&ProvCode=" + Util.defualtNullStringZero(userPlotInfo.getProvCode()) +
                 "&AnimalNumber=" + userPlotInfo.getAnimalNumber() +
                 "&AnimalWeight=" + userPlotInfo.getAnimalWeight() +
                 "&AnimalPrice=" + userPlotInfo.getAnimalPrice() +

@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.BitmapDrawable;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -53,6 +54,8 @@ public class LoginActivity extends Activity {
 
         setUI();
         setAction();
+        MediaPlayer mp = MediaPlayer.create(LoginActivity.this, R.raw.login);
+        mp.start();
 
     }
 

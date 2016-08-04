@@ -162,6 +162,7 @@
                             android:id="@+id/list_prod1"
                             android:divider="@null"
                             android:dividerHeight="0dp"
+                            android:clickable="true"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="90dp">
@@ -187,6 +188,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="0.5dp"
                     android:layout_weight="1"
+                    android:clickable="true"
                     android:orientation="vertical">
 
                     <FrameLayout
@@ -205,7 +207,6 @@
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
                                 android:background="@drawable/plant_ic_circle_bg"
-                                android:clickable="true"
                                 android:focusable="true"
                                 android:gravity="center"
                                 android:orientation="vertical">
@@ -261,6 +262,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="0.5dp"
                     android:layout_weight="1"
+                    android:clickable="true"
                     android:orientation="vertical">
 
                     <FrameLayout
@@ -279,7 +281,6 @@
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
                                 android:background="@drawable/plant_ic_circle_bg"
-                                android:clickable="true"
                                 android:focusable="true"
                                 android:gravity="center"
                                 android:orientation="vertical">
@@ -335,6 +336,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="0.5dp"
                     android:layout_weight="1"
+                    android:clickable="true"
                     android:orientation="vertical">
 
                     <FrameLayout
@@ -353,7 +355,6 @@
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
                                 android:background="@drawable/plant_ic_circle_bg"
-                                android:clickable="true"
                                 android:focusable="true"
                                 android:gravity="center"
                                 android:orientation="vertical">
