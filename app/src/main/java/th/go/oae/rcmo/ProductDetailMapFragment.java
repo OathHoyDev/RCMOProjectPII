@@ -418,7 +418,7 @@ public class ProductDetailMapFragment extends Fragment {
 
                 RelativeLayout suggess_layout = (RelativeLayout) popupView.findViewById(R.id.suggess_layout);
 
-                com.neopixl.pixlui.components.textview.TextView txSuggession = (com.neopixl.pixlui.components.textview.TextView) popupView.findViewById(R.id.txSuggession);
+                com.neopixl.pixlui.components.textview.TextView txSuggession = (com.neopixl.pixlui.components.textview.TextView) popupView.findViewById(R.id.marketPrice);
                 txSuggession.setText(suggession);
 
                 com.neopixl.pixlui.components.textview.TextView txRecommend = (com.neopixl.pixlui.components.textview.TextView) popupView.findViewById(R.id.txRecommend);

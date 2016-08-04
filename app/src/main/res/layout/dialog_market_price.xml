@@ -1,0 +1,73 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:pixlui="http://schemas.android.com/apk/com.neopixl.pixlui"
+    android:orientation="vertical" android:layout_width="350dp"
+    android:layout_height="match_parent">
+
+
+    <RelativeLayout
+        android:id="@+id/marketPriceBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/green_cut_top_conner">
+
+        <com.neopixl.pixlui.components.textview.TextView
+            pixlui:typeface="Quark-Bold.otf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp"
+            android:text="ราคาล่าสุด"
+            android:id="@+id/title"
+            android:textSize="@dimen/textsize_xlarge"
+            android:textColor="@color/RcmoWhiteBG" />
+
+        <com.neopixl.pixlui.components.textview.TextView
+            pixlui:typeface="Quark-Bold.otf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="10dp"
+            android:text="จุดรับซื้อ"
+            android:id="@+id/titleProduct"
+            android:textSize="@dimen/textsize_xlarge"
+            android:textColor="@color/RcmoWhiteBG"
+            android:layout_below="@+id/title" />
+
+        <ImageView
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:id="@+id/close"
+            android:clickable="true"
+            android:layout_marginRight="20dp"
+            android:src="@drawable/close"/>
+
+    </RelativeLayout>
+
+
+
+
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_weight="1"
+        android:background="@color/RcmoWhiteBG"
+        android:divider="@null"
+        android:dividerHeight="0dp"
+        android:id="@+id/marketPriceListview"></ListView>
+
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:background="@drawable/white_cut_bottom_conner"></ListView>
+
+
+
+</LinearLayout>

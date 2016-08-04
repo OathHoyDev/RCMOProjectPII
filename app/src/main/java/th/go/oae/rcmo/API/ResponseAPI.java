@@ -14,6 +14,7 @@ import th.go.oae.rcmo.Module.mCopyPlot;
 import th.go.oae.rcmo.Module.mCurrentLocation;
 import th.go.oae.rcmo.Module.mDeletePlot;
 import th.go.oae.rcmo.Module.mGetMarketList;
+import th.go.oae.rcmo.Module.mGetMarketPrice;
 import th.go.oae.rcmo.Module.mGetPlotDetail;
 import th.go.oae.rcmo.Module.mGetPlotSuit;
 import th.go.oae.rcmo.Module.mGetProductSuit;
@@ -120,6 +121,8 @@ public class ResponseAPI {
                                             object = new Gson().fromJson(html, mCurrentLocation.class);
                                         }else if (url_ws.contains(RequestServices.ws_getMarketList)) {
                                             object = new Gson().fromJson(html, mGetMarketList.class);
+                                        }else if (url_ws.contains(RequestServices.ws_getMarketPrice)) {
+                                            object = new Gson().fromJson(html, mGetMarketPrice.class);
                                         }
                                         onCallbackAPIListener.callbackSuccess(object);
                                     } else {

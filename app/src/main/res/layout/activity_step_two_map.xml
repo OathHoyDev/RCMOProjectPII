@@ -82,7 +82,7 @@
                     android:layout_height="fill_parent"/>
 
                 <LinearLayout
-                    android:layout_width="160dp"
+                    android:layout_width="200dp"
                     android:layout_height="30dp"
                     android:layout_marginTop="15dp"
                     android:layout_centerHorizontal="true"
@@ -90,7 +90,7 @@
 
                     <com.neopixl.pixlui.components.textview.TextView
                         android:id="@+id/btnMapSelectProduct"
-                        android:layout_width="80dp"
+                        android:layout_width="100dp"
                         android:layout_height="30dp"
                         android:background="@drawable/white_cut_left_conner"
                         android:clickable="true"
@@ -104,7 +104,7 @@
 
                     <com.neopixl.pixlui.components.textview.TextView
                         android:id="@+id/btnMapSelectAll"
-                        android:layout_width="80dp"
+                        android:layout_width="100dp"
                         android:layout_height="30dp"
                         android:background="@drawable/green_cut_right_conner"
                         android:clickable="true"

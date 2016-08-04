@@ -36,7 +36,7 @@
                     android:padding="20dp">
 
                     <com.neopixl.pixlui.components.textview.TextView
-                        android:id="@+id/txSuggession"
+                        android:id="@+id/marketPrice"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -51,8 +51,8 @@
                         android:id="@+id/txRecommend"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_alignStart="@+id/txSuggession"
-                        android:layout_below="@+id/txSuggession"
+                        android:layout_alignStart="@+id/marketPrice"
+                        android:layout_below="@+id/marketPrice"
                         android:layout_marginTop="10dp"
                         android:text="สัตว์ที่ควรเลี้ยงคือ"
                         android:textAppearance="?android:attr/textAppearanceMedium"

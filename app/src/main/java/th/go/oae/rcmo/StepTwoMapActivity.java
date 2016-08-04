@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -16,11 +17,14 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupWindow;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -40,8 +44,10 @@ import java.util.List;
 
 import th.go.oae.rcmo.API.RequestServices;
 import th.go.oae.rcmo.API.ResponseAPI;
+import th.go.oae.rcmo.Adapter.DialogTumbonAdapter;
 import th.go.oae.rcmo.Model.UserPlotModel;
 import th.go.oae.rcmo.Module.mGetMarketList;
+import th.go.oae.rcmo.Module.mGetMarketPrice;
 import th.go.oae.rcmo.Module.mTumbon;
 import th.go.oae.rcmo.Util.GPSTracker;
 import th.go.oae.rcmo.Util.ServiceInstance;
@@ -77,7 +83,9 @@ public class StepTwoMapActivity extends FragmentActivity {
     List<mGetMarketList.MarketListObj> allProductMarketList = new ArrayList<mGetMarketList.MarketListObj>();
     List<mGetMarketList.MarketListObj> selectProductMarketList = new ArrayList<mGetMarketList.MarketListObj>();
 
-    public static PopupWindow popupWindow;
+    List<mGetMarketPrice.mRespBody> marketPriceList = new ArrayList<mGetMarketPrice.mRespBody>();
+
+    private List<MarkerOptions> markerList = new ArrayList<MarkerOptions>();
 
     static class ViewHolder {
         private ListView marketList;
@@ -101,6 +109,8 @@ public class StepTwoMapActivity extends FragmentActivity {
 
         double maxLat = 0;
         double maxLon = 0;
+
+        markerList = new ArrayList<MarkerOptions>();
 
         for (Iterator itr = marketList.iterator(); itr.hasNext(); ) {
 
@@ -150,9 +160,17 @@ public class StepTwoMapActivity extends FragmentActivity {
 
         MarkerOptions marker = new MarkerOptions().position(new LatLng(Double.parseDouble(marketObj.getLatitude()), Double.parseDouble(marketObj.getLongitude())));
         marker.icon(BitmapDescriptorFactory.fromBitmap(bm));
-        marker.title(marketObj.getMarketName() + "," + marketObj.getPriceValue());
+        marker.title(marketObj.getMarketName());
+
+        if (marketObj.getPriceValue() == ""){
+            marker.snippet("0 บาท");
+        }else {
+            marker.snippet(marketObj.getPriceValue() + " บาท");
+        }
 
         map.addMarker(marker);
+
+        markerList.add(marker);
     }
 
     private void pinCenterPlotLocation(double latitude, double longitude) {
@@ -229,6 +247,31 @@ public class StepTwoMapActivity extends FragmentActivity {
 
         }
 
+        map.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
+
+            @Override
+            public View getInfoWindow(Marker marker) {
+                View v = getLayoutInflater().inflate(R.layout.dialog_market_plot_detail, null);
+
+                TextView marketName = (TextView) v.findViewById(R.id.marketName);
+                marketName.setText(marker.getTitle());
+
+                TextView marketPrice = (TextView) v.findViewById(R.id.marketPrice);
+                marketPrice.setText(marker.getSnippet());
+
+                return v;
+            }
+
+            @Override
+            public View getInfoContents(Marker marker) {
+
+                View v = getLayoutInflater().inflate(R.layout.dialog_market_plot_detail, null);
+
+                return null;
+
+            }
+        });
+
         map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
@@ -244,48 +287,24 @@ public class StepTwoMapActivity extends FragmentActivity {
         map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
-                String title = marker.getTitle();
 
-                String [] marketDetail = title.split(",");
-
-                Log.d(TAG , title);
-
-//                LayoutInflater layoutInflater
-//                        = (LayoutInflater) getApplicationContext()
-//                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//                View popupView = layoutInflater.inflate(R.layout.dialog_market_plot_detail, null);
-//
-//                com.neopixl.pixlui.components.textview.TextView marketName = (com.neopixl.pixlui.components.textview.TextView) popupView.findViewById(R.id.marketName);
-//                marketName.setText(marketDetail[0]);
-//
-//                if (marketDetail.length > 1) {
-//                    com.neopixl.pixlui.components.textview.TextView marketPrice = (com.neopixl.pixlui.components.textview.TextView) popupView.findViewById(R.id.marketPrice);
-//                    marketPrice.setText(marketDetail[1]);
-//                }
-//
-//                if (popupWindow == null) {
-//                    Display display = getWindowManager().getDefaultDisplay();
-//                    int width = display.getWidth();
-//                    int height = display.getHeight();
-//                    int popupWidth = (int) (width * 0.95);
-//                    int popupHeight = (int) (height * 0.8);
-//
-//                    popupWindow = new PopupWindow(
-//                            popupView, 150, 100);
-//
-//                    popupWindow.setOutsideTouchable(false);
-//
-//                    popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
-//                        @Override
-//                        public void onDismiss() {
-//                            popupWindow.dismiss();
-//                        }
-//                    });
-//                }
-
-                //popupWindow.showAsDropDown(marker., Gravity.TOP | Gravity.RIGHT, 0);
+                marker.showInfoWindow();
 
                 return true;
+            }
+        });
+
+        map.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
+
+            @Override
+            public void onMapLongClick(LatLng latLng) {
+                for(MarkerOptions marker : markerList) {
+                    if(Math.abs(marker.getPosition().latitude - latLng.latitude) < 0.05 && Math.abs(marker.getPosition().longitude - latLng.longitude) < 0.05) {
+                        //Toast.makeText(StepTwoMapActivity.this, "got clicked", Toast.LENGTH_SHORT).show(); //do some stuff
+                        break;
+                    }
+                }
+
             }
         });
 
@@ -353,6 +372,8 @@ public class StepTwoMapActivity extends FragmentActivity {
                 LayoutInflater inflater = StepTwoMapActivity.this.getLayoutInflater();
                 convertView = inflater.inflate(R.layout.row_market_price, parent, false);
 
+
+
                 pch.marketName = (TextView) convertView.findViewById(R.id.marketName);
                 pch.marketPrice = (TextView) convertView.findViewById(R.id.marketPrice);
 
@@ -364,9 +385,39 @@ public class StepTwoMapActivity extends FragmentActivity {
             final mGetMarketList.MarketListObj marketObj = marketList.get(position);
 
             pch.marketName.setText(marketObj.getMarketName());
-            pch.marketPrice.setText(marketObj.getPriceValue());
+
+            if (marketObj.getPriceValue() == ""){
+                pch.marketPrice.setText("0 บาท");
+            }else {
+                pch.marketPrice.setText(marketObj.getPriceValue() + " บาท");
+            }
 
             pch.marketName.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (marketObj.getLongitude() != "" && marketObj.getLatitude() != ""){
+                        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(
+                                new LatLng(
+                                        Double.parseDouble(marketObj.getLatitude()),
+                                        Double.parseDouble(marketObj.getLongitude())), 10);
+                        map.animateCamera(cameraUpdate);
+                    }
+                }
+            });
+
+            pch.marketName.setOnLongClickListener(new View.OnLongClickListener() {
+
+                @Override
+                public boolean onLongClick(View v) {
+
+                    API_GetMarketPrice(marketObj.getMarketID() , userPlotModel.getUserID());
+
+                    return true;
+
+                }
+            });
+
+            pch.marketPrice.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (marketObj.getLongitude() != "" && marketObj.getLatitude() != ""){
@@ -491,6 +542,76 @@ public class StepTwoMapActivity extends FragmentActivity {
 
     }
 
+    private String strtitle = "";
+    List<mGetMarketPrice.mRespBody> priceLists = new ArrayList<mGetMarketPrice.mRespBody>();
+
+    private void popUpMarketPriceListDialog() {
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_market_price);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+        // set the custom dialog components - text, image and button
+        TextView titleProduct = (TextView) dialog.findViewById(R.id.titleProduct);
+        titleProduct.setText("จุดรับซื้อ");
+
+        ListView priceList = (ListView)dialog.findViewById(R.id.marketPriceListview);
+
+        priceList.setAdapter(new listAdapter(marketPriceList));
+
+
+        ImageView dialogButton = (ImageView) dialog.findViewById(R.id.close);
+        // if button is clicked, close the custom dialog
+        dialogButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+
+    }
+
+    class listAdapter extends BaseAdapter {
+
+        List<mGetMarketPrice.mRespBody> priceLists;
+        listAdapter(List<mGetMarketPrice.mRespBody> priceLists) {
+            listAdapter.this.priceLists =priceLists;
+        }
+
+        @Override
+        public int getCount() {
+            return priceLists.size();
+        }
+
+        @Override
+        public mGetMarketPrice.mRespBody getItem(int position) {
+            return priceLists.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View row;
+            row = inflater.inflate(R.layout.row_market_price_popup, parent, false);
+            TextView marketName        = (TextView)row.findViewById(R.id.marketName);
+            TextView marketPrice        = (TextView)row.findViewById(R.id.marketPrice);
+            TextView marketPriceUnit        = (TextView)row.findViewById(R.id.marketPriceUnit);
+
+            marketName.setText(priceLists.get(position).getPrdMkName());
+            marketPrice.setText(priceLists.get(position).getPriceValue());
+            marketPriceUnit.setText(priceLists.get(position).getUnitValue());
+
+            return (row);
+        }
+    }
+
     private void API_getTumbon(String provinceId, String amphoeId, String tambonId) {
         /**
          1.TamCode (ไม่บังคับใส่)
@@ -566,6 +687,44 @@ public class StepTwoMapActivity extends FragmentActivity {
         }).API_Request(true, RequestServices.ws_getMarketList +
                 "?ProvCode=" + provCode
                 + "&PrdID=" + prdID
+                + "&UserID=" + userID
+                + "&ImeiCode=" + ServiceInstance.GetDeviceID(StepTwoMapActivity.this)
+        );
+
+    }
+
+    private void API_GetMarketPrice(String marketID, String userID) {
+
+        new ResponseAPI(this, new ResponseAPI.OnCallbackAPIListener() {
+            @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
+            @Override
+            public void callbackSuccess(Object obj) {
+
+                mGetMarketPrice mMarketPrice = (mGetMarketPrice) obj;
+
+                List<mGetMarketPrice.mRespBody> mMarketPriceRespBody = mMarketPrice.getRespBody();
+
+
+
+                if (mMarketPriceRespBody.size() != 0) {
+
+                    marketPriceList = new ArrayList<mGetMarketPrice.mRespBody>();
+                    marketPriceList = mMarketPriceRespBody;
+
+                    popUpMarketPriceListDialog();
+
+
+                }
+
+
+            }
+
+            @Override
+            public void callbackError(int code, String errorMsg) {
+                Log.d("Erroo", errorMsg);
+            }
+        }).API_Request(true, RequestServices.ws_getMarketPrice +
+                "?MarketID=" + marketID
                 + "&UserID=" + userID
                 + "&ImeiCode=" + ServiceInstance.GetDeviceID(StepTwoMapActivity.this)
         );

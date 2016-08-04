@@ -29,5 +29,6 @@ public class RequestServices {
     public static String ws_getProductCompare = url+"getProductCompare";
     public static String ws_getCompareStatus = url+"getCompareStatus";
     public static String ws_getMarketList = url+"getMarketList";
+    public static String ws_getMarketPrice = url+"getMarketPrice";
 
 }
