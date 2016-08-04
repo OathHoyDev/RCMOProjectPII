@@ -1,6 +1,8 @@
 package th.go.oae.rcmo;
 
 import android.annotation.TargetApi;
+import android.app.Dialog;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -9,6 +11,8 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
+import android.view.Display;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +20,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -24,6 +29,7 @@ import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.neopixl.pixlui.components.textview.TextView;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
@@ -71,6 +77,8 @@ public class StepTwoMapActivity extends FragmentActivity {
     List<mGetMarketList.MarketListObj> allProductMarketList = new ArrayList<mGetMarketList.MarketListObj>();
     List<mGetMarketList.MarketListObj> selectProductMarketList = new ArrayList<mGetMarketList.MarketListObj>();
 
+    public static PopupWindow popupWindow;
+
     static class ViewHolder {
         private ListView marketList;
     }
@@ -99,7 +107,8 @@ public class StepTwoMapActivity extends FragmentActivity {
             mGetMarketList.MarketListObj market = (mGetMarketList.MarketListObj) itr.next();
 
             if (market.getLatitude() != "" && market.getLongitude() != "") {
-                pinPlotLocation(Double.parseDouble(market.getLatitude()), Double.parseDouble(market.getLongitude()));
+
+                pinPlotLocation(market);
 
                 if (Double.parseDouble(market.getLatitude()) < minLat){
                     minLat = Double.parseDouble(market.getLatitude());
@@ -130,7 +139,7 @@ public class StepTwoMapActivity extends FragmentActivity {
         }
     }
 
-    private void pinPlotLocation(double latitude, double longitude) {
+    private void pinPlotLocation(mGetMarketList.MarketListObj marketObj) {
 
         Bitmap bm = BitmapFactory.decodeResource(getResources(), R.drawable.pin_market);
 
@@ -139,8 +148,9 @@ public class StepTwoMapActivity extends FragmentActivity {
 
         bm = Bitmap.createScaledBitmap(bm, newWidth, newHeight, false);
 
-        MarkerOptions marker = new MarkerOptions().position(new LatLng(latitude, longitude));
+        MarkerOptions marker = new MarkerOptions().position(new LatLng(Double.parseDouble(marketObj.getLatitude()), Double.parseDouble(marketObj.getLongitude())));
         marker.icon(BitmapDescriptorFactory.fromBitmap(bm));
+        marker.title(marketObj.getMarketName() + "," + marketObj.getPriceValue());
 
         map.addMarker(marker);
     }
@@ -231,6 +241,54 @@ public class StepTwoMapActivity extends FragmentActivity {
             }
         });
 
+        map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                String title = marker.getTitle();
+
+                String [] marketDetail = title.split(",");
+
+                Log.d(TAG , title);
+
+//                LayoutInflater layoutInflater
+//                        = (LayoutInflater) getApplicationContext()
+//                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//                View popupView = layoutInflater.inflate(R.layout.dialog_market_plot_detail, null);
+//
+//                com.neopixl.pixlui.components.textview.TextView marketName = (com.neopixl.pixlui.components.textview.TextView) popupView.findViewById(R.id.marketName);
+//                marketName.setText(marketDetail[0]);
+//
+//                if (marketDetail.length > 1) {
+//                    com.neopixl.pixlui.components.textview.TextView marketPrice = (com.neopixl.pixlui.components.textview.TextView) popupView.findViewById(R.id.marketPrice);
+//                    marketPrice.setText(marketDetail[1]);
+//                }
+//
+//                if (popupWindow == null) {
+//                    Display display = getWindowManager().getDefaultDisplay();
+//                    int width = display.getWidth();
+//                    int height = display.getHeight();
+//                    int popupWidth = (int) (width * 0.95);
+//                    int popupHeight = (int) (height * 0.8);
+//
+//                    popupWindow = new PopupWindow(
+//                            popupView, 150, 100);
+//
+//                    popupWindow.setOutsideTouchable(false);
+//
+//                    popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+//                        @Override
+//                        public void onDismiss() {
+//                            popupWindow.dismiss();
+//                        }
+//                    });
+//                }
+
+                //popupWindow.showAsDropDown(marker., Gravity.TOP | Gravity.RIGHT, 0);
+
+                return true;
+            }
+        });
+
 
         //map.getUiSettings().setZoomControlsEnabled(true);
         map.getUiSettings().setMyLocationButtonEnabled(false);
@@ -307,6 +365,19 @@ public class StepTwoMapActivity extends FragmentActivity {
 
             pch.marketName.setText(marketObj.getMarketName());
             pch.marketPrice.setText(marketObj.getPriceValue());
+
+            pch.marketName.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (marketObj.getLongitude() != "" && marketObj.getLatitude() != ""){
+                        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(
+                                new LatLng(
+                                        Double.parseDouble(marketObj.getLatitude()),
+                                        Double.parseDouble(marketObj.getLongitude())), 10);
+                        map.animateCamera(cameraUpdate);
+                    }
+                }
+            });
 
             return convertView;
         }
