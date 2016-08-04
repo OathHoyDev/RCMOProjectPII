@@ -33,7 +33,6 @@ public class LoginActivity extends Activity {
     EditText inputUsername, inputPassword;
     ProgressBar progress;
     String callBy =null;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
