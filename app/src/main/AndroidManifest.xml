@@ -12,7 +12,7 @@
         android:name="com.androidsrc.gcmsample.permission.C2D_MESSAGE"
         android:protectionLevel="signature" />
 
-    <uses-library android:name="com.google.android.maps" />
+
 
     <uses-permission android:name="com.androidsrc.gcmsample.permission.C2D_MESSAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -40,6 +40,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="icon, label">
+
         <activity
             android:name=".SplashActivity"
             android:screenOrientation="portrait">
