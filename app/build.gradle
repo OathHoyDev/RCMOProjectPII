@@ -10,7 +10,7 @@ android {
         versionCode 1
         versionName "1.0"
         // Enabling multidex support.
-        multiDexEnabled true
+       // multiDexEnabled true
     }
     buildTypes {
         release {
@@ -34,20 +34,21 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile files('libs/pixlui.jar')
     compile files('libs/android-query-full.0.26.7.jar')
-    compile 'com.android.support:appcompat-v7:23.4.0'
-    compile 'com.android.support:design:23.4.0'
+    //compile 'com.android.support:appcompat-v7:23.4.0'
+    //compile 'com.android.support:design:23.4.0'
     compile 'com.android.support:support-v4:23.4.0'
     compile 'com.google.code.gson:gson:2.2.4'
-    compile "com.google.android.gms:play-services:8.3.0"
+    compile 'com.google.android.gms:play-services-maps:8.3.0'
     compile 'com.android.support:support-v4:23.4.0'
     compile 'com.android.support:design:23.4.0'
+
     compile 'asia.ivity.android:drag-sort-listview:1.0'
     compile 'com.android.support:support-v13:23.4.0'
     compile 'com.github.crosswall:Android-Coverflow:release-v1.0.3'
+
     repositories {
         mavenCentral()
     }
+
     compile 'com.sothree.slidinguppanel:library:3.3.0'
-
-
 }
