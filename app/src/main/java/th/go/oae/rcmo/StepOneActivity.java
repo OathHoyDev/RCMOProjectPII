@@ -929,7 +929,7 @@ private void displayCurrentLocation() {
 
     LocationManager locationManager = (LocationManager) StepOneActivity.this.getSystemService(Context.LOCATION_SERVICE);
 
-    if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+    if (getGPSStatus()) {
         GPSTracker gps = new GPSTracker(StepOneActivity.this);
 
         if (gps.canGetLocation()) {
@@ -965,6 +965,19 @@ private void displayCurrentLocation() {
 
 
 }
+
+    private boolean getGPSStatus()
+    {
+        String allowedLocationProviders =
+                Settings.System.getString(getContentResolver(),
+                        Settings.System.LOCATION_PROVIDERS_ALLOWED);
+
+        if (allowedLocationProviders == null) {
+            allowedLocationProviders = "";
+        }
+
+        return allowedLocationProviders.contains(LocationManager.GPS_PROVIDER);
+    }
     private void setSelectedLocation(boolean selected) {
 
         if (selected) {
