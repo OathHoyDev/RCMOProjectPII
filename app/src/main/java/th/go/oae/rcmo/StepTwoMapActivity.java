@@ -311,6 +311,32 @@ public class StepTwoMapActivity extends FragmentActivity {
             }
         });
 
+        map.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+
+                List<mGetMarketList.MarketListObj> tmpMarletList = new ArrayList<mGetMarketList.MarketListObj>();
+
+                if (isChooseAllProduct) {
+
+                    tmpMarletList = allProductMarketList;
+
+                }else{
+
+                    tmpMarletList = selectProductMarketList;
+                }
+
+                for (mGetMarketList.MarketListObj marketObj : tmpMarletList) {
+                    if (marketObj.getLatitude() != "") {
+                        if (Math.abs(marker.getPosition().latitude - Double.parseDouble(marketObj.getLatitude())) < 0.05 && Math.abs(marker.getPosition().longitude - Double.parseDouble(marketObj.getLongitude())) < 0.05) {
+                            API_GetMarketPrice(marketObj.getMarketID(), userPlotModel.getUserID());
+                            break;
+                        }
+                    }
+                }
+            }
+        });
+
 
         //map.getUiSettings().setZoomControlsEnabled(true);
         map.getUiSettings().setMyLocationButtonEnabled(false);
