@@ -6,14 +6,29 @@
 
     >
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+       >
+        <ImageView
+            android:id="@+id/dialogGotoOtherApp"
+            android:layout_width="@dimen/size_howto"
+            android:layout_height="@dimen/size_howto"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="10dp"
+            android:src="@drawable/btn_goto_other_app" />
 
-    <ImageView
-        android:id="@+id/dialogGotoOtherApp"
-        android:layout_width="@dimen/size_howto"
-        android:layout_height="@dimen/size_howto"
-        android:layout_alignParentLeft="true"
-        android:layout_margin="10dp"
-        android:src="@drawable/btn_goto_other_app" />
+        <ImageView
+            android:id="@+id/dialogGotoOtherApp_myList"
+            android:layout_width="@dimen/size_howto"
+            android:visibility="gone"
+            android:layout_height="@dimen/size_howto"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="45dp"
+            android:src="@drawable/btn_goto_other_app" />
+    </RelativeLayout>
+
 
     <ImageView
         android:id="@+id/imgEconApp"

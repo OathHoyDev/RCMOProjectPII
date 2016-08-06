@@ -199,7 +199,7 @@ public class UserPlotListActivity extends Activity {
                 //startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
                 // finish();
                 new DialogChoice(UserPlotListActivity.this)
-                        .ShowAppLink();
+                        .ShowAppLink_maylist();
             }
         });
 

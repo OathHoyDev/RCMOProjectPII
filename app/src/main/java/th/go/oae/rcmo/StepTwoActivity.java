@@ -17,6 +17,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
+
 import com.neopixl.pixlui.components.textview.TextView;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 import java.util.ArrayList;
@@ -62,7 +64,7 @@ public class StepTwoActivity extends Activity {
     Map<Integer,Integer> mapCompare = new HashMap<Integer,Integer>();
     ViewHolder h = new ViewHolder();
     private SlidingUpPanelLayout mLayout;
-    int currentGrdId = 0;
+    int currentPosition = 0;
     private static final String TAG = "StepTwoActivity";
 
 
@@ -71,9 +73,10 @@ public class StepTwoActivity extends Activity {
     static class ViewHolder {
         private TextView num_of_market,match_value_label,product_name_label,plant_btn_label,animal_btn_label,fish_btn_label;
         private ImageView star1, star2, star3,product_img,plant_btn_img,animal_btn_img,fish_btn_img,upBtn;
-        private LinearLayout layout_zoomInfo,layout_coverFlow,plantBtn,animalBtn,fishBtn;
+        private LinearLayout layout_zoomInfo,plantBtn,animalBtn,fishBtn;
         private ListView productList ;
         private MediaPlayer chg_prd_sound  , slide_up_down_sound ;
+        private RelativeLayout layout_coverFlow;
     }
 
 
@@ -110,7 +113,7 @@ public class StepTwoActivity extends Activity {
         h.fish_btn_img =(ImageView) findViewById(R.id.fish_btn_img);
 
         h.layout_zoomInfo  =(LinearLayout) findViewById(R.id.layout_zoomInfo);
-        h.layout_coverFlow  =(LinearLayout) findViewById(R.id.layout_coverFlow);
+        h.layout_coverFlow  =(RelativeLayout) findViewById(R.id.layout_coverFlow);
 
         h.plantBtn   =(LinearLayout) findViewById(R.id.plantBtn);
         h.animalBtn  =(LinearLayout) findViewById(R.id.animalBtn);
@@ -295,6 +298,19 @@ public class StepTwoActivity extends Activity {
         pager.setAdapter(productSuitAdapter);
         pager.setClipChildren(false);
         pager.setOffscreenPageLimit(prodInfoList.size());
+
+/*
+
+                pager.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                  Log.i("Tag","0000000000000000000000000000000");
+            }
+
+
+    });
+    */
+
         if(prodInfoList.size()>0) {
             /*
             if(prodInfoList.size()>=5) {
@@ -318,7 +334,7 @@ public class StepTwoActivity extends Activity {
                 .spaceSize(50f)
                 .build();
 
-        pager.setPageMargin(30);
+        pager.setPageMargin(20);
 
         pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
@@ -327,8 +343,10 @@ public class StepTwoActivity extends Activity {
             @Override
             public void onPageSelected(int position) {
                 index = position;
+                currentPosition = position;
                 //selectedProduct = productSuitLists.get(index);
                // setZoomProductSuitInfo(selectedProduct);
+
                 int oldGroup = 0;
                 if( selectedProduct != null) {
                      oldGroup = selectedProduct.getPrdGrpID();
@@ -514,7 +532,7 @@ public class StepTwoActivity extends Activity {
 
 
         @Override
-        public Object instantiateItem(ViewGroup container, int position) {
+        public Object instantiateItem(ViewGroup container, final int position) {
             mGetProductSuit.mRespBody prod = productList.get(position);
 
 
@@ -535,12 +553,24 @@ public class StepTwoActivity extends Activity {
                 row_product.setBackgroundResource(R.drawable.fish_ic_circle_bg);
             }
 
+/*
+            rootView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.i(TAG,"Clickkkkkkkkkkkkk"+position);
+                    pager.setCurrentItem(position);
+
+                }
+            });
+*/
+
             setStar(prod.getSuitLevel()
                     , (ImageView) rootView.findViewById(R.id.row_star1)
                     , (ImageView) rootView.findViewById(R.id.row_star2)
                     , (ImageView) rootView.findViewById(R.id.row_star3));
 
             container.addView(rootView);
+
             return rootView;
         }
 

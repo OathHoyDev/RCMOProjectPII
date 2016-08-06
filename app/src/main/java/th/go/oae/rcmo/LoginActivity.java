@@ -135,7 +135,7 @@ public class LoginActivity extends Activity {
 
 
                 ((ImageView)findViewById(R.id.btn_cal)).startAnimation(AnimationUtils.loadAnimation(LoginActivity.this, R.anim.fade_out));
-                Util.delay(1000, new Util.DelayCallback() {
+                Util.delay(100, new Util.DelayCallback() {
                     @Override
                     public void afterDelay() {
                         if(callBy == null) {
@@ -301,4 +301,9 @@ public class LoginActivity extends Activity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        ((ImageView)findViewById(R.id.btn_cal)).startAnimation(AnimationUtils.loadAnimation(LoginActivity.this, R.anim.fade));
+    }
 }

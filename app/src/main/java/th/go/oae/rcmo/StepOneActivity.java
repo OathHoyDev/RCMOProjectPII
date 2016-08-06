@@ -117,7 +117,7 @@ public class StepOneActivity extends Activity {
         h.layout_tambon_active = (RelativeLayout) findViewById(R.id.layout_tambon_active);
         h.layout_location_active = (RelativeLayout) findViewById(R.id.layout_location_active);
 
-        h.selected_sound = MediaPlayer.create(StepOneActivity.this, R.raw.step1);
+        h.selected_sound = MediaPlayer.create(StepOneActivity.this, R.raw.step2_chg_prod);
     }
 
     private void setAction() {
