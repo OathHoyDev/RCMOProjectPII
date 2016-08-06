@@ -154,12 +154,12 @@ public class PBProdDetailCalculateFmentC extends Fragment implements View.OnClic
         h.wa.addTextChangedListener(new PlanCTextWatcher(h.wa, h,formulaModel, "KaSermOuppakorn,KaSiaOkardOuppakorn"));
         h.ngan.addTextChangedListener(new PlanCTextWatcher(h.ngan, h,formulaModel, "KaSermOuppakorn,KaSiaOkardOuppakorn"));
         h.meter.addTextChangedListener(new PlanCTextWatcher(h.meter, h,formulaModel, "KaSermOuppakorn,KaSiaOkardOuppakorn"));
-        h.group1_item_1.addTextChangedListener(new PlanCTextWatcher(h.group1_item_1, h, "KaSiaOkardLongtoon"));
+        h.group1_item_1.addTextChangedListener(new PlanCTextWatcher(h.group1_item_1, h,formulaModel, "KaSiaOkardLongtoon"));
         h.group1_item_2.addTextChangedListener(new PlanCTextWatcher(h.group1_item_2, h, "Karang"));
         h.group1_item_3.addTextChangedListener(new PlanCTextWatcher(h.group1_item_3, h, "Karang"));
-        h.group1_item_4.addTextChangedListener(new PlanCTextWatcher(h.group1_item_4, h, "Karang"));
-        h.group1_item_5.addTextChangedListener(new PlanCTextWatcher(h.group1_item_5, h, ""));
-        h.group1_item_6.addTextChangedListener(new PlanCTextWatcher(h.group1_item_1, h, "KaSiaOkardLongtoon"));
+        h.group1_item_4.addTextChangedListener(new PlanCTextWatcher(h.group1_item_4, h,formulaModel,  "Karang,KaSiaOkardLongtoon"));
+        h.group1_item_5.addTextChangedListener(new PlanCTextWatcher(h.group1_item_5, h,formulaModel,  "KaSiaOkardLongtoon"));
+        h.group1_item_6.addTextChangedListener(new PlanCTextWatcher(h.group1_item_1, h,formulaModel,  "KaSiaOkardLongtoon"));
         h.group1_item_7.addTextChangedListener(new PlanCTextWatcher(h.group1_item_7, h, "KaWassadu"));
         h.group1_item_8.addTextChangedListener(new PlanCTextWatcher(h.group1_item_8, h, "KaWassadu"));
         h.group1_item_9.addTextChangedListener(new PlanCTextWatcher(h.group1_item_9, h, "KaWassadu"));
@@ -173,7 +173,7 @@ public class PBProdDetailCalculateFmentC extends Fragment implements View.OnClic
 
         h.group3_item_1.addTextChangedListener(new PlanCTextWatcher(h.group3_item_1, h, ""));
 
-        h.group4_item_1.addTextChangedListener(new PlanCTextWatcher(h.group4_item_1, h, "KaSiaOkardLongtoon"));
+        h.group4_item_1.addTextChangedListener(new PlanCTextWatcher(h.group4_item_1, h,formulaModel,  "KaSiaOkardLongtoon"));
 
     }
 
@@ -190,7 +190,7 @@ public class PBProdDetailCalculateFmentC extends Fragment implements View.OnClic
     private void setUpCalUI(FormulaCModel model) {
         h.group1_item_1.setText(Util.dobbleToStringNumber(model.KaRang));
         h.group1_item_6.setText(Util.dobbleToStringNumber(model.KaWassadu));
-        h.group1_item_11.setText(Util.dobbleToStringNumber(model.KaSiaOkardOuppakorn));
+        h.group1_item_11.setText(Util.dobbleToStringNumber(model.KaSiaOkardLongtoonPerRai));
         //h.group1_item_12.setText(Util.dobbleToStringNumber(model.KaChaoTDin));
         h.group1_item_13.setText(Util.dobbleToStringNumber(model.costKaSermOuppakorn));
         h.group1_item_14.setText(Util.dobbleToStringNumber(model.costKaSiaOkardOuppakorn));
@@ -271,6 +271,8 @@ public class PBProdDetailCalculateFmentC extends Fragment implements View.OnClic
                 calculateResultModel.productName = userPlotModel.getPrdValue();
                 calculateResultModel.unit_t1 = "บาท/ไร่";
                 calculateResultModel.value_t1 = formulaModel.calProfitLossPerRai;
+                calculateResultModel.unit_t2 = "บาท/กก";
+                calculateResultModel.value_t2 = formulaModel.calProfitLossPerKilo;
                 calculateResultModel.mPlotSuit = PBProductDetailActivity.mPlotSuit;
                 calculateResultModel.compareStdResult = formulaModel.calSumCost - formulaModel.TontumMattratarn;
 
@@ -423,14 +425,20 @@ public class PBProdDetailCalculateFmentC extends Fragment implements View.OnClic
                     formulaModel.KaSiaOkardOuppakorn = Util.strToDoubleDefaultZero(var.getO());
                     formulaModel.TontumMattratarnPerRai = Util.strToDoubleDefaultZero(var.getCS());
                     formulaModel.TonToonChaliaGonHaiPon = Util.strToDoubleDefaultZero(var.getCA());
+                    formulaModel.V = Util.strToDoubleDefaultZero(var.getV());
+
                     formulaModel.SumRai = ((formulaModel.Rai*4*400)+(formulaModel.Ngan*400)+(formulaModel.Wa*4)+formulaModel.Meter)/1600;
                     Log.d("Test ","Sum Rai --> "+formulaModel.SumRai);
 
 //Stub
-                   // formulaModel.KaSermOuppakorn = 225.69;
-                   // formulaModel.KaSiaOkardOuppakorn = 36.69;
-                   // formulaModel.TontumMattratarnPerRai = 14833.34;
-                   // formulaModel.TonToonChaliaGonHaiPon = 2862.62;
+                    /*
+                    formulaModel.KaSermOuppakorn = 225.69;
+                    formulaModel.KaSiaOkardOuppakorn = 36.69;
+                    formulaModel.TontumMattratarnPerRai = 14276.31;
+
+                    formulaModel.TonToonChaliaGonHaiPon = 2916.97;
+                    formulaModel.V = 12;
+                    */
                     h.group1_item_13.setText(Util.dobbleToStringNumber(Util.round(formulaModel.KaSermOuppakorn*formulaModel.SumRai,2)));
                     h.group1_item_14.setText(Util.dobbleToStringNumber(Util.round(formulaModel.KaSiaOkardOuppakorn* formulaModel.SumRai,2)));
 

@@ -65,6 +65,8 @@ public class FormulaBModel extends AbstractFormulaModel {
     public double costKaSermOuppakorn =    0;
     public double costKaSiaOkardOuppakorn = 0;
 
+    public static double V = 0;
+
     public static Hashtable<String, String> calculateLabel;
     static {
         Hashtable<String, String> tmp = new Hashtable<String, String>();
@@ -195,8 +197,8 @@ public class FormulaBModel extends AbstractFormulaModel {
                 + KaDoolae
                 + KaGebGeaw;
 
-        double yearKaTreamDin = (KaTreamDin /Year)+1 ;
-        double yearKaPluk = (KaPluk / Year)+1 ;
+        double yearKaTreamDin = (KaTreamDin /Year) ;
+        double yearKaPluk = (KaPluk / Year) ;
         double yearKaRang = yearKaTreamDin + yearKaPluk + KaDoolae + KaGebGeaw;
 
         //============= 1.2 ==================================
@@ -206,12 +208,12 @@ public class FormulaBModel extends AbstractFormulaModel {
                    + KaYaplab
                    + KaWassaduUn;
 
-        double yearKaPan =  (KaPan  / Year)+1 ;
+        double yearKaPan =  (KaPan  / Year) ;
         double yearKaWassadu = yearKaPan + + KaPuy + KaYaplab + KaWassaduUn;
 
         //============== 1.3 ===================================
-        KaSiaOkardLongtoon = Util.round((KaRang + KaWassadu) * (AttraDokbia / 100) * (12 / 12), 2);
-        double yearKaSiaOkardLongtoon = Util.round((yearKaRang + yearKaWassadu) * (AttraDokbia / 100) * (12 / 12), 2);
+        KaSiaOkardLongtoon = Util.round((KaRang + KaWassadu) * (AttraDokbia / 100) * (V/ 12), 2);
+        double yearKaSiaOkardLongtoon = Util.round((yearKaRang + yearKaWassadu) * (AttraDokbia / 100) * (V/ 12), 2);
 
         costKaSermOuppakorn =     KaSermOuppakorn * SumRai;
         costKaSiaOkardOuppakorn = KaSiaOkardOuppakorn * SumRai;

@@ -217,6 +217,13 @@ public class PBCalculateResultActivity extends Activity {
                 value_t1.setText(Util.dobbleToStringNumber(calculateResultModel.value_t1));
                 value_t1.setTextColor(getResources().getColor(R.color.RcmoPlantBG));
 
+                if(calculateResultModel.formularCode.equals("C")) {
+                    t2.setVisibility(View.VISIBLE);
+                    unit_t2.setText(calculateResultModel.unit_t2);
+                    value_t2.setText(Util.dobbleToStringNumber(calculateResultModel.value_t2));
+                    value_t2.setTextColor(getResources().getColor(R.color.RcmoPlantBG));
+                }
+
 
                 break;
             case CalculateConstant.PRODUCT_TYPE_ANIMAL:

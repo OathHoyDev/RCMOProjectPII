@@ -62,6 +62,8 @@ public class FormulaAModel extends AbstractFormulaModel {
 
     public static double costKaSermOuppakorn = 0;
     public static double costKaSiaOkardOuppakorn = 0;
+
+    public static double V = 0;
     /*
     public static double KaSermOuppakorn = 7.37;
     public static double KaSiaOkardOuppakorn = 1.81;
@@ -166,7 +168,7 @@ public class FormulaAModel extends AbstractFormulaModel {
 
         KaRang = KaTreamDin + KaPluk + KaDoolae + KaGebGeaw;
         KaWassadu = KaPan + KaPuy + KaYaplab + KaWassaduUn;
-        KaSiaOkardLongtoon = Util.round((KaRang + KaWassadu) * (AttraDokbia / 100) * (0.5), 2);
+        KaSiaOkardLongtoon = Util.round((KaRang + KaWassadu) * (AttraDokbia / 100) * (V/12), 2);
          costKaSermOuppakorn = SumRai * KaSermOuppakorn;
          costKaSiaOkardOuppakorn = SumRai * KaSiaOkardOuppakorn;
 

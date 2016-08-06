@@ -1213,7 +1213,7 @@
                                     android:gravity="left|bottom"
                                     android:inputType="text"
                                     android:paddingLeft="10dp"
-                                    android:text="กก./ไร่"
+                                    android:text="กิโลกรัม"
                                     android:textColor="@color/RcmoNormalDarkText"
                                     android:textSize="@dimen/cal_item_size"
                                     pixlui:typeface="Quark-Bold.otf" />
