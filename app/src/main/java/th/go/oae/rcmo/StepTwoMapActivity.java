@@ -64,7 +64,7 @@ public class StepTwoMapActivity extends FragmentActivity {
 
     View marketListView;
 
-    boolean isChooseAllProduct = true;
+    boolean isChooseAllProduct = false;
 
     public static UserPlotModel userPlotModel;
 
@@ -88,6 +88,8 @@ public class StepTwoMapActivity extends FragmentActivity {
 
     private List<Marker> markerList = new ArrayList<Marker>();
 
+    Context context;
+
     static class ViewHolder {
         private ListView marketList;
     }
@@ -96,6 +98,8 @@ public class StepTwoMapActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_step_two_map);
+
+        context = this;
 
         initMap(savedInstanceState);
         initialLayout();
@@ -166,9 +170,9 @@ public class StepTwoMapActivity extends FragmentActivity {
         markerOption.title(marketObj.getMarketName());
 
         if (marketObj.getPriceValue() == ""){
-            markerOption.snippet("0 บาท");
+            markerOption.snippet("0");
         }else {
-            markerOption.snippet(marketObj.getPriceValue() + " บาท");
+            markerOption.snippet(marketObj.getPriceValue());
         }
 
         Marker marker = map.addMarker(markerOption);
@@ -330,7 +334,7 @@ public class StepTwoMapActivity extends FragmentActivity {
                 for (mGetMarketList.MarketListObj marketObj : tmpMarletList) {
                     if (marketObj.getLatitude() != "") {
                         if (Math.abs(marker.getPosition().latitude - Double.parseDouble(marketObj.getLatitude())) < 0.05 && Math.abs(marker.getPosition().longitude - Double.parseDouble(marketObj.getLongitude())) < 0.05) {
-                            API_GetMarketPrice(marketObj.getMarketID(), userPlotModel.getUserID());
+                            API_GetMarketPrice(marketObj.getMarketID(), userPlotModel.getUserID() , marketObj.getMarketName());
                             break;
                         }
                     }
@@ -355,7 +359,7 @@ public class StepTwoMapActivity extends FragmentActivity {
     }
 
     class MarketListViewHolder {
-        private TextView marketName, marketPrice;
+        private TextView marketName, marketPrice , marketUnit;
     }
 
 
@@ -406,6 +410,7 @@ public class StepTwoMapActivity extends FragmentActivity {
 
                 pch.marketName = (TextView) convertView.findViewById(R.id.marketName);
                 pch.marketPrice = (TextView) convertView.findViewById(R.id.marketPrice);
+                pch.marketUnit = (TextView) convertView.findViewById(R.id.marketPriceUnit);
 
                 convertView.setTag(pch);
             } else {
@@ -417,9 +422,9 @@ public class StepTwoMapActivity extends FragmentActivity {
             pch.marketName.setText(marketObj.getMarketName());
 
             if (marketObj.getPriceValue() == ""){
-                pch.marketPrice.setText("0 บาท");
+                pch.marketPrice.setText("0");
             }else {
-                pch.marketPrice.setText(marketObj.getPriceValue() + " บาท");
+                pch.marketPrice.setText(marketObj.getPriceValue());
             }
 
             pch.marketName.setOnClickListener(new View.OnClickListener() {
@@ -439,6 +444,8 @@ public class StepTwoMapActivity extends FragmentActivity {
                                 break;
                             }
                         }
+                    }else{
+                        new DialogChoice(context).ShowOneChoice("", "ไม่พบตำแหน่งตลาด");
                     }
                 }
             });
@@ -448,7 +455,7 @@ public class StepTwoMapActivity extends FragmentActivity {
                 @Override
                 public boolean onLongClick(View v) {
 
-                    API_GetMarketPrice(marketObj.getMarketID() , userPlotModel.getUserID());
+                    API_GetMarketPrice(marketObj.getMarketID() , userPlotModel.getUserID() , marketObj.getMarketName());
 
                     return true;
 
@@ -476,15 +483,17 @@ public class StepTwoMapActivity extends FragmentActivity {
 
         marketListView = findViewById(R.id.marketList);
 
-        marketListAdaptor = new MarketListAdaptor(allProductMarketList);
+        marketListAdaptor = new MarketListAdaptor(selectProductMarketList);
 
         TextView numberMarket = (TextView) findViewById(R.id.bar);
-        numberMarket.setText("รายชื่อจุดรับซื้อ " + allProductMarketList.size() + " แห่ง");
+        numberMarket.setText("รายชื่อจุดรับซื้อ " + selectProductMarketList.size() + " แห่ง");
 
         h.marketList.setAdapter(marketListAdaptor);
 
         mLayout = (SlidingUpPanelLayout) findViewById(R.id.sliding_layout);
+
         mLayout.addPanelSlideListener(new SlidingUpPanelLayout.PanelSlideListener() {
+
             @Override
             public void onPanelSlide(View panel, float slideOffset) {
                 Log.i(TAG, "onPanelSlide, offset " + slideOffset);
@@ -504,6 +513,7 @@ public class StepTwoMapActivity extends FragmentActivity {
             }
         });
 
+        mLayout.setCoveredFadeColor(0);
 
     }
 
@@ -594,7 +604,7 @@ public class StepTwoMapActivity extends FragmentActivity {
     private String strtitle = "";
     List<mGetMarketPrice.mRespBody> priceLists = new ArrayList<mGetMarketPrice.mRespBody>();
 
-    private void popUpMarketPriceListDialog() {
+    private void popUpMarketPriceListDialog(String marketName) {
         final Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dialog_market_price);
@@ -602,7 +612,7 @@ public class StepTwoMapActivity extends FragmentActivity {
 
         // set the custom dialog components - text, image and button
         TextView titleProduct = (TextView) dialog.findViewById(R.id.titleProduct);
-        titleProduct.setText("จุดรับซื้อ");
+        titleProduct.setText("จุดรับซื้อ " + marketName);
 
         ListView priceList = (ListView)dialog.findViewById(R.id.marketPriceListview);
 
@@ -742,7 +752,7 @@ public class StepTwoMapActivity extends FragmentActivity {
 
     }
 
-    private void API_GetMarketPrice(String marketID, String userID) {
+    private void API_GetMarketPrice(String marketID, String userID , final String marketName) {
 
         new ResponseAPI(this, new ResponseAPI.OnCallbackAPIListener() {
             @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
@@ -760,7 +770,7 @@ public class StepTwoMapActivity extends FragmentActivity {
                     marketPriceList = new ArrayList<mGetMarketPrice.mRespBody>();
                     marketPriceList = mMarketPriceRespBody;
 
-                    popUpMarketPriceListDialog();
+                    popUpMarketPriceListDialog(marketName);
 
 
                 }
@@ -814,7 +824,7 @@ public class StepTwoMapActivity extends FragmentActivity {
 
                 }
 
-                addMarketMarker(allProductMarketList);
+                addMarketMarker(selectProductMarketList);
 
                 initSlideView();
             }
