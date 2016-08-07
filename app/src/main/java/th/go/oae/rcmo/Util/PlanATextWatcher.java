@@ -144,12 +144,13 @@ public class PlanATextWatcher implements TextWatcher {
         }
 
         if(name.contains("KaSiaOkardLongtoon")) {
+            Log.d("KaSiaOkardLongtoon" , "V : "+f.V);
             value  =Util.round(
                                 (  Util.strToDoubleDefaultZero(h.group1_item_1.getText().toString())
                                   +Util.strToDoubleDefaultZero(h.group1_item_6.getText().toString())
                                 )
                                 * (Util.strToDoubleDefaultZero(h.group4_item_1.getText().toString())/100)
-                                * (0.5)
+                                * (f.V/12)
                                ,2 );
                    // *(Util.strToDoubleDefaultZero(h.group4_item_1.getText().toString())/100)*(6/12),2);
            // value =    (Util.strToDoubleDefaultZero(h.txStartUnit.getText().toString()))*f.KaSiaOkardOuppakorn;

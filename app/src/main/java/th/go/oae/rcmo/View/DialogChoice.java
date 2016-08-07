@@ -181,6 +181,54 @@ public class DialogChoice {
     }
 
 
+    public void ShowAppLink_maylist(){
+        final android.app.Dialog dialog = new android.app.Dialog(context);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_app_link);
+
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        dialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
+        WindowManager.LayoutParams wmlp = dialog.getWindow().getAttributes();
+
+        wmlp.gravity = Gravity.TOP | Gravity.LEFT;
+
+        dialog.findViewById(R.id.dialogGotoOtherApp).setVisibility(View.GONE);
+        ImageView dialogGotoOtherApp = (ImageView)dialog.findViewById(R.id.dialogGotoOtherApp_myList);
+
+
+        dialogGotoOtherApp.setVisibility(View.VISIBLE);
+        ImageView imgOicApp = (ImageView)dialog.findViewById(R.id.imgOicApp);
+        ImageView imgEconApp = (ImageView)dialog.findViewById(R.id.imgEconApp);
+
+
+        dialogGotoOtherApp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(onSelectChoiceListener!=null)
+                    onSelectChoiceListener.OnSelect(OK);
+                dialog.dismiss();
+            }
+        });
+        imgOicApp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Util.onLunchAnotherApp(context, ServiceInstance.OIC_PACKAGE_NAME);
+                dialog.dismiss();
+            }
+        });
+        imgEconApp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Util.onLunchAnotherApp(context, ServiceInstance.ECON_PACKAGE_NAME);
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+
+
+    }
+
     public void ShowAppLink(){
         final android.app.Dialog dialog = new android.app.Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);

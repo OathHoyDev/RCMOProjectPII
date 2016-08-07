@@ -82,11 +82,11 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/RcmoPlantBG"
                 pixlui:typeface="Quark-Bold.otf"
-                android:layout_alignTop="@+id/nganLable"
+                android:layout_alignTop="@+id/nganLabel"
                 android:layout_toEndOf="@+id/raiLabel" />
 
             <com.neopixl.pixlui.components.textview.TextView
-                android:id="@+id/nganLable"
+                android:id="@+id/nganLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="2dp"
@@ -106,8 +106,8 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/RcmoPlantBG"
                 pixlui:typeface="Quark-Bold.otf"
-                android:layout_alignTop="@+id/nganLable"
-                android:layout_toEndOf="@+id/nganLable" />
+                android:layout_alignTop="@+id/nganLabel"
+                android:layout_toEndOf="@+id/nganLabel" />
 
             <com.neopixl.pixlui.components.textview.TextView
 

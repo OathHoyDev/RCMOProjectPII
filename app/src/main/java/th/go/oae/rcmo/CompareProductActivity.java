@@ -41,7 +41,7 @@ public class CompareProductActivity extends Activity {
 
     class ViewHolder {
         private ListView list_prod1, list_prod2, list_prod3, list_prod4, list_label;
-        private LinearLayout prod1_selected, prod2_selected, prod3_selected, prod4_selected;
+        private LinearLayout prod1_selected, prod2_selected, prod3_selected, prod4_selected,c_table;
         private LinearLayout bg_row_product_1, bg_row_product_2, bg_row_product_3, bg_row_product_4;
         private LinearLayout c_column_2, c_column_3, c_column_4, c_column_5;
         private ImageView img_row_product_1,img_row_product_2,img_row_product_3,img_row_product_4;
@@ -100,7 +100,7 @@ public class CompareProductActivity extends Activity {
         h.label_row_product_3 = (TextView) findViewById(R.id.label_row_product_3);
         h.label_row_product_4 = (TextView) findViewById(R.id.label_row_product_4);
 
-
+        h.c_table = (LinearLayout) findViewById(R.id.c_table);
 
         setUI();
         setAction();
@@ -109,7 +109,7 @@ public class CompareProductActivity extends Activity {
 
     private void setUI() {
 
-
+        h.c_table.setVisibility(View.GONE);
         h.c_column_2.setVisibility(View.GONE);
         h.c_column_3.setVisibility(View.GONE);
         h.c_column_4.setVisibility(View.GONE);
@@ -254,7 +254,7 @@ public class CompareProductActivity extends Activity {
 
                      i++;
                     }
-
+                    h.c_table.setVisibility(View.VISIBLE);
                 }
                 ProgressAction.gone(CompareProductActivity.this);
             }

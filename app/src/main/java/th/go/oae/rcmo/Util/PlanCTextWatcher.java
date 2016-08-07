@@ -2,6 +2,7 @@ package th.go.oae.rcmo.Util;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.widget.EditText;
 
 import com.neopixl.pixlui.components.textview.TextView;
@@ -144,10 +145,28 @@ public class PlanCTextWatcher implements TextWatcher {
         }
         */
         if(name.contains("KaSiaOkardLongtoon")) {
+            Log.d("C KaSiaOkardLongtoon "," V:"+f.V);
 
-            value=   Util.round(  ( Util.strToDoubleDefaultZero(h.group1_item_1.getText().toString())
-                    + Util.strToDoubleDefaultZero(h.group1_item_6.getText().toString()))
-                    * (Util.strToDoubleDefaultZero(h.group4_item_1.getText().toString()) / 100) * (12 / 12), 2);
+
+
+            double sumRai = (   (Util.strToDoubleDefaultZero(h.rai.getText().toString())*4*400)
+                    + (Util.strToDoubleDefaultZero(h.ngan.getText().toString())*400)
+                    + (Util.strToDoubleDefaultZero(h.wa.getText().toString())*4)
+                    +  Util.strToDoubleDefaultZero(h.meter.getText().toString())
+            )/1600;
+
+            double KaDoolaePerRai = Util.strToDoubleDefaultZero(h.group1_item_4.getText().toString()) / sumRai;
+            double KaRangPerRai = KaDoolaePerRai + Util.strToDoubleDefaultZero(h.group1_item_5.getText().toString());
+
+            double KaWassaduPerRai =  ((Util.strToDoubleDefaultZero(h.group1_item_8.getText().toString()))/sumRai)
+                    + ((Util.strToDoubleDefaultZero(h.group1_item_9.getText().toString()))/sumRai)
+                    + ((Util.strToDoubleDefaultZero(h.group1_item_10.getText().toString()))/sumRai);
+
+
+
+            value=   Util.round(  (KaRangPerRai
+                    + KaWassaduPerRai)
+                    * (Util.strToDoubleDefaultZero(h.group4_item_1.getText().toString()) / 100) * (f.V / 12), 2);
 
             h.group1_item_11.setText(Util.dobbleToStringNumber(value));
 

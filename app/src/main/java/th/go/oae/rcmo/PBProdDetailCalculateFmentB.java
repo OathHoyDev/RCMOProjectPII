@@ -175,15 +175,15 @@ public class PBProdDetailCalculateFmentB extends Fragment implements View.OnClic
         h.meter.addTextChangedListener(new PlanBTextWatcher(h.meter, h,formulaModel, "KaSermOuppakorn,KaSiaOkardOuppakorn"));
         h.group0_item_1.addTextChangedListener(new PlanBTextWatcher(h.group0_item_1, h,formulaModel, ""));
 
-        h.group1_item_2.addTextChangedListener(new PlanBTextWatcher(h.group1_item_2, h, "Karang,KaSiaOkardLongtoon"));
-        h.group1_item_3.addTextChangedListener(new PlanBTextWatcher(h.group1_item_3, h, "Karang,KaSiaOkardLongtoon"));
-        h.group1_item_4.addTextChangedListener(new PlanBTextWatcher(h.group1_item_4, h, "Karang,KaSiaOkardLongtoon"));
-        h.group1_item_5.addTextChangedListener(new PlanBTextWatcher(h.group1_item_5, h, "Karang,KaSiaOkardLongtoon"));
+        h.group1_item_2.addTextChangedListener(new PlanBTextWatcher(h.group1_item_2, h,formulaModel, "Karang,KaSiaOkardLongtoon"));
+        h.group1_item_3.addTextChangedListener(new PlanBTextWatcher(h.group1_item_3, h,formulaModel, "Karang,KaSiaOkardLongtoon"));
+        h.group1_item_4.addTextChangedListener(new PlanBTextWatcher(h.group1_item_4, h,formulaModel, "Karang,KaSiaOkardLongtoon"));
+        h.group1_item_5.addTextChangedListener(new PlanBTextWatcher(h.group1_item_5, h,formulaModel, "Karang,KaSiaOkardLongtoon"));
 
-        h.group1_item_7.addTextChangedListener(new PlanBTextWatcher(h.group1_item_7, h, "KaWassadu,KaSiaOkardLongtoon"));
-        h.group1_item_8.addTextChangedListener(new PlanBTextWatcher(h.group1_item_8, h, "KaWassadu,KaSiaOkardLongtoon"));
-        h.group1_item_9.addTextChangedListener(new PlanBTextWatcher(h.group1_item_9, h, "KaWassadu,KaSiaOkardLongtoon"));
-        h.group1_item_10.addTextChangedListener(new PlanBTextWatcher(h.group1_item_10, h, "KaWassadu,KaSiaOkardLongtoon"));
+        h.group1_item_7.addTextChangedListener(new PlanBTextWatcher(h.group1_item_7, h,formulaModel, "KaWassadu,KaSiaOkardLongtoon"));
+        h.group1_item_8.addTextChangedListener(new PlanBTextWatcher(h.group1_item_8, h,formulaModel, "KaWassadu,KaSiaOkardLongtoon"));
+        h.group1_item_9.addTextChangedListener(new PlanBTextWatcher(h.group1_item_9, h,formulaModel, "KaWassadu,KaSiaOkardLongtoon"));
+        h.group1_item_10.addTextChangedListener(new PlanBTextWatcher(h.group1_item_10, h,formulaModel, "KaWassadu,KaSiaOkardLongtoon"));
         h.group1_item_12.addTextChangedListener(new PlanBTextWatcher(h.group1_item_12, h, ""));
 
         h.group2_item_1.addTextChangedListener(new PlanBTextWatcher(h.group2_item_1, h, ""));
@@ -448,6 +448,8 @@ public class PBProdDetailCalculateFmentB extends Fragment implements View.OnClic
                     formulaModel.KaSermOuppakorn = Util.strToDoubleDefaultZero(var.getD());
                     formulaModel.KaSiaOkardOuppakorn = Util.strToDoubleDefaultZero(var.getO());
                     formulaModel.TontumMattratarnPerRai = Util.strToDoubleDefaultZero(var.getCS());
+                    formulaModel.V = Util.strToDoubleDefaultZero(var.getV());
+
 
                     formulaModel.SumRai = ((formulaModel.Rai*4*400)+(formulaModel.Ngan*400)+(formulaModel.Wa*4)+formulaModel.Meter)/1600;
                      Log.d("Test ","Sum Rai --> "+formulaModel.SumRai);

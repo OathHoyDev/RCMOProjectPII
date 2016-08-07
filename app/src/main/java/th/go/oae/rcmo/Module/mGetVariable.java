@@ -44,7 +44,16 @@ public class mGetVariable {
         String
                 FormularCode ,
                 ConfigCode ,
-                B , F , D , O , CA , CS , DH , DD , DP , DB , OH , OD , OP , OB;
+                B , F , D , O , CA , CS , DH , DD , DP , DB , OH , OD , OP , OB,V;
+
+
+        public String getV() {
+            return V;
+        }
+
+        public void setV(String v) {
+            V = v;
+        }
 
         public String getFormularCode() {
             return FormularCode;

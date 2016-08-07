@@ -14,7 +14,7 @@
         android:layout_width="85dp"
         android:layout_height="85dp"
         android:background="@drawable/plant_ic_circle_bg"
-        android:clickable="true"
+
         android:focusable="true"
         android:gravity="center"
         android:orientation="vertical">

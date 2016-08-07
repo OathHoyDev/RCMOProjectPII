@@ -111,7 +111,7 @@
             android:name=".PBCalculateResultActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".CompareProductActivity"
-            android:screenOrientation="landscape"></activity>
+            android:screenOrientation="sensorLandscape"></activity>
     </application>
 
 </manifest>

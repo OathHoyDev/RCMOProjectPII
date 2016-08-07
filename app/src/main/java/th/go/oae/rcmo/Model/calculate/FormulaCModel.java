@@ -71,9 +71,13 @@ public class FormulaCModel extends AbstractFormulaModel {
 
     public double calIncome = 0;
     public double calIncomePerRai = 0;
-
+    public double calProfitLossPerKilo = 0;
     public double costKaSermOuppakorn = 0;
     public double costKaSiaOkardOuppakorn = 0;
+
+    public double KaSiaOkardLongtoonPerRai = 0;
+
+    public static double V = 0;
 
     public static Hashtable<String, String> calculateLabel;
     static {
@@ -197,7 +201,7 @@ public class FormulaCModel extends AbstractFormulaModel {
 
         KaRang = KaTreamDin + KaPluk + KaDoolae ;
 
-
+       // KaRang
         //=============== 1.2 ====================
 
         KaWassadu = KaPan + KaPuy + KaYaplab + KaWassaduUn;
@@ -209,8 +213,8 @@ public class FormulaCModel extends AbstractFormulaModel {
         double KaWassaduUnPerRai = KaWassaduUn / SumRai ;
         double KaWassaduPerRai = KaPuyPerRai + KaYaplabPerRai + KaWassaduUnPerRai;
 
-        KaSiaOkardLongtoon =  Util.round((KaRang + KaWassadu) * (AttraDokbia / 100) * (12 / 12), 2);
-        double KaSiaOkardLongtoonPerRai = Util.round((KaRangPerRai + KaWassaduPerRai) * (AttraDokbia / 100) * (12 / 12), 2);
+        KaSiaOkardLongtoon =  Util.round((KaRang + KaWassadu) * (AttraDokbia / 100) * (V / 12), 2);
+        KaSiaOkardLongtoonPerRai = Util.round((KaRangPerRai + KaWassaduPerRai) * (AttraDokbia / 100) * (V / 12), 2);
 
         double KaChaoTDinPerRai = KaChaoTDin/SumRai;
 
@@ -237,7 +241,8 @@ public class FormulaCModel extends AbstractFormulaModel {
         calIncomePerRai = calIncome / SumRai;
         calIncomePerRai = Util.verifyDoubleDefaultZero(calIncomePerRai);
 
-        calProfitLoss = calIncome - calStartCostPerRai;
+      //  calProfitLoss = calIncome - calStartCostPerRai;
+        calProfitLoss = calIncome - calLifeCostPerRai;
         calProfitLoss = Util.verifyDoubleDefaultZero(calProfitLoss);
 
         calProfitLossPerRai = calProfitLoss/SumRai;
@@ -246,11 +251,17 @@ public class FormulaCModel extends AbstractFormulaModel {
         TontumMattratarn = TontumMattratarnPerRai * SumRai;
         TontumMattratarn = Util.verifyDoubleDefaultZero(TontumMattratarn);
 
+        calProfitLossPerKilo = calProfitLoss/(PonPalid/SumRai);
+        calProfitLossPerKilo = Util.verifyDoubleDefaultZero(calProfitLossPerKilo);
         Log.d("Cal","-----------------------------------------");
         Log.d("Cal","*****  ต้นทุนรวมของเกษตรกร :"+calSumCost);
         Log.d("Cal","*****  รายได้ :"+calIncome);
         Log.d("Cal","***** กำไร/ขาดทุน :"+calProfitLoss);
+        Log.d("Cal","***** กำไร/ขาดทุน กก. :"+calProfitLossPerKilo);
         Log.d("Cal","***** ต้นทุนมาตรฐาน :"+TontumMattratarn);
+
+        Log.d("Cal","***** calStartCostPerRai :"+calStartCostPerRai);
+        Log.d("Cal","***** calLifeCostPerRai :"+calLifeCostPerRai);
     }
 
 
