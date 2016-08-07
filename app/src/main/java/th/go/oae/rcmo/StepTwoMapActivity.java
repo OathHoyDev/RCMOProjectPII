@@ -22,6 +22,7 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.Toast;
@@ -619,7 +620,7 @@ public class StepTwoMapActivity extends FragmentActivity {
         priceList.setAdapter(new listAdapter(marketPriceList));
 
 
-        ImageView dialogButton = (ImageView) dialog.findViewById(R.id.close);
+        LinearLayout dialogButton = (LinearLayout) dialog.findViewById(R.id.closeArea);
         // if button is clicked, close the custom dialog
         dialogButton.setOnClickListener(new View.OnClickListener() {
             @Override
