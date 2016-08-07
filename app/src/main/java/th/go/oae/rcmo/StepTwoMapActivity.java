@@ -63,7 +63,7 @@ public class StepTwoMapActivity extends FragmentActivity {
 
     View marketListView;
 
-    boolean isChooseAllProduct = true;
+    boolean isChooseAllProduct = false;
 
     public static UserPlotModel userPlotModel;
 
@@ -475,10 +475,10 @@ public class StepTwoMapActivity extends FragmentActivity {
 
         marketListView = findViewById(R.id.marketList);
 
-        marketListAdaptor = new MarketListAdaptor(allProductMarketList);
+        marketListAdaptor = new MarketListAdaptor(selectProductMarketList);
 
         TextView numberMarket = (TextView) findViewById(R.id.bar);
-        numberMarket.setText("รายชื่อจุดรับซื้อ " + allProductMarketList.size() + " แห่ง");
+        numberMarket.setText("รายชื่อจุดรับซื้อ " + selectProductMarketList.size() + " แห่ง");
 
         h.marketList.setAdapter(marketListAdaptor);
 
@@ -802,7 +802,7 @@ public class StepTwoMapActivity extends FragmentActivity {
 
                 }
 
-                addMarketMarker(allProductMarketList);
+                addMarketMarker(selectProductMarketList);
 
                 initSlideView();
             }
