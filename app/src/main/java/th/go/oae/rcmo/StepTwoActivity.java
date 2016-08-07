@@ -182,7 +182,7 @@ public class StepTwoActivity extends Activity {
             public void onClick(View v) {
 
                     new DialogChoice(StepTwoActivity.this)
-                            .ShowTutorial("g10");
+                            .ShowTutorial("g7");
 
 
             }

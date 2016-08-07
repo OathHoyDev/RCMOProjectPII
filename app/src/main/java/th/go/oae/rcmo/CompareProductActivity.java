@@ -24,6 +24,7 @@ import th.go.oae.rcmo.Adapter.CompareProductHeaderAdapter;
 import th.go.oae.rcmo.Module.mProductCompare;
 import th.go.oae.rcmo.Util.ServiceInstance;
 import th.go.oae.rcmo.Util.Util;
+import th.go.oae.rcmo.View.DialogChoice;
 import th.go.oae.rcmo.View.ProgressAction;
 
 public class CompareProductActivity extends Activity {
@@ -185,6 +186,18 @@ public class CompareProductActivity extends Activity {
                 } else {
                     h.prod1_selected.setVisibility(View.GONE);
                 }
+
+            }
+        });
+
+        //tutorial
+        findViewById(R.id.btnHowto).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                new DialogChoice(CompareProductActivity.this)
+                        .ShowTutorial("g19");
+
 
             }
         });

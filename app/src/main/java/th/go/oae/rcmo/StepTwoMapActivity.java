@@ -51,6 +51,7 @@ import th.go.oae.rcmo.Module.mGetMarketPrice;
 import th.go.oae.rcmo.Module.mTumbon;
 import th.go.oae.rcmo.Util.GPSTracker;
 import th.go.oae.rcmo.Util.ServiceInstance;
+import th.go.oae.rcmo.View.DialogChoice;
 
 /**
  * Created by SilVeriSm on 8/1/2016 AD.
@@ -573,6 +574,17 @@ public class StepTwoMapActivity extends FragmentActivity {
 
             CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(centerLatitude, centerLongitude), 10);
             map.animateCamera(cameraUpdate);
+
+            }
+        });
+
+        findViewById(R.id.btnHowto).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                new DialogChoice(StepTwoMapActivity.this)
+                        .ShowTutorial("g8");
+
 
             }
         });
