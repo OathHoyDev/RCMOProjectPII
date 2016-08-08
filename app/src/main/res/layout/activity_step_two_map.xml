@@ -90,7 +90,8 @@
 
                     <com.neopixl.pixlui.components.textview.TextView
                         android:id="@+id/btnMapSelectProduct"
-                        android:layout_width="100dp"
+                        android:layout_width="wrap_content"
+                        android:maxWidth="100dp"
                         android:layout_height="30dp"
                         android:background="@drawable/white_cut_left_conner"
                         android:clickable="true"
@@ -98,8 +99,8 @@
                         android:text="xxx"
                         android:gravity="center"
                         android:textColor="@color/RcmoPlantBG"
-                        android:textSize="@dimen/textsize_normal"
                         android:textStyle="bold"
+                        android:maxLines="1"
                         pixlui:typeface="Quark-Bold.otf" />
 
                     <com.neopixl.pixlui.components.textview.TextView

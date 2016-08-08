@@ -275,8 +275,18 @@ public class ProductDetailMapFragment extends Fragment {
 
                 Log.d(TAG, "onMapClick: " + latLng.toString());
                 API_getPlotSuit(String.valueOf(latLng.latitude), String.valueOf(latLng.longitude), "2");
+
+                Bitmap bm = BitmapFactory.decodeResource(getResources(), R.drawable.pin_pink);
+
+                int newWidth = (int) (bm.getWidth() * 0.3);
+                int newHeight = (int) (bm.getHeight() * 0.3);
+
+                bm = Bitmap.createScaledBitmap(bm, newWidth, newHeight, false);
+
                 MarkerOptions marker = new MarkerOptions().position(new LatLng(latLng.latitude, latLng.longitude));
+                marker.icon(BitmapDescriptorFactory.fromBitmap(bm));
                 map.addMarker(marker);
+
             }
         });
 
