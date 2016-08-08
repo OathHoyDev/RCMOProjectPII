@@ -62,7 +62,7 @@ public class StepTwoMapActivity extends FragmentActivity {
     GoogleMap map;
     GPSTracker gps;
     MapView mapView;
-
+    boolean isShowing = false;
     View marketListView;
 
     boolean isChooseAllProduct = false;
@@ -410,7 +410,9 @@ public class StepTwoMapActivity extends FragmentActivity {
 
 
                 pch.marketName = (TextView) convertView.findViewById(R.id.marketName);
+
                 pch.marketPrice = (TextView) convertView.findViewById(R.id.marketPrice);
+
                 pch.marketUnit = (TextView) convertView.findViewById(R.id.marketPriceUnit);
 
                 convertView.setTag(pch);
@@ -427,7 +429,11 @@ public class StepTwoMapActivity extends FragmentActivity {
             }else {
                 pch.marketPrice.setText(marketObj.getPriceValue());
             }
-
+            if(isChooseAllProduct){
+                pch.marketPrice.setVisibility(View.GONE);
+            }else{
+                pch.marketPrice.setVisibility(View.VISIBLE);
+            }
             pch.marketName.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -534,6 +540,8 @@ public class StepTwoMapActivity extends FragmentActivity {
                 isChooseAllProduct = true;
                 switchProductButton();
 
+                findViewById(R.id.market_price_label).setVisibility(View.GONE);
+
                 marketListAdaptor.resetMarketList(allProductMarketList);
                 addMarketMarker(allProductMarketList);
 
@@ -551,6 +559,7 @@ public class StepTwoMapActivity extends FragmentActivity {
                 isChooseAllProduct = false;
                 switchProductButton();
 
+                findViewById(R.id.market_price_label).setVisibility(View.VISIBLE);
                 marketListAdaptor.resetMarketList(selectProductMarketList);
                 addMarketMarker(selectProductMarketList);
 
@@ -625,11 +634,20 @@ public class StepTwoMapActivity extends FragmentActivity {
         dialogButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                isShowing = false;
                 dialog.dismiss();
             }
         });
 
-        dialog.show();
+        if(!isShowing){
+            isShowing = true;
+            Log.d("Check ","dialog.isShowing() : false");
+            dialog.show();
+        }else{
+            Log.d("Check ","dialog.isShowing() : true");
+        }
+
+
 
     }
 

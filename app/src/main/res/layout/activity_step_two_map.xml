@@ -264,6 +264,7 @@
                         android:orientation="vertical">
 
                         <com.neopixl.pixlui.components.textview.TextView
+                            android:id="@+id/market_price_label"
                             android:paddingRight="20dp"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
