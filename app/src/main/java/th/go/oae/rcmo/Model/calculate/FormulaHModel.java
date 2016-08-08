@@ -27,6 +27,7 @@ public class FormulaHModel extends AbstractFormulaModel {
     public double RakaChalia=0;
     public double RayaWera =0;
     public double KaSiaOkardLongtoon =0;
+    public double KaSiaOkardLongtoonAsset =0;
 
 
     public double calRakaTkai =0;
@@ -44,7 +45,9 @@ public class FormulaHModel extends AbstractFormulaModel {
 
     public void calculate() {
         Log.d("Cal","***** ค่าแรงงาน  :"+KaRang);
-        double costKaRangGgan = (KaRang/30.42)*RayaWera;
+        Log.d("Cal","***** ค่าเสียโอกาสลงทุนในทรัพย์สิน.  :"+KaSiaOkardLongtoonAsset);
+        double costKaRangGgan = ((KaRang/30.42)*RayaWera)/RayaWera;
+        Log.d("Cal","***** คำนวนค่าแรงงาน  :"+costKaRangGgan);
         double costKaNamKaFai = (KaNamKaFai/30.42)*RayaWera;
         double costKaChoaTDin = (KaChoaTDin/365*RayaWera/JumnuanTKai);
         double costKaSermRongRaun = Util.round((KaSermRongRaun * JumnuanTKai),2);
@@ -63,11 +66,14 @@ public class FormulaHModel extends AbstractFormulaModel {
 
 
         if (isCalIncludeOption){
-            calCost += costKaSermRongRaun ;
+            // mod h 08/08/2559 calCost += costKaSermRongRaun ;
+            calCost += KaSermRongRaun+KaSiaOkardLongtoonAsset ;
         }
 
-        calCostPerTua        = calCost/JumnuanTKai;
-        calCostReturnPerTua  = calCost-RakaChalia;
+        // mod h  calCostPerTua        = calCost/JumnuanTKai;
+        calCostPerTua        = calCost/NumnukChalia;
+        // mod h calCostReturnPerTua  = calCost-RakaChalia;
+        calCostReturnPerTua  = RakaChalia - calCost;
         calAllCostPerKg      = calCost/calNumnukTungmod;
         calAttraRak          = calNumnukTPuem/RayaWera;
         calProfitLossPerKg   = calRakaTkai - calAllCostPerKg;

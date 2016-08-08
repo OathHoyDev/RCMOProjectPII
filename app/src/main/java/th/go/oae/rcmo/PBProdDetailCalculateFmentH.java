@@ -268,10 +268,10 @@ public class PBProdDetailCalculateFmentH extends Fragment implements View.OnClic
                 userPlotModel.setVarValue(ProductService.genJsonPlanVariable(formulaModel));
                 List resultArrayResult = new ArrayList();
 
-                String[] tontoonCal_1 = {"ต้นทุนทั้งหมด", String.format("%,.2f", formulaModel.calCost), "บาท"};
+                String[] tontoonCal_1 = {"ต้นทุนทั้งหมด", String.format("%,.2f", formulaModel.calCost), "บาท/ตัว"};
                 resultArrayResult.add(tontoonCal_1);
 
-                String[] tontoonCal_2 = {"", String.format("%,.2f", formulaModel.calCostPerTua), "บาท/ตัว"};
+                String[] tontoonCal_2 = {"", String.format("%,.2f", formulaModel.calCostPerTua), "บาท/กก."};
                 resultArrayResult.add(tontoonCal_2);
                 String[] tontoonCal_3 = {"", String.format("%,.2f", formulaModel.calAllCostPerKg), "บาท/กก."};
                 resultArrayResult.add(tontoonCal_3);
@@ -403,6 +403,8 @@ public class PBProdDetailCalculateFmentH extends Fragment implements View.OnClic
                 if (mVariableBodyLists.size() != 0) {
                     mGetVariable.mRespBody var = mVariableBodyLists.get(0);
                     formulaModel.KaSermRongRaun = Util.strToDoubleDefaultZero(var.getD());
+
+                    formulaModel.KaSiaOkardLongtoonAsset = Util.strToDoubleDefaultZero(var.getO());
                    // formulaModel.KaSiaOkardRongRaun = Util.strToDoubleDefaultZero(var.getO());
                     //stub
                    // formulaModel.KaSermRongRaun  =69.36;

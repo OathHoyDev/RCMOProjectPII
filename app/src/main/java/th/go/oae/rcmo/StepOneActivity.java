@@ -154,6 +154,8 @@ public class StepOneActivity extends Activity {
             public void onClick(View v) {
                 if(selectedprovince!=null) {
                     displayAmphoeSearch();
+                }else{
+                    new DialogChoice(StepOneActivity.this).ShowOneChoice("เลือกจังหวัดก่อนนะครับ", "");
                 }
 
             }
@@ -165,6 +167,8 @@ public class StepOneActivity extends Activity {
             public void onClick(View v) {
                 if(selectedprovince!=null && selectedAmphoe != null) {
                     displayTambonSearch();
+                }else{
+                    new DialogChoice(StepOneActivity.this).ShowOneChoice("เลือกอำเภอก่อนนะครับ", "");
                 }
 
             }

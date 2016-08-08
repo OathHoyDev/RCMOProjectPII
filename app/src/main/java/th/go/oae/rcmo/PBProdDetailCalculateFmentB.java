@@ -514,9 +514,9 @@ public class PBProdDetailCalculateFmentB extends Fragment implements View.OnClic
             meter.setText(Util.clearStrNumberFormat(h.meter.getText().toString()));
         }
 
-        ngan.setFilters(new InputFilter[]{ new InputFilterMinMax(0, 4)});
-        wa.setFilters(new InputFilter[]{ new InputFilterMinMax(0, 100)});
-        meter.setFilters(new InputFilter[]{ new InputFilterMinMax(0, 400)});
+        ngan.setFilters(new InputFilter[]{ new InputFilterMinMax(0, 3)});
+        wa.setFilters(new InputFilter[]{ new InputFilterMinMax(0, 99)});
+        meter.setFilters(new InputFilter[]{ new InputFilterMinMax(0, 399)});
 
         btn_ok.setOnClickListener(new View.OnClickListener() {
             @Override

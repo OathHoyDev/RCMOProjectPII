@@ -1212,13 +1212,13 @@ public class PBProdDetailCalculateFmentJ extends Fragment implements View.OnClic
         final EditText rai = (EditText) dialog.findViewById(R.id.rai);
 
         final EditText ngan = (EditText) dialog.findViewById(R.id.ngan);
-        ngan.setFilters(new InputFilter[]{new InputFilterMinMax(0, 4)});
+        ngan.setFilters(new InputFilter[]{new InputFilterMinMax(0, 9)});
 
         final EditText sqaWa = (EditText) dialog.findViewById(R.id.sqaWa);
-        sqaWa.setFilters(new InputFilter[]{new InputFilterMinMax(0, 100)});
+        sqaWa.setFilters(new InputFilter[]{new InputFilterMinMax(0, 99)});
 
         final EditText sqM = (EditText) dialog.findViewById(R.id.sqM);
-        sqM.setFilters(new InputFilter[]{new InputFilterMinMax(0, 400)});
+        sqM.setFilters(new InputFilter[]{new InputFilterMinMax(0, 399)});
 
         final EditText unit = (EditText) dialog.findViewById(R.id.unit);
 

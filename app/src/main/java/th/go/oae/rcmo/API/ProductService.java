@@ -44,7 +44,7 @@ public class ProductService {
    static String[] B_StdDisplay = {"D","O","CS"};
    static String[] C_StdDisplay = {"D","O","CS","CA"};
    static String[] F_StdDisplay = {"D","O"};
-   static String[] H_StdDisplay = {"D"};
+   static String[] H_StdDisplay = {"D","O"};
    static String[] G_StdDisplay = {"DH","DD","OH","OD"};
    static String[] KB_StdDisplay = {"DP","OP"};
    static String[] KC_StdDisplay = {"DB","OB"};

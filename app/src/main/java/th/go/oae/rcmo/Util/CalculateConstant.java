@@ -135,6 +135,7 @@ public class CalculateConstant {
         tmp.put("F", new String[]{"Fix Variable",UNIT_BATH});
         tmp.put("B", new String[]{"อัตราดอกเบี้ยจาก ธกส.",UNIT_BATH});
         tmp.put("D", new String[]{"ค่าเสื่อมโรงเรือน",UNIT_BATH});
+        tmp.put("O", new String[]{"ค่าเสียโอกาสลงทุนในทรัพย์สิน",UNIT_BATH});
         PB_CALCULATE_STANDARD_CONST_H = tmp;
     }
 
