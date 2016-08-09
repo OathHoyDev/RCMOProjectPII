@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
 
+import th.go.oae.rcmo.Util.Util;
+
 /**
  * Created by SilVeriSm on 6/20/2016 AD.
  */
@@ -101,10 +103,11 @@ public class FormulaDModel extends AbstractFormulaModel {
 
     public void calculate() {
 
-        KaPan = RermLeang*RakaReamLeang;
+      //  KaPan = RermLeang*RakaReamLeang/(1-(C7/100);
 
         dieRatio = ((RermLeang-JumNounTuaTKai)/RermLeang)*100;
-
+        KaPan = (RermLeang*RakaReamLeang)/(1-(dieRatio/100));
+        KaPan = Util.verifyDoubleDefaultZero(KaPan);
         double costKaRangGgan = (KaRangGgan/30.42)*RaYaWeRaLeang;
         double costKaNamKaFai = (KaNamKaFai/30.42)*RaYaWeRaLeang;
         double costKaNamMan = (KaNamMan/30.42)*RaYaWeRaLeang;
@@ -112,7 +115,9 @@ public class FormulaDModel extends AbstractFormulaModel {
 
         NamNakTKai = NamNakChaLia*JumNounTuaTKai;
 
-        double tmpCost = (KaPan + KaAHan + KaYa + costKaRangGgan + costKaNamKaFai + costKaNamMan + KaWassaduSinPleung + KaSomRongRaun );
+        double costAHan  =KaAHan+((KaAHan/2)*(dieRatio/(100-dieRatio)));
+
+        double tmpCost = (KaPan + costAHan + KaYa + costKaRangGgan + costKaNamKaFai + costKaNamMan + KaWassaduSinPleung + KaSomRongRaun );
 
         KaSiaOkardLongtoon = ((tmpCost*0.0675)/365)*RaYaWeRaLeang;
 
@@ -141,6 +146,7 @@ public class FormulaDModel extends AbstractFormulaModel {
         Log.d("Cal","***** ค่าเสื่อมโรงเรือน :"+KaSermRongRaun);
         Log.d("Cal","***** ค่าเสียโอกาสโรงเรื่อน :"+KaSiaOkardRongRaun);
         Log.d("Cal","***** ต้นทุนทั้งหมด :"+calCost);
+        Log.d("Cal","***** ต้นทุนอาหาร :"+costAHan);
         Log.d("Cal","-----------------------------------------");
         Log.d("Cal","***** ค่าแรงงาน   หลังคำนวน :"+costKaRangGgan);
         Log.d("Cal","***** ค่าน้ำ-ค่าไฟ หลังคำนวน :"+costKaNamKaFai);

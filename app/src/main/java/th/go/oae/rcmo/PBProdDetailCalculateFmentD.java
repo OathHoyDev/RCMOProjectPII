@@ -149,6 +149,7 @@ public class PBProdDetailCalculateFmentD extends Fragment implements View.OnClic
         h.group1_item_7.addTextChangedListener(new PlanDTextWatcher(h.group1_item_7, h, "costKaSiaOkardRongRaun"));
         h.group1_item_8.addTextChangedListener(new PlanDTextWatcher(h.group1_item_8, h, "costKaSiaOkardRongRaun"));
         h.group1_item_9.addTextChangedListener(new PlanDTextWatcher(h.group1_item_9, h, ""));
+        h.group3_item_1.addTextChangedListener(new PlanDTextWatcher(h.group2_item_1, h, "KaPan"));
         h.group3_item_1.addTextChangedListener(new PlanDTextWatcher(h.group3_item_1, h, "NamNakTKai"));
         h.group3_item_2.addTextChangedListener(new PlanDTextWatcher(h.group3_item_2, h, "DieRate,NamNakTKai"));
         h.group3_item_4.addTextChangedListener(new PlanDTextWatcher(h.group3_item_4, h, ""));

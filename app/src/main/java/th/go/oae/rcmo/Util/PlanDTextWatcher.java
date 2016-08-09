@@ -78,6 +78,11 @@ public class PlanDTextWatcher implements TextWatcher {
             value =   (Util.strToDoubleDefaultZero(h.txStartPrice.getText().toString()))
                     * (Util.strToDoubleDefaultZero(h.txStartUnit.getText().toString()));
 
+            double dieRatio =   ((Util.strToDoubleDefaultZero(h.txStartUnit.getText().toString())) - (Util.strToDoubleDefaultZero(h.group3_item_2.getText().toString())));
+            dieRatio =  dieRatio/(Util.strToDoubleDefaultZero(h.txStartUnit.getText().toString())) * 100;
+
+            value = value/(1-(dieRatio/100));
+            value = Util.verifyDoubleDefaultZero(value);
 
             h.group1_item_1.setText(Util.dobbleToStringNumber(value));
         }
