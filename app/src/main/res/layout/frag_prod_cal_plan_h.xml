@@ -814,28 +814,26 @@
                                         android:layout_marginTop="@dimen/margin_normal"
                                         android:layout_weight="1"
                                         android:gravity="left|center"
+                                        android:textColor="@color/RcmoAnimalBG"
                                         android:inputType="text"
                                         android:paddingLeft="15dp"
                                         android:text="ค่าเสียโอกาสเงินทุน"
-                                        android:textColor="@color/RcmoNormalDarkText"
+
                                         android:textSize="@dimen/cal_item_size"
                                         pixlui:typeface="Quark-Bold.otf" />
 
-                                    <com.neopixl.pixlui.components.edittext.EditText
+                                    <com.neopixl.pixlui.components.textview.TextView
                                         android:id="@+id/group1_item_10"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
                                         android:layout_marginTop="@dimen/margin_normal"
                                         android:layout_weight="1.5"
-                                        android:background="@color/RcmoWhiteBG"
+                                        android:background="@color/RcmoLightGrayBG"
                                         android:gravity="right"
                                         android:hint="0.00"
-                                        android:imeOptions="actionNext"
-                                        android:inputType="numberDecimal"
                                         android:padding="5dp"
-                                        android:textColor="@color/RcmoNormalDarkText"
-                                        android:textColorHint="@color/RcmoHintText"
-                                        android:textCursorDrawable="@drawable/text_cursor"
+                                        android:textColor="@color/RcmoAnimalBG"
+                                        android:textColorHint="@color/RcmoAnimalBG"
                                         android:textSize="@dimen/cal_item_size"
                                         pixlui:typeface="Quark-Bold.otf" />
                                 </LinearLayout>

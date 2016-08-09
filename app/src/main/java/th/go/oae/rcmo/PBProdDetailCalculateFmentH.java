@@ -79,7 +79,7 @@ public class PBProdDetailCalculateFmentH extends Fragment implements View.OnClic
         h.group1_item_7 = (EditText) view.findViewById(R.id.group1_item_7);
         h.group1_item_8 = (EditText) view.findViewById(R.id.group1_item_8);
         h.group1_item_9 = (EditText) view.findViewById(R.id.group1_item_9);
-        h.group1_item_10 = (EditText) view.findViewById(R.id.group1_item_10);
+        h.group1_item_10 = (TextView) view.findViewById(R.id.group1_item_10);
 
         h.group2_item_1 = (EditText) view.findViewById(R.id.group2_item_1);
         h.group2_item_2 = (TextView) view.findViewById(R.id.group2_item_2);
@@ -159,19 +159,19 @@ public class PBProdDetailCalculateFmentH extends Fragment implements View.OnClic
         h.txStartNumnakReam.addTextChangedListener(new PlanHTextWatcher( h.txStartNumnakReam, h, "calNumnukTPuem"));
 
         h.group1_item_1.addTextChangedListener(new PlanHTextWatcher(h.group1_item_1, h, "calNumnukTungmod"));
-        h.group1_item_2.addTextChangedListener(new PlanHTextWatcher(h.group1_item_2, h, ""));
-        h.group1_item_3.addTextChangedListener(new PlanHTextWatcher(h.group1_item_3, h, ""));
-        h.group1_item_4.addTextChangedListener(new PlanHTextWatcher(h.group1_item_4, h, ""));
-        h.group1_item_5.addTextChangedListener(new PlanHTextWatcher(h.group1_item_5, h, ""));
-        h.group1_item_6.addTextChangedListener(new PlanHTextWatcher(h.group1_item_6, h, ""));
-        h.group1_item_7.addTextChangedListener(new PlanHTextWatcher(h.group1_item_7, h, ""));
-        h.group1_item_8.addTextChangedListener(new PlanHTextWatcher(h.group1_item_8, h, ""));
-        h.group1_item_9.addTextChangedListener(new PlanHTextWatcher(h.group1_item_9, h, ""));
+        h.group1_item_2.addTextChangedListener(new PlanHTextWatcher(h.group1_item_2, h, "KaSiaOkardLongtoon"));
+        h.group1_item_3.addTextChangedListener(new PlanHTextWatcher(h.group1_item_3, h, "KaSiaOkardLongtoon"));
+        h.group1_item_4.addTextChangedListener(new PlanHTextWatcher(h.group1_item_4, h, "KaSiaOkardLongtoon"));
+        h.group1_item_5.addTextChangedListener(new PlanHTextWatcher(h.group1_item_5, h, "KaSiaOkardLongtoon"));
+        h.group1_item_6.addTextChangedListener(new PlanHTextWatcher(h.group1_item_6, h, "KaSiaOkardLongtoon"));
+        h.group1_item_7.addTextChangedListener(new PlanHTextWatcher(h.group1_item_7, h, "KaSiaOkardLongtoon"));
+        h.group1_item_8.addTextChangedListener(new PlanHTextWatcher(h.group1_item_8, h, "KaSiaOkardLongtoon"));
+        h.group1_item_9.addTextChangedListener(new PlanHTextWatcher(h.group1_item_9, h, "KaSiaOkardLongtoon"));
         h.group1_item_10.addTextChangedListener(new PlanHTextWatcher(h.group1_item_10, h, ""));
 
         h.group2_item_1.addTextChangedListener(new PlanHTextWatcher(h.group2_item_1, h, "calNumnukTungmod,calNumnukTPuem,calRakaTkai"));
         h.group3_item_1.addTextChangedListener(new PlanHTextWatcher(h.group3_item_1, h, "calRakaTkai"));
-        h.group4_item_1.addTextChangedListener(new PlanHTextWatcher(h.group4_item_1, h, ""));
+        h.group4_item_1.addTextChangedListener(new PlanHTextWatcher(h.group4_item_1, h, "KaSiaOkardLongtoon"));
 
       //  calAllEgg
     }
@@ -187,6 +187,7 @@ public class PBProdDetailCalculateFmentH extends Fragment implements View.OnClic
 
 
     private void setUpCalUI(FormulaHModel model) {
+        h.group1_item_10.setText(Util.dobbleToStringNumber(Util.verifyDoubleDefaultZero(model.KaSiaOkardLongtoon)));
         h.group2_item_2.setText(Util.dobbleToStringNumber(Util.verifyDoubleDefaultZero(model.calNumnukTungmod)));
         h.group2_item_3.setText(Util.dobbleToStringNumber(Util.verifyDoubleDefaultZero(model.calNumnukTPuem)));
         h.group3_item_2.setText(Util.dobbleToStringNumber(Util.verifyDoubleDefaultZero(model.calRakaTkai)));
@@ -206,7 +207,7 @@ public class PBProdDetailCalculateFmentH extends Fragment implements View.OnClic
         model.KaNamKaFai      = Util.strToDoubleDefaultZero(h.group1_item_7.getText().toString());
         model.KaWassaduSinPleung  = Util.strToDoubleDefaultZero(h.group1_item_8.getText().toString());
         model.KaChoaTDin  = Util.strToDoubleDefaultZero(h.group1_item_9.getText().toString());
-        model.KaSiaOkardLongtoon  = Util.strToDoubleDefaultZero(h.group1_item_10.getText().toString());
+        //model.KaSiaOkardLongtoon  = Util.strToDoubleDefaultZero(h.group1_item_10.getText().toString());
 
         model.NumnukChalia = Util.strToDoubleDefaultZero(h.group2_item_1.getText().toString());
         model.RakaChalia   = Util.strToDoubleDefaultZero(h.group3_item_1.getText().toString());
@@ -276,10 +277,10 @@ public class PBProdDetailCalculateFmentH extends Fragment implements View.OnClic
                 String[] tontoonCal_3 = {"", String.format("%,.2f", formulaModel.calAllCostPerKg), "บาท/กก."};
                 resultArrayResult.add(tontoonCal_3);
 
-                String[] tontoonCal_4 = {"ผลตอบแทนต้นทุน\nทั้งหมดต่อตัว", String.format("%,.2f", formulaModel.calCostReturnPerTua), "บาท/กก."};
+                String[] tontoonCal_4 = {"ผลตอบแทนต้นทุนทั้งหมด ต่อตัว", String.format("%,.2f", formulaModel.calCostReturnPerTua), "บาท/กก."};
                 resultArrayResult.add(tontoonCal_4);
 
-                String[] tontoonCal_5 = {"อัตราการแลกเนื้อ\nเฉลี่ยต่อวัน", String.format("%,.2f", formulaModel.calAttraRak), ""};
+                String[] tontoonCal_5 = {"อัตราการแลกเนื้อ เฉลี่ยต่อวัน", String.format("%,.2f", formulaModel.calAttraRak), ""};
                 resultArrayResult.add(tontoonCal_5);
 
 
@@ -361,8 +362,8 @@ public class PBProdDetailCalculateFmentH extends Fragment implements View.OnClic
 
     public static class ViewHolder {
         //Group1
-        public EditText group1_item_1, group1_item_2, group1_item_3, group1_item_4, group1_item_5,group1_item_6, group1_item_7, group1_item_8, group1_item_9, group1_item_10;
-
+        public EditText group1_item_1, group1_item_2, group1_item_3, group1_item_4, group1_item_5,group1_item_6, group1_item_7, group1_item_8, group1_item_9;
+        public TextView  group1_item_10;
         //Group2
         public TextView group2_item_2,group2_item_3;
         public EditText group2_item_1;
@@ -500,7 +501,7 @@ public class PBProdDetailCalculateFmentH extends Fragment implements View.OnClic
                         model.KaRang      = Util.strToDoubleDefaultZero(var.KaRang);
                         model.KaNamKaFai  = Util.strToDoubleDefaultZero(var.KaNamKaFai);
                         model.KaChoaTDin  = Util.strToDoubleDefaultZero(var.KaChoaTDin);
-                        model.KaSiaOkardLongtoon  = Util.strToDoubleDefaultZero(var.KaSiaOkardLongtoon);
+                      //  model.KaSiaOkardLongtoon  = Util.strToDoubleDefaultZero(var.KaSiaOkardLongtoon);
                         model.NumnukChalia = Util.strToDoubleDefaultZero(var.NumnukChalia);
                         model.RakaChalia   = Util.strToDoubleDefaultZero(var.RakaChalia);
                         model.RayaWera     = Util.strToDoubleDefaultZero(var.RayaWera);
@@ -521,7 +522,7 @@ public class PBProdDetailCalculateFmentH extends Fragment implements View.OnClic
                         h.group1_item_7.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.KaNamKaFai)));
                         h.group1_item_8.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.KaWassaduSinPleung)));
                         h.group1_item_9.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.KaChoaTDin)));
-                        h.group1_item_10.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.KaSiaOkardLongtoon)));
+                      //  h.group1_item_10.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.KaSiaOkardLongtoon)));
 
                         h.group2_item_1.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.NumnukChalia)));
                         h.group3_item_1.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.RakaChalia)));

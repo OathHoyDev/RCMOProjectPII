@@ -79,7 +79,29 @@ public class PlanHTextWatcher implements TextWatcher {
         //formulaAModel.calculate();
         double value = 0;
 
+        if(name.contains("KaSiaOkardLongtoon")){
 
+            double rayawera = Util.strToDoubleDefaultZero(h.group4_item_1.getText().toString());
+
+            value =   Util.strToDoubleDefaultZero(h.group1_item_2.getText().toString())
+                    + Util.strToDoubleDefaultZero(h.group1_item_3.getText().toString())
+                    + Util.strToDoubleDefaultZero(h.group1_item_4.getText().toString())
+                    + Util.strToDoubleDefaultZero(h.group1_item_5.getText().toString())
+                    + Util.strToDoubleDefaultZero(h.group1_item_8.getText().toString());;
+
+
+
+            value   += /*Karang*/  ((Util.strToDoubleDefaultZero(h.group1_item_6.getText().toString())/30.42)*rayawera)
+                                   /Util.strToDoubleDefaultZero(h.group4_item_1.getText().toString());
+
+            value   += /*KaNamKaFai*/  (Util.strToDoubleDefaultZero(h.group1_item_7.getText().toString())/30.42)*rayawera;
+
+            value   += /*KaChoaTDin*/ ((Util.strToDoubleDefaultZero(h.group1_item_9.getText().toString())*rayawera)/365);
+
+            value = value*0.0675/365*rayawera;
+
+            h.group1_item_10.setText(Util.dobbleToStringNumber(Util.verifyDoubleDefaultZero(value)));
+        }
 
         if(name.contains("calNumnukTungmod")){
             value = Util.strToDoubleDefaultZero(h.group1_item_1.getText().toString())

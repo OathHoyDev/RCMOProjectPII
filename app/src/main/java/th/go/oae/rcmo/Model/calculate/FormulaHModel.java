@@ -49,7 +49,9 @@ public class FormulaHModel extends AbstractFormulaModel {
         double costKaRangGgan = ((KaRang/30.42)*RayaWera)/RayaWera;
         Log.d("Cal","***** คำนวนค่าแรงงาน  :"+costKaRangGgan);
         double costKaNamKaFai = (KaNamKaFai/30.42)*RayaWera;
-        double costKaChoaTDin = (KaChoaTDin/365*RayaWera/JumnuanTKai);
+        // mod h 08/08/2559  double costKaChoaTDin = (KaChoaTDin/365*RayaWera/JumnuanTKai);
+        double costKaChoaTDin = ((KaChoaTDin*RayaWera)/365);
+
         double costKaSermRongRaun = Util.round((KaSermRongRaun * JumnuanTKai),2);
 
         calNumnukTungmod = NumnukChalia*JumnuanTKai;
@@ -60,7 +62,11 @@ public class FormulaHModel extends AbstractFormulaModel {
 
          calKaChaiJaiAll = Util.round((KaPan+KaAHanKon+KaAKanYab+costKaRangGgan+KaYa+costKaNamKaFai+KaWassaduSinPleung),2);
 
+        KaSiaOkardLongtoon = ( KaPan/*C7*/   +KaAHanKon/*C8*/   +KaAKanYab/*C9*/  +costKaRangGgan/*E10*/
+                               +KaYa/*C11*/  +costKaNamKaFai/*D12*/  + KaWassaduSinPleung/*C13*/ + costKaChoaTDin /*D14*/
+                             )*0.0675/365*RayaWera  ;
 
+        KaSiaOkardLongtoon = Util.verifyDoubleDefaultZero(KaSiaOkardLongtoon);
         //calCost  =Util.round((costKaSermRongRaun+KaSiaOkardLongtoon +calKaChaiJaiAll+costKaChoaTDin),2);
         calCost  =Util.round((KaSiaOkardLongtoon +calKaChaiJaiAll+costKaChoaTDin),2);
 
@@ -88,6 +94,7 @@ public class FormulaHModel extends AbstractFormulaModel {
 
         Log.d("Cal","***** ค่าเสื่อมโรงเรือน :"+KaSermRongRaun);
         Log.d("Cal","***** ค่าใช้จ่ายทั้งหมด QT :"+calKaChaiJaiAll);
+        Log.d("Cal","***** ค่าเสื่อมลงทุน :"+KaSiaOkardLongtoon);
 
         Log.d("Cal","-----------------------------------------");
         Log.d("Cal","***** ค่าแรงงาน   หลังคำนวน :"+costKaRangGgan);
