@@ -486,7 +486,7 @@ public class StepTwoMapActivity extends FragmentActivity {
         }
     }
 
-    private void initSlideView() {
+    private void initSlideView(String unitHeader) {
 
         marketListView = findViewById(R.id.marketList);
 
@@ -494,6 +494,8 @@ public class StepTwoMapActivity extends FragmentActivity {
 
         TextView numberMarket = (TextView) findViewById(R.id.bar);
         numberMarket.setText("รายชื่อจุดรับซื้อ " + selectProductMarketList.size() + " แห่ง");
+        TextView market_price_label = (TextView) findViewById(R.id.market_price_label);
+        market_price_label.setText(unitHeader);
 
         h.marketList.setAdapter(marketListAdaptor);
 
@@ -825,6 +827,7 @@ public class StepTwoMapActivity extends FragmentActivity {
             @Override
             public void callbackSuccess(Object obj) {
 
+                String headerUnit = "";
                 mGetMarketList mMarketList = (mGetMarketList) obj;
 
                 List<mGetMarketList.mRespBody> mMarketListRespBody = mMarketList.getRespBody();
@@ -836,7 +839,7 @@ public class StepTwoMapActivity extends FragmentActivity {
                     mGetMarketList.mRespBody respBody = mMarketListRespBody.get(0);
 
                     marketListObjList = respBody.getMarketList();
-
+                    headerUnit = respBody.getUnitValue();
                     if (marketListObjList.size() > 0) {
                         selectProductMarketList = marketListObjList;
                     }
@@ -845,7 +848,7 @@ public class StepTwoMapActivity extends FragmentActivity {
 
                 addMarketMarker(selectProductMarketList);
 
-                initSlideView();
+                initSlideView(headerUnit);
             }
 
             @Override

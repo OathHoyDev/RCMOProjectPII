@@ -184,7 +184,7 @@ public class DialogChoice {
     public void ShowAppLink_maylist(){
         final android.app.Dialog dialog = new android.app.Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.dialog_app_link);
+        dialog.setContentView(R.layout.dialog_app_link_mylist);
 
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         dialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
@@ -192,11 +192,9 @@ public class DialogChoice {
 
         wmlp.gravity = Gravity.TOP | Gravity.LEFT;
 
-        dialog.findViewById(R.id.dialogGotoOtherApp).setVisibility(View.GONE);
-        ImageView dialogGotoOtherApp = (ImageView)dialog.findViewById(R.id.dialogGotoOtherApp_myList);
+       ImageView dialogGotoOtherApp = (ImageView)dialog.findViewById(R.id.dialogGotoOtherApp_myList);
 
 
-        dialogGotoOtherApp.setVisibility(View.VISIBLE);
         ImageView imgOicApp = (ImageView)dialog.findViewById(R.id.imgOicApp);
         ImageView imgEconApp = (ImageView)dialog.findViewById(R.id.imgEconApp);
 

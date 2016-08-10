@@ -1,47 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:pixlui="http://schemas.android.com/apk/com.neopixl.pixlui"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:paddingTop="10dp"
         android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:paddingTop="10dp">
 
-        <com.neopixl.pixlui.components.textview.TextView
-            pixlui:typeface="Quark-Bold.otf"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/textsize_small"
-            android:text="Medium Text"
-            android:id="@+id/marketName"
-            android:layout_weight="10"
-            android:textColor="@color/RcmoBlackBG" />
+            android:orientation="vertical">
 
-        <com.neopixl.pixlui.components.textview.TextView
-            pixlui:typeface="Quark-Bold.otf"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/textsize_small"
-            android:text="Medium Text"
-            android:id="@+id/marketPrice"
-            android:layout_weight="1"
-            android:gravity="right"
-            android:textColor="@color/RcmoBlackBG" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:orientation="horizontal">
 
-        <com.neopixl.pixlui.components.textview.TextView
-            pixlui:typeface="Quark-Bold.otf"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/textsize_small"
-            android:text="Medium Text"
-            android:id="@+id/marketPriceUnit"
-            android:layout_weight="1"
-            android:gravity="right"
-            android:textColor="@color/RcmoBlackBG" />
+                <com.neopixl.pixlui.components.textview.TextView
+                    android:id="@+id/marketName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="10"
+                    android:text="Medium Text"
+                    android:textColor="@color/RcmoBlackBG"
+                    android:textSize="@dimen/textsize_small"
+                    pixlui:typeface="Quark-Bold.otf" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:orientation="horizontal">
+
+                <com.neopixl.pixlui.components.textview.TextView
+                    android:id="@+id/marketPrice"
+                    android:layout_gravity="right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:gravity="right"
+                    android:text="Medium Text"
+                    android:textColor="@color/RcmoBlackBG"
+                    android:textSize="@dimen/textsize_small"
+                    pixlui:typeface="Quark-Bold.otf" />
+
+                <com.neopixl.pixlui.components.textview.TextView
+                    android:id="@+id/marketPriceUnit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:text="Medium Text"
+                    android:textColor="@color/RcmoBlackBG"
+                    android:textSize="@dimen/textsize_small"
+                    pixlui:typeface="Quark-Bold.otf" />
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>

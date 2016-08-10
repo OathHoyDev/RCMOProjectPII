@@ -65,8 +65,8 @@
         android:layout_height="300dp"
         android:layout_weight="1"
         android:background="@color/RcmoWhiteBG"
-        android:divider="@null"
-        android:dividerHeight="0dp"
+        android:divider="@color/RcmoDarkTranBG"
+        android:dividerHeight="1dp"
         android:id="@+id/marketPriceListview"></ListView>
 
 

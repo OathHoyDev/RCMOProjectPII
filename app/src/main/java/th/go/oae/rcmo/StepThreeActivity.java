@@ -1050,11 +1050,18 @@ public class StepThreeActivity extends Activity {
     private boolean isValidPlantInputData() {
         boolean isValid = true;
         EditText inputRai = (EditText) findViewById(R.id.inputRai);
+        EditText inputNgan = (EditText) findViewById(R.id.inputNgan);
+        EditText inputWa = (EditText) findViewById(R.id.inputWa);
 
         String errorMsg = "";
-        if (inputRai.getText() == null || inputRai.getText().toString().equals("")) {
-            errorMsg += "- ขนาดแปลงที่ดิน\n";
-            isValid = false;
+        if (   (inputRai.getText() == null || inputRai.getText().toString().equals(""))    ) {
+            if((inputNgan.getText() == null || inputNgan.getText().toString().equals(""))){
+                if((inputWa.getText() == null || inputWa.getText().toString().equals(""))){
+                    errorMsg += "- ขนาดแปลงที่ดิน\n";
+                    isValid = false;
+                }
+            }
+
         }
 
 
