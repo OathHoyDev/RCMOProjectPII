@@ -264,6 +264,7 @@ public class ProductService {
         var.KaWassaduSinPleung =  Util.dobbleToStringNumber(model.KaWassaduSinPleung) ;
         var.KaSomRongRaun = Util.dobbleToStringNumber(model.KaSomRongRaun) ;
         var.KaChoaTDin = Util.dobbleToStringNumber(model.KaChoaTDin);
+        var.PonPloyDai = Util.dobbleToStringNumber(model.PonPloyDai);
 
         var.NamNakChaLia = Util.dobbleToStringNumber(model.NamNakChaLia);
         var.JumNounTuaTKai = Util.dobbleToStringNumber(model.JumNounTuaTKai);

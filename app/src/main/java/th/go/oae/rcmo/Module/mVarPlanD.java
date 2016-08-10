@@ -20,6 +20,7 @@ public class mVarPlanD {
     public String KaChoaTDin ;
     public String NamNakChaLia;
     public String JumNounTuaTKai;
+    public String PonPloyDai;
 
     public String NamNakTKai ;
     public String RakaTKai ;
@@ -33,6 +34,15 @@ public class mVarPlanD {
 
     public void setCalIncludeOption(boolean calIncludeOption) {
         isCalIncludeOption = calIncludeOption;
+    }
+
+
+    public String getPonPloyDai() {
+        return PonPloyDai;
+    }
+
+    public void setPonPloyDai(String ponPloyDai) {
+        PonPloyDai = ponPloyDai;
     }
 
     public String getKaPan() {

@@ -1169,6 +1169,68 @@
                             </LinearLayout>
 
                             <LinearLayout
+                                android:id="@+id/group3_4_1_item"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:gravity="center"
+                                android:orientation="horizontal">
+
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:orientation="horizontal">
+
+                                    <com.neopixl.pixlui.components.textview.TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:gravity="left|center"
+                                        android:inputType="text"
+                                        android:paddingLeft="15dp"
+                                        android:text="ผลพลอยได้(ขายมูลสัตว์)"
+                                        android:textColor="@color/RcmoNormalDarkText"
+                                        android:textSize="@dimen/cal_item_size"
+                                        pixlui:typeface="Quark-Bold.otf" />
+
+                                    <com.neopixl.pixlui.components.edittext.EditText
+                                        android:id="@+id/group3_item_4_1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="@dimen/margin_normal"
+                                        android:layout_weight="1.5"
+                                        android:background="@color/RcmoWhiteBG"
+                                        android:gravity="right"
+                                        android:hint="0.00"
+                                        android:imeOptions="actionNext"
+                                        android:inputType="numberDecimal"
+                                        android:padding="5dp"
+                                        android:textColor="@color/RcmoNormalDarkText"
+                                        android:textColorHint="@color/RcmoHintText"
+                                        android:textCursorDrawable="@drawable/text_cursor"
+                                        android:textSize="@dimen/cal_item_size"
+                                        pixlui:typeface="Quark-Bold.otf" />
+                                </LinearLayout>
+
+                                <com.neopixl.pixlui.components.textview.TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginTop="@dimen/margin_normal"
+                                    android:layout_weight="3.5"
+                                    android:gravity="left|center"
+                                    android:inputType="text"
+                                    android:paddingLeft="10dp"
+                                    android:text="บาท/รุ่น"
+                                    android:textColor="@color/RcmoNormalDarkText"
+                                    android:textSize="@dimen/cal_item_size"
+                                    pixlui:typeface="Quark-Bold.otf" />
+                            </LinearLayout>
+
+                            <LinearLayout
                                 android:id="@+id/group3_5_item"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"

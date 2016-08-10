@@ -105,9 +105,16 @@ public class PlanDTextWatcher implements TextWatcher {
             h.group3_item_3.setText(Util.dobbleToStringNumber(value));
         }
 
-        if(name.contains("costKaSiaOkardRongRaun")){
+        if(name.contains("KaSiaOkardLongtoon")){
+            double dieRatio =   ((Util.strToDoubleDefaultZero(h.txStartUnit.getText().toString())) - (Util.strToDoubleDefaultZero(h.group3_item_2.getText().toString())));
+            dieRatio =  dieRatio/(Util.strToDoubleDefaultZero(h.txStartUnit.getText().toString())) * 100;
+            double aHan = Util.strToDoubleDefaultZero(h.group1_item_2.getText().toString());
+            double costAhan = aHan+((aHan/2)*(dieRatio/(100-dieRatio)));
+
             value = Util.strToDoubleDefaultZero(h.group1_item_1.getText().toString());
-            value+= Util.strToDoubleDefaultZero(h.group1_item_2.getText().toString());
+
+            value+= costAhan;
+
             value+= Util.strToDoubleDefaultZero(h.group1_item_3.getText().toString());
             value+= Util.strToDoubleDefaultZero(h.group1_item_4.getText().toString())/30.42*Util.strToDoubleDefaultZero(h.group3_item_5.getText().toString());
             value+= Util.strToDoubleDefaultZero(h.group1_item_5.getText().toString())/30.42*Util.strToDoubleDefaultZero(h.group3_item_5.getText().toString());

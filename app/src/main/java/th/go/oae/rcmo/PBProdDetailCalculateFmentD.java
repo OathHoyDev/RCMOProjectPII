@@ -78,6 +78,7 @@ public class PBProdDetailCalculateFmentD extends Fragment implements View.OnClic
         h.group3_item_2 = (EditText) view.findViewById(R.id.group3_item_2);
         h.group3_item_3 = (TextView) view.findViewById(R.id.group3_item_3);
         h.group3_item_4 = (EditText) view.findViewById(R.id.group3_item_4);
+        h.group3_item_4_1 = (EditText) view.findViewById(R.id.group3_item_4_1);
         h.group3_item_5 = (EditText) view.findViewById(R.id.group3_item_5);
         h.group3_item_6 = (TextView) view.findViewById(R.id.group3_item_6);
 
@@ -138,22 +139,23 @@ public class PBProdDetailCalculateFmentD extends Fragment implements View.OnClic
 
 
     private void setAction() {
-        h.txStartUnit.addTextChangedListener(new PlanDTextWatcher(h.txStartUnit, h, "KaPan,costKaSiaOkardRongRaun"));
+        h.txStartUnit.addTextChangedListener(new PlanDTextWatcher(h.txStartUnit, h, "KaPan,KaSiaOkardLongtoon"));
         h.txStartPrice.addTextChangedListener(new PlanDTextWatcher( h.txStartPrice,h, "KaPan"));
 
-        h.group1_item_2.addTextChangedListener(new PlanDTextWatcher(h.group1_item_2, h, "costKaSiaOkardRongRaun"));
-        h.group1_item_3.addTextChangedListener(new PlanDTextWatcher(h.group1_item_3, h, "costKaSiaOkardRongRaun"));
-        h.group1_item_4.addTextChangedListener(new PlanDTextWatcher(h.group1_item_4, h, "costKaSiaOkardRongRaun"));
-        h.group1_item_5.addTextChangedListener(new PlanDTextWatcher(h.group1_item_5, h, "costKaSiaOkardRongRaun"));
-        h.group1_item_6.addTextChangedListener(new PlanDTextWatcher(h.group1_item_6, h, "costKaSiaOkardRongRaun"));
-        h.group1_item_7.addTextChangedListener(new PlanDTextWatcher(h.group1_item_7, h, "costKaSiaOkardRongRaun"));
-        h.group1_item_8.addTextChangedListener(new PlanDTextWatcher(h.group1_item_8, h, "costKaSiaOkardRongRaun"));
+        h.group1_item_2.addTextChangedListener(new PlanDTextWatcher(h.group1_item_2, h, "KaSiaOkardLongtoon"));
+        h.group1_item_3.addTextChangedListener(new PlanDTextWatcher(h.group1_item_3, h, "KaSiaOkardLongtoon"));
+        h.group1_item_4.addTextChangedListener(new PlanDTextWatcher(h.group1_item_4, h, "KaSiaOkardLongtoon"));
+        h.group1_item_5.addTextChangedListener(new PlanDTextWatcher(h.group1_item_5, h, "KaSiaOkardLongtoon"));
+        h.group1_item_6.addTextChangedListener(new PlanDTextWatcher(h.group1_item_6, h, "KaSiaOkardLongtoon"));
+        h.group1_item_7.addTextChangedListener(new PlanDTextWatcher(h.group1_item_7, h, "KaSiaOkardLongtoon"));
+        h.group1_item_8.addTextChangedListener(new PlanDTextWatcher(h.group1_item_8, h, "KaSiaOkardLongtoon"));
         h.group1_item_9.addTextChangedListener(new PlanDTextWatcher(h.group1_item_9, h, ""));
         h.group3_item_1.addTextChangedListener(new PlanDTextWatcher(h.group2_item_1, h, "KaPan"));
         h.group3_item_1.addTextChangedListener(new PlanDTextWatcher(h.group3_item_1, h, "NamNakTKai"));
         h.group3_item_2.addTextChangedListener(new PlanDTextWatcher(h.group3_item_2, h, "DieRate,NamNakTKai"));
         h.group3_item_4.addTextChangedListener(new PlanDTextWatcher(h.group3_item_4, h, ""));
-        h.group3_item_5.addTextChangedListener(new PlanDTextWatcher(h.group3_item_5, h, "costKaSiaOkardRongRaun"));
+        h.group3_item_4_1.addTextChangedListener(new PlanDTextWatcher(h.group3_item_4_1, h, ""));
+        h.group3_item_5.addTextChangedListener(new PlanDTextWatcher(h.group3_item_5, h, "KaSiaOkardLongtoon"));
 
 
     }
@@ -190,6 +192,7 @@ public class PBProdDetailCalculateFmentD extends Fragment implements View.OnClic
         model.NamNakChaLia = Util.strToDoubleDefaultZero(h.group3_item_1.getText().toString());
         model.JumNounTuaTKai = Util.strToDoubleDefaultZero(h.group3_item_2.getText().toString());
         model.RakaTKai = Util.strToDoubleDefaultZero(h.group3_item_4.getText().toString());
+        model.PonPloyDai = Util.strToDoubleDefaultZero(h.group3_item_4_1.getText().toString());
         model.RaYaWeRaLeang = Util.strToDoubleDefaultZero(h.group3_item_5.getText().toString());
 
         model.RermLeang = Util.strToDoubleDefaultZero(h.txStartUnit.getText().toString());
@@ -253,12 +256,18 @@ public class PBProdDetailCalculateFmentD extends Fragment implements View.OnClic
 
                 String[] tontoonCal_1 = {"ต้นทุนทั้งหมด", String.format("%,.2f", formulaModel.calCost), "บาท"};
                 resultArrayResult.add(tontoonCal_1);
+                String[] tontoonCal_1_1 = {"ต้นทุนทั้งหมดเมื่อหักผลพลอยได้", String.format("%,.2f", formulaModel.calCostNotPonPloyDai), "บาท"};
+                resultArrayResult.add(tontoonCal_1_1);
 
-                String[] tontoonCal_2 = {"", String.format("%,.2f", formulaModel.calCostPerUnit), "บาท/ตัว"};
+                String[] tontoonCal_2 = {"ต้นทุนต่อ 1 ตัว", String.format("%,.2f", formulaModel.calCostPerUnit), "บาท/ตัว"};
                 resultArrayResult.add(tontoonCal_2);
+                String[] tontoonCal_2_1 = {"ต้นทุนต่อ 1 ตัวเมื่อหักผลพลอยได้", String.format("%,.2f", formulaModel.calCostPerUnitNotPonPloyDai), "บาท/ตัว"};
+                resultArrayResult.add(tontoonCal_2_1);
 
-                String[] tontoonCal_3 = {"", String.format("%,.2f", formulaModel.calCostPerKg), "บาท/กก."};
+                String[] tontoonCal_3 = {"ต้นทุนต่อ 1 กิโลกรัม", String.format("%,.2f", formulaModel.calCostPerKg), "บาท/กก."};
                 resultArrayResult.add(tontoonCal_3);
+                String[] tontoonCal_3_1 = {"ต้นทุนต่อ 1 กก.เมื่อหักผลพลอยได้", String.format("%,.2f", formulaModel.calCostPerKgNotPonPloyDai), "บาท/กก."};
+                resultArrayResult.add(tontoonCal_3_1);
                 DialogCalculateResult.calculateResultModel.resultList = resultArrayResult;
 
                 new DialogCalculateResult(context).Show();
@@ -331,7 +340,7 @@ public class PBProdDetailCalculateFmentD extends Fragment implements View.OnClic
         public TextView group2_item_1;
 
         //Group3
-        public EditText group3_item_1,group3_item_2,group3_item_4,group3_item_5;
+        public EditText group3_item_1,group3_item_2,group3_item_4,group3_item_4_1,group3_item_5;
         public TextView group3_item_3,group3_item_6;
 
         public TextView txStartUnit,txStartPrice;
@@ -459,6 +468,7 @@ public class PBProdDetailCalculateFmentD extends Fragment implements View.OnClic
                         model.NamNakChaLia = Util.strToDoubleDefaultZero(var.NamNakChaLia);
                         model.JumNounTuaTKai =Util.strToDoubleDefaultZero(var.JumNounTuaTKai);
                         model.RakaTKai = Util.strToDoubleDefaultZero(var.RakaTKai);
+                        model.PonPloyDai = Util.strToDoubleDefaultZero(var.PonPloyDai);
                         model.RaYaWeRaLeang = Util.strToDoubleDefaultZero(var.RaYaWeRaLeang);
 
                         model.RermLeang =Util.strToDoubleDefaultZero(plotDetail.getAnimalNumber());
@@ -480,6 +490,7 @@ public class PBProdDetailCalculateFmentD extends Fragment implements View.OnClic
                         h.group3_item_1.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.NamNakChaLia)));
                         h.group3_item_2.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.JumNounTuaTKai)));
                         h.group3_item_4.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.RakaTKai)));
+                        h.group3_item_4_1.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.PonPloyDai)));
                         h.group3_item_5.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.RaYaWeRaLeang)));
 
                         h.txStartUnit.setText(Util.strToDobbleToStrFormat(plotDetail.getAnimalNumber()));

@@ -239,7 +239,7 @@ public class PBCalculateResultActivity extends Activity {
 
 
                 unit_t1.setText(calculateResultModel.unit_t1);
-                value_t1.setText(Util.dobbleToStringNumberWithClearDigit(calculateResultModel.value_t1));
+                value_t1.setText(Util.dobbleToStringNumber(calculateResultModel.value_t1));
                 value_t1.setTextColor(getResources().getColor(R.color.RcmoAnimalBG));
 
 
@@ -249,7 +249,7 @@ public class PBCalculateResultActivity extends Activity {
                     value_t1.setVisibility(View.GONE);
                 }else{
                     unit_t1.setText(calculateResultModel.unit_t1);
-                    value_t1.setText(Util.dobbleToStringNumberWithClearDigit(calculateResultModel.value_t1));
+                    value_t1.setText(Util.dobbleToStringNumber(calculateResultModel.value_t1));
                     value_t1.setTextColor(getResources().getColor(R.color.RcmoAnimalBG));
                 }
 

@@ -40,10 +40,18 @@ public class FormulaDModel extends AbstractFormulaModel {
     public double RakaTKai = 0;
     public double RaYaWeRaLeang = 0;
     public double KaSiaOkardLongtoon = 0;
+    public double PonPloyDai = 0;
 
     public double calCost = 0;
+    public double calCostNotPonPloyDai = 0;
+
     public double calCostPerUnit = 0;
+    public double calCostPerUnitNotPonPloyDai = 0;
+
     public double calCostPerKg = 0;
+    public double calCostPerKgNotPonPloyDai = 0;
+
+
     public double calProfitLossPerKg = 0;
     public double calProfitLoss = 0;
 
@@ -119,7 +127,9 @@ public class FormulaDModel extends AbstractFormulaModel {
 
         double tmpCost = (KaPan + costAHan + KaYa + costKaRangGgan + costKaNamKaFai + costKaNamMan + KaWassaduSinPleung + KaSomRongRaun );
 
-        KaSiaOkardLongtoon = ((tmpCost*0.0675)/365)*RaYaWeRaLeang;
+       // KaSiaOkardLongtoon = ((tmpCost*0.0675)/365)*RaYaWeRaLeang;
+
+        KaSiaOkardLongtoon = tmpCost*0.0675/365*RaYaWeRaLeang;
 
         double costKaSermRongRaun = KaSermRongRaun * RermLeang;
         double costKaSiaOkardRongRaun = KaSiaOkardRongRaun * RermLeang;
@@ -130,22 +140,30 @@ public class FormulaDModel extends AbstractFormulaModel {
             calCost += costKaSermRongRaun + costKaSiaOkardRongRaun;
         }
 
+        calCost = Util.verifyDoubleDefaultZero(calCost);
 
-
+        calCostNotPonPloyDai = calCost - PonPloyDai;
+        calCostNotPonPloyDai = Util.verifyDoubleDefaultZero(calCostNotPonPloyDai);
 
         calCostPerUnit = calCost/JumNounTuaTKai;
-        calCostPerUnit = Double.isInfinite(calCostPerUnit) ? 0 : calCostPerUnit;
+        calCostPerUnit = Util.verifyDoubleDefaultZero(calCostPerUnit);
+        calCostPerUnitNotPonPloyDai = calCostNotPonPloyDai/JumNounTuaTKai;
+        calCostPerUnitNotPonPloyDai =  Util.verifyDoubleDefaultZero(calCostPerUnitNotPonPloyDai);
 
         calCostPerKg = calCost/NamNakTKai;
-        calCostPerKg = Double.isInfinite(calCostPerKg) ? 0 : calCostPerKg;
+        calCostPerKg = Util.verifyDoubleDefaultZero(calCostPerKg);
 
-        calProfitLossPerKg = RakaTKai-calCostPerKg;
+        calCostPerKgNotPonPloyDai = calCostPerUnitNotPonPloyDai/NamNakChaLia;
+        calCostPerKgNotPonPloyDai = Util.verifyDoubleDefaultZero(calCostPerKgNotPonPloyDai);
+
+        calProfitLossPerKg = RakaTKai-calCostPerKgNotPonPloyDai;
         calProfitLoss = calProfitLossPerKg*NamNakTKai;
 
 
         Log.d("Cal","***** ค่าเสื่อมโรงเรือน :"+KaSermRongRaun);
         Log.d("Cal","***** ค่าเสียโอกาสโรงเรื่อน :"+KaSiaOkardRongRaun);
         Log.d("Cal","***** ต้นทุนทั้งหมด :"+calCost);
+        Log.d("Cal","***** ต้นทุนทั้งหมดเมื่อหักผลพลอยได้ :"+calCost);
         Log.d("Cal","***** ต้นทุนอาหาร :"+costAHan);
         Log.d("Cal","-----------------------------------------");
         Log.d("Cal","***** ค่าแรงงาน   หลังคำนวน :"+costKaRangGgan);
@@ -156,7 +174,9 @@ public class FormulaDModel extends AbstractFormulaModel {
         Log.d("Cal","***** ค่าเสียโอกาสโรงเรื่อน หลังคำนวน :"+costKaSiaOkardRongRaun);
         Log.d("Cal","-----------------------------------------");
         Log.d("Cal","***** ต้นทุนต่อ 1 ตัว :"+calCostPerUnit);
+        Log.d("Cal","***** ต้นทุนต่อ 1 ตัวเมื่อหักผลพลอยได้ :"+calCostPerUnitNotPonPloyDai);
         Log.d("Cal","***** ต้นทุนต่อ 1 กิโลกรัม :"+calCostPerKg);
+        Log.d("Cal","***** ต้นทุนต่อ 1 กก.เมื่อหักผลพลอยได้ :"+calCostPerKgNotPonPloyDai);
         Log.d("Cal","***** กำไร-ขาดทุน ต่อ 1 กิโลกรัม :"+calProfitLossPerKg);
         Log.d("Cal","***** กำไร-ขาดทุนทั้งหมด :"+calProfitLoss);
     }
