@@ -95,17 +95,17 @@ public class PlanCTextWatcher implements TextWatcher {
         //formulaAModel.calculate();
         double value = 0;
         if(name.contains("Karang")) {
-            value =   (Util.strToDoubleDefaultZero(h.group1_item_2.getText().toString()))
-                    + (Util.strToDoubleDefaultZero(h.group1_item_3.getText().toString()))
-                    + (Util.strToDoubleDefaultZero(h.group1_item_4.getText().toString()));
-                    //+ (Util.strToDoubleDefaultZero(h.group1_item_5.getText().toString()));
+            value =  // (Util.strToDoubleDefaultZero(h.group1_item_2.getText().toString()))
+                     //(Util.strToDoubleDefaultZero(h.group1_item_3.getText().toString()))
+                      (Util.strToDoubleDefaultZero(h.group1_item_4.getText().toString()))
+                    + (Util.strToDoubleDefaultZero(h.group1_item_5.getText().toString()));
 
             h.group1_item_1.setText(Util.dobbleToStringNumber(value));
         }
 
         if(name.contains("KaWassadu")) {
-            value =   (Util.strToDoubleDefaultZero(h.group1_item_7.getText().toString()))
-                    + (Util.strToDoubleDefaultZero(h.group1_item_8.getText().toString()))
+            value =  // (Util.strToDoubleDefaultZero(h.group1_item_7.getText().toString()))
+                     (Util.strToDoubleDefaultZero(h.group1_item_8.getText().toString()))
                     + (Util.strToDoubleDefaultZero(h.group1_item_9.getText().toString()))
                     + (Util.strToDoubleDefaultZero(h.group1_item_10.getText().toString()));
 

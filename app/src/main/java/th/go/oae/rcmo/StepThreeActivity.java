@@ -148,25 +148,43 @@ public class StepThreeActivity extends Activity {
 
             h.prodBg.setBackgroundResource(R.drawable.animal_ic_circle_bg);
 
+            h.labelPricePerUnit = (com.neopixl.pixlui.components.textview.TextView) findViewById(R.id.labelPricePerUnit);
+            h.labelNumberOfStart = (com.neopixl.pixlui.components.textview.TextView) findViewById(R.id.labelnumberOfStart);
+            h.labelWeightPerUnit = (com.neopixl.pixlui.components.textview.TextView) findViewById(R.id.labelWeightPerUnit);
+
+
+            h.inputNumberOfStart = (com.neopixl.pixlui.components.edittext.EditText) findViewById(R.id.inputNumberOfStart);
+            h.inputPricePerUnit = (com.neopixl.pixlui.components.edittext.EditText) findViewById(R.id.inputPricePerUnit);
+            h.inputWeightPerUnit = (com.neopixl.pixlui.components.edittext.EditText) findViewById(R.id.inputWeightPerUnit);
+
+            h.inputNumberOfStart.addTextChangedListener(new StepIIITextWatcher( h.inputNumberOfStart, h, ""));
+            h.inputPricePerUnit.addTextChangedListener(new StepIIITextWatcher( h.inputPricePerUnit, h, ""));
+            h.inputWeightPerUnit.addTextChangedListener(new StepIIITextWatcher( h.inputWeightPerUnit, h, ""));
+           // h.inputPricePerUnit = (com.neopixl.pixlui.components.edittext.EditText) findViewById(R.id.inputPricePerUnit);
+
 
             if (userPlotModel.getPrdID().equals("39")
                     || userPlotModel.getPrdID().equals("40")
                     || userPlotModel.getPrdID().equals("41")
                     || userPlotModel.getPrdID().equals("42")) {
-                h.labelWeightPerUnit = (com.neopixl.pixlui.components.textview.TextView) findViewById(R.id.labelWeightPerUnit);
-                h.inputWeightPerUnit = (com.neopixl.pixlui.components.edittext.EditText) findViewById(R.id.inputWeightPerUnit);
+                //h.labelWeightPerUnit = (com.neopixl.pixlui.components.textview.TextView) findViewById(R.id.labelWeightPerUnit);
+               // h.inputWeightPerUnit = (com.neopixl.pixlui.components.edittext.EditText) findViewById(R.id.inputWeightPerUnit);
+
 
                 h.labelWeightPerUnit.setVisibility(View.GONE);
                 h.inputWeightPerUnit.setVisibility(View.GONE);
 
 
             } else if (userPlotModel.getPrdID().equals("43")) {
-                h.labelNumberOfStart = (com.neopixl.pixlui.components.textview.TextView) findViewById(R.id.labelnumberOfStart);
-                h.inputNumberOfStart = (com.neopixl.pixlui.components.edittext.EditText) findViewById(R.id.inputNumberOfStart);
-                h.labelPricePerUnit = (com.neopixl.pixlui.components.textview.TextView) findViewById(R.id.labelPricePerUnit);
-                h.inputPricePerUnit = (com.neopixl.pixlui.components.edittext.EditText) findViewById(R.id.inputPricePerUnit);
-                h.labelWeightPerUnit = (com.neopixl.pixlui.components.textview.TextView) findViewById(R.id.labelWeightPerUnit);
-                h.inputWeightPerUnit = (com.neopixl.pixlui.components.edittext.EditText) findViewById(R.id.inputWeightPerUnit);
+               // h.labelNumberOfStart = (com.neopixl.pixlui.components.textview.TextView) findViewById(R.id.labelnumberOfStart);
+              //  h.inputNumberOfStart = (com.neopixl.pixlui.components.edittext.EditText) findViewById(R.id.inputNumberOfStart);
+               // h.labelPricePerUnit = (com.neopixl.pixlui.components.textview.TextView) findViewById(R.id.labelPricePerUnit);
+              //  h.inputPricePerUnit = (com.neopixl.pixlui.components.edittext.EditText) findViewById(R.id.inputPricePerUnit);
+               // h.labelWeightPerUnit = (com.neopixl.pixlui.components.textview.TextView) findViewById(R.id.labelWeightPerUnit);
+             //   h.inputWeightPerUnit = (com.neopixl.pixlui.components.edittext.EditText) findViewById(R.id.inputWeightPerUnit);
+
+
+                h.inputNumberOfStart.addTextChangedListener(new StepIIITextWatcher( h.inputNumberOfStart, h, ""));
 
                 h.inputNumberOfStart.setImeOptions(EditorInfo.IME_ACTION_DONE);
                 h.labelNumberOfStart.setText("จำนวนแม่โครีดนม");
@@ -177,8 +195,8 @@ public class StepThreeActivity extends Activity {
 
 
             } else if (userPlotModel.getPrdID().equals("44")) {
-                h.labelPricePerUnit = (com.neopixl.pixlui.components.textview.TextView) findViewById(R.id.labelPricePerUnit);
-                h.inputPricePerUnit = (com.neopixl.pixlui.components.edittext.EditText) findViewById(R.id.inputPricePerUnit);
+                //h.labelPricePerUnit = (com.neopixl.pixlui.components.textview.TextView) findViewById(R.id.labelPricePerUnit);
+               // h.inputPricePerUnit = (com.neopixl.pixlui.components.edittext.EditText) findViewById(R.id.inputPricePerUnit);
 
                 h.labelPricePerUnit.setVisibility(View.GONE);
                 h.inputPricePerUnit.setVisibility(View.GONE);
@@ -1364,17 +1382,17 @@ public class StepThreeActivity extends Activity {
                 || userPlotModel.getPrdID().equals("42")) {
 
 
-            userPlotModel.setAnimalNumber(((EditText) findViewById(R.id.inputNumberOfStart)).getText().toString());
-            userPlotModel.setAnimalPrice(((EditText) findViewById(R.id.inputPricePerUnit)).getText().toString());
+            userPlotModel.setAnimalNumber(Util.clearStrNumberFormat(((EditText) findViewById(R.id.inputNumberOfStart)).getText().toString()));
+            userPlotModel.setAnimalPrice(Util.clearStrNumberFormat(((EditText) findViewById(R.id.inputPricePerUnit)).getText().toString()));
 
         } else if (userPlotModel.getPrdID().equals("43")) {
 
-            userPlotModel.setAnimalNumber(((EditText) findViewById(R.id.inputNumberOfStart)).getText().toString());
+            userPlotModel.setAnimalNumber(Util.clearStrNumberFormat(((EditText) findViewById(R.id.inputNumberOfStart)).getText().toString()));
 
         } else if (userPlotModel.getPrdID().equals("44")) {
 
-            userPlotModel.setAnimalNumber(((EditText) findViewById(R.id.inputNumberOfStart)).getText().toString());
-            userPlotModel.setAnimalWeight(((EditText) findViewById(R.id.inputWeightPerUnit)).getText().toString());
+            userPlotModel.setAnimalNumber(Util.clearStrNumberFormat(((EditText) findViewById(R.id.inputNumberOfStart)).getText().toString()));
+            userPlotModel.setAnimalWeight(Util.clearStrNumberFormat(((EditText) findViewById(R.id.inputWeightPerUnit)).getText().toString()));
         }
 
     }
