@@ -37,24 +37,32 @@ import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.gson.Gson;
 import com.neopixl.pixlui.components.textview.TextView;
 
+import org.json.JSONObject;
+
+import java.util.HashMap;
 import java.util.List;
 
 import th.go.oae.rcmo.API.RequestServices;
 import th.go.oae.rcmo.API.ResponseAPI;
+import th.go.oae.rcmo.API.ResponseAPI_POST;
 import th.go.oae.rcmo.Adapter.DialogAmphoeAdapter;
 import th.go.oae.rcmo.Adapter.DialogProvinceAdapter;
 import th.go.oae.rcmo.Adapter.DialogTumbonAdapter;
 import th.go.oae.rcmo.Model.UserPlotModel;
 import th.go.oae.rcmo.Module.mAmphoe;
+import th.go.oae.rcmo.Module.mCurrentLocation;
 import th.go.oae.rcmo.Module.mGetPlotDetail;
 import th.go.oae.rcmo.Module.mGetPlotSuit;
 import th.go.oae.rcmo.Module.mProvince;
+import th.go.oae.rcmo.Module.mSavePlotDetail;
 import th.go.oae.rcmo.Module.mTumbon;
 import th.go.oae.rcmo.Util.CalculateConstant;
 import th.go.oae.rcmo.Util.GPSTracker;
 import th.go.oae.rcmo.Util.ServiceInstance;
+import th.go.oae.rcmo.Util.Util;
 import th.go.oae.rcmo.View.DialogChoice;
 import th.go.oae.rcmo.View.ProgressAction;
 import th.go.oae.rcmo.View.dialog_amphoe;
@@ -71,6 +79,8 @@ public class ProductDetailMapFragment extends Fragment {
     mProvince.mRespBody selectedprovince = null;
     mAmphoe.mRespBody selectedAmphoe = null;
     mTumbon.mRespBody selectedTumbon = null;
+
+    mCurrentLocation.mRespBody currentLocation = null;
 
     MapView mapView;
     GoogleMap map;
@@ -109,6 +119,12 @@ public class ProductDetailMapFragment extends Fragment {
     boolean isClickBtn = false;
 
     String TAG = "ProductDetailMapFragment";
+
+    boolean saved = false;
+
+    boolean clickSavePlot = false;
+
+    String plotId;
 
     public ProductDetailMapFragment() {
         // Required empty public constructor
@@ -330,6 +346,7 @@ public class ProductDetailMapFragment extends Fragment {
         MarkerOptions marker = new MarkerOptions().position(new LatLng(latitude, longitude));
         marker.icon(BitmapDescriptorFactory.fromBitmap(bm));
 
+        map.clear();
         map.addMarker(marker);
     }
 
@@ -584,6 +601,8 @@ public class ProductDetailMapFragment extends Fragment {
 
                     btnCenterMarker.setVisibility(View.VISIBLE);
 
+                    clickSavePlot = true;
+
                     API_getTumbon(userPlotModel.getProvCode(), userPlotModel.getAmpCode(), userPlotModel.getTamCode());
 
                 }
@@ -781,7 +800,7 @@ public class ProductDetailMapFragment extends Fragment {
 
     }
 
-    private void API_getPlotSuit(String currLat, String curLon, String suitFlag) {
+    private void API_getPlotSuit(final String currLat, final String curLon, String suitFlag) {
 
         //SuitFlag (1=ใช้ TamCode / 2 = ใช้ latlng)
 
@@ -823,6 +842,8 @@ public class ProductDetailMapFragment extends Fragment {
                     PBProductDetailActivity.mPlotSuit = mPlotSuitBodyLists.get(0);
 
                     displayPlotSuitValue(mPlotSuitBodyLists.get(0));
+
+                    API_getCurrentLocation(currLat , curLon);
                 }
             }
 
@@ -1039,6 +1060,291 @@ public class ProductDetailMapFragment extends Fragment {
                 "&AmpCode=" + amphoeId +
                 "&ProvCode=" + provinceId
         );
+
+    }
+
+    private void API_getCurrentLocation(String latitude, String longitude) {
+        /**
+         1.latitude (บังคับใส่)
+         2.longitude (บังคับใส่)
+         */
+        new ResponseAPI(context, new ResponseAPI.OnCallbackAPIListener() {
+            @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
+            @Override
+            public void callbackSuccess(Object obj) {
+
+                mCurrentLocation currentLocationInfo = (mCurrentLocation) obj;
+
+                final List<mCurrentLocation.mRespBody> currentLocationBodyLists = currentLocationInfo.getRespBody();
+
+                if (currentLocationBodyLists.size() != 0) {
+                    //  ProveNameTH
+                    currentLocation = currentLocationBodyLists.get(0);
+                    if(currentLocation.getProvNameTH()  == null || currentLocation.getProvNameTH().equals("")) {
+                        currentLocation.setProvNameTH(currentLocation.getProveNameTH());
+                    }
+                    selectedprovince = new mProvince.mRespBody();
+                    selectedprovince.setProvCode(currentLocation.getProvCode());
+                    selectedprovince.setProvNameTH(currentLocation.getProvNameTH());
+
+                    selectedAmphoe = new mAmphoe.mRespBody();
+                    selectedAmphoe.setProvCode(currentLocation.getProvCode());
+                    selectedAmphoe.setAmpCode(currentLocation.getAmpCode());
+                    selectedAmphoe.setAmpNameTH(currentLocation.getAmpNameTH());
+
+                    selectedTumbon = new mTumbon.mRespBody();
+                    selectedTumbon.setProvCode(currentLocation.getProvCode());
+                    selectedTumbon.setAmpCode(currentLocation.getAmpCode());
+                    selectedTumbon.setTamCode(currentLocation.getTamCode());
+                    selectedTumbon.setTamNameTH(currentLocation.getTamNameTH());
+
+                    // amphoeBodyLists.add(0, defaultAmphoe);
+                    // orgAmphoes = amphoeBodyLists;
+                    // amphoes = orgAmphoes;
+                    // setAmphoeUI();
+
+                    //ProgressAction.gone(StepOneActivity.this);
+//                    setSelectedLocationUI();
+                    userPlotModel.setProvCode(selectedprovince.getProvCode());
+                    userPlotModel.setAmpCode(selectedAmphoe.getAmpCode());
+                    userPlotModel.setTamCode(selectedTumbon.getTamCode());
+
+                    if (clickSavePlot) {
+                        upsertUserPlot();
+                    }
+                }
+            }
+
+            @Override
+            public void callbackError(int code, String errorMsg) {
+                Log.d("Error", errorMsg);
+            }
+
+        }).API_Request(false, RequestServices.ws_getCurrentLocation +
+                "?Latitude=" + latitude +
+                "&Longitude=" + longitude
+        );
+    }
+
+    private void upsertUserPlot() {
+
+        // API_GetUserPlot(userId,prdId,prdGrpId,plotId);
+
+        userPlotModel.setUserID(userPlotModel.getUserID());
+
+        clickSavePlot = false;
+
+        if (!userPlotModel.getUserID().equals("0")) {
+            API_getPlotDetailAndSave(userPlotModel.getPlotID());
+        } else {
+            new DialogChoice(context)
+                    .ShowOneChoice("ไม่สามารถบันทึกข้อมูล", "- กรุณา Login ก่อนทำการบันทึกข้อมูล"); //save image
+        }
+
+
+    }
+
+    private void API_getPlotDetailAndSave(String plotID) {
+        /**
+         1.TamCode (ไม่บังคับใส่)
+         2.AmpCode (บังคับใส่)
+         3.ProvCode (บังคับใส่)
+         */
+        new ResponseAPI(context, new ResponseAPI.OnCallbackAPIListener() {
+            @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
+            @Override
+            public void callbackSuccess(Object obj) {
+
+                mGetPlotDetail mPlotDetail = (mGetPlotDetail) obj;
+                List<mGetPlotDetail.mRespBody> mPlotDetailBodyLists = mPlotDetail.getRespBody();
+
+                if (mPlotDetailBodyLists.size() != 0) {
+                    mGetPlotDetail.mRespBody plotDetail = mPlotDetailBodyLists.get(0);
+
+                    if (userPlotModel.getPlotRai().equals("") || userPlotModel.getPlotRai().equals("0")) {
+                        if(plotDetail.getPlotRai().equals("0")){
+                            plotDetail.setPlotRai("");
+                        }
+                        userPlotModel.setPlotRai(String.valueOf(plotDetail.getPlotRai()));
+                    }
+                    if (userPlotModel.getPlotNgan().equals("") || userPlotModel.getPlotNgan().equals("0")) {
+                        if(plotDetail.getPlotNgan().equals("0")){
+                            plotDetail.setPlotNgan("");
+                        }
+                        userPlotModel.setPlotNgan(String.valueOf(plotDetail.getPlotNgan()));
+                    }
+                    if (userPlotModel.getPlotWa().equals("") || userPlotModel.getPlotWa().equals("0")) {
+                        if(plotDetail.getPlotWa().equals("0")){
+                            plotDetail.setPlotWa("");
+                        }
+                        userPlotModel.setPlotWa(String.valueOf(plotDetail.getPlotWa()));
+                    }
+                    if (userPlotModel.getPlotMeter().equals("") || userPlotModel.getPlotMeter().equals("0")) {
+                        if(plotDetail.getPlotMeter().equals("0")){
+                            plotDetail.setPlotMeter("");
+                        }
+                        userPlotModel.setPlotMeter(String.valueOf(plotDetail.getPlotMeter()));
+                    }
+
+
+                    if (userPlotModel.getProvCode().equals("") || userPlotModel.getProvCode().equals("0")) {
+                        userPlotModel.setProvCode(String.valueOf(plotDetail.getProvCode()));
+                    }
+                    if (userPlotModel.getAmpCode().equals("") || userPlotModel.getAmpCode().equals("0")) {
+                        userPlotModel.setAmpCode(String.valueOf(plotDetail.getAmpCode()));
+                    }
+                    if (userPlotModel.getTamCode().equals("") || userPlotModel.getTamCode().equals("0")) {
+                        userPlotModel.setTamCode(String.valueOf(plotDetail.getTamCode()));
+                    }
+
+                    if(userPlotModel.getVarValue().equals("")|| userPlotModel.getVarValue().equals("0")){
+                        userPlotModel.setVarValue(plotDetail.getVarValue());
+                    }
+
+                    if (userPlotModel.getAnimalNumber().equals("") || userPlotModel.getAnimalNumber().equals("0")) {
+                        plotDetail.setAnimalNumber(plotDetail.getAnimalNumber().equals("0")?"":plotDetail.getAnimalNumber());
+                        userPlotModel.setAnimalNumber(String.valueOf(plotDetail.getAnimalNumber()));
+                    }
+
+                    if(userPlotModel.getAnimalPrice().equals("")|| userPlotModel.getAnimalPrice().equals("0")){
+                        plotDetail.setAnimalPrice(plotDetail.getAnimalPrice().equals("0")?"":plotDetail.getAnimalPrice());
+                        userPlotModel.setAnimalPrice(plotDetail.getAnimalPrice());
+                    }
+
+                    if(userPlotModel.getAnimalWeight().equals("")|| userPlotModel.getAnimalWeight().equals("0")){
+                        plotDetail.setAnimalWeight(plotDetail.getAnimalWeight().equals("0")?"":plotDetail.getAnimalWeight());
+                        userPlotModel.setAnimalWeight(plotDetail.getAnimalWeight());
+                    }
+
+                    if(userPlotModel.getPondRai().equals("")|| userPlotModel.getPondRai().equals("0")){
+                        plotDetail.setPondRai(plotDetail.getPondRai().equals("0")?"":plotDetail.getPondRai());
+                        userPlotModel.setPondRai(plotDetail.getPondRai());
+                    }
+
+                    if(userPlotModel.getPondNgan().equals("")|| userPlotModel.getPondNgan().equals("0")){
+                        plotDetail.setPondNgan(plotDetail.getPondNgan().equals("0")?"":plotDetail.getPondNgan());
+                        userPlotModel.setPondNgan(plotDetail.getPondNgan());
+                    }
+
+                    if(userPlotModel.getPondWa().equals("")|| userPlotModel.getPondWa().equals("0")){
+                        plotDetail.setPondWa(plotDetail.getPondWa().equals("0")?"":plotDetail.getPondWa());
+                        userPlotModel.setPondWa(plotDetail.getPondWa());
+                    }
+
+                    if(userPlotModel.getPondMeter().equals("")|| userPlotModel.getPondMeter().equals("0")){
+                        plotDetail.setPondMeter(plotDetail.getPondMeter().equals("0")?"":plotDetail.getPondMeter());
+                        userPlotModel.setPondMeter(plotDetail.getPondMeter());
+                    }
+
+                    if(userPlotModel.getFisheryNumber().equals("")|| userPlotModel.getFisheryNumber().equals("0")){
+                        plotDetail.setFisheryNumber(plotDetail.getFisheryNumber().equals("0")?"":plotDetail.getFisheryNumber());
+                        userPlotModel.setFisheryNumber(plotDetail.getFisheryNumber());
+                    }
+
+                    if(userPlotModel.getFisheryType().equals("")|| userPlotModel.getFisheryType().equals("0")){
+                        plotDetail.setFisheryType(plotDetail.getFisheryType().equals("0")?"":plotDetail.getFisheryType());
+                        userPlotModel.setFisheryType(plotDetail.getFisheryType());
+                    }
+
+                    if(userPlotModel.getFisheryWeight().equals("")|| userPlotModel.getFisheryWeight().equals("0")){
+                        plotDetail.setFisheryWeight(plotDetail.getFisheryWeight().equals("0")?"":plotDetail.getFisheryWeight());
+                        userPlotModel.setFisheryWeight(plotDetail.getFisheryWeight());
+                    }
+
+                    if(userPlotModel.getCoopMeter().equals("")|| userPlotModel.getCoopMeter().equals("0")){
+                        plotDetail.setCoopMeter(plotDetail.getCoopMeter().equals("0")?"":plotDetail.getCoopMeter());
+                        userPlotModel.setCoopMeter(plotDetail.getCoopMeter());
+                    }
+
+                    if(userPlotModel.getCoopNumber().equals("")|| userPlotModel.getCoopNumber().equals("0")){
+                        plotDetail.setCoopNumber(plotDetail.getCoopNumber().equals("0")?"":plotDetail.getCoopNumber());
+                        userPlotModel.setCoopNumber(plotDetail.getCoopNumber());
+                    }
+
+
+                    // mVarPlanA varA =  new Gson().fromJson(plotDetail.getVarValue(), mVarPlanA.class);
+                    //  Log.d("Testttt --> ",varA.toString());
+                    API_SaveProd_POST("2", userPlotModel);
+
+
+                }
+
+
+            }
+
+            @Override
+            public void callbackError(int code, String errorMsg) {
+                Log.d("Error", errorMsg);
+            }
+        }).API_Request(true, RequestServices.ws_getPlotDetail +
+                "?PlotID=" + plotID +
+                "&ImeiCode=" + ServiceInstance.GetDeviceID(context));
+
+    }
+
+    private void API_SaveProd_POST(String saveFlag, UserPlotModel userPlotInfo) {
+        HashMap<String,Object> param = new HashMap<>();
+
+        param.put("SaveFlag",saveFlag);
+        param.put("UserID",userPlotInfo.getUserID());
+        param.put("PlotID",userPlotInfo.getPlotID() );
+        param.put("PrdID",userPlotInfo.getPrdID());
+        param.put("PrdGrpID",userPlotInfo.getPrdGrpID());
+
+        param.put("PlotRai",userPlotInfo.getPlotRai());
+        param.put("PlotNgan",userPlotInfo.getPlotNgan());
+        param.put("PlotWa",userPlotInfo.getPlotWa());
+        param.put("PlotMeter",userPlotInfo.getPlotMeter());
+
+        param.put("PondRai",userPlotInfo.getPondRai());
+        param.put("PondNgan",userPlotInfo.getPondNgan());
+        param.put("PondWa",userPlotInfo.getPondWa());
+        param.put("PondMeter",userPlotInfo.getPondMeter());
+        param.put("CoopMeter",userPlotInfo.getCoopMeter());
+        param.put("CoopNumber",userPlotInfo.getCoopNumber());
+        param.put("TamCode", Util.defualtNullStringZero(userPlotInfo.getTamCode()));
+        param.put("AmpCode",Util.defualtNullStringZero(userPlotInfo.getAmpCode()));
+        param.put("ProvCode",Util.defualtNullStringZero(userPlotInfo.getProvCode()));
+        param.put("AnimalNumber",userPlotInfo.getAnimalNumber());
+        param.put("AnimalWeight",userPlotInfo.getAnimalWeight());
+        param.put("AnimalPrice",userPlotInfo.getAnimalPrice());
+        param.put("FisheryType",userPlotInfo.getFisheryType());
+        param.put("FisheryNumType",userPlotInfo.getFisheryNumType());
+        param.put("FisheryNumber",userPlotInfo.getFisheryNumber() );
+        param.put("FisheryWeight",userPlotInfo.getFisheryWeight());
+        param.put("ImeiCode",ServiceInstance.GetDeviceID(context));
+        param.put("VarName",userPlotInfo.getVarName() );
+        param.put("VarValue",userPlotInfo.getVarValue());
+        param.put("CalResult",userPlotInfo.getCalResult());
+
+
+
+        new ResponseAPI_POST(context, new ResponseAPI_POST.OnCallbackAPIListener() {
+            @Override
+            public void callbackSuccess(JSONObject obj) {
+                mSavePlotDetail mSaveResp = new Gson().fromJson(obj.toString(), mSavePlotDetail.class);
+                List<mSavePlotDetail.mRespBody> mRespBody = mSaveResp.getRespBody();
+                if(mRespBody.size()>0){
+                    Log.d("Test ------>","PlodId "+mRespBody.get(0).getPlotID());
+                    plotId = String.valueOf(mRespBody.get(0).getPlotID());
+                    if (plotId == null) {
+                        plotId = "";
+                    }
+                    userPlotModel.setPlotID(plotId);
+                    saved = true;
+                    clickSavePlot = false;
+                    Util.showDialogAndDismiss(context, "บันทึกข้อมูลสำเร็จ");
+                }
+            }
+
+            @Override
+            public void callbackError(int code, String errorMsg) {
+                //  progressbar.gone(PriceActivity.this);
+                //listview.setVisibility(View.INVISIBLE);
+                //findViewById(R.id.no_list).setVisibility(View.VISIBLE);
+
+            }
+        }).POST(RequestServices.ws_savePlotDetail, param, true, false);
 
     }
 
