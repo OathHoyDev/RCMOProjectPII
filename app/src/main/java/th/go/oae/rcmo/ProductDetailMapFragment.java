@@ -4,6 +4,7 @@ package th.go.oae.rcmo;
 import android.annotation.TargetApi;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -142,11 +143,15 @@ public class ProductDetailMapFragment extends Fragment {
         this.inflater = inflater;
         context = fragmentView.getContext();
         userPlotModel = PBProductDetailActivity.userPlotModel;
+
+        SharedPreferences sp = context.getSharedPreferences(ServiceInstance.PREF_NAME, Context.MODE_PRIVATE);
+        userID = sp.getString(ServiceInstance.sp_userId, "0");
+
         getArgumentFromActivity();
 
         initialLayout(savedInstanceState);
 
-        if (!"".equalsIgnoreCase(userID)) {
+        if (!"".equalsIgnoreCase(userPlotModel.getPlotID())) {
             API_getPlotDetail(plodID);
         } else {
             if ("".equalsIgnoreCase(userPlotModel.getTamCode())) {
@@ -229,7 +234,7 @@ public class ProductDetailMapFragment extends Fragment {
 //        tamCode = userPlotModel.getTamCode();
 //        ampCode = userPlotModel.getAmpCode();
 //        provCode = userPlotModel.getProvCode();
-        userID = userPlotModel.getUserID();
+        // userID = userPlotModel.getUserID();
 
         productType = userPlotModel.getPrdGrpID();
     }
@@ -1130,12 +1135,21 @@ public class ProductDetailMapFragment extends Fragment {
 
         // API_GetUserPlot(userId,prdId,prdGrpId,plotId);
 
-        userPlotModel.setUserID(userPlotModel.getUserID());
+        // userPlotModel.setUserID(userPlotModel.getUserID());
 
         clickSavePlot = false;
 
-        if (!userPlotModel.getUserID().equals("0")) {
-            API_getPlotDetailAndSave(userPlotModel.getPlotID());
+
+        if (!"".equalsIgnoreCase(userID) && !userID.equals("0")) {
+
+            if (userPlotModel.getPlotID() != null
+                    && !userPlotModel.getPlotID().equals("")
+                    && !userPlotModel.getPlotID().equals("0")) {
+                API_getPlotDetailAndSave(userPlotModel.getPlotID());
+            } else {
+                API_SaveProd_POST("1", userPlotModel);
+            }
+
         } else {
             new DialogChoice(context)
                     .ShowOneChoice("ไม่สามารถบันทึกข้อมูล", "- กรุณา Login ก่อนทำการบันทึกข้อมูล"); //save image
@@ -1186,16 +1200,6 @@ public class ProductDetailMapFragment extends Fragment {
                         userPlotModel.setPlotMeter(String.valueOf(plotDetail.getPlotMeter()));
                     }
 
-
-                    if (userPlotModel.getProvCode().equals("") || userPlotModel.getProvCode().equals("0")) {
-                        userPlotModel.setProvCode(String.valueOf(plotDetail.getProvCode()));
-                    }
-                    if (userPlotModel.getAmpCode().equals("") || userPlotModel.getAmpCode().equals("0")) {
-                        userPlotModel.setAmpCode(String.valueOf(plotDetail.getAmpCode()));
-                    }
-                    if (userPlotModel.getTamCode().equals("") || userPlotModel.getTamCode().equals("0")) {
-                        userPlotModel.setTamCode(String.valueOf(plotDetail.getTamCode()));
-                    }
 
                     if(userPlotModel.getVarValue().equals("")|| userPlotModel.getVarValue().equals("0")){
                         userPlotModel.setVarValue(plotDetail.getVarValue());
@@ -1282,11 +1286,107 @@ public class ProductDetailMapFragment extends Fragment {
 
     }
 
+    private void API_SavePlotDetail(String saveFlag, UserPlotModel userPlotInfo) {
+        /**
+         * 1.SaveFlag (บังคับ)
+         2.UserID (บังคับ)
+         3.PlotID (บังคับกรณี SaveFlag = 2)
+         4.PrdID (บังคับ)
+         5.PrdGrpID(บังคับ)
+         6.PlotRai
+         7.PondRai
+         8.PondNgan
+         9.PondWa
+         10.PondMeter
+         11.CoopMeter
+         12.CoopNumber
+         13.TamCode
+         14.AmpCode
+         15.ProvCode
+         16.AnimalNumber
+         17.AnimalWeight
+         18.AnimalPrice
+         19.FisheryType
+         20.FisheryNumType
+         21.FisheryNumber
+         22.FisheryWeight
+         23.ImeiCode
+         24.VarName
+         25.VarValue
+
+         SaveFlag = 1 บังคับใส่ 1 2 4 5
+         SaveFlag = 2 บังคับใส่ 1 - 5
+
+         */
+
+        new ResponseAPI(context, new ResponseAPI.OnCallbackAPIListener() {
+            @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
+            @Override
+            public void callbackSuccess(Object obj) {
+
+                mSavePlotDetail savePlotDetailInfo = (mSavePlotDetail) obj;
+                List<mSavePlotDetail.mRespBody> savePlotDetailBodyLists = savePlotDetailInfo.getRespBody();
+
+                Log.d(TAG, "---- >Size" + savePlotDetailBodyLists.size());
+                if (savePlotDetailBodyLists.size() != 0) {
+
+                    plotId = String.valueOf(savePlotDetailBodyLists.get(0).getPlotID());
+                    if (plotId == null) {
+                        plotId = "";
+                    }
+                    userPlotModel.setPlotID(plotId);
+                    Log.d(TAG, "Response plotId : " + plotId);
+                    saved = true;
+                    clickSavePlot = false;
+                    Util.showDialogAndDismiss(context, "บันทึกข้อมูลสำเร็จ");
+
+                }
+
+            }
+
+            @Override
+            public void callbackError(int code, String errorMsg) {
+                Log.d(TAG, errorMsg);
+            }
+        }).API_Request(true, RequestServices.ws_savePlotDetail +
+
+                "?SaveFlag=" + saveFlag +
+                "&UserID=" + userID +
+                "&PlotID=" + userPlotInfo.getPlotID() +
+                "&PrdID=" + userPlotInfo.getPrdID() +
+                "&PrdGrpID=" + userPlotInfo.getPrdGrpID() +
+                "&PlotRai=" + userPlotInfo.getPlotRai() +
+                "&PlotNgan=" + userPlotInfo.getPlotNgan() +
+                "&PlotWa=" + userPlotInfo.getPlotWa() +
+                "&PlotMeter=" + userPlotInfo.getPlotMeter() +
+                "&PondRai=" + userPlotInfo.getPondRai() +
+                "&PondNgan=" + userPlotInfo.getPondNgan() +
+                "&PondWa=" + userPlotInfo.getPondWa() +
+                "&PondMeter=" + userPlotInfo.getPondMeter() +
+                "&CoopMeter=" + userPlotInfo.getCoopMeter() +
+                "&CoopNumber=" + userPlotInfo.getCoopNumber() +
+                "&TamCode=" + Util.defualtNullStringZero(userPlotInfo.getTamCode()) +
+                "&AmpCode=" + Util.defualtNullStringZero(userPlotInfo.getAmpCode()) +
+                "&ProvCode=" + Util.defualtNullStringZero(userPlotInfo.getProvCode()) +
+                "&AnimalNumber=" + userPlotInfo.getAnimalNumber() +
+                "&AnimalWeight=" + userPlotInfo.getAnimalWeight() +
+                "&AnimalPrice=" + userPlotInfo.getAnimalPrice() +
+                "&FisheryType=" + userPlotInfo.getFisheryType() +
+                "&FisheryNumType=" + userPlotInfo.getFisheryNumType() +
+                "&FisheryNumber=" + userPlotInfo.getFisheryNumber() +
+                "&FisheryWeight=" + userPlotInfo.getFisheryWeight() +
+                "&ImeiCode=" + ServiceInstance.GetDeviceID(context) +
+                "&VarName=" + userPlotInfo.getVarName() +
+                "&VarValue=" + userPlotInfo.getVarValue() +
+                "&CalResult=" + userPlotInfo.getCalResult()
+        );
+    }
+
     private void API_SaveProd_POST(String saveFlag, UserPlotModel userPlotInfo) {
         HashMap<String,Object> param = new HashMap<>();
 
         param.put("SaveFlag",saveFlag);
-        param.put("UserID",userPlotInfo.getUserID());
+        param.put("UserID",userID);
         param.put("PlotID",userPlotInfo.getPlotID() );
         param.put("PrdID",userPlotInfo.getPrdID());
         param.put("PrdGrpID",userPlotInfo.getPrdGrpID());
