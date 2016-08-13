@@ -158,7 +158,7 @@ public class PBProdDetailCalculateFmentC extends Fragment implements View.OnClic
         h.group1_item_2.addTextChangedListener(new PlanCTextWatcher(h.group1_item_2, h, "Karang"));
         h.group1_item_3.addTextChangedListener(new PlanCTextWatcher(h.group1_item_3, h, "Karang"));
         h.group1_item_4.addTextChangedListener(new PlanCTextWatcher(h.group1_item_4, h,formulaModel,  "Karang,KaSiaOkardLongtoon"));
-        h.group1_item_5.addTextChangedListener(new PlanCTextWatcher(h.group1_item_5, h,formulaModel,  "KaSiaOkardLongtoon"));
+        h.group1_item_5.addTextChangedListener(new PlanCTextWatcher(h.group1_item_5, h,formulaModel,  "Karang,KaSiaOkardLongtoon"));
         h.group1_item_6.addTextChangedListener(new PlanCTextWatcher(h.group1_item_1, h,formulaModel,  "KaSiaOkardLongtoon"));
         h.group1_item_7.addTextChangedListener(new PlanCTextWatcher(h.group1_item_7, h, "KaWassadu"));
         h.group1_item_8.addTextChangedListener(new PlanCTextWatcher(h.group1_item_8, h, "KaWassadu"));
@@ -421,6 +421,7 @@ public class PBProdDetailCalculateFmentC extends Fragment implements View.OnClic
 
                 if (mVariableBodyLists.size() != 0) {
                     mGetVariable.mRespBody var = mVariableBodyLists.get(0);
+
                     formulaModel.KaSermOuppakorn = Util.strToDoubleDefaultZero(var.getD());
                     formulaModel.KaSiaOkardOuppakorn = Util.strToDoubleDefaultZero(var.getO());
                     formulaModel.TontumMattratarnPerRai = Util.strToDoubleDefaultZero(var.getCS());
@@ -431,14 +432,14 @@ public class PBProdDetailCalculateFmentC extends Fragment implements View.OnClic
                     Log.d("Test ","Sum Rai --> "+formulaModel.SumRai);
 
 //Stub
-                    /*
+/*
                     formulaModel.KaSermOuppakorn = 225.69;
-                    formulaModel.KaSiaOkardOuppakorn = 36.69;
+                    formulaModel.KaSiaOkardOuppakorn = 36.90;
                     formulaModel.TontumMattratarnPerRai = 14276.31;
 
                     formulaModel.TonToonChaliaGonHaiPon = 2916.97;
                     formulaModel.V = 12;
-                    */
+*/
                     h.group1_item_13.setText(Util.dobbleToStringNumber(Util.round(formulaModel.KaSermOuppakorn*formulaModel.SumRai,2)));
                     h.group1_item_14.setText(Util.dobbleToStringNumber(Util.round(formulaModel.KaSiaOkardOuppakorn* formulaModel.SumRai,2)));
 

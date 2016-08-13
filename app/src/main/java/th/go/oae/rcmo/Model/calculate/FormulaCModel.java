@@ -199,13 +199,13 @@ public class FormulaCModel extends AbstractFormulaModel {
 
         double KaRangPerRai = KaDoolaePerRai + KaGebGeaw;
 
-        KaRang = KaTreamDin + KaPluk + KaDoolae ;
-
+       // mod 11/08/2559  KaRang = KaTreamDin + KaPluk + KaDoolae ;
+        KaRang = KaGebGeaw+ KaDoolae ;
        // KaRang
         //=============== 1.2 ====================
 
-        KaWassadu = KaPan + KaPuy + KaYaplab + KaWassaduUn;
-
+        // mod 11/08/2559  KaWassadu = KaPan + KaPuy + KaYaplab + KaWassaduUn;
+        KaWassadu =  KaPuy + KaYaplab + KaWassaduUn;
         double KaPuyPerRai = KaPuy / SumRai;
 
         //double KaPanPerRai =  KaPan  / KaNardPlangTDin ;

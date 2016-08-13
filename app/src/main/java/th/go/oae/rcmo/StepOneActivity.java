@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.location.LocationManager;
 import android.media.MediaPlayer;
 import android.os.Build;
@@ -36,6 +37,7 @@ import th.go.oae.rcmo.Module.mPlantGroup;
 import th.go.oae.rcmo.Module.mProduct;
 import th.go.oae.rcmo.Module.mProvince;
 import th.go.oae.rcmo.Module.mTumbon;
+import th.go.oae.rcmo.Module.mUserPlotList;
 import th.go.oae.rcmo.Util.GPSTracker;
 import th.go.oae.rcmo.Util.ServiceInstance;
 import th.go.oae.rcmo.View.DialogChoice;
@@ -121,13 +123,29 @@ public class StepOneActivity extends Activity {
     }
 
     private void setAction() {
+
+        /*
         findViewById(R.id.backBtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
+*/
 
+        findViewById(R.id.backBtn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences sp = getSharedPreferences(ServiceInstance.PREF_NAME, Context.MODE_PRIVATE);
+               String   userId = sp.getString(ServiceInstance.sp_userId, "0");
+                if (!(userId.equals("0"))) {
+                    API_GetUserPlot(userId);
+                } else {
+                    finish();
+
+                }
+            }
+        });
 
         //tutorial
         findViewById(R.id.btnHowto).setOnClickListener(new View.OnClickListener() {
@@ -1054,7 +1072,45 @@ private void displayCurrentLocation() {
             goNextStep = false;
         }
     }
+    private void API_GetUserPlot(final String userId) {
 
+
+        new ResponseAPI(this, new ResponseAPI.OnCallbackAPIListener() {
+            @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
+            @Override
+            public void callbackSuccess(Object obj) {
+
+                mUserPlotList mPlotList = (mUserPlotList) obj;
+                final List<mUserPlotList.mRespBody> userPlotBodyLists = mPlotList.getRespBody();
+
+                if (userPlotBodyLists.size() != 0) {
+                    userPlotBodyLists.get(0).toString();
+
+                    UserPlotListActivity.userPlotRespBodyList = userPlotBodyLists;
+
+                    Intent intent = new Intent(StepOneActivity.this, UserPlotListActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                    finish();
+                }
+            }
+
+            @Override
+            public void callbackError(int code, String errorMsg) {
+                List<mUserPlotList.mRespBody> userPlotList = new ArrayList<mUserPlotList.mRespBody>();
+                UserPlotListActivity.userPlotRespBodyList = userPlotList;
+
+
+                startActivity(new Intent(StepOneActivity.this, UserPlotListActivity.class)
+                        .putExtra("userId", userId));
+                finish();
+
+            }
+        }).API_Request(false, RequestServices.ws_getPlotList +
+                "?UserID=" + userId + "&PlotID=" +
+                "&ImeiCode=" + ServiceInstance.GetDeviceID(StepOneActivity.this));
+
+    }
 
     private void displaySound(MediaPlayer sound){
 
