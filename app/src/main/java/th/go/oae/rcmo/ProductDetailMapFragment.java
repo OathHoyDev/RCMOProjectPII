@@ -357,6 +357,7 @@ public class ProductDetailMapFragment extends Fragment {
 
 
     private void displayPlotSuitValue(mGetPlotSuit.mRespBody var) {
+
         com.neopixl.pixlui.components.textview.TextView txSuggessPlot = (com.neopixl.pixlui.components.textview.TextView) fragmentView.findViewById(R.id.txSuggessPlot);
         com.neopixl.pixlui.components.textview.TextView txAddress = (com.neopixl.pixlui.components.textview.TextView) fragmentView.findViewById(R.id.txAddress);
         ImageView suggessStar = (ImageView) fragmentView.findViewById(R.id.suggessStar);
@@ -459,31 +460,16 @@ public class ProductDetailMapFragment extends Fragment {
                 com.neopixl.pixlui.components.textview.TextView txRecommendProduct = (com.neopixl.pixlui.components.textview.TextView) popupView.findViewById(R.id.txRecommendProduct);
                 txRecommendProduct.setText(recommendProduct);
 
-                if (popupWindow == null) {
+                Display display = getActivity().getWindowManager().getDefaultDisplay();
+                int width = display.getWidth();
+                int height = display.getHeight();
+                int popupWidth = (int) (width * 0.95);
+                int popupHeight = (int) (height * 0.8);
 
-                    Display display = getActivity().getWindowManager().getDefaultDisplay();
-                    int width = display.getWidth();
-                    int height = display.getHeight();
-                    int popupWidth = (int) (width * 0.95);
-                    int popupHeight = (int) (height * 0.8);
+                popupWindow = new PopupWindow(
+                        popupView, popupWidth, popupHeight);
 
-                    popupWindow = new PopupWindow(
-                            popupView, popupWidth, popupHeight);
-
-                    popupWindow.setOutsideTouchable(true);
-
-//                    popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
-//                        @Override
-//                        public void onDismiss() {
-//
-//                            isPopup = false;
-//                            popupWindow.dismiss();
-//
-//
-//                        }
-//                    });
-
-                }
+                popupWindow.setOutsideTouchable(true);
 
                 if (isPopup){
                     isPopup = false;
