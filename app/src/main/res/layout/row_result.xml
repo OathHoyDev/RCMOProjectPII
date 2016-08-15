@@ -44,7 +44,7 @@
             android:layout_weight="1.6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="0"
+            android:hint=""
             android:textColor="@color/RcmoPlantBG"
             android:gravity="right"
             android:paddingRight="5dp"
