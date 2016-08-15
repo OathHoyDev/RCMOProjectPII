@@ -761,6 +761,10 @@ if(userPlotModel.getPrdID().equals("40")
                 h.layout_name.setVisibility(View.VISIBLE);
                 h.name.setText(calResult[0]);
             }
+
+            Log.d(TAG,"h.value"+calResult[1]);
+            Log.d(TAG," h.unit"+calResult[2]);
+
             h.value.setText(calResult[1]);
             h.unit.setText(calResult[2]);
 
