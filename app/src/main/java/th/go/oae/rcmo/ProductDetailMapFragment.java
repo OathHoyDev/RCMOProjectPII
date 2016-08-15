@@ -308,6 +308,10 @@ public class ProductDetailMapFragment extends Fragment {
                 marker.icon(BitmapDescriptorFactory.fromBitmap(bm));
                 map.addMarker(marker);
 
+                if (isPopup){
+                    isPopup = false;
+                }
+
             }
         });
 
