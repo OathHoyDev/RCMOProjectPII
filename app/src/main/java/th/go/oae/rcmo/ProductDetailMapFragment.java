@@ -311,6 +311,8 @@ public class ProductDetailMapFragment extends Fragment {
 
                 if (isPopup){
                     isPopup = false;
+                    popupWindow.dismiss();
+                    popupWindow = null;
                 }
 
             }
@@ -1454,6 +1456,8 @@ public class ProductDetailMapFragment extends Fragment {
         super.onStop();
         if(popupWindow !=null){
               popupWindow.dismiss();
+              popupWindow = null;
+
               isMapDialogDisplay = false;
         }
     }
