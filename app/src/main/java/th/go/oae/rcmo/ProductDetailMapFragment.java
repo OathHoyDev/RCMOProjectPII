@@ -478,12 +478,17 @@ public class ProductDetailMapFragment extends Fragment {
                             popupView, popupWidth, popupHeight);
 
                     popupWindow.setOutsideTouchable(true);
+
+                    Log.d(TAG,"New Popup");
                 }
 
                 if (isPopup) {
+                    Log.d(TAG,"Close Popup");
                     isPopup = false;
                     popupWindow.dismiss();
+                    popupWindow = null;
                 } else {
+                    Log.d(TAG,"Open Popup");
                     popupWindow.showAsDropDown(btnSuggession, Gravity.TOP | Gravity.RIGHT, 0);
                     isPopup = true;
                 }
