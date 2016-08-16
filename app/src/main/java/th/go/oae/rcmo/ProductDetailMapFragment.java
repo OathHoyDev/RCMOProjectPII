@@ -92,7 +92,7 @@ public class ProductDetailMapFragment extends Fragment {
 
     FrameLayout fadeView;
 
-    public static PopupWindow popupWindow;
+    public static PopupWindow popupWindow = null;
 
     private String productType;
 
@@ -117,6 +117,7 @@ public class ProductDetailMapFragment extends Fragment {
     LayoutInflater inflater;
 
     boolean isPopup = false;
+    boolean isMapDialogDisplay = false;
     boolean isClickBtn = false;
 
     String TAG = "ProductDetailMapFragment";
@@ -444,47 +445,52 @@ public class ProductDetailMapFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                isClickBtn = true;
 
-                Button btnSuggession = (Button) v.findViewById(R.id.btnSuggession);
+                    isClickBtn = true;
+                    isMapDialogDisplay = true;
+                    Button btnSuggession = (Button) v.findViewById(R.id.btnSuggession);
 
-                LayoutInflater layoutInflater
-                        = (LayoutInflater) getContext()
-                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                View popupView = layoutInflater.inflate(R.layout.layout_suggestion_popup, null);
+                    LayoutInflater layoutInflater
+                            = (LayoutInflater) getContext()
+                            .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                    View popupView = layoutInflater.inflate(R.layout.layout_suggestion_popup, null);
 
-                RelativeLayout suggess_layout = (RelativeLayout) popupView.findViewById(R.id.suggess_layout);
+                    RelativeLayout suggess_layout = (RelativeLayout) popupView.findViewById(R.id.suggess_layout);
 
-                com.neopixl.pixlui.components.textview.TextView txSuggession = (com.neopixl.pixlui.components.textview.TextView) popupView.findViewById(R.id.marketPrice);
-                txSuggession.setText(suggession);
+                    com.neopixl.pixlui.components.textview.TextView txSuggession = (com.neopixl.pixlui.components.textview.TextView) popupView.findViewById(R.id.marketPrice);
+                    txSuggession.setText(suggession);
 
-                com.neopixl.pixlui.components.textview.TextView txRecommend = (com.neopixl.pixlui.components.textview.TextView) popupView.findViewById(R.id.txRecommend);
-                txRecommend.setText(recommend);
+                    com.neopixl.pixlui.components.textview.TextView txRecommend = (com.neopixl.pixlui.components.textview.TextView) popupView.findViewById(R.id.txRecommend);
+                    txRecommend.setText(recommend);
 
-                com.neopixl.pixlui.components.textview.TextView txRecommendProduct = (com.neopixl.pixlui.components.textview.TextView) popupView.findViewById(R.id.txRecommendProduct);
-                txRecommendProduct.setText(recommendProduct);
+                    com.neopixl.pixlui.components.textview.TextView txRecommendProduct = (com.neopixl.pixlui.components.textview.TextView) popupView.findViewById(R.id.txRecommendProduct);
+                    txRecommendProduct.setText(recommendProduct);
 
-                Display display = getActivity().getWindowManager().getDefaultDisplay();
-                int width = display.getWidth();
-                int height = display.getHeight();
-                int popupWidth = (int) (width * 0.95);
-                int popupHeight = (int) (height * 0.8);
+                    Display display = getActivity().getWindowManager().getDefaultDisplay();
+                    int width = display.getWidth();
+                    int height = display.getHeight();
+                    int popupWidth = (int) (width * 0.95);
+                    int popupHeight = (int) (height * 0.8);
 
-                popupWindow = new PopupWindow(
-                        popupView, popupWidth, popupHeight);
 
-                popupWindow.setOutsideTouchable(true);
+                if(popupWindow == null) {
+                    popupWindow = new PopupWindow(
+                            popupView, popupWidth, popupHeight);
 
-                if (isPopup){
+                    popupWindow.setOutsideTouchable(true);
+                }
+
+                if (isPopup) {
                     isPopup = false;
                     popupWindow.dismiss();
-                }else{
+                } else {
                     popupWindow.showAsDropDown(btnSuggession, Gravity.TOP | Gravity.RIGHT, 0);
                     isPopup = true;
                 }
 
 
-            }
+                }
+
         });
 
         fragmentView.findViewById(R.id.btnMapStyle).setOnClickListener(new View.OnClickListener() {
@@ -1443,6 +1449,7 @@ public class ProductDetailMapFragment extends Fragment {
         super.onStop();
         if(popupWindow !=null){
               popupWindow.dismiss();
+              isMapDialogDisplay = false;
         }
     }
 }
