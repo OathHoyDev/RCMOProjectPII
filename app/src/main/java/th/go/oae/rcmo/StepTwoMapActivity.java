@@ -297,7 +297,11 @@ public class StepTwoMapActivity extends FragmentActivity {
             @Override
             public boolean onMarkerClick(Marker marker) {
 
-                marker.showInfoWindow();
+                if(marker.getTitle()==null || "".equals(marker.getTitle())){
+                    Log.d(TAG,"Map Title is null !!! not show info ");
+                }else {
+                    marker.showInfoWindow();
+                }
 
                 return true;
             }
@@ -425,7 +429,7 @@ public class StepTwoMapActivity extends FragmentActivity {
             pch.marketName.setText(marketObj.getMarketName());
 
             if (marketObj.getPriceValue() == ""){
-                pch.marketPrice.setText("0");
+                pch.marketPrice.setText("");
             }else {
                 pch.marketPrice.setText(marketObj.getPriceValue());
             }
@@ -685,8 +689,18 @@ public class StepTwoMapActivity extends FragmentActivity {
             TextView marketPriceUnit        = (TextView)row.findViewById(R.id.marketPriceUnit);
 
             marketName.setText(priceLists.get(position).getPrdMkName());
-            marketPrice.setText(priceLists.get(position).getPriceValue());
-            marketPriceUnit.setText(priceLists.get(position).getUnitValue());
+
+            if("0".equals(priceLists.get(position).getPriceValue())){
+                marketPrice.setText("");
+            }else {
+                marketPrice.setText(priceLists.get(position).getPriceValue());
+            }
+
+            if("0".equals(priceLists.get(position).getUnitValue())){
+                marketPriceUnit.setText("");
+            }else {
+                marketPriceUnit.setText(priceLists.get(position).getUnitValue());
+            }
 
             return (row);
         }
