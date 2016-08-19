@@ -5,11 +5,14 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.location.LocationManager;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -44,7 +47,7 @@ import th.go.oae.rcmo.View.DialogChoice;
 import th.go.oae.rcmo.View.ProgressAction;
 
 
-public class StepOneActivity extends Activity {
+public class StepOneActivity extends Activity{
     mProvince.mRespBody selectedprovince = null;
     mAmphoe.mRespBody selectedAmphoe = null;
     mTumbon.mRespBody selectedTumbon = null;
@@ -63,7 +66,7 @@ public class StepOneActivity extends Activity {
     EditText input_search;
     ListView listview;
     ViewHolder h = new ViewHolder();
-
+    int REQUEST_COARSE_LOCATION = 1;
     boolean goNextStep = false;
 
 
@@ -948,6 +951,12 @@ private void displayCurrentLocation() {
     Log.d("Step1", "init currentLocation object");
     String latitude = "0";
     String longitude = "0";
+
+
+
+    if (Build.VERSION.SDK_INT >= 23 && ((ContextCompat.checkSelfPermission(StepOneActivity.this, android.Manifest.permission.ACCESS_COARSE_LOCATION)) != PackageManager.PERMISSION_GRANTED)) {
+        ActivityCompat.requestPermissions(StepOneActivity.this, new String[]{android.Manifest.permission.ACCESS_COARSE_LOCATION}, REQUEST_COARSE_LOCATION) ;
+    }
 
     LocationManager locationManager = (LocationManager) StepOneActivity.this.getSystemService(Context.LOCATION_SERVICE);
 
