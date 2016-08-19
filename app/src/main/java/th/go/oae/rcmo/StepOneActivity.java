@@ -958,6 +958,7 @@ private void displayCurrentLocation() {
         ActivityCompat.requestPermissions(StepOneActivity.this, new String[]{android.Manifest.permission.ACCESS_COARSE_LOCATION}, REQUEST_COARSE_LOCATION) ;
     }
 
+
     LocationManager locationManager = (LocationManager) StepOneActivity.this.getSystemService(Context.LOCATION_SERVICE);
 
     if (getGPSStatus()) {
