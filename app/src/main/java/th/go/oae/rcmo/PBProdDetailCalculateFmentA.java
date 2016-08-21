@@ -293,6 +293,10 @@ public class PBProdDetailCalculateFmentA extends Fragment implements View.OnClic
                 calculateResultModel.productName = userPlotModel.getPrdValue();
                 calculateResultModel.unit_t1 = "บาท";
                 calculateResultModel.value_t1 = formulaModel.calProfitLossPerRai;
+
+                calculateResultModel.unit_t2 = "บาท";
+                calculateResultModel.value_t2 = formulaModel.calProfitLossPerKK;
+
                 calculateResultModel.mPlotSuit = PBProductDetailActivity.mPlotSuit;
                 calculateResultModel.compareStdResult = formulaModel.calSumCost - formulaModel.TontumMattratarn;
 
@@ -328,6 +332,9 @@ public class PBProdDetailCalculateFmentA extends Fragment implements View.OnClic
 
                 String[] tontoonCal_2 = {"    ต่อไร่", String.format("%,.2f", formulaModel.calSumCostPerRai), "บาท"};
                 resultArrayResult.add(tontoonCal_2);
+
+                String[] tontoonCal_3 = {"    ต่อ กก.", String.format("%,.2f", formulaModel.calSumCostPerKK), "บาท"};
+                resultArrayResult.add(tontoonCal_3);
 
                 String[] raydai = {"รายได้", "", ""};
                 resultArrayResult.add(raydai);

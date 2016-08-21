@@ -65,6 +65,9 @@ public class FormulaBModel extends AbstractFormulaModel {
     public double costKaSermOuppakorn =    0;
     public double costKaSiaOkardOuppakorn = 0;
 
+    public static double calProfitLossPerKK = 0;
+    public static double calSumCostPerKK = 0;
+
     public static double V = 0;
 
     public static Hashtable<String, String> calculateLabel;

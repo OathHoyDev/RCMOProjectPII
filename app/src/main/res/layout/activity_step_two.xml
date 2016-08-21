@@ -552,11 +552,11 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:clickable="true"
-                            android:gravity="center"
+                            android:gravity="left"
                             android:padding="0dp"
                             android:text="(กดที่รูปสินค้า เพื่อเปรียบเทียบชนิดสินค้าได้ 3 ชนิด)"
                             android:textColor="@color/RcmoNormalLightText"
-                            android:textSize="@dimen/textsize_small"
+                            android:textSize="@dimen/textsize_xsmall"
                             pixlui:typeface="Quark-Light.otf" />
 
                     </LinearLayout>

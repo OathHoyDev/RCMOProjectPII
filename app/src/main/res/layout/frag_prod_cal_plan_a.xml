@@ -1320,7 +1320,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/margin_normal"
-                            android:text="@string/bath_tun"
+                            android:text="บาท/กก."
                             android:textColor="@color/RcmoNormalDarkText"
                             android:gravity="left|bottom"
                             android:paddingLeft="10dp"

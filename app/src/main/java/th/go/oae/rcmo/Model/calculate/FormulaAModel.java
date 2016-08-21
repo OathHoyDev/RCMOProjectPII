@@ -49,8 +49,10 @@ public class FormulaAModel extends AbstractFormulaModel {
     public static double calProfitLoss = 0;
 
     public static double calSumCostPerRai = 0;
+    public static double calSumCostPerKK = 0;
     public static double calIncomePerRai = 0;
     public static double calProfitLossPerRai = 0;
+    public static double calProfitLossPerKK = 0;
 
     public static double AttraDokbia = 0;
 
@@ -179,10 +181,15 @@ public class FormulaAModel extends AbstractFormulaModel {
             calSumCost += costKaSermOuppakorn + costKaSiaOkardOuppakorn;
         }
 
+
         calSumCostPerRai = calSumCost/SumRai;
         calSumCostPerRai = Util.verifyDoubleDefaultZero(calSumCostPerRai);
 
-        calIncome = PonPalid * (predictPrice/1000);
+        calSumCostPerKK = calSumCost/PonPalid;
+        calSumCostPerKK = Util.verifyDoubleDefaultZero(calSumCostPerKK);
+
+      //  calIncome = PonPalid * (predictPrice/1000);
+        calIncome = PonPalid * (predictPrice);
         calIncome = Util.verifyDoubleDefaultZero(calIncome);
 
         calIncomePerRai = calIncome/SumRai;
@@ -193,6 +200,9 @@ public class FormulaAModel extends AbstractFormulaModel {
 
         calProfitLossPerRai = calProfitLoss / SumRai;
         calProfitLossPerRai = Util.verifyDoubleDefaultZero(calProfitLossPerRai);
+
+        calProfitLossPerKK = calProfitLoss/PonPalid;
+        calProfitLossPerKK = Util.verifyDoubleDefaultZero(calProfitLossPerKK);
 
         TontumMattratarn = TontumMattratarnPerRai * SumRai;
         TontumMattratarn = Util.verifyDoubleDefaultZero(TontumMattratarn);

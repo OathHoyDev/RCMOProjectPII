@@ -180,7 +180,7 @@
                     android:layout_marginRight="5dp">
                     <com.neopixl.pixlui.components.textview.TextView
                         android:id="@+id/prefix_unit"
-                        android:layout_weight="2.2"
+                        android:layout_weight="2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
@@ -229,7 +229,7 @@
                     android:layout_marginRight="5dp">
                     <com.neopixl.pixlui.components.textview.TextView
                         android:id="@+id/prefix_unit_t1"
-                        android:layout_weight="2.2"
+                        android:layout_weight="2"
                         android:visibility="gone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -279,7 +279,7 @@
                     <com.neopixl.pixlui.components.textview.TextView
                         android:id="@+id/prefix_unit_t2"
                         android:visibility="gone"
-                        android:layout_weight="2.2"
+                        android:layout_weight="2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
