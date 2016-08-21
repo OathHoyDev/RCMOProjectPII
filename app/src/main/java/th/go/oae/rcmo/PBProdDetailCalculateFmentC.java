@@ -65,12 +65,12 @@ public class PBProdDetailCalculateFmentC extends Fragment implements View.OnClic
         //================= Set Holder ========================================//
         context = view.getContext();
         h.group1_item_1 = (TextView) view.findViewById(R.id.group1_item_1);
-        h.group1_item_2 = (EditText) view.findViewById(R.id.group1_item_2);
-        h.group1_item_3 = (EditText) view.findViewById(R.id.group1_item_3);
+        h.group1_item_2 = (TextView) view.findViewById(R.id.group1_item_2);
+        h.group1_item_3 = (TextView) view.findViewById(R.id.group1_item_3);
         h.group1_item_4 = (EditText) view.findViewById(R.id.group1_item_4);
         h.group1_item_5 = (EditText) view.findViewById(R.id.group1_item_5);
         h.group1_item_6 = (TextView) view.findViewById(R.id.group1_item_6);
-        h.group1_item_7 = (EditText) view.findViewById(R.id.group1_item_7);
+        h.group1_item_7 = (TextView) view.findViewById(R.id.group1_item_7);
         h.group1_item_8 = (EditText) view.findViewById(R.id.group1_item_8);
         h.group1_item_9 = (EditText) view.findViewById(R.id.group1_item_9);
         h.group1_item_10 = (EditText) view.findViewById(R.id.group1_item_10);
@@ -269,9 +269,9 @@ public class PBProdDetailCalculateFmentC extends Fragment implements View.OnClic
                 calculateResultModel.formularCode = "C";
                 calculateResultModel.calculateResult = formulaModel.calProfitLoss;
                 calculateResultModel.productName = userPlotModel.getPrdValue();
-                calculateResultModel.unit_t1 = "บาท/ไร่";
+                calculateResultModel.unit_t1 = "บาท";
                 calculateResultModel.value_t1 = formulaModel.calProfitLossPerRai;
-                calculateResultModel.unit_t2 = "บาท/กก";
+                calculateResultModel.unit_t2 = "บาท";
                 calculateResultModel.value_t2 = formulaModel.calProfitLossPerKilo;
                 calculateResultModel.mPlotSuit = PBProductDetailActivity.mPlotSuit;
                 calculateResultModel.compareStdResult = formulaModel.calSumCost - formulaModel.TontumMattratarn;
@@ -284,28 +284,53 @@ public class PBProdDetailCalculateFmentC extends Fragment implements View.OnClic
 
                 userPlotModel.setVarValue(ProductService.genJsonPlanVariable(formulaModel));
 
+                String unitLabel = "";
+                if(h.rai.getText()!=null && !"".equals(h.rai.getText())&& !"0".equals(h.rai.getText())){
+                    unitLabel = h.rai.getText()+" ไร่ ";
+                }
+
+                if(h.ngan.getText()!=null && !"".equals(h.ngan.getText())&& !"0".equals(h.ngan.getText())){
+                    unitLabel += h.ngan.getText()+" งาน ";
+                }
+
+                if(h.wa.getText()!=null && !"".equals(h.wa.getText())&& !"0".equals(h.wa.getText())){
+                    unitLabel += h.wa.getText()+" ตารางวา";
+                }
+
+                calculateResultModel.unitLabel = unitLabel;
+
                 List resultArrayResult = new ArrayList();
 
-                String[] tontoonCal_1 = {"ต้นทุนเริ่มต้นของเกษตรกรทั้งแปลง", String.format("%,.2f", formulaModel.calSumCost), "บาท"};
+                String[] tontoonCal = {"ต้นทุน", "", ""};
+                resultArrayResult.add(tontoonCal);
+
+                String[] tontoonCal_1 = {"    รวม", String.format("%,.2f", formulaModel.calSumCost), "บาท"};
                 resultArrayResult.add(tontoonCal_1);
+                String[] tontoonCal_3 = {"    ต่อไร่", String.format("%,.2f", formulaModel.calStartCostPerRai), "บาท"};
+                resultArrayResult.add(tontoonCal_3);
 /*
             String [] tontoonCal_2 = {"" , String.format("%,.2f", formulaModel.calStartCostPerRai) , "บาท/ไร่"};
             resultArrayResult.add(tontoonCal_2);
 */
-                String[] tontoonCal_3 = {"ต้นทุนเริ่มต้นของเกษตรกรเฉลี่ยต่อไร่", String.format("%,.2f", formulaModel.calStartCostPerRai), "บาท/ไร่"};
-                resultArrayResult.add(tontoonCal_3);
 
-                String[] tontoonCal_4 = {"ต้นทุนรวมของเกษตรกร เฉลี่ยต่อปี ตลอดอายุขัยเฉลี่ยของพืชนั้น", String.format("%,.2f", formulaModel.calLifeCostPerRai), "บาท"};
+
+                String[] tontoonCal_4 = {"    ต่ออายุ", String.format("%,.2f", formulaModel.calLifeCostPerRai), "บาท"};
                 resultArrayResult.add(tontoonCal_4);
 
-                String[] raydai_1 = {"รายได้", String.format("%,.2f", formulaModel.calIncome), "บาท"};
+                String[] raydai = {"รายได้", "", ""};
+                resultArrayResult.add(raydai);
+
+                String[] raydai_1 = {"    รวม", String.format("%,.2f", formulaModel.calIncome), "บาท"};
                 resultArrayResult.add(raydai_1);
 
-                String[] raydai_2 = {"", String.format("%,.2f", formulaModel.calIncomePerRai), "บาท/ไร่"};
+                String[] raydai_2 = {"    ต่อไร่", String.format("%,.2f", formulaModel.calIncomePerRai), "บาท"};
                 resultArrayResult.add(raydai_2);
 
-                String[] tontoon = {"ต้นทุนเฉลี่ย", String.format("%,.2f", formulaModel.TontumMattratarn), "บาท"};
+                String[] tontoon = {"ต้นทุนเฉลี่ย", "", ""};
                 resultArrayResult.add(tontoon);
+
+                String[] tontoon_1 = {"    รวม", String.format("%,.2f", formulaModel.TontumMattratarn), "บาท"};
+                resultArrayResult.add(tontoon_1);
 
                 DialogCalculateResult.calculateResultModel.resultList = resultArrayResult;
 
@@ -384,8 +409,8 @@ public class PBProdDetailCalculateFmentC extends Fragment implements View.OnClic
     }
 
     public static class ViewHolder {
-        public TextView group1_item_1, group1_item_6, group1_item_11, group1_item_13, group1_item_14;
-        public EditText group1_item_2, group1_item_3, group1_item_4, group1_item_5, group1_item_7, group1_item_8, group1_item_9, group1_item_10, group1_item_12;
+        public TextView group1_item_1, group1_item_6, group1_item_11, group1_item_13, group1_item_14 ,group1_item_2, group1_item_3, group1_item_7;
+        public EditText group1_item_4, group1_item_5, group1_item_8, group1_item_9, group1_item_10, group1_item_12;
 
         public EditText group2_item_1;
         public EditText group3_item_1;
@@ -576,11 +601,11 @@ public class PBProdDetailCalculateFmentC extends Fragment implements View.OnClic
                         setCalKaSermOption( var.isCalIncludeOption());
                         isCalIncludeOption = var.isCalIncludeOption();
 
-                        h.group1_item_2.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.KaTreamDin)));
-                        h.group1_item_3.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.KaPluk)));
+                       // h.group1_item_2.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.KaTreamDin)));
+                       // h.group1_item_3.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.KaPluk)));
                         h.group1_item_4.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.KaDoolae)));
                         h.group1_item_5.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.KaGebGeaw)));
-                        h.group1_item_7.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.KaPan)));
+                       // h.group1_item_7.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.KaPan)));
                         h.group1_item_8.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.KaPuy)));
                         h.group1_item_9.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.KaYaplab)));
                         h.group1_item_10.setText(Util.dobbleToStringNumberToDisplay(Util.strToDoubleDefaultZero(var.KaWassaduUn)));

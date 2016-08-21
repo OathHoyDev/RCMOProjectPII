@@ -195,6 +195,12 @@ public class PBCalculateResultActivity extends Activity {
         TextView value_t1 = (TextView)findViewById(R.id.value_t1);
         TextView unit_t2 = (TextView)findViewById(R.id.unit_t2);
         TextView value_t2 = (TextView)findViewById(R.id.value_t2);
+        TextView unitLabel = (TextView)findViewById(R.id.unitLabel);
+
+        TextView prefix_unit = (TextView)findViewById(R.id.prefix_unit);
+        TextView prefix_unit_t1 = (TextView)findViewById(R.id.prefix_unit_t1);
+        TextView prefix_unit_t2 = (TextView)findViewById(R.id.prefix_unit_t2);
+
 
         t1.setVisibility(View.INVISIBLE);
         t2.setVisibility(View.INVISIBLE);
@@ -210,7 +216,10 @@ public class PBCalculateResultActivity extends Activity {
                 canterTextview.setBackgroundResource(R.drawable.bottom_green_total);
                 txProfitLossValue.setTextColor(getResources().getColor(R.color.RcmoPlantBG));
 
-
+                prefix_unit.setVisibility(View.VISIBLE);
+                prefix_unit_t1.setVisibility(View.VISIBLE);
+                unitLabel.setVisibility(View.VISIBLE);
+                unitLabel.setText(calculateResultModel.unitLabel);
                 t1.setVisibility(View.VISIBLE);
 
                 unit_t1.setText(calculateResultModel.unit_t1);
@@ -219,6 +228,7 @@ public class PBCalculateResultActivity extends Activity {
 
                 if(calculateResultModel.formularCode.equals("C")) {
                     t2.setVisibility(View.VISIBLE);
+                    prefix_unit_t2.setVisibility(View.VISIBLE);
                     unit_t2.setText(calculateResultModel.unit_t2);
                     value_t2.setText(Util.dobbleToStringNumber(calculateResultModel.value_t2));
                     value_t2.setTextColor(getResources().getColor(R.color.RcmoPlantBG));
@@ -294,7 +304,7 @@ public class PBCalculateResultActivity extends Activity {
             recommandLocation.setText("ไม่พบข้อมูล");
         }
 
-
+/*
 if(userPlotModel.getPrdID().equals("40")
         || userPlotModel.getPrdID().equals("41")
         || userPlotModel.getPrdID().equals("42")
@@ -316,6 +326,10 @@ if(userPlotModel.getPrdID().equals("40")
     }
 
 }
+*/
+
+
+
 
         if (calculateResultModel.calculateResult >= 0) {
             txProfitLoss.setText("กำไร");
@@ -323,6 +337,14 @@ if(userPlotModel.getPrdID().equals("40")
         } else {
             txProfitLoss.setText("ขาดทุน");
             txProfitLossValue.setText(Util.dobbleToStringNumber(calculateResultModel.calculateResult));
+        }
+
+        if (calculateResultModel.calculateResult > 0) {
+            recommandPrice.setText("คณุมีโอกาสเป็นเศรษฐี");
+        } else if (calculateResultModel.calculateResult == 0) {
+            recommandPrice.setText("คณุพอมีพอกิน ต้องลดต้นทุน");
+        } else {
+            recommandPrice.setText("คณุมีโอกาสจะยากจน ต้องลดต้นทุน");
         }
 
 
@@ -741,7 +763,13 @@ if(userPlotModel.getPrdID().equals("40")
 
             if (convertView == null) {
                 LayoutInflater inflater = PBCalculateResultActivity.this.getLayoutInflater();
-                convertView = inflater.inflate(R.layout.row_result, parent, false);
+                if("A".equalsIgnoreCase(calculateResultModel.formularCode)
+                        ||"B".equalsIgnoreCase(calculateResultModel.formularCode)
+                        ||"C".equalsIgnoreCase(calculateResultModel.formularCode)){
+                    convertView = inflater.inflate(R.layout.row_result_pii, parent, false);
+                }else {
+                    convertView = inflater.inflate(R.layout.row_result, parent, false);
+                }
 
                 h.name = (TextView) convertView.findViewById(R.id.name);
                 h.value = (TextView) convertView.findViewById(R.id.value);
@@ -754,13 +782,20 @@ if(userPlotModel.getPrdID().equals("40")
 
             String[] calResult = resultList.get(position);
 
-
-            if(calResult[0] == null || "".equals(calResult[0])) {
-                h.layout_name.setVisibility(View.GONE);
-            }else{
-                h.layout_name.setVisibility(View.VISIBLE);
+            if("A".equalsIgnoreCase(calculateResultModel.formularCode)
+                    ||"B".equalsIgnoreCase(calculateResultModel.formularCode)
+                    ||"C".equalsIgnoreCase(calculateResultModel.formularCode)){
                 h.name.setText(calResult[0]);
+            }else {
+
+                if (calResult[0] == null || "".equals(calResult[0])) {
+                    h.layout_name.setVisibility(View.GONE);
+                } else {
+                    h.layout_name.setVisibility(View.VISIBLE);
+                    h.name.setText(calResult[0]);
+                }
             }
+
 
             Log.d(TAG,"h.value"+calResult[1]);
             Log.d(TAG," h.unit"+calResult[2]);

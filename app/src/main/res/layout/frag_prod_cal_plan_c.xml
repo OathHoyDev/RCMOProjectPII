@@ -188,6 +188,34 @@
             </RelativeLayout>
 
         </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <com.neopixl.pixlui.components.textview.TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:gravity="left"
+                android:inputType="text"
+                android:text="*"
+                android:textColor="#CC0000"
+                android:textSize="@dimen/cal_item_size"
+                pixlui:typeface="Quark-Bold.otf" />
+            <com.neopixl.pixlui.components.textview.TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:inputType="text"
+                android:paddingLeft="10dp"
+                android:text="ค่าเตรียมดิน,ค่าปลูก,ค่าพันธุ์ ได้คำนวนไว้ในต้นทุนเฉลี่ยก่อนให้ผลแล้ว"
+                android:textColor="@color/RcmoNormalDarkText"
+                android:textSize="@dimen/textsize_xsmall"
+                pixlui:typeface="Quark-Bold.otf" />
+        </LinearLayout>
+
 
         <ScrollView
             android:id="@+id/activity_expandable_scroll_view"
@@ -353,16 +381,15 @@
                                         android:textSize="@dimen/cal_item_size"
                                         pixlui:typeface="Quark-Bold.otf" />
 
-                                    <com.neopixl.pixlui.components.edittext.EditText
+                                    <com.neopixl.pixlui.components.textview.TextView
                                         android:id="@+id/group1_item_2"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:layout_marginTop="@dimen/margin_normal"
                                         android:layout_weight="1.5"
-                                        android:background="@color/RcmoWhiteBG"
+                                        android:background="@color/RcmoDarkTranBG"
                                         android:gravity="right"
-                                        android:hint="0.00"
-                                        android:imeOptions="actionNext"
+                                        android:hint="-"
                                         android:inputType="numberDecimal"
                                         android:padding="5dp"
                                         android:textColor="@color/RcmoNormalDarkText"
@@ -436,15 +463,15 @@
                                         android:textSize="@dimen/cal_item_size"
                                         pixlui:typeface="Quark-Bold.otf" />
 
-                                    <com.neopixl.pixlui.components.edittext.EditText
+                                    <com.neopixl.pixlui.components.textview.TextView
                                         android:id="@+id/group1_item_3"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:layout_marginTop="@dimen/margin_normal"
                                         android:layout_weight="1.5"
-                                        android:background="@color/RcmoWhiteBG"
+                                        android:background="@color/RcmoDarkTranBG"
                                         android:gravity="right"
-                                        android:hint="0.00"
+                                        android:hint="-"
                                         android:imeOptions="actionNext"
                                         android:inputType="numberDecimal"
                                         android:padding="5dp"
@@ -701,15 +728,15 @@
                                         android:textSize="@dimen/cal_item_size"
                                         pixlui:typeface="Quark-Bold.otf" />
 
-                                    <com.neopixl.pixlui.components.edittext.EditText
+                                    <com.neopixl.pixlui.components.textview.TextView
                                         android:id="@+id/group1_item_7"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:layout_marginTop="@dimen/margin_normal"
                                         android:layout_weight="1.5"
-                                        android:background="@color/RcmoWhiteBG"
+                                        android:background="@color/RcmoDarkTranBG"
                                         android:gravity="right"
-                                        android:hint="0.00"
+                                        android:hint="-"
                                         android:imeOptions="actionNext"
                                         android:inputType="numberDecimal"
                                         android:padding="5dp"

@@ -71,7 +71,7 @@ public class StepTwoActivity extends Activity {
     CompareProductListAdaptor compareProductListAdaptor = null;
 
     static class ViewHolder {
-        private TextView num_of_market,match_value_label,product_name_label,plant_btn_label,animal_btn_label,fish_btn_label;
+        private TextView num_of_market,match_value_label,product_name_label,plant_btn_label,animal_btn_label,fish_btn_label,prod_info_ref;
         private ImageView star1, star2, star3,product_img,plant_btn_img,animal_btn_img,fish_btn_img,upBtn;
         private LinearLayout layout_zoomInfo,plantBtn,animalBtn,fishBtn;
         private ListView productList ;
@@ -113,6 +113,7 @@ public class StepTwoActivity extends Activity {
         h.fish_btn_img =(ImageView) findViewById(R.id.fish_btn_img);
 
         h.layout_zoomInfo  =(LinearLayout) findViewById(R.id.layout_zoomInfo);
+        h.prod_info_ref  =(TextView) findViewById(R.id.prod_info_ref);
         h.layout_coverFlow  =(RelativeLayout) findViewById(R.id.layout_coverFlow);
 
         h.plantBtn   =(LinearLayout) findViewById(R.id.plantBtn);
@@ -282,11 +283,13 @@ public class StepTwoActivity extends Activity {
         if(isVisible) {
             h.layout_coverFlow.setVisibility(View.VISIBLE);
             h.layout_zoomInfo.setVisibility(View.VISIBLE);
+            h.prod_info_ref.setVisibility(View.VISIBLE);
           //  h.upBtn.setVisibility(View.VISIBLE);
         }else{
             h.layout_coverFlow.setVisibility(View.INVISIBLE);
             h.layout_zoomInfo.setVisibility(View.INVISIBLE);
             h.upBtn.setVisibility(View.GONE);
+            h.prod_info_ref.setVisibility(View.INVISIBLE);
         }
     }
 
@@ -738,7 +741,7 @@ public class StepTwoActivity extends Activity {
     }
 
      class PCViewHolder {
-        private TextView pc_product_name_label;
+        private TextView pc_product_name_label,pc_star_label;
         private ImageView pc_row_prodImg,pc_row_prodImg_selected,pc_row_star1, pc_row_star2, pc_row_star3;
         private LinearLayout pc_row_product,row_layout;
 
@@ -788,7 +791,7 @@ public class StepTwoActivity extends Activity {
             if (convertView == null) {
                 LayoutInflater inflater = StepTwoActivity.this.getLayoutInflater();
                 convertView = inflater.inflate(R.layout.row_prod_to_compare, parent, false);
-
+                pch.pc_star_label = (TextView) convertView.findViewById(R.id.pc_star_label);
                 pch.pc_product_name_label = (TextView) convertView.findViewById(R.id.pc_product_name_label);
                 pch.pc_row_prodImg = (ImageView) convertView.findViewById(R.id.pc_row_prodImg);
                 pch.pc_row_prodImg_selected = (ImageView) convertView.findViewById(R.id.pc_row_prodImg_selected);
@@ -819,6 +822,7 @@ public class StepTwoActivity extends Activity {
             }
 
             pch.pc_product_name_label.setText(prodList.getPrdName());
+            pch.pc_star_label.setText(prodList.getSuitLabel());
             setStar(prodList.getSuitLevel(), pch.pc_row_star1, pch.pc_row_star2, pch.pc_row_star3);
 
             String imgName = ServiceInstance.productIMGMap.get(prodList.getPrdID());

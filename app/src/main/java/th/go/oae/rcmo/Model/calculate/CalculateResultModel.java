@@ -19,5 +19,6 @@ public class CalculateResultModel {
     public  double value_t1;
     public  String unit_t2;
     public  double value_t2;
+    public String unitLabel;
 
 }

@@ -80,11 +80,12 @@ public class Util {
     public static double strToDoubleDefaultZero(String input){
         double value = 0;
         try {
-            if (input != null && !input.equals("")) {
+            if (input != null && !input.equals("")&& !input.equals("-")) {
                 input = input.replaceAll(",", "");
                 input = input.replaceAll("%", "");
                 value = Double.parseDouble(input);
             }
+
         }catch(Exception e){
             e.printStackTrace();
             value = 0;

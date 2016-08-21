@@ -143,7 +143,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
                 android:orientation="vertical"
                 android:layout_toRightOf="@+id/ImageProductLayout">
@@ -151,24 +151,51 @@
 
                 <com.neopixl.pixlui.components.textview.TextView
                     android:id="@+id/txProfitLoss"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
+                    android:gravity="center"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="40dp"
                     android:text="กำไร"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textColor="@color/RcmoGrayBG"
                     pixlui:typeface="Quark-Bold.otf"
-                    android:textSize="22dp"/>
+                    android:textSize="16dp"/>
+                <com.neopixl.pixlui.components.textview.TextView
+                    android:id="@+id/unitLabel"
+                    android:layout_marginRight="40dp"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="30 ไร่ 54 งาน 150 ตารางวา"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@color/RcmoGrayBG"
+                    pixlui:typeface="Quark-Bold.otf"
+                    android:textSize="14dp"
+                    android:visibility="gone"/>
                 <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="right"
                     android:layout_marginRight="5dp">
+                    <com.neopixl.pixlui.components.textview.TextView
+                        android:id="@+id/prefix_unit"
+                        android:layout_weight="2.2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="รวม"
+                        android:visibility="gone"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textColor="@color/RcmoGrayBG"
+                        pixlui:typeface="Quark-Bold.otf"
+                        android:textSize="@dimen/textsize_normal"
+                        android:layout_toRightOf="@+id/txProfitLossValue"
+                        android:layout_alignBaseline="@+id/txProfitLossValue" />
                 <com.neopixl.pixlui.components.textview.TextView
                     android:id="@+id/txProfitLossValue"
                     android:layout_width="match_parent"
-                    android:layout_weight="1"
+                    android:layout_weight="1.2"
                     android:gravity="right"
                     android:layout_height="wrap_content"
                     android:text="12000000.00"
@@ -176,7 +203,7 @@
                     pixlui:typeface="Quark-Bold.otf"
                     android:layout_alignLeft="@+id/txProfitLoss"
                     android:layout_below="@+id/txProfitLoss"
-                    android:textSize="20dp"/>
+                    android:textSize="16dp"/>
 
                 <com.neopixl.pixlui.components.textview.TextView
                     android:id="@+id/unit"
@@ -201,8 +228,22 @@
                     android:gravity="right"
                     android:layout_marginRight="5dp">
                     <com.neopixl.pixlui.components.textview.TextView
+                        android:id="@+id/prefix_unit_t1"
+                        android:layout_weight="2.2"
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="ต่อไร่"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textColor="@color/RcmoGrayBG"
+                        pixlui:typeface="Quark-Bold.otf"
+                        android:textSize="@dimen/textsize_normal"
+                        android:layout_toRightOf="@+id/txProfitLossValue"
+                        android:layout_alignBaseline="@+id/txProfitLossValue" />
+                    <com.neopixl.pixlui.components.textview.TextView
                         android:id="@+id/value_t1"
-                        android:layout_weight="1"
+                        android:layout_weight="1.2"
                         android:gravity="right"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -211,7 +252,7 @@
                         pixlui:typeface="Quark-Bold.otf"
                         android:layout_alignLeft="@+id/txProfitLoss"
                         android:layout_below="@+id/txProfitLoss"
-                        android:textSize="@dimen/textsize_large"/>
+                        android:textSize="@dimen/textsize_small"/>
 
                     <com.neopixl.pixlui.components.textview.TextView
                         android:id="@+id/unit_t1"
@@ -219,7 +260,7 @@
 
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
-                        android:text="บาท/กก."
+                        android:text="บาท"
                         android:layout_weight="2.2"
                         android:textColor="@color/RcmoGrayBG"
                         pixlui:typeface="Quark-Bold.otf"
@@ -236,8 +277,22 @@
                     android:gravity="right"
                     android:layout_marginRight="5dp">
                     <com.neopixl.pixlui.components.textview.TextView
+                        android:id="@+id/prefix_unit_t2"
+                        android:visibility="gone"
+                        android:layout_weight="2.2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="ต่อ กก."
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textColor="@color/RcmoGrayBG"
+                        pixlui:typeface="Quark-Bold.otf"
+                        android:textSize="@dimen/textsize_normal"
+                        android:layout_toRightOf="@+id/txProfitLossValue"
+                        android:layout_alignBaseline="@+id/txProfitLossValue" />
+                    <com.neopixl.pixlui.components.textview.TextView
                         android:id="@+id/value_t2"
-                        android:layout_weight="1"
+                        android:layout_weight="1.2"
                         android:gravity="right"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -246,7 +301,7 @@
                         pixlui:typeface="Quark-Bold.otf"
                         android:layout_alignLeft="@+id/txProfitLoss"
                         android:layout_below="@+id/txProfitLoss"
-                        android:textSize="@dimen/textsize_large"/>
+                        android:textSize="@dimen/textsize_small"/>
 
                     <com.neopixl.pixlui.components.textview.TextView
                         android:id="@+id/unit_t2"
@@ -254,7 +309,7 @@
 
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
-                        android:text="บาท/กก."
+                        android:text="บาท"
                         android:layout_weight="2.2"
                         android:textColor="@color/RcmoGrayBG"
                         pixlui:typeface="Quark-Bold.otf"
@@ -308,32 +363,16 @@
             android:orientation="horizontal">
 
             <com.neopixl.pixlui.components.textview.TextView
-                android:id="@+id/locationLabel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/headerLayout"
-                android:layout_weight="3"
-                android:gravity="right"
-                android:padding="5dp"
-                android:text="สถานที่"
-                android:textColor="@color/RcmoToastTranBG"
-                android:textSize="@dimen/textsize_large"
-                android:textStyle="bold"
-                pixlui:typeface="Quark-Bold.otf" />
-
-            <com.neopixl.pixlui.components.textview.TextView
-                android:id="@+id/recommandLocation"
+                android:id="@+id/recommandPrice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/headerLayout"
                 android:layout_marginLeft="20dp"
-                android:layout_weight="1"
-                android:gravity="left"
+                android:gravity="center"
                 android:padding="5dp"
-                android:text="แปลงของท่านเหมาะสมกับการปลูก"
-                android:textColor="@color/RcmoProfitBG"
+                android:text="ค่าใช้จ่ายเกินกว่ามาตรฐาน"
+                android:textColor="@color/RcmoOrangeBG"
                 android:textSize="@dimen/textsize_large"
                 android:textStyle="bold"
                 pixlui:typeface="Quark-Bold.otf" />
@@ -345,32 +384,16 @@
             android:orientation="horizontal">
 
             <com.neopixl.pixlui.components.textview.TextView
-                android:id="@+id/priceLabel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/headerLayout"
-                android:layout_weight="3"
-                android:gravity="right"
-                android:padding="5dp"
-                android:text="ราคา"
-                android:textColor="@color/RcmoToastTranBG"
-                android:textSize="@dimen/textsize_large"
-                android:textStyle="bold"
-                pixlui:typeface="Quark-Bold.otf" />
-
-            <com.neopixl.pixlui.components.textview.TextView
-                android:id="@+id/recommandPrice"
+                android:id="@+id/recommandLocation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/headerLayout"
                 android:layout_marginLeft="20dp"
-                android:layout_weight="1"
-                android:gravity="left"
+                android:gravity="center"
                 android:padding="5dp"
-                android:text="ค่าใช้จ่ายเกินกว่ามาตรฐาน"
-                android:textColor="@color/RcmoOrangeBG"
+                android:text="แปลงของท่านเหมาะสมกับการปลูก"
+                android:textColor="@color/RcmoProfitBG"
                 android:textSize="@dimen/textsize_large"
                 android:textStyle="bold"
                 pixlui:typeface="Quark-Bold.otf" />

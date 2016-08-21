@@ -291,7 +291,7 @@ public class PBProdDetailCalculateFmentA extends Fragment implements View.OnClic
                 calculateResultModel.formularCode = "A";
                 calculateResultModel.calculateResult = formulaModel.calProfitLoss;
                 calculateResultModel.productName = userPlotModel.getPrdValue();
-                calculateResultModel.unit_t1 = "บาท/ไร่";
+                calculateResultModel.unit_t1 = "บาท";
                 calculateResultModel.value_t1 = formulaModel.calProfitLossPerRai;
                 calculateResultModel.mPlotSuit = PBProductDetailActivity.mPlotSuit;
                 calculateResultModel.compareStdResult = formulaModel.calSumCost - formulaModel.TontumMattratarn;
@@ -304,23 +304,45 @@ public class PBProdDetailCalculateFmentA extends Fragment implements View.OnClic
 
                 userPlotModel.setVarValue(ProductService.genJsonPlanVariable(formulaModel));
 
+                String unitLabel = "";
+                if(h.rai.getText()!=null && !"".equals(h.rai.getText())&& !"0".equals(h.rai.getText())){
+                    unitLabel = h.rai.getText()+" ไร่ ";
+                }
+
+                if(h.ngan.getText()!=null && !"".equals(h.ngan.getText())&& !"0".equals(h.ngan.getText())){
+                    unitLabel += h.ngan.getText()+" งาน ";
+                }
+
+                if(h.wa.getText()!=null && !"".equals(h.wa.getText())&& !"0".equals(h.wa.getText())){
+                    unitLabel += h.wa.getText()+" ตารางวา";
+                }
+
+                calculateResultModel.unitLabel = unitLabel;
 
                 List resultArrayResult = new ArrayList();
 
-                String[] tontoonCal_1 = {"ต้นทุนรวมเกษตร", String.format("%,.2f", formulaModel.calSumCost), "บาท"};
+                String[] tontoonCal = {"ต้นทุน", "", ""};
+                resultArrayResult.add(tontoonCal);
+                String[] tontoonCal_1 = {"    รวม", String.format("%,.2f", formulaModel.calSumCost), "บาท"};
                 resultArrayResult.add(tontoonCal_1);
 
-                String[] tontoonCal_2 = {"", String.format("%,.2f", formulaModel.calSumCostPerRai), "บาท/ไร่"};
+                String[] tontoonCal_2 = {"    ต่อไร่", String.format("%,.2f", formulaModel.calSumCostPerRai), "บาท"};
                 resultArrayResult.add(tontoonCal_2);
 
-                String[] raydai_1 = {"รายได้", String.format("%,.2f", formulaModel.calIncome), "บาท"};
+                String[] raydai = {"รายได้", "", ""};
+                resultArrayResult.add(raydai);
+
+                String[] raydai_1 = {"    รวม", String.format("%,.2f", formulaModel.calIncome), "บาท"};
                 resultArrayResult.add(raydai_1);
 
-                String[] raydai_2 = {"", String.format("%,.2f", formulaModel.calIncomePerRai), "บาท/ไร่"};
+                String[] raydai_2 = {"    ต่อไร่", String.format("%,.2f", formulaModel.calIncomePerRai), "บาท"};
                 resultArrayResult.add(raydai_2);
 
-                String[] tontoon = {"ต้นทุนเฉลี่ย", String.format("%,.2f", formulaModel.TontumMattratarn), "บาท"};
+                String[] tontoon = {"ต้นทุนเฉลี่ย", "", ""};
                 resultArrayResult.add(tontoon);
+
+                String[] tontoon_1 = {"    รวม", String.format("%,.2f", formulaModel.TontumMattratarn), "บาท"};
+                resultArrayResult.add(tontoon_1);
 
                 DialogCalculateResult.calculateResultModel.resultList = resultArrayResult;
 
