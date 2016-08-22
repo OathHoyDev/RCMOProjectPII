@@ -87,7 +87,7 @@ public class StepOneActivity extends Activity{
         if (ServiceInstance.isTablet(StepOneActivity.this)) {
             Log.d("TEST", "-->TabLet");
             //setContentView(R.layout.activity_step_one_tablet);
-            setContentView(R.layout.activity_step_one);
+            setContentView(R.layout.activity_step_one_tablet);
         } else {
             setContentView(R.layout.activity_step_one);
         }
