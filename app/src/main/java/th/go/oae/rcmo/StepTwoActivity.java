@@ -55,6 +55,7 @@ public class StepTwoActivity extends Activity {
     String provID;
     String amphoeID;
     String tambonID;
+    boolean isTablet = false;
     boolean isPlantSelected =true;
     boolean isAnimalSelected = true;
     boolean isFishSelected =true;
@@ -85,8 +86,20 @@ public class StepTwoActivity extends Activity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_step_two);
+        if(ServiceInstance.isTablet(StepTwoActivity.this)){
+          isTablet = true;
+        }else{
+            isTablet = false;
+        }
+        /*
+        if(ServiceInstance.isTablet(StepOneActivity.this)){
+            Log.d("TEST","-->TabLet");
+            setContentView(R.layout.activity_step_one_tablet);
+        }else{
+            setContentView(R.layout.activity_step_one);
+        }
 
-
+*/
             provID = selectedprovince.getProvCode();
             amphoeID = selectedAmphoe.getAmpCode();
             tambonID =selectedTumbon.getTamCode();
@@ -329,15 +342,28 @@ public class StepTwoActivity extends Activity {
         }else if((productSuitLists.size()==0)){
             initView(false);
         }
+        if(isTablet){
+            new CoverFlow.Builder()
+                    .with(pager)
+                    .scale(0.2f)
+                    .pagerMargin(0f)
+                    .spaceSize(0f)
+                    .build();
 
-        new CoverFlow.Builder()
-                .with(pager)
-                .scale(0.25f)
-                .pagerMargin(-100f)
-                .spaceSize(50f)
-                .build();
+            pager.setPageMargin(-25);
+        }else{
+            new CoverFlow.Builder()
+                    .with(pager)
+                    .scale(0.25f)
+                    .pagerMargin(-100f)
+                    .spaceSize(50f)
+                    .build();
 
-        pager.setPageMargin(20);
+            pager.setPageMargin(20);
+        }
+
+
+
 
         pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
