@@ -159,7 +159,7 @@
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textColor="@color/RcmoGrayBG"
                     pixlui:typeface="Quark-Bold.otf"
-                    android:textSize="16dp"/>
+                    android:textSize="18dp"/>
                 <com.neopixl.pixlui.components.textview.TextView
                     android:id="@+id/unitLabel"
                     android:layout_marginRight="40dp"

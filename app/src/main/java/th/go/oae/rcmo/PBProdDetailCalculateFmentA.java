@@ -309,15 +309,18 @@ public class PBProdDetailCalculateFmentA extends Fragment implements View.OnClic
                 userPlotModel.setVarValue(ProductService.genJsonPlanVariable(formulaModel));
 
                 String unitLabel = "";
-                if(h.rai.getText()!=null && !"".equals(h.rai.getText())&& !"0".equals(h.rai.getText())){
+                //  if(h.rai.getText()!=null && !"".equals(h.rai.getText())&& !"0".equals(h.rai.getText())){
+                if(formulaModel.Rai > 0){
                     unitLabel = h.rai.getText()+" ไร่ ";
                 }
 
-                if(h.ngan.getText()!=null && !"".equals(h.ngan.getText())&& !"0".equals(h.ngan.getText())){
+                // if(h.ngan.getText()!=null && !"".equals(h.ngan.getText())&& !"0".equals(h.ngan.getText())){
+                if(formulaModel.Ngan > 0){
                     unitLabel += h.ngan.getText()+" งาน ";
                 }
 
-                if(h.wa.getText()!=null && !"".equals(h.wa.getText())&& !"0".equals(h.wa.getText())){
+                // if(h.wa.getText()!=null && !"".equals(h.wa.getText())&& !"0".equals(h.wa.getText())){
+                if(formulaModel.Wa > 0){
                     unitLabel += h.wa.getText()+" ตารางวา";
                 }
 

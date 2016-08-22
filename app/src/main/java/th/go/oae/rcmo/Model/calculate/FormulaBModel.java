@@ -227,6 +227,9 @@ public class FormulaBModel extends AbstractFormulaModel {
             calSumCost += costKaSermOuppakorn + costKaSiaOkardOuppakorn;
         }
 
+        calSumCostPerKK = calSumCost/PonPalid;
+        calSumCostPerKK = Util.verifyDoubleDefaultZero(calSumCostPerKK);
+
 
         calSumCostPerRai = calSumCost/SumRai;
         calSumCostPerRai = Util.verifyDoubleDefaultZero(calSumCostPerRai);

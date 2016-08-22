@@ -1396,7 +1396,7 @@
                                     android:gravity="left|bottom"
                                     android:inputType="text"
                                     android:paddingLeft="10dp"
-                                    android:text="@string/bath_tun"
+                                    android:text="บาท/กก."
                                     android:textColor="@color/RcmoNormalDarkText"
                                     android:textSize="@dimen/cal_item_size"
                                     pixlui:typeface="Quark-Bold.otf" />
@@ -1505,35 +1505,7 @@
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:paddingTop="10dp"
-                    android:orientation="horizontal">
 
-                    <com.neopixl.pixlui.components.textview.TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_normal"
-                        android:gravity="left|center"
-                        android:inputType="text"
-                        android:text="*"
-                        android:textColor="#CC0000"
-                        android:textSize="@dimen/cal_item_size"
-                        pixlui:typeface="Quark-Bold.otf" />
-                    <com.neopixl.pixlui.components.textview.TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-
-                        android:gravity="left|center"
-                        android:inputType="text"
-                        android:paddingLeft="5dp"
-                        android:text="ค่าเตรียมดิน,ค่าปลูก,ค่าพันธุ์ ได้คำนวณไว้ในต้นทุนเฉลี่ยก่อนให้ผลแล้ว"
-                        android:textColor="@color/RcmoNormalDarkText"
-                        android:textSize="@dimen/cal_item_size"
-                        pixlui:typeface="Quark-Bold.otf" />
-                </LinearLayout>
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="50dp"

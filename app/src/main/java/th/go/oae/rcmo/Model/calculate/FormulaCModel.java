@@ -76,6 +76,8 @@ public class FormulaCModel extends AbstractFormulaModel {
     public double costKaSiaOkardOuppakorn = 0;
 
     public double KaSiaOkardLongtoonPerRai = 0;
+    public static double calSumCostPerKK = 0;
+
 
     public static double V = 0;
 
@@ -232,10 +234,17 @@ public class FormulaCModel extends AbstractFormulaModel {
             calLifeCostPerRai += KaSermOuppakorn + KaSiaOkardOuppakorn;
         }
 
+
+        calSumCost = Util.verifyDoubleDefaultZero(calSumCost);
+
         calStartCostPerRai = calSumCost / SumRai;
         calStartCostPerRai = Util.verifyDoubleDefaultZero(calStartCostPerRai);
 
-        calIncome = (PonPalid * predictPrice)/1000;
+        calSumCostPerKK = calSumCost/PonPalid;
+        calSumCostPerKK = Util.verifyDoubleDefaultZero(calSumCostPerKK);
+
+       // calIncome = (PonPalid * predictPrice)/1000;
+        calIncome = (PonPalid * predictPrice);
         calIncome = Util.verifyDoubleDefaultZero(calIncome);
 
         calIncomePerRai = calIncome / SumRai;

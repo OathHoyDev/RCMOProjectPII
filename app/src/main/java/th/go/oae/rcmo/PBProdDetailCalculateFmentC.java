@@ -285,15 +285,18 @@ public class PBProdDetailCalculateFmentC extends Fragment implements View.OnClic
                 userPlotModel.setVarValue(ProductService.genJsonPlanVariable(formulaModel));
 
                 String unitLabel = "";
-                if(h.rai.getText()!=null && !"".equals(h.rai.getText())&& !"0".equals(h.rai.getText())){
+              //  if(h.rai.getText()!=null && !"".equals(h.rai.getText())&& !"0".equals(h.rai.getText())){
+                if(formulaModel.Rai > 0){
                     unitLabel = h.rai.getText()+" ไร่ ";
                 }
 
-                if(h.ngan.getText()!=null && !"".equals(h.ngan.getText())&& !"0".equals(h.ngan.getText())){
+               // if(h.ngan.getText()!=null && !"".equals(h.ngan.getText())&& !"0".equals(h.ngan.getText())){
+                 if(formulaModel.Ngan > 0){
                     unitLabel += h.ngan.getText()+" งาน ";
                 }
 
-                if(h.wa.getText()!=null && !"".equals(h.wa.getText())&& !"0".equals(h.wa.getText())){
+               // if(h.wa.getText()!=null && !"".equals(h.wa.getText())&& !"0".equals(h.wa.getText())){
+                if(formulaModel.Wa > 0){
                     unitLabel += h.wa.getText()+" ตารางวา";
                 }
 
@@ -308,15 +311,17 @@ public class PBProdDetailCalculateFmentC extends Fragment implements View.OnClic
                 resultArrayResult.add(tontoonCal_1);
                 String[] tontoonCal_3 = {"    ต่อไร่", String.format("%,.2f", formulaModel.calStartCostPerRai), "บาท"};
                 resultArrayResult.add(tontoonCal_3);
+                String[] tontoonCal_5 = {"    ต่อ กก.", String.format("%,.2f", formulaModel.calSumCostPerKK), "บาท"};
+                resultArrayResult.add(tontoonCal_5);
 /*
             String [] tontoonCal_2 = {"" , String.format("%,.2f", formulaModel.calStartCostPerRai) , "บาท/ไร่"};
             resultArrayResult.add(tontoonCal_2);
-*/
+
 
 
                 String[] tontoonCal_4 = {"    ต่ออายุ", String.format("%,.2f", formulaModel.calLifeCostPerRai), "บาท"};
                 resultArrayResult.add(tontoonCal_4);
-
+*/
                 String[] raydai = {"รายได้", "", ""};
                 resultArrayResult.add(raydai);
 
