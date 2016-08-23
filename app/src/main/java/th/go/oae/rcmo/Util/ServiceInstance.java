@@ -19,7 +19,7 @@ import java.util.Map;
 public class ServiceInstance {
 
     public static final String forgotPassURL = "http://111.223.34.154/RCMO/forgot_password.aspx";
-    public static final String OIC_PACKAGE_NAME  = "com.oae.oic";
+    public static final String OIC_PACKAGE_NAME  = "com.oae.oicnew";
     public static final String ECON_PACKAGE_NAME = "com.tig_gis.econseries";
     //public static final String forgotPassURL = "https://www.google.co.th/";
     public static final String FISHERY_TYPE_KC = "2";

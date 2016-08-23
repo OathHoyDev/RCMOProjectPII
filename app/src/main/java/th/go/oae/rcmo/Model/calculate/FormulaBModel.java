@@ -244,6 +244,9 @@ public class FormulaBModel extends AbstractFormulaModel {
         calProfitLoss = calIncome - calSumCost;
         calProfitLoss = Util.verifyDoubleDefaultZero(calProfitLoss);
 
+        calProfitLossPerKK = calProfitLoss/PonPalid;
+        calProfitLossPerKK = Util.verifyDoubleDefaultZero(calProfitLossPerKK);
+
         calProfitLossPerRai = calProfitLoss/ SumRai;
         calProfitLossPerRai = Util.verifyDoubleDefaultZero(calProfitLossPerRai);
 
