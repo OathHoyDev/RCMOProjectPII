@@ -341,11 +341,11 @@ if(userPlotModel.getPrdID().equals("40")
         }
 
         if (calculateResultModel.calculateResult > 0) {
-            recommandPrice.setText("คณุมีโอกาสเป็นเศรษฐี");
+            recommandPrice.setText("คุณมีโอกาสเป็นเศรษฐี");
         } else if (calculateResultModel.calculateResult == 0) {
-            recommandPrice.setText("คณุพอมีพอกิน ต้องลดต้นทุน");
+            recommandPrice.setText("คุณพอมีพอกิน ต้องลดต้นทุน");
         } else {
-            recommandPrice.setText("คณุมีโอกาสจะยากจน ต้องลดต้นทุน");
+            recommandPrice.setText("คุณมีโอกาสจะยากจน ต้องลดต้นทุน");
         }
 
 
