@@ -18,7 +18,7 @@
         sothree:umanoAnchorPoint="1"
         sothree:umanoDragView="@+id/dragView"
         sothree:umanoOverlay="true"
-        sothree:umanoPanelHeight="100dp"
+        sothree:umanoPanelHeight="99dp"
         sothree:umanoParallaxOffset="0dp"
         sothree:umanoScrollableView="@+id/list"
 
@@ -190,7 +190,7 @@
                             android:layout_centerHorizontal="true"
                             android:layout_centerVertical="true"
                             android:adjustViewBounds="true"
-                            android:src="@drawable/up"/>
+                            android:src="@drawable/up_w"/>
                     </RelativeLayout>
 
                 </LinearLayout>
@@ -226,6 +226,7 @@
                 android:layout_height="match_parent"
                 android:background="@color/RcmoMarketMapListBG"
                 android:clickable="true"
+                android:layout_marginTop="-1dp"
                 android:gravity="top|center"
                 android:orientation="vertical">
 

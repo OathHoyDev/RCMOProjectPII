@@ -327,7 +327,6 @@
                                     android:id="@+id/but_point_label"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:clickable="true"
                                     android:gravity="center"
                                     android:padding="5dp"
                                     android:text="จำนวนจุดรับซื้อใกล้เคียง"
@@ -487,11 +486,12 @@
 
                 <ImageView
                     android:id="@+id/upBtn"
-                    android:layout_width="70dp"
-                    android:layout_height="55dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
                     android:layout_below="@+id/linearLayout6"
                     android:layout_centerHorizontal="true"
-                    android:background="@drawable/up"
+                    android:src="@drawable/up"
+                    android:adjustViewBounds="true"
                      />
 
             </LinearLayout>
@@ -506,13 +506,13 @@
 
                 <ImageView
                     android:id="@+id/downBtn"
-                    android:layout_width="70dp"
-                    android:layout_height="55dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
                     android:layout_below="@+id/linearLayout6"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="10dp"
-
-                    android:background="@drawable/down"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/down"
                     android:visibility="invisible" />
 
                 <LinearLayout

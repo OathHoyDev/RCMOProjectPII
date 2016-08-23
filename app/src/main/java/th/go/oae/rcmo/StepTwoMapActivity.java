@@ -81,7 +81,7 @@ public class StepTwoMapActivity extends FragmentActivity {
 
     double centerLatitude = 0;
     double centerLongitude = 0;
-
+    String productId = "";
     List<mGetMarketList.MarketListObj> allProductMarketList = new ArrayList<mGetMarketList.MarketListObj>();
     List<mGetMarketList.MarketListObj> selectProductMarketList = new ArrayList<mGetMarketList.MarketListObj>();
 
@@ -101,7 +101,7 @@ public class StepTwoMapActivity extends FragmentActivity {
         setContentView(R.layout.activity_step_two_map);
 
         context = this;
-
+        // productId = userPlotModel.getPrdID() ;
         initMap(savedInstanceState);
         initialLayout();
         setAction();
@@ -326,20 +326,20 @@ public class StepTwoMapActivity extends FragmentActivity {
             public void onInfoWindowClick(Marker marker) {
 
                 List<mGetMarketList.MarketListObj> tmpMarletList = new ArrayList<mGetMarketList.MarketListObj>();
-
+               // String productId = "";
                 if (isChooseAllProduct) {
 
                     tmpMarletList = allProductMarketList;
 
                 }else{
-
+                   // productId = userPlotModel.getPrdID();
                     tmpMarletList = selectProductMarketList;
                 }
 
                 for (mGetMarketList.MarketListObj marketObj : tmpMarletList) {
                     if (marketObj.getLatitude() != "") {
                         if (Math.abs(marker.getPosition().latitude - Double.parseDouble(marketObj.getLatitude())) < 0.05 && Math.abs(marker.getPosition().longitude - Double.parseDouble(marketObj.getLongitude())) < 0.05) {
-                            API_GetMarketPrice(marketObj.getMarketID(), userPlotModel.getUserID() , marketObj.getMarketName());
+                            API_GetMarketPrice(marketObj.getMarketID(), userPlotModel.getUserID(), marketObj.getMarketName());
                             break;
                         }
                     }
@@ -517,11 +517,11 @@ public class StepTwoMapActivity extends FragmentActivity {
                 Log.i(TAG, "onPanelStateChanged " + newState);
                 if (SlidingUpPanelLayout.PanelState.EXPANDED.equals(newState)) {
                     ImageView btnView = (ImageView) findViewById(R.id.upBtn);
-                    btnView.setImageResource(R.drawable.down);
+                    btnView.setImageResource(R.drawable.down_w);
                 }
                 if (SlidingUpPanelLayout.PanelState.COLLAPSED.equals(newState)) {
                     ImageView btnView = (ImageView) findViewById(R.id.upBtn);
-                    btnView.setImageResource(R.drawable.up);
+                    btnView.setImageResource(R.drawable.up_w);
                 }
             }
         });
@@ -776,7 +776,7 @@ public class StepTwoMapActivity extends FragmentActivity {
 
             @Override
             public void callbackError(int code, String errorMsg) {
-                Log.d("Erroo", errorMsg);
+                Log.d("Error", errorMsg);
             }
         }).API_Request(true, RequestServices.ws_getMarketList +
                 "?ProvCode=" + provCode
@@ -787,8 +787,12 @@ public class StepTwoMapActivity extends FragmentActivity {
 
     }
 
-    private void API_GetMarketPrice(String marketID, String userID , final String marketName) {
-
+    private void API_GetMarketPrice(String marketID, String userID  ,final String marketName) {
+        if(isChooseAllProduct){
+            productId = "";
+        }else{
+            productId = userPlotModel.getPrdID();
+        }
         new ResponseAPI(this, new ResponseAPI.OnCallbackAPIListener() {
             @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
             @Override
@@ -821,6 +825,7 @@ public class StepTwoMapActivity extends FragmentActivity {
                 "?MarketID=" + marketID
                 + "&UserID=" + userID
                 + "&ImeiCode=" + ServiceInstance.GetDeviceID(StepTwoMapActivity.this)
+                + "&PrdID=" + productId
         );
 
     }
