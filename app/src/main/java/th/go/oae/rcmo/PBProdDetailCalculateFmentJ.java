@@ -1218,7 +1218,7 @@ public class PBProdDetailCalculateFmentJ extends Fragment implements View.OnClic
         sqaWa.setFilters(new InputFilter[]{new InputFilterMinMax(0, 99)});
 
         final EditText sqM = (EditText) dialog.findViewById(R.id.sqM);
-        sqM.setFilters(new InputFilter[]{new InputFilterMinMax(0, 399)});
+        sqM.setFilters(new InputFilter[]{new InputFilterMinMax(0, 3)});
 
         final EditText unit = (EditText) dialog.findViewById(R.id.unit);
 

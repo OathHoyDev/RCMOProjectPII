@@ -115,7 +115,7 @@ public class StepThreeActivity extends Activity {
             inputWa.setFilters(new InputFilter[]{new InputFilterMinMax(0, 99)});
 
 
-            inputMeter.setFilters(new InputFilter[]{new InputFilterMinMax(0, 399)});
+            inputMeter.setFilters(new InputFilter[]{new InputFilterMinMax(0, 3)});
             inputMeter.setText("0");
             inputMeter.setVisibility(View.GONE);
 

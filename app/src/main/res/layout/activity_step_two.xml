@@ -512,7 +512,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="10dp"
 
-                    android:background="@drawable/up"
+                    android:background="@drawable/down"
                     android:visibility="invisible" />
 
                 <LinearLayout
