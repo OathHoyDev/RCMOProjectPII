@@ -848,7 +848,16 @@ public class StepTwoActivity extends Activity {
             }
 
             pch.pc_product_name_label.setText(prodList.getPrdName());
-            pch.pc_star_label.setText(prodList.getSuitLabel());
+
+            if(prodList.getSuitLabel() !=null && !prodList.getSuitLabel().equals("")) {
+                pch.pc_star_label.setText(prodList.getSuitLabel());
+            }else{
+                pch.pc_star_label.setText("ไม่พบข้อมูล");
+            }
+
+            //pch.pc_star_label.setText(prodList.getSuitLabel());
+
+
             setStar(prodList.getSuitLevel(), pch.pc_row_star1, pch.pc_row_star2, pch.pc_row_star3);
 
             String imgName = ServiceInstance.productIMGMap.get(prodList.getPrdID());
