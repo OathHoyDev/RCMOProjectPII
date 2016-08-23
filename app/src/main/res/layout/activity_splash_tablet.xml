@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:pixlui="http://schemas.android.com/apk/com.neopixl.pixlui"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_blue"
+    tools:context="th.go.oae.rcmo.SplashActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_weight="1.2"
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:paddingTop="0dp"
+            android:layout_marginLeft="120dp"
+            android:layout_marginRight="120dp"
+            android:src="@drawable/woodtitle" />
+
+        <ImageView
+            android:id="@+id/framer_splash"
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="140dp"
+            android:layout_marginRight="140dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+
+            android:adjustViewBounds="true"
+
+            android:paddingTop="0dp"
+
+            android:src="@drawable/framer_splash" />
+
+        <com.neopixl.pixlui.components.textview.TextView
+            android:id="@+id/back"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|bottom"
+            android:layout_marginBottom="15dp"
+            android:gravity="center|bottom"
+            android:layout_weight="1"
+            android:padding="4dp"
+            android:text="สำนักงานเศรษฐกิจการเกษตร"
+            android:textColor="@color/RcmoNormalLightText"
+            android:textSize="@dimen/textsize_xxxlarge"
+            pixlui:typeface="Quark-Bold.otf" />
+    </LinearLayout>
+
+
+
+</RelativeLayout>

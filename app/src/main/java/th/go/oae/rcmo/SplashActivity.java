@@ -36,8 +36,13 @@ public class SplashActivity extends Activity {
         //requestWindowFeature(Window.FEATURE_NO_TITLE);
         SharedPreferences sp = getSharedPreferences(ServiceInstance.PREF_NAME, Context.MODE_PRIVATE);
         final  String userId = sp.getString(ServiceInstance.sp_userId, "0");
-
-        setContentView(R.layout.activity_splash);
+        if (ServiceInstance.isTablet(SplashActivity.this)) {
+            Log.d("SplashActivity", "-->TabLet");
+            setContentView(R.layout.activity_splash_tablet);
+        } else {
+            setContentView(R.layout.activity_splash);
+        }
+        //setContentView(R.layout.activity_splash);
         Log.d("Splash", "UserId : " + userId);
         /* New Handler to start the Menu-Activity
          * and close this Splash-Screen after some seconds.*/

@@ -113,7 +113,7 @@ public class PBCalculatePagerAdapter extends FragmentStatePagerAdapter {
         String title=" ";
         switch (position){
             case 0:
-                title="ค่ามาตรฐาน";
+                title="ค่าเฉลี่ย";
                 break;
             case 1:
                 title="คำนวนต้นทุน";

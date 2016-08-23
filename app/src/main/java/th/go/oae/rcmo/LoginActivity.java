@@ -11,6 +11,7 @@ import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Animation;
@@ -37,7 +38,13 @@ public class LoginActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        if (ServiceInstance.isTablet(LoginActivity.this)) {
+            Log.d("LoginActivity", "-->TabLet");
+            setContentView(R.layout.activity_login_tablet);
+        } else {
+            setContentView(R.layout.activity_login);
+        }
+        //setContentView(R.layout.activity_login);
         //findViewById(R.id.mainLoginLayout).setBackgroundResource(R.drawable.bg_blue);
        //findViewById(R.id.mainLoginLayout).setBackground(new BitmapDrawable(BitMapHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.bg_total, 300, 400)));
         inputUsername = (EditText) findViewById(R.id.inputUsername);
