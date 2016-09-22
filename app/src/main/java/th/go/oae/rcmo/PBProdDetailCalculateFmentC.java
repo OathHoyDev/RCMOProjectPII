@@ -190,7 +190,7 @@ public class PBProdDetailCalculateFmentC extends Fragment implements View.OnClic
     private void setUpCalUI(FormulaCModel model) {
         h.group1_item_1.setText(Util.dobbleToStringNumber(model.KaRang));
         h.group1_item_6.setText(Util.dobbleToStringNumber(model.KaWassadu));
-        h.group1_item_11.setText(Util.dobbleToStringNumber(model.KaSiaOkardLongtoonPerRai));
+        h.group1_item_11.setText(Util.dobbleToStringNumber(model.KaSiaOkardLongtoon));
         //h.group1_item_12.setText(Util.dobbleToStringNumber(model.KaChaoTDin));
         h.group1_item_13.setText(Util.dobbleToStringNumber(model.costKaSermOuppakorn));
         h.group1_item_14.setText(Util.dobbleToStringNumber(model.costKaSiaOkardOuppakorn));

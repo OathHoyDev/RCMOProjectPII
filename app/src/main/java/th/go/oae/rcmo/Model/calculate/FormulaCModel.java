@@ -208,11 +208,12 @@ public class FormulaCModel extends AbstractFormulaModel {
 
         // mod 11/08/2559  KaWassadu = KaPan + KaPuy + KaYaplab + KaWassaduUn;
         KaWassadu =  KaPuy + KaYaplab + KaWassaduUn;
-        double KaPuyPerRai = KaPuy / SumRai;
 
-        //double KaPanPerRai =  KaPan  / KaNardPlangTDin ;
+        double KaPuyPerRai = KaPuy / SumRai;
         double KaYaplabPerRai = KaYaplab / SumRai ;
         double KaWassaduUnPerRai = KaWassaduUn / SumRai ;
+
+
         double KaWassaduPerRai = KaPuyPerRai + KaYaplabPerRai + KaWassaduUnPerRai;
 
         KaSiaOkardLongtoon =  Util.round((KaRang + KaWassadu) * (AttraDokbia / 100) * (V / 12), 2);
@@ -234,13 +235,13 @@ public class FormulaCModel extends AbstractFormulaModel {
             calLifeCostPerRai += KaSermOuppakorn + KaSiaOkardOuppakorn;
         }
 
-
+        calSumCost = calSumCost +  (TonToonChaliaGonHaiPon*SumRai); //21/09/2016
         calSumCost = Util.verifyDoubleDefaultZero(calSumCost);
 
         calStartCostPerRai = calSumCost / SumRai;
         calStartCostPerRai = Util.verifyDoubleDefaultZero(calStartCostPerRai);
 
-        calSumCostPerKK = calSumCost/PonPalid;
+        calSumCostPerKK = calSumCost/(PonPalid/SumRai); //21/09/2016
         calSumCostPerKK = Util.verifyDoubleDefaultZero(calSumCostPerKK);
 
        // calIncome = (PonPalid * predictPrice)/1000;
@@ -251,7 +252,7 @@ public class FormulaCModel extends AbstractFormulaModel {
         calIncomePerRai = Util.verifyDoubleDefaultZero(calIncomePerRai);
 
       //  calProfitLoss = calIncome - calStartCostPerRai;
-        calProfitLoss = calIncome - calLifeCostPerRai;
+        calProfitLoss = calIncome - calSumCost;
         calProfitLoss = Util.verifyDoubleDefaultZero(calProfitLoss);
 
         calProfitLossPerRai = calProfitLoss/SumRai;

@@ -155,6 +155,7 @@ public class PlanCTextWatcher implements TextWatcher {
                     +  Util.strToDoubleDefaultZero(h.meter.getText().toString())
             )/1600;
 
+            /*
             double KaDoolaePerRai = Util.strToDoubleDefaultZero(h.group1_item_4.getText().toString()) / sumRai;
             double KaRangPerRai = KaDoolaePerRai + Util.strToDoubleDefaultZero(h.group1_item_5.getText().toString());
 
@@ -162,10 +163,21 @@ public class PlanCTextWatcher implements TextWatcher {
                     + ((Util.strToDoubleDefaultZero(h.group1_item_9.getText().toString()))/sumRai)
                     + ((Util.strToDoubleDefaultZero(h.group1_item_10.getText().toString()))/sumRai);
 
-
-
-            value=   Util.round(  (KaRangPerRai
+                     value=   Util.round(  (KaRangPerRai
                     + KaWassaduPerRai)
+                    * (Util.strToDoubleDefaultZero(h.group4_item_1.getText().toString()) / 100) * (f.V / 12), 2);
+                    */
+
+            double KaDoolae = Util.strToDoubleDefaultZero(h.group1_item_4.getText().toString());
+            double KaRang = KaDoolae + Util.strToDoubleDefaultZero(h.group1_item_5.getText().toString());
+
+            double KaWassadu =  ((Util.strToDoubleDefaultZero(h.group1_item_8.getText().toString())))
+                    + ((Util.strToDoubleDefaultZero(h.group1_item_9.getText().toString())))
+                    + ((Util.strToDoubleDefaultZero(h.group1_item_10.getText().toString())));
+
+
+            value=   Util.round(  (KaRang
+                    + KaWassadu)
                     * (Util.strToDoubleDefaultZero(h.group4_item_1.getText().toString()) / 100) * (f.V / 12), 2);
 
             h.group1_item_11.setText(Util.dobbleToStringNumber(value));
